@@ -15,8 +15,8 @@ namespace Content.Server._Sunrise.StationEvents.Events;
 public sealed class EpsilonDeathSquadLawsetRule : StationEventSystem<EpsilonDeathSquadLawsetComponent>
 {
     private EntityUid? _targetStation;
-    [Dependency] private readonly SiliconLawSystem _siliconLaw = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private SiliconLawSystem _siliconLaw = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     private const string DeathSquadLawsetId = "DeathSquadLawset";
 

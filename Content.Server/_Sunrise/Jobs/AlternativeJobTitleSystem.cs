@@ -18,9 +18,9 @@ namespace Content.Server._Sunrise.Jobs;
 /// </summary>
 public sealed class AlternativeJobTitleSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly SharedIdCardSystem _card = default!;
-    [Dependency] private readonly StationRecordsSystem _records = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private SharedIdCardSystem _card = default!;
+    [Dependency] private StationRecordsSystem _records = default!;
 
     public override void Initialize()
     {

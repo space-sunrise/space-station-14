@@ -6,9 +6,9 @@ using Content.Shared.DoAfter;
 namespace Content.Server._Sunrise.Abilities;
 public sealed class BorgCuffedSystem : EntitySystem
 {
-    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
-    [Dependency] private readonly SharedCuffableSystem _cuffable = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] private SharedCuffableSystem _cuffable = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
     public override void Initialize()
     {
         base.Initialize();

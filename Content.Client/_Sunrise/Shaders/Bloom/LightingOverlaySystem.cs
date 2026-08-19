@@ -12,14 +12,14 @@ namespace Content.Client._Sunrise.Shaders.Bloom;
 /// </summary>
 public sealed class LightingOverlaySystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _configuration = default!;
-    [Dependency] private readonly BloomOverlayTreeSystem _bloomTree = default!;
-    [Dependency] private readonly IOverlayManager _overlay = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private IConfigurationManager _configuration = default!;
+    [Dependency] private BloomOverlayTreeSystem _bloomTree = default!;
+    [Dependency] private IOverlayManager _overlay = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private TransformSystem _transform = default!;
 
-    [Dependency] private readonly EntityQuery<PointLightComponent> _pointLightQuery = default!;
+    [Dependency] private EntityQuery<PointLightComponent> _pointLightQuery = default!;
     private PointLightingOverlay? _bloomOverlay;
     private float _bloomStrength = 0.7f;
 

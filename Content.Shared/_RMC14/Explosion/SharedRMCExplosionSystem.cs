@@ -9,7 +9,7 @@ namespace Content.Shared._RMC14.Explosion;
 
 public abstract class SharedRMCExplosionSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     private const float MinSmokeCountPer100 = 12f;
     private const float MaxSmokeCountPer100 = 17f;

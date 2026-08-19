@@ -7,8 +7,8 @@ namespace Content.Client._Sunrise.UserInterface.Controls;
 
 public sealed class MarkingEffectSelectorSliders : Control
 {
-    [Dependency] private readonly ILocalizationManager _loc = default!;
-    [Dependency] private readonly ILogManager _log = default!;
+    [Dependency] private ILocalizationManager _loc = default!;
+    [Dependency] private ILogManager _log = default!;
 
     private readonly ISawmill _sawmill;
 

@@ -4,7 +4,7 @@ namespace Content.Server._Sunrise.Chat;
 
 public sealed class EmoteVisibilityCheckSystem : EntitySystem
 {
-    [Dependency] private readonly ExamineSystem _examineSystem = default!;
+    [Dependency] private ExamineSystem _examineSystem = default!;
 
     public override void Initialize()
     {

@@ -10,8 +10,8 @@ namespace Content.Server.Ninja.Systems;
 /// </summary>
 public sealed class ToggleNinjaSuitDrawSystem : EntitySystem
 {
-    [Dependency] private readonly ItemToggleSystem _toggle = default!;
-    [Dependency] private readonly NinjaSuitDrawSystem _suitDraw = default!;
+    [Dependency] private ItemToggleSystem _toggle = default!;
+    [Dependency] private NinjaSuitDrawSystem _suitDraw = default!;
 
     public override void Initialize()
     {

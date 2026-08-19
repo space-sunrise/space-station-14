@@ -24,7 +24,7 @@ public sealed class FrontalLispSystem : EntitySystem
     private static readonly Regex UpperZeRegex = new("З");
     // @formatter:on
 
-    [Dependency] private readonly IRobustRandom _random = default!; // Russian-Localization
+    [Dependency] private IRobustRandom _random = default!; // Russian-Localization
 
     public override void Initialize()
     {

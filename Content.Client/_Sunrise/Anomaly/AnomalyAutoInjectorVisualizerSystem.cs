@@ -7,7 +7,7 @@ namespace Content.Client._Sunrise.Anomaly;
 
 public sealed class AnomalyAutoInjectorVisualizerSystem : EntitySystem
 {
-    [Dependency] private readonly SpriteSystem _spriteSystem = default!;
+    [Dependency] private SpriteSystem _spriteSystem = default!;
 
     public override void Initialize()
     {

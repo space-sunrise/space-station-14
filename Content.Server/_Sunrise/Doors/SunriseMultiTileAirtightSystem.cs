@@ -18,13 +18,13 @@ public sealed class SunriseMultiTileAirtightSystem : EntitySystem
 {
     private const string BlockerPrototype = "SunriseMultiTileAirtightBlocker";
 
-    [Dependency] private readonly AirtightSystem _airtight = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private AirtightSystem _airtight = default!;
+    [Dependency] private TransformSystem _transform = default!;
 
-    [Dependency] private readonly EntityQuery<AirtightComponent> _airtightQuery = default!;
-    [Dependency] private readonly EntityQuery<DoorComponent> _doorQuery = default!;
-    [Dependency] private readonly EntityQuery<MapGridComponent> _gridQuery = default!;
-    [Dependency] private readonly EntityQuery<TransformComponent> _xformQuery = default!;
+    [Dependency] private EntityQuery<AirtightComponent> _airtightQuery = default!;
+    [Dependency] private EntityQuery<DoorComponent> _doorQuery = default!;
+    [Dependency] private EntityQuery<MapGridComponent> _gridQuery = default!;
+    [Dependency] private EntityQuery<TransformComponent> _xformQuery = default!;
 
     public override void Initialize()
     {

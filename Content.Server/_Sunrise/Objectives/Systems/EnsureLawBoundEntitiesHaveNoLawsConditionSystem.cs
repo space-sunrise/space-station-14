@@ -10,11 +10,11 @@ namespace Content.Server._Sunrise.Objectives.Systems;
 
 public sealed class EnsureLawBoundEntitiesHaveNoLawsConditionSystem : EntitySystem
 {
-    [Dependency] private readonly SiliconLawSystem _siliconLaw = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
-    [Dependency] private readonly EntityQuery<ActorComponent> _actorQuery = default!;
-    [Dependency] private readonly EntityQuery<SiliconLawBoundComponent> _lawBoundQuery = default!;
-    [Dependency] private readonly EntityQuery<SiliconLawProviderComponent> _lawProviderQuery = default!;
+    [Dependency] private SiliconLawSystem _siliconLaw = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private EntityQuery<ActorComponent> _actorQuery = default!;
+    [Dependency] private EntityQuery<SiliconLawBoundComponent> _lawBoundQuery = default!;
+    [Dependency] private EntityQuery<SiliconLawProviderComponent> _lawProviderQuery = default!;
 
     public override void Initialize()
     {

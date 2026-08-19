@@ -15,8 +15,8 @@ namespace Content.Client.Toggleable;
 
 public sealed class ToggleableLightVisualsSystem : VisualizerSystem<ToggleableLightVisualsComponent>
 {
-    [Dependency] private readonly SharedItemSystem _item = default!;
-    [Dependency] private readonly SharedPointLightSystem _pointLight = default!;
+    [Dependency] private SharedItemSystem _item = default!;
+    [Dependency] private SharedPointLightSystem _pointLight = default!;
 
     public override void Initialize()
     {

@@ -8,7 +8,7 @@ namespace Content.Server.Objectives.Systems;
 /// </summary>
 public sealed class StoreUnlockerSystem : EntitySystem
 {
-    [Dependency] private readonly EntityQuery<StoreUnlockerComponent> _storeUnlockerQuery = default!;
+    [Dependency] private EntityQuery<StoreUnlockerComponent> _storeUnlockerQuery = default!;
 
     public override void Initialize()
     {

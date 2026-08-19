@@ -7,8 +7,8 @@ namespace Content.Server._Sunrise.Roles;
 
 public sealed class RelativeJobsCountSystem : EntitySystem
 {
-    [Dependency] private readonly StationJobsSystem _jobsSystem = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
+    [Dependency] private StationJobsSystem _jobsSystem = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
 
     private ISawmill _sawmill = default!;
 

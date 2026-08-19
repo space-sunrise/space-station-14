@@ -5,7 +5,7 @@ namespace Content.Client._Sunrise.FleshCult;
 
 public sealed class FleshCultistSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     public override void Initialize()
     {

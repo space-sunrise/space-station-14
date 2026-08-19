@@ -17,7 +17,7 @@ public sealed partial class ToggleableGhostRoleSystem : EntitySystem
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedMindSystem _mind = default!;
-    [Dependency] private readonly BiocodeSystem _biocodeSystem = default!;
+    [Dependency] private BiocodeSystem _biocodeSystem = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

@@ -12,7 +12,7 @@ namespace Content.Client._Sunrise.UserInterface.RichText;
 [UsedImplicitly]
 public sealed class TutorialKeybindTag : IMarkupTagHandler
 {
-    [Dependency] private readonly IInputManager _inputManager = default!;
+    [Dependency] private IInputManager _inputManager = default!;
 
     public string Name => "tutkeybind";
 

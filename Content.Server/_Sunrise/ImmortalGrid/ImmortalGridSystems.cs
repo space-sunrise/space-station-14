@@ -7,7 +7,7 @@ namespace Content.Server._Sunrise.ImmortalGrid;
 
 public sealed class ImmortalGridSystems : EntitySystem
 {
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
 
     public override void Initialize()
     {

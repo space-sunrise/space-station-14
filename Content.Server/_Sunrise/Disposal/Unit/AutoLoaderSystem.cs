@@ -7,10 +7,10 @@ namespace Content.Server.Disposal.Unit
 {
     public sealed class AutoLoaderSystem : EntitySystem
     {
-        [Dependency] private readonly DisposableSystem _disposableSystem = default!;
-        [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
-        [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
-        [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+        [Dependency] private DisposableSystem _disposableSystem = default!;
+        [Dependency] private SharedContainerSystem _containerSystem = default!;
+        [Dependency] private SharedTransformSystem _xformSystem = default!;
+        [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
 
         public void Cycle(EntityUid entity, Entity<AutoLoaderComponent> autoloader, BaseContainer autoloaderContainer, EntityUid currentTube)
         {

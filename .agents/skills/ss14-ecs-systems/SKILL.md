@@ -51,11 +51,11 @@ Systems receive dependencies through the `[Dependency]` attribute. This works fo
 ```csharp
 public sealed class MySystem : EntitySystem
 {
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private IRobustRandom _random = default!;
 }
 ```
 
@@ -83,8 +83,8 @@ Example:
 public sealed class ExampleSystem : EntitySystem
 {
     // 1) Dependencies
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     // 2) Constants + static readonly
     private const float TimeoutSeconds = 1.0f;
@@ -217,8 +217,8 @@ RaiseLocalEvent(uid, ref ev, broadcast: true);
 dependency и не инициализировать вручную в `Initialize()`:
 
 ```csharp
-[Dependency] private readonly EntityQuery<TransformComponent> _xformQuery = default!;
-[Dependency] private readonly EntityQuery<PhysicsComponent> _physicsQuery = default!;
+[Dependency] private EntityQuery<TransformComponent> _xformQuery = default!;
+[Dependency] private EntityQuery<PhysicsComponent> _physicsQuery = default!;
 ```
 
 Перед добавлением query проверить другие partial-файлы: для одного типа компонента нужно
@@ -236,7 +236,7 @@ dependency и не инициализировать вручную в `Initializ
 ```csharp
 public sealed class MyCommand : IConsoleCommand
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
 
     private bool IsGrid(EntityUid uid)
     {
@@ -407,9 +407,9 @@ Example structure:
 // SharedMySystem.cs
 public abstract partial class SharedMySystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
-    [Dependency] private readonly EntityQuery<MyComponent> _query = default!;
+    [Dependency] private EntityQuery<MyComponent> _query = default!;
 
     public override void Initialize()
     {

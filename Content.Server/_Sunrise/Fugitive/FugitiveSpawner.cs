@@ -27,17 +27,17 @@ namespace Content.Server._Sunrise.Fugitive
 {
     public sealed class FugitiveSpawnerSystem : EntitySystem
     {
-        [Dependency] private readonly IGameTiming _timing = default!;
-        [Dependency] private readonly PopupSystem _popupSystem = default!;
-        [Dependency] private readonly AudioSystem _audioSystem = default!;
-        [Dependency] private readonly StunSystem _stun = default!;
-        [Dependency] private readonly TileSystem _tile = default!;
-        [Dependency] private readonly MindSystem _mindSystem = default!;
-        [Dependency] private readonly TagSystem _tagSystem = default!;
-        [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly SharedSubdermalImplantSystem _subdermalImplant = default!;
-        [Dependency] private readonly ExamineSystemShared _examine = default!;
-        [Dependency] private readonly UplinkSystem _uplinkSystem = default!;
+        [Dependency] private IGameTiming _timing = default!;
+        [Dependency] private PopupSystem _popupSystem = default!;
+        [Dependency] private AudioSystem _audioSystem = default!;
+        [Dependency] private StunSystem _stun = default!;
+        [Dependency] private TileSystem _tile = default!;
+        [Dependency] private MindSystem _mindSystem = default!;
+        [Dependency] private TagSystem _tagSystem = default!;
+        [Dependency] private IRobustRandom _random = default!;
+        [Dependency] private SharedSubdermalImplantSystem _subdermalImplant = default!;
+        [Dependency] private ExamineSystemShared _examine = default!;
+        [Dependency] private UplinkSystem _uplinkSystem = default!;
 
         private static readonly ProtoId<TagPrototype> FugitiveUplinkTag = "FugitiveUplink";
 

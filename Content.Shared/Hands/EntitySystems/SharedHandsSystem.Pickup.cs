@@ -12,7 +12,7 @@ namespace Content.Shared.Hands.EntitySystems;
 
 public abstract partial class SharedHandsSystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!; // Sunrise-add
+    [Dependency] private IGameTiming _timing = default!; // Sunrise-add
 
     private void InitializePickup()
     {

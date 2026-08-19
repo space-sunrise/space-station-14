@@ -14,10 +14,10 @@ namespace Content.Server.Ninja.Systems;
 /// </summary>
 public sealed class NinjaSuitDrawSystem : SharedNinjaSuitDrawSystem
 {
-    [Dependency] private readonly SpaceNinjaSystem _ninja = default!;
-    [Dependency] private readonly ItemToggleSystem _toggle = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly BatterySystem _battery = default!; // Sunrise
+    [Dependency] private SpaceNinjaSystem _ninja = default!;
+    [Dependency] private ItemToggleSystem _toggle = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private BatterySystem _battery = default!; // Sunrise
 
     public override void Initialize()
     {

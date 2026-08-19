@@ -7,7 +7,7 @@ namespace Content.Shared.DeviceLinking;
 
 public abstract partial class SharedDeviceLinkSystem
 {
-    [Dependency] private readonly EntityQuery<TransformComponent> _saveCleanupXformQuery = default!;
+    [Dependency] private EntityQuery<TransformComponent> _saveCleanupXformQuery = default!;
 
     /*
      * Save-cleanup helpers for device links before map serialization.

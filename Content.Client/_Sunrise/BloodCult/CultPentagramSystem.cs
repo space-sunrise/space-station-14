@@ -19,7 +19,7 @@ public sealed class CultPentagramSystem : EntitySystem
         "halo6"
     };
 
-    [Dependency] private readonly IRobustRandom _robustRandom = default!;
+    [Dependency] private IRobustRandom _robustRandom = default!;
 
     public override void Initialize()
     {

@@ -11,10 +11,10 @@ namespace Content.Server._Sunrise.AntagObjectives;
 
 public sealed class AntagObjectivesSystem : EntitySystem
 {
-    [Dependency] private readonly MindSystem _minds = default!;
-    [Dependency] private readonly RoleSystem _roles = default!;
-    [Dependency] private readonly SharedObjectivesSystem _objectives = default!;
-    [Dependency] private readonly IAdminManager _admins = default!;
+    [Dependency] private MindSystem _minds = default!;
+    [Dependency] private RoleSystem _roles = default!;
+    [Dependency] private SharedObjectivesSystem _objectives = default!;
+    [Dependency] private IAdminManager _admins = default!;
 
     public override void Initialize()
     {

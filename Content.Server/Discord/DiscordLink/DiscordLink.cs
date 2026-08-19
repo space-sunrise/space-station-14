@@ -48,7 +48,7 @@ public sealed partial class DiscordLink : IPostInjectInit
     [Dependency] private ILogManager _logManager = default!;
     [Dependency] private IConfigurationManager _configuration = default!;
 
-    [Dependency] private readonly DiscordWebhook _discord = default!; // Sunrise added
+    [Dependency] private DiscordWebhook _discord = default!; // Sunrise added
 
     /// <summary>
     ///    The Discord client. This is null if the bot is not connected.

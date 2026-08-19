@@ -9,8 +9,8 @@ namespace Content.Server.CartridgeLoader.Cartridges;
 
 public sealed class NavigatorCartridgeSystem : EntitySystem
 {
-    [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
+    [Dependency] private CartridgeLoaderSystem _cartridgeLoader = default!;
+    [Dependency] private StationSystem _stationSystem = default!;
 
     public override void Initialize()
     {

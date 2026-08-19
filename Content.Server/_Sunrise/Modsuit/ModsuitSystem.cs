@@ -18,7 +18,7 @@ namespace Content.Server._Sunrise.Modsuit;
 
 public sealed class ModsuitSystem : SharedModsuitSystem
 {
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private TagSystem _tag = default!;
 
     private static readonly ProtoId<TagPrototype> ModsuitCoreTag = "ModsuitCore";
 

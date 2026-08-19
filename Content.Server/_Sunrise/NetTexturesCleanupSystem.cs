@@ -10,7 +10,7 @@ namespace Content.Server._Sunrise;
 /// </summary>
 public sealed class NetTexturesCleanupSystem : EntitySystem
 {
-    [Dependency] private readonly NetTexturesManager _netTexturesManager = default!;
+    [Dependency] private NetTexturesManager _netTexturesManager = default!;
 
     public override void Initialize()
     {

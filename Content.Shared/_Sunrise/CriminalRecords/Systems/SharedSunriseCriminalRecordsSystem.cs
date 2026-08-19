@@ -7,8 +7,8 @@ namespace Content.Shared._Sunrise.CriminalRecords.Systems;
 
 public abstract class SharedSunriseCriminalRecordsSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly SharedStationCorporateLawSystem _corporateLawSystem = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private SharedStationCorporateLawSystem _corporateLawSystem = default!;
 
     private static readonly Dictionary<int, (int Min, int Max)> CategoryRanges = new()
     {

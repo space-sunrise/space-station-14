@@ -16,10 +16,10 @@ namespace Content.Shared._Sunrise.Weapons.DualWield;
 /// </summary>
 public sealed class SharedDualWieldSystem : EntitySystem
 {
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedGunSystem _gunSystem = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedGunSystem _gunSystem = default!;
 
     private static readonly ProtoId<AlertPrototype> DualWieldAlertId = "DualWieldActive";
 

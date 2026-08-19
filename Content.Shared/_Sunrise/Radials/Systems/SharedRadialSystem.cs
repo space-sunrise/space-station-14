@@ -9,10 +9,10 @@ namespace Content.Shared._Sunrise.Radials.Systems;
 
 public abstract class SharedRadialSystem : EntitySystem
     {
-        [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
-        [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
-        [Dependency] protected readonly SharedContainerSystem ContainerSystem = default!;
-        [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+        [Dependency] private SharedInteractionSystem _interactionSystem = default!;
+        [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;
+        [Dependency] protected SharedContainerSystem ContainerSystem = default!;
+        [Dependency] private SharedHandsSystem _handsSystem = default!;
 
         public override void Initialize()
         {

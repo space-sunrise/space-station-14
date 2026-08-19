@@ -9,7 +9,7 @@ namespace Content.Server._Sunrise.PlayerCache;
 
 public sealed class PlayerCacheManager
 {
-    [Dependency] private readonly IServerNetManager _netManager = default!;
+    [Dependency] private IServerNetManager _netManager = default!;
 
     private readonly Dictionary<NetUserId, PlayerCacheData> _cache = new();
 

@@ -12,8 +12,8 @@ namespace Content.Shared.Sunrise.Eye;
 
 public abstract class SharedDarkenedVisionSystem : EntitySystem
 {
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly BlindableSystem _blinding = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private BlindableSystem _blinding = default!;
 
     public override void Initialize()
     {

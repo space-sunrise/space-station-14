@@ -10,7 +10,7 @@ namespace Content.Shared._Sunrise.Trigger;
 
 public sealed class UnsnareOnTriggerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedEnsnareableSystem _ensnareable = default!;
+    [Dependency] private SharedEnsnareableSystem _ensnareable = default!;
 
     public override void Initialize()
     {

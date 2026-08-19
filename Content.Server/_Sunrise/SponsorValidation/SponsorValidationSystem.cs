@@ -9,7 +9,7 @@ namespace Content.Server._Sunrise.SponsorValidation;
 
 public sealed class SponsorValidationSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
     private ISharedSponsorsManager? _sponsorsManager;
 
     public override void Initialize()

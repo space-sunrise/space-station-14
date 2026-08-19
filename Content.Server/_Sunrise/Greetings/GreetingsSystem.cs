@@ -9,8 +9,8 @@ namespace Content.Server._Sunrise.Greetings;
 
 public sealed class GreetingsSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly BwoinkSystem _bwoinkSystem = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private BwoinkSystem _bwoinkSystem = default!;
 
     private bool _greetingsEnabled;
     private string _greetingsMessage = "";

@@ -6,7 +6,7 @@ namespace Content.Shared._Sunrise.Dice;
 
 public sealed class ChangeDiceVerbSystem : EntitySystem
 {
-    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
     public override void Initialize()
     {
         base.Initialize();

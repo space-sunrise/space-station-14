@@ -18,9 +18,9 @@ namespace Content.Client._Sunrise.Tutorial.Conditions;
 
 public sealed class UiButtonPressedConditionSystem : EntitySystem
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IUserInterfaceManager _ui = default!;
-    [Dependency] private readonly SharedTutorialSystem _tutorial = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IUserInterfaceManager _ui = default!;
+    [Dependency] private SharedTutorialSystem _tutorial = default!;
 
     private readonly List<UiButtonPressedCondition> _activeConditions = [];
     private readonly Dictionary<UiButtonPressedCondition, ButtonSubscription> _subscriptions = [];

@@ -7,8 +7,8 @@ namespace Content.Server.Sunrise.GasRegeneration;
 
 public sealed class GasRegenerationSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
 
     public override void Initialize()
     {

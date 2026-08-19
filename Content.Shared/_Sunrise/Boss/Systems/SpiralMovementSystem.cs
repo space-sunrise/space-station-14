@@ -10,9 +10,9 @@ namespace Content.Shared._Sunrise.Boss.Systems;
 /// </summary>
 public sealed class SpiralMovementSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedBroadphaseSystem _broadphase = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedBroadphaseSystem _broadphase = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

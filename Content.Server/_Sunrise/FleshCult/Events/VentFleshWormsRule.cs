@@ -11,7 +11,7 @@ namespace Content.Server._Sunrise.FleshCult.Events;
 
 public sealed class VentFleshWormsRule : StationEventSystem<VentFleshWormsRuleComponent>
 {
-    [Dependency] private readonly StationSystem _stationSystem = default!;
+    [Dependency] private StationSystem _stationSystem = default!;
 
     protected override void Started(EntityUid uid, VentFleshWormsRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {

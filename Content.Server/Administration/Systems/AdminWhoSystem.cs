@@ -10,8 +10,8 @@ namespace Content.Server.Administration.Systems;
 /// </summary>
 public sealed class AdminWhoSystem : EntitySystem
 {
-    [Dependency] private readonly IAfkManager _afkManager = default!;
-    [Dependency] private readonly IAdminManager _adminManager = default!;
+    [Dependency] private IAfkManager _afkManager = default!;
+    [Dependency] private IAdminManager _adminManager = default!;
 
     public override void Initialize()
     {

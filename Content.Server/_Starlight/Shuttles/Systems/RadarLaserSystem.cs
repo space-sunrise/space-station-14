@@ -13,8 +13,8 @@ namespace Content.Server._Starlight.Shuttles.Systems;
 /// </summary>
 public sealed class RadarLaserSystem : EntitySystem
 {
-    [Dependency] private readonly TransformSystem _transforms = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private TransformSystem _transforms = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {

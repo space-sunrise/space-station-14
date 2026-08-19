@@ -11,7 +11,7 @@ namespace Content.Client.Guidebook;
 /// </summary>
 public sealed class GuidebookDataSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _netManager = default!;
+    [Dependency] private INetManager _netManager = default!;
     private GuidebookData? _data;
 
     public override void Initialize()

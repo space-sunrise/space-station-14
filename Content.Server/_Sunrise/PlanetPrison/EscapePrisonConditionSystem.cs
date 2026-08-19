@@ -4,7 +4,7 @@ namespace Content.Server._Sunrise.PlanetPrison;
 
 public sealed class EscapePrisonConditionSystem : EntitySystem
 {
-    [Dependency] private readonly PlanetPrisonSystem _planetPrisonSystem = default!;
+    [Dependency] private PlanetPrisonSystem _planetPrisonSystem = default!;
 
     public override void Initialize()
     {

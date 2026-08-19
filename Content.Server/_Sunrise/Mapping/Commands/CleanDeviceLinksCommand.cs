@@ -14,8 +14,8 @@ namespace Content.Server._Sunrise.Mapping.Commands;
 [AdminCommand(AdminFlags.Mapping)]
 public sealed class CleanDeviceLinksCommand : LocalizedEntityCommands
 {
-    [Dependency] private readonly DeviceLinkSystem _deviceLink = default!;
-    [Dependency] private readonly MapSystem _map = default!;
+    [Dependency] private DeviceLinkSystem _deviceLink = default!;
+    [Dependency] private MapSystem _map = default!;
 
     public override string Command => "cleandevicelinks";
 

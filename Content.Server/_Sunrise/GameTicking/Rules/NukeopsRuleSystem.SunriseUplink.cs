@@ -14,7 +14,7 @@ namespace Content.Server.GameTicking.Rules;
 public sealed partial class NukeopsRuleSystem
 {
     // Handles Sunrise-specific NukeOps uplink setup and commander TC distribution hooks.
-    [Dependency] private readonly UplinkSystem _uplinkSystem = default!;
+    [Dependency] private UplinkSystem _uplinkSystem = default!;
 
     [ValidatePrototypeId<AntagPrototype>]
     private const string CommanderAntagProto = "NukeopsCommander";

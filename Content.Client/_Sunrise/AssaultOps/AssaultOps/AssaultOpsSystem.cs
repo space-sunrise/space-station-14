@@ -6,7 +6,7 @@ namespace Content.Client._Sunrise.AssaultOps.AssaultOps;
 
 public sealed class AssaultOpsSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     public override void Initialize()
     {

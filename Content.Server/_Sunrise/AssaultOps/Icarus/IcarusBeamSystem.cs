@@ -13,12 +13,12 @@ namespace Content.Server._Sunrise.AssaultOps.Icarus;
 
 public sealed class IcarusBeamSystem : EntitySystem
 {
-    [Dependency] private readonly IMapManager _map = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly FlammableSystem _flammable = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private IMapManager _map = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private FlammableSystem _flammable = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private TransformSystem _transform = default!;
 
     public override void Update(float frameTime)
     {

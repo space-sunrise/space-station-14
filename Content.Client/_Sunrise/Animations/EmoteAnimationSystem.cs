@@ -9,7 +9,7 @@ namespace Content.Client._Sunrise.Animations;
 
 public sealed class EmoteAnimationSystem : EntitySystem
 {
-    [Dependency] private readonly AnimationPlayerSystem _animationSystem = default!;
+    [Dependency] private AnimationPlayerSystem _animationSystem = default!;
 
     private readonly Dictionary<string, Action<EntityUid>> _emoteList = new();
 

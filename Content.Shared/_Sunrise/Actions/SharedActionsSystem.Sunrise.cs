@@ -6,7 +6,7 @@ namespace Content.Shared.Actions;
 
 public abstract partial class SharedActionsSystem
 {
-    [Dependency] private readonly EntityQuery<TargetActionComponent> _sunriseTargetActionQuery = default!;
+    [Dependency] private EntityQuery<TargetActionComponent> _sunriseTargetActionQuery = default!;
 
     private bool CanSunriseBypassEntityTargetValidation(EntityUid target)
     {

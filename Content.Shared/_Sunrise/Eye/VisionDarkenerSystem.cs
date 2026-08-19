@@ -7,9 +7,9 @@ namespace Content.Shared.Sunrise.Eye;
 
 public sealed class VisionDarkenerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedDarkenedVisionSystem _darkenedVision = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly ItemToggleSystem _itemToggle = default!;
+    [Dependency] private SharedDarkenedVisionSystem _darkenedVision = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private ItemToggleSystem _itemToggle = default!;
 
     public override void Initialize()
     {

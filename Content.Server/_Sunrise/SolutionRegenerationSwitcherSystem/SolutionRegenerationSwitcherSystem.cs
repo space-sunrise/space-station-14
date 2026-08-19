@@ -9,9 +9,9 @@ namespace Content.Server._Sunrise.SolutionRegenerationSwitcherSystem
 {
     public sealed class SolutionRegenerationSwitcherSystem : SharedSolutionRegenerationSwitcherSystem
     {
-        [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = null!;
-        [Dependency] private readonly SharedPopupSystem _popups = null!;
-        [Dependency] private readonly BorgHypospraySystem _borgHypospray = null!;
+        [Dependency] private SharedSolutionContainerSystem _solutionSystem = null!;
+        [Dependency] private SharedPopupSystem _popups = null!;
+        [Dependency] private BorgHypospraySystem _borgHypospray = null!;
 
         private ISawmill _sawmill = null!;
 

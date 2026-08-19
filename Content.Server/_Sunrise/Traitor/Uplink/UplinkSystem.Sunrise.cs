@@ -6,7 +6,7 @@ namespace Content.Server.Traitor.Uplink;
 
 public sealed partial class UplinkSystem
 {
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private TagSystem _tag = default!;
 
     private static readonly ProtoId<TagPrototype> SunriseUplinkTag = "SunriseUplink";
 

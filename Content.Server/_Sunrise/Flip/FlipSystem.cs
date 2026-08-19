@@ -9,8 +9,8 @@ namespace Content.Server._Sunrise.Flip;
 
 public sealed class FlipSystem : SharedFlipSystem
 {
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     [ValidatePrototypeId<EmotePrototype>]
     private const string EmoteFlipProto = "Flip";

@@ -10,8 +10,8 @@ namespace Content.Server.Chemistry.EntitySystems;
 /// </summary>
 public sealed class ServerHypospraySystem : EntitySystem
 {
-    [Dependency] private readonly Content.Server._Sunrise.Medical.BorgHypospraySystem _borgHypospray = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainers = default!;
+    [Dependency] private Content.Server._Sunrise.Medical.BorgHypospraySystem _borgHypospray = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainers = default!;
 
     public override void Initialize()
     {

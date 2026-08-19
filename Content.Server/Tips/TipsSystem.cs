@@ -24,7 +24,7 @@ public sealed partial class TipsSystem : SharedTipsSystem
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private GameTicker _ticker = default!;
-    [Dependency] private readonly IWatchdogApi _watchdog = default!; // Sunrise-Edit
+    [Dependency] private IWatchdogApi _watchdog = default!; // Sunrise-Edit
 
     private bool _tipsEnabled;
     private float _tipTimeOutOfRound;

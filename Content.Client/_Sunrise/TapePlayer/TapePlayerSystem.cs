@@ -8,10 +8,10 @@ namespace Content.Client._Sunrise.TapePlayer
 {
     public sealed class TapePlayerSystem : SharedTapePlayerSystem
     {
-        [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
-        [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
-        [Dependency] private readonly IConfigurationManager _cfg = default!;
-        [Dependency] private readonly INetManager _netManager = default!;
+        [Dependency] private SharedAppearanceSystem _appearanceSystem = default!;
+        [Dependency] private SharedUserInterfaceSystem _uiSystem = default!;
+        [Dependency] private IConfigurationManager _cfg = default!;
+        [Dependency] private INetManager _netManager = default!;
 
         private bool _tapePlayerClientEnabled;
 

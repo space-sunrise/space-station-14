@@ -5,7 +5,7 @@ namespace Content.Shared._Sunrise.Trigger.TriggerOnBeingGibbed;
 
 public sealed class TriggerOnBeingGibbedSystem : EntitySystem
 {
-    [Dependency] private readonly TriggerSystem _trigger = default!;
+    [Dependency] private TriggerSystem _trigger = default!;
 
     public override void Initialize()
     {

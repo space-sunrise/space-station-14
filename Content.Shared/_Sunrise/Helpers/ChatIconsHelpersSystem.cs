@@ -7,7 +7,7 @@ namespace Content.Shared._Sunrise.Helpers;
 
 public sealed class ChatIconsHelpersSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     public const string NoIdIconPath = "/Textures/Interface/Misc/job_icons.rsi/NoId.png";
 

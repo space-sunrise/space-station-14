@@ -17,8 +17,8 @@ namespace Content.Server._Sunrise.CarpQueen;
 /// </summary>
 public sealed class CarpServantBiteSystem : EntitySystem
 {
-    [Dependency] private readonly BloodstreamSystem _bloodstream = default!;
-    [Dependency] private readonly IPrototypeManager _protos = default!;
+    [Dependency] private BloodstreamSystem _bloodstream = default!;
+    [Dependency] private IPrototypeManager _protos = default!;
 
     public override void Initialize()
     {

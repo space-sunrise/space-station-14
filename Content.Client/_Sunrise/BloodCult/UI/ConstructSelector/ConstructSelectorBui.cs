@@ -11,9 +11,9 @@ namespace Content.Client._Sunrise.BloodCult.UI.ConstructSelector;
 
 public sealed class ConstructSelectorBui : BoundUserInterface
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     private RadialContainer? _menu;
     private bool _selected;

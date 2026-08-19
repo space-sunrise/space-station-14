@@ -33,7 +33,7 @@ namespace Content.Shared.Friction
         [Dependency] private EntityQuery<PullerComponent> _pullerQuery = default!;
         [Dependency] private EntityQuery<PullableComponent> _pullableQuery = default!;
         [Dependency] private EntityQuery<MapGridComponent> _gridQuery = default!;
-        [Dependency] private readonly EntityQuery<MechComponent> _mechQuery = default!;
+        [Dependency] private EntityQuery<MechComponent> _mechQuery = default!;
 
         // For debug purposes only
         [Dependency] private EntityQuery<InputMoverComponent> _moverQuery = default!;

@@ -13,7 +13,7 @@ namespace Content.Client._Sunrise.Antags.Abductor;
 [UsedImplicitly]
 public sealed class AbductorConsoleBui : BoundUserInterface
 {
-    [Dependency] private readonly IPrototypeManager _protoManager = default!;
+    [Dependency] private IPrototypeManager _protoManager = default!;
 
     [ViewVariables]
     private AbductorConsoleWindow? _window;

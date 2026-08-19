@@ -9,7 +9,7 @@ namespace Content.Shared._Sunrise.Boss.Systems;
 
 public abstract class SharedHellSpawnInvincibilitySystem : EntitySystem
 {
-    [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
+    [Dependency] private MovementSpeedModifierSystem _movement = default!;
 
     /// <inheritdoc />
     public override void Initialize()

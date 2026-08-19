@@ -11,9 +11,9 @@ namespace Content.Shared._Sunrise.Clothing.EntitySystems;
 
 public sealed class EmitSoundOnWearerMoveSystem : EntitySystem
 {
-    [Dependency] private readonly SharedGravitySystem _gravity = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly EntityQuery<InputMoverComponent> _inputMoverQuery = default!;
+    [Dependency] private SharedGravitySystem _gravity = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private EntityQuery<InputMoverComponent> _inputMoverQuery = default!;
 
     public const float MinDistanceSprinting = 1.5f;
     public const float MinDistanceWaling = 2f;

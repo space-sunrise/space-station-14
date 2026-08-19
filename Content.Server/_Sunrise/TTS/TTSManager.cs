@@ -28,8 +28,8 @@ public sealed class TTSManager
         "tts_wanted_count",
         "Amount of wanted TTS audio.");
 
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly ILogManager _logMan = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private ILogManager _logMan = default!;
 
     private readonly HttpClient _httpClient = new();
 

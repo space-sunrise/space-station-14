@@ -32,7 +32,7 @@ public sealed partial class WiresSystem : SharedWiresSystem
     [Dependency] private SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private ConstructionSystem _construction = default!;
-    [Dependency] private readonly TagSystem _tags = default!; // Starlight-abductors edit
+    [Dependency] private TagSystem _tags = default!; // Starlight-abductors edit
 
     private static readonly ProtoId<ToolQualityPrototype> CuttingQuality = "Cutting";
     private static readonly ProtoId<ToolQualityPrototype> PulsingQuality = "Pulsing";

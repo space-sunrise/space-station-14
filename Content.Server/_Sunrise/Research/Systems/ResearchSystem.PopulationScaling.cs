@@ -21,11 +21,11 @@ namespace Content.Server.Research.Systems;
 /// </summary>
 public sealed partial class ResearchSystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly SharedJobSystem _jobs = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private SharedJobSystem _jobs = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     private const int PopulationDeadzone = 4;
     private static readonly ProtoId<ResearchPopulationWeightsPrototype> PopulationWeightsPrototypeId = "SunriseResearchPopulationWeights";
@@ -38,7 +38,7 @@ public sealed partial class ResearchSystem
     private float? _roundPopulationModifier;
     private TimeSpan? _populationScalingRoundStartedAt;
     private TimeSpan? _populationModifierCalculateAt;
-    [Dependency] private readonly EntityQuery<GhostComponent> _ghostQuery = default!;
+    [Dependency] private EntityQuery<GhostComponent> _ghostQuery = default!;
 
     private void InitializePopulationScaling()
     {

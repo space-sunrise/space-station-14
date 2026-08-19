@@ -44,8 +44,8 @@ namespace Content.Server.GameTicking
         [Dependency] private AdminSystem _admin = default!;
 
         // Sunrise added start
-        [Dependency] private readonly NewLifeSystem _newLife = default!;
-        [Dependency] private readonly SunriseHelpersSystem _helpers = default!;
+        [Dependency] private NewLifeSystem _newLife = default!;
+        [Dependency] private SunriseHelpersSystem _helpers = default!;
         // Sunrise added end
 
         public static readonly EntProtoId ObserverPrototypeName = "MobObserver";

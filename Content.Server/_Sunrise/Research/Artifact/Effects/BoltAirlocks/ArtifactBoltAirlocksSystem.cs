@@ -10,9 +10,9 @@ namespace Content.Server._Sunrise.Research.Artifact.Effects.BoltAirlocks;
 
 public sealed class ArtifactBoltAirlocksSystem : BaseXAESystem<ArtifactBoltAirlocksComponent>
 {
-    [Dependency] private readonly DoorSystem _door = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private DoorSystem _door = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     private readonly HashSet<Entity<DoorBoltComponent>> _entities = [];
 

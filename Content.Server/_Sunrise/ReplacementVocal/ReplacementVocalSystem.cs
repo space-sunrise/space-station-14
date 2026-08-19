@@ -7,7 +7,7 @@ namespace Content.Server._Sunrise.ReplacementVocal;
 
 public sealed class ReplacementVocalSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
 
     public override void Initialize()
     {

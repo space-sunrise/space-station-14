@@ -10,7 +10,7 @@ namespace Content.Server._Sunrise.AssaultOps.Icarus.Commands;
 [AdminCommand(AdminFlags.Fun)]
 public sealed class SpawnIcarusCommand : IConsoleCommand
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
 
     public string Command => "spawnicarus";
     public string Description => "Spawn Icarus beam and direct to specified grid center.";

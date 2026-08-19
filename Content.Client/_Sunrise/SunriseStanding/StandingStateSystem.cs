@@ -6,7 +6,7 @@ namespace Content.Client._Sunrise.SunriseStanding;
 
 public sealed class StandingStateSystem : EntitySystem
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {

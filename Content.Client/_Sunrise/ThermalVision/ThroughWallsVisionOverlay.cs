@@ -10,9 +10,9 @@ namespace Content.Client._Sunrise.ThermalVision;
 
 public sealed class ThroughWallsVisionOverlay : Overlay
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     private static readonly ProtoId<ShaderPrototype> BrightnessShader = "BrightnessShader";
 

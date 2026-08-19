@@ -6,7 +6,7 @@ namespace Content.Server._Sunrise.Research.Artifact.Effects.StartGamerule;
 
 public sealed class ArtifactStartGameRuleSystem : BaseXAESystem<ArtifactStartGameRuleComponent>
 {
-    [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
 
     protected override void OnActivated(Entity<ArtifactStartGameRuleComponent> ent, ref XenoArtifactNodeActivatedEvent args)
     {

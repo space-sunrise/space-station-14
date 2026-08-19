@@ -40,7 +40,7 @@ namespace Content.Server.Mech.Systems;
 /// <inheritdoc/>
 public sealed partial class MechSystem : SharedMechSystem
 {
-    [Dependency] private readonly NpcFactionSystem _factionSystem = default!;
+    [Dependency] private NpcFactionSystem _factionSystem = default!;
     [Dependency] private ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private AtmosphereSystem _atmosphere = default!;
     [Dependency] private SharedBatterySystem _battery = default!;

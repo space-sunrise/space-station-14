@@ -5,8 +5,8 @@ namespace Content.Server._Sunrise.Tutorial;
 
 public sealed class TutorialRadioIsolationSystem : EntitySystem
 {
-    [Dependency] private readonly EntityQuery<TutorialPlayerComponent> _tutorialPlayerQuery = default!;
-    [Dependency] private readonly EntityQuery<TransformComponent> _transformQuery = default!;
+    [Dependency] private EntityQuery<TutorialPlayerComponent> _tutorialPlayerQuery = default!;
+    [Dependency] private EntityQuery<TransformComponent> _transformQuery = default!;
 
     public override void Initialize()
     {

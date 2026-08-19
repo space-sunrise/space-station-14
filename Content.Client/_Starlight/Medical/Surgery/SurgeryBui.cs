@@ -22,10 +22,10 @@ namespace Content.Client._Starlight.Medical.Surgery;
 [UsedImplicitly]
 public sealed class SurgeryBui : BoundUserInterface
 {
-    [Dependency] private readonly IEntityManager _entities = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IGameTiming _game = default!;
-    [Dependency] private readonly ILocalizationManager _loc = default!;
+    [Dependency] private IEntityManager _entities = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IGameTiming _game = default!;
+    [Dependency] private ILocalizationManager _loc = default!;
 
     private readonly StarlightEntitySystem _entitySystem;
     private readonly SurgerySystem _system;

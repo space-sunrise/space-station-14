@@ -11,8 +11,8 @@ namespace Content.Server._Sunrise.ExtendedAccess;
 
 public sealed class ExtendedAccessSystem : EntitySystem
 {
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private AccessReaderSystem _accessReader = default!;
 
     private static CancellationTokenSource _token = new();
 

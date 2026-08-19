@@ -8,8 +8,8 @@ namespace Content.Server._Sunrise.SponsorLoadout;
 
 public sealed class SponsorLoadoutSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly StationSpawningSystem _spawn = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private StationSpawningSystem _spawn = default!;
     private ISharedSponsorsManager? _sponsorsManager;
 
     public override void Initialize()

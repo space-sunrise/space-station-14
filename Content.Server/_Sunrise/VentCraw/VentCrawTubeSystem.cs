@@ -14,12 +14,12 @@ namespace Content.Server._Sunrise.VentCraw
 {
     public sealed class VentCrawTubeSystem : SharedVentCrawableSystem
     {
-        [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
-        [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
-        [Dependency] private readonly PopupSystem _popup = default!;
-        [Dependency] private readonly SharedMoverController _mover = default!;
-        [Dependency] private readonly SharedTransformSystem _transform = default!;
-        [Dependency] private readonly EntityQuery<VentCrawHolderComponent> _holderQuery = default!;
+        [Dependency] private SharedContainerSystem _containerSystem = default!;
+        [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
+        [Dependency] private PopupSystem _popup = default!;
+        [Dependency] private SharedMoverController _mover = default!;
+        [Dependency] private SharedTransformSystem _transform = default!;
+        [Dependency] private EntityQuery<VentCrawHolderComponent> _holderQuery = default!;
 
         public override void Initialize()
         {

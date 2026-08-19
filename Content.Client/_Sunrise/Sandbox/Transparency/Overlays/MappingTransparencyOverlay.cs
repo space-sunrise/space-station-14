@@ -11,8 +11,8 @@ namespace Content.Client._Sunrise.Sandbox.Transparency.Overlays;
 /// </summary>
 public sealed class MappingTransparencyOverlay : Overlay
 {
-    [Dependency] private readonly IEntityManager _ent = default!;
-    [Dependency] private readonly IEyeManager _eye = default!;
+    [Dependency] private IEntityManager _ent = default!;
+    [Dependency] private IEyeManager _eye = default!;
 
     private readonly EntityLookupSystem _entityLookup;
     private readonly SpriteSystem _sprite;

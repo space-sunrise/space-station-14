@@ -9,7 +9,7 @@ namespace Content.Client._Sunrise.TapeRecorder;
 /// </summary>
 public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
 {
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
 
     public override void Initialize()
     {

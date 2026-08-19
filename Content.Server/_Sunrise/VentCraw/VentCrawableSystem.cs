@@ -9,9 +9,9 @@ namespace Content.Server._Sunrise.VentCraw;
 
 public sealed class VentCrawableSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPhysicsSystem _physicsSystem = default!;
-    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
+    [Dependency] private SharedPhysicsSystem _physicsSystem = default!;
+    [Dependency] private SharedContainerSystem _containerSystem = default!;
+    [Dependency] private SharedTransformSystem _xformSystem = default!;
 
     public override void Initialize()
     {

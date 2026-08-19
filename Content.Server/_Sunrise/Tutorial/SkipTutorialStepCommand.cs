@@ -10,7 +10,7 @@ namespace Content.Server._Sunrise.Tutorial;
 [AdminCommand(AdminFlags.Debug)]
 public sealed class SkipTutorialStepCommand : LocalizedEntityCommands
 {
-    [Dependency] private readonly TutorialSystem _tutorial = default!;
+    [Dependency] private TutorialSystem _tutorial = default!;
 
     public override string Command => "skiptutorialstep";
     public override string Description => "Skips your current tutorial step.";

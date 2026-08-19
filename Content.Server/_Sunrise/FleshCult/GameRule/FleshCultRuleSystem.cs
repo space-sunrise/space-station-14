@@ -21,12 +21,12 @@ namespace Content.Server._Sunrise.FleshCult.GameRule;
 
 public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
 {
-    [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
-    [Dependency] private readonly MindSystem _mindSystem = default!;
-    [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
+    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
+    [Dependency] private RoundEndSystem _roundEndSystem = default!;
+    [Dependency] private MindSystem _mindSystem = default!;
+    [Dependency] private NpcFactionSystem _npcFaction = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
 
     [ValidatePrototypeId<AntagPrototype>]
     private const string LeaderAntagProto = "FleshCultistLeader";

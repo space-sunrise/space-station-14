@@ -30,11 +30,11 @@ public sealed class NetTexturesManager
     private const string TransferKeyNetTextures = "TransferKeyNetTextures";
     private const int MaxConcurrentTransferWorkers = 2;
 
-    [Dependency] private readonly IResourceManager _resourceManager = default!;
-    [Dependency] private readonly IServerNetManager _netManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
-    [Dependency] private readonly ITransferManager _transferManager = default!;
+    [Dependency] private IResourceManager _resourceManager = default!;
+    [Dependency] private IServerNetManager _netManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private ILogManager _logManager = default!;
+    [Dependency] private ITransferManager _transferManager = default!;
 
     private ISawmill _sawmill = default!;
     private const string AllowedPrefix = "/NetTextures/";

@@ -14,9 +14,9 @@ namespace Content.Server._Sunrise.TapePlayer;
 
 public sealed class TapePlayerSystem : SharedTapePlayerSystem
 {
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
-    [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
+    [Dependency] private ItemSlotsSystem _itemSlotsSystem = default!;
+    [Dependency] private AppearanceSystem _appearanceSystem = default!;
 
     private readonly List<ICommonSession> _ignoredRecipients = [];
 

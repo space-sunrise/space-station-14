@@ -9,7 +9,7 @@ namespace Content.Shared._Starlight.Weapon;
 
 public sealed class ProjectileHitscanCompatibilitySystem : EntitySystem
 {
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
 
     public override void Initialize()
     {

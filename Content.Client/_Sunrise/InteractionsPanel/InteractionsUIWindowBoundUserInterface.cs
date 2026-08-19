@@ -7,7 +7,7 @@ namespace Content.Client._Sunrise.InteractionsPanel;
 
 public sealed class InteractionsWindowBoundUserInterface : BoundUserInterface
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     private InteractionsUIWindow? _slave;
 

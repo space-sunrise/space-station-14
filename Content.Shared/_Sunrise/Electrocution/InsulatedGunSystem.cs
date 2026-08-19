@@ -7,7 +7,7 @@ namespace Content.Shared._Sunrise.Electrocution;
 
 public sealed class InsulatedGunSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {

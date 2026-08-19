@@ -19,13 +19,13 @@ namespace Content.Server._Sunrise.Animations;
 
 public sealed class EmoteAnimationSystem : EntitySystem
 {
-    [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly StandingStateSystem _standing = default!;
-    [Dependency] private readonly SharedGravitySystem _gravity = default!;
-    [Dependency] private readonly SharedJumpSystem _jumpSystem = default!;
-    [Dependency] private readonly SharedFlipSystem _flipSystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
+    [Dependency] private StandingStateSystem _standing = default!;
+    [Dependency] private SharedGravitySystem _gravity = default!;
+    [Dependency] private SharedJumpSystem _jumpSystem = default!;
+    [Dependency] private SharedFlipSystem _flipSystem = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
 
     private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
 

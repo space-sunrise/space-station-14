@@ -9,12 +9,12 @@ namespace Content.Server._Sunrise.DontSellingGrid;
 
 public sealed class StationDontSellingSystems : EntitySystem
 {
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
 
     private readonly HashSet<Entity<StaticPriceComponent>> _entities = [];
 
-    [Dependency] private readonly EntityQuery<ContainerManagerComponent> _containerQuery = default!;
-    [Dependency] private readonly EntityQuery<StationDontSellingGridComponent> _stationQuery = default!;
+    [Dependency] private EntityQuery<ContainerManagerComponent> _containerQuery = default!;
+    [Dependency] private EntityQuery<StationDontSellingGridComponent> _stationQuery = default!;
 
     public override void Initialize()
     {

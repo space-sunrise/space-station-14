@@ -7,8 +7,8 @@ namespace Content.Client._Sunrise.Overlays.Systems;
 
 public sealed class SaturationScaleSystem : EntitySystem
 {
-    [Dependency] private readonly IOverlayManager _overlayMan = default!;
-    [Dependency] private readonly ISharedPlayerManager _playerMan = default!;
+    [Dependency] private IOverlayManager _overlayMan = default!;
+    [Dependency] private ISharedPlayerManager _playerMan = default!;
 
     private SaturationScaleOverlay _overlay = default!;
 

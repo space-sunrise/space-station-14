@@ -14,7 +14,7 @@ public sealed class TutorialUIController : UIController,
     IOnStateExited<LobbyState>,
     IOnSystemChanged<TutorialSystem>
 {
-    [Dependency] private readonly InfoUIController _info = default!;
+    [Dependency] private InfoUIController _info = default!;
 
     private TutorialSystem? _tutorialSystem;
     private TutorialSystem? _windowDataSystem;

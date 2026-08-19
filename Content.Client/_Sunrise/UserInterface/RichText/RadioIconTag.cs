@@ -11,8 +11,8 @@ namespace Content.Client._Sunrise.UserInterface.RichText;
 
 public sealed class RadioIconTag : BaseTextureTag
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IResourceCache _cache = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IResourceCache _cache = default!;
 
     private static FontResource? _font;
 

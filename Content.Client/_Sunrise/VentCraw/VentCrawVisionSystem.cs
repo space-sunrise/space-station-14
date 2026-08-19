@@ -7,10 +7,10 @@ namespace Content.Client._Sunrise.VentCraw;
 
 public sealed class VentCrawSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly SubFloorHideSystem _subFloorHideSystem = default!;
-    [Dependency] private readonly EntityQuery<VentCrawlerComponent> _ventCrawlerQuery = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private SubFloorHideSystem _subFloorHideSystem = default!;
+    [Dependency] private EntityQuery<VentCrawlerComponent> _ventCrawlerQuery = default!;
 
     public override void Update(float frameTime)
     {

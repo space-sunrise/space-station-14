@@ -19,17 +19,17 @@ namespace Content.Client._Sunrise.Sandbox.Access.Systems;
 /// </summary>
 public sealed class MappingAccessOverlaySystem : EntitySystem
 {
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly IClientAdminManager _admin = default!;
-    [Dependency] private readonly IClickMapManager _clickMap = default!;
-    [Dependency] private readonly IClyde _clyde = default!;
-    [Dependency] private readonly IOverlayManager _overlayManager = default!;
-    [Dependency] private readonly IUserInterfaceManager _ui = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IResourceCache _resource = default!;
-    [Dependency] private readonly EntityQuery<ContainerFillComponent> _containerFillQuery = default!;
-    [Dependency] private readonly EntityQuery<PhysicsComponent> _physicsQuery = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private IClientAdminManager _admin = default!;
+    [Dependency] private IClickMapManager _clickMap = default!;
+    [Dependency] private IClyde _clyde = default!;
+    [Dependency] private IOverlayManager _overlayManager = default!;
+    [Dependency] private IUserInterfaceManager _ui = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IResourceCache _resource = default!;
+    [Dependency] private EntityQuery<ContainerFillComponent> _containerFillQuery = default!;
+    [Dependency] private EntityQuery<PhysicsComponent> _physicsQuery = default!;
 
     private MappingAccessOverlay? _overlay;
     private MappingAccessOutlineOverlay? _outlineOverlay;

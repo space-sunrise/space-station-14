@@ -222,7 +222,7 @@ var query = EntityQueryEnumerator<ActiveTimerTriggerComponent, TimerTriggerCompo
 
 **Code example**
 ```csharp
-[Dependency] private readonly EntityQuery<TagComponent> _tagQuery = default!;
+[Dependency] private EntityQuery<TagComponent> _tagQuery = default!;
 
 public bool HasTag(EntityUid uid, ProtoId<TagPrototype> tag)
 {

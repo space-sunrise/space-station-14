@@ -9,7 +9,7 @@ namespace Content.Server._Sunrise.Speech.EntitySystems;
 
 public sealed class MoldovanAccentSystem : EntitySystem
 {
-    [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
+    [Dependency] private ReplacementAccentSystem _replacement = default!;
     public override void Initialize()
     {
         SubscribeLocalEvent<MoldovanAccentComponent, AccentGetEvent>(OnAccent);

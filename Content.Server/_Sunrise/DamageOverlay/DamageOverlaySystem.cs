@@ -16,9 +16,9 @@ namespace Content.Server._Sunrise.DamageOverlay;
 
 public sealed class DamageOverlaySystem : EntitySystem
 {
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
 
     private static readonly HashSet<ICommonSession> DisabledSessions = [];
     private readonly Dictionary<ICommonSession, DamageOverlaySettings> _playerSettings = new ();

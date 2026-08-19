@@ -10,7 +10,7 @@ namespace Content.Shared._Sunrise.Messenger;
 /// </summary>
 public abstract class SharedEmojiSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     private const ChatChannel EmojiSupportedChannels =
         ChatChannel.OOC

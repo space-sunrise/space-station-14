@@ -12,7 +12,7 @@ namespace Content.Server._Sunrise.Storyteller.Commands
     [AdminCommand(AdminFlags.Admin)]
     public sealed class ForceStorytellerEventCommand : IConsoleCommand
     {
-        [Dependency] private readonly IEntityManager _entManager = default!;
+        [Dependency] private IEntityManager _entManager = default!;
 
         public string Command => "forcestorytellerevent";
         public string Description => "Force triggers a storyteller event, bypassing all stress, threat budget, and state restrictions.";

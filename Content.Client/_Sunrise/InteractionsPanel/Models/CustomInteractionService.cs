@@ -7,8 +7,8 @@ namespace Content.Client._Sunrise.InteractionsPanel.Models;
 
 public sealed class CustomInteractionService
 {
-    [Dependency] private readonly IResourceManager _resourceManager = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
+    [Dependency] private IResourceManager _resourceManager = default!;
+    [Dependency] private ILogManager _logManager = default!;
 
     private readonly Dictionary<string, CustomInteraction> _customInteractions = new();
     private readonly ISawmill _sawmill;

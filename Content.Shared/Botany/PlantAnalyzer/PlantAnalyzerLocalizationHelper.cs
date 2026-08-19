@@ -8,7 +8,7 @@ namespace Content.Shared.Botany.PlantAnalyzer;
 
 public sealed class PlantAnalyzerLocalizationHelper : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     public string GasesToLocalizedStrings(List<Gas> gases)
     {

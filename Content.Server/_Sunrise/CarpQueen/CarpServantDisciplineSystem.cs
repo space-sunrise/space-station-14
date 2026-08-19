@@ -19,9 +19,9 @@ namespace Content.Server._Sunrise.CarpQueen;
 /// </summary>
 public sealed class CarpServantDisciplineSystem : EntitySystem
 {
-    [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
-    [Dependency] private readonly NPCSystem _npc = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private NpcFactionSystem _npcFaction = default!;
+    [Dependency] private NPCSystem _npc = default!;
+    [Dependency] private InventorySystem _inventory = default!;
 
     public override void Initialize()
     {

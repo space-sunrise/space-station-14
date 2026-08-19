@@ -20,8 +20,8 @@ namespace Content.Shared._Starlight.Combat.Effects.EntitySystems;
 /// </summary>
 public abstract class SharedArmorSparkEffectSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
     {

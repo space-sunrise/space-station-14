@@ -7,7 +7,7 @@ namespace Content.Server.Speech.EntitySystems
 {
     public sealed class TajaranAccentSystem : EntitySystem
     {
-        [Dependency] private readonly IRobustRandom _random = default!;
+        [Dependency] private IRobustRandom _random = default!;
 
         private static readonly Regex LowerLatinErRegex = new("r+");
         private static readonly Regex UpperLatinErRegex = new("R+");

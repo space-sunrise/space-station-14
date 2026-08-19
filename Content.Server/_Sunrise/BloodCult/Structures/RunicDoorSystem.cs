@@ -11,11 +11,11 @@ namespace Content.Server._Sunrise.BloodCult.Structures;
 
 public sealed class RunicDoorSystem : EntitySystem
 {
-    [Dependency] private readonly DoorSystem _doorSystem = default!;
-    [Dependency] private readonly SharedStunSystem _stunSystem = default!;
-    [Dependency] private readonly ThrowingSystem _throwing = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly DamageableSystem _damage = default!;
+    [Dependency] private DoorSystem _doorSystem = default!;
+    [Dependency] private SharedStunSystem _stunSystem = default!;
+    [Dependency] private ThrowingSystem _throwing = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private DamageableSystem _damage = default!;
 
     public override void Initialize()
     {

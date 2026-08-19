@@ -36,13 +36,13 @@ namespace Content.Server.StatsBoard;
 
 public sealed class StatsBoardSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly TagSystem _tagSystem = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly MindSystem _mindSystem = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private TagSystem _tagSystem = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private MindSystem _mindSystem = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
 
     private static readonly ProtoId<TagPrototype> HamsterTag = "Hamster";
     private static readonly ProtoId<TagPrototype> MouseTag = "Mouse";

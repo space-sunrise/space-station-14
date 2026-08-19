@@ -32,16 +32,16 @@ namespace Content.Server._Sunrise.AssaultOps;
 
 public sealed class AssaultOpsRuleSystem : GameRuleSystem<AssaultOpsRuleComponent>
 {
-    [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly SharedSubdermalImplantSystem _subdermalImplant = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly UplinkSystem _uplinkSystem = default!;
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly StoreSystem _store = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly ExplosionSystem _explosions = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+    [Dependency] private NpcFactionSystem _npcFaction = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private SharedSubdermalImplantSystem _subdermalImplant = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private UplinkSystem _uplinkSystem = default!;
+    [Dependency] private AntagSelectionSystem _antag = default!;
+    [Dependency] private StoreSystem _store = default!;
+    [Dependency] private SharedMapSystem _mapSystem = default!;
+    [Dependency] private ExplosionSystem _explosions = default!;
+    [Dependency] private SharedTransformSystem _transformSystem = default!;
 
     [ValidatePrototypeId<TagPrototype>]
     private const string UplinkTagPrototype = "AssaultOpsUplink";

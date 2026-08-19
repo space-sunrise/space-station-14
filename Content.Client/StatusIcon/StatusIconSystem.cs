@@ -22,7 +22,7 @@ public sealed partial class StatusIconSystem : SharedStatusIconSystem
     [Dependency] private IOverlayManager _overlay = default!;
     [Dependency] private IPlayerManager _playerManager = default!;
     [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
-    [Dependency] private readonly ISharedAdminManager _adminManager = default!; // Sunrise-Edit
+    [Dependency] private ISharedAdminManager _adminManager = default!; // Sunrise-Edit
 
     private bool _globalEnabled;
     private bool _localEnabled;

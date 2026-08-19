@@ -12,9 +12,9 @@ namespace Content.Server._Sunrise.Decals;
 /// </summary>
 public sealed class WalledDecalRemovalSystem : EntitySystem
 {
-    [Dependency] private readonly DecalSystem _decal = default!;
-    [Dependency] private readonly MapSystem _map = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private DecalSystem _decal = default!;
+    [Dependency] private MapSystem _map = default!;
+    [Dependency] private TagSystem _tag = default!;
 
     /// <summary>
     /// Removes decals that overlap wall tiles on the specified grid.

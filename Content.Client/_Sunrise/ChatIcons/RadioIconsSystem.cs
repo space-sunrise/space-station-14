@@ -7,8 +7,8 @@ namespace Content.Client._Sunrise.ChatIcons;
 
 public sealed class ChatIconsSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IUserInterfaceManager _uiMan = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IUserInterfaceManager _uiMan = default!;
 
     public override void Initialize()
     {

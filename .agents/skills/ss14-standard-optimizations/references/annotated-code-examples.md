@@ -83,7 +83,7 @@ public override void Update(float frameTime)
 - Relevance: `2025-05`
 
 ```csharp
-[Dependency] private readonly EntityQuery<TransformComponent> _xformQuery = default!;
+[Dependency] private EntityQuery<TransformComponent> _xformQuery = default!;
 
 public override void Initialize()
 {
@@ -189,7 +189,7 @@ private void SendToConnections(ReadOnlySpan<DeviceNetworkComponent> connections,
 - Relevance: `2024-05`
 
 ```csharp
-[Dependency] private readonly EntityQuery<TagComponent> _tagQuery = default!;
+[Dependency] private EntityQuery<TagComponent> _tagQuery = default!;
 
 public bool HasTag(EntityUid uid, ProtoId<TagPrototype> tag)
 {

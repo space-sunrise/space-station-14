@@ -13,8 +13,8 @@ namespace Content.Server._Sunrise.CriminalRecords.Systems;
 
 public sealed class PrisonLockerSystem : EntitySystem
 {
-    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
-    [Dependency] private readonly DeviceLinkSystem _deviceLink = default!;
+    [Dependency] private AccessReaderSystem _accessReader = default!;
+    [Dependency] private DeviceLinkSystem _deviceLink = default!;
 
     public override void Initialize()
     {

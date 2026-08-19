@@ -11,9 +11,9 @@ namespace Content.Client._Sunrise.Tutorial;
 
 public sealed class TimeCounterSystem : EntitySystem
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IUserInterfaceManager _ui = default!;
-    [Dependency] private readonly EntityQuery<TimeCounterUiComponent> _timeCounterUiQuery = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IUserInterfaceManager _ui = default!;
+    [Dependency] private EntityQuery<TimeCounterUiComponent> _timeCounterUiQuery = default!;
     private LayoutContainer _timeCounterRoot = default!;
     /// <summary>
     /// Why? The in-game screen hierarchy is recreated after OnScreenChanged.

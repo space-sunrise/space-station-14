@@ -15,10 +15,10 @@ namespace Content.Server._Sunrise.Soil;
 /// </summary>
 public sealed class SoilSystem : EntitySystem
 {
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly IEntityManager _entity = default!;
-    [Dependency] private readonly StaminaSystem _stamina = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private IEntityManager _entity = default!;
+    [Dependency] private StaminaSystem _stamina = default!;
 
     public override void Initialize()
     {

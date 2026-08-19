@@ -30,17 +30,17 @@ namespace Content.Server.Starlight.Energy.Supermatter;
 
 public sealed class SupermatterSystem : AccUpdateEntitySystem
 {
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly LightningSystem _lightning = default!;
-    [Dependency] private readonly SupermatterCascadeSystem _cascade = default!;
-    [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly MessengerServerSystem _messenger = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly RadiationSystem _radiation = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private LightningSystem _lightning = default!;
+    [Dependency] private SupermatterCascadeSystem _cascade = default!;
+    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private MessengerServerSystem _messenger = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private RadiationSystem _radiation = default!;
 
     private static readonly ProtoId<DamageGroupPrototype> BruteDamageGroup = "Brute";
     private static readonly ProtoId<DamageGroupPrototype> BurnDamageGroup = "Burn";

@@ -11,9 +11,9 @@ namespace Content.Shared._Sunrise.Abilities.Milira;
 /// </summary>
 public abstract class SharedWingFlightSystem : EntitySystem
 {
-    [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly StandingStateSystem _standing = default!;
+    [Dependency] private MovementSpeedModifierSystem _movement = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private StandingStateSystem _standing = default!;
 
     /// <summary>
     /// Получение целевого масштаба при активном полёте.

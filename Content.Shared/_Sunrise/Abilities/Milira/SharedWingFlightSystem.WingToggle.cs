@@ -12,7 +12,7 @@ namespace Content.Shared._Sunrise.Abilities.Milira;
 /// </summary>
 public sealed class WingToggleSharedSystem : SharedWingFlightSystem
 {
-    [Dependency] private readonly TagSystem _tagSystem = default!;
+    [Dependency] private TagSystem _tagSystem = default!;
 
     public override void Initialize()
     {

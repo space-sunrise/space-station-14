@@ -13,10 +13,10 @@ namespace Content.Server._Sunrise.Holiday.HolidayGiveaway;
 /// </summary>
 public sealed class HolidayGiveawaySystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IConfigurationManager _configuration = default!;
-    [Dependency] private readonly HolidaySystem _holiday = default!;
-    [Dependency] private readonly HandsSystem _hands = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IConfigurationManager _configuration = default!;
+    [Dependency] private HolidaySystem _holiday = default!;
+    [Dependency] private HandsSystem _hands = default!;
 
     /// <summary>
     /// Кешированные текущие раздачи, которые будут применены после спавна игрока в <see cref="OnPlayerSpawn"/> <br/>

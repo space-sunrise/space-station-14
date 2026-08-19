@@ -17,9 +17,9 @@ namespace Content.Server._Sunrise.HairDye;
 /// </summary>
 public sealed class HairDyeSystem : EntitySystem
 {
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly DoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SunriseHumanoidMarkingSystem _sunriseMarking = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private DoAfterSystem _doAfter = default!;
+    [Dependency] private SunriseHumanoidMarkingSystem _sunriseMarking = default!;
 
     public override void Initialize()
     {

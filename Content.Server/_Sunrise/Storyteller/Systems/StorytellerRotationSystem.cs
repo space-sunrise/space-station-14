@@ -11,8 +11,8 @@ namespace Content.Server._Sunrise.Storyteller.Systems;
 /// </summary>
 public sealed class StorytellerRotationSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly GameTicker _ticker = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private GameTicker _ticker = default!;
 
     public override void Initialize()
     {

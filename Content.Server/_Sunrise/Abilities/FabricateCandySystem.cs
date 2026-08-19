@@ -5,7 +5,7 @@ namespace Content.Server._Sunrise.Abilities
 {
     public sealed class FabricateCandySystem : EntitySystem
     {
-        [Dependency] private readonly SharedActionsSystem _actions = default!;
+        [Dependency] private SharedActionsSystem _actions = default!;
         public override void Initialize()
         {
             base.Initialize();

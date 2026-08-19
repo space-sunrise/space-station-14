@@ -7,8 +7,8 @@ namespace Content.Server._Sunrise.CloudEmotes;
 
 public sealed class CloudEmoteSystem : SharedCloudEmoteSystem
 {
-    [Dependency] private readonly TransformSystem _transformSystem = default!;
-    [Dependency] private readonly EntityManager _entMan = default!;
+    [Dependency] private TransformSystem _transformSystem = default!;
+    [Dependency] private EntityManager _entMan = default!;
 
     public const string EmpPulseEffectPrototype = "EffectEmpPulse";
     private ISawmill _sawmill = default!;

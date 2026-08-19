@@ -14,9 +14,9 @@ public sealed class SunriseServerJoinPipelineSystem : EntitySystem
 {
     private const string JoinQueueFailureDisconnectReason = "Unexpected join queue error. Please reconnect.";
 
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly UserDbDataManager _userDb = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private UserDbDataManager _userDb = default!;
+    [Dependency] private ILogManager _logManager = default!;
 
     private ISawmill? _sawmill;
 

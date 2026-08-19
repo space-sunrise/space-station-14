@@ -18,11 +18,11 @@ namespace Content.Server._Sunrise.Xenoarchaeology;
 
 public sealed class RandomXenoArtifactsSystem : EntitySystem
 {
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly SunriseHelpersSystem _helpers = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IConfigurationManager _configuration = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private SunriseHelpersSystem _helpers = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IConfigurationManager _configuration = default!;
 
     /// <summary>
     /// Соотношение предметов к предметам-артефактам. В % процентах.
@@ -34,13 +34,13 @@ public sealed class RandomXenoArtifactsSystem : EntitySystem
     private static readonly EntProtoId BaseParent = "BaseRandomItemXenoArtifactComponents";
     private static EntityPrototype? _baseParentPrototype;
 
-    [Dependency] private readonly EntityQuery<TransformComponent> _xformQuery = default!;
+    [Dependency] private EntityQuery<TransformComponent> _xformQuery = default!;
 
-    [Dependency] private readonly EntityQuery<DoorElectronicsComponent> _doorElectronicsQuery = default!;
-    [Dependency] private readonly EntityQuery<ApcElectronicsComponent> _apcElectronicsQuery = default!;
-    [Dependency] private readonly EntityQuery<OrganComponent> _organQuery = default!;
+    [Dependency] private EntityQuery<DoorElectronicsComponent> _doorElectronicsQuery = default!;
+    [Dependency] private EntityQuery<ApcElectronicsComponent> _apcElectronicsQuery = default!;
+    [Dependency] private EntityQuery<OrganComponent> _organQuery = default!;
 
-    [Dependency] private readonly EntityQuery<StationRandomXenoArtifactComponent> _availableStationQuery = default!;
+    [Dependency] private EntityQuery<StationRandomXenoArtifactComponent> _availableStationQuery = default!;
 
     public override void Initialize()
     {

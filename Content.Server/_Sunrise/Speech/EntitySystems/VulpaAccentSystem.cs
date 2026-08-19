@@ -8,7 +8,7 @@ namespace Content.Server._Sunrise.Speech.EntitySystems;
 
 public sealed class VulpaAccentSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     private static readonly Regex LowerErRegex = new("р+");
     private static readonly Regex UpperErRegex = new("Р+");

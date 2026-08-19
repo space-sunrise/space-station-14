@@ -7,8 +7,8 @@ namespace Content.Shared._Sunrise.Mech.Equipment.EntitySystems;
 
 public sealed class SharedMechEquipmentSelectSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
 
     public override void Initialize()
     {

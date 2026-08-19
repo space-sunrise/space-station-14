@@ -11,7 +11,7 @@ namespace Content.Server._Starlight.Combat.Effects.EntitySystems;
 /// </summary>
 public sealed class ArmorSparkEffectSystem : SharedArmorSparkEffectSystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
     protected override void SpawnSparkEffectAt(EntityCoordinates coordinates, string effectPrototype)
     {

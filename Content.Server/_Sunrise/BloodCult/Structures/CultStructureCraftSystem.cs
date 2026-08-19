@@ -8,8 +8,8 @@ namespace Content.Server._Sunrise.BloodCult.Structures;
 
 public sealed class CultStructureCraftSystem : EntitySystem
 {
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!;
 
     public override void Initialize()
     {

@@ -10,7 +10,7 @@ public sealed class CultistWordGeneratorManager
     private const string Vowels = "aeiou";
     private const string Consonants = "bcdfghjklmnpqrstvwxyz";
 
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public string GenerateText(string text)
     {

@@ -11,12 +11,12 @@ namespace Content.Server._Sunrise.Sprite.EdgeConnection;
 /// </summary>
 public sealed class EdgeConnectionSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedMapSystem _map = default!;
 
     private const float MinimumMovementDistance = 0.005f;
 
-    [Dependency] private readonly EntityQuery<EdgeConnectionComponent> _edgeQuery = default!;
+    [Dependency] private EntityQuery<EdgeConnectionComponent> _edgeQuery = default!;
 
     public override void Initialize()
     {

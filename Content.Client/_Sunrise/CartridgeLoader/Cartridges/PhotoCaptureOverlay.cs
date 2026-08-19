@@ -10,10 +10,10 @@ namespace Content.Client._Sunrise.CartridgeLoader.Cartridges;
 
 public sealed class PhotoCaptureOverlay : Overlay
 {
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IStateManager _stateManager = default!;
-    [Dependency] private readonly IEyeManager _eyeManager = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IStateManager _stateManager = default!;
+    [Dependency] private IEyeManager _eyeManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
 
     private readonly SharedTransformSystem _transformSystem;
 

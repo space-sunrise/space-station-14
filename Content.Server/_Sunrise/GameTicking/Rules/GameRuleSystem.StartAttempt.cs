@@ -12,9 +12,9 @@ namespace Content.Server.GameTicking.Rules;
 
 public abstract partial class GameRuleSystem<T> where T : IComponent
 {
-    [Dependency] private readonly IChatManager _sunriseChat = default!;
-    [Dependency] private readonly IComponentFactory _sunriseComponentFactory = default!;
-    [Dependency] private readonly IServerPreferencesManager _sunrisePreferences = default!;
+    [Dependency] private IChatManager _sunriseChat = default!;
+    [Dependency] private IComponentFactory _sunriseComponentFactory = default!;
+    [Dependency] private IServerPreferencesManager _sunrisePreferences = default!;
 
     private void InitializeSunriseGameRule()
     {

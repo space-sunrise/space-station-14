@@ -8,8 +8,8 @@ namespace Content.Client._Sunrise.BloodCult.UI.ListViewSelector;
 
 public sealed class ListViewSelectorBUI : BoundUserInterface
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     private RadialContainer? _menu;
     private bool _selected;

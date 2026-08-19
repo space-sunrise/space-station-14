@@ -14,10 +14,10 @@ namespace Content.Server._Sunrise.Administration;
 // TODO: Сделать дискорд вебхук с этим
 public sealed class AdminCommandLoggerSystem : EntitySystem
 {
-    [Dependency] private readonly IAdminLogManager _adminLog = default!;
-    [Dependency] private readonly IAdminManager _admin = default!;
-    [Dependency] private readonly IConsoleHost _console = default!;
-    [Dependency] private readonly ToolshedManager _toolshed = default!;
+    [Dependency] private IAdminLogManager _adminLog = default!;
+    [Dependency] private IAdminManager _admin = default!;
+    [Dependency] private IConsoleHost _console = default!;
+    [Dependency] private ToolshedManager _toolshed = default!;
 
     /// <summary>
     /// Черный список команд, которые не должны логгироваться.

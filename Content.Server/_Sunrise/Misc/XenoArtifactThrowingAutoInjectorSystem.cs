@@ -17,7 +17,7 @@ namespace Content.Server._Sunrise.Misc;
 
 public sealed class XenoArtifactThrowingAutoInjectorSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
     public override void Initialize()
     {

@@ -19,7 +19,7 @@ namespace Content.Server._Sunrise.BloodCult.UI;
 
 public sealed class TeleportSpellEui : BaseEui
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
+    [Dependency] private EntityManager _entityManager = default!;
 
 
     public readonly EntProtoId TeleportInEffect = "CultTeleportInEffect";

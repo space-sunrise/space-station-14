@@ -36,8 +36,8 @@ namespace Content.Server._Sunrise.FleshCult;
 
 public sealed partial class FleshCultSystem
 {
-    [Dependency] private readonly FleshCultRuleSystem _fleshCultRule = default!;
-    [Dependency] private readonly SharedPointLightSystem _pointLight = default!;
+    [Dependency] private FleshCultRuleSystem _fleshCultRule = default!;
+    [Dependency] private SharedPointLightSystem _pointLight = default!;
 
     private static readonly ProtoId<TagPrototype>[] FleshWallTags = ["Wall", "Flesh"];
     private static readonly ProtoId<TagPrototype>[] FleshSpawnBlockingTags = ["Wall", "Window", "Flesh"];

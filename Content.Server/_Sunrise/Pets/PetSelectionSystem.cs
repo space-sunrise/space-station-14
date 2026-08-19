@@ -9,8 +9,8 @@ namespace Content.Server._Sunrise.Pets;
 
 public sealed class PetSelectionSystem : EntitySystem
 {
-    [Dependency] private readonly SponsorValidationSystem _validationSystem = default!;
-    [Dependency] private readonly PlayerCacheManager _playerCache = default!;
+    [Dependency] private SponsorValidationSystem _validationSystem = default!;
+    [Dependency] private PlayerCacheManager _playerCache = default!;
 
     public override void Initialize()
     {

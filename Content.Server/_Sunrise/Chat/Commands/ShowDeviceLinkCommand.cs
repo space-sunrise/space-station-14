@@ -11,7 +11,7 @@ namespace Content.Server._Sunrise.Chat.Commands;
 [AdminCommand(AdminFlags.Admin)]
 public sealed class ShowDeviceLinkCommand : LocalizedEntityCommands
 {
-    [Dependency] private readonly DeviceLinkingVisualizationSystem _deviceLinking = default!;
+    [Dependency] private DeviceLinkingVisualizationSystem _deviceLinking = default!;
 
     public override string Command => "showdevicelink";
 

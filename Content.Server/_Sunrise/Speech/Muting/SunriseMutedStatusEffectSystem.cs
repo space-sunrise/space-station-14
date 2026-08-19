@@ -16,7 +16,7 @@ namespace Content.Server._Sunrise.Speech.Muting;
 /// </summary>
 public sealed class SunriseMutedStatusEffectSystem : EntitySystem
 {
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
 
     public override void Initialize()
     {

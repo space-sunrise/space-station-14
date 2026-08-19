@@ -43,7 +43,7 @@ namespace Content.Client.Voting
         [Dependency] private IClientNetManager _netManager = default!;
         [Dependency] private IGameTiming _gameTiming = default!;
         [Dependency] private IResourceCache _res = default!;
-        [Dependency] private readonly IConfigurationManager _cfg = default!;
+        [Dependency] private IConfigurationManager _cfg = default!;
 
         private readonly Dictionary<StandardVoteType, TimeSpan> _standardVoteTimeouts = new();
         private readonly Dictionary<int, ActiveVote> _votes = new();

@@ -31,11 +31,11 @@ namespace Content.Client._Sunrise.MentorHelp;
 [UsedImplicitly]
 public sealed class MentorHelpUIController : UIController, IOnSystemChanged<MentorHelpSystem>, IOnStateChanged<GameplayState>, IOnStateChanged<LobbyState>
 {
-    [Dependency] private readonly IClientAdminManager _adminManager = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly ILocalizationManager _loc = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IClyde _clyde = default!;
+    [Dependency] private IClientAdminManager _adminManager = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private ILocalizationManager _loc = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IClyde _clyde = default!;
     [UISystemDependency] private readonly AudioSystem _audio = default!;
 
     private MentorHelpSystem? _mentorHelpSystem;

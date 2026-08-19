@@ -17,7 +17,7 @@ namespace Content.Shared._Sunrise.Biocode.Systems;
 /// </summary>
 public abstract class BiocodeDeactivationSystem : EntitySystem
 {
-    [Dependency] private readonly BiocodeSystem _biocodeSystem = default!;
+    [Dependency] private BiocodeSystem _biocodeSystem = default!;
 
     public override void Initialize()
     {

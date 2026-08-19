@@ -20,12 +20,12 @@ namespace Content.Server._Sunrise.Shuttles;
 
 public sealed class CodeEquipmentSystem : EntitySystem
 {
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly MapLoaderSystem _loader = default!;
-    [Dependency] private readonly ShuttleSystem _shuttles = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly NavMapSystem _nav = default!;
+    [Dependency] private IMapManager _mapManager = default!;
+    [Dependency] private MapLoaderSystem _loader = default!;
+    [Dependency] private ShuttleSystem _shuttles = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private NavMapSystem _nav = default!;
 
     public override void Initialize()
     {

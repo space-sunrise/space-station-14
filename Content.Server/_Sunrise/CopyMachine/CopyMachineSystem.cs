@@ -25,20 +25,20 @@ namespace Content.Server._Sunrise.CopyMachine;
 
 public sealed partial class CopyMachineSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly PaperSystem _paper = default!;
-    [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
-    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
-    [Dependency] private readonly MaterialStorageSystem _materialStorage = default!;
-    [Dependency] private readonly IResourceManager _resourceManager = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly IConfigurationManager _configManager = default!;
-    [Dependency] private readonly EmagSystem _emag = default!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly LabelSystem _label = default!;
-    [Dependency] private readonly DocumentFormatSystem _documentFormat = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private PaperSystem _paper = default!;
+    [Dependency] private UserInterfaceSystem _userInterface = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private MaterialStorageSystem _materialStorage = default!;
+    [Dependency] private IResourceManager _resourceManager = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private IConfigurationManager _configManager = default!;
+    [Dependency] private EmagSystem _emag = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
+    [Dependency] private LabelSystem _label = default!;
+    [Dependency] private DocumentFormatSystem _documentFormat = default!;
 
     private readonly Dictionary<string, string> _documentContentByTemplateId = new();
 

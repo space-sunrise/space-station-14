@@ -7,7 +7,7 @@ namespace Content.Shared._Sunrise.Explosion;
 
 public sealed class SharedSunriseExplosionSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     public override void Initialize()
     {

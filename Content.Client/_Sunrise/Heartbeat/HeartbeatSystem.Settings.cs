@@ -7,8 +7,8 @@ namespace Content.Client._Sunrise.Heartbeat;
 
 public sealed class HeartbeatSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly INetManager _netManager = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private INetManager _netManager = default!;
 
     private bool _playHeartBeatSound;
 

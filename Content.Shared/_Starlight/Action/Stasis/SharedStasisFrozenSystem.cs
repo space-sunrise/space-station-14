@@ -18,8 +18,8 @@ namespace Content.Shared._Starlight.Actions.Stasis;
 /// </summary>
 public abstract class SharedStasisFrozenSystem : EntitySystem
 {
-    [Dependency] private readonly ActionBlockerSystem _blocker = default!;
-    [Dependency] private readonly PullingSystem _pulling = default!;
+    [Dependency] private ActionBlockerSystem _blocker = default!;
+    [Dependency] private PullingSystem _pulling = default!;
 
     public override void Initialize()
     {

@@ -13,12 +13,12 @@ namespace Content.Server._Sunrise.Mapping;
 /// </summary>
 public sealed class MappingReplacementSystem : EntitySystem
 {
-    [Dependency] private readonly MapSystem _map = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly IComponentFactory _factory = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly EntityQuery<MapGridComponent> _mapGridQuery = default!;
-    [Dependency] private readonly EntityQuery<MappingReplacementComponent> _replacementQuery = default!;
+    [Dependency] private MapSystem _map = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private IComponentFactory _factory = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private EntityQuery<MapGridComponent> _mapGridQuery = default!;
+    [Dependency] private EntityQuery<MappingReplacementComponent> _replacementQuery = default!;
 
     private readonly List<EntityUid> _anchoredEntities = [];
 

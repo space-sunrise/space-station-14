@@ -11,7 +11,7 @@ namespace Content.Shared._Sunrise.Item;
 /// </summary>
 public sealed class ItemRepickupCooldownSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

@@ -12,8 +12,8 @@ namespace Content.Server._Sunrise.CloudEmotes.Commands
     [AnyCommand]
     public sealed class CloudEmoteCommand : LocalizedCommands
     {
-        [Dependency] private readonly IEntitySystemManager _entitySystems = default!;
-        [Dependency] private readonly IEntityManager _entityManager = default!;
+        [Dependency] private IEntitySystemManager _entitySystems = default!;
+        [Dependency] private IEntityManager _entityManager = default!;
         public override string Command => "emote";
         public string[] emotes = { "lenny", "mark", "nervous" };
 

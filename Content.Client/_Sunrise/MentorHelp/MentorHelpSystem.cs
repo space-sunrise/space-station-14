@@ -10,7 +10,7 @@ namespace Content.Client._Sunrise.MentorHelp
     [UsedImplicitly]
     public sealed class MentorHelpSystem : SharedMentorHelpSystem
     {
-        [Dependency] private readonly IGameTiming _gameTiming = default!;
+        [Dependency] private IGameTiming _gameTiming = default!;
 
         public event EventHandler<MentorHelpTicketUpdateMessage>? OnTicketUpdated;
         public event EventHandler<MentorHelpTicketsListMessage>? OnTicketsListReceived;

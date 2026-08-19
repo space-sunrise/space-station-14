@@ -8,7 +8,7 @@ namespace Content.Server._Sunrise.NightVision;
 
 public sealed class ToggleableNightVisionSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
 
     public override void Initialize()
     {

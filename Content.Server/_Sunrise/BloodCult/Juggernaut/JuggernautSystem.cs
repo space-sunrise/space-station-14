@@ -5,7 +5,7 @@ namespace Content.Server._Sunrise.BloodCult.Juggernaut;
 
 public sealed class JuggernautSystem : EntitySystem
 {
-    [Dependency] private readonly HandsSystem _handsSystem = default!;
+    [Dependency] private HandsSystem _handsSystem = default!;
 
     public override void Initialize()
     {

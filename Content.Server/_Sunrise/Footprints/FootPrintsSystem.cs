@@ -26,30 +26,30 @@ public sealed class FootprintSystem : EntitySystem
 {
     #region Dependencies
 
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
-    [Dependency] private readonly AppearanceSystem _appearance = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly MapSystem _mapSystem = default!;
-    [Dependency] private readonly GravitySystem _gravity = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly PuddleSystem _puddleSystem = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private SharedSolutionContainerSystem _solution = default!;
+    [Dependency] private AppearanceSystem _appearance = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private MapSystem _mapSystem = default!;
+    [Dependency] private GravitySystem _gravity = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IMapManager _mapManager = default!;
+    [Dependency] private PuddleSystem _puddleSystem = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
 
     #endregion
 
     #region Entity Queries
 
-    [Dependency] private readonly EntityQuery<TransformComponent> _transformQuery = default!;
-    [Dependency] private readonly EntityQuery<AppearanceComponent> _appearanceQuery = default!;
-    [Dependency] private readonly EntityQuery<PhysicsComponent> _physicsQuery = default!;
-    [Dependency] private readonly EntityQuery<SolutionManagerComponent> _solutionQuery = default!;
-    [Dependency] private readonly EntityQuery<StandingStateComponent> _standingQuery = default!;
-    [Dependency] private readonly EntityQuery<FootprintComponent> _footprintQuery = default!;
-    [Dependency] private readonly EntityQuery<PressureProtectionComponent> _pressureQuery = default!;
+    [Dependency] private EntityQuery<TransformComponent> _transformQuery = default!;
+    [Dependency] private EntityQuery<AppearanceComponent> _appearanceQuery = default!;
+    [Dependency] private EntityQuery<PhysicsComponent> _physicsQuery = default!;
+    [Dependency] private EntityQuery<SolutionManagerComponent> _solutionQuery = default!;
+    [Dependency] private EntityQuery<StandingStateComponent> _standingQuery = default!;
+    [Dependency] private EntityQuery<FootprintComponent> _footprintQuery = default!;
+    [Dependency] private EntityQuery<PressureProtectionComponent> _pressureQuery = default!;
 
     #endregion
 

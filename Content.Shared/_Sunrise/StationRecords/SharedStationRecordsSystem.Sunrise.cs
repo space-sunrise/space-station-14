@@ -7,7 +7,7 @@ namespace Content.Shared.StationRecords;
 
 public abstract partial class SharedStationRecordsSystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     /// <summary>
     /// Возвращает случайную запись, исключая записи с указанными идентификаторами.

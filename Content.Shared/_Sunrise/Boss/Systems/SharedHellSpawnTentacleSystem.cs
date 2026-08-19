@@ -7,7 +7,7 @@ namespace Content.Shared._Sunrise.Boss.Systems;
 /// <inheritdoc/>
 public abstract class SharedHellSpawnTentacleSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
 
     // Статические значения
 

@@ -10,7 +10,7 @@ namespace Content.Server.GameTicking.Rules.VariationPass;
 public sealed class EntitySpawnVariationPassSystem : VariationPassSystem<EntitySpawnVariationPassComponent>
 {
     // Sunrise-Edit start
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private TagSystem _tag = default!;
 
     private static readonly ProtoId<TagPrototype> StorytellerIgnoreMessTag = "StorytellerIgnoreMess";
     // Sunrise-Edit end

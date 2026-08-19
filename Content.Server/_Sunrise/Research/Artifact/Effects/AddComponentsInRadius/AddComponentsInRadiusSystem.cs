@@ -6,8 +6,8 @@ namespace Content.Server._Sunrise.Research.Artifact.Effects.AddComponentsInRadiu
 
 public sealed class AddComponentsInRadiusSystem : BaseXAESystem<AddComponentsInRadiusComponent>
 {
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
 
     private readonly HashSet<Entity<TransformComponent>> _entities = [];
 

@@ -42,7 +42,7 @@ public sealed partial class ThrowingSystem : EntitySystem
     [Dependency] private SharedCameraRecoilSystem _recoil = default!;
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private IConfigurationManager _configManager = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
 
     [Dependency] private EntityQuery<AnchorableComponent> _anchorableQuery = default!;
     [Dependency] private EntityQuery<PhysicsComponent> _physicsQuery = default!;

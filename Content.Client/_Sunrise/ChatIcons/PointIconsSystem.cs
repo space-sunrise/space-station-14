@@ -14,10 +14,10 @@ namespace Content.Client._Sunrise.ChatIcons;
 
 public sealed class PointIconsSystem : EntitySystem
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IUserInterfaceManager _ui = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly ExamineSystemShared _examine = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IUserInterfaceManager _ui = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private ExamineSystemShared _examine = default!;
 
     private bool _enabled;
 

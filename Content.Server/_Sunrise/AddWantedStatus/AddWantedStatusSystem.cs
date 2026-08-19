@@ -16,11 +16,11 @@ namespace Content.Server._Sunrise.AddWantedStatus;
 
 public sealed partial class AddWantedStatusSystem : EntitySystem
 {
-    [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly CriminalRecordsSystem _criminalRecords = default!;
-    [Dependency] private readonly StationRecordsSystem _records = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly MessengerServerSystem _messenger = default!;
+    [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private CriminalRecordsSystem _criminalRecords = default!;
+    [Dependency] private StationRecordsSystem _records = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private MessengerServerSystem _messenger = default!;
 
     public override void Initialize()
     {

@@ -8,7 +8,7 @@ using Content.Shared.Speech;
 namespace Content.Server._Sunrise.Speech.EntitySystems;
 public sealed class TransliterationAccentSystem : EntitySystem
 {
-    [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
+    [Dependency] private ReplacementAccentSystem _replacement = default!;
     public override void Initialize()
     {
         SubscribeLocalEvent<TransliterationAccentComponent, AccentGetEvent>(OnAccent);

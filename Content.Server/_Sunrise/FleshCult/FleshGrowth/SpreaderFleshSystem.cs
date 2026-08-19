@@ -18,9 +18,9 @@ namespace Content.Server._Sunrise.FleshCult.FleshGrowth;
 
 public sealed class SpreaderFleshSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _robustRandom = default!;
-    [Dependency] private readonly TagSystem _tagSystem = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
+    [Dependency] private IRobustRandom _robustRandom = default!;
+    [Dependency] private TagSystem _tagSystem = default!;
+    [Dependency] private SharedMapSystem _mapSystem = default!;
 
     private const int GrowthsPerInterval = 5;
     private const float UpdateInterval = 1.0f;
@@ -33,9 +33,9 @@ public sealed class SpreaderFleshSystem : EntitySystem
 
     private float _accumulatedFrameTime;
     private readonly HashSet<EntityUid> _edgeGrowths = new();
-    [Dependency] private readonly EntityQuery<SpreaderFleshComponent> _spreaderQuery = default!;
-    [Dependency] private readonly EntityQuery<TransformComponent> _transformQuery = default!;
-    [Dependency] private readonly EntityQuery<MapGridComponent> _gridQuery = default!;
+    [Dependency] private EntityQuery<SpreaderFleshComponent> _spreaderQuery = default!;
+    [Dependency] private EntityQuery<TransformComponent> _transformQuery = default!;
+    [Dependency] private EntityQuery<MapGridComponent> _gridQuery = default!;
 
     public override void Initialize()
     {

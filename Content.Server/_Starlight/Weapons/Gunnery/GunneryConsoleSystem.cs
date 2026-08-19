@@ -24,11 +24,11 @@ namespace Content.Server._Starlight.Weapons.Gunnery;
 /// </summary>
 public sealed class GunneryConsoleSystem : EntitySystem
 {
-    [Dependency] private readonly UserInterfaceSystem   _ui        = default!;
-    [Dependency] private readonly ShuttleConsoleSystem  _console   = default!;
-    [Dependency] private readonly SharedGunSystem       _gun       = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly IGameTiming           _timing    = default!;
+    [Dependency] private UserInterfaceSystem   _ui        = default!;
+    [Dependency] private ShuttleConsoleSystem  _console   = default!;
+    [Dependency] private SharedGunSystem       _gun       = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private IGameTiming           _timing    = default!;
 
     private const float UpdateInterval = 0.25f;
     private float _updateTimer;

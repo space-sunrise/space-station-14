@@ -10,9 +10,9 @@ namespace Content.Server._Sunrise.BloodCult.Objectives.Systems;
 
 public sealed class KillCultistTargetsConditionSystem : EntitySystem
 {
-    [Dependency] private readonly SharedJobSystem _job = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private SharedJobSystem _job = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
 
     public override void Initialize()
     {

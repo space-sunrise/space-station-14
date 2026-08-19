@@ -9,7 +9,7 @@ namespace Content.Client._Starlight.Medical.Surgery;
 // https://github.com/RMC-14/RMC-14
 public sealed class SurgerySystem : SharedSurgerySystem
 {
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
 
     public override void Initialize()
     {

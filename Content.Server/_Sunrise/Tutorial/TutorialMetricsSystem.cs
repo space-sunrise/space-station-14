@@ -14,11 +14,11 @@ namespace Content.Server._Sunrise.Tutorial;
 /// </summary>
 public sealed class TutorialMetricsSystem : EntitySystem
 {
-    [Dependency] private readonly IServerDbManager _db = default!;
-    [Dependency] private readonly IMetricsManager _metrics = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly ITaskManager _task = default!;
-    [Dependency] private readonly ILogManager _log = default!;
+    [Dependency] private IServerDbManager _db = default!;
+    [Dependency] private IMetricsManager _metrics = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private ITaskManager _task = default!;
+    [Dependency] private ILogManager _log = default!;
 
     private static readonly TimeSpan RefreshInterval = TimeSpan.FromMinutes(1);
 

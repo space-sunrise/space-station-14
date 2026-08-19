@@ -13,8 +13,8 @@ namespace Content.Client._Sunrise.HelpChoice;
 [UsedImplicitly]
 public sealed class HelpChoiceUIController: UIController, IOnSystemChanged<MentorHelpSystem>
 {
-    [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
-    [Dependency] private readonly IInputManager _input = default!;
+    [Dependency] private IUserInterfaceManager _uiManager = default!;
+    [Dependency] private IInputManager _input = default!;
 
     private HelpChoiceWindow? _dialog;
 

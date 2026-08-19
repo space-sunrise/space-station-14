@@ -11,8 +11,8 @@ namespace Content.Client._Sunrise.Mood;
 /// </summary>
 public sealed class MoodVisualizerSystem : VisualizerSystem<MoodVisualsComponent>
 {
-    [Dependency] private readonly SpriteSystem _spriteSystem = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
+    [Dependency] private SpriteSystem _spriteSystem = default!;
+    [Dependency] private SharedAppearanceSystem _appearanceSystem = default!;
 
     public override void Initialize()
     {

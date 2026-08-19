@@ -16,8 +16,8 @@ namespace Content.Server._Sunrise.PersonalBiocode;
 
 public sealed class PersonalBiocodeSystem : SharedPersonalBiocodeSystem // Пока только для модсьюитов
 {
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private InventorySystem _inventory = default!;
 
     private static readonly EntProtoId Action = "ActionSaveDNA";
 

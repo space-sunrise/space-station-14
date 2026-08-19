@@ -9,7 +9,7 @@ namespace Content.Shared._Sunrise.Boss.Systems;
 /// </summary>
 public sealed class ApplyAngularVelocitySystem : EntitySystem
 {
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

@@ -6,7 +6,7 @@ namespace Content.Client._Starlight.Weapon;
 
 public sealed class ProjectileHitscanVisualsSystem : EntitySystem
 {
-    [Dependency] private readonly SpriteSystem _spriteSystem = default!;
+    [Dependency] private SpriteSystem _spriteSystem = default!;
 
     public override void Initialize()
     {

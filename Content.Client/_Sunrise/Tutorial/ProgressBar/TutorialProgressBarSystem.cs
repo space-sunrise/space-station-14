@@ -17,10 +17,10 @@ namespace Content.Client._Sunrise.Tutorial.ProgressBar;
 /// </summary>
 public sealed class TutorialProgressBarSystem : EntitySystem
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IUserInterfaceManager _ui = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly EntityQuery<ProgressBarUiComponent> _progressUiQuery = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IUserInterfaceManager _ui = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private EntityQuery<ProgressBarUiComponent> _progressUiQuery = default!;
     private LayoutContainer? _progressBarRoot;
     private bool _pendingRefresh;
 

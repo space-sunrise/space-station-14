@@ -9,14 +9,14 @@ namespace Content.Server.Atmos.EntitySystems;
 
 public sealed partial class AtmosphereSystem
 {
-    [Dependency] private readonly ElectrocutionSystem _electrocution = default!;
-    [Dependency] private readonly BatterySystem _battery = default!;
-    [Dependency] private readonly PowerReceiverSystem _powerReceiver = default!;
+    [Dependency] private ElectrocutionSystem _electrocution = default!;
+    [Dependency] private BatterySystem _battery = default!;
+    [Dependency] private PowerReceiverSystem _powerReceiver = default!;
 
-    [Dependency] private readonly EntityQuery<ApcPowerReceiverComponent> _powerReceiverQuery = default!;
-    [Dependency] private readonly EntityQuery<MobStateComponent> _mobQuery = default!;
-    [Dependency] private readonly EntityQuery<BatteryComponent> _batteryQuery = default!;
-    [Dependency] private readonly EntityQuery<ChargedElectrovaeAffectedComponent> _chargedElectrovaeQuery = default!;
+    [Dependency] private EntityQuery<ApcPowerReceiverComponent> _powerReceiverQuery = default!;
+    [Dependency] private EntityQuery<MobStateComponent> _mobQuery = default!;
+    [Dependency] private EntityQuery<BatteryComponent> _batteryQuery = default!;
+    [Dependency] private EntityQuery<ChargedElectrovaeAffectedComponent> _chargedElectrovaeQuery = default!;
 
     private void InitializeChargedElectrovaeSunrise()
     {

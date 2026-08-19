@@ -10,7 +10,7 @@ namespace Content.Shared._Sunrise.Humanoid;
 
 public sealed class SunriseHumanoidProfileSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     public override void Initialize()
     {

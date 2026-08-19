@@ -6,7 +6,7 @@ namespace Content.Server._Sunrise.Misc.ShiftedAsciiTableAccent;
 
 public sealed class AnomalyAccentSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     // Значения сдвига по юникоду
     private const int ShiftMin = 5;

@@ -23,7 +23,7 @@ public sealed partial class ShuttleSystem
     private const float SunriseFtlThrowForce = 20f;
     private const float SunriseArrivalsFtlOffset = 10000f;
 
-    [Dependency] private readonly EntityQuery<MovedByPressureComponent> _movedByPressureQuery = default!;
+    [Dependency] private EntityQuery<MovedByPressureComponent> _movedByPressureQuery = default!;
 
     private void ClearSunriseFtlReservations(Entity<FTLComponent> ent)
     {

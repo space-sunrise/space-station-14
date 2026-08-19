@@ -6,7 +6,7 @@ namespace Content.Client._Sunrise.CarpQueen;
 
 public sealed class CarpEggVisualizerSystem : VisualizerSystem<CarpEggComponent>
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     protected override void OnAppearanceChange(EntityUid uid, CarpEggComponent component, ref AppearanceChangeEvent args)
     {

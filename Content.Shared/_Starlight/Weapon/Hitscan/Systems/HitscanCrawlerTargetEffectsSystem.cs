@@ -8,8 +8,8 @@ namespace Content.Shared.Weapons.Hitscan.Systems;
 
 public sealed class HitscanCrawlerTargetEffectsSystem : EntitySystem
 {
-    [Dependency] private readonly SharedStunSystem _stunSystem = default!;
-    [Dependency] private readonly MovementModStatusSystem _movementMod = default!;
+    [Dependency] private SharedStunSystem _stunSystem = default!;
+    [Dependency] private MovementModStatusSystem _movementMod = default!;
 
     public override void Initialize()
     {

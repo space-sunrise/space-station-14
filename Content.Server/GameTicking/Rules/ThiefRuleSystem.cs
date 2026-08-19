@@ -10,7 +10,7 @@ namespace Content.Server.GameTicking.Rules;
 public sealed partial class ThiefRuleSystem : GameRuleSystem<ThiefRuleComponent>
 {
     [Dependency] private AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
+    [Dependency] private NpcFactionSystem _npcFaction = default!;
 
     public override void Initialize()
     {

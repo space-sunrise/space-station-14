@@ -20,7 +20,7 @@ namespace Content.Server._Sunrise.FleshCult;
 
 public sealed partial class FleshCultSystem
 {
-    [Dependency] private readonly StatusEffectsSystem _huggerStatusEffects = default!;
+    [Dependency] private StatusEffectsSystem _huggerStatusEffects = default!;
 
     public void InitializeHugger()
     {

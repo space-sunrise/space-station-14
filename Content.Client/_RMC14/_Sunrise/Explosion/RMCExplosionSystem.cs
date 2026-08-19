@@ -10,9 +10,9 @@ namespace Content.Client._RMC14._Sunrise.Explosion;
 // Омг это же партикл систем за 1$
 public sealed class RMCExplosionSystem : SharedRMCExplosionSystem
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly AnimationPlayerSystem _player = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private AnimationPlayerSystem _player = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     private const string SmokeTrack = "smoke-animation";
     private const string ExplosionTrack = "explosion-animation";

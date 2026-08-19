@@ -8,8 +8,8 @@ namespace Content.Server._Sunrise.Pibble;
 
 public sealed class AttackOnInteractionFailSystem : EntitySystem
 {
-    [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private NpcFactionSystem _npcFaction = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {

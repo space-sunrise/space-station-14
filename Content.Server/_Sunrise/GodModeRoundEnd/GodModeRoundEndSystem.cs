@@ -8,8 +8,8 @@ namespace Content.Server._Sunrise.GodModeRoundEnd;
 
 public sealed class GodModeRoundEndSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
 
     private bool _isEnabled = false;
 

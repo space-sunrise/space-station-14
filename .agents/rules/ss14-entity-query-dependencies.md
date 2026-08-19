@@ -22,7 +22,7 @@ trigger: always_on
 `EntityQuery<TComponent>` через системную коллекцию зависимостей:
 
 ```csharp
-[Dependency] private readonly EntityQuery<TransformComponent> _xformQuery = default!;
+[Dependency] private EntityQuery<TransformComponent> _xformQuery = default!;
 ```
 
 Не присваивать такое поле через `GetEntityQuery<TComponent>()` в `Initialize()`. Перед добавлением

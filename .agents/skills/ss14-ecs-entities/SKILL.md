@@ -243,7 +243,7 @@ public sealed partial class MyContainerComponent : Component
 ### Working in the system
 
 ```csharp
-[Dependency] private readonly SharedContainerSystem _container = default!;
+[Dependency] private SharedContainerSystem _container = default!;
 
 // Get container
 if (_container.TryGetContainer(uid, "my_slot", out var container))
@@ -370,7 +370,7 @@ if (TryComp<MyComponent>(uid, out var myComp) &&
 dependency-коллекцию:
 
 ```csharp
-[Dependency] private readonly EntityQuery<TagComponent> _tagQuery = default!;
+[Dependency] private EntityQuery<TagComponent> _tagQuery = default!;
 
 public bool HasTagFast(EntityUid uid, ProtoId<TagPrototype> tag)
 {

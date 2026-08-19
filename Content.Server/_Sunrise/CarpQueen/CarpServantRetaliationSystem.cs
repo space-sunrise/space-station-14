@@ -13,7 +13,7 @@ namespace Content.Server._Sunrise.CarpQueen;
 /// </summary>
 public sealed class CarpServantRetaliationSystem : EntitySystem
 {
-    [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
+    [Dependency] private NpcFactionSystem _npcFaction = default!;
 
     public override void Initialize()
     {

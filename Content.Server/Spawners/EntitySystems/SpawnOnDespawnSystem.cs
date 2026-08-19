@@ -7,7 +7,7 @@ namespace Content.Server.Spawners.EntitySystems;
 
 public sealed class SpawnOnDespawnSystem : EntitySystem
 {
-    [Dependency] private readonly TagSystem _tag = default!; // Sunrise-Edit
+    [Dependency] private TagSystem _tag = default!; // Sunrise-Edit
 
     // Sunrise-Edit start
     private static readonly ProtoId<TagPrototype> StorytellerIgnoreMessTag = "StorytellerIgnoreMess";

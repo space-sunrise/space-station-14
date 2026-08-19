@@ -9,8 +9,8 @@ namespace Content.Server.Implants;
 
 public sealed partial class SubdermalImplantSystem
 {
-    [Dependency] private readonly PolymorphSystem _polymorph = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private PolymorphSystem _polymorph = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     private void InitializeStarlight()
     {

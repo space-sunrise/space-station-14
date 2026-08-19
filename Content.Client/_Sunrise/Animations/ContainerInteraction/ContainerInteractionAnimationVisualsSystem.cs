@@ -10,11 +10,11 @@ namespace Content.Client._Sunrise.Animations.ContainerInteraction;
 
 public sealed class ContainerInteractionAnimationVisualsSystem : EntitySystem
 {
-    [Dependency] private readonly AnimationPlayerSystem _animation = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private AnimationPlayerSystem _animation = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
-    [Dependency] private readonly EntityQuery<SpriteComponent> _spriteQuery = default!;
+    [Dependency] private EntityQuery<SpriteComponent> _spriteQuery = default!;
 
     /// <summary>
     /// Минимальный скейл, который будет у спрайта при анимации.

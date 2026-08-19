@@ -7,7 +7,7 @@ namespace Content.Client._Sunrise.Weapons.Ranged.Systems;
 
 public sealed class BatteryWeaponFireModesVisualSystem : EntitySystem
 {
-    [Dependency] private readonly GunSystem _gun = default!;
+    [Dependency] private GunSystem _gun = default!;
 
     public override void Initialize()
     {

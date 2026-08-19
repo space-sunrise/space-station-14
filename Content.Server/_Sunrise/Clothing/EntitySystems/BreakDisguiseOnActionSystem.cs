@@ -13,8 +13,8 @@ namespace Content.Server._Sunrise.Clothing.EntitySystems;
 /// </summary>
 public sealed class BreakDisguiseOnActionSystem : EntitySystem
 {
-    [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly ItemToggleSystem _toggle = default!;
+    [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private ItemToggleSystem _toggle = default!;
 
     public override void Initialize()
     {
