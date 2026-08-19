@@ -119,10 +119,11 @@ public sealed partial class ServerDbManager
     }
 
     public Task<List<TutorialCompletionMetrics>> GetTutorialCompletionMetricsAsync(
+        TimeSpan newAccountThreshold,
         CancellationToken cancel = default)
     {
         DbReadOpsMetric.Inc();
-        return RunDbCommand(() => _db.GetTutorialCompletionMetricsAsync(cancel));
+        return RunDbCommand(() => _db.GetTutorialCompletionMetricsAsync(newAccountThreshold, cancel));
     }
 
     public Task<int> PruneInvalidTutorialCompletionsAsync(
