@@ -157,23 +157,5 @@ public sealed partial class NpcFactionSystem
             AggroEntity(ent, uid);
         }
     }
-
-    // /// <summary>
-    // /// Aggro overload that accepts raw EntityUids. Will ignore targets marked with NoTarget.
-    // /// </summary>
-    // public void AggroEntity(EntityUid entUid, EntityUid target)
-    // {
-    //     // If the target or anything it carries is marked NoTarget, don't aggros.
-    //     if (HasComp<NoTargetComponent>(target))
-    //         return;
-
-    //     // Ensure the source has the exception component, then add the target to hostiles.
-    //     var entComp = EnsureComp<FactionExceptionComponent>(entUid);
-    //     entComp.Hostiles.Add(target);
-
-    //     // Ensure the tracker exists on the target and register the source with it.
-    //     var tracker = EnsureComp<FactionExceptionTrackerComponent>(target);
-    //     tracker.Entities.Add(entUid);
-    // }
 }
 
