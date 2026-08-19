@@ -1112,7 +1112,9 @@
   - TrinketsEngineeringTFAT
   - TrinketsEngineeringTFCF
 #  - TrinketsEngineeringTT
+  - TrinketsEngineeringWI
   - TrinketsEngineeringGCW
+  - TrinketsEngineeringWE
   - TrinketsEngineeringST
 
 - type: loadoutGroup
