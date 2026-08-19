@@ -27,6 +27,7 @@ public sealed class UplinkSystem : EntitySystem
     public static readonly ProtoId<CurrencyPrototype> TelecrystalCurrencyPrototype = "Telecrystal";
     private static readonly EntProtoId FallbackUplinkImplant = "UplinkImplant";
     private static readonly ProtoId<ListingPrototype> FallbackUplinkCatalog = "UplinkUplinkImplanter";
+    private static readonly ProtoId<TagPrototype> SunriseUplinkTag = "SunriseUplink";
 
     /// <summary>
     /// Adds an uplink to the target
@@ -131,7 +132,7 @@ public sealed class UplinkSystem : EntitySystem
                 if (pdaUid == null)
                     continue;
 
-                if (_tagSystem.HasTag(pdaUid.Value, "SunriseUplink"))
+                if (_tagSystem.HasTag(pdaUid.Value, SunriseUplinkTag))
                     continue;
                 // Sunrtise-End
 
@@ -144,7 +145,7 @@ public sealed class UplinkSystem : EntitySystem
         foreach (var item in _handsSystem.EnumerateHeld(user))
         {
             // Sunrtise-Start
-            if (_tagSystem.HasTag(item, "SunriseUplink"))
+            if (_tagSystem.HasTag(item, SunriseUplinkTag))
                 continue;
             // Sunrtise-End
 

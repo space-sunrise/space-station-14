@@ -1,9 +1,9 @@
 using Content.Server._Sunrise.Decals;
-using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Construction.Commands;
 using Content.Server.DeviceLinking.Systems;
 using Content.Shared._Sunrise.SunriseCCVars;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Maps;
 using Content.Shared.Parallax.Biomes;
 using Robust.Shared.Console;

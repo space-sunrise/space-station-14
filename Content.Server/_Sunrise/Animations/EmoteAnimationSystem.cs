@@ -26,7 +26,8 @@ public sealed class EmoteAnimationSystem : EntitySystem
     [Dependency] private readonly SharedFlipSystem _flipSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
+
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
 
     public override void Initialize()
     {
@@ -74,7 +75,7 @@ public sealed class EmoteAnimationSystem : EntitySystem
 
         if (emoteId == "FallOnNeck")
         {
-            var damage = new DamageSpecifier(_prototypeManager.Index<DamageTypePrototype>("Blunt"), 100);
+            var damage = new DamageSpecifier(_prototypeManager.Index(BluntDamageType), 100);
             _damageableSystem.ChangeDamage(uid, damage, true, ignoreVariance: true, ignoreGlobalModifiers: true);
         }
 

@@ -47,7 +47,7 @@ public sealed class AoEHealSystem : EntitySystem
 
                 if (aoEHealComponent.Threshold != null && // AoE компоненту важно хилить до какого-то уровня от макс здоровья
                     _mobThreshold.TryGetDeadThreshold(target, out var threshold) &&
-                    target.Comp.Damage.GetTotal() < threshold * (1f - aoEHealComponent.Threshold)) // Не лечим если урона мало
+                    _damageableSystem.GetTotalDamage(target.AsNullable()) < threshold * (1f - aoEHealComponent.Threshold)) // Не лечим если урона мало
                     continue;
 
                 _damageableSystem.TryChangeDamage(target.Owner, aoEHealComponent.Damage);

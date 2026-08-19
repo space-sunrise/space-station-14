@@ -43,6 +43,7 @@ public sealed partial class TutorialSystem : SharedTutorialSystem
     [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly IServerDbManager _db = default!;
     [Dependency] private readonly AccountCreationManager _accountCreation = default!;
+    [Dependency] private readonly TutorialMetricsSystem _tutorialMetrics = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly EuiManager _eui = default!;
@@ -459,6 +460,7 @@ public sealed partial class TutorialSystem : SharedTutorialSystem
         tutorial.Grid = nextGrid;
         EnsureComp<TutorialProgressBarComponent>(nextPlayer);
         InitializeTutorial((nextPlayer, tutorial));
+        _tutorialMetrics.RecordTutorialStarted(nextTutorial.ID);
 
         QueueDel(currentComp.Grid);
         QueueDel(player);
@@ -517,6 +519,7 @@ public sealed partial class TutorialSystem : SharedTutorialSystem
         tutorial.Grid = gridUid;
         EnsureComp<TutorialProgressBarComponent>(playerUid);
         InitializeTutorial((playerUid, tutorial));
+        _tutorialMetrics.RecordTutorialStarted(sequence.ID);
     }
 
     private bool TryCreateNextTutorialPlayer(

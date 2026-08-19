@@ -23,7 +23,6 @@ namespace Content.Server.Research.Systems
         [Dependency] private readonly EntityLookupSystem _lookup = default!;
         [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
-        [Dependency] private readonly RadioSystem _radio = default!;
         [Dependency] private readonly MessengerServerSystem _messenger = default!;
         [Dependency] private readonly StationSystem _stationSystem = default!;
 
