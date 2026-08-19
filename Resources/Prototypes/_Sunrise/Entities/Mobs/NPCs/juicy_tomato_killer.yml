@@ -4,9 +4,6 @@
   name: juicy tomato killer
   description: "Looks like it's not you eating tomatoes today, it's E X T R A   T H I C C tomatoes eating you."
   components:
-  - type: GhostRole
-    name: ghost-role-information-sunrise-juicy-tomato-killer-name
-    description: ghost-role-information-sunrise-juicy-tomato-killer-description
   - type: Item
     size: Large
     shape:
@@ -58,8 +55,8 @@
     prob: 0.15
     makeSentient: true
     allowSpeech: true
-    name: ghost-role-information-tomatokiller-name
-    description: ghost-role-information-tomatokiller-description
+    name: ghost-role-information-sunrise-juicy-tomato-killer-name
+    description: ghost-role-information-sunrise-juicy-tomato-killer-description
     rules: ghost-role-information-familiar-rules
     raffle:
       settings: short
