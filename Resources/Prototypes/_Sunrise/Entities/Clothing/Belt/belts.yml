@@ -613,7 +613,7 @@
   description: Can hold a lot of various medical equipment.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Belt/medical_advanced.rsi
+    sprite: _Sunrise/Clothing/Belt/emt_advanced.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Belt/emt_advanced.rsi
   - type: Construction
@@ -628,7 +628,6 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Belt/cmo_advanced.rsi
-    state: icon
   - type: Clothing
     sprite: _Sunrise/Clothing/Belt/cmo_advanced.rsi
   - type: Construction
