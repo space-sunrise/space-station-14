@@ -10,7 +10,6 @@
   - EmergencyOxygen
   - LoadoutSpeciesVoxNitrogen
   - EmergencyWithoutGas
-  - EmergencyDwarf
 
 - type: loadoutGroup
   id: SunriseSurvivalClown
