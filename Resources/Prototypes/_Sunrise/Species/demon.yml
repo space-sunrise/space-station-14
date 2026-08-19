@@ -115,6 +115,7 @@
       Chest:
         sprite: Mobs/Species/Slim/demon.rsi
         state: torso_slim_f
+
 - type: markingsGroup
   id: Demon
   limits:
@@ -165,5 +166,8 @@
       limit: 1
       required: false
     enum.HumanoidVisualLayers.Back:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Overlay:
       limit: 1
       required: false

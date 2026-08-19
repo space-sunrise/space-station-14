@@ -90,7 +90,7 @@ public abstract class SharedFlatpackSystem : EntitySystem
         var (layer, mask) = SharedPhysicsSystem.GetHardCollision(fixture);
         var buildPos = _map.TileIndicesFor(grid, gridComp, xform.Coordinates);
 
-        if (!_anchorable.TileFree((grid, gridComp), buildPos, layer, mask))
+        if (!_anchorable.TileFree((grid, gridComp), buildPos, layer, mask) && !Transform(uid).Anchored) // Sunrise edit
         {
             _popup.PopupPredicted(Loc.GetString("flatpack-unpack-no-room"), uid, args.User);
             return;
