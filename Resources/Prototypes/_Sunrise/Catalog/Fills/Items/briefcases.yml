@@ -66,9 +66,8 @@
         children:
         - id: WeaponSniperDragunov
         - id: MagazineDragunovIncendiary
-        - id: MagazineDragunovHP
         - id: DragunovAmmoKit
-        - id: DragunovAmmoKit
+          amount: 3
 
 - type: entity
   id: BriefcaseWeaponDMRFilled
@@ -139,8 +138,6 @@
         - id: WeaponRifleSKM28Syndi
         - id: MagazineRifleHeavySP
           amount: 4
-        - id: MagazineRifleHeavyHP
-        - id: MagazineRifleHeavyFMJ
 
 - type: entity
   id: BriefcaseWeaponMinotaurFilled

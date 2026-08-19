@@ -11,7 +11,7 @@
       entity_storage: !type:AllSelector
         children:
         - id: WeaponLightMachineGunM492
-        - id: MagazineLightRifleBeltBoxHP
+        - id: MagazineLightRifleBeltBox
           prob: 0.2
         - id: MagazineLightRifleBeltBoxFMJ
           prob: 0.2
@@ -334,9 +334,7 @@
           amount: 2
         - id: WeaponRifleLeikha
         - id: MagazineRifleSP
-          amount: 4
-        - id: MagazineRifleHP
-          amount: 2
+          amount: 6
         - id: MagazineRifleFMJ
           amount: 2
 
@@ -393,10 +391,8 @@
             weight: 0.1
           - id: WeaponRifleSKM24Nano
         - id: MagazineLightRifleSP
-          amount: 4
+          amount: 6
         - id: MagazineLightRifleFMJ
-          amount: 2
-        - id: MagazineLightRifleHP
           amount: 2
 
 # region Shotguns safes
@@ -508,7 +504,7 @@
         children:
         - id: WeaponRifleLecter
         - id: MagazineRifleSP
-        - id: MagazineRifleHP
+          amount: 2
         - id: DrinkBottleBeer
         - id: DrinkBeerCan
           amount: 2

@@ -1217,4 +1217,20 @@ MobPirateT1ExpeditionSpawner: MobPirateT1Spawner
 MobPirateT2ExpeditionSpawner: MobPirateT2Spawner
 MobPirateT3ExpeditionSpawner: MobPirateT3Spawner
 ClothingBackpackDuffelSyndicateFilledGrenadeLauncherM79: BriefcaseWeaponM79Filled
+# 2026-08-18
+CartridgeRifleHP: CartridgeRifleSP
+CartridgeLightRifleHP: CartridgeLightRifleSP
+CartridgeRifleHeavyHP: CartridgeRifleHeavySP
+CartridgeHeavyRifleRHP: CartridgeHeavyRifleRSP
+MagazineRifleHP: MagazineRifleSP
+MagazineRifleM52HP: MagazineRifleM52SP
+MagazineBoxRifleHP: MagazineBoxRifleSP
+MagazineLightRifleHP: MagazineLightRifleSP
+MagazineBoxLightRifleHP: MagazineBoxLightRifleSP
+MagazineLightRifleBeltBoxHP: MagazineLightRifleBeltBox
+MagazineRifleHeavyHP: MagazineRifleHeavySP
+MagazineBoxHeavyRifleHP: MagazineBoxHeavyRifleSP
+RifleHeavyMagazineHP: RifleHeavyMagazineSP
+MagazineDragunovHP: MagazineDragunovSP
+MagazineBoxRifleMachineHP: MagazineBoxRifleMachineSP
 # region Sunrise-End
