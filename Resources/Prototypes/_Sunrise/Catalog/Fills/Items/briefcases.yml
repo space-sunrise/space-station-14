@@ -65,7 +65,6 @@
       storagebase: !type:AllSelector
         children:
         - id: WeaponSniperDragunov
-        - id: MagazineDragunovIncendiary
         - id: DragunovAmmoKit
           amount: 3
 
