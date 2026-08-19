@@ -15,7 +15,6 @@ public sealed class RoundEndVoteSystem : EntitySystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly IVoteManager _voteManager = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
 
     private TimeSpan? _voteStartTime;
 

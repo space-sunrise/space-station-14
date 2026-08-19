@@ -37,9 +37,9 @@ jobs:
     - name: Checkout SunrisePrivate
       uses: actions/checkout@v4.2.2
       with:
-        repository: ${{ secrets.SUNRISE_PRIVATE_REPO }}
+        repository: ${{ secrets.MAKURA_PRIVATE_REPO }}
         path: SunrisePrivate
-        ssh-key: ${{ secrets.SUNRISE_PRIVATE_REPO_SSH_KEY }}
+        ssh-key: ${{ secrets.MAKURA_PRIVATE_REPO_SSH_KEY }}
         ref: ${{ inputs.private_commit_hash }}
 
     - name: Move Sunrise Private files
@@ -80,11 +80,3 @@ jobs:
         DISCORD_WEBHOOK_URL: ${{ secrets.ANNOUNCE_UPDATE_DISCORD_WEBHOOK }}
         DISCORD_ROLE_ID: ${{ secrets.ANNOUNCE_UPDATE_DISCORD_ROLE_ID }}
         BUILD_PATH: ./release/SS14.Client.zip
-
-    - name: Publish discord changelog
-      continue-on-error: true
-      run: Tools/_sunrise/actions_changelogs_since_last_run.py
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        DISCORD_WEBHOOK_URL: ${{ secrets.CHANGELOG_DISCORD_WEBHOOK }}
-        CHANGELOG_FILE: 'Resources/Changelog/ChangelogSunrise.yml'

@@ -98,7 +98,7 @@ public sealed class CodeEquipmentSystem : EntitySystem
         if (target == null)
             return;
 
-        _shuttles.FTLToDock(
+        _shuttles.FTLToDockSunrise(
             comp.Shuttles[0],
             Comp<ShuttleComponent>(comp.Shuttles[0]),
             target.Value,

@@ -1,4 +1,4 @@
-// © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
+// © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/makura-games/sunrise-station/blob/master/CLA.txt
 
 using Content.Server._Sunrise.PlayerCache;
 using Content.Server._Sunrise.SponsorValidation;
@@ -38,7 +38,7 @@ public sealed class PetSpawnSystem : EntitySystem
             return;
 
         var coordinates = Transform(ev.Mob).Coordinates;
-        var spawnedPet = EntityManager.SpawnEntity(petSelectionPrototype.PetEntity, coordinates);
+        var spawnedPet = Spawn(petSelectionPrototype.PetEntity, coordinates);
 
         if (!TryComp<PettableOnInteractComponent>(spawnedPet, out var pet))
             return;
