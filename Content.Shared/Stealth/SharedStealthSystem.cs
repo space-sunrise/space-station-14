@@ -75,6 +75,7 @@ public abstract partial class SharedStealthSystem : EntitySystem //* Sunrise-Edi
             component.Enabled = true;
         }
 
+        UpdateNoTarget(uid, component.Enabled); //* Sunrise-Edit
         Dirty(uid, component);
     }
 
