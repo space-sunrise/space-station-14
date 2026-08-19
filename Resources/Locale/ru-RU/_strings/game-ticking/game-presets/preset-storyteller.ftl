@@ -113,6 +113,7 @@ storyteller-metadata-snailmigrationlowpop-start = Тихие коридоры н
 storyteller-metadata-slimesspawnhorde-start = Утечка биоопасных отходов привела к появлению агрессивных разноцветных слаймов.
 storyteller-metadata-snakespawnhorde-start = Из заброшенных уголков станции выползли полчища ядовитых змей.
 storyteller-metadata-spiderspawnhorde-start = Глубокие технические шахты заполнились паутиной: началось нашествие гигантских пауков.
+storyteller-metadata-HoloCarpSpawn-start = Редспейс неисправность в голопадах привели к масовому появлению голокарпов на станции.
 
 # Disasters
 storyteller-metadata-gamerulemeteorswarmsmall-start = Навигационные системы предупреждают о приближении небольшого метеоритного роя.
