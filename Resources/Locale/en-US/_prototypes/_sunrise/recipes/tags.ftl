@@ -14,3 +14,4 @@ construction-graph-tag-beltmedical = medical belt
 construction-graph-tag-beltmedicalemt = EMT belt
 construction-graph-tag-beltmedicalcmo = CMO's medical belt
 construction-graph-tag-upgradebeltmedical =  medical pouch
+construction-graph-tag-upgrade-lecter-mk3 = Lecter Mk3 upgrade kit

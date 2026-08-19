@@ -8,7 +8,7 @@ ent-ClothingBeltPrisonGuardianFilled = { ent-ClothingBeltSecurity }
 ent-ClothingBeltPrisonGuardian = { ent-ClothingBeltSecurity }
     .desc = { ent-ClothingBeltSecurity.desc }
 ent-ClothingBeltPrisonGuardianFilledMetus = { ent-ClothingBeltSecurity }
-    .suffix = Metus
+    .suffix = Метус
     .desc = { ent-ClothingBeltSecurity.desc }
 ent-ClothingBeltHoS = пояс службы безопасности
     .desc = Пояс службы безопасности, но из качественного материала.
@@ -55,7 +55,6 @@ ent-ClothingBeltPrisonWorkerMetus = пояс тюремного разнораб
     .desc = Тяжёлый и грубый, следы ударов и прожжённая кожа, всё, что скопилось с работы в разных частях тюрьмы.
 ent-ClothingBeltPrisonTraineeMetus = пояс тюремного стажёра
     .desc = Свежий и новый, ещё учится нести вес ответственности, отмечен оранжевым, показывающим путь вперёд.
-
 ent-ClothingBeltSovietMarineWebbing = РПС коспеха СССП
     .desc = Тактическая ременно-плечевая система, которую носят элитные советские морпехи.
 ent-ClothingBeltSovietMarineWebbingFilled = { ent-ClothingBeltSovietMarineWebbing }

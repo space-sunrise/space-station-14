@@ -30,8 +30,6 @@ public sealed partial class PhotoUi : UIFragment
 
             SendPhotoMessage(PhotoUiAction.CapturePhoto, userInterface);
         };
-        _fragment.OnSendPhotoToMessenger += (photoId, recipientId, groupId) =>
-            SendPhotoMessage(PhotoUiAction.SendPhotoToMessenger, userInterface, photoId: photoId, recipientId: recipientId, groupId: groupId);
         _fragment.OnRequestGallery += () =>
             SendPhotoMessage(PhotoUiAction.RequestGallery, userInterface);
 

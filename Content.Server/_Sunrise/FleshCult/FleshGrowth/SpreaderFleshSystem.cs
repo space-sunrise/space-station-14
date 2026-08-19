@@ -27,6 +27,10 @@ public sealed class SpreaderFleshSystem : EntitySystem
     private const int DefaultDamageThreshold = 5;
     private const int MinMaxSpawnCount = 1;
 
+    private static readonly ProtoId<TagPrototype> DirectionalTag = "Directional";
+    private static readonly ProtoId<TagPrototype>[] WallOrWindowTags = ["Wall", "Window"];
+    private static readonly ProtoId<TagPrototype>[] FleshOrDirectionalTags = ["Flesh", "Directional"];
+
     private float _accumulatedFrameTime;
     private readonly HashSet<EntityUid> _edgeGrowths = new();
     private EntityQuery<SpreaderFleshComponent> _spreaderQuery;
@@ -152,9 +156,9 @@ public sealed class SpreaderFleshSystem : EntitySystem
 
         foreach (var entityUid in entities)
         {
-            if (_tagSystem.HasAnyTag(entityUid, "Wall", "Window"))
+            if (_tagSystem.HasAnyTag(entityUid, WallOrWindowTags))
             {
-                if (!_tagSystem.HasAnyTag(entityUid, "Directional"))
+                if (!_tagSystem.HasAnyTag(entityUid, DirectionalTag))
                 {
                     if (TryComp(entityUid, out MetaDataComponent? metaData) && metaData.EntityPrototype != null)
                     {
@@ -164,7 +168,7 @@ public sealed class SpreaderFleshSystem : EntitySystem
                 }
             }
 
-            if (_tagSystem.HasAnyTag(entityUid, "Flesh", "Directional"))
+            if (_tagSystem.HasAnyTag(entityUid, FleshOrDirectionalTags))
             {
                 canSpawnWall = false;
             }
@@ -175,7 +179,7 @@ public sealed class SpreaderFleshSystem : EntitySystem
 
     private bool SpawnFleshFloor(EntityCoordinates coords, SpreaderFleshComponent spreader)
     {
-        var fleshFloor = EntityManager.SpawnEntity(spreader.GrowthResult, coords);
+        var fleshFloor = Spawn(spreader.GrowthResult, coords);
         var spreaderFleshComponent = EnsureComp<SpreaderFleshComponent>(fleshFloor);
         spreaderFleshComponent.Source = spreader.Source;
         return true;
@@ -183,7 +187,7 @@ public sealed class SpreaderFleshSystem : EntitySystem
 
     private bool SpawnFleshWall(EntityCoordinates coords, SpreaderFleshComponent spreader, string entityStructureId, EntityUid[] existingEntities)
     {
-        var fleshWall = EntityManager.SpawnEntity(spreader.WallResult, coords);
+        var fleshWall = Spawn(spreader.WallResult, coords);
         var spreaderFleshComponent = EnsureComp<SpreaderFleshComponent>(fleshWall);
         spreaderFleshComponent.Source = spreader.Source;
 
@@ -194,8 +198,8 @@ public sealed class SpreaderFleshSystem : EntitySystem
 
         foreach (var entityUid in existingEntities)
         {
-            if (_tagSystem.HasAnyTag(entityUid, "Wall", "Window"))
-                EntityManager.DeleteEntity(entityUid);
+            if (_tagSystem.HasAnyTag(entityUid, WallOrWindowTags))
+                Del(entityUid);
         }
 
         return true;

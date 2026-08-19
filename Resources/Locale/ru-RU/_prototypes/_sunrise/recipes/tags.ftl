@@ -23,3 +23,4 @@ construction-graph-tag-beltmedical = пояс медика
 construction-graph-tag-beltmedicalemt = пояс парамедика
 construction-graph-tag-beltmedicalcmo = медицинский пояс главного врача
 construction-graph-tag-upgradebeltmedical =  медицинский подсумок
+construction-graph-tag-upgrade-lecter-mk3 = комплект улучшения Лектера Мк3

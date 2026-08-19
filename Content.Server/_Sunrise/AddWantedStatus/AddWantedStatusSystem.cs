@@ -20,7 +20,6 @@ public sealed partial class AddWantedStatusSystem : EntitySystem
     [Dependency] private readonly CriminalRecordsSystem _criminalRecords = default!;
     [Dependency] private readonly StationRecordsSystem _records = default!;
     [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly RadioSystem _radio = default!;
     [Dependency] private readonly MessengerServerSystem _messenger = default!;
 
     public override void Initialize()
@@ -45,7 +44,7 @@ public sealed partial class AddWantedStatusSystem : EntitySystem
     {
         var target = args.Target;
         var performer = args.Performer;
-        if (!HasComp<HumanoidAppearanceComponent>(target))
+        if (!HasComp<HumanoidProfileComponent>(target))
             return;
 
         if (_station.GetOwningStation(performer) is not { } station)
@@ -98,14 +97,11 @@ public sealed partial class AddWantedStatusSystem : EntitySystem
             reason = Loc.GetString("wanted-list-unknown-reason-label");
 
         var message = Loc.GetString("criminal-records-console-wanted", [("name", wantedName), ("officer", officer), ("reason", reason), ("job", wantedJobTitle)]);
-        // _radio.SendRadioMessage(sender, message, "Security", sender);
 
-        // Sunrise-Start
         if (_messenger.GetServerEntity(_station.GetOwningStation(sender)) is var (server, _) &&
             _messenger.GetGroupIdByRadioChannel("Security") is { } groupId)
         {
             _messenger.SendSystemMessageToGroup(server, groupId, message);
         }
-        // Sunrise-End
     }
 }
