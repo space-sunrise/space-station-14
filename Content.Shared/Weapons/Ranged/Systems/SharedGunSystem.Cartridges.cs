@@ -39,7 +39,7 @@ public abstract partial class SharedGunSystem
         {
             var percent = (int)MathF.Round(ap.Value * 100f);
             args.Message.PushNewline();
-            if (percent > 0)
+            if (ap.Value >= 0)
                 args.Message.AddMarkupOrThrow(Loc.GetString("gun-cartridge-armor-penetration", ("percent", percent)));
             else
                 args.Message.AddMarkupOrThrow(Loc.GetString("gun-cartridge-armor-penetration-negative", ("percent", percent)));
