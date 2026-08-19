@@ -642,6 +642,9 @@
 - type: Tag
   id: WhiteLily
 
+- type: Tag
+  id: Lighter
+
 # region Dungeon
 - type: Tag
   id: SalvageSyndicateBase

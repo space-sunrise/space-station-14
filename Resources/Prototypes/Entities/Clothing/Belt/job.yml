@@ -165,9 +165,9 @@
   description: Can hold various medical equipment.
   components:
   - type: Sprite
-    sprite: Clothing/Belt/medical.rsi
+    sprite: _Sunrise/Clothing/Belt/medical_resprite.rsi # Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/Belt/medical.rsi
+    sprite: _Sunrise/Clothing/Belt/medical_resprite.rsi # Sunrise-Edit
   - type: Storage
     whitelist:
       tags:
@@ -239,9 +239,9 @@
   description: Perfect for holding various equipment for medical emergencies.
   components:
   - type: Sprite
-    sprite: Clothing/Belt/emt.rsi
+    sprite: _Sunrise/Clothing/Belt/emt_resprite.rsi # Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/Belt/emt.rsi
+    sprite: _Sunrise/Clothing/Belt/emt_resprite.rsi # Sunrise-Edit
     # Sunrise-start
   - type: Tag
     tags:

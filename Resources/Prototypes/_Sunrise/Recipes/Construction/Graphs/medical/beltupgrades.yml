@@ -16,7 +16,7 @@
               name: construction-graph-tag-upgradebeltmedical
               icon:
                 sprite: _Sunrise/Clothing/Pouches/medicine_pouch.rsi
-                state: pouch
+                state: icon
               doAfter: 5
     - node: upgradebeltmedical
       entity: ClothingBeltMedicalAdvanced
@@ -39,7 +39,7 @@
               name: construction-graph-tag-upgradebeltmedical
               icon:
                 sprite: _Sunrise/Clothing/Pouches/medicine_pouch.rsi
-                state: pouch
+                state: icon
               doAfter: 5
     - node: upgradebeltmedicalemt
       entity: ClothingBeltMedicalEMTAdvanced
@@ -62,7 +62,7 @@
               name: construction-graph-tag-upgradebeltmedical
               icon:
                 sprite: _Sunrise/Clothing/Pouches/medicine_pouch.rsi
-                state: pouch
+                state: icon
               doAfter: 5
     - node: upgradebeltmedicalcmo
       entity: ClothingBeltMedicalCMOAdvanced

@@ -567,9 +567,9 @@
   description: Can hold a lot of various medical equipment.
   components:
   - type: Sprite
-    sprite: Clothing/Belt/medical.rsi #sprite!
+    sprite: _Sunrise/Clothing/Belt/medical_advanced.rsi
   - type: Clothing
-    sprite: Clothing/Belt/medical.rsi
+    sprite: _Sunrise/Clothing/Belt/medical_advanced.rsi
   - type: Storage
     grid:
     - 0,0,5,1
@@ -613,9 +613,9 @@
   description: Can hold a lot of various medical equipment.
   components:
   - type: Sprite
-    sprite: Clothing/Belt/emt.rsi #sprite!
+    sprite: _Sunrise/Clothing/Belt/medical_advanced.rsi
   - type: Clothing
-    sprite: Clothing/Belt/emt.rsi
+    sprite: _Sunrise/Clothing/Belt/emt_advanced.rsi
   - type: Construction
     graph: ClothingBeltMedicalEMTAdvanced
     node: upgradebeltmedicalemt
@@ -627,9 +627,10 @@
   description: Can hold a lot of various medical equipment.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Belt/cmo.rsi #sprite!
+    sprite: _Sunrise/Clothing/Belt/cmo_advanced.rsi
+    state: icon
   - type: Clothing
-    sprite: _Sunrise/Clothing/Belt/cmo.rsi
+    sprite: _Sunrise/Clothing/Belt/cmo_advanced.rsi
   - type: Construction
     graph: ClothingBeltMedicalCMOAdvanced
     node: upgradebeltmedicalcmo
