@@ -5,6 +5,7 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.Mobs.Components;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Systems;
+using Content.Shared.Stealth.Components;
 using Robust.Shared.Collections;
 using Robust.Shared.Timing;
 
@@ -53,7 +54,7 @@ public sealed class NPCRetaliationSystem : EntitySystem
 
         //* Sunrise-start
         // dont retaliate against NoTarget entities or items they carry.
-        if (HasComp<NoTargetComponent>(target))
+        if (HasComp<NoTargetComponent>(target) || TryComp(target, out StealthComponent? stealth) && stealth.NoTarget)
             return false;
         //* Sunrise-end
 

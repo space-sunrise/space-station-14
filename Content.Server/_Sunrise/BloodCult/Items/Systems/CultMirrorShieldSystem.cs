@@ -26,6 +26,7 @@ using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Popups;
 using Content.Shared.SSDIndicator;
+using Content.Shared.Stealth.Components;
 using Content.Shared.Strip.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
@@ -361,7 +362,7 @@ public sealed partial class CultMirrorShieldSystem : EntitySystem
         {
             if (userUid != null)
                 //* Добавлено исключение для NoTarget
-                if (!HasComp<NoTargetComponent>(userUid.Value))
+                if (!HasComp<NoTargetComponent>(userUid.Value) || !TryComp(userUid.Value, out StealthComponent? stealth) || !stealth.NoTarget)
                 {
                     _faction.AggroEntity(mobUid.Value, userUid.Value);
                     _console.ExecuteCommand($"addnpc {mobUid.Value} HostileIllusionCompound");

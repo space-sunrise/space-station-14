@@ -31,6 +31,7 @@ using System.Linq;
 using Content.Shared.Damage.Components;
 using Content.Shared.Temperature.Components;
 using Content.Shared.NPC.Components;
+using Content.Shared.Stealth.Components;
 
 namespace Content.Server.NPC.Systems;
 
@@ -111,7 +112,7 @@ public sealed class NPCUtilitySystem : EntitySystem
         var noTargetRemove = new List<EntityUid>();
         foreach (var e in ents)
         {
-            if (HasComp<NoTargetComponent>(e))
+            if (HasComp<NoTargetComponent>(e) || TryComp(e, out StealthComponent? stealth) && stealth.NoTarget)
                 noTargetRemove.Add(e);
         }
         foreach (var e in noTargetRemove)

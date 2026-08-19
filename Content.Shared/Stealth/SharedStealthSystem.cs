@@ -60,7 +60,6 @@ public abstract partial class SharedStealthSystem : EntitySystem //* Sunrise-Edi
             return;
 
         component.Enabled = value;
-        UpdateNoTarget(uid, value); //* Sunrise-Edit
         Dirty(uid, component);
     }
 
@@ -75,7 +74,6 @@ public abstract partial class SharedStealthSystem : EntitySystem //* Sunrise-Edi
             component.Enabled = true;
         }
 
-        UpdateNoTarget(uid, component.Enabled); //* Sunrise-Edit
         Dirty(uid, component);
     }
 
@@ -94,7 +92,6 @@ public abstract partial class SharedStealthSystem : EntitySystem //* Sunrise-Edi
 
     protected virtual void OnInit(EntityUid uid, StealthComponent component, ComponentInit args)
     {
-        UpdateNoTarget(uid, component.Enabled); //* Sunrise-Edit
 
         if (component.LastUpdated != null || Paused(uid))
         {
