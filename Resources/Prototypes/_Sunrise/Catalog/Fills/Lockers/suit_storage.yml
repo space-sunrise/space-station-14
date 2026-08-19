@@ -186,6 +186,6 @@
     - id: ClothingHandsGlovesConducting # пранк
       prob: 0.001
     - id: OxygenTankFilled
-    - id: NitrogenTank
+    - id: NitrogenTankFilled
     - id: ClothingShoesBootsMagAtmos
     - id: ClothingMaskBreath
