@@ -832,14 +832,6 @@
   categories:
   - UplinkExplosives
 
-- type: listing
-  id: UplinkEnergyDomeGrenadeSyndie
-  productEntity: SunriseEnergyDomeGrenadeSyndie
-  cost:
-    Telecrystal: 6
-  categories:
-  - UplinkExplosives
-
 # For the China-Lake
 - type: listing
   id: UplinkGrenadeFragTimer
