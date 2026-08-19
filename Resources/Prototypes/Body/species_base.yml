@@ -164,7 +164,7 @@
     - AnomalyHost
   # Sunrise-Start
   - type: Carrier
-    TargetBlacklist:
+    targetBlacklist:
     - MobRevenant
   - type: Paws
     screamInterval: 3
