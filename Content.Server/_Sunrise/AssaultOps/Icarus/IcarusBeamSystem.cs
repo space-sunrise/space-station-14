@@ -143,13 +143,13 @@ public sealed class IcarusBeamSystem : EntitySystem
         if (entity == beam)
             return false;
 
-        if (EntityManager.HasComponent<MapGridComponent>(entity))
+        if (HasComp<MapGridComponent>(entity))
             return false;
 
         var current = entity;
         while (current.IsValid())
         {
-            if (EntityManager.HasComponent<GhostComponent>(current))
+            if (HasComp<GhostComponent>(current))
                 return false;
 
             var xform = Transform(current);

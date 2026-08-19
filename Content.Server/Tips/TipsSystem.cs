@@ -24,8 +24,6 @@ public sealed class TipsSystem : SharedTipsSystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly GameTicker _ticker = default!;
-    [Dependency] private readonly IConsoleHost _conHost = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IWatchdogApi _watchdog = default!; // Sunrise-Edit
 
     private bool _tipsEnabled;

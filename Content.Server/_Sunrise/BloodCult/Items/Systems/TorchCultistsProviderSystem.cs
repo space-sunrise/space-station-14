@@ -102,7 +102,7 @@ public sealed class TorchCultistsProviderSystem : EntitySystem
 
         foreach (var cultist in cultists)
         {
-            if (!TryComp<MetaDataComponent>(cultist.Owner, out var meta))
+            if (!TryComp(cultist.Owner, out MetaDataComponent? meta))
                 return;
 
             if (cultist.Owner == args.User)
@@ -139,7 +139,7 @@ public sealed class TorchCultistsProviderSystem : EntitySystem
                 entityUid = cultist.Owner;
         }
 
-        if (entityUid == args.Actor && entityUid != null)
+        if (entityUid == args.Actor)
         {
             _popup.PopupEntity(Loc.GetString("cult-torch-no-cultist"), entityUid, entityUid);
             return;
@@ -149,7 +149,7 @@ public sealed class TorchCultistsProviderSystem : EntitySystem
         {
             var item = component.ItemSelected.Value;
 
-            if (!TryComp<TransformComponent>(entityUid, out var xForm))
+            if (!TryComp(entityUid, out TransformComponent? xForm))
                 return;
 
             _xform.SetCoordinates(item, xForm.Coordinates);

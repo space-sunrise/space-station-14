@@ -18,6 +18,6 @@ ent-CartridgePistolUranium = патрон (.35 авто урановый)
     .desc = { ent-BaseCartridgePistol.desc }
 ent-CartridgePistol = патрон (.35 авто)
     .desc = { ent-BaseCartridgePistol.desc }
-ent-CartridgePistolSpent = гильза (.35 auto)
+ent-CartridgePistolSpent = гильза (.35 авто)
     .suffix = Использованная
     .desc = { ent-BaseCartridgePistol.desc }

@@ -49,9 +49,10 @@
     damageContainers:
       - Biological
     damage:
-      groups:
-        Brute: -4
       types: #Sunrise-Edit
+        Blunt: -1.33
+        Slash: -1.33
+        Piercing: -1.34
         Mangleness: 0.02 #Sunrise-Edit
     healingBeginSound:
       path: "/Audio/_Starlight/Items/Medical/mender.ogg"

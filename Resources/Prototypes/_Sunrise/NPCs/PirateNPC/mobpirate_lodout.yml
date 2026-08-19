@@ -166,7 +166,7 @@
 - type: startingGear
   id: MobPirateT1SMGGear
   equipment:
-    gloves: ClothingHandsMp38
+    gloves: ClothingHandsSMGForged
     back: ClothingBackPirateMessengerT1SMG
     pocket1: PouchAmmoFilledSMG
     pocket2: Gauze1

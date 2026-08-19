@@ -10,9 +10,7 @@ namespace Content.Client._Sunrise.BloodCult.UI.CultistFactory;
 
 public sealed class CultistFactoryBUI : BoundUserInterface
 {
-    [Dependency] private readonly IClyde _displayManager = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IInputManager _inputManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     private RadialContainer? _menu;

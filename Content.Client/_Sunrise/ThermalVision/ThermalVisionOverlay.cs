@@ -12,6 +12,9 @@ public sealed class ThermalVisionOverlay : Overlay
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+
+    private static readonly ProtoId<ShaderPrototype> ScreenShader = "ThermalVisionScreenShader";
+
     private readonly TransformSystem _transform;
     public override bool RequestScreenTexture => true;
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
@@ -19,7 +22,7 @@ public sealed class ThermalVisionOverlay : Overlay
     public ThermalVisionOverlay()
     {
         IoCManager.InjectDependencies(this);
-        _screenShader = _prototypeManager.Index<ShaderPrototype>("ThermalVisionScreenShader").InstanceUnique();
+        _screenShader = _prototypeManager.Index(ScreenShader).InstanceUnique();
         _transform = _entityManager.System<TransformSystem>();
         ZIndex = 10000;
     }

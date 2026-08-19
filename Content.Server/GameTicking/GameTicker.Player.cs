@@ -1,6 +1,5 @@
 using System.Linq;
 using Content.Server._Sunrise.Greetings;
-using Content.Server._Sunrise.VigersRay;
 using Content.Server.Database;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
@@ -74,11 +73,6 @@ namespace Content.Server.GameTicking
                         RaiseLocalEvent(ev);
                     }
 
-                    if (args.Session.Data.UserName == "VigersRay")
-                    {
-                        var ev = new VigersRayJoinEvent();
-                        RaiseLocalEvent(ev);
-                    }
                     // Sunrise-End
 
                     _chatManager.SendAdminAnnouncement(firstConnection

@@ -39965,29 +39965,6 @@ entities:
         discountDownTo: {}
         disableRefund: False
         costModifiersBySourceId: {}
-      - id: UplinkPistolTec9Magazine
-        productEntity: MagazinePistolSubMachineGunCaseless
-        name: uplink-pistoltec9-magazine-name
-        discountCategory: null
-        description: uplink-pistoltec9-magazine-desc
-        categories:
-        - UplinkAmmo
-        originalCost:
-          Telecrystal: 2
-        conditions: null
-        icon: null
-        priority: 0
-        productAction: null
-        applyToMob: False
-        productUpgradeId: null
-        productActionEntity: null
-        productEvent: null
-        raiseProductEventOnUser: False
-        purchaseAmount: 0
-        restockTime: 0
-        discountDownTo: {}
-        disableRefund: False
-        costModifiersBySourceId: {}
       - id: ERTUplinkMagazineP90FMJ
         productEntity: MagazineP90FMJ
         name: null
@@ -40942,29 +40919,6 @@ entities:
         restockTime: 0
         discountDownTo:
           Telecrystal: 4
-        disableRefund: False
-        costModifiersBySourceId: {}
-      - id: UplinkPirateMP38
-        productEntity: WeaponSubMachineGunMP38
-        name: null
-        discountCategory: null
-        description: null
-        categories:
-        - UplinkPirateWeaponry
-        originalCost:
-          Doubloon: 18
-        conditions: null
-        icon: null
-        priority: 0
-        productAction: null
-        applyToMob: False
-        productUpgradeId: null
-        productActionEntity: null
-        productEvent: null
-        raiseProductEventOnUser: False
-        purchaseAmount: 0
-        restockTime: 0
-        discountDownTo: {}
         disableRefund: False
         costModifiersBySourceId: {}
       - id: UplinkSunriseClothingOuterCoatBomber
@@ -46726,45 +46680,6 @@ entities:
         discountDownTo: {}
         disableRefund: False
         costModifiersBySourceId: {}
-      - id: ERTUplinkWeaponRifleBR64Filled
-        productEntity: ClothingBackpackDuffelWeaponRifleBR64Filled
-        name: ntuplink-gun-bundlebr64-name
-        discountCategory: null
-        description: null
-        categories:
-        - NTAutoGun
-        originalCost:
-          Bluecrystal: 20
-        conditions:
-        - !type:ListingLimitedStockCondition
-          stock: 1
-        - !type:StoreWhitelistCondition
-          blacklist: null
-          whitelist:
-            requireAll: False
-            statusEffects: null
-            species: null
-            requireAllTags: False
-            tags:
-            - ERTGamma
-            - ERTEpsilon
-            sizes: null
-            components: null
-        icon:
-          sprite: _Sunrise/Interface/Misc/nt_icons.rsi
-          state: br64
-        priority: 0
-        productAction: null
-        applyToMob: False
-        productUpgradeId: null
-        productActionEntity: null
-        productEvent: null
-        raiseProductEventOnUser: False
-        purchaseAmount: 0
-        restockTime: 0
-        discountDownTo: {}
-        disableRefund: False
-        costModifiersBySourceId: {}
       - id: UplinkHristovAmmo
         productEntity: MagazineBoxAntiMateriel
         name: uplink-sniper-ammo-name
@@ -48480,9 +48395,9 @@ entities:
         discountDownTo: {}
         disableRefund: False
         costModifiersBySourceId: {}
-      - id: ERTUplinkWeaponRifleG36Filled
-        productEntity: ClothingBackpackDuffelWeaponRifleG36Filled
-        name: ntuplink-gun-bundleg36-name
+      - id: ERTUplinkWeaponRifleLeikhaFilled
+        productEntity: ClothingBackpackDuffelWeaponRifleLeikhaFilled
+        name: ntuplink-gun-bundle-leikha-name
         discountCategory: null
         description: null
         categories:
@@ -48504,8 +48419,8 @@ entities:
             sizes: null
             components: null
         icon:
-          sprite: _Sunrise/Interface/Misc/nt_icons.rsi
-          state: g36
+          sprite: _Starlight/Objects/Weapons/Guns/Rifles/m16a4.rsi
+          state: base
         priority: 0
         productAction: null
         applyToMob: False
@@ -54629,30 +54544,6 @@ entities:
         purchaseAmount: 0
         restockTime: 0
         discountDownTo: {}
-        disableRefund: False
-        costModifiersBySourceId: {}
-      - id: uplinkWeaponPistolTec9
-        productEntity: WeaponPistolTec9
-        name: uplink-pistoltec9-name
-        discountCategory: rareDiscounts
-        description: uplink-pistoltec9-desc
-        categories:
-        - UplinkWeaponry
-        originalCost:
-          Telecrystal: 5
-        conditions: null
-        icon: null
-        priority: 0
-        productAction: null
-        applyToMob: False
-        productUpgradeId: null
-        productActionEntity: null
-        productEvent: null
-        raiseProductEventOnUser: False
-        purchaseAmount: 0
-        restockTime: 0
-        discountDownTo:
-          Telecrystal: 3
         disableRefund: False
         costModifiersBySourceId: {}
       - id: UplinkPiratePirateEVA
@@ -94648,7 +94539,7 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-- proto: GunSafeRifleAKMU
+- proto: GunSafeRifleSKM24
   entities:
   - uid: 9473
     components:
@@ -101574,7 +101465,6 @@ entities:
     - type: PoweredLight
       isBlinking: True
       lastGhostBlink: 23354.6766452
-    - type: Timer
   - uid: 1649
     components:
     - type: Transform
@@ -101584,7 +101474,6 @@ entities:
     - type: PoweredLight
       isBlinking: True
       lastGhostBlink: 23354.6766452
-    - type: Timer
   - uid: 5194
     components:
     - type: Transform
@@ -131930,7 +131819,7 @@ entities:
       parent: 2
     - type: Item
       heldPrefix: disabler
-- proto: WeaponPistolACP14
+- proto: WeaponPistolM1984
   entities:
   - uid: 12162
     components:
