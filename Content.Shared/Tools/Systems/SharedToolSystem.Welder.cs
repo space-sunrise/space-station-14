@@ -14,7 +14,7 @@ namespace Content.Shared.Tools.Systems;
 
 public abstract partial class SharedToolSystem
 {
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
 
     public void InitializeWelder()
     {

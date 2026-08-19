@@ -43,10 +43,10 @@ public sealed class CommandReceivedEventArgs
 /// <summary>
 /// Handles the connection to Discord and provides methods to interact with it.
 /// </summary>
-public sealed class DiscordLink : IPostInjectInit
+public sealed partial class DiscordLink : IPostInjectInit
 {
-    [Dependency] private readonly ILogManager _logManager = default!;
-    [Dependency] private readonly IConfigurationManager _configuration = default!;
+    [Dependency] private ILogManager _logManager = default!;
+    [Dependency] private IConfigurationManager _configuration = default!;
 
     [Dependency] private readonly DiscordWebhook _discord = default!; // Sunrise added
 

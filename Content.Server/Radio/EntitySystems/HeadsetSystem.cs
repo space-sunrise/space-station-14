@@ -15,10 +15,10 @@ namespace Content.Server.Radio.EntitySystems;
 
 public sealed partial class HeadsetSystem : SharedHeadsetSystem
 {
-    [Dependency] private readonly INetManager _netMan = default!;
-    [Dependency] private readonly RadioSystem _radio = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private INetManager _netMan = default!;
+    [Dependency] private RadioSystem _radio = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
 
     public override void Initialize()
     {

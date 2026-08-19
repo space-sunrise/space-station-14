@@ -12,11 +12,11 @@ using Content.Shared.Body;
 
 namespace Content.Shared.Eye.Blinding.Systems;
 
-public sealed class BlindableSystem : EntitySystem
+public sealed partial class BlindableSystem : EntitySystem
 {
-    [Dependency] private readonly BlurryVisionSystem _blurriness = default!;
-    [Dependency] private readonly EyeClosingSystem _eyelids = default!;
-    [Dependency] private readonly BodySystem _body = default!; // Sunrise
+    [Dependency] private BlurryVisionSystem _blurriness = default!;
+    [Dependency] private EyeClosingSystem _eyelids = default!;
+    [Dependency] private BodySystem _body = default!; // Sunrise
 
     public override void Initialize()
     {

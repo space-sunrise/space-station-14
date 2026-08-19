@@ -15,8 +15,8 @@ namespace Content.Shared.Ghost
     /// </summary>
     public abstract partial class SharedGhostSystem : EntitySystem
     {
-        [Dependency] protected readonly SharedPopupSystem Popup = default!;
-        [Dependency] protected readonly IGameTiming _gameTiming = default!;
+        [Dependency] protected SharedPopupSystem Popup = default!;
+        [Dependency] protected IGameTiming _gameTiming = default!;
 
         public override void Initialize()
         {

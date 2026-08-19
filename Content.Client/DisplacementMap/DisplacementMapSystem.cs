@@ -9,8 +9,8 @@ namespace Content.Client.DisplacementMap;
 
 public sealed partial class DisplacementMapSystem : EntitySystem
 {
-    [Dependency] private readonly ISerializationManager _serialization = null!;
-    [Dependency] private readonly SpriteSystem _sprite = null!;
+    [Dependency] private ISerializationManager _serialization = null!;
+    [Dependency] private SpriteSystem _sprite = null!;
 
     //needs to be replaced later: see comment on line 48
     private static readonly ProtoId<ShaderPrototype> UnshadedID = "unshaded";

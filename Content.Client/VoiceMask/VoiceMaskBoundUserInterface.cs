@@ -6,7 +6,7 @@ namespace Content.Client.VoiceMask;
 
 public sealed partial class VoiceMaskBoundUserInterface : BoundUserInterface // Sunrise-Edit: интерфейс расширяется выбором TTS в partial.
 {
-    [Dependency] private readonly IPrototypeManager _protomanager = default!;
+    [Dependency] private IPrototypeManager _protomanager = default!;
 
     [ViewVariables]
     private VoiceMaskNameChangeWindow? _window;

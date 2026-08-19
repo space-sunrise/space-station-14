@@ -21,7 +21,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Voting;
 
-public sealed class VotingSystem : EntitySystem
+public sealed partial class VotingSystem : EntitySystem
 {
 
     [Dependency] private readonly IPlayerManager _playerManager = default!;
@@ -79,7 +79,7 @@ public sealed class VotingSystem : EntitySystem
     public string GetPlayerVoteListName(EntityUid attached)
     {
         TryComp<MindContainerComponent>(attached, out var mind);
-        
+
         var jobName = GetNonAntagJobName(mind?.Mind);
         var playerInfo = $"{Comp<MetaDataComponent>(attached).EntityName} ({jobName})";
 
@@ -109,7 +109,7 @@ public sealed class VotingSystem : EntitySystem
                 continue;
 
             // We found a non-antagonist role with a job
-            if (roleComponent.JobPrototype != null && 
+            if (roleComponent.JobPrototype != null &&
                 _prototypes.TryIndex(roleComponent.JobPrototype.Value, out var jobPrototype))
             {
                 return jobPrototype.LocalizedName;

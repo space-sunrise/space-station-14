@@ -24,18 +24,18 @@ namespace Content.Server.Shuttles.Systems
 {
     public sealed partial class DockingSystem : SharedDockingSystem
     {
-        [Dependency] private readonly IMapManager _mapManager = default!;
-        [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-        [Dependency] private readonly DoorSystem _doorSystem = default!;
-        [Dependency] private readonly EntityLookupSystem _lookup = default!;
-        [Dependency] private readonly PathfindingSystem _pathfinding = default!;
-        [Dependency] private readonly ShuttleConsoleSystem _console = default!;
-        [Dependency] private readonly SharedJointSystem _jointSystem = default!;
-        [Dependency] private readonly SharedPopupSystem _popup = default!;
-        [Dependency] private readonly SharedTransformSystem _transform = default!;
-        [Dependency] private readonly ILogManager _logMan = default!;
-        [Dependency] private readonly AirtightSystem _airtightSystem = default!;
-        [Dependency] private readonly AirlockSystem _airlockSystem = default!;
+        [Dependency] private IMapManager _mapManager = default!;
+        [Dependency] private SharedMapSystem _mapSystem = default!;
+        [Dependency] private DoorSystem _doorSystem = default!;
+        [Dependency] private EntityLookupSystem _lookup = default!;
+        [Dependency] private PathfindingSystem _pathfinding = default!;
+        [Dependency] private ShuttleConsoleSystem _console = default!;
+        [Dependency] private SharedJointSystem _jointSystem = default!;
+        [Dependency] private SharedPopupSystem _popup = default!;
+        [Dependency] private SharedTransformSystem _transform = default!;
+        [Dependency] private ILogManager _logMan = default!;
+        [Dependency] private AirtightSystem _airtightSystem = default!;
+        [Dependency] private AirlockSystem _airlockSystem = default!;
 
         private const string DockingJoint = "docking";
 
