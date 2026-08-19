@@ -13,7 +13,10 @@
     heldPrefix: glockb
     size: Huge
     shape:
-    - 0,0,2,2
+    - 0,0,2,1
+    storedSprite:
+      state: icon
+      sprite: _Sunrise/Objects/Storage/glockbox.rsi
   - type: SpawnItemsOnUse
     items:
     - id: MagazinePistolRubber
