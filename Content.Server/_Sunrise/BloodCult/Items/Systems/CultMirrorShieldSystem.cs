@@ -22,6 +22,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Popups;
 using Content.Shared.SSDIndicator;
@@ -29,6 +30,7 @@ using Content.Shared.Strip.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Spawners;
 
@@ -53,6 +55,9 @@ public sealed partial class CultMirrorShieldSystem : EntitySystem
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly NpcFactionSystem _faction = default!;
     [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
+
+    private static readonly ProtoId<NpcFactionPrototype> BloodCultFaction = "BloodCult";
+    private static readonly ProtoId<NpcFactionPrototype> PassiveFaction = "Passive";
 
     private ISawmill _sawmill = default!;
 
@@ -344,12 +349,12 @@ public sealed partial class CultMirrorShieldSystem : EntitySystem
             // Она должна атаковать всех не культистов
             if (agressive)
             {
-                _faction.AddFaction(mobUid.Value, "BloodCult");
+                _faction.AddFaction(mobUid.Value, BloodCultFaction);
                 _console.ExecuteCommand($"addnpc {mobUid.Value} HostileIllusionCompound");
             }
             else
             {
-                _faction.AddFaction(mobUid.Value, "Passive");
+                _faction.AddFaction(mobUid.Value, PassiveFaction);
                 EnsureComp<NPCRetaliationComponent>(mobUid.Value);
                 _console.ExecuteCommand($"addnpc {mobUid.Value} IdleCompound");
             }

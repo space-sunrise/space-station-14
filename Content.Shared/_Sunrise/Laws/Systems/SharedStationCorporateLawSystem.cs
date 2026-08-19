@@ -32,7 +32,7 @@ public abstract class SharedStationCorporateLawSystem : EntitySystem
         out List<ProtoId<CorporateLawPrototype>> circumstances,
         out int permanentThreshold)
     {
-        var uid = EntityManager.GetEntity(netUid ?? NetEntity.Invalid);
+        var uid = GetEntity(netUid ?? NetEntity.Invalid);
         GetEffectiveLawset(uid.Valid ? uid : null, out provisions, out articles, out circumstances, out permanentThreshold);
     }
 

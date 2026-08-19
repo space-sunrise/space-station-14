@@ -19,7 +19,6 @@ public sealed class PhotoCartridgeSystem : EntitySystem
 {
     [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!;
     [Dependency] private readonly NetTexturesManager _netTexturesManager = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly MessengerServerSystem _messengerServer = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
@@ -305,8 +304,4 @@ public sealed class PhotoCartridgeSystem : EntitySystem
         _cartridgeLoader.UpdateCartridgeUiState(loaderUid, state);
     }
 
-    private EntityUid GetEntity(NetEntity netEntity)
-    {
-        return EntityManager.GetEntity(netEntity);
-    }
 }

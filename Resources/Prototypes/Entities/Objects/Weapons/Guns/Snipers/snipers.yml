@@ -120,6 +120,9 @@
     storedSprite:
       sprite: _Sunrise/Objects/Weapons/Guns/Snipers/mosin.rsi
       state: icon
+    size: Huge
+    shape:
+    - 0,0,4,0
   # Sunrise end
 
 - type: entity

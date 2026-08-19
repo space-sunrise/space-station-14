@@ -37,6 +37,8 @@ public sealed class AnnouncementSpeakerSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly TTSSystem _ttsSystem = default!;
 
+    private static readonly ProtoId<TTSVoicePrototype> FallbackVoice = "FatherGrigori";
+
     private bool _isEnabled;
     private string _defaultAnnounceVoice = "Hanson";
     private string _announceEffect = string.Empty;
@@ -209,7 +211,7 @@ public sealed class AnnouncementSpeakerSystem : EntitySystem
     {
         if (!_prototypeManager.TryIndex(voiceId, out voicePrototype))
         {
-            return _prototypeManager.TryIndex("father_grigori", out voicePrototype);
+            return _prototypeManager.TryIndex(FallbackVoice, out voicePrototype);
         }
         return true;
     }
@@ -236,7 +238,7 @@ public sealed class AnnouncementSpeakerSystem : EntitySystem
     /// </summary>
     public bool HasWorkingSpeakersNearby(EntityUid playerEntity)
     {
-        if (!TryComp<TransformComponent>(playerEntity, out var playerTransform))
+        if (!TryComp(playerEntity, out TransformComponent? playerTransform))
             return false;
 
         var playerPos = playerTransform.Coordinates;
