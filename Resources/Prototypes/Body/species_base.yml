@@ -165,7 +165,8 @@
   # Sunrise-Start
   - type: Carrier
     targetBlacklist:
-    - MobRevenant
+      components:
+      - Revenant
   - type: Paws
     screamInterval: 3
     thresholdDamage: 5
