@@ -8,7 +8,7 @@ using Content.Shared.NPC.Components;
 
 namespace Content.Shared.Stealth;
 
-public abstract partial class SharedStealthSystem : EntitySystem //* Sunrise-Edit
+public abstract class SharedStealthSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
 
@@ -26,7 +26,6 @@ public abstract partial class SharedStealthSystem : EntitySystem //* Sunrise-Edi
         SubscribeLocalEvent<StealthComponent, ExamineAttemptEvent>(OnExamineAttempt);
         SubscribeLocalEvent<StealthComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<StealthComponent, MobStateChangedEvent>(OnMobStateChanged);
-        SubscribeLocalEvent<StealthComponent, ComponentShutdown>(OnShutdown); //* Sunrise-Edit
     }
 
     private void OnExamineAttempt(EntityUid uid, StealthComponent component, ExamineAttemptEvent args)
