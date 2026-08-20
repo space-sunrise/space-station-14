@@ -303,7 +303,7 @@
 - type: listing
   id: UplinkMagazineRifleHP
   description: uplink-estoc-ammo-desc
-  productEntity: MagazineRifleHP
+  productEntity: MagazineRifleSP
   cost:
     Telecrystal: 1
   categories:
@@ -335,7 +335,7 @@
 - type: listing
   id: UplinkMagazineLightRifleHP
   description: uplink-skm24-ammo-desc
-  productEntity: MagazineLightRifleHP
+  productEntity: MagazineLightRifleSP
   cost:
     Telecrystal: 2
   categories:
@@ -377,7 +377,7 @@
 - type: listing
   id: UplinkMagazineRifleHeavyHP
   description: uplink-skm28-ammo-desc
-  productEntity: MagazineRifleHeavyHP
+  productEntity: MagazineRifleHeavySP
   cost:
     Telecrystal: 2
   categories:
@@ -685,9 +685,9 @@
 
 - type: listing
   id: UplinkMagazineDragunovHP
-  description: uplink-magazine-dragunov-hp-desc
+  description: uplink-magazine-dragunov-sp-desc
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/dragunov_mag.rsi, state: base }
-  productEntity: MagazineDragunovHP
+  productEntity: MagazineDragunovSP
   cost:
     Telecrystal: 1
   categories:

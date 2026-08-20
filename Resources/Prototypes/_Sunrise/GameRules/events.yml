@@ -155,9 +155,9 @@
     startAnnouncement: station-event-radiation-outburst-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-      weight: 4
-      minimumPlayers: 25
-      duration: 1
+    weight: 4
+    minimumPlayers: 25
+    duration: 1
   - type: RadiationOutburstRule
 
 - type: entity

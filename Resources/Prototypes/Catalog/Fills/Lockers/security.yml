@@ -274,10 +274,8 @@
     # Sunrise-Start
     - id: WeaponRifleLeikha
     - id: MagazineRifleSP
-      amount: 4
+      amount: 6 # Sunrise-Edit - заменяем удалённые HP-магазины на базовые
     - id: MagazineRifleFMJ
-      amount: 2
-    - id: MagazineRifleHP
       amount: 2
     # Sunrise-End
 
