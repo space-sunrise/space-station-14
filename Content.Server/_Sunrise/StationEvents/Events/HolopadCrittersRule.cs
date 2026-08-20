@@ -30,7 +30,7 @@ public sealed class HolopadCrittersRule : StationEventSystem<HolopadCrittersRule
 
         while (holopadQuery.MoveNext(out _, out _, out var transform))
         {
-            // Must be anchored (placed on grid)
+            // Must be anchored
             if (!transform.Anchored)
                 continue;
 
@@ -47,10 +47,8 @@ public sealed class HolopadCrittersRule : StationEventSystem<HolopadCrittersRule
             return;
         }
 
-        // Spawn special entries (guaranteed spawn)
         if (component.SpecialEntries.Count > 0)
         {
-            // Get spawns from special entries
             var specialSpawns = EntitySpawnCollection.GetSpawns(component.SpecialEntries, RobustRandom);
 
             // Determine which holopads to use
