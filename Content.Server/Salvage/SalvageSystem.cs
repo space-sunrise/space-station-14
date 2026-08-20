@@ -49,15 +49,11 @@ namespace Content.Server.Salvage
         [Dependency] private UserInterfaceSystem _ui = default!;
         [Dependency] private MessengerServerSystem _messenger = default!;
 
-        private EntityQuery<MapGridComponent> _gridQuery;
-        private EntityQuery<TransformComponent> _xformQuery;
+        [Dependency] private EntityQuery<MapGridComponent> _gridQuery = default!;
 
         public override void Initialize()
         {
             base.Initialize();
-
-            _gridQuery = GetEntityQuery<MapGridComponent>();
-            _xformQuery = GetEntityQuery<TransformComponent>();
 
             InitializeExpeditions();
             InitializeMagnet();

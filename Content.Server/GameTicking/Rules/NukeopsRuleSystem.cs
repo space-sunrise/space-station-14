@@ -254,7 +254,7 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
             }
 
             // Sunrise edit start - replace instant end of round with calling/accelerating evac shuttle
-            if (GameTicker.IsGameRuleActive(NukeopsGameRule))
+            if (GameTicker.IsGameRuleActive(NukeopsGameRule)) // If it's Nukeops then end the round on any detonation
             {
                 _roundEndSystem.ForceSetCountdown(TimeSpan.FromSeconds(10), cantRecall: true);
             }
