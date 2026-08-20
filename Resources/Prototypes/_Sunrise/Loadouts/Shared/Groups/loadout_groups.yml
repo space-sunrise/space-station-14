@@ -1112,10 +1112,11 @@
   - TrinketsEngineeringTFAT
   - TrinketsEngineeringTFCF
 #  - TrinketsEngineeringTT
-  - TrinketsEngineeringWI
   - TrinketsEngineeringGCW
-  - TrinketsEngineeringWE
   - TrinketsEngineeringST
+  - TrinketsEngineeringWI
+  - TrinketsEngineeringWIA
+  - TrinketsEngineeringWE
 
 - type: loadoutGroup
   id: SeniorEngineerNeck

@@ -175,17 +175,28 @@
         children:
         - !type:NestedSelector
           tableId: FillCompactEngineerHardsuit
+        - !type:NestedSelector
+          tableId: RandomHandsGlovesYellowtTable # пранк
     
 - type: entityTable
   id: FillCompactEngineerHardsuit
   table: !type:AllSelector
     children:
     - id: ClothingOuterHardsuitEngineeringCompact
-    - id: ClothingHandsGlovesColorYellow
-      prob: 0.999
-    - id: ClothingHandsGlovesConducting # пранк
-      prob: 0.001
     - id: OxygenTankFilled
     - id: NitrogenTankFilled
     - id: ClothingShoesBootsMagAtmos
     - id: ClothingMaskBreath
+
+- type: entityTable
+  id: RandomHandsGlovesYellowtTable
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 99
+      children:
+      - id: ClothingHandsGlovesColorYellow
+    - !type:GroupSelector
+      weight: 1
+      children:
+      - id: ClothingHandsGlovesConducting

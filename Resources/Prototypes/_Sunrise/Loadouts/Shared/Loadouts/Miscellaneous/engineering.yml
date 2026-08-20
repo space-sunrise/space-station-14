@@ -115,10 +115,22 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Engineering
-      time: 1080000 # 300hr
+      time: 360000 # 100hr
   storage:
     back:
     - WelderIndustrial
+
+- type: loadout
+  id: TrinketsEngineeringWIA
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 1080000 # 300hr
+  storage:
+    back:
+    - WelderIndustrialAdvanced
 
 - type: loadout
   id: TrinketsEngineeringWE
