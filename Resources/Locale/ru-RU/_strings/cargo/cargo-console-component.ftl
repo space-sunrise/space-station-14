@@ -1,8 +1,6 @@
 ## UI
 
 cargo-console-menu-title = Консоль заказа грузов
-cargo-console-menu-flavor-left = Закажите еще больше коробок для пиццы, чем обычно!
-cargo-console-menu-flavor-right = версия 2.1
 cargo-console-menu-account-name-label = Имя аккаунта:{ " " }
 cargo-console-menu-account-name-none-text = Нет
 cargo-console-menu-shuttle-name-label = Название шаттла:{ " " }
