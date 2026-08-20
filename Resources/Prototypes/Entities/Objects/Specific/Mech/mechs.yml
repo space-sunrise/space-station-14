@@ -328,11 +328,18 @@
     sprite: Objects/Specific/Mech/ripley.rsi
     scale: 1.08, 1.08
     layers:
-    - map: [ "enum.MechVisualLayers.Base" ]
+    - map: [ "enum.MechVisualLayers.Base", "movement" ]
       state: ripleymkii
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: ripleymk2
+    noMovementLayers:
+      movement:
+        state: ripleymkii
   - type: Mech
     baseState: ripleymkii
     openState: ripleymkii-open

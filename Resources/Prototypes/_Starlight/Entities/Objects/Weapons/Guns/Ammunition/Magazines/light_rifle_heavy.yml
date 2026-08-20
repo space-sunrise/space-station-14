@@ -59,32 +59,6 @@
         color: "#575EF5"
 
 - type: entity
-  id: RifleHeavyMagazineHP
-  name: "belt box (.308 HP)"
-  parent: RifleHeavyBase
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeRifleHeavyHP
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-4
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: stripe
-      color: "#F5514C"
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#F5514C"
-      right:
-      - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#F5514C"
-
-- type: entity
   id: RifleHeavyMagazineFMJ
   name: "belt box (.308 FMJ)"
   parent: RifleHeavyBase

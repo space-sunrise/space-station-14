@@ -27,6 +27,9 @@
     markingData:
       layers:
       - Back
+      - Tail
+      - Overlay
+      - Chest
 - type: entity
   id: HeadDemon
   name: "demon head"
