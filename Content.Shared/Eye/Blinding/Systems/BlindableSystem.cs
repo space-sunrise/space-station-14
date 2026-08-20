@@ -60,7 +60,7 @@ public sealed class BlindableSystem : EntitySystem
 
         // Sunrise start
         var forceBlind = false;
-        if (_body.TryGetOrganWithComponent<OrganEyesComponent>(blindable.Owner, out _))
+        if (!_body.TryGetOrganWithComponent<OrganEyesComponent>(blindable.Owner, out _))
             forceBlind = true;
         // Sunrise end
 
