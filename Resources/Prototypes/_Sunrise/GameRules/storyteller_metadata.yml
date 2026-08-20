@@ -111,6 +111,12 @@
   maxStress: 100
 
 - type: storytellerMetadata
+  id: SnailMigration
+  threatType: Neutral
+  threatCost: 10
+  maxStress: 100
+
+- type: storytellerMetadata
   id: SnailMigrationLowPop
   threatType: Neutral
   threatCost: 5
