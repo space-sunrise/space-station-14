@@ -523,7 +523,7 @@
   - type: Computer
     board: ResearchComputerCircuitboard
   - type: AccessReader
-    access: [["ResearchConsoleAccess"]]
+    access: [["Research"]]
   - type: PointLight
     radius: 1.5
     energy: 4.0
@@ -1001,7 +1001,7 @@
     energy: 4.0
     color: "#b89f25"
   - type: AccessReader
-    access: [["CargoPurchaseAccess"]] # Sunrise-Edit
+    access: [["Cargo"]]
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: BasicDevice

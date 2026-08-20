@@ -126,7 +126,7 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: WeaponSubMachineGunWt550
+        - id: WeaponSubMachineGunWt550g
         - id: MagazinePistolSubMachineGunTopMounted
           amount: 3
         - id: MagazinePistolSubMachineGunTopMountedHP
@@ -152,7 +152,7 @@
   id: ClothingBackpackDuffelWeaponRifleLecterFilled
   parent: ClothingBackpackDuffelMilitary
   name: Bundle lecter Mk2
-  description: Lecter Mk2 with 3 raspy FMJ magazines and 2 HP.
+  description: Lecter Mk2 with 3 FMJ magazines and 3 SP magazines.
   components:
   - type: EntityTableContainerFill
     containers:
@@ -161,15 +161,14 @@
         - id: WeaponRifleLecterMk2
         - id: MagazineRifleFMJ
           amount: 3
-        - id: MagazineRifleHP
-          amount: 2
         - id: MagazineRifleSP
+          amount: 3
 
 - type: entity
   id: ClothingBackpackDuffelWeaponRifleM52Filled
   parent: ClothingBackpackDuffelMilitary
   name: Bundle M-52
-  description: Premium assault rifle with 3 raspy FMJ magazines, 2 SP and 1 HP.
+  description: Premium assault rifle with 3 FMJ magazines and 3 SP magazines.
   components:
   - type: EntityTableContainerFill
     containers:
@@ -179,8 +178,7 @@
         - id: MagazineRifleM52FMJ
           amount: 3
         - id: MagazineRifleM52SP
-          amount: 2
-        - id: MagazineRifleM52HP
+          amount: 3
 
 - type: entity
   id: ClothingBackpackDuffelWeaponSubMachineGunP90Filled
@@ -202,7 +200,7 @@
   id: ClothingBackpackDuffelWeaponLecterMk3Filled
   parent: ClothingBackpackDuffelMilitary
   name: Bundle Lecter Mk3
-  description: Lecter Mk3 with 4 raspy magazines.
+  description: Lecter Mk3 with 3 FMJ magazines and 3 SP magazines.
   components:
   - type: EntityTableContainerFill
     containers:
@@ -211,9 +209,8 @@
         - id: WeaponRifleLecterMk3
         - id: MagazineRifleFMJ
           amount: 3
-        - id: MagazineRifleHP
-          amount: 2
         - id: MagazineRifleSP
+          amount: 3
 
 - type: entity
   id: ClothingBackpackDuffelWeaponRifleLeikhaFilled
@@ -287,10 +284,8 @@
         children:
         - id: WeaponRifleSKM24Nano
         - id: MagazineLightRifleSP
-          amount: 3
+          amount: 5
         - id: MagazineLightRifleFMJ
-        - id: MagazineLightRifleHP
-          amount: 2
 
 - type: entity
   id: ClothingBackpackDuffelWeaponRifleSKM24FilledCBURN
@@ -320,9 +315,7 @@
         - id: WeaponRifleSKM28Nano
         - id: MagazineRifleHeavyFMJ
         - id: MagazineRifleHeavySP
-          amount: 3
-        - id: MagazineRifleHeavyHP
-          amount: 2
+          amount: 5
 
 - type: entity
   id: ClothingBackpackDuffelWeaponRifleSKM28FilledCBURN
@@ -562,7 +555,7 @@
         - id: MagazineLightRifleFMJ
         - id: MagazineLightRifleSP
         - id: MagazineLightRifleSP
-        - id: MagazineLightRifleHP
+        - id: MagazineLightRifleSP
         - id: CigPackSyndicate
         - id: CheapLighter
 
@@ -580,7 +573,7 @@
           - id: MagazineLightRifleFMJ
           - id: MagazineLightRifleSP
           - id: MagazineLightRifleSP
-          - id: MagazineLightRifleHP
+          - id: MagazineLightRifleSP
           - id: CigPackSyndicate
           - id: CheapLighter
 

@@ -360,8 +360,6 @@
   - type: FlashModifier
     modifier: 1.4
   - type: Interactions
-  - type: ToggleableNightVision
-    effect: EffectNightVisioSpecies
   - type: FootprintEmitter
     leftBareFootState: [ footprint-left-bare-cat ]
     rightBareFootState: [ footprint-right-bare-cat ]

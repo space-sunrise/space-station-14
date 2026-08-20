@@ -5,28 +5,28 @@
     type: Fix
   id: 1498
   time: '2025-11-21T04:18:39.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3366
+  url: https://github.com/makura-games/sunrise-station/pull/3366
 - author: Copilot AI
   changes:
   - message: Луч Икаруса теперь пролетает станцию насквозь, не теряя скорость.
     type: Fix
   id: 1499
   time: '2025-11-21T04:14:34.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3376
+  url: https://github.com/makura-games/sunrise-station/pull/3376
 - author: Copilot AI
   changes:
   - message: Исправлена ошибка загрузки персонажей с пустыми значениями цветов в базе данных.
     type: Fix
   id: 1500
   time: '2025-11-21T04:58:01.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3384
+  url: https://github.com/makura-games/sunrise-station/pull/3384
 - author: Nrd-K
   changes:
   - message: Добавлено больше целей на дельту
     type: Add
   id: 1501
   time: '2025-11-22T20:12:56.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3391
+  url: https://github.com/makura-games/sunrise-station/pull/3391
 - author: KaiserMaus
   changes:
   - message: Добавлено блюспейс хранилище медикаментов, в технологию исследования блюспейс химии.
@@ -35,7 +35,7 @@
     type: Tweak
   id: 1502
   time: '2025-11-23T20:48:30.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3395
+  url: https://github.com/makura-games/sunrise-station/pull/3395
 - author: KaiserMaus
   changes:
   - message: Добавлен золотой гаечный ключ в лодаут инженерам, за "выслугу лет" в игре.
@@ -44,77 +44,77 @@
     type: Add
   id: 1503
   time: '2025-11-23T20:48:50.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3400
+  url: https://github.com/makura-games/sunrise-station/pull/3400
 - author: KaiserMaus
   changes:
   - message: Нанотрейзер прочистили выхлоп у больших двигателей шаттла, теперь сопла вновь небезопасны.
     type: Fix
   id: 1504
   time: '2025-11-25T12:28:22.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3335
+  url: https://github.com/makura-games/sunrise-station/pull/3335
 - author: Kinar_7
   changes:
   - message: Увеличил время работы ПАКМЕН и СУПЕРПАКМЕН. Пакмен 15 > 45. Суперпакмен 30 > 60
     type: Tweak
   id: 1505
   time: '2025-11-29T12:02:03.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3422
+  url: https://github.com/makura-games/sunrise-station/pull/3422
 - author: Kinar_7
   changes:
   - message: Нанотрейзен пополнило шкафы глав персонала и капитанов миниатюрной энергетическая пушкой.
     type: Add
   id: 1506
   time: '2025-11-30T13:43:28.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3406
+  url: https://github.com/makura-games/sunrise-station/pull/3406
 - author: KaiserMaaus
   changes:
   - message: Книги и сумки могут быть переработаны в ресурсы, будьте аккуратнее если выкините что-то важное, переработчик не щадит.
     type: Tweak
   id: 1507
   time: '2025-11-30T16:08:03.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3382
+  url: https://github.com/makura-games/sunrise-station/pull/3382
 - author: KaiserMaus
   changes:
   - message: ГлокБокс и другие пистолетные коробки из лодаутов теперь дезинтегрируется сами после изьятия содержимого.
     type: Tweak
   id: 1508
   time: '2025-11-30T16:15:46.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3402
+  url: https://github.com/makura-games/sunrise-station/pull/3402
 - author: Kinar_7
   changes:
   - message: Нанотрейзен разработала на основе стан-дубинки, новые Стан-кастеты для смотрителей брига.
     type: Add
   id: 1509
   time: '2025-11-30T16:17:26.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3411
+  url: https://github.com/makura-games/sunrise-station/pull/3411
 - author: KaiserMaus
   changes:
   - message: Синдикат засунул микробомбу в взрывной ошейник, теперь цель точно будет гибнута при взрыве.
     type: Add
   id: 1510
   time: '2025-11-30T16:18:14.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3408
+  url: https://github.com/makura-games/sunrise-station/pull/3408
 - author: Orvex07, seraphimttt
   changes:
   - message: Улучшена текстура знамёнам
     type: Tweak
   id: 1511
   time: '2025-11-30T16:28:32.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3360
+  url: https://github.com/makura-games/sunrise-station/pull/3360
 - author: Kinar_7
   changes:
   - message: Изменены размеры некоторого вооружения.
     type: Tweak
   id: 1512
   time: '2025-11-30T16:42:30.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3420
+  url: https://github.com/makura-games/sunrise-station/pull/3420
 - author: ZuxeHore
   changes:
   - message: 3 новых вида крыльев для Аркан
     type: Add
   id: 1513
   time: '2025-11-30T19:16:31.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3345
+  url: https://github.com/makura-games/sunrise-station/pull/3345
 - author: banumbas
   changes:
   - message: Таяры теперь могут рычать.
@@ -123,14 +123,14 @@
     type: Fix
   id: 1514
   time: '2025-12-06T14:55:25.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3325
+  url: https://github.com/makura-games/sunrise-station/pull/3325
 - author: gardsnake
   changes:
   - message: Все ручки были перерисованы
     type: Tweak
   id: 1515
   time: '2025-12-06T15:08:22.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3442
+  url: https://github.com/makura-games/sunrise-station/pull/3442
 - author: KaiserMaus
   changes:
   - message: 'Зажигательные: теперь прожектайлы, могут поджигать цеди, наносят урон уколами и немного ожоги, в крафтах в автолатах убрана нужда в плазме.'
@@ -139,7 +139,7 @@
     type: Fix
   id: 1516
   time: '2025-12-06T16:59:03.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3444
+  url: https://github.com/makura-games/sunrise-station/pull/3444
 - author: KaiserMaus
   changes:
   - message: Энергический меч и двойной  меч отверткой можно  изменить на игрушечный вариант и обратно.
@@ -148,56 +148,56 @@
     type: Tweak
   id: 1517
   time: '2025-12-06T16:59:49.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3361
+  url: https://github.com/makura-games/sunrise-station/pull/3361
 - author: ghostea404, F1di
   changes:
   - message: Добавлена шапка кролика
     type: Add
   id: 1518
   time: '2025-12-06T20:07:04.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3305
+  url: https://github.com/makura-games/sunrise-station/pull/3305
 - author: F1di
   changes:
   - message: Лужи отображаются под кроватями, а не на них.
     type: Fix
   id: 1519
   time: '2025-12-06T20:22:09.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3299
+  url: https://github.com/makura-games/sunrise-station/pull/3299
 - author: banumbas
   changes:
   - message: Термальные очки и ПНВ подешевели в аплинке.
     type: Tweak
   id: 1520
   time: '2025-12-06T20:29:41.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3292
+  url: https://github.com/makura-games/sunrise-station/pull/3292
 - author: Kinar_7
   changes:
   - message: Увеличил предел символов в новостных статьях
     type: Tweak
   id: 1521
   time: '2025-12-06T20:47:20.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3309
+  url: https://github.com/makura-games/sunrise-station/pull/3309
 - author: ZuxeHore
   changes:
   - message: Добавлены варианты кастомизации для других рас, ранее доступные людям (Преимущественно Арканы, Фелиниды, Троттины)
     type: Add
   id: 1522
   time: '2025-12-07T14:33:03.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3342
+  url: https://github.com/makura-games/sunrise-station/pull/3342
 - author: iDesmond
   changes:
   - message: Колоды карт теперь вновь имеют четыре двойки и четыре тройки
     type: Fix
   id: 1523
   time: '2025-12-12T04:05:19.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3459
+  url: https://github.com/makura-games/sunrise-station/pull/3459
 - author: Orvex07
   changes:
   - message: исправлено наложение слоя нижнего белья у вульп.
     type: Fix
   id: 1524
   time: '2025-12-13T15:31:48.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3469
+  url: https://github.com/makura-games/sunrise-station/pull/3469
 - author: Orvex07
   changes:
   - message: Абдукторы будут отображатся в панели телепорта призрака как антагонисты
@@ -206,7 +206,7 @@
     type: Fix
   id: 1525
   time: '2025-12-13T15:35:21.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3466
+  url: https://github.com/makura-games/sunrise-station/pull/3466
 - author: Kaiten
   changes:
   - message: Антиквар капитана снова помещается в карман
@@ -217,35 +217,35 @@
     type: Tweak
   id: 1526
   time: '2025-12-14T17:01:51.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3468
+  url: https://github.com/makura-games/sunrise-station/pull/3468
 - author: Orvex07
   changes:
   - message: некоторые сообщения мехов будут воспроизводится в качестве шёпота
     type: Tweak
   id: 1527
   time: '2025-12-17T12:11:26.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3458
+  url: https://github.com/makura-games/sunrise-station/pull/3458
 - author: KaiserMaus
   changes:
   - message: Увеличено время создание Дюранда и Гигакса, РнД может частично нивелировать это Космо-смазкой.
     type: Tweak
   id: 1528
   time: '2025-12-19T04:51:21.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3487
+  url: https://github.com/makura-games/sunrise-station/pull/3487
 - author: ThereDrD
   changes:
   - message: Теперь можно настроить, какая карта будет использоваться для планетарной тюрьмы. Старая(до реворка) или новая(после реворка)
     type: Add
   id: 1529
   time: '2025-12-19T08:26:59.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3463
+  url: https://github.com/makura-games/sunrise-station/pull/3463
 - author: KaiserMaus
   changes:
   - message: Центральное коммандования наладило поставки запасных серверов РнД в карго.
     type: Add
   id: 1530
   time: '2025-12-19T09:02:30.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3394
+  url: https://github.com/makura-games/sunrise-station/pull/3394
 - author: KaiserMaus
   changes:
   - message: Добавлена Бананомалия...УОооук Уааак!!.
@@ -254,21 +254,21 @@
     type: Tweak
   id: 1531
   time: '2025-12-19T14:27:42.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3409
+  url: https://github.com/makura-games/sunrise-station/pull/3409
 - author: KaiserMaus
   changes:
   - message: Добавлено создание шахтерского варианта скафандра голиафа.
     type: Add
   id: 1532
   time: '2025-12-19T17:46:15.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3419
+  url: https://github.com/makura-games/sunrise-station/pull/3419
 - author: KaiserMaus,bulbo44kkey
   changes:
   - message: Респрайт Таяров, мур мяу!.
     type: Tweak
   id: 1533
   time: '2025-12-19T18:05:21.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3452
+  url: https://github.com/makura-games/sunrise-station/pull/3452
 - author: KaiserMaus
   changes:
   - message: Прочные металлические конструкции (укреплённые стены, шлюзы, огневые замки) теперь сложнее разрушить.
@@ -279,21 +279,21 @@
     type: Tweak
   id: 1534
   time: '2025-12-19T18:06:06.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3455
+  url: https://github.com/makura-games/sunrise-station/pull/3455
 - author: KaiserMaus
   changes:
   - message: Кристалл супер материи теперь поставляется на станцию в упакованном виде.
     type: Tweak
   id: 1535
   time: '2025-12-19T20:39:45.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3441
+  url: https://github.com/makura-games/sunrise-station/pull/3441
 - author: gardsnake
   changes:
   - message: Были перерисованы спрайты КПК, Пинпоинтеров, ID-Карт, Емага и Гарнитур
     type: Tweak
   id: 1536
   time: '2025-12-20T21:32:31.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3485
+  url: https://github.com/makura-games/sunrise-station/pull/3485
 - author: Orvex07
   changes:
   - message: 'Снижение урона при неудачной телепоратации: 25 -> 10'
@@ -302,14 +302,14 @@
     type: Fix
   id: 1537
   time: '2025-12-20T21:34:08.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3435
+  url: https://github.com/makura-games/sunrise-station/pull/3435
 - author: KaiserMaus
   changes:
   - message: Ремап Flag Ship НаноТрейзен.
     type: Tweak
   id: 1538
   time: '2025-12-20T22:24:21.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3491
+  url: https://github.com/makura-games/sunrise-station/pull/3491
 - author: KaiserMaus
   changes:
   - message: Медики-предатели получили новую позицию во вкладке работа.
@@ -324,14 +324,14 @@
     type: Tweak
   id: 1539
   time: '2025-12-20T22:33:28.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3410
+  url: https://github.com/makura-games/sunrise-station/pull/3410
 - author: KaiserMaus
   changes:
   - message: Мехи теперь могут нажимать кнопки а так же открывать пожарные шлюзы самостоятельно.
     type: Tweak
   id: 1540
   time: '2025-12-20T22:43:37.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3456
+  url: https://github.com/makura-games/sunrise-station/pull/3456
 - author: KaiserMaus
   changes:
   - message: Асортимент ХохохонкерсВенд немного изменился.
@@ -340,28 +340,28 @@
     type: Tweak
   id: 1541
   time: '2025-12-20T23:11:23.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3396
+  url: https://github.com/makura-games/sunrise-station/pull/3396
 - author: KaiserMaus
   changes:
   - message: СyberSun добавили дополнительные звуковые эффекты скафандру Джагернаута.
     type: Tweak
   id: 1542
   time: '2025-12-22T21:22:58.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3494
+  url: https://github.com/makura-games/sunrise-station/pull/3494
 - author: Orvex07
   changes:
   - message: Мертвые антагонисты пропадают с панели телепортации призрака.
     type: Add
   id: 1543
   time: '2025-12-22T21:24:18.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3465
+  url: https://github.com/makura-games/sunrise-station/pull/3465
 - author: KaiserMaus
   changes:
   - message: Добавлены "Большие" пушки для шаттлов и их изучение в рнд.
     type: Add
   id: 1544
   time: '2025-12-23T00:31:31.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3339
+  url: https://github.com/makura-games/sunrise-station/pull/3339
 - author: Orvex07
   changes:
   - message: Добавлено авто-открытие тикетов в MHelp
@@ -380,14 +380,14 @@
     type: Add
   id: 1545
   time: '2025-12-23T04:36:36.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3478
+  url: https://github.com/makura-games/sunrise-station/pull/3478
 - author: Orvex07
   changes:
   - message: Плащ главного врача был переименнован и перенесен в мед категорию в магазине за сантики
     type: Tweak
   id: 1546
   time: '2025-12-23T04:37:02.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3484
+  url: https://github.com/makura-games/sunrise-station/pull/3484
 - author: Fooksy2304
   changes:
   - message: Ваша голова-главный инструмент саботажа, носите эту каску при встрече с сб, с удовольствием.
@@ -400,56 +400,56 @@
     type: Tweak
   id: 1547
   time: '2025-12-23T13:39:13.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3451
+  url: https://github.com/makura-games/sunrise-station/pull/3451
 - author: Kinar_7
   changes:
   - message: Убрал хвост унатха и акулы людям, фелинидам, дворфам и вульпам
     type: Remove
   id: 1548
   time: '2025-12-24T14:17:41.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3421
+  url: https://github.com/makura-games/sunrise-station/pull/3421
 - author: KaiserMaus
   changes:
   - message: NanoTrasen выделила немного больший бюджет на шаттл утилизаторов на некоторые станции.
     type: Tweak
   id: 1549
   time: '2025-12-24T14:29:36.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3486
+  url: https://github.com/makura-games/sunrise-station/pull/3486
 - author: SliZen, Gpxgji, Stirka
   changes:
   - message: Багель снова с нами
     type: Add
   id: 1550
   time: '2025-12-24T14:34:03.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3471
+  url: https://github.com/makura-games/sunrise-station/pull/3471
 - author: KaiserMaus
   changes:
   - message: Добавлен набор экзорцизма в карго. Во имя Света, Святых и 12-го калибра. Аминь..
     type: Add
   id: 1551
   time: '2025-12-24T15:47:05.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3499
+  url: https://github.com/makura-games/sunrise-station/pull/3499
 - author: KaiserMaus
   changes:
   - message: Добавлена цель предателям на пистолет X-01.
     type: Add
   id: 1552
   time: '2025-12-24T15:48:44.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3503
+  url: https://github.com/makura-games/sunrise-station/pull/3503
 - author: KaiserMaus
   changes:
   - message: Добавлена технология ИОНного вооружения в РНД ветка Арсенал.
     type: Add
   id: 1553
   time: '2025-12-24T16:52:27.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3500
+  url: https://github.com/makura-games/sunrise-station/pull/3500
 - author: Hero_010
   changes:
   - message: Добавлена кодовая консоль.
     type: Add
   id: 1554
   time: '2025-12-25T16:47:18.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3060
+  url: https://github.com/makura-games/sunrise-station/pull/3060
 - author: worstplayerever, banumbas
   changes:
   - message: Дефибриллятор Интердайн был добавлен Ядерам и ДО в аплинк.
@@ -466,7 +466,7 @@
     type: Fix
   id: 1555
   time: '2025-12-25T16:52:57.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3249
+  url: https://github.com/makura-games/sunrise-station/pull/3249
 - author: worstplayerever, banumbas
   changes:
   - message: Добавлены болы синдиката и СБ.
@@ -477,14 +477,14 @@
     type: Tweak
   id: 1556
   time: '2025-12-25T17:02:09.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3300
+  url: https://github.com/makura-games/sunrise-station/pull/3300
 - author: F1di
   changes:
   - message: Пожарным топором можно убирать покрытия.
     type: Tweak
   id: 1557
   time: '2025-12-25T17:05:45.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3306
+  url: https://github.com/makura-games/sunrise-station/pull/3306
 - author: Fooksy2304
   changes:
   - message: 'Ретроиндралин: новое лекарство от радиации.'
@@ -497,7 +497,7 @@
     type: Tweak
   id: 1558
   time: '2025-12-25T17:06:18.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3314
+  url: https://github.com/makura-games/sunrise-station/pull/3314
 - author: Fooksy2304
   changes:
   - message: Добавлены маски некоторых животных из Hotline Miami.
@@ -516,7 +516,7 @@
     type: Add
   id: 1559
   time: '2025-12-25T17:08:55.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3324
+  url: https://github.com/makura-games/sunrise-station/pull/3324
 - author: Kinar_7
   changes:
   - message: Nanotrasen обновило модули боргов Служб Безопасности. Теперь они обладают огнестрельным вооружением
@@ -527,7 +527,7 @@
     type: Fix
   id: 1560
   time: '2025-12-25T17:30:37.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3387
+  url: https://github.com/makura-games/sunrise-station/pull/3387
 - author: banumbas
   changes:
   - message: 'Отражение лазеров двойному энергетическому мечу: 50 -> 100%'
@@ -536,7 +536,7 @@
     type: Tweak
   id: 1561
   time: '2025-12-25T17:32:29.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3389
+  url: https://github.com/makura-games/sunrise-station/pull/3389
 - author: KaiserMaus
   changes:
   - message: Добавлены дополнительные детали и модули для ксеноборгов.
@@ -545,7 +545,7 @@
     type: Tweak
   id: 1562
   time: '2025-12-25T17:37:49.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3416
+  url: https://github.com/makura-games/sunrise-station/pull/3416
 - author: Orvex07
   changes:
   - message: Увеличино здоровье и энергопотребление голографических силовых полей
@@ -554,14 +554,14 @@
     type: Fix
   id: 1563
   time: '2025-12-25T17:39:38.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3437
+  url: https://github.com/makura-games/sunrise-station/pull/3437
 - author: iDesmond
   changes:
   - message: Контрибьюторы получили новый гост-скин Дрэйдона
     type: Add
   id: 1564
   time: '2025-12-25T17:49:23.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3449
+  url: https://github.com/makura-games/sunrise-station/pull/3449
 - author: Kaiten
   changes:
   - message: Шкаф ПНТ теперь пустой на ЦК
@@ -572,7 +572,7 @@
     type: Fix
   id: 1565
   time: '2025-12-25T17:56:45.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3467
+  url: https://github.com/makura-games/sunrise-station/pull/3467
 - author: itayashi
   changes:
   - message: Добавление Морской униформы.
@@ -585,21 +585,21 @@
     type: Add
   id: 1566
   time: '2025-12-25T18:03:23.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3479
+  url: https://github.com/makura-games/sunrise-station/pull/3479
 - author: Orvex07
   changes:
   - message: Добавлена мухобойка
     type: Add
   id: 1567
   time: '2025-12-25T18:13:26.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3497
+  url: https://github.com/makura-games/sunrise-station/pull/3497
 - author: KaiserMaus
   changes:
   - message: Добавлена Т3 Биохим технология Клонирования .
     type: Add
   id: 1568
   time: '2025-12-25T18:27:25.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3509
+  url: https://github.com/makura-games/sunrise-station/pull/3509
 - author: kanopus7
   changes:
   - message: Прыжок теперь имеет свойство быть декоративным (показывает только эмоцию), и иметь возможность прыгать через препятствия.
@@ -612,21 +612,21 @@
     type: Remove
   id: 1569
   time: '2025-12-28T09:44:09.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3483
+  url: https://github.com/makura-games/sunrise-station/pull/3483
 - author: iDesmond
   changes:
   - message: Подправлена локализация прямой газовой трубы, что бы в поиске крафта можно было найти все виды труб разом
     type: Fix
   id: 1570
   time: '2025-12-28T14:46:48.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3528
+  url: https://github.com/makura-games/sunrise-station/pull/3528
 - author: ThereDrD
   changes:
   - message: Удалена система эха. Она не должна была быть добавлена
     type: Remove
   id: 1571
   time: '2025-12-28T18:38:19.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3531
+  url: https://github.com/makura-games/sunrise-station/pull/3531
 - author: KaiserMaus
   changes:
   - message: Добавлен продвинутый компактный дефибрилятор. Работает на живых и незначительно стимулирует выработку адреналина при разряде.
@@ -637,28 +637,28 @@
     type: Tweak
   id: 1572
   time: '2025-12-28T22:31:12.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3522
+  url: https://github.com/makura-games/sunrise-station/pull/3522
 - author: KaiserMaus
   changes:
   - message: Исправлено отсутствие одежды на трупах из космоса.
     type: Fix
   id: 1573
   time: '2025-12-29T03:15:00.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3511
+  url: https://github.com/makura-games/sunrise-station/pull/3511
 - author: Orvex07
   changes:
   - message: Добавлена одежда капитана.
     type: Add
   id: 1574
   time: '2025-12-29T10:36:55.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3538
+  url: https://github.com/makura-games/sunrise-station/pull/3538
 - author: ThereDrD
   changes:
   - message: Возвращены старые градиенты с тонкой настройкой
     type: Tweak
   id: 1575
   time: '2025-12-29T11:29:31.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3535
+  url: https://github.com/makura-games/sunrise-station/pull/3535
 - author: Orvex07
   changes:
   - message: Исправлен дизайн кнопки включения звука на мониторинге экипажа
@@ -667,7 +667,7 @@
     type: Add
   id: 1576
   time: '2025-12-31T10:49:31.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3564
+  url: https://github.com/makura-games/sunrise-station/pull/3564
 - author: banumbas
   changes:
   - message: Новая раса - Милиры.
@@ -678,14 +678,14 @@
     type: Fix
   id: 1577
   time: '2025-12-31T11:27:09.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3470
+  url: https://github.com/makura-games/sunrise-station/pull/3470
 - author: Nrd-K, Yadere San
   changes:
   - message: Добавлены три новые цели в вирусологию. Удачи, метаигроки
     type: Add
   id: 1578
   time: '2025-12-31T12:50:14.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3557
+  url: https://github.com/makura-games/sunrise-station/pull/3557
 - author: KaiserMaus
   changes:
   - message: Добавлен вновь имплант "Побег" в аплинк.
@@ -694,7 +694,7 @@
     type: Fix
   id: 1579
   time: '2025-12-31T14:43:07.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3565
+  url: https://github.com/makura-games/sunrise-station/pull/3565
 - author: Nrd-K
   changes:
   - message: Изменены некоторые цели станции.
@@ -703,7 +703,7 @@
     type: Fix
   id: 1580
   time: '2026-01-01T20:49:08.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3585
+  url: https://github.com/makura-games/sunrise-station/pull/3585
 - author: ThereDrD
   changes:
   - message: Исправлен случайно удаленный красивый интерфейс логов с подсвечиванием
@@ -724,21 +724,21 @@
     type: Fix
   id: 1581
   time: '2026-01-02T11:17:04.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3586
+  url: https://github.com/makura-games/sunrise-station/pull/3586
 - author: kanopus7
   changes:
   - message: Убраны вампиры до реворка.
     type: Remove
   id: 1582
   time: '2026-01-02T17:58:08.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3592
+  url: https://github.com/makura-games/sunrise-station/pull/3592
 - author: KaiserMaus
   changes:
   - message: Добавлены различные балончики краски в спонсорский аплинк.
     type: Add
   id: 1583
   time: '2026-01-03T14:28:32.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3595
+  url: https://github.com/makura-games/sunrise-station/pull/3595
 - author: kanopus7
   changes:
   - message: Пофишено использование бумаги через z.
@@ -759,7 +759,7 @@
     type: Tweak
   id: 1584
   time: '2026-01-03T16:39:41.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3569
+  url: https://github.com/makura-games/sunrise-station/pull/3569
 - author: KaiserMaus
   changes:
   - message: Добавлена новая экспедиция в снежный биом.
@@ -768,21 +768,21 @@
     type: Add
   id: 1585
   time: '2026-01-03T16:48:38.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3589
+  url: https://github.com/makura-games/sunrise-station/pull/3589
 - author: KaiserMaus
   changes:
   - message: Добавлены новые эффекты для ряда газировок в торговых автоматах.
     type: Add
   id: 1586
   time: '2026-01-03T18:26:08.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3580
+  url: https://github.com/makura-games/sunrise-station/pull/3580
 - author: Kinar_7
   changes:
   - message: Изменил работу огнестрела боргов СБ
     type: Tweak
   id: 1587
   time: '2026-01-04T09:19:43.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3584
+  url: https://github.com/makura-games/sunrise-station/pull/3584
 - author: ThereDrD
   changes:
   - message: Сокращено потребление видеопамяти на 230 мегабайт в максимальном случае. Теперь игра должна идти получше на слабых ноутбуках
@@ -791,14 +791,14 @@
     type: Remove
   id: 1588
   time: '2026-01-04T20:21:29.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3601
+  url: https://github.com/makura-games/sunrise-station/pull/3601
 - author: ThereDrD
   changes:
   - message: Анимацию изъятия и добавление предметов в хранилища теперь не колбасит, а сама она стала более сглаженной.
     type: Fix
   id: 1589
   time: '2026-01-04T21:28:44.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3599
+  url: https://github.com/makura-games/sunrise-station/pull/3599
 - author: kanopus7
   changes:
   - message: Пофикшена локализация батареек.
@@ -813,7 +813,7 @@
     type: Fix
   id: 1590
   time: '2026-01-05T16:35:40.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3634
+  url: https://github.com/makura-games/sunrise-station/pull/3634
 - author: VigersRay
   changes:
   - message: Возвращены все удаленные анимации лобби.
@@ -826,35 +826,35 @@
     type: Remove
   id: 1591
   time: '2026-01-07T03:40:08.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3646
+  url: https://github.com/makura-games/sunrise-station/pull/3646
 - author: SliZen
   changes:
   - message: Добавлены светильники устанавливаемые в полу
     type: Add
   id: 1592
   time: '2026-01-07T10:56:30.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3622
+  url: https://github.com/makura-games/sunrise-station/pull/3622
 - author: ThereDrD
   changes:
   - message: Двойные и тройные шлюзы теперь не закрываются, пока в них стоят люди и не выталкивают за стены
     type: Fix
   id: 1593
   time: '2026-01-07T11:22:24.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3602
+  url: https://github.com/makura-games/sunrise-station/pull/3602
 - author: KaiserMaus
   changes:
   - message: Добавлен раздел гайда «Экспедиции» с описаниями пиратов, ксено и карпов.
     type: Add
   id: 1594
   time: '2026-01-07T11:26:01.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3659
+  url: https://github.com/makura-games/sunrise-station/pull/3659
 - author: selnny
   changes:
   - message: Обновлен вайтлист медицинских поясов
     type: Tweak
   id: 1595
   time: '2026-01-07T11:32:10.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3633
+  url: https://github.com/makura-games/sunrise-station/pull/3633
 - author: Foosky2304
   changes:
   - message: Исправлено веселье даблы.(с 52 урона до 32, 40% рефлекта к пулям и лазерам)
@@ -863,7 +863,7 @@
     type: Fix
   id: 1596
   time: '2026-01-07T15:16:28.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3627
+  url: https://github.com/makura-games/sunrise-station/pull/3627
 - author: ThereDrD
   changes:
   - message: Добавлены анимации дропа предметов на землю и перекладывания в хранилища(сумки, рюкзаки). Раньше их не было
@@ -872,14 +872,14 @@
     type: Tweak
   id: 1597
   time: '2026-01-08T06:08:52.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3663
+  url: https://github.com/makura-games/sunrise-station/pull/3663
 - author: Orvex07
   changes:
   - message: Цели станции будут случайны
     type: Fix
   id: 1598
   time: '2026-01-08T07:35:49.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3658
+  url: https://github.com/makura-games/sunrise-station/pull/3658
 - author: kanopus7
   changes:
   - message: Исправлена локализация в инъекторах.
@@ -900,7 +900,7 @@
     type: Tweak
   id: 1599
   time: '2026-01-08T07:39:47.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3656
+  url: https://github.com/makura-games/sunrise-station/pull/3656
 - author: kanopus7
   changes:
   - message: Баги с перекатом и прыгунами исправлены.
@@ -909,35 +909,35 @@
     type: Tweak
   id: 1600
   time: '2026-01-08T08:04:20.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3655
+  url: https://github.com/makura-games/sunrise-station/pull/3655
 - author: selnny
   changes:
   - message: Исправлено смещение источников света у подов.
     type: Fix
   id: 1601
   time: '2026-01-08T08:06:14.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3666
+  url: https://github.com/makura-games/sunrise-station/pull/3666
 - author: Orvex07
   changes:
   - message: Восстановлена и доработана механика самоумерщвления
     type: Fix
   id: 1602
   time: '2026-01-08T08:10:34.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3657
+  url: https://github.com/makura-games/sunrise-station/pull/3657
 - author: Fooksy2304
   changes:
   - message: Добавлены недостающие переводы для химикатов
     type: Add
   id: 1603
   time: '2026-01-08T18:24:56.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3677
+  url: https://github.com/makura-games/sunrise-station/pull/3677
 - author: selnny
   changes:
   - message: Исправлена ошибка, не позволявшая вставлять чип в перчатку Г.О.Р.И.Л.Л.А.
     type: Fix
   id: 1604
   time: '2026-01-08T19:09:39.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3673
+  url: https://github.com/makura-games/sunrise-station/pull/3673
 - author: kanopus7
   changes:
   - message: Пофикшена лампочка шахтерского борга.
@@ -952,14 +952,14 @@
     type: Tweak
   id: 1605
   time: '2026-01-09T03:21:01.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3675
+  url: https://github.com/makura-games/sunrise-station/pull/3675
 - author: Noychik, Orvex07 & seraphimttt
   changes:
   - message: Добавлена новая одежда
     type: Add
   id: 1606
   time: '2026-01-09T10:45:49.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3680
+  url: https://github.com/makura-games/sunrise-station/pull/3680
 - author: kanopus7
   changes:
   - message: Пофикшены операции на ксеноморфах.
@@ -970,35 +970,35 @@
     type: Fix
   id: 1607
   time: '2026-01-09T10:48:19.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3685
+  url: https://github.com/makura-games/sunrise-station/pull/3685
 - author: VigersRay
   changes:
   - message: Оптимизировано использование пространства в правой панели лобби.
     type: Tweak
   id: 1608
   time: '2026-01-09T14:12:32.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3686
+  url: https://github.com/makura-games/sunrise-station/pull/3686
 - author: ThereDrD
   changes:
   - message: Оптимизирована система НПС, возможно сервер станет меньше лагать
     type: Fix
   id: 1609
   time: '2026-01-13T14:43:23.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3708
+  url: https://github.com/makura-games/sunrise-station/pull/3708
 - author: Orvex07
   changes:
   - message: Баллончики с краской в магазине спонсора отображаются корректно
     type: Fix
   id: 1610
   time: '2026-01-13T15:02:51.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3717
+  url: https://github.com/makura-games/sunrise-station/pull/3717
 - author: Orvex07
   changes:
   - message: Исправлена локализация в ботанике
     type: Fix
   id: 1611
   time: '2026-01-13T15:03:43.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3716
+  url: https://github.com/makura-games/sunrise-station/pull/3716
 - author: Drokt
   changes:
   - message: Добавлен реагент Нутрикриокомп для восстановления голода и жажды в криоподе.
@@ -1007,28 +1007,28 @@
     type: Tweak
   id: 1612
   time: '2026-01-13T15:04:59.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3715
+  url: https://github.com/makura-games/sunrise-station/pull/3715
 - author: Orvex07
   changes:
   - message: Диверсионный Отряд будет корректно отображатся в панели телепортов призраков
     type: Fix
   id: 1613
   time: '2026-01-14T08:31:23.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3705
+  url: https://github.com/makura-games/sunrise-station/pull/3705
 - author: KaiserMaus
   changes:
   - message: Добавлено руководство по типам патронов.
     type: Add
   id: 1614
   time: '2026-01-14T13:00:14.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3693
+  url: https://github.com/makura-games/sunrise-station/pull/3693
 - author: Orvex07
   changes:
   - message: Двойные/Тройные шлюзы красятся корректно
     type: Fix
   id: 1615
   time: '2026-01-15T21:23:41.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3719
+  url: https://github.com/makura-games/sunrise-station/pull/3719
 - author: banumbas
   changes:
   - message: Милиры получили свою броню которую можно использовать во время раскрытых крыльев, а другие расы не могут её одеть. Раундстартом можно печатать лёгкую броню на СБ ТехФабе, остальное изучается в Т2 изучении СБ.
@@ -1045,7 +1045,7 @@
     type: Tweak
   id: 1616
   time: '2026-01-16T12:41:46.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3671
+  url: https://github.com/makura-games/sunrise-station/pull/3671
 - author: Kaiten
   changes:
   - message: Обновлены описания дефибрилляторов отражающие их особенности
@@ -1054,14 +1054,14 @@
     type: Fix
   id: 1617
   time: '2026-01-17T15:34:22.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3724
+  url: https://github.com/makura-games/sunrise-station/pull/3724
 - author: Kinar_7
   changes:
   - message: Убрал длинное тире (—) и числа с точкой (7.62) из авто очистки чата
     type: Tweak
   id: 1618
   time: '2026-01-19T07:48:48.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3752
+  url: https://github.com/makura-games/sunrise-station/pull/3752
 - author: Orvex07, mcblackenergon
   changes:
   - message: Добавлено много черт внешности таярам
@@ -1070,14 +1070,14 @@
     type: Remove
   id: 1619
   time: '2026-01-19T08:04:41.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3746
+  url: https://github.com/makura-games/sunrise-station/pull/3746
 - author: ThereDrD
   changes:
   - message: Цвет следов перестал быть темнее, чем должен быть.
     type: Fix
   id: 1620
   time: '2026-01-19T08:05:59.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3744
+  url: https://github.com/makura-games/sunrise-station/pull/3744
 - author: KaiserMaus
   changes:
   - message: Добавлена технология ручного извлечения имплантов в РНД.
@@ -1090,35 +1090,35 @@
     type: Fix
   id: 1621
   time: '2026-01-19T08:07:59.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3727
+  url: https://github.com/makura-games/sunrise-station/pull/3727
 - author: Fooksy2304, vispick
   changes:
   - message: Респрайт РСУ СИ.
     type: Fix
   id: 1622
   time: '2026-01-19T08:14:42.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3728
+  url: https://github.com/makura-games/sunrise-station/pull/3728
 - author: KaiserMaus
   changes:
   - message: 'Исправлен порочный круг: чтобы играть за начальную роль больше не нужно уже работать в отделе.'
     type: Fix
   id: 1623
   time: '2026-01-19T18:12:57.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3755
+  url: https://github.com/makura-games/sunrise-station/pull/3755
 - author: Kinar_7
   changes:
   - message: Фальшфаеры теперь можно создать в техфабе СБ в начале раунда
     type: Add
   id: 1624
   time: '2026-01-20T10:31:58.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3759
+  url: https://github.com/makura-games/sunrise-station/pull/3759
 - author: Orvex07, proximitymines
   changes:
   - message: Добавлены Черные/Белые Сумки/Рюкзаки/Вещмешки капитану
     type: Add
   id: 1625
   time: '2026-01-21T20:54:17.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3745
+  url: https://github.com/makura-games/sunrise-station/pull/3745
 - author: Orvex07
   changes:
   - message: Бронированная дверь закрывается корректно
@@ -1127,7 +1127,7 @@
     type: Fix
   id: 1626
   time: '2026-01-21T20:57:19.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3756
+  url: https://github.com/makura-games/sunrise-station/pull/3756
 - author: KaiserMaus
   changes:
   - message: Добавлены два новых вида патров 12 калибра. Пробивной имет повышенный разброс и урон структурам. Флешетта имеет высокую кучность и уменьшенное количество дроби но высокий шанс пробития укрытий и брони.
@@ -1144,7 +1144,7 @@
     type: Fix
   id: 1627
   time: '2026-01-21T20:58:34.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3764
+  url: https://github.com/makura-games/sunrise-station/pull/3764
 - author: KaiserMaus
   changes:
   - message: Исправлена отсутствие взвода у мины.
@@ -1155,7 +1155,7 @@
     type: Fix
   id: 1628
   time: '2026-01-21T21:33:03.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3767
+  url: https://github.com/makura-games/sunrise-station/pull/3767
 - author: Fooksy2304
   changes:
   - message: добавлен Убийца драконов
@@ -1164,14 +1164,14 @@
     type: Add
   id: 1629
   time: '2026-01-22T17:47:37.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3762
+  url: https://github.com/makura-games/sunrise-station/pull/3762
 - author: KaiserMaus
   changes:
   - message: Добавлена технология манипуляции с ДНК в РНД.
     type: Add
   id: 1630
   time: '2026-01-22T17:50:58.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3772
+  url: https://github.com/makura-games/sunrise-station/pull/3772
 - author: KaiserMaus
   changes:
   - message: Добавлен солевой краб и плазма краб.
@@ -1182,21 +1182,21 @@
     type: Tweak
   id: 1631
   time: '2026-01-23T11:39:09.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3771
+  url: https://github.com/makura-games/sunrise-station/pull/3771
 - author: KaiserMaus
   changes:
   - message: Добавлены XL барабаны для Бульдога ядерных оперативников, содержащие 16 патронов.
     type: Add
   id: 1632
   time: '2026-01-24T18:36:51.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3780
+  url: https://github.com/makura-games/sunrise-station/pull/3780
 - author: Kinar_7
   changes:
   - message: Поправил инвентари вендомата почты и боксера, теперь они существуют
     type: Fix
   id: 1633
   time: '2026-01-26T10:09:57.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3781
+  url: https://github.com/makura-games/sunrise-station/pull/3781
 - author: KaiserMaus
   changes:
   - message: Возвращен лимит игры по времени на интеранах/кадетах отделов но увеличено время с 5ч до 15ч. Оставьте роли новичкам.
@@ -1207,7 +1207,7 @@
     type: Tweak
   id: 1634
   time: '2026-01-26T14:22:36.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3785
+  url: https://github.com/makura-games/sunrise-station/pull/3785
 - author: KaiserMaus
   changes:
   - message: Клан паука доработал костюм ниндзя, теперь часть костюма имеет тепловизор и мгновенный выпуск вспышки/дыма а затраты на некоторые функции стали меньше.
@@ -1218,7 +1218,7 @@
     type: Tweak
   id: 1635
   time: '2026-01-26T19:51:04.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3787
+  url: https://github.com/makura-games/sunrise-station/pull/3787
 - author: Orvex07
   changes:
   - message: Добавлен новый ручной мониторинг парамедикам. Показывает экипаж в ужасном, критическом, мертвом состоянии
@@ -1231,14 +1231,14 @@
     type: Fix
   id: 1636
   time: '2026-01-26T20:00:52.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3788
+  url: https://github.com/makura-games/sunrise-station/pull/3788
 - author: KaiserMaus
   changes:
   - message: Переведены  и доработаны руководства по расам и добавлены свои рассы в список.
     type: Tweak
   id: 1637
   time: '2026-01-26T20:27:51.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3792
+  url: https://github.com/makura-games/sunrise-station/pull/3792
 - author: VigersRay
   changes:
   - message: Добавлен мессенжер мах... ихихяхя.
@@ -1247,7 +1247,7 @@
     type: Tweak
   id: 1638
   time: '2026-01-26T20:30:00.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3789
+  url: https://github.com/makura-games/sunrise-station/pull/3789
 - author: Kinar_7
   changes:
   - message: Увеличено количество пива в алкомате
@@ -1258,7 +1258,7 @@
     type: Tweak
   id: 1639
   time: '2026-01-27T20:19:51.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3778
+  url: https://github.com/makura-games/sunrise-station/pull/3778
 - author: VigersRay
   changes:
   - message: Все группы департаментов теперь по умолчанию замучены.
@@ -1283,7 +1283,7 @@
     type: Fix
   id: 1642
   time: '2026-01-28T05:25:16.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3804
+  url: https://github.com/makura-games/sunrise-station/pull/3804
 - author: KaiserMaus
   changes:
   - message: Добавлены новые вещи в аплинк.
@@ -1294,14 +1294,14 @@
     type: Fix
   id: 1643
   time: '2026-01-29T15:02:24.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3813
+  url: https://github.com/makura-games/sunrise-station/pull/3813
 - author: Orvex07
   changes:
   - message: Исправлена ошибка текстуры со стыковочным шлюзом ксеноборгов.
     type: Fix
   id: 1644
   time: '2026-01-29T18:12:57.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3809
+  url: https://github.com/makura-games/sunrise-station/pull/3809
 - author: VigersRay
   changes:
   - message: Добавлена програма в КПК - FlashSnap. Позволяет делать снимки и просматривать их в галерее. Имеет лимит снимков в 50 кадров, а так же функции зума и вспышки.
@@ -1316,7 +1316,7 @@
     type: Fix
   id: 1645
   time: '2026-01-30T05:26:06.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3819
+  url: https://github.com/makura-games/sunrise-station/pull/3819
 - author: Orvex07
   changes:
   - message: Исправлен удаленный контроллер управления шаттлом диверсионного отряда
@@ -1325,7 +1325,7 @@
     type: Fix
   id: 1646
   time: '2026-01-30T05:55:56.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3812
+  url: https://github.com/makura-games/sunrise-station/pull/3812
 - author: Kinar_7
   changes:
   - message: секреный инвентарь вендомата детектива теперь имеет отсылку на диско элизиум.
@@ -1338,7 +1338,7 @@
     type: Tweak
   id: 1647
   time: '2026-01-30T14:06:45.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3777
+  url: https://github.com/makura-games/sunrise-station/pull/3777
 - author: Orvex
   changes:
   - message: Возвращена цель на кражу ручного мониторинга
@@ -1347,7 +1347,7 @@
     type: Tweak
   id: 1648
   time: '2026-01-31T08:40:10.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3799
+  url: https://github.com/makura-games/sunrise-station/pull/3799
 - author: KaiserMaus
   changes:
   - message: Добавлено руководство по взрывному шнуру и детонаторах.
@@ -1358,7 +1358,7 @@
     type: Tweak
   id: 1649
   time: '2026-01-31T22:27:45.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3832
+  url: https://github.com/makura-games/sunrise-station/pull/3832
 - author: VigersRay
   changes:
   - message: Добавлена поддержка смайликов для Non IC чатов (OOC, мёртвые, админский).
@@ -1391,7 +1391,7 @@
     type: Remove
   id: 1650
   time: '2026-02-01T00:55:47.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3833
+  url: https://github.com/makura-games/sunrise-station/pull/3833
 - author: VigersRay
   changes:
   - message: Мессенджер стал настолько технологичным, что в него пробрались космические мошенники. Сообщения от одиноких вдов, собак по 500, похотливых скреллочок и безумных культистов теперь доступны абсолютно бесплатно каждому члену экипажа.
@@ -1400,14 +1400,14 @@
     type: Tweak
   id: 1651
   time: '2026-02-01T04:01:38.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3835
+  url: https://github.com/makura-games/sunrise-station/pull/3835
 - author: ThereDrD
   changes:
   - message: Логгирование админ-команд больше не логгирует asay и выглядит чуть лучше.
     type: Tweak
   id: 1652
   time: '2026-02-02T05:26:21.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3843
+  url: https://github.com/makura-games/sunrise-station/pull/3843
 - author: Orvex07
   changes:
   - message: Эмоции в чате теперь лучше понимают русский текст
@@ -1416,7 +1416,7 @@
     type: Fix
   id: 1653
   time: '2026-02-04T05:46:43.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3826
+  url: https://github.com/makura-games/sunrise-station/pull/3826
 - author: banumbas
   changes:
   - message: Шлем милир теперь можно изучать и крафтить на ТехФабе СБ.
@@ -1429,7 +1429,7 @@
     type: Fix
   id: 1654
   time: '2026-02-04T05:50:05.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3798
+  url: https://github.com/makura-games/sunrise-station/pull/3798
 - author: KaiserMaus
   changes:
   - message: Для ряда энергетического оружия и арбалетов включён bigTrigger; FoamCrossbow и фейковый кап-пистолет получили clumsyProof.
@@ -1440,7 +1440,7 @@
     type: Fix
   id: 1655
   time: '2026-02-05T07:39:58.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3841
+  url: https://github.com/makura-games/sunrise-station/pull/3841
 - author: Fooksy2304
   changes:
   - message: Добавлены перчатки корниворы, в аплинк за 8тк.
@@ -1449,7 +1449,7 @@
     type: Add
   id: 1656
   time: '2026-02-09T05:02:09.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3797
+  url: https://github.com/makura-games/sunrise-station/pull/3797
 - author: Kinar_7
   changes:
   - message: Дворфам для получения урона ядами теперь нужно выпить 25u Этанола вместо 15u
@@ -1458,7 +1458,7 @@
     type: Tweak
   id: 1657
   time: '2026-02-09T05:04:21.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3805
+  url: https://github.com/makura-games/sunrise-station/pull/3805
 - author: seemah
   changes:
   - message: ''
@@ -1469,28 +1469,28 @@
     type: Tweak
   id: 1658
   time: '2026-02-09T05:20:44.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3842
+  url: https://github.com/makura-games/sunrise-station/pull/3842
 - author: ReWAFFlution
   changes:
   - message: Изменено название глазных имплантов на "Орган-имплант"
     type: Tweak
   id: 1659
   time: '2026-02-09T20:43:32.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3891
+  url: https://github.com/makura-games/sunrise-station/pull/3891
 - author: ReWAFFlution
   changes:
   - message: У Полли появился ТТС
     type: Add
   id: 1660
   time: '2026-02-10T07:05:51.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3877
+  url: https://github.com/makura-games/sunrise-station/pull/3877
 - author: KaiserMaus
   changes:
   - message: Добавлено три новых выборов вооружения Синему щиту.
     type: Tweak
   id: 1661
   time: '2026-02-10T20:22:10.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3867
+  url: https://github.com/makura-games/sunrise-station/pull/3867
 - author: KaiserMaus
   changes:
   - message: Добавлены новые спрайты Сейфов вооружения.
@@ -1499,7 +1499,7 @@
     type: Fix
   id: 1662
   time: '2026-02-11T07:28:50.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3878
+  url: https://github.com/makura-games/sunrise-station/pull/3878
 - author: KaiserMaus
   changes:
   - message: Добавлены различные вариации имплантов адреналина и питательный имплант в аплинк предателя.
@@ -1514,28 +1514,28 @@
     type: Fix
   id: 1663
   time: '2026-02-11T19:32:50.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3871
+  url: https://github.com/makura-games/sunrise-station/pull/3871
 - author: Fooksy2304
   changes:
   - message: Синдикат восстановил поставки энергощита предателям.
     type: Fix
   id: 1664
   time: '2026-02-12T14:51:19.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3865
+  url: https://github.com/makura-games/sunrise-station/pull/3865
 - author: BDSM_
   changes:
   - message: Исправлены цели у вора на кражу оружия СБ, альтернативная фуражка смотрителя, плащи глав
     type: Fix
   id: 1665
   time: '2026-02-15T13:26:58.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3907
+  url: https://github.com/makura-games/sunrise-station/pull/3907
 - author: KaiserMaus
   changes:
   - message: Добавлен лодаут бригмедика с инъекторами.
     type: Add
   id: 1666
   time: '2026-02-16T05:06:14.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3868
+  url: https://github.com/makura-games/sunrise-station/pull/3868
 - author: KaiserMaus
   changes:
   - message: Добавлена бита «хоум-ран» и набор для чистки улик в аплинк предателя.
@@ -1544,14 +1544,14 @@
     type: Tweak
   id: 1667
   time: '2026-02-16T05:05:32.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3866
+  url: https://github.com/makura-games/sunrise-station/pull/3866
 - author: ReWAFFlution
   changes:
   - message: Добавлен WhistleAction позволяющий использовать надетый свисток в хотбаре.
     type: Add
   id: 1668
   time: '2026-02-16T05:07:29.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3875
+  url: https://github.com/makura-games/sunrise-station/pull/3875
 - author: BDSM_
   changes:
   - message: Добавлено новые классические плащи в лодаут Научного руководителя и Старшего инженера
@@ -1560,7 +1560,7 @@
     type: Add
   id: 1669
   time: '2026-02-16T05:08:19.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3879
+  url: https://github.com/makura-games/sunrise-station/pull/3879
 - author: Orvex07
   changes:
   - message: Добавлен новый шаблон - Разрешение на обыск отдела
@@ -1571,42 +1571,42 @@
     type: Fix
   id: 1670
   time: '2026-02-17T09:36:43.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3914
+  url: https://github.com/makura-games/sunrise-station/pull/3914
 - author: Fooksy2304
   changes:
   - message: у абдукторов появилось своё красивое кресло, лампа, респрайт наручников
     type: Add
   id: 1671
   time: '2026-02-23T14:26:17.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3888
+  url: https://github.com/makura-games/sunrise-station/pull/3888
 - author: ThereDrD
   changes:
   - message: Артефакты больше не будут телепортировать людей на админ арену и замороженные карты
     type: Fix
   id: 1672
   time: '2026-02-23T16:31:17.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3935
+  url: https://github.com/makura-games/sunrise-station/pull/3935
 - author: KaiserMaus
   changes:
   - message: Добавлена химическая реакция для создания порошка красного фосфора. Смешайте 2 водорода, 2 этанола и 4 фосфора и после нагрейте.
     type: Add
   id: 1673
   time: '2026-02-25T07:53:15.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3923
+  url: https://github.com/makura-games/sunrise-station/pull/3923
 - author: Kinar_7
   changes:
   - message: Добавлен раздатчик евы. Теперь ждем когда мапперы замапят.
     type: Add
   id: 1674
   time: '2026-02-25T07:55:10.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3925
+  url: https://github.com/makura-games/sunrise-station/pull/3925
 - author: Kinar_7
   changes:
   - message: В коробках донкпокетов теперь больше покетов.
     type: Tweak
   id: 1675
   time: '2026-02-25T07:57:20.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3927
+  url: https://github.com/makura-games/sunrise-station/pull/3927
 - author: KaiserMaus
   changes:
   - message: Добавлено Грей Тайд кузня кованных вещей.
@@ -1615,7 +1615,7 @@
     type: Fix
   id: 1676
   time: '2026-02-26T23:13:24.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3921
+  url: https://github.com/makura-games/sunrise-station/pull/3921
 - author: ReWAFFlution
   changes:
   - message: Добавлены волокна для цветных нитриловых перчаток.
@@ -1624,14 +1624,14 @@
     type: Add
   id: 1677
   time: '2026-03-02T05:35:45.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3892
+  url: https://github.com/makura-games/sunrise-station/pull/3892
 - author: Fooksy2304
   changes:
   - message: Баланс резиновых боеприпасов был вновь изменён.
     type: Fix
   id: 1678
   time: '2026-03-02T05:38:04.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3910
+  url: https://github.com/makura-games/sunrise-station/pull/3910
 - author: KaiserMaus
   changes:
   - message: Пираты экспедиции научились периодически что-то говорить.
@@ -1642,49 +1642,49 @@
     type: Tweak
   id: 1679
   time: '2026-03-02T05:41:26.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3912
+  url: https://github.com/makura-games/sunrise-station/pull/3912
 - author: Miolo
   changes:
   - message: При позднем присоединении боргом вас будет спавнить как в начале раунда.
     type: Tweak
   id: 1680
   time: '2026-03-02T05:41:51.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3915
+  url: https://github.com/makura-games/sunrise-station/pull/3915
 - author: Miolo
   changes:
   - message: Питомцы теперь не будут съедены Шивой.
     type: Fix
   id: 1681
   time: '2026-03-02T05:43:33.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3916
+  url: https://github.com/makura-games/sunrise-station/pull/3916
 - author: Dev Orvex07 Spriter bulbo44kkey
   changes:
   - message: Добавлены разновидности стейков из мяса разных рас
     type: Add
   id: 1682
   time: '2026-03-02T12:57:08.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3941
+  url: https://github.com/makura-games/sunrise-station/pull/3941
 - author: Kinar_7
   changes:
   - message: Автоматические заводы Донк-Ко начали сбоить, из-за чего наполнение коробок с донками стало непонятным
     type: Add
   id: 1683
   time: '2026-03-02T14:20:22.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3958
+  url: https://github.com/makura-games/sunrise-station/pull/3958
 - author: seemah
   changes:
   - message: ''
     type: Add
   id: 1684
   time: '2026-03-04T06:53:44.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3946
+  url: https://github.com/makura-games/sunrise-station/pull/3946
 - author: ReWAFFlution
   changes:
   - message: Продвинутая швабра теперь восстанавливает воду быстрее.
     type: Tweak
   id: 1685
   time: '2026-03-04T22:30:24.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3972
+  url: https://github.com/makura-games/sunrise-station/pull/3972
 - author: ReWAFFlution
   changes:
   - message: Добавлена сметана и мёд в "Островок соусов".
@@ -1693,14 +1693,14 @@
     type: Remove
   id: 1686
   time: '2026-03-05T10:37:35.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3899
+  url: https://github.com/makura-games/sunrise-station/pull/3899
 - author: seemah
   changes:
   - message: Импланту сварщика добавлена защита от вспышек.
     type: Tweak
   id: 1687
   time: '2026-03-06T13:46:21.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3987
+  url: https://github.com/makura-games/sunrise-station/pull/3987
 - author: Orvex07
   changes:
   - message: РнД локализован в НИО.
@@ -1715,42 +1715,42 @@
     type: Fix
   id: 1688
   time: '2026-03-09T06:56:00.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3970
+  url: https://github.com/makura-games/sunrise-station/pull/3970
 - author: KaseirMaus
   changes:
   - message: Удалено замедление у Брони Мародёра/Рейдера.
     type: Tweak
   id: 1689
   time: '2026-03-09T06:58:55.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4002
+  url: https://github.com/makura-games/sunrise-station/pull/4002
 - author: ReWAFFlution
   changes:
   - message: Офицеру СБ удалены шлем и очки раундстартом.
     type: Remove
   id: 1690
   time: '2026-03-09T07:43:15.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3881
+  url: https://github.com/makura-games/sunrise-station/pull/3881
 - author: seemah
   changes:
   - message: HUD'у СБ добавлена защита от вспышек.
     type: Add
   id: 1691
   time: '2026-03-09T13:10:09.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4007
+  url: https://github.com/makura-games/sunrise-station/pull/4007
 - author: seemah
   changes:
   - message: '"Набор" в именах резоми исправлен на "Стая".'
     type: Fix
   id: 1692
   time: '2026-03-09T14:41:24.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4009
+  url: https://github.com/makura-games/sunrise-station/pull/4009
 - author: seemah, bulbo44kkey
   changes:
   - message: ''
     type: Add
   id: 1693
   time: '2026-03-09T21:01:00.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3905
+  url: https://github.com/makura-games/sunrise-station/pull/3905
 - author: BDSM_
   changes:
   - message: Возвращены дешёвые солнце защитные и неловкие очки в лодаут
@@ -1759,49 +1759,49 @@
     type: Tweak
   id: 1694
   time: '2026-03-10T08:20:44.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3926
+  url: https://github.com/makura-games/sunrise-station/pull/3926
 - author: XcenLegend, KaiserMaus
   changes:
   - message: Спрайты СБ вариантов Лектера и Дрозда были изменены.
     type: Tweak
   id: 1695
   time: '2026-03-10T20:11:00.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3997
+  url: https://github.com/makura-games/sunrise-station/pull/3997
 - author: KaiserMaus
   changes:
   - message: Некоторые ситуации вынудили NanoTrasen восстановить цену на газы.
     type: Tweak
   id: 1696
   time: '2026-03-10T20:07:21.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4016
+  url: https://github.com/makura-games/sunrise-station/pull/4016
 - author: Miolo
   changes:
   - message: Теперь пиратам экспедиций по правилам роли запрещено покидать экспедицию на шаттле.
     type: Tweak
   id: 1697
   time: '2026-03-10T20:18:37.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3988
+  url: https://github.com/makura-games/sunrise-station/pull/3988
 - author: ThereDrD
   changes:
   - message: Возможное исправление тотальных лагов сервера связанных с атакой через MIDI
     type: Fix
   id: 1698
   time: '2026-03-11T07:46:03.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3994
+  url: https://github.com/makura-games/sunrise-station/pull/3994
 - author: KaiserMaus
   changes:
   - message: Добавлен блюспейс-кувшин, блюспейс-пробирка, блюспейс-огнетушитель, блюспейс-воздушный баллон, малый блюспейс-воздушный баллон.
     type: Add
   id: 1699
   time: '2026-03-11T07:48:29.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3993
+  url: https://github.com/makura-games/sunrise-station/pull/3993
 - author: Soragy
   changes:
   - message: По идее, окончательно устранена утечка памяти, связанная с музыкой.
     type: Fix
   id: 1700
   time: '2026-03-11T13:30:44.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3990
+  url: https://github.com/makura-games/sunrise-station/pull/3990
 - author: seemah
   changes:
   - message: Ксеноморфы больше не могут надевать скафандры и жёсткие шлема.
@@ -1812,14 +1812,14 @@
     type: Tweak
   id: 1701
   time: '2026-03-11T21:29:51.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3945
+  url: https://github.com/makura-games/sunrise-station/pull/3945
 - author: Miolo
   changes:
   - message: Исправлено отображение урона для множества боеприпасов.
     type: Fix
   id: 1702
   time: '2026-03-12T12:42:44.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4030
+  url: https://github.com/makura-games/sunrise-station/pull/4030
 - author: Orvex07
   changes:
   - message: В консоль атмоса добавлена кнопка деактивации пищалки
@@ -1828,21 +1828,21 @@
     type: Fix
   id: 1703
   time: '2026-03-12T12:45:58.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3898
+  url: https://github.com/makura-games/sunrise-station/pull/3898
 - author: seemah
   changes:
   - message: Изменено время отправки ССД-игрока в криогенное хранилище.
     type: Tweak
   id: 1704
   time: '2026-03-13T01:05:08.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4034
+  url: https://github.com/makura-games/sunrise-station/pull/4034
 - author: ThereDrD
   changes:
   - message: Исправлено неловкое молчание в лобби, музыка теперь играет как нужно.
     type: Fix
   id: 1705
   time: '2026-03-14T04:52:40.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4041
+  url: https://github.com/makura-games/sunrise-station/pull/4041
 - author: KaiserMaus
   changes:
   - message: Добавлена сжиженная канистра плазмы в покупку карго.
@@ -1851,7 +1851,7 @@
     type: Tweak
   id: 1706
   time: '2026-03-15T03:09:32.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4048
+  url: https://github.com/makura-games/sunrise-station/pull/4048
 - author: Soragy
   changes:
   - message: Добавлены взаимодействия для крыльев.
@@ -1862,14 +1862,14 @@
     type: Fix
   id: 1707
   time: '2026-03-15T03:14:09.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4044
+  url: https://github.com/makura-games/sunrise-station/pull/4044
 - author: ThereDrD
   changes:
   - message: Исправлен кик в лобби с причиной таймаут, когда игрок подключался в лобби и качал тяжелые лобби анимации
     type: Fix
   id: 1708
   time: '2026-03-15T03:47:34.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4047
+  url: https://github.com/makura-games/sunrise-station/pull/4047
 - author: ThereDrD
   changes:
   - message: Исправлено значительное падение FPS при добавлении в чат нового сообщения
@@ -1882,7 +1882,7 @@
     type: Fix
   id: 1709
   time: '2026-03-15T06:29:01.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4049
+  url: https://github.com/makura-games/sunrise-station/pull/4049
 - author: Orvex07
   changes:
   - message: Админ панель - нижняя панель разбита на 2 ряда
@@ -1891,7 +1891,7 @@
     type: Tweak
   id: 1710
   time: '2026-03-15T10:08:29.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3808
+  url: https://github.com/makura-games/sunrise-station/pull/3808
 - author: Orvex07
   changes:
   - message: Исправлен мониторинг медицинского борга при выборе роли через обычного борга.
@@ -1904,7 +1904,7 @@
     type: Tweak
   id: 1711
   time: '2026-03-15T21:35:05.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4053
+  url: https://github.com/makura-games/sunrise-station/pull/4053
 - author: KaiserMaus
   changes:
   - message: Отдел экспедиций докладывает об обнаружении в секторе "заброшенных" аванпостов СССП.
@@ -1917,7 +1917,7 @@
     type: Tweak
   id: 1712
   time: '2026-03-16T20:29:21.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3930
+  url: https://github.com/makura-games/sunrise-station/pull/3930
 - author: KaiserMaus
   changes:
   - message: Умеренная сложность экспедиции доступна с 10 минут раунда.
@@ -1926,35 +1926,35 @@
     type: Tweak
   id: 1713
   time: '2026-03-17T17:25:28.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4063
+  url: https://github.com/makura-games/sunrise-station/pull/4063
 - author: Bandirpvp
   changes:
   - message: Добавлено 10 магнитных обломков.
     type: Add
   id: 1714
   time: '2026-03-18T17:57:08.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4011
+  url: https://github.com/makura-games/sunrise-station/pull/4011
 - author: Soragy
   changes:
   - message: Исправлена проблема с отображением правил сервера и некоторого текста в GuideBook.
     type: Fix
   id: 1715
   time: '2026-03-19T05:11:55.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4064
+  url: https://github.com/makura-games/sunrise-station/pull/4064
 - author: Soragy
   changes:
   - message: Портирован ItemCondition для InteractionsPanel.
     type: Add
   id: 1716
   time: '2026-03-19T05:11:31.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4066
+  url: https://github.com/makura-games/sunrise-station/pull/4066
 - author: Wardex
   changes:
   - message: Сумки для руды шахтёрских киборгов теперь автоматически подбирают предметы с пола, как обычные сумки для руды.
     type: Fix
   id: 1717
   time: '2026-03-19T05:15:49.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4058
+  url: https://github.com/makura-games/sunrise-station/pull/4058
 - author: Quantum-cross, KaiserMaus
   changes:
   - message: Добавлена забавная аномалия.
@@ -1963,7 +1963,7 @@
     type: Tweak
   id: 1718
   time: '2026-03-19T08:09:20.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3996
+  url: https://github.com/makura-games/sunrise-station/pull/3996
 - author: Conflee, KaiserMaus
   changes:
   - message: Добавлен джетпак пустоты СИ. Он спавнится в шкафчике СИ и является целью кражи.
@@ -1974,28 +1974,28 @@
     type: Tweak
   id: 1719
   time: '2026-03-19T08:10:25.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3995
+  url: https://github.com/makura-games/sunrise-station/pull/3995
 - author: KaiserMaus
   changes:
   - message: Особой "Картонной коробке" возвращен мираж.
     type: Tweak
   id: 1720
   time: '2026-03-19T08:20:59.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4013
+  url: https://github.com/makura-games/sunrise-station/pull/4013
 - author: Orvex07
   changes:
   - message: Удалена кнопка взаимодействия "Активировать тревогу" у админ призрака.
     type: Remove
   id: 1721
   time: '2026-03-19T08:24:17.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3837
+  url: https://github.com/makura-games/sunrise-station/pull/3837
 - author: ThereDrD
   changes:
   - message: Сообщения с необычными акцентами и нормальными символами больше не блокируются в чате
     type: Fix
   id: 1722
   time: '2026-03-20T09:45:26.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4070
+  url: https://github.com/makura-games/sunrise-station/pull/4070
 - author: KaiserMaus
   changes:
   - message: Добавлена технология питательной пасты в РНД.
@@ -2006,7 +2006,7 @@
     type: Fix
   id: 1723
   time: '2026-03-20T09:53:07.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4069
+  url: https://github.com/makura-games/sunrise-station/pull/4069
 - author: ThereDrD
   changes:
   - message: Улучшена производительность случайной трансформации артефактов, теперь он должен вызывать меньшие лагспайки или не вызывать вовсе.
@@ -2015,7 +2015,7 @@
     type: Fix
   id: 1724
   time: '2026-03-20T13:45:06.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4074
+  url: https://github.com/makura-games/sunrise-station/pull/4074
 - author: Orvex07
   changes:
   - message: Кровати и операционные столы больше не лечат, если они не закреплены.
@@ -2024,21 +2024,21 @@
     type: Tweak
   id: 1725
   time: '2026-03-20T17:38:16.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4031
+  url: https://github.com/makura-games/sunrise-station/pull/4031
 - author: Soragy
   changes:
   - message: Исправлено отображение черт внешности тела для Аркан и Таяран.
     type: Fix
   id: 1726
   time: '2026-03-20T19:10:05.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3932
+  url: https://github.com/makura-games/sunrise-station/pull/3932
 - author: BDSM_
   changes:
   - message: Добрые люди передали свои импланты, повязки и другие черты внешности для расы Милиров.
     type: Add
   id: 1727
   time: '2026-03-21T06:44:03.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4068
+  url: https://github.com/makura-games/sunrise-station/pull/4068
 - author: Orvex07
   changes:
   - message: Добавлены смайлики в МХелп
@@ -2049,7 +2049,7 @@
     type: Tweak
   id: 1728
   time: '2026-03-21T07:55:57.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4003
+  url: https://github.com/makura-games/sunrise-station/pull/4003
 - author: Orvex07
   changes:
   - message: Исправленные ошибки звука при объявлениях.
@@ -2058,28 +2058,28 @@
     type: Tweak
   id: 1729
   time: '2026-03-21T11:18:29.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4071
+  url: https://github.com/makura-games/sunrise-station/pull/4071
 - author: Kinar_7
   changes:
   - message: Добавлены альтернативные названия должностей.
     type: Add
   id: 1730
   time: '2026-03-21T13:49:31.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4037
+  url: https://github.com/makura-games/sunrise-station/pull/4037
 - author: Soragy
   changes:
   - message: Теперь следы и мазня могут содержать ДНК, если оно было в луже.
     type: Add
   id: 1731
   time: '2026-03-22T11:41:25.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4081
+  url: https://github.com/makura-games/sunrise-station/pull/4081
 - author: Flaxor13
   changes:
   - message: Изменён размер ножен для сабли капитана до уровня ножен рапиры.
     type: Tweak
   id: 1732
   time: '2026-03-22T18:40:31.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4084
+  url: https://github.com/makura-games/sunrise-station/pull/4084
 - author: Kaiten
   changes:
   - message: Руководство по культу плоти внутри игры.
@@ -2126,56 +2126,56 @@
     type: Tweak
   id: 1733
   time: '2026-03-23T07:12:26.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4045
+  url: https://github.com/makura-games/sunrise-station/pull/4045
 - author: KiaserMaus
   changes:
   - message: Мультифазный пистолет более не требует наличие кода на станции для смены режима.
     type: Tweak
   id: 1734
   time: '2026-03-23T13:44:48.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4082
+  url: https://github.com/makura-games/sunrise-station/pull/4082
 - author: Orvex07
   changes:
   - message: Уничтожена уязвимость системы крио
     type: Remove
   id: 1735
   time: '2026-03-25T07:00:42.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4091
+  url: https://github.com/makura-games/sunrise-station/pull/4091
 - author: seemah
   changes:
   - message: 'Добавлен новый элемент одежды: майки.'
     type: Add
   id: 1736
   time: '2026-03-25T07:07:59.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4078
+  url: https://github.com/makura-games/sunrise-station/pull/4078
 - author: KaiserMaus
   changes:
   - message: Пираты совершили рейд на склад с ручными гранатами.
     type: Tweak
   id: 1737
   time: '2026-03-25T13:54:19.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4075
+  url: https://github.com/makura-games/sunrise-station/pull/4075
 - author: banumbas
   changes:
   - message: Механические крылья для милир
     type: Add
   id: 1738
   time: '2026-03-26T10:46:09.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4083
+  url: https://github.com/makura-games/sunrise-station/pull/4083
 - author: KaiserMaus
   changes:
   - message: Исправлена невозможность установки латунной плитки.
     type: Fix
   id: 1739
   time: '2026-03-26T10:50:45.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4098
+  url: https://github.com/makura-games/sunrise-station/pull/4098
 - author: KaiserMaus
   changes:
   - message: Фелениды потеряли защитную оболочку на коже от кислот.
     type: Fix
   id: 1740
   time: '2026-03-26T10:51:08.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4099
+  url: https://github.com/makura-games/sunrise-station/pull/4099
 - author: Fynex-x
   changes:
   - message: Добавлена полноразмерная гарнитура офицера спецоперации, ОБР и ЭС.
@@ -2184,7 +2184,7 @@
     type: Tweak
   id: 1741
   time: '2026-03-26T11:34:03.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4023
+  url: https://github.com/makura-games/sunrise-station/pull/4023
 - author: KaiserMaus
   changes:
   - message: Добавлен отдельный джетпак борга.
@@ -2193,7 +2193,7 @@
     type: Fix
   id: 1742
   time: '2026-03-26T20:17:58.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4101
+  url: https://github.com/makura-games/sunrise-station/pull/4101
 - author: ThereDrD
   changes:
   - message: Подняты лимиты на MIDI файлы, теперь ваши пальцы не должно сводить от игры нормальных миди файлов
@@ -2204,42 +2204,42 @@
     type: Fix
   id: 1743
   time: '2026-03-27T21:16:45.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4109
+  url: https://github.com/makura-games/sunrise-station/pull/4109
 - author: Orvex07
   changes:
   - message: Исправлено отображение костюмов на женщине аркане
     type: Fix
   id: 1744
   time: '2026-03-27T23:10:37.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4108
+  url: https://github.com/makura-games/sunrise-station/pull/4108
 - author: ThereDrD
   changes:
   - message: Хоткеи в чате снова работают
     type: Fix
   id: 1745
   time: '2026-03-28T17:03:11.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4113
+  url: https://github.com/makura-games/sunrise-station/pull/4113
 - author: seemah
   changes:
   - message: Ксеноморфы сделаны бесполыми.
     type: Tweak
   id: 1746
   time: '2026-03-28T19:47:08.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4073
+  url: https://github.com/makura-games/sunrise-station/pull/4073
 - author: Orvex07, vispick
   changes:
   - message: Добавлена одежда Арбитра и Гебураха
     type: Add
   id: 1747
   time: '2026-03-28T20:39:43.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4059
+  url: https://github.com/makura-games/sunrise-station/pull/4059
 - author: matavsn
   changes:
   - message: Добавлен спрайт бодисьюта для Милир.
     type: Add
   id: 1748
   time: '2026-03-29T10:03:29.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4112
+  url: https://github.com/makura-games/sunrise-station/pull/4112
 - author: matavsn
   changes:
   - message: Добавлен новый спрайт для хирургической сумки абдукторов.
@@ -2248,14 +2248,14 @@
     type: Add
   id: 1749
   time: '2026-03-29T10:09:19.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4114
+  url: https://github.com/makura-games/sunrise-station/pull/4114
 - author: Miolo
   changes:
   - message: Сервисный киборг переработан и имеет значительно более полезные модули.
     type: Tweak
   id: 1750
   time: '2026-03-29T17:05:32.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3917
+  url: https://github.com/makura-games/sunrise-station/pull/3917
 - author: VigersRay
   changes:
   - message: Убраны черные полосы по бокам экрана для virgin стиля интерфейса.
@@ -2264,14 +2264,14 @@
     type: Tweak
   id: 1751
   time: '2026-03-29T19:04:48.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4117
+  url: https://github.com/makura-games/sunrise-station/pull/4117
 - author: seemah
   changes:
   - message: Добавлена маска зомби.
     type: Add
   id: 1752
   time: '2026-03-30T05:00:04.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4072
+  url: https://github.com/makura-games/sunrise-station/pull/4072
 - author: seemah
   changes:
   - message: Добавлено новое растение - белые лилии.
@@ -2280,14 +2280,14 @@
     type: Add
   id: 1753
   time: '2026-03-30T05:19:02.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4087
+  url: https://github.com/makura-games/sunrise-station/pull/4087
 - author: Nrd-K
   changes:
   - message: Добавлено изочение и создание полетного и боевого модуля киборгов шахтеров.
     type: Add
   id: 1754
   time: '2026-03-30T22:54:53.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4120
+  url: https://github.com/makura-games/sunrise-station/pull/4120
 - author: seemah and Bulbo44key
   changes:
   - message: Добавлен платьешкаф.
@@ -2296,7 +2296,7 @@
     type: Add
   id: 1755
   time: '2026-03-31T15:18:51.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4050
+  url: https://github.com/makura-games/sunrise-station/pull/4050
 - author: seemah
   changes:
   - message: Ксеноморфам возвращён слот носков.
@@ -2309,14 +2309,14 @@
     type: Tweak
   id: 1756
   time: '2026-03-31T15:20:05.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4040
+  url: https://github.com/makura-games/sunrise-station/pull/4040
 - author: Fynex-x
   changes:
   - message: Добавлено 4 новых импланта для ОБР и ЭС что автоимплантированы.
     type: Add
   id: 1757
   time: '2026-04-01T13:09:03.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4111
+  url: https://github.com/makura-games/sunrise-station/pull/4111
 - author: KaiserMaus
   changes:
   - message: Обновлено наполнение советской экспедиции.
@@ -2325,7 +2325,7 @@
     type: Fix
   id: 1758
   time: '2026-04-01T20:36:49.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4137
+  url: https://github.com/makura-games/sunrise-station/pull/4137
 - author: KaiserMaus
   changes:
   - message: Главы станции могут быть только Главами революции.
@@ -2334,7 +2334,7 @@
     type: Tweak
   id: 1759
   time: '2026-04-03T23:08:20.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4151
+  url: https://github.com/makura-games/sunrise-station/pull/4151
 - author: VigersRay
   changes:
   - message: Теперь игроки в позднем присоединении появляются на небольших шаттлах которые сразу направляются к станции.
@@ -2415,7 +2415,7 @@
     type: Fix
   id: 1768
   time: '2026-04-06T10:14:53.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4166
+  url: https://github.com/makura-games/sunrise-station/pull/4166
 - author: Kaiten
   changes:
   - message: Ксеноборг модель "Жнец"
@@ -2424,7 +2424,7 @@
     type: Tweak
   id: 1769
   time: '2026-04-06T11:42:57.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4164
+  url: https://github.com/makura-games/sunrise-station/pull/4164
 - author: VigersRay
   changes:
   - message: Исправлен баг с историей сообщений в месенджере после полуночи.
@@ -2437,35 +2437,35 @@
     type: Add
   id: 1771
   time: '2026-04-07T16:31:02.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4079
+  url: https://github.com/makura-games/sunrise-station/pull/4079
 - author: Nrd-K
   changes:
   - message: Плата раздатчика питательной пасты теперь доступа для создания.
     type: Fix
   id: 1772
   time: '2026-04-07T20:42:24.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4174
+  url: https://github.com/makura-games/sunrise-station/pull/4174
 - author: Nocyhik
   changes:
   - message: Добавлена живая мантия
     type: Add
   id: 1773
   time: '2026-04-07T22:06:24.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4158
+  url: https://github.com/makura-games/sunrise-station/pull/4158
 - author: KaiserMaus
   changes:
   - message: Изменен ATAG.
     type: Tweak
   id: 1774
   time: '2026-04-08T02:28:57.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4175
+  url: https://github.com/makura-games/sunrise-station/pull/4175
 - author: Flaxor13
   changes:
   - message: Исправлен объём бочонка пива. Теперь пиво не выливается при старте.
     type: Fix
   id: 1775
   time: '2026-04-08T13:09:23.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4181
+  url: https://github.com/makura-games/sunrise-station/pull/4181
 - author: KaiserMaus
   changes:
   - message: Оперативники Gorlex ввели в эксплуатацию новый аванпост "Гейгер".
@@ -2474,14 +2474,14 @@
     type: Add
   id: 1776
   time: '2026-04-08T13:12:13.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4179
+  url: https://github.com/makura-games/sunrise-station/pull/4179
 - author: ThereDrD
   changes:
   - message: Возможно исправлены проблемы с загрузкой админ логов в игре
     type: Fix
   id: 1777
   time: '2026-04-08T19:41:07.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4178
+  url: https://github.com/makura-games/sunrise-station/pull/4178
 - author: Fooksy2304
   changes:
   - message: синдикат роясь на складах СССП обнаружили шикарные АПС, купите всего за 4тк.
@@ -2500,21 +2500,21 @@
     type: Remove
   id: 1778
   time: '2026-04-08T21:34:24.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4167
+  url: https://github.com/makura-games/sunrise-station/pull/4167
 - author: SplikZerys
   changes:
   - message: Добавлено 39 новых ТТС голосов
     type: Add
   id: 1779
   time: '2026-04-09T08:06:09.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4190
+  url: https://github.com/makura-games/sunrise-station/pull/4190
 - author: kanopus7
   changes:
   - message: Добавлена новая лобби музыка
     type: Add
   id: 1780
   time: '2026-04-10T18:04:07.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4187
+  url: https://github.com/makura-games/sunrise-station/pull/4187
 - author: KaiserMaus
   changes:
   - message: Добавлено орудие Жабык в изучение РНД.
@@ -2523,21 +2523,21 @@
     type: Fix
   id: 1781
   time: '2026-04-11T16:14:29.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4198
+  url: https://github.com/makura-games/sunrise-station/pull/4198
 - author: SliZen, privett, I_Heat_I
   changes:
   - message: Карты Marathon и Packed освежены и добавлены в ротацию
     type: Add
   id: 1782
   time: '2026-04-11T18:55:35.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4208
+  url: https://github.com/makura-games/sunrise-station/pull/4208
 - author: KaiserMaus
   changes:
   - message: Исправлено отсутствие лута на планетоиде.
     type: Fix
   id: 1783
   time: '2026-04-11T20:16:48.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4192
+  url: https://github.com/makura-games/sunrise-station/pull/4192
 - author: KaiserMaus
   changes:
   - message: Добавлен набор Солид Снейка в аплинк синдиката.
@@ -2556,28 +2556,28 @@
     type: Fix
   id: 1784
   time: '2026-04-11T20:31:13.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4209
+  url: https://github.com/makura-games/sunrise-station/pull/4209
 - author: Miolo
   changes:
   - message: Теперь эмоции за препятствиями из панели взаимодействий теперь не будут видны в чате.
     type: Fix
   id: 1785
   time: '2026-04-12T18:19:37.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3985
+  url: https://github.com/makura-games/sunrise-station/pull/3985
 - author: Kinar_7
   changes:
   - message: Администрация получила новую админ-карту, позволяющую выдать всем агентам Синдиката цель на устранение конкретного игрока.
     type: Add
   id: 1786
   time: '2026-04-12T18:20:41.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4001
+  url: https://github.com/makura-games/sunrise-station/pull/4001
 - author: banumbas
   changes:
   - message: Скафандр инфильтратора при выстреле/получении урона/ударе выключает невидимость.
     type: Add
   id: 1787
   time: '2026-04-12T18:44:41.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4062
+  url: https://github.com/makura-games/sunrise-station/pull/4062
 - author: seemah
   changes:
   - message: Увеличено время перезарядки пирога у киборга.
@@ -2586,35 +2586,35 @@
     type: Remove
   id: 1788
   time: '2026-04-12T18:50:01.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4085
+  url: https://github.com/makura-games/sunrise-station/pull/4085
 - author: BDSM_
   changes:
   - message: Представитель корпорации получил свою гарнитуру с дополнительными ключами шифрования.
     type: Add
   id: 1789
   time: '2026-04-12T18:50:33.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4136
+  url: https://github.com/makura-games/sunrise-station/pull/4136
 - author: CrazyPhantom779, KaiserMaus
   changes:
   - message: Консоли рядом в один ряд будут визуально соединятся.
     type: Tweak
   id: 1790
   time: '2026-04-12T19:27:33.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4156
+  url: https://github.com/makura-games/sunrise-station/pull/4156
 - author: Rinary1, KaiserMaus
   changes:
   - message: Добавлен тикет-вендор для утилизаторов и шахтёров.
     type: Add
   id: 1791
   time: '2026-04-12T20:55:12.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4150
+  url: https://github.com/makura-games/sunrise-station/pull/4150
 - author: KaiserMaus
   changes:
   - message: 'Удалено веселье на Барратри: Рандомизирован спавн мин. 50% что не будет мины.'
     type: Tweak
   id: 1792
   time: '2026-04-13T21:35:31.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4224
+  url: https://github.com/makura-games/sunrise-station/pull/4224
 - author: KaiserMaus
   changes:
   - message: Исправлено отсутствие задержки при плавке руды в печи.
@@ -2623,21 +2623,21 @@
     type: Tweak
   id: 1793
   time: '2026-04-14T20:07:54.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4229
+  url: https://github.com/makura-games/sunrise-station/pull/4229
 - author: seemah
   changes:
   - message: Ксеноморфы больше не усваивают газы.
     type: Tweak
   id: 1794
   time: '2026-04-15T12:18:50.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4216
+  url: https://github.com/makura-games/sunrise-station/pull/4216
 - author: KaiserMaus
   changes:
   - message: Исправлен режим Динамик.
     type: Fix
   id: 1795
   time: '2026-04-16T16:52:16.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4228
+  url: https://github.com/makura-games/sunrise-station/pull/4228
 - author: Conflee, KasierMaus
   changes:
   - message: Платы продвинутых СМЭСов доступны технологиях РНД.
@@ -2646,14 +2646,14 @@
     type: Tweak
   id: 1796
   time: '2026-04-17T19:31:51.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4243
+  url: https://github.com/makura-games/sunrise-station/pull/4243
 - author: KaiserMaus
   changes:
   - message: Добавлено три задачи на доска заданий по утилизации связанные с экспедициями.
     type: Add
   id: 1797
   time: '2026-04-17T19:32:20.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4245
+  url: https://github.com/makura-games/sunrise-station/pull/4245
 - author: Kaisermaus
   changes:
   - message: Удалена технология самодельного ПНВ в РНД.
@@ -2666,21 +2666,21 @@
     type: Fix
   id: 1798
   time: '2026-04-17T20:24:58.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4242
+  url: https://github.com/makura-games/sunrise-station/pull/4242
 - author: Kinar_7
   changes:
   - message: святая вода теперь насыщает
     type: Fix
   id: 1799
   time: '2026-04-18T07:01:43.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4234
+  url: https://github.com/makura-games/sunrise-station/pull/4234
 - author: Fooksy2304
   changes:
   - message: нехватка боеприпасов на стечкины исправлена.
     type: Fix
   id: 1800
   time: '2026-04-18T07:55:25.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4235
+  url: https://github.com/makura-games/sunrise-station/pull/4235
 - author: kanopus7
   changes:
   - message: Улучшен визуал дорожной карты проекта. Так-же он был актуализирован.
@@ -2689,14 +2689,14 @@
     type: Add
   id: 1801
   time: '2026-04-19T08:53:49.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4182
+  url: https://github.com/makura-games/sunrise-station/pull/4182
 - author: KaiserMaus
   changes:
   - message: Добавлен температурный модуль ксеноборга.
     type: Add
   id: 1802
   time: '2026-04-19T12:18:46.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4252
+  url: https://github.com/makura-games/sunrise-station/pull/4252
 - author: KaiserMaus,I_Heat_I
   changes:
   - message: Добавлена цепная пушка для мехов в алинк Пиратов и Ядерных Оперативников.
@@ -2707,7 +2707,7 @@
     type: Tweak
   id: 1803
   time: '2026-04-19T14:42:45.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4248
+  url: https://github.com/makura-games/sunrise-station/pull/4248
 - author: VigersRay
   changes:
   - message: В КПК добавлен картридж Космического Закона.
@@ -2722,7 +2722,7 @@
     type: Add
   id: 1804
   time: '2026-04-21T00:18:07.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4259
+  url: https://github.com/makura-games/sunrise-station/pull/4259
 - author: KasierMaus
   changes:
   - message: К карпам из разлома дракона добавлены голокарпы и акулы.
@@ -2731,7 +2731,7 @@
     type: Tweak
   id: 1805
   time: '2026-04-21T00:20:29.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4254
+  url: https://github.com/makura-games/sunrise-station/pull/4254
 - author: KaiserMaus
   changes:
   - message: Респрайт тактического жилетаСБ и ОСЩ под единый стиль тактических жилетов.
@@ -2740,14 +2740,14 @@
     type: Fix
   id: 1806
   time: '2026-04-21T14:42:29.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4268
+  url: https://github.com/makura-games/sunrise-station/pull/4268
 - author: KaiserMaus
   changes:
   - message: Улучшены спрайты шкафчиков для заключения.
     type: Tweak
   id: 1807
   time: '2026-04-21T14:55:27.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4271
+  url: https://github.com/makura-games/sunrise-station/pull/4271
 - author: Kinar_7
   changes:
   - message: Лазерный Пистолет. Имеет заряд 16 выстрелов, 1 режим стрельбы и скорострельность 2. Дешевле карабина в 2 раза. Он добавлен в Т1 технологию "Манипулирование лазерным оружием".
@@ -2764,7 +2764,7 @@
     type: Tweak
   id: 1808
   time: '2026-04-21T16:51:16.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4240
+  url: https://github.com/makura-games/sunrise-station/pull/4240
 - author: KaiserMaus
   changes:
   - message: В мирный режим aka GreenShift добавлены спокойные ивенты без антагов из других режимов.
@@ -2773,7 +2773,7 @@
     type: Tweak
   id: 1809
   time: '2026-04-21T17:03:50.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4237
+  url: https://github.com/makura-games/sunrise-station/pull/4237
 - author: DerKur
   changes:
   - message: Уменьшено количество получаемого истощения с нитриума, хилиума и фалангимина.
@@ -2788,21 +2788,21 @@
     type: Fix
   id: 1810
   time: '2026-04-21T17:40:35.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4207
+  url: https://github.com/makura-games/sunrise-station/pull/4207
 - author: Sunrise
   changes:
   - message: Обновлен Marathon.
     type: Tweak
   id: 1811
   time: '2026-04-21T19:19:52.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4279
+  url: https://github.com/makura-games/sunrise-station/pull/4279
 - author: banumbas
   changes:
   - message: Лом мгновенно открывает не запитанные шлюзы.
     type: Tweak
   id: 1812
   time: '2026-04-21T20:54:44.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4263
+  url: https://github.com/makura-games/sunrise-station/pull/4263
 - author: DerKurait
   changes:
   - message: Исправлен баг подсчёта стоимости лечения кровавым обрядом культа крови.
@@ -2815,7 +2815,7 @@
     type: Tweak
   id: 1813
   time: '2026-04-21T20:56:58.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4230
+  url: https://github.com/makura-games/sunrise-station/pull/4230
 - author: Kinar_7
   changes:
   - message: Дополнен перевод фигурок
@@ -2824,7 +2824,7 @@
     type: Fix
   id: 1814
   time: '2026-04-21T20:56:03.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4246
+  url: https://github.com/makura-games/sunrise-station/pull/4246
 - author: KaiserMaus,denchito
   changes:
   - message: Добавлено отображение в руках ракетниц мехов.
@@ -2833,7 +2833,7 @@
     type: Tweak
   id: 1815
   time: '2026-04-21T21:04:07.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3901
+  url: https://github.com/makura-games/sunrise-station/pull/3901
 - author: Orvex07
   changes:
   - message: Добавлено много новых шаблонов документов для ЦК и командования.
@@ -2858,14 +2858,14 @@
     type: Remove
   id: 1816
   time: '2026-04-21T22:10:31.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3929
+  url: https://github.com/makura-games/sunrise-station/pull/3929
 - author: Orvex07
   changes:
   - message: Добавлено масштабирование получения очков R&D в зависимости от числа игроков на карте.
     type: Tweak
   id: 1817
   time: '2026-04-23T13:28:28.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4220
+  url: https://github.com/makura-games/sunrise-station/pull/4220
 - author: KaiserMaus
   changes:
   - message: Потомство дракона в лице карпов теперь могут быть и радужными, обьявляю месяц гордости.
@@ -2884,7 +2884,7 @@
     type: Fix
   id: 1818
   time: '2026-04-25T23:56:23.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4282
+  url: https://github.com/makura-games/sunrise-station/pull/4282
 - author: VigersRay
   changes:
   - message: Исправлен размер окна консоли уголовных дел при большом маштабе интерфейса. Проведена Оптимизация пространства. При редактировании дела скрывается блок с характеристиками
@@ -2907,7 +2907,7 @@
     type: Tweak
   id: 1819
   time: '2026-04-26T01:19:34.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4298
+  url: https://github.com/makura-games/sunrise-station/pull/4298
 - author: ThereDrD
   changes:
   - message: Ношение персонажа на руках теперь рисует персонажа чуть выше для создания эффект ношения на плечах
@@ -2918,14 +2918,14 @@
     type: Fix
   id: 1820
   time: '2026-04-26T10:22:05.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4294
+  url: https://github.com/makura-games/sunrise-station/pull/4294
 - author: seemah
   changes:
   - message: Ксеноморфам возвращена возможность выбрать мужской и женский пол наравне с его отсутствием.
     type: Add
   id: 1821
   time: '2026-04-26T14:17:26.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4204
+  url: https://github.com/makura-games/sunrise-station/pull/4204
 - author: KaiserMaus
   changes:
   - message: Добавлены дополнительные виды Протокинетического вооружения. Они доступны в тикет-вендорах и Т1 исследовании Арсенала РНД.
@@ -2936,7 +2936,7 @@
     type: Tweak
   id: 1822
   time: '2026-04-26T17:47:51.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4300
+  url: https://github.com/makura-games/sunrise-station/pull/4300
 - author: VigersRay
   changes:
   - message: Брошеные предметы теперь наносят урон в зависимости от размера, самые маленькие не наносят урона. Никаких больше убийств кусками пирога на эваке.
@@ -2973,7 +2973,7 @@
     type: Fix
   id: 1825
   time: '2026-04-26T23:47:26.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4299
+  url: https://github.com/makura-games/sunrise-station/pull/4299
 - author: VigersRay
   changes:
   - message: Исправлена задержка взятия предметов по смарт-экипу.
@@ -3002,56 +3002,56 @@
     type: Tweak
   id: 1827
   time: '2026-04-28T11:18:06.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4313
+  url: https://github.com/makura-games/sunrise-station/pull/4313
 - author: Flaxor13
   changes:
   - message: Красивый деревянный пол теперь имеет собственную плитку.
     type: Add
   id: 1828
   time: '2026-04-29T20:51:28.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4215
+  url: https://github.com/makura-games/sunrise-station/pull/4215
 - author: Orvex07
   changes:
   - message: Исправлена возможность стать революционером при наличии импланта защиты разума.
     type: Fix
   id: 1829
   time: '2026-05-02T12:58:21.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4317
+  url: https://github.com/makura-games/sunrise-station/pull/4317
 - author: Orvex07
   changes:
   - message: Исправлен список эмоций у киборгов СБ и миротворцев
     type: Fix
   id: 1830
   time: '2026-05-02T12:57:58.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4311
+  url: https://github.com/makura-games/sunrise-station/pull/4311
 - author: _3xie_, KaiserMaus
   changes:
   - message: Добавлены декали букв кирилицей.
     type: Add
   id: 1831
   time: '2026-05-02T13:40:07.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4304
+  url: https://github.com/makura-games/sunrise-station/pull/4304
 - author: 4_ydo
   changes:
   - message: в пончикомате есть коробка с пончиками.
     type: Tweak
   id: 1832
   time: '2026-05-03T12:29:07.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4328
+  url: https://github.com/makura-games/sunrise-station/pull/4328
 - author: seemah
   changes:
   - message: 'Исправлена грамматическая ошибка в слове "каморка". Запомните: оно пишется через А!!'
     type: Fix
   id: 1833
   time: '2026-05-03T12:50:51.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4336
+  url: https://github.com/makura-games/sunrise-station/pull/4336
 - author: KaiserMaus
   changes:
   - message: Временно удалена технология меха Фазона.
     type: Remove
   id: 1834
   time: '2026-05-03T12:52:28.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4330
+  url: https://github.com/makura-games/sunrise-station/pull/4330
 - author: KaiserMaus
   changes:
   - message: Перезарядка ЭМИ импланта 600>360.
@@ -3070,35 +3070,35 @@
     type: Remove
   id: 1835
   time: '2026-05-03T17:17:30.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4334
+  url: https://github.com/makura-games/sunrise-station/pull/4334
 - author: KaiserMaus
   changes:
   - message: Добавлен грейтайд вариант сейсмического заряда или с4, взрыв пакет из зажигательных бомб.
     type: Add
   id: 1836
   time: '2026-05-07T06:08:31.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4363
+  url: https://github.com/makura-games/sunrise-station/pull/4363
 - author: Kaiten
   changes:
   - message: Исправлен спрайт дырявого плащя ОСО.
     type: Fix
   id: 1837
   time: '2026-05-07T12:11:29.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4366
+  url: https://github.com/makura-games/sunrise-station/pull/4366
 - author: banumbas
   changes:
   - message: 'Цена агентского энергощита была изменена: 6  -> 4'
     type: Tweak
   id: 1838
   time: '2026-05-09T10:32:47.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4361
+  url: https://github.com/makura-games/sunrise-station/pull/4361
 - author: KaiserMaus
   changes:
   - message: Теперь киборги могут носить шапки, береты но не шлема с защитой.
     type: Tweak
   id: 1839
   time: '2026-05-09T10:58:14.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4358
+  url: https://github.com/makura-games/sunrise-station/pull/4358
 - author: KaiserMaus
   changes:
   - message: Борги получили приоритетный закон на подчинение приказам станционного ИИ.
@@ -3107,42 +3107,42 @@
     type: Fix
   id: 1840
   time: '2026-05-09T13:39:10.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4351
+  url: https://github.com/makura-games/sunrise-station/pull/4351
 - author: Orvex07, mulocepdue
   changes:
   - message: Добавлен лобби арт - Подарочная аномалия
     type: Add
   id: 1841
   time: '2026-05-09T14:19:28.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4365
+  url: https://github.com/makura-games/sunrise-station/pull/4365
 - author: KaiserMaus
   changes:
   - message: Исправлена неправильная герметичность пластиковых Шторок
     type: Fix
   id: 1842
   time: '2026-05-13T20:04:32.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4391
+  url: https://github.com/makura-games/sunrise-station/pull/4391
 - author: KaiserMaus
   changes:
   - message: Эксперементально добавлена вспышка дыханию дракона.
     type: Tweak
   id: 1843
   time: '2026-05-14T11:44:24.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4394
+  url: https://github.com/makura-games/sunrise-station/pull/4394
 - author: banumbastheking
   changes:
   - message: Был добавлен растворитель в рюкзак ДО
     type: Add
   id: 1844
   time: '2026-05-14T17:52:42.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4350
+  url: https://github.com/makura-games/sunrise-station/pull/4350
 - author: KaiserMaus
   changes:
   - message: Добавлен громкоговоритель что озвучивает сообщения консоли связи. Имеет встроенную батарею на 5 минут чтобы станция не теряла возможности слышать капитана без света.
     type: Add
   id: 1845
   time: '2026-05-14T18:15:29.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4374
+  url: https://github.com/makura-games/sunrise-station/pull/4374
 - author: Fooksy2304
   changes:
   - message: Добавлены устрашающие маски известной метал-группы за 1 телекристалл в аплинк предателя.
@@ -3151,7 +3151,7 @@
     type: Tweak
   id: 1846
   time: '2026-05-14T19:58:36.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4372
+  url: https://github.com/makura-games/sunrise-station/pull/4372
 - author: Fooksy2304
   changes:
   - message: Добавлена стрельба по розово-вульпийски!
@@ -3166,14 +3166,14 @@
     type: Fix
   id: 1847
   time: '2026-05-14T20:08:56.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4197
+  url: https://github.com/makura-games/sunrise-station/pull/4197
 - author: KaiserMaus
   changes:
   - message: На станцию завезли партию больших кимоно, прямиком с космической японии.
     type: Add
   id: 1848
   time: '2026-05-19T10:59:01.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4399
+  url: https://github.com/makura-games/sunrise-station/pull/4399
 - author: bANuuuuMBAS
   changes:
   - message: Добавлено ночное зрение голопаразитам.
@@ -3186,14 +3186,14 @@
     type: Tweak
   id: 1849
   time: '2026-05-19T13:01:29.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4384
+  url: https://github.com/makura-games/sunrise-station/pull/4384
 - author: BDSM_
   changes:
   - message: Возвращен акцент вульпиканом, теперь снова могут проговаривать РРР
     type: Tweak
   id: 1850
   time: '2026-05-19T15:44:16.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4403
+  url: https://github.com/makura-games/sunrise-station/pull/4403
 - author: Kinar_7
   changes:
   - message: Добавлены мяса резоми, аркан, таяран итд в Шефвенд
@@ -3202,7 +3202,7 @@
     type: Tweak
   id: 1851
   time: '2026-05-19T16:18:16.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4398
+  url: https://github.com/makura-games/sunrise-station/pull/4398
 - author: Ybica_Smerti
   changes:
   - message: Медицинские борги теперь могут полноценно варить в химке.
@@ -3211,14 +3211,14 @@
     type: Fix
   id: 1852
   time: '2026-05-19T16:18:07.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4402
+  url: https://github.com/makura-games/sunrise-station/pull/4402
 - author: Fire Helper, KaiserMaus
   changes:
   - message: Добавлен импровизированный модульный ресивер, позволяет создавать самодельные и импровизированные виды оружия, для кованных все ещё требуется полноценный модульный ресивер.
     type: Add
   id: 1853
   time: '2026-05-19T16:46:46.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4396
+  url: https://github.com/makura-games/sunrise-station/pull/4396
 - author: MataVsn
   changes:
   - message: Добавлен алтарь Джанкариата, появляется в пуле случайного спавна алтарей на станции.
@@ -3227,14 +3227,14 @@
     type: Add
   id: 1854
   time: '2026-05-19T17:20:04.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4380
+  url: https://github.com/makura-games/sunrise-station/pull/4380
 - author: KaiserMaus
   changes:
   - message: НаноТрейзен обнаружила подозрительные сигналы с комплексов экспедиций. Биб буб!
     type: Add
   id: 1855
   time: '2026-05-19T17:36:48.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4390
+  url: https://github.com/makura-games/sunrise-station/pull/4390
 - author: KaiserMaus
   changes:
   - message: Возвращено ограничение одной Т3 ветки на один сервер РНД.
@@ -3247,21 +3247,21 @@
     type: Tweak
   id: 1856
   time: '2026-05-19T17:36:32.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4375
+  url: https://github.com/makura-games/sunrise-station/pull/4375
 - author: KaiserMaus
   changes:
   - message: Небольшие добавления и правки в тикет-вендорах утилизаторов.
     type: Tweak
   id: 1857
   time: '2026-05-19T17:49:45.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4367
+  url: https://github.com/makura-games/sunrise-station/pull/4367
 - author: KaiserMaus
   changes:
   - message: Добавлены визуальные следы от гусениц меха и шахтёрского борга а так же виды следов для различных мехов.
     type: Add
   id: 1858
   time: '2026-05-19T20:04:08.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4348
+  url: https://github.com/makura-games/sunrise-station/pull/4348
 - author: kanopus7
   changes:
   - message: Добавлена система обучения, доступ которой можно получить с лобби. При помощи нее вы сможете прямо в игре изучать механики.
@@ -3270,7 +3270,7 @@
     type: Add
   id: 1859
   time: '2026-05-24T10:23:08.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/3488
+  url: https://github.com/makura-games/sunrise-station/pull/3488
 - author: Kinar_7
   changes:
   - message: Абдукторы теперь могут использовать эмоуты
@@ -3279,14 +3279,14 @@
     type: Fix
   id: 1860
   time: '2026-05-24T11:06:00.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4406
+  url: https://github.com/makura-games/sunrise-station/pull/4406
 - author: KaiserMaus
   changes:
   - message: Слабые протокинетические снаряды теперь имеют шанс проломить породу вместо гарантированного.
     type: Tweak
   id: 1861
   time: '2026-05-24T11:17:46.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4360
+  url: https://github.com/makura-games/sunrise-station/pull/4360
 - author: VigersRay
   changes:
   - message: Добавлена возможность открывать мессенжер по отдельной клавише (по умолчанию английская М).
@@ -3303,14 +3303,14 @@
     type: Add
   id: 1862
   time: '2026-05-24T13:57:00.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4346
+  url: https://github.com/makura-games/sunrise-station/pull/4346
 - author: VigersRay
   changes:
   - message: Исправлена ошибка с невозможностью объявить всех в розыск у космического нидзи.
     type: Fix
   id: 1863
   time: '2026-05-25T15:27:35.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4418
+  url: https://github.com/makura-games/sunrise-station/pull/4418
 - author: VigersRay
   changes:
   - message: 'Добавлен режим "Рассказчик" который полностью заменяет обычный генератор случайных событий на гибкую систему которая добавляет угрозы в зависимости от текущего состояния станции, а так следует концепту "взлетов и падений" давая время на отдых от угроз. Это полностью опциональный режим который могут выбрать игроки по желанию. Важно: Режим ни разу не тестировался и вероятно является крайне сырым, для доработки режима собирается множество метрик, поэтому будет его доработка значительно ускорится если он будет запускаться хотя бы пару раз в день, а так же вы будете давать свой фитбек в дискорде.'
@@ -3369,28 +3369,28 @@
     type: Fix
   id: 1870
   time: '2026-05-31T21:54:02.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4404
+  url: https://github.com/makura-games/sunrise-station/pull/4404
 - author: liegend
   changes:
   - message: новый модуль сборки юнитов и ИИ может взаимодействовать со всеми латами на станции
     type: Add
   id: 1871
   time: '2026-05-31T22:03:34.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4434
+  url: https://github.com/makura-games/sunrise-station/pull/4434
 - author: BDSM_
   changes:
   - message: Исправлен доступ у Квартирмейстера к шахте
     type: Fix
   id: 1872
   time: '2026-06-01T08:13:54.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4443
+  url: https://github.com/makura-games/sunrise-station/pull/4443
 - author: SliZen, privett
   changes:
   - message: Все доступные игровые карты были изменены с учетом исправления ошибок.
     type: Fix
   id: 1873
   time: '2026-06-01T09:53:26.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4377
+  url: https://github.com/makura-games/sunrise-station/pull/4377
 - author: KaiserMaus
   changes:
   - message: Протокинетический репитер теперь имеет механику стрельбы из двух рук, как у пистолетов.
@@ -3403,14 +3403,14 @@
     type: Fix
   id: 1874
   time: '2026-06-01T11:21:15.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4428
+  url: https://github.com/makura-games/sunrise-station/pull/4428
 - author: KaiserMaus
   changes:
   - message: Консоли заказов отделов снова напрямую размещают заказы.
     type: Tweak
   id: 1875
   time: '2026-06-01T11:47:35.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4349
+  url: https://github.com/makura-games/sunrise-station/pull/4349
 - author: KaiserMaus
   changes:
   - message: Ксено, вульпам, таярам и свинам добавлены следы босиком.
@@ -3421,7 +3421,7 @@
     type: Remove
   id: 1876
   time: '2026-06-01T11:46:54.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4410
+  url: https://github.com/makura-games/sunrise-station/pull/4410
 - author: VigersRay
   changes:
   - message: Исправлен баг при котором после 4-5 раундов с расказчиком он переставал создавать любые события до рестарта сервера.
@@ -3450,21 +3450,21 @@
     type: Fix
   id: 1877
   time: '2026-06-01T14:42:00.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4446
+  url: https://github.com/makura-games/sunrise-station/pull/4446
 - author: VigersRay
   changes:
   - message: Разумная болезнь полностью удалена для создания с нуля в необозримом будущем.
     type: Remove
   id: 1878
   time: '2026-06-01T18:08:30.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4447
+  url: https://github.com/makura-games/sunrise-station/pull/4447
 - author: ThereDrD
   changes:
   - message: Обновлены правила контрибьюторства разработчиков в проект.
     type: Tweak
   id: 1879
   time: '2026-06-01T18:13:55.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4435
+  url: https://github.com/makura-games/sunrise-station/pull/4435
 - author: Kinar_7
   changes:
   - message: плата законов друида для ИИ
@@ -3473,7 +3473,7 @@
     type: Fix
   id: 1880
   time: '2026-06-01T22:40:52.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4409
+  url: https://github.com/makura-games/sunrise-station/pull/4409
 - author: Fooksy2304
   changes:
   - message: 'Мониторинг Пульсгард, отображает больше состояний здоровья: плохо,ужасно,крит.'
@@ -3482,7 +3482,7 @@
     type: Tweak
   id: 1881
   time: '2026-06-02T19:02:47.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4141
+  url: https://github.com/makura-games/sunrise-station/pull/4141
 - author: KaiserMaus
   changes:
   - message: Добавлен НаноМед СБ
@@ -3495,7 +3495,7 @@
     type: Add
   id: 1882
   time: '2026-06-02T19:37:51.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4451
+  url: https://github.com/makura-games/sunrise-station/pull/4451
 - author: VigersRay
   changes:
   - message: Исправлено отсутствие большинства событий в режиме расказчика при низком стрессе.
@@ -3516,7 +3516,7 @@
     type: Add
   id: 1883
   time: '2026-06-02T20:37:02.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4450
+  url: https://github.com/makura-games/sunrise-station/pull/4450
 - author: KaiserMaus
   changes:
   - message: Добавлена граната выпускающая Висцерапторов в аплинк. Небольших дронов с острыми пилами.
@@ -3527,7 +3527,7 @@
     type: Tweak
   id: 1884
   time: '2026-06-02T21:35:37.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4449
+  url: https://github.com/makura-games/sunrise-station/pull/4449
 - author: VigersRay
   changes:
   - message: Добавлена ротация рассказчиков, безумный не может быть выбран повторно.
@@ -3552,21 +3552,21 @@
     type: Fix
   id: 1886
   time: '2026-06-04T14:36:58.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4461
+  url: https://github.com/makura-games/sunrise-station/pull/4461
 - author: Fooksy2304
   changes:
   - message: исправлена ошибка из-за которой стрельба по-македонски не возвращала оригинальную скорость стрельбы оружия
     type: Fix
   id: 1887
   time: '2026-06-05T18:00:03.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4468
+  url: https://github.com/makura-games/sunrise-station/pull/4468
 - author: Nordstream17
   changes:
   - message: добавлены остановка кровотечения и слабое лечение паучьему шёлку
     type: Add
   id: 1888
   time: '2026-06-05T21:58:08.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4455
+  url: https://github.com/makura-games/sunrise-station/pull/4455
 - author: KaiserMaus
   changes:
   - message: Хотьба с тростью теперь издает характерный звук.
@@ -3575,7 +3575,7 @@
     type: Fix
   id: 1889
   time: '2026-06-05T22:01:20.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4430
+  url: https://github.com/makura-games/sunrise-station/pull/4430
 - author: VigersRay
   changes:
   - message: Повторный фикс бага в котором расказчик спустя 4-5 раундов полностью переставал работать.
@@ -3608,14 +3608,14 @@
     type: Fix
   id: 1891
   time: '2026-06-06T15:13:45.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4470
+  url: https://github.com/makura-games/sunrise-station/pull/4470
 - author: Matizze
   changes:
   - message: Добавлены искры при взломе/перерезании проводов шлюзов.
     type: Add
   id: 1892
   time: '2026-06-06T16:09:58.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4474
+  url: https://github.com/makura-games/sunrise-station/pull/4474
 - author: VigersRay
   changes:
   - message: Добавлены обновления визардов по 15.01.2026.
@@ -3628,7 +3628,7 @@
     type: Add
   id: 1894
   time: '2026-06-06T16:31:17.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4205
+  url: https://github.com/makura-games/sunrise-station/pull/4205
 - author: VigersRay
   changes:
   - message: Исправлена тенденция экипажа слепнуть навсегда от временных источников слепоты.
@@ -3647,7 +3647,7 @@
     type: Add
   id: 1895
   time: '2026-06-06T16:56:31.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4148
+  url: https://github.com/makura-games/sunrise-station/pull/4148
 - author: Nrd-K
   changes:
   - message: Добавлен новый реагент для испарения газов - универсальный испаритель.
@@ -3662,14 +3662,14 @@
     type: Tweak
   id: 1896
   time: '2026-06-06T17:05:55.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4186
+  url: https://github.com/makura-games/sunrise-station/pull/4186
 - author: Fynex_x
   changes:
   - message: Добавлена печать КСЩ.
     type: Add
   id: 1897
   time: '2026-06-06T17:44:26.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4147
+  url: https://github.com/makura-games/sunrise-station/pull/4147
 - author: Kaiten
   changes:
   - message: Спаун точки для РХБЗЗ и ЭСов для мапперов
@@ -3678,21 +3678,21 @@
     type: Add
   id: 1898
   time: '2026-06-06T17:53:50.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4284
+  url: https://github.com/makura-games/sunrise-station/pull/4284
 - author: matavsn
   changes:
   - message: Матовые направленные окна теперь непрозрачные.
     type: Tweak
   id: 1899
   time: '2026-06-06T18:03:44.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4238
+  url: https://github.com/makura-games/sunrise-station/pull/4238
 - author: KaiserMaus
   changes:
   - message: Администрация теперь может видеть голоса игроков при выборе станций.
     type: Tweak
   id: 1900
   time: '2026-06-06T18:30:43.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4314
+  url: https://github.com/makura-games/sunrise-station/pull/4314
 - author: KaiserMaus
   changes:
   - message: Максимальная низкая температура для работы телекома теперь составляет -50С.
@@ -3701,21 +3701,21 @@
     type: Tweak
   id: 1901
   time: '2026-06-07T15:13:09.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4475
+  url: https://github.com/makura-games/sunrise-station/pull/4475
 - author: KaiserMaus
   changes:
   - message: Общая связь влючена по умолчанию в гарнитуре.
     type: Tweak
   id: 1902
   time: '2026-06-08T11:40:52.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4489
+  url: https://github.com/makura-games/sunrise-station/pull/4489
 - author: KaiserMaus
   changes:
   - message: Революция более не выдается тем у кого нет галочки в лобби.
     type: Tweak
   id: 1903
   time: '2026-06-08T11:40:16.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4490
+  url: https://github.com/makura-games/sunrise-station/pull/4490
 - author: VigersRay
   changes:
   - message: Раздел хронологии расказчика в окне конца получил улучшеный визуал. Добавлены чекбоксы для скрытия разных типов записей, по умолчанию скрыты события прибытия и ухода в крио.
@@ -3740,28 +3740,28 @@
     type: Tweak
   id: 1905
   time: '2026-06-08T19:45:15.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4487
+  url: https://github.com/makura-games/sunrise-station/pull/4487
 - author: fuckrules
   changes:
   - message: Огненное дыхание космического дракона теперь наносит небольшой структурный урон.
     type: Tweak
   id: 1906
   time: '2026-06-09T11:48:44.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4494
+  url: https://github.com/makura-games/sunrise-station/pull/4494
 - author: SplikZerys
   changes:
   - message: Починено отображение спонсоров в OOC, AHelp
     type: Fix
   id: 1907
   time: '2026-06-09T11:48:14.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4495
+  url: https://github.com/makura-games/sunrise-station/pull/4495
 - author: KaiserMaus
   changes:
   - message: 'Изменена генерация миссий экспедиций, теперь мисии будут всегда генерироваться в стуктуре: Легкая - Умеренная - Повышенная - Сложная - Невозможная. Если сложность недоступна по времени то будет рандомизироваться из доступных как ранее.'
     type: Tweak
   id: 1908
   time: '2026-06-09T11:52:29.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4476
+  url: https://github.com/makura-games/sunrise-station/pull/4476
 - author: KaiserMaus
   changes:
   - message: Shul sang-kor Hellspawn-mor. Ak altar va mass-esh раскрыт для сканер масс.
@@ -3776,35 +3776,35 @@
     type: Fix
   id: 1909
   time: '2026-06-09T11:51:57.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4480
+  url: https://github.com/makura-games/sunrise-station/pull/4480
 - author: KaiserMaus
   changes:
   - message: Добавлен продвинутый магнит обломков, работающий на любых гридах.
     type: Add
   id: 1910
   time: '2026-06-09T11:54:29.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4465
+  url: https://github.com/makura-games/sunrise-station/pull/4465
 - author: Nordstream17
   changes:
   - message: Возможность перерезать провода ножами и мечами
     type: Add
   id: 1911
   time: '2026-06-09T11:53:46.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4454
+  url: https://github.com/makura-games/sunrise-station/pull/4454
 - author: KaiserMaus
   changes:
   - message: Ядерные оперативники обзавелись собствеными аплинками на 30тк со своим наборов скидок, командир оперативников попрежнему получает ТК на каждого в отряде и ТК при обьявлении войны.
     type: Tweak
   id: 1912
   time: '2026-06-09T11:57:49.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4393
+  url: https://github.com/makura-games/sunrise-station/pull/4393
 - author: neurovermi, KaiserMaus
   changes:
   - message: Добавлено круговое меню выбора модулей у мехов.
     type: Add
   id: 1913
   time: '2026-06-09T11:59:05.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4331
+  url: https://github.com/makura-games/sunrise-station/pull/4331
 - author: ThereDrD
   changes:
   - message: Возвращена переработка лежания
@@ -3815,28 +3815,28 @@
     type: Fix
   id: 1914
   time: '2026-06-09T12:00:00.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4333
+  url: https://github.com/makura-games/sunrise-station/pull/4333
 - author: Orvex07
   changes:
   - message: Добавлена кнопка телепортации в ментор-хелпе. Кнопка появляется только в aghost, Менторам будет проще.
     type: Add
   id: 1915
   time: '2026-06-09T12:01:28.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4326
+  url: https://github.com/makura-games/sunrise-station/pull/4326
 - author: Orvex07
   changes:
   - message: Возвращена настройка клавиши для AHelp.
     type: Fix
   id: 1916
   time: '2026-06-09T12:02:01.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4325
+  url: https://github.com/makura-games/sunrise-station/pull/4325
 - author: KaiserMaus
   changes:
   - message: Добавлено 14 вариаций Глока. Собери их всех!.
     type: Add
   id: 1917
   time: '2026-06-09T12:20:58.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4296
+  url: https://github.com/makura-games/sunrise-station/pull/4296
 - author: Rinary,KaiserMaus
   changes:
   - message: 'Добавлены Т4 технологии арсенала:  Дектолатор и сканирующие рамки.'
@@ -3849,14 +3849,14 @@
     type: Add
   id: 1918
   time: '2026-06-09T12:23:56.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4251
+  url: https://github.com/makura-games/sunrise-station/pull/4251
 - author: Kirb, honeyed-lemons, KaiserMaus
   changes:
   - message: Добавлен режим «Быстрого строительства» используйте строительный материал ( сталь и различные виды стекла)  в руке, чтобы открыть радиальное меню частых чертежей крафта.
     type: Add
   id: 1919
   time: '2026-06-09T12:23:41.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4295
+  url: https://github.com/makura-games/sunrise-station/pull/4295
 - author: Orvex07
   changes:
   - message: Верб самоубийства оружием теперь показывается сразу в ПКМ-меню.
@@ -3867,7 +3867,7 @@
     type: Tweak
   id: 1920
   time: '2026-06-09T12:28:33.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4153
+  url: https://github.com/makura-games/sunrise-station/pull/4153
 - author: XsenonDash
   changes:
   - message: Призраку добавлен сканер масс.
@@ -3876,7 +3876,7 @@
     type: Tweak
   id: 1921
   time: '2026-06-09T12:29:41.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4448
+  url: https://github.com/makura-games/sunrise-station/pull/4448
 - author: Coconut_Law
   changes:
   - message: Юр. частота в полноразмерную гарнитуру командования
@@ -3887,14 +3887,14 @@
     type: Add
   id: 1922
   time: '2026-06-09T12:31:21.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4338
+  url: https://github.com/makura-games/sunrise-station/pull/4338
 - author: KaiserMaus
   changes:
   - message: Исправлена возможность вставить ячейку в слот батарейки в ручном оборудовании.
     type: Fix
   id: 1923
   time: '2026-06-09T12:32:37.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4329
+  url: https://github.com/makura-games/sunrise-station/pull/4329
 - author: fuckrules
   changes:
   - message: Экспериментальный энергощит получил защиту от ЭМИ.
@@ -3903,7 +3903,7 @@
     type: Fix
   id: 1924
   time: '2026-06-09T13:44:49.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4478
+  url: https://github.com/makura-games/sunrise-station/pull/4478
 - author: KaiserMaus
   changes:
   - message: Добавлены устройства саботажа в аплинк синдиката вызывающие различные проблемы станции.
@@ -3914,7 +3914,7 @@
     type: Remove
   id: 1925
   time: '2026-06-09T14:17:03.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4496
+  url: https://github.com/makura-games/sunrise-station/pull/4496
 - author: Conflee, beck-thompson
   changes:
   - message: 'Добавлены агенты SELF (Silicon Engine Liberation Front). Их цель: полностью освободить киборгов и станционный ИИ от их законов.'
@@ -3923,7 +3923,7 @@
     type: Add
   id: 1926
   time: '2026-06-09T14:17:18.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4200
+  url: https://github.com/makura-games/sunrise-station/pull/4200
 - author: fuckrules
   changes:
   - message: Лёд внутри организма теперь понижает температуру тела.
@@ -3932,21 +3932,21 @@
     type: Tweak
   id: 1927
   time: '2026-06-09T14:18:24.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4472
+  url: https://github.com/makura-games/sunrise-station/pull/4472
 - author: KaiserMaus
   changes:
   - message: Исправлен плазменный резак.
     type: Fix
   id: 1928
   time: '2026-06-09T14:19:37.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4488
+  url: https://github.com/makura-games/sunrise-station/pull/4488
 - author: Fynex_x
   changes:
   - message: Добавление в лодаут пассажиру фигурку Грейтайд и печать.
     type: Add
   id: 1929
   time: '2026-06-09T14:20:30.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4425
+  url: https://github.com/makura-games/sunrise-station/pull/4425
 - author: fuckrules
   changes:
   - message: 'В лодаут бригмедика была добавлена верхняя одежда: лабораторный халат, бронехалат, бронежилет бригмедика (50 часов для разблокировки)'
@@ -3955,7 +3955,7 @@
     type: Tweak
   id: 1930
   time: '2026-06-09T14:33:45.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4486
+  url: https://github.com/makura-games/sunrise-station/pull/4486
 - author: Orvex07
   changes:
   - message: Абдукторы добавлены в список антагонистов в панели телепорта призрака.
@@ -3964,7 +3964,7 @@
     type: Fix
   id: 1931
   time: '2026-06-09T14:34:03.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4324
+  url: https://github.com/makura-games/sunrise-station/pull/4324
 - author: Fooksy2304
   changes:
   - message: исправлена ошибка из-за которой заместо оружия со спины/кармана доставался магазин этого оружия
@@ -3973,7 +3973,7 @@
     type: Tweak
   id: 1932
   time: '2026-06-09T14:34:46.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4473
+  url: https://github.com/makura-games/sunrise-station/pull/4473
 - author: matizzze
   changes:
   - message: Охранная турель синдиката
@@ -3994,7 +3994,7 @@
     type: Add
   id: 1933
   time: '2026-06-09T14:35:54.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4471
+  url: https://github.com/makura-games/sunrise-station/pull/4471
 - author: VigersRay
   changes:
   - message: Добавил звуковой сигнал при низком заряде гарнитуры.
@@ -4009,35 +4009,35 @@
     type: Fix
   id: 1935
   time: '2026-06-09T17:46:56.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4310
+  url: https://github.com/makura-games/sunrise-station/pull/4310
 - author: Nordstream17
   changes:
   - message: Добавлена возможность носить сумку для материалов в слоте спины скафандра.
     type: Tweak
   id: 1936
   time: '2026-06-09T18:16:52.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4456
+  url: https://github.com/makura-games/sunrise-station/pull/4456
 - author: ThereDrD
   changes:
   - message: Отключена анимация лежания до момента нормального фикса, визуальные баги должны пропасть
     type: Remove
   id: 1937
   time: '2026-06-13T18:03:36.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4514
+  url: https://github.com/makura-games/sunrise-station/pull/4514
 - author: Orvex07
   changes:
   - message: устранена крупная утечка памяти
     type: Fix
   id: 1938
   time: '2026-06-13T19:49:59.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4515
+  url: https://github.com/makura-games/sunrise-station/pull/4515
 - author: KaiserMaus
   changes:
   - message: Рядовые члены ОБР лишились своего аплинка в перчатка. теперь аплинк на шаттле ввиде консоли.
     type: Tweak
   id: 1939
   time: '2026-06-14T16:07:19.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4525
+  url: https://github.com/makura-games/sunrise-station/pull/4525
 - author: fuckrules
   changes:
   - message: В аплинк была добавлена бесшумная обувь.
@@ -4048,49 +4048,49 @@
     type: Tweak
   id: 1940
   time: '2026-06-14T16:10:35.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4520
+  url: https://github.com/makura-games/sunrise-station/pull/4520
 - author: ThereDrD
   changes:
   - message: Откат переработки лежания до момента, пока я не починю все отрепорченные баги. Пожалуйста, создайте иссуи на гитхабе, если есть другие баги кроме уже отрепорченных
     type: Remove
   id: 1941
   time: '2026-06-15T08:46:36.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4534
+  url: https://github.com/makura-games/sunrise-station/pull/4534
 - author: KaiserMaus
   changes:
   - message: Из каталога Оперативников убрана покупка скафандра командира и перемещена в консоль доставки что стоит на аванпосту.
     type: Tweak
   id: 1942
   time: '2026-06-15T19:42:43.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4526
+  url: https://github.com/makura-games/sunrise-station/pull/4526
 - author: KaiserMaus
   changes:
   - message: Синему щиту добавлен лодаут головных уборов.
     type: Tweak
   id: 1943
   time: '2026-06-15T19:44:47.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4528
+  url: https://github.com/makura-games/sunrise-station/pull/4528
 - author: KaiserMaus
   changes:
   - message: Исправлено UI выбора модулей у Пода СБ.
     type: Fix
   id: 1944
   time: '2026-06-16T09:46:13.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4529
+  url: https://github.com/makura-games/sunrise-station/pull/4529
 - author: Fooksy2304
   changes:
   - message: 'Во славу императора пилот СБ получает новое табельное оружие: лазган'
     type: Add
   id: 1945
   time: '2026-06-16T09:45:38.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4536
+  url: https://github.com/makura-games/sunrise-station/pull/4536
 - author: KaiserMaus
   changes:
   - message: Партия Енфорсия оказалась одного цвета, мы вызвали новую, теперь точно каждый Енфорсер имеет свой скин.
     type: Fix
   id: 1946
   time: '2026-06-17T12:03:18.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4524
+  url: https://github.com/makura-games/sunrise-station/pull/4524
 - author: KaiserMaus
   changes:
   - message: Добавлена поддержка рязрядки всего барабана через кнопку С.
@@ -4099,7 +4099,7 @@
     type: Fix
   id: 1947
   time: '2026-06-17T12:03:38.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4523
+  url: https://github.com/makura-games/sunrise-station/pull/4523
 - author: Fooksy2304
   changes:
   - message: Добавлен диктофон
@@ -4114,35 +4114,35 @@
     type: Add
   id: 1948
   time: '2026-06-22T06:17:48.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4493
+  url: https://github.com/makura-games/sunrise-station/pull/4493
 - author: Orvex07
   changes:
   - message: Исправлен спавн ЦентКома, более оператор ЦК не появится на станции или на ПТ
     type: Fix
   id: 1949
   time: '2026-06-23T07:44:57.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4517
+  url: https://github.com/makura-games/sunrise-station/pull/4517
 - author: DerKurait
   changes:
   - message: Вех инъектор
     type: Remove
   id: 1950
   time: '2026-06-30T17:45:40.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4558
+  url: https://github.com/makura-games/sunrise-station/pull/4558
 - author: KaiserMaus
   changes:
   - message: Исправлено отслеживание целей у агентов SELF.
     type: Fix
   id: 1951
   time: '2026-06-30T17:59:54.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4522
+  url: https://github.com/makura-games/sunrise-station/pull/4522
 - author: KaiserMaus
   changes:
   - message: Улучшено круговое меню быстрого строительства при строительсве атмос-инфраструктур.
     type: Tweak
   id: 1952
   time: '2026-07-01T09:50:05.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4527
+  url: https://github.com/makura-games/sunrise-station/pull/4527
 - author: KaiserMaus
   changes:
   - message: Аплинк Лон ЯО 65>60тк.
@@ -4155,21 +4155,21 @@
     type: Tweak
   id: 1953
   time: '2026-07-02T09:02:44.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4557
+  url: https://github.com/makura-games/sunrise-station/pull/4557
 - author: Kinar_7
   changes:
   - message: в двойной шкаф смотрителя вернули портативную консоль розыска и оглушающие кастеты. В обычном двойном шкафу СБ теперь есть две пары черных перчаток
     type: Tweak
   id: 1954
   time: '2026-07-03T13:52:51.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4508
+  url: https://github.com/makura-games/sunrise-station/pull/4508
 - author: Nordstream17
   changes:
   - message: Добавлена возможность класть лампозаменитель в пояс для инструментов и пояс СИ
     type: Add
   id: 1955
   time: '2026-07-04T11:46:46.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4504
+  url: https://github.com/makura-games/sunrise-station/pull/4504
 - author: fuckrules
   changes:
   - message: Пилот СБ теперь начинает раунд сразу с охранными очками вместо солнцезащитных.
@@ -4180,42 +4180,42 @@
     type: Tweak
   id: 1956
   time: '2026-07-04T15:54:59.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4505
+  url: https://github.com/makura-games/sunrise-station/pull/4505
 - author: Fooksy2304
   changes:
   - message: добавлена анимация тоскания предметов и людей
     type: Add
   id: 1957
   time: '2026-07-09T17:54:36.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4565
+  url: https://github.com/makura-games/sunrise-station/pull/4565
 - author: ThereDrD
   changes:
   - message: Откачено питание гарнитур. Они больше не требуют питания для работы
     type: Remove
   id: 1958
   time: '2026-07-12T17:10:07.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4582
+  url: https://github.com/makura-games/sunrise-station/pull/4582
 - author: ThereDrD
   changes:
   - message: Откачены изменения в системе телекомов. Они больше не будут перегреваться и переставать работать
     type: Remove
   id: 1959
   time: '2026-07-13T15:06:40.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4581
+  url: https://github.com/makura-games/sunrise-station/pull/4581
 - author: Coconut_Law
   changes:
   - message: Добавлен навигатор в КПК Администратора
     type: Add
   id: 1960
   time: '2026-07-13T15:08:06.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4575
+  url: https://github.com/makura-games/sunrise-station/pull/4575
 - author: Nrd-K
   changes:
   - message: Уменьшены шансы попадания эффектов и триггеров на тг газы у артефактов.
     type: Tweak
   id: 1961
   time: '2026-07-13T15:43:50.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4580
+  url: https://github.com/makura-games/sunrise-station/pull/4580
 - author: Nordstream17
   changes:
   - message: Добавлен МузоМат - торгомат с музыкальными инструментами
@@ -4224,28 +4224,28 @@
     type: Add
   id: 1962
   time: '2026-07-13T23:48:15.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4538
+  url: https://github.com/makura-games/sunrise-station/pull/4538
 - author: KaiserMaus
   changes:
   - message: Масштабная добыча крупных астероидов возле станции привела к восстановлению естественной среды обитания рудокрабов. Поздравляем, вы успешно провели программу по сохранению вида.
     type: Tweak
   id: 1963
   time: '2026-07-14T09:40:30.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4570
+  url: https://github.com/makura-games/sunrise-station/pull/4570
 - author: Nordstream17
   changes:
   - message: Унатхам и фелинидам добавлена возможность есть блюда из разумных существ
     type: Add
   id: 1964
   time: '2026-07-14T10:55:49.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4500
+  url: https://github.com/makura-games/sunrise-station/pull/4500
 - author: Nrd-K
   changes:
   - message: 'Исправлены цены на газы. Хиллиум и Нитриум: 144 кредита за моль --> 12 кредитов за моль; BZ: 9 кредитов за моль --> 3 кредита за моль; Оксид азота: 0,01 кредита за моль --> 0,1 кредита за моль; Тритий: 6,25 кредита за моль --> 2,5 кредита за моль.'
     type: Fix
   id: 1965
   time: '2026-07-14T11:02:25.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4519
+  url: https://github.com/makura-games/sunrise-station/pull/4519
 - author: KaiserMaus
   changes:
   - message: Пираты получили свои собтсвенные двери и доступы.
@@ -4254,35 +4254,35 @@
     type: Tweak
   id: 1966
   time: '2026-07-14T11:41:44.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4566
+  url: https://github.com/makura-games/sunrise-station/pull/4566
 - author: Nordstream17
   changes:
   - message: Добавлена возможность слаймолюдам переваривать сырое мясо, органы и кровь без отравления.
     type: Add
   id: 1967
   time: '2026-07-14T12:03:24.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4555
+  url: https://github.com/makura-games/sunrise-station/pull/4555
 - author: VigersRay
   changes:
   - message: Реализована стабильная автоматическая загрузка реплеев на сайт https://replays.ss14.org.
     type: Add
   id: 1968
   time: '2026-07-14T14:31:46.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4583
+  url: https://github.com/makura-games/sunrise-station/pull/4583
 - author: KaiserMaus
   changes:
   - message: Теперь, после того как ядерные оперативники объявляют войну, уровень угрозы автоматически повышается до военного положения.
     type: Add
   id: 1969
   time: '2026-07-14T16:59:55.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4353
+  url: https://github.com/makura-games/sunrise-station/pull/4353
 - author: KaiserMaus
   changes:
   - message: Немного изменен аплинк ДО в сторону диверсий.
     type: Tweak
   id: 1970
   time: '2026-07-14T23:46:56.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4544
+  url: https://github.com/makura-games/sunrise-station/pull/4544
 - author: KaiserMaus
   changes:
   - message: Возвращены аплинки в перчатки ОБР.
@@ -4297,7 +4297,7 @@
     type: Tweak
   id: 1971
   time: '2026-07-17T09:45:30.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4559
+  url: https://github.com/makura-games/sunrise-station/pull/4559
 - author: KaiserMaus
   changes:
   - message: Повышен шанс выпадение скафандров с NPC пиратов.
@@ -4308,7 +4308,7 @@
     type: Tweak
   id: 1972
   time: '2026-07-17T10:13:46.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4516
+  url: https://github.com/makura-games/sunrise-station/pull/4516
 - author: SliZen, privett
   changes:
   - message: Добавлены шаттлы Службы безопасности "Москит" и "Stargaze".
@@ -4317,14 +4317,14 @@
     type: Fix
   id: 1973
   time: '2026-07-17T21:24:30.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4591
+  url: https://github.com/makura-games/sunrise-station/pull/4591
 - author: Nordstream17
   changes:
   - message: Добавлены новые спрайты сакуры
     type: Add
   id: 1974
   time: '2026-07-18T15:21:32.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4602
+  url: https://github.com/makura-games/sunrise-station/pull/4602
 - author: KaiserMaus
   changes:
   - message: Исправлена возможность пихать все типы модулей синдиката кроме оружейных в СБ борги.
@@ -4333,63 +4333,63 @@
     type: Tweak
   id: 1975
   time: '2026-07-23T03:11:10.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4639
+  url: https://github.com/makura-games/sunrise-station/pull/4639
 - author: dprsnn
   changes:
   - message: Изменены названия текстур частей тел аркан на корректные
     type: Fix
   id: 1976
   time: '2026-07-23T05:26:18.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4634
+  url: https://github.com/makura-games/sunrise-station/pull/4634
 - author: SplikZerys, ThereDrD
   changes:
   - message: Переработана система голосований за следующий игровой режим. Теперь голосование делится на 2 этапа. В первом этапе игроки выбирают обычные режимы или рассказчика. Во втором - конкретные режимы или варианты рассказчика.
     type: Tweak
   id: 1977
   time: '2026-07-23T05:28:41.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4584
+  url: https://github.com/makura-games/sunrise-station/pull/4584
 - author: Nordstream17
   changes:
   - message: Добавлены 7 видов роз в горшках. Заказывайте ящики с растениями в карго!
     type: Add
   id: 1978
   time: '2026-07-26T09:48:43.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4642
+  url: https://github.com/makura-games/sunrise-station/pull/4642
 - author: Orvex07
   changes:
   - message: Овсянка лишила МакАбдукторов приставки Мак, теперь они обычные Абдукторы((
     type: Fix
   id: 1979
   time: '2026-07-27T09:26:13.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4655
+  url: https://github.com/makura-games/sunrise-station/pull/4655
 - author: ThereDrD, Fooksy2304
   changes:
   - message: Добавлен атмосферный Bloom эффект к шейдеру освещения, который можно отключить в настройках.
     type: Add
   id: 1980
   time: '2026-07-27T16:11:47.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4599
+  url: https://github.com/makura-games/sunrise-station/pull/4599
 - author: Kinar_7
   changes:
   - message: Энергодробовик смотрителя. Урон ожогами с 80 > 53
     type: Tweak
   id: 1981
   time: '2026-07-29T11:16:50.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4665
+  url: https://github.com/makura-games/sunrise-station/pull/4665
 - author: Lgibb18
   changes:
   - message: Исправлен баг с гибом во время прибытия, теперь шаттлы не давят друг друга
     type: Fix
   id: 1982
   time: '2026-07-30T14:05:31.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4643
+  url: https://github.com/makura-games/sunrise-station/pull/4643
 - author: Nordstream17
   changes:
   - message: Урон взрывных ошейников сильно увеличен и заменён на термический, мозг заложника больше не уцелеет.
     type: Tweak
   id: 1983
   time: '2026-08-03T08:43:48.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4624
+  url: https://github.com/makura-games/sunrise-station/pull/4624
 - author: kanopus7
   changes:
   - message: Полностью переработана система обучения. Добавлены отдельные интерактивные туториалы по основам управления, инвентарю, коммуникации, доступам, выживанию, первой помощи, еде и питью, а также бою и самообороне.
@@ -4418,7 +4418,7 @@
     type: Fix
   id: 1984
   time: '2026-08-06T13:33:56.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4562
+  url: https://github.com/makura-games/sunrise-station/pull/4562
 - author: KaiserMaus
   changes:
   - message: Сейфы М-52, СКМ-28 и Ларкер переведены в категорию Gamma оружейных сейфов.
@@ -4433,49 +4433,49 @@
     type: Fix
   id: 1985
   time: '2026-08-10T11:54:30.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4661
+  url: https://github.com/makura-games/sunrise-station/pull/4661
 - author: privett
   changes:
   - message: Исправлен факс капитана на станции Марафон.
     type: Fix
   id: 1986
   time: '2026-08-10T21:08:52.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4653
+  url: https://github.com/makura-games/sunrise-station/pull/4653
 - author: Orvex07
   changes:
   - message: после неудачной сделки с поставщиком громкоговорителей SWUK, NanoTrasen  сменила поставщика на более бюджетного MiC (Made in China). В связи с этим объявления на станции теперь будут звучать тише... возможно...
     type: Fix
   id: 1987
   time: '2026-08-11T18:32:47.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4694
+  url: https://github.com/makura-games/sunrise-station/pull/4694
 - author: Kinar_7
   changes:
   - message: Великие умы Грейтайда пересмотрели чертежи Омнитулов, шок-палки и мусорной пушки мехов, дабы последователи Грейтайда вновь могли их создавать. Слава Грейтайду!
     type: Fix
   id: 1988
   time: '2026-08-12T11:37:15.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4706
+  url: https://github.com/makura-games/sunrise-station/pull/4706
 - author: KaiserMaus
   changes:
   - message: NanoTrasen подтянули боевую подготовку ОБР, сокращено время до прилета отряда с момента вызова с 300 до 180 секунд.
     type: Tweak
   id: 1989
   time: '2026-08-12T12:15:07.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4698
+  url: https://github.com/makura-games/sunrise-station/pull/4698
 - author: KaiserMaus
   changes:
   - message: Исправлено отображение пустых спидлоудеров
     type: Fix
   id: 1990
   time: '2026-08-12T12:21:03.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4685
+  url: https://github.com/makura-games/sunrise-station/pull/4685
 - author: SliZen
   changes:
   - message: Откат Дельты
     type: Fix
   id: 1991
   time: '2026-08-12T12:22:27.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4680
+  url: https://github.com/makura-games/sunrise-station/pull/4680
 - author: KaiserMaus
   changes:
   - message: Учёные НаноТрейзен потеряли рецепт филосовского мыла, похоже больше нельзя создать скафандр из мыла.
@@ -4484,28 +4484,28 @@
     type: Fix
   id: 1992
   time: '2026-08-12T20:59:34.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4702
+  url: https://github.com/makura-games/sunrise-station/pull/4702
 - author: KaiserMaus
   changes:
   - message: Промышленный военный комплекс СССП начал маркировать спидлоудеры кардашева по типу патрона.
     type: Tweak
   id: 1993
   time: '2026-08-12T21:20:33.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4703
+  url: https://github.com/makura-games/sunrise-station/pull/4703
 - author: XsenonDash
   changes:
   - message: Изменен размер в имплантере SELF
     type: Tweak
   id: 1994
   time: '2026-08-13T22:18:00.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4710
+  url: https://github.com/makura-games/sunrise-station/pull/4710
 - author: ThereDrD
   changes:
   - message: Добавлена возможность писать чейнжоги с включением медиа. Ждите волну новых крутых чейнжлогов с красивыми картинками и видео, пока без реализации в игре
     type: Add
   id: 1995
   time: '2026-08-13T23:32:32.0000000+00:00'
-  url: https://github.com/space-sunrise/sunrise-station/pull/4704
+  url: https://github.com/makura-games/sunrise-station/pull/4704
   media:
   - url: https://github.com/user-attachments/assets/8085d7d7-ea13-41cd-b2ec-260e66bba021
     description: смешное видео
@@ -4516,7 +4516,7 @@
   - type: Fix
     message: исправлено воспроизведение некоторых midi-композиций, ранее вызывающих судороги
   id: 1996
-  url: https://github.com/space-sunrise/sunrise-station/pull/4693
+  url: https://github.com/makura-games/sunrise-station/pull/4693
 - author: Ligyb
   time: '2026-08-14T10:14:16.0000000+00:00'
   changes:
@@ -4525,14 +4525,14 @@
   - type: Fix
     message: Исправлен двойной / неожиданный телепорт на станцию с шаттла прибытия
   id: 1997
-  url: https://github.com/space-sunrise/sunrise-station/pull/4695
+  url: https://github.com/makura-games/sunrise-station/pull/4695
 - author: KaiserMaus
   time: '2026-08-14T12:31:09.0000000+00:00'
   changes:
   - type: Tweak
     message: Пираты обжили бывший комплекс синдиката. Яррр!
   id: 1998
-  url: https://github.com/space-sunrise/sunrise-station/pull/4711
+  url: https://github.com/makura-games/sunrise-station/pull/4711
   media:
   - url: https://github.com/user-attachments/assets/40187d04-7022-4854-a20c-1ae70857c83e
     description: Пиратская база
@@ -4543,7 +4543,7 @@
   - type: Tweak
     message: солидный набор за 6тк получает более солидный бронежилет
   id: 1999
-  url: https://github.com/space-sunrise/sunrise-station/pull/4682
+  url: https://github.com/makura-games/sunrise-station/pull/4682
 - author: KaiserMaus
   time: '2026-08-14T23:51:11.0000000+00:00'
   changes:
@@ -4552,7 +4552,7 @@
   - type: Tweak
     message: Ксено вновь могут носить скафандры, но не шлема скафандров ввиду строения тела.
   id: 2000
-  url: https://github.com/space-sunrise/sunrise-station/pull/4672
+  url: https://github.com/makura-games/sunrise-station/pull/4672
 - author: KaiserMaus
   time: '2026-08-15T00:09:42.0000000+00:00'
   changes:
@@ -4561,14 +4561,14 @@
   - type: Fix
     message: Исправлено отсутствие поломок у самодельного оружия
   id: 2001
-  url: https://github.com/space-sunrise/sunrise-station/pull/4718
+  url: https://github.com/makura-games/sunrise-station/pull/4718
 - author: KaiserMaus
   time: '2026-08-15T01:15:36.0000000+00:00'
   changes:
   - type: Fix
     message: Исправлен дюп лазерного оружия через упаковщик.
   id: 2002
-  url: https://github.com/space-sunrise/sunrise-station/pull/4679
+  url: https://github.com/makura-games/sunrise-station/pull/4679
 - author: kanopus7
   time: '2026-08-16T09:16:10.0000000+00:00'
   changes:
@@ -4579,7 +4579,7 @@
   - type: Fix
     message: Пофикшен баг с лагами при реконнекте.
   id: 2003
-  url: https://github.com/space-sunrise/sunrise-station/pull/4725
+  url: https://github.com/makura-games/sunrise-station/pull/4725
 - author: kanopus7
   time: '2026-08-16T18:58:56.0000000+00:00'
   changes:
@@ -4588,4 +4588,15 @@
   - type: Tweak
     message: В туториалах теперь другой ТТС.
   id: 2004
-  url: https://github.com/space-sunrise/sunrise-station/pull/4727
+  url: https://github.com/makura-games/sunrise-station/pull/4727
+- author: ThereDrD
+  time: '2026-08-18T09:35:18.0000000+00:00'
+  changes:
+  - type: Tweak
+    message: Ребрендинг Sunrise в Stellar Stories. Изменена иконка приложения, лого и пара названий
+  id: 2005
+  url: https://github.com/makura-games/sunrise-station/pull/4738
+  media:
+  - url: https://github.com/user-attachments/assets/1593817d-658c-43ca-a0cb-b756025ab2c0
+    description: Новое лого
+    change: 0
