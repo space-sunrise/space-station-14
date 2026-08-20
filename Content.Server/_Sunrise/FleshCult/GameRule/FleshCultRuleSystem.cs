@@ -15,6 +15,7 @@ using Content.Shared.NPC.Systems;
 using Content.Shared.Roles;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.FleshCult.GameRule;
@@ -30,6 +31,7 @@ public sealed partial class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleCo
 
     [ValidatePrototypeId<AntagPrototype>]
     private const string LeaderAntagProto = "FleshCultistLeader";
+    private static readonly EntProtoId FleshCultGameRule = "FleshCult";
 
     public override void Initialize()
     {
@@ -132,7 +134,7 @@ public sealed partial class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleCo
         var comp = EntityQuery<FleshCultRuleComponent>().FirstOrDefault();
         if (comp == null)
         {
-            GameTicker.StartGameRule("FleshCult", out var ruleEntity);
+            GameTicker.StartGameRule(FleshCultGameRule, out var ruleEntity);
             comp = Comp<FleshCultRuleComponent>(ruleEntity);
         }
 

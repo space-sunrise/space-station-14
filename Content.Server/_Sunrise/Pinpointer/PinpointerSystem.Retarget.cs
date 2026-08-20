@@ -11,6 +11,7 @@ public sealed partial class PinpointerSystem
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private PopupSystem _popups = default!;
+    [Dependency] private EntityQuery<TransformComponent> _xformQuery = default!;
 
     private void InitializeSunrise()
     {

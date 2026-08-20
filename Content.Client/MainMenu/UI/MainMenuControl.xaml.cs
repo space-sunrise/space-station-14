@@ -26,7 +26,7 @@ public sealed partial class MainMenuControl : Control
         "PlasmaStation",
         "AmberStation",
         "FastSpace",
-        "AspidParallax",
+        "AspidStation", // Sunrise-Edit — в Sunrise этот параллакс переименован для системы фонов лобби.
         "OriginStation",
         "Default",
         "Sky",

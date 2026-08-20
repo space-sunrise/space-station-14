@@ -688,7 +688,7 @@ public sealed partial class GhostRoleSystem : EntitySystem
             if (MetaData(uid).EntityPaused)
                 continue;
 
-            var prototypeId = metaQuery.GetComponent(uid).EntityPrototype!.ID; // Sunrise-Sponsors
+            var prototypeId = MetaData(uid).EntityPrototype!.ID; // Sunrise-Sponsors
 
             var kind = GhostRoleKind.FirstComeFirstServe;
             GhostRoleRaffleComponent? raffle = null;
