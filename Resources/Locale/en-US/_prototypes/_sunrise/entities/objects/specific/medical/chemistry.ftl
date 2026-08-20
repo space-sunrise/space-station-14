@@ -20,3 +20,5 @@ ent-MiniSyringeEphedrine = stimulant mini syringe
 
 ent-ChemistryEmptyBottleDurable01 = explosion-proof bottle
     .desc = A small metal bottle.
+ent-BottleCase = bottle case
+    .desc = A fabric case for bottles.

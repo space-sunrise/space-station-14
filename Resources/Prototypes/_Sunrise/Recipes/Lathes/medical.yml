@@ -192,3 +192,11 @@
     Plastic: 500
     Plasma: 200
     Silver: 200
+
+- type: latheRecipe
+  id: BottleCase
+  result: BottleCase
+  completetime: 10
+  materials:
+    Cloth: 500
+    Plastic: 500

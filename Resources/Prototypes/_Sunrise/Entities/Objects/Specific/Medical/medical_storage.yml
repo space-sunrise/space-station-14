@@ -25,7 +25,6 @@
           False: { state: icon }
   - type: Appearance
   - type: ExplosionResistance
-    damageCoefficient: 0.5
 
 - type: entity
   name: bottle case

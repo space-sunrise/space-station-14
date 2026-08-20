@@ -30,6 +30,7 @@
   - DnaInjector
   - ChemistryEmptyBottleDurable01
   - PouchMedical
+  - BottleCase
 
 - type: latheRecipePack
   id: SurgeryDynamicSunrise

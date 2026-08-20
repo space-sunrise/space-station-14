@@ -46,6 +46,7 @@
   recipeUnlocks:
     - ChemistryEmptyBottleDurable01
     - PouchMedical
+    - BottleCase
 
 # Tier 2
 - type: technology
