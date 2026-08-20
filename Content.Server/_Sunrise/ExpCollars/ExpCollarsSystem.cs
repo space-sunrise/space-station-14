@@ -15,6 +15,7 @@ using Content.Shared.Popups;
 using Content.Shared.Tag;
 using Content.Shared.Trigger.Systems;
 using Robust.Server.Audio;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.ExpCollars;
 
@@ -30,6 +31,8 @@ public sealed class ExpCollarsSystem : EntitySystem
     [Dependency] private readonly TriggerSystem _trigger = default!;
     [Dependency] private readonly ClothingSystem _clothing = default!;
     [Dependency] private readonly TagSystem _tag = default!;
+
+    private static readonly ProtoId<TagPrototype> CannotSuicideTag = "CannotSuicide";
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -73,8 +76,6 @@ public sealed class ExpCollarsSystem : EntitySystem
         Destroy(component.Tool.Value);
         foreach (var linkedCollar in expCollarComponent.Linked)
         {
-            if (linkedCollar == null)
-                return;
             _popup.PopupEntity(Loc.GetString("expcollar-kill"), linkedCollar, PopupType.LargeCaution);
             Destroy(linkedCollar);
         }
@@ -107,7 +108,7 @@ public sealed class ExpCollarsSystem : EntitySystem
         if (component.IsHost)
         {
             component.Armed = true;
-            _tag.AddTag(uid, "CannotSuicide");
+            _tag.AddTag(uid, CannotSuicideTag);
             _popup.PopupEntity(Loc.GetString("expcollar-armed"), args.Wearer, PopupType.LargeCaution);
             foreach (var i in component.Linked)
             {
@@ -184,16 +185,12 @@ public sealed class ExpCollarsSystem : EntitySystem
         if (collar.Armed == false)
             return;
 
-        if (uid == null)
-            return;
         _popup.PopupEntity(Loc.GetString("expcollar-boom"), uid, PopupType.LargeCaution);
         _audio.PlayPvs(collar.BeepSound, uid);
         await Task.Delay(TimeSpan.FromSeconds(1));
 
         for (var i = 10; i > 0; i--)
         {
-            if (uid == null)
-                return;
             _popup.PopupEntity(Loc.GetString("expcollar-popup", ("timer", i)), uid, PopupType.LargeCaution);
             _audio.PlayPvs(collar.BeepSound, uid);
             await Task.Delay(TimeSpan.FromSeconds(1));

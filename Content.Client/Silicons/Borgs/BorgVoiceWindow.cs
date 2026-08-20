@@ -48,11 +48,8 @@ public sealed partial class BorgVoiceWindow : DefaultWindow
 
         VoicePlayButton.OnPressed += _ =>
         {
-            if (VoiceOptionButton.SelectedId != null)
-            {
-                var voice = _voiceList[VoiceOptionButton.SelectedId];
-                OnVoicePreview?.Invoke(voice.ID);
-            }
+            var voice = _voiceList[VoiceOptionButton.SelectedId];
+            OnVoicePreview?.Invoke(voice.ID);
         };
     }
 

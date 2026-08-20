@@ -68,8 +68,21 @@
         - id: WeaponSniperDragunov
         - id: MagazineDragunovIncendiary
         - id: MagazineDragunovSP
-        - id: MagazineDragunovHP
+          amount: 2
         - id: MagazineDragunovFMJ
+
+- type: entity
+  id: BriefcaseWeaponDMRFilled
+  parent: BriefcaseWeapon
+  name: secure estoc case
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponRifleEstoc
+        - id: MagazineRifle
+        - id: MagazineRifleAP
 
 - type: entity
   id: BriefcaseWeaponType88AMRFilled
@@ -124,8 +137,7 @@
         children:
         - id: WeaponRifleSKM28Syndi
         - id: MagazineRifleHeavySP
-          amount: 2
-        - id: MagazineRifleHeavyHP
+          amount: 3
         - id: MagazineRifleHeavyFMJ
 
 - type: entity
@@ -152,3 +164,22 @@
         - id: WeaponPistolDeagle
         - id: MagazineMagnumAP
         - id: MagazineMagnumAP
+
+- type: entity
+  id: BriefcaseWeaponGarandFilled
+  parent: [ BaseSalvageContraband, BriefcaseWeapon ]
+  name: secure Garand case
+  description: A secure weapon case containing an M1 Garand, a spare .308 clip, and a blueprint for producing more clips.
+  suffix: Garand, Filled
+  components:
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,4,1
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponSniperGarand
+        - id: MagazineGarand
+        - id: BlueprintMagazineGarand

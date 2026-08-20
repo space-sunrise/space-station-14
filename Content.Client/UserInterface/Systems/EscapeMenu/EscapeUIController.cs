@@ -1,6 +1,7 @@
-﻿using Content.Client._Sunrise.Roadmap;
+using Content.Client._Sunrise.Roadmap;
 using Content.Client._Sunrise.Tutorial;
 using Content.Client._Sunrise.Tutorial.TutorialWindow;
+using Content.Client.FeedbackPopup;
 using Content.Client.Gameplay;
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.Guidebook;
@@ -32,6 +33,7 @@ public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayS
     [Dependency] private readonly InfoUIController _info = default!;
     [Dependency] private readonly OptionsUIController _options = default!;
     [Dependency] private readonly GuidebookUIController _guidebook = default!;
+    [Dependency] private readonly FeedbackPopupUIController _feedback = null!;
     [Dependency] private readonly IEntityManager _entity = default!; // Sunrise
     [Dependency] private readonly IEntitySystemManager _entSys = default!; // Sunrise
 
@@ -71,6 +73,12 @@ public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayS
 
         _escapeWindow.OnClose += DeactivateButton;
         _escapeWindow.OnOpen += ActivateButton;
+
+        _escapeWindow.FeedbackButton.OnPressed += _ =>
+        {
+            CloseEscapeWindow();
+            _feedback.ToggleWindow();
+        };
 
         _escapeWindow.ChangelogButton.OnPressed += _ =>
         {

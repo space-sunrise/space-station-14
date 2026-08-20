@@ -23,7 +23,6 @@ public sealed partial class GeneralStationRecordConsoleSystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly RadioSystem _radio = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly AccessReaderSystem _access = default!;
     [Dependency] private readonly HandsSystem _hands = default!;

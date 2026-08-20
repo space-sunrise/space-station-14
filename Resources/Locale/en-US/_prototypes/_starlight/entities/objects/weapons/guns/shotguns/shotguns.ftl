@@ -15,5 +15,3 @@ ent-WeaponShotgunMinotaur = AS-12 'Minotaur' Shotgun
     .desc = Smooth, powerful, highly illegal. The newest full auto shotgun available at the market, utilizes standard 12g drum mags. Property of Gorlex Marauders.
 ent-WeaponShotgunForged = forged double-barrel shotgun
     .desc = Decently made double-barrel shotgun, reinforced with mixed steel and plasteel plates to keep it together. Not as accurate as a real gun.
-ent-WeaponShotgunMakeshift = makeshift shotgun
-    .desc = A small hand-cannon that fires .50 shotgun shells. Has no cloth to hold it together, so it has a high chance of falling apart with every shot.
