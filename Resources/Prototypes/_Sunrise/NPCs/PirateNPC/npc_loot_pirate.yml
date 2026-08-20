@@ -3628,11 +3628,11 @@
       orGroup: AmmoMGPool
     - id: MagazineBoxLightRifleFMJ
       orGroup: AmmoMGPool
-    - id: MagazineBoxLightRifleHP
-      orGroup: AmmoMGPool
     - id: MagazineBoxLightRifleUranium
       orGroup: AmmoMGPool
     - id: MagazineBoxLightRifleIncendiary
+      orGroup: AmmoMGPool
+    - id: MagazineBoxLightRifleSP
       orGroup: AmmoMGPool
     - id: MagazineBoxLightRifleSP
       orGroup: AmmoMGPool

@@ -68,7 +68,7 @@
         - id: WeaponSniperDragunov
         - id: MagazineDragunovIncendiary
         - id: MagazineDragunovSP
-        - id: MagazineDragunovHP
+          amount: 2
         - id: MagazineDragunovFMJ
 
 - type: entity
@@ -137,8 +137,7 @@
         children:
         - id: WeaponRifleSKM28Syndi
         - id: MagazineRifleHeavySP
-          amount: 2
-        - id: MagazineRifleHeavyHP
+          amount: 3
         - id: MagazineRifleHeavyFMJ
 
 - type: entity

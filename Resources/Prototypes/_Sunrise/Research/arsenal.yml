@@ -31,6 +31,38 @@
   - Security
 
 - type: technology
+  id: SunriseFullMetalJacketAmmunition
+  name: research-technology-full-metal-jacket-ammunition
+  icon:
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle_mag.rsi
+    state: base
+  discipline: Arsenal
+  tier: 2
+  cost: 7500
+  recipeUnlocks:
+  - MagazineBoxLightRifleFMJ
+  - MagazineBoxMagnumFMJ
+  - MagazineBoxPistolFMJ
+  - MagazineBoxPistol40FMJ
+  - MagazineBoxRifleFMJ
+  - MagazineBoxHeavyRifleFMJ
+  - BoxShotgunFlechette
+  - MagazineLightRifleBeltBoxFMJ
+  - MagazineLightRifleFMJ
+  - SpeedLoaderMagnumFMJ
+  - SpeedLoaderShotgunFlechette
+  - MagazinePistolFMJ
+  - MagazinePistol40FMJ
+  - MagazinePistolSubMachineGunFMJ
+  - MagazinePistolSubMachineGunTopMounted
+  - MagazineRifleFMJ
+  - MagazineRifleHeavyFMJ
+  technologyPrerequisites:
+  - NonlethalAmmunition
+  radioChannels:
+  - Security
+
+- type: technology
   id: SunriseBatteryEnergyWeaponry
   name: research-technology-battery-energy-weaponry
   icon:
@@ -92,8 +124,6 @@
   - MagazinePistolHighCapacityAP
   - MagazineBoxHeavyRifleAP
   - MagazineRifleHeavyAP
-  - BoxShotgunFlechette
-  - SpeedLoaderShotgunFlechette
   radioChannels:
   - Security
 

@@ -44,7 +44,7 @@ public sealed partial class ProfilePreviewSpriteView
 
         var sponsorPrototypes = _sponsorsManager?.GetClientPrototypes().ToArray() ?? [];
         loadout = profile.GetLoadoutOrDefault(
-            jobLoadoutId,
+            effectiveJobLoadoutId,
             _playerManager.LocalSession,
             profile.Species,
             EntMan,
