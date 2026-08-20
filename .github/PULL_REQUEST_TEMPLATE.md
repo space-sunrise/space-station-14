@@ -38,7 +38,7 @@
 <!--
 === КАК ПИСАТЬ ЧЕЙНЖЛОГ ===
 
-[Подробная инструкция и полный пример](https://github.com/space-sunrise/sunrise-station/blob/master/Tools/_sunrise/changelog/README.md)
+[Подробная инструкция и полный пример](https://github.com/makura-games/sunrise-station/blob/master/Tools/_sunrise/changelog/README.md)
 
 1) Не считайте тип чейнжлога частью вашего предложения.
 add: Новая фича = ПЛОХО | add: Добавлена новая фича = ХОРОШО

@@ -43,6 +43,7 @@ public sealed partial class TutorialSystem : SharedTutorialSystem
     [Dependency] private GameTicker _ticker = default!;
     [Dependency] private IServerDbManager _db = default!;
     [Dependency] private AccountCreationManager _accountCreation = default!;
+    [Dependency] private TutorialMetricsSystem _tutorialMetrics = default!;
     [Dependency] private SharedMapSystem _mapSystem = default!;
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private EuiManager _eui = default!;
@@ -51,6 +52,7 @@ public sealed partial class TutorialSystem : SharedTutorialSystem
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private UserDbDataManager _userDb = default!;
     [Dependency] private IGameTiming _timing = default!;
+
     private TimeSpan _cooldown;
     private int _maxTutorials;
     private Dictionary<NetUserId, TimeSpan> _cooldownData = new();
@@ -459,6 +461,7 @@ public sealed partial class TutorialSystem : SharedTutorialSystem
         tutorial.Grid = nextGrid;
         EnsureComp<TutorialProgressBarComponent>(nextPlayer);
         InitializeTutorial((nextPlayer, tutorial));
+        _tutorialMetrics.RecordTutorialStarted(nextTutorial.ID);
 
         QueueDel(currentComp.Grid);
         QueueDel(player);
@@ -517,6 +520,7 @@ public sealed partial class TutorialSystem : SharedTutorialSystem
         tutorial.Grid = gridUid;
         EnsureComp<TutorialProgressBarComponent>(playerUid);
         InitializeTutorial((playerUid, tutorial));
+        _tutorialMetrics.RecordTutorialStarted(sequence.ID);
     }
 
     private bool TryCreateNextTutorialPlayer(

@@ -22,6 +22,7 @@ public sealed partial class LobbyCharacterPreviewPanel
 
     private void InitializeSunrisePetPreview()
     {
+        Header.Visible = false;
         ChangePetButton.OnPressed += OnChangePetButtonPressed;
     }
 

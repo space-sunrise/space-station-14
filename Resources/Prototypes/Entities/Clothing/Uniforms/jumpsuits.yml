@@ -833,9 +833,7 @@
   - type: Armor
     modifiers:
       coefficients:
-        Slash: 0.92
-        Piercing: 0.98
-        Heat: 0.95
+        Slash: 0.95
   - type: StaminaResistance
     damageCoefficient: 0.95
   # Sunrise-End

@@ -185,7 +185,7 @@ public sealed partial class SunriseCCVars : CVars
         CVarDef.Create("infolinks.replays", "https://replays.ss14.org", CVar.SERVER | CVar.REPLICATED);
 
     public static readonly CVarDef<string> ServerName =
-        CVarDef.Create("lobby.server_name", "Sunrise Station", CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("lobby.server_name", "Stellar Stories", CVar.SERVER | CVar.REPLICATED);
 
     /*
      * Planet Prison
@@ -571,6 +571,12 @@ public sealed partial class SunriseCCVars : CVars
 
     public static readonly CVarDef<TimeSpan> TutorialCooldown =
         CVarDef.Create("tutorial.cooldown", TimeSpan.FromSeconds(5), CVar.SERVERONLY);
+
+    /// <summary>
+    /// Maximum account age at the first tutorial completion for the player to be counted as a new account.
+    /// </summary>
+    public static readonly CVarDef<TimeSpan> TutorialNewAccountThreshold =
+        CVarDef.Create("tutorial.metrics.new_account_threshold", TimeSpan.FromDays(7), CVar.SERVERONLY);
 
     public static readonly CVarDef<float> TutorialPromptSkipDelay =
         CVarDef.Create("tutorial.prompt_skip_delay", 15f, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);

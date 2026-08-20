@@ -187,7 +187,7 @@ public sealed partial class TutorialSoftLockSystem : EntitySystem
         return false;
     }
 
-    private void ShowPopup(EntityUid user, string popup)
+    private void ShowPopup(EntityUid user, LocId popup)
     {
         if (_lastPopupTimes.TryGetValue(user, out var lastPopup) &&
             _timing.CurTime - lastPopup < PopupCooldown)

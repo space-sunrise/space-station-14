@@ -1,7 +1,8 @@
 - type: entity
   parent:
-  - BaseSpeciesAppearance
+  # Sunrise-Edit: миксин должен идти перед BaseSpeciesAppearance, чтобы сохранить Sunrise displacement-карты.
   - SunriseHumanBodyTypeDisplacements
+  - BaseSpeciesAppearance
   id: AppearanceFelinid
   name: felinid appearance
   components:
