@@ -8,7 +8,7 @@ namespace Content.Server._Sunrise.AssaultOps.Icarus.Commands;
 
 [UsedImplicitly]
 [AdminCommand(AdminFlags.Fun)]
-public sealed class SpawnIcarusCommand : IConsoleCommand
+public sealed partial class SpawnIcarusCommand : IConsoleCommand
 {
     [Dependency] private IEntityManager _entityManager = default!;
 

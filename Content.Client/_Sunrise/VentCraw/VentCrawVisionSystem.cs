@@ -5,7 +5,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Client._Sunrise.VentCraw;
 
-public sealed class VentCrawSystem : EntitySystem
+public sealed partial class VentCrawSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IPlayerManager _player = default!;

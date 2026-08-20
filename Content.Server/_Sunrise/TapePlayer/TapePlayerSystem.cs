@@ -1,4 +1,4 @@
-﻿using Content.Server.Power.Components;
+using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared._Sunrise.TapePlayer;
 using Content.Shared.Containers.ItemSlots;
@@ -12,7 +12,7 @@ using Robust.Shared.Player;
 
 namespace Content.Server._Sunrise.TapePlayer;
 
-public sealed class TapePlayerSystem : SharedTapePlayerSystem
+public sealed partial class TapePlayerSystem : SharedTapePlayerSystem
 {
     [Dependency] private SharedAudioSystem _audioSystem = default!;
     [Dependency] private ItemSlotsSystem _itemSlotsSystem = default!;

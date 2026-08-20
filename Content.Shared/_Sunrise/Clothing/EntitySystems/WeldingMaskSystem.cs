@@ -10,7 +10,7 @@ using Content.Shared.Clothing;
 
 namespace Content.Shared.Sunrise.Clothing.EntitySystems;
 
-public sealed class WeldingMaskSystem : EntitySystem
+public sealed partial class WeldingMaskSystem : EntitySystem
 {
     [Dependency] private ClothingSystem _clothing = default!;
     [Dependency] private SharedItemSystem _item = default!;

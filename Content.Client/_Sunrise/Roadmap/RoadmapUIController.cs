@@ -10,7 +10,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client._Sunrise.Roadmap;
 
-public sealed class RoadmapUIController : UIController, IOnStateEntered<LobbyState>
+public sealed partial class RoadmapUIController : UIController, IOnStateEntered<LobbyState>
 {
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IPrototypeManager _prototype = default!;

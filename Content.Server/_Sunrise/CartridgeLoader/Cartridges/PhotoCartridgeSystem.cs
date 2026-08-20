@@ -15,7 +15,7 @@ using Robust.Shared.Configuration;
 
 namespace Content.Server._Sunrise.CartridgeLoader.Cartridges;
 
-public sealed class PhotoCartridgeSystem : EntitySystem
+public sealed partial class PhotoCartridgeSystem : EntitySystem
 {
     [Dependency] private CartridgeLoaderSystem _cartridgeLoader = default!;
     [Dependency] private NetTexturesManager _netTexturesManager = default!;

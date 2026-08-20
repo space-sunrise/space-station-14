@@ -9,7 +9,7 @@ using Robust.Client.UserInterface.Controllers;
 
 namespace Content.Client._Sunrise.Radials;
 
-public sealed class RadialUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>
+public sealed partial class RadialUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>
 {
     [Dependency] private IPlayerManager _playerManager = default!;
     [Dependency] private IUserInterfaceManager _userInterfaceManager = default!;

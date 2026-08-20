@@ -13,7 +13,7 @@ using Robust.Shared.Random;
 
 namespace Content.Shared._Sunrise.Flip;
 
-public abstract class SharedFlipSystem : EntitySystem
+public abstract partial class SharedFlipSystem : EntitySystem
 {
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private IRobustRandom _random = default!;

@@ -23,7 +23,7 @@ namespace Content.Server._Sunrise.Throwing.Systems;
 /// <summary>
 ///     Sunrise-Edit: handles throwing damage and effects based on item size.
 /// </summary>
-public sealed class SunriseThrownItemDamageSystem : EntitySystem
+public sealed partial class SunriseThrownItemDamageSystem : EntitySystem
 {
     [Dependency] private IAdminLogManager _adminLogger = default!;
     [Dependency] private DamageableSystem _damageable = default!;

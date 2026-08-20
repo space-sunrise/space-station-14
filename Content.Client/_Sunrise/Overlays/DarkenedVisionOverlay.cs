@@ -14,7 +14,7 @@ using Content.Client.Sunrise.Overlays;
 
 namespace Content.Client.Sunrise.Overlays;
 
-public sealed class DarkenedVisionOverlay : Overlay
+public sealed partial class DarkenedVisionOverlay : Overlay
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IPlayerManager _playerManager = default!;

@@ -9,7 +9,7 @@ namespace Content.Client._Sunrise.Sandbox.Transparency.Overlays;
 /// <summary>
 /// Applies temporary transparency to anchored sprites while mapper transparency mode is active.
 /// </summary>
-public sealed class MappingTransparencyOverlay : Overlay
+public sealed partial class MappingTransparencyOverlay : Overlay
 {
     [Dependency] private IEntityManager _ent = default!;
     [Dependency] private IEyeManager _eye = default!;

@@ -10,7 +10,7 @@ using Content.Shared._Sunrise.Stunnable;
 
 namespace Content.Server._Sunrise.Stunnable.Systems
 {
-    public sealed class TelescopicbatonSystem : SharedTelescopicbatonSystem
+    public sealed partial class TelescopicbatonSystem : SharedTelescopicbatonSystem
     {
         [Dependency] private SharedItemSystem _item = default!;
         [Dependency] private ItemToggleSystem _itemToggle = default!;

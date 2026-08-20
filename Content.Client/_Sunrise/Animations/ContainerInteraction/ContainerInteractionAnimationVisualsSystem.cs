@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
 using Robust.Shared.Animations;
@@ -8,7 +8,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Client._Sunrise.Animations.ContainerInteraction;
 
-public sealed class ContainerInteractionAnimationVisualsSystem : EntitySystem
+public sealed partial class ContainerInteractionAnimationVisualsSystem : EntitySystem
 {
     [Dependency] private AnimationPlayerSystem _animation = default!;
     [Dependency] private IRobustRandom _random = default!;

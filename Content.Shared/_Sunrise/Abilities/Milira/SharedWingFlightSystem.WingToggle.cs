@@ -10,7 +10,7 @@ namespace Content.Shared._Sunrise.Abilities.Milira;
 /// <summary>
 /// Shared система WingFlight с блокировкой одевания брони при раскрытых крыльях
 /// </summary>
-public sealed class WingToggleSharedSystem : SharedWingFlightSystem
+public sealed partial class WingToggleSharedSystem : SharedWingFlightSystem
 {
     [Dependency] private TagSystem _tagSystem = default!;
 

@@ -357,12 +357,12 @@ public sealed partial class FleshCultSystem
             return;
 
         var localpos = xform.Coordinates.Position;
-        var tilerefs = grid.GetLocalTilesIntersecting(
+        var tilerefs = _mapSystem.GetLocalTilesIntersecting(xform.GridUid.Value, grid,
             new Box2(localpos + new Vector2(-radius, -radius), localpos + new Vector2(radius, radius))).ToArray();
         foreach (var tileref in tilerefs)
         {
             var canSpawnFloor = true;
-            foreach (var ent in grid.GetAnchoredEntities(tileref.GridIndices).ToList())
+            foreach (var ent in _mapSystem.GetAnchoredEntities(xform.GridUid.Value, grid, tileref.GridIndices).ToList())
             {
                 if (_tagSystem.HasAnyTag(ent, FleshSpawnBlockingTags))
                     canSpawnFloor = false;
@@ -383,14 +383,14 @@ public sealed partial class FleshCultSystem
             return;
 
         var localpos = xform.Coordinates.Position;
-        var tilerefs = grid.GetLocalTilesIntersecting(
+        var tilerefs = _mapSystem.GetLocalTilesIntersecting(xform.GridUid.Value, grid,
             new Box2(localpos + new Vector2(-radius, -radius), localpos + new Vector2(radius, radius))).ToArray();
         _random.Shuffle(tilerefs);
         var amountCounter = 0;
         foreach (var tileref in tilerefs)
         {
             var valid = true;
-            foreach (var ent in grid.GetAnchoredEntities(tileref.GridIndices))
+            foreach (var ent in _mapSystem.GetAnchoredEntities((xform.GridUid.Value, grid), tileref.GridIndices))
             {
                 if (!_physicsQuery.TryGetComponent(ent, out var body))
                     continue;

@@ -22,7 +22,7 @@ namespace Content.Server._Sunrise.Footprints;
 /// <summary>
 /// Handles creation and management of footprints left by entities as they move.
 /// </summary>
-public sealed class FootprintSystem : EntitySystem
+public sealed partial class FootprintSystem : EntitySystem
 {
     #region Dependencies
 

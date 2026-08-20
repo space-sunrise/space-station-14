@@ -27,7 +27,7 @@ namespace Content.Client._Sunrise.Tutorial;
 /// <summary>
 /// Client-side tutorial controller for bubbles, target highlighting, path overlay, and tutorial menu requests.
 /// </summary>
-public sealed class TutorialSystem : SharedTutorialSystem
+public sealed partial class TutorialSystem : SharedTutorialSystem
 {
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IInputManager _input = default!;

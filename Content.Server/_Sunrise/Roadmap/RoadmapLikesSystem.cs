@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Content.Server._Sunrise.Roadmap;
 
-public sealed class RoadmapLikesSystem : EntitySystem
+public sealed partial class RoadmapLikesSystem : EntitySystem
 {
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IPrototypeManager _prototype = default!;

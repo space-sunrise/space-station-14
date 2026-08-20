@@ -9,7 +9,7 @@ namespace Content.Shared._Sunrise.Abilities.Milira;
 /// <summary>
 /// Шейред система для полёта расы милира, оно использует другую систему для изменения масштаба крыльев, а также изменяет маркинг, и тратит стамину.
 /// </summary>
-public abstract class SharedWingFlightSystem : EntitySystem
+public abstract partial class SharedWingFlightSystem : EntitySystem
 {
     [Dependency] private MovementSpeedModifierSystem _movement = default!;
     [Dependency] private IGameTiming _timing = default!;

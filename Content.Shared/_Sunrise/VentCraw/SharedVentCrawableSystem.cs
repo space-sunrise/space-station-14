@@ -22,7 +22,7 @@ namespace Content.Shared._Sunrise.VentCraw;
 /// <summary>
 /// A system that handles the crawling behavior for vent creatures.
 /// </summary>
-public abstract class SharedVentCrawableSystem : EntitySystem
+public abstract partial class SharedVentCrawableSystem : EntitySystem
 {
     [Dependency] private SharedVentTubeSystem _ventCrawTubeSystem = default!;
     [Dependency] private SharedPhysicsSystem _physicsSystem = default!;

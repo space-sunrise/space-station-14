@@ -15,7 +15,7 @@ namespace Content.Server._Sunrise.HairDye;
 /// <summary>
 /// Система, обрабатывающая красители для волос.
 /// </summary>
-public sealed class HairDyeSystem : EntitySystem
+public sealed partial class HairDyeSystem : EntitySystem
 {
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private DoAfterSystem _doAfter = default!;

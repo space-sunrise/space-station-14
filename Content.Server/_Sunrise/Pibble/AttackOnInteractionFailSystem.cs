@@ -6,7 +6,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.Pibble;
 
-public sealed class AttackOnInteractionFailSystem : EntitySystem
+public sealed partial class AttackOnInteractionFailSystem : EntitySystem
 {
     [Dependency] private NpcFactionSystem _npcFaction = default!;
     [Dependency] private IGameTiming _timing = default!;

@@ -7,7 +7,7 @@ using Content.Server._Sunrise.Medical;
 
 namespace Content.Server._Sunrise.SolutionRegenerationSwitcherSystem
 {
-    public sealed class SolutionRegenerationSwitcherSystem : SharedSolutionRegenerationSwitcherSystem
+    public sealed partial class SolutionRegenerationSwitcherSystem : SharedSolutionRegenerationSwitcherSystem
     {
         [Dependency] private SharedSolutionContainerSystem _solutionSystem = null!;
         [Dependency] private SharedPopupSystem _popups = null!;

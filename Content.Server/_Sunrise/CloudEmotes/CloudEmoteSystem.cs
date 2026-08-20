@@ -5,7 +5,7 @@ using Robust.Shared.Map;
 
 namespace Content.Server._Sunrise.CloudEmotes;
 
-public sealed class CloudEmoteSystem : SharedCloudEmoteSystem
+public sealed partial class CloudEmoteSystem : SharedCloudEmoteSystem
 {
     [Dependency] private TransformSystem _transformSystem = default!;
     [Dependency] private EntityManager _entMan = default!;

@@ -1,4 +1,4 @@
-﻿using Content.Shared._Sunrise.Smile;
+using Content.Shared._Sunrise.Smile;
 using Content.Shared.Damage;
 using Content.Shared.Humanoid;
 using Content.Shared.Interaction;
@@ -20,7 +20,7 @@ using Content.Shared.Body;
 
 namespace Content.Server._Sunrise.Smile;
 
-public sealed class SmileSlimeSystem : EntitySystem
+public sealed partial class SmileSlimeSystem : EntitySystem
 {
     [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private IRobustRandom _random = default!;

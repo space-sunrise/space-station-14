@@ -13,7 +13,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._Sunrise.StationGoal
 {
-    public sealed class StationGoalPaperSystem : EntitySystem
+    public sealed partial class StationGoalPaperSystem : EntitySystem
     {
         [Dependency] private IPrototypeManager _prototypeManager = default!;
         [Dependency] private ContainerSystem _containerSystem = default!;

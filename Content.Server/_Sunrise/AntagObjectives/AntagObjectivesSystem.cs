@@ -1,4 +1,4 @@
-﻿using Content.Server.Administration.Managers;
+using Content.Server.Administration.Managers;
 using Content.Server.Mind;
 using Content.Server.Roles;
 using Content.Shared._Sunrise.AntagObjectives;
@@ -9,7 +9,7 @@ using Content.Shared.Objectives.Systems;
 
 namespace Content.Server._Sunrise.AntagObjectives;
 
-public sealed class AntagObjectivesSystem : EntitySystem
+public sealed partial class AntagObjectivesSystem : EntitySystem
 {
     [Dependency] private MindSystem _minds = default!;
     [Dependency] private RoleSystem _roles = default!;

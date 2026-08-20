@@ -1,11 +1,11 @@
-﻿using Content.Shared.Roles;
+using Content.Shared.Roles;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Shared._Sunrise.Helpers;
 
-public sealed class ChatIconsHelpersSystem : EntitySystem
+public sealed partial class ChatIconsHelpersSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototype = default!;
 

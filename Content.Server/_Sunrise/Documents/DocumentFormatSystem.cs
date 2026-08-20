@@ -6,7 +6,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.Documents;
 
-public sealed class DocumentFormatSystem : EntitySystem
+public sealed partial class DocumentFormatSystem : EntitySystem
 {
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IGameTiming _timing = default!;

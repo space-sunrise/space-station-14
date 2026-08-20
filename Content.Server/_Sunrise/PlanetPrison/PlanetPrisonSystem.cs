@@ -15,7 +15,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.PlanetPrison
 {
-    public sealed class PlanetPrisonSystem : EntitySystem
+    public sealed partial class PlanetPrisonSystem : EntitySystem
     {
         [Dependency] private MindSystem _mindSystem = default!;
         [Dependency] private SharedRoleSystem _roleSystem = default!;

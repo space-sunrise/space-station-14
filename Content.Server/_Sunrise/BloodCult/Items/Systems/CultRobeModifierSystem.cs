@@ -1,4 +1,4 @@
-﻿using Content.Server._Sunrise.BloodCult.Items.Components;
+using Content.Server._Sunrise.BloodCult.Items.Components;
 using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
@@ -9,7 +9,7 @@ using Content.Shared.Movement.Systems;
 
 namespace Content.Server._Sunrise.BloodCult.Items.Systems;
 
-public sealed class CultRobeModifierSystem : EntitySystem
+public sealed partial class CultRobeModifierSystem : EntitySystem
 {
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private MovementSpeedModifierSystem _movement = default!;

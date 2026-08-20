@@ -6,7 +6,7 @@ using Robust.Shared.Console;
 namespace Content.Server._Sunrise.BloodCult.Commands;
 
 [AdminCommand(AdminFlags.Admin)]
-public sealed class ListCultTargetsCommand : IConsoleCommand
+public sealed partial class ListCultTargetsCommand : IConsoleCommand
 {
     [Dependency] private IEntityManager _entManager = default!;
 

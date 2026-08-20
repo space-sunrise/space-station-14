@@ -8,7 +8,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client._Sunrise.ThermalVision;
 
-public sealed class ThroughWallsVisionOverlay : Overlay
+public sealed partial class ThroughWallsVisionOverlay : Overlay
 {
     [Dependency] private IEntityManager _entityManager = default!;
     [Dependency] private IPlayerManager _playerManager = default!;

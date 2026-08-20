@@ -1,4 +1,4 @@
-﻿using Content.Shared.DoAfter;
+using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
@@ -9,7 +9,7 @@ namespace Content.Shared._Sunrise.Paint;
 /// <summary>
 /// Removes paint from an entity.
 /// </summary>
-public sealed class PaintRemoverSystem : SharedPaintSystem
+public sealed partial class PaintRemoverSystem : SharedPaintSystem
 {
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;

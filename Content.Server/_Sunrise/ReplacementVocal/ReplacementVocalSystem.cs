@@ -5,7 +5,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.ReplacementVocal;
 
-public sealed class ReplacementVocalSystem : EntitySystem
+public sealed partial class ReplacementVocalSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _proto = default!;
 

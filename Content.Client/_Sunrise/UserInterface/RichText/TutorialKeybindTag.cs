@@ -10,7 +10,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace Content.Client._Sunrise.UserInterface.RichText;
 
 [UsedImplicitly]
-public sealed class TutorialKeybindTag : IMarkupTagHandler
+public sealed partial class TutorialKeybindTag : IMarkupTagHandler
 {
     [Dependency] private IInputManager _inputManager = default!;
 

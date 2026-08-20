@@ -6,7 +6,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.Speech.EntitySystems;
 
-public sealed class VulpaAccentSystem : EntitySystem
+public sealed partial class VulpaAccentSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
 

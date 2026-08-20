@@ -9,7 +9,7 @@ using System.Numerics;
 
 namespace Content.Client._Sunrise.Overlays;
 
-public sealed class DogVisionOverlay : Overlay
+public sealed partial class DogVisionOverlay : Overlay
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IPlayerManager _playerManager = default!;

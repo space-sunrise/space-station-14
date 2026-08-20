@@ -4,7 +4,7 @@ using Content.Shared.Cuffs;
 using Content.Shared.DoAfter;
 
 namespace Content.Server._Sunrise.Abilities;
-public sealed class BorgCuffedSystem : EntitySystem
+public sealed partial class BorgCuffedSystem : EntitySystem
 {
     [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private SharedCuffableSystem _cuffable = default!;

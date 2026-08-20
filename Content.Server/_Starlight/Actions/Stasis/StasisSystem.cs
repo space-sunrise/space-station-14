@@ -15,7 +15,7 @@ using Content.Shared.Damage.Components;
 
 namespace Content.Server._Starlight.Actions.Stasis;
 
-public sealed class StasisSystem : SharedStasisSystem
+public sealed partial class StasisSystem : SharedStasisSystem
 {
     [Dependency] private DamageableSystem _damageableSystem = default!;
     [Dependency] private BloodstreamSystem _bloodstreamSystem = default!;

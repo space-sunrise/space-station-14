@@ -1,4 +1,4 @@
-﻿using System.Threading;
+using System.Threading;
 using Content.Server.AlertLevel;
 using Content.Server.Chat.Systems;
 using Content.Shared.Access.Components;
@@ -9,7 +9,7 @@ using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Server._Sunrise.ExtendedAccess;
 
-public sealed class ExtendedAccessSystem : EntitySystem
+public sealed partial class ExtendedAccessSystem : EntitySystem
 {
     [Dependency] private ChatSystem _chat = default!;
     [Dependency] private AccessReaderSystem _accessReader = default!;

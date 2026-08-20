@@ -20,7 +20,7 @@ namespace Content.Shared._Sunrise.Nesting;
 // 1. Использовать Entity<T>
 // 2. Нормальное форматирование
 // 3. Нормальный и понятный нейминг + документация
-public abstract class SharedNestingSystem : EntitySystem
+public abstract partial class SharedNestingSystem : EntitySystem
 {
     [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private SharedHandsSystem _hands = default!;

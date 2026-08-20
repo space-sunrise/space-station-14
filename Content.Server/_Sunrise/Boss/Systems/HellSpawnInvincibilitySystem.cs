@@ -8,7 +8,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.Boss.Systems;
 
-public sealed class HellSpawnInvincibilitySystem : SharedHellSpawnInvincibilitySystem
+public sealed partial class HellSpawnInvincibilitySystem : SharedHellSpawnInvincibilitySystem
 {
     [Dependency] private SharedActionsSystem _actions = default!;
 

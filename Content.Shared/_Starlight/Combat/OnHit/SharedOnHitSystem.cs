@@ -20,7 +20,7 @@ using Robust.Shared.Player;
 
 namespace Content.Shared._Starlight.Combat.OnHit;
 
-public abstract class SharedOnHitSystem : EntitySystem
+public abstract partial class SharedOnHitSystem : EntitySystem
 {
     [Dependency] protected INetManager _net = default!;
     [Dependency] protected SharedDoAfterSystem _doAfter = default!;

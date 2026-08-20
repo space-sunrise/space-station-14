@@ -7,7 +7,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Sunrise.Laws.Systems;
 
-public abstract class SharedStationCorporateLawSystem : EntitySystem
+public abstract partial class SharedStationCorporateLawSystem : EntitySystem
 {
     [Dependency] private SharedStationSystem _station = default!;
     [Dependency] private IPrototypeManager _proto = default!;

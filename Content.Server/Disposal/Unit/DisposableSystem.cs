@@ -25,6 +25,7 @@ namespace Content.Server.Disposal.Unit
         [Dependency] private SharedMapSystem _maps = default!;
         [Dependency] private SharedPhysicsSystem _physicsSystem = default!;
         [Dependency] private SharedTransformSystem _xformSystem = default!;
+        [Dependency] private AutoLoaderSystem _autoLoader = default!;
 
         private EntityQuery<DisposalTubeComponent> _disposalTubeQuery;
         private EntityQuery<DisposalUnitComponent> _disposalUnitQuery;

@@ -1,4 +1,4 @@
-﻿using Content.Server.GameTicking;
+using Content.Server.GameTicking;
 using Content.Server.Hands.Systems;
 using Content.Server.Holiday;
 using Content.Shared.CCVar;
@@ -11,7 +11,7 @@ namespace Content.Server._Sunrise.Holiday.HolidayGiveaway;
 /// <summary>
 /// Система для выдачи различных подарков во время определенных праздников.
 /// </summary>
-public sealed class HolidayGiveawaySystem : EntitySystem
+public sealed partial class HolidayGiveawaySystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IConfigurationManager _configuration = default!;

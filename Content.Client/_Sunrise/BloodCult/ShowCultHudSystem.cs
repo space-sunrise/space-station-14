@@ -1,11 +1,11 @@
-﻿using Content.Shared._Sunrise.BloodCult.Components;
+using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared.StatusIcon.Components;
 using Robust.Client.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client._Sunrise.BloodCult;
 
-public sealed class ShowCultHudSystem : EntitySystem
+public sealed partial class ShowCultHudSystem : EntitySystem
 {
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IPrototypeManager _prototype = default!;

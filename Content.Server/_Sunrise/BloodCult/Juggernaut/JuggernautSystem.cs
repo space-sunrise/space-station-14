@@ -1,9 +1,9 @@
-﻿using Content.Server.Hands.Systems;
+using Content.Server.Hands.Systems;
 using Content.Shared.Body.Events;
 
 namespace Content.Server._Sunrise.BloodCult.Juggernaut;
 
-public sealed class JuggernautSystem : EntitySystem
+public sealed partial class JuggernautSystem : EntitySystem
 {
     [Dependency] private HandsSystem _handsSystem = default!;
 

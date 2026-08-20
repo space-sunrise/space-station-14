@@ -6,7 +6,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.CriminalRecords.Systems;
 
-public sealed class PrisonTimerSystem : EntitySystem
+public sealed partial class PrisonTimerSystem : EntitySystem
 {
     [Dependency] private DeviceLinkSystem _deviceLink = default!;
     [Dependency] private IGameTiming _timing = default!;

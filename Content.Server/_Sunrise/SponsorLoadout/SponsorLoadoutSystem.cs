@@ -6,7 +6,7 @@ using Content.Sunrise.Interfaces.Shared;
 
 namespace Content.Server._Sunrise.SponsorLoadout;
 
-public sealed class SponsorLoadoutSystem : EntitySystem
+public sealed partial class SponsorLoadoutSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private StationSpawningSystem _spawn = default!;

@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 using Content.Shared._RMC14.Explosion;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
@@ -8,7 +8,7 @@ using Robust.Shared.Random;
 namespace Content.Client._RMC14._Sunrise.Explosion;
 
 // Омг это же партикл систем за 1$
-public sealed class RMCExplosionSystem : SharedRMCExplosionSystem
+public sealed partial class RMCExplosionSystem : SharedRMCExplosionSystem
 {
     [Dependency] private SpriteSystem _sprite = default!;
     [Dependency] private AnimationPlayerSystem _player = default!;

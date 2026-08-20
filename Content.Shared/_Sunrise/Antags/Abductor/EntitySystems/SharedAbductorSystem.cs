@@ -10,7 +10,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._Sunrise.Antags.Abductor;
 
-public abstract class SharedAbductorSystem : EntitySystem
+public abstract partial class SharedAbductorSystem : EntitySystem
 {
     [Dependency] private EntityLookupSystem _entityLookup = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;

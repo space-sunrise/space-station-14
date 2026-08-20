@@ -1,4 +1,4 @@
-﻿using Content.Server._Sunrise.BloodCult.Runes.Comps;
+using Content.Server._Sunrise.BloodCult.Runes.Comps;
 using Content.Server._Sunrise.BloodCult.Runes.Systems;
 using Content.Server.EUI;
 using Content.Server.Popups;
@@ -17,7 +17,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.BloodCult.UI;
 
-public sealed class TeleportSpellEui : BaseEui
+public sealed partial class TeleportSpellEui : BaseEui
 {
     [Dependency] private EntityManager _entityManager = default!;
 

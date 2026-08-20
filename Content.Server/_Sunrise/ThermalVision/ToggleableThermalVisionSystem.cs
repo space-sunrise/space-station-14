@@ -4,7 +4,7 @@ using Content.Shared.Toggleable;
 
 namespace Content.Server._Sunrise.ThermalVision;
 
-public sealed class ToggleableThermalVisionSystem : EntitySystem
+public sealed partial class ToggleableThermalVisionSystem : EntitySystem
 {
     [Dependency] private SharedActionsSystem _actionsSystem = default!;
 

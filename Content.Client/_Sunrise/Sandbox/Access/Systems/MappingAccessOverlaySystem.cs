@@ -17,7 +17,7 @@ namespace Content.Client._Sunrise.Sandbox.Access.Systems;
 /// <summary>
 /// Manages the mapping access overlay and exposes its current UI-facing state.
 /// </summary>
-public sealed class MappingAccessOverlaySystem : EntitySystem
+public sealed partial class MappingAccessOverlaySystem : EntitySystem
 {
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private SpriteSystem _sprite = default!;

@@ -3,7 +3,7 @@ using Robust.Shared.Audio.Components;
 
 namespace Content.Client._Sunrise.TapePlayer;
 
-public sealed class TapePlayerBoundUserInterface : BoundUserInterface
+public sealed partial class TapePlayerBoundUserInterface : BoundUserInterface
 {
     [Dependency] private IEntityManager _entityManager = default!;
 

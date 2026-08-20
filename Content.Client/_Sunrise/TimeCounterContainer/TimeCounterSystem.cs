@@ -9,7 +9,7 @@ using Robust.Client.UserInterface.Controls;
 
 namespace Content.Client._Sunrise.Tutorial;
 
-public sealed class TimeCounterSystem : EntitySystem
+public sealed partial class TimeCounterSystem : EntitySystem
 {
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IUserInterfaceManager _ui = default!;

@@ -1,11 +1,11 @@
-﻿using Content.Client._Sunrise.MarkingEffectsClient;
+using Content.Client._Sunrise.MarkingEffectsClient;
 using Content.Shared._Sunrise.MarkingEffects;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 
 namespace Content.Client._Sunrise.UserInterface.Controls;
 
-public sealed class MarkingEffectSelectorSliders : Control
+public sealed partial class MarkingEffectSelectorSliders : Control
 {
     [Dependency] private ILocalizationManager _loc = default!;
     [Dependency] private ILogManager _log = default!;

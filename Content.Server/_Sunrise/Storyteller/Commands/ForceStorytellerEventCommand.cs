@@ -10,7 +10,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Server._Sunrise.Storyteller.Commands
 {
     [AdminCommand(AdminFlags.Admin)]
-    public sealed class ForceStorytellerEventCommand : IConsoleCommand
+    public sealed partial class ForceStorytellerEventCommand : IConsoleCommand
     {
         [Dependency] private IEntityManager _entManager = default!;
 

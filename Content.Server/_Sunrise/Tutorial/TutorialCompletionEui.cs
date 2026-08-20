@@ -5,7 +5,7 @@ using Content.Shared.Eui;
 
 namespace Content.Server._Sunrise.Tutorial;
 
-public sealed class TutorialCompletionEui : BaseEui
+public sealed partial class TutorialCompletionEui : BaseEui
 {
     [Dependency] private IEntitySystemManager _entitySystem = default!;
     private readonly EntityUid _player;

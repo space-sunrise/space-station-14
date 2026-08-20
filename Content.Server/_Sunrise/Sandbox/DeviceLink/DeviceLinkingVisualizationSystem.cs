@@ -7,7 +7,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.Sandbox.DeviceLink;
 
-public sealed class DeviceLinkingVisualizationSystem : EntitySystem
+public sealed partial class DeviceLinkingVisualizationSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IPlayerManager _player = default!;

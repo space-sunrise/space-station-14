@@ -4,7 +4,7 @@ using Robust.Shared.Map.Components;
 
 namespace Content.Shared._Sunrise.VentCraw;
 
-public sealed class SharedVentTubeSystem : EntitySystem
+public sealed partial class SharedVentTubeSystem : EntitySystem
 {
     [Dependency] private SharedMapSystem _mapSystem = default!;
 

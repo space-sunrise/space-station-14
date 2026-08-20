@@ -43,7 +43,7 @@ namespace Content.Server._Sunrise.Storyteller.Systems;
 /// Dedicated system that records significant timeline events during the round
 /// and formats them into a narrative history of the active storyteller.
 /// </summary>
-public sealed class StorytellerHistorySystem : EntitySystem
+public sealed partial class StorytellerHistorySystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _protoManager = default!;
     [Dependency] private DamageableSystem _damageableSystem = default!;

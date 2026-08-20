@@ -9,7 +9,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.Boss.Systems;
 
-public sealed class NPCUseActionWhenTargetInRangeSystem : EntitySystem
+public sealed partial class NPCUseActionWhenTargetInRangeSystem : EntitySystem
 {
     [Dependency] private SharedActionsSystem _actions = default!;
     [Dependency] private IRobustRandom _random = default!;

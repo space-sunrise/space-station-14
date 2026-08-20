@@ -8,7 +8,7 @@ using Robust.Client.UserInterface;
 
 namespace Content.Client._Sunrise.CartridgeLoader.Cartridges;
 
-public sealed class PhotoCaptureOverlay : Overlay
+public sealed partial class PhotoCaptureOverlay : Overlay
 {
     [Dependency] private IPlayerManager _playerManager = default!;
     [Dependency] private IStateManager _stateManager = default!;

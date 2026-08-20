@@ -10,7 +10,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.Research.Artifact.Effects.WhitelistSwap;
 
-public sealed class ArtifactWhitelistSwapSystem : BaseXAESystem<ArtifactWhitelistSwapComponent>
+public sealed partial class ArtifactWhitelistSwapSystem : BaseXAESystem<ArtifactWhitelistSwapComponent>
 {
     [Dependency] private TransformSystem _transform = default!;
     [Dependency] private EntityWhitelistSystem _whitelist = default!;

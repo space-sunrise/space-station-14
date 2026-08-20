@@ -5,7 +5,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Disposal.Unit
 {
-    public sealed class AutoLoaderSystem : EntitySystem
+    public sealed partial class AutoLoaderSystem : EntitySystem
     {
         [Dependency] private DisposableSystem _disposableSystem = default!;
         [Dependency] private SharedContainerSystem _containerSystem = default!;

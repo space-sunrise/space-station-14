@@ -8,7 +8,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.Humanoid;
 
-public sealed class HumanoidPhysicalStatsSystem : EntitySystem
+public sealed partial class HumanoidPhysicalStatsSystem : EntitySystem
 {
     [Dependency] private PhysicsSystem _physics = default!;
     [Dependency] private IPrototypeManager _proto = default!;

@@ -47,6 +47,9 @@ public sealed partial class PolymorphSystem : EntitySystem
     [Dependency] private SharedVisualBodySystem _visualBody = default!;
     [Dependency] private SharedMindSystem _mindSystem = default!;
     [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private SunriseHumanoidBodySystem _sunriseBody = default!;
+    [Dependency] private SunriseHumanoidProfileSystem _sunriseProfile = default!;
+    [Dependency] private CarryingSystem _carrying = default!;
 
     private const string RevertPolymorphId = "ActionRevertPolymorph";
 

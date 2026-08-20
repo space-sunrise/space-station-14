@@ -24,6 +24,8 @@ namespace Content.Server.Research.Systems
         [Dependency] private UserInterfaceSystem _uiSystem = default!;
         [Dependency] private SharedPopupSystem _popup = default!;
         [Dependency] private RadioSystem _radio = default!;
+        [Dependency] private MessengerServerSystem _messenger = default!;
+        [Dependency] private StationSystem _stationSystem = default!;
 
         public override void Initialize()
         {

@@ -12,7 +12,7 @@ using Robust.Shared.Containers;
 
 namespace Content.Server._Sunrise.VentCraw
 {
-    public sealed class VentCrawTubeSystem : SharedVentCrawableSystem
+    public sealed partial class VentCrawTubeSystem : SharedVentCrawableSystem
     {
         [Dependency] private SharedContainerSystem _containerSystem = default!;
         [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;

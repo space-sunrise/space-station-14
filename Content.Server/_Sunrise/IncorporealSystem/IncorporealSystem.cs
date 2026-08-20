@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Shared.Eye;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Physics;
@@ -8,7 +8,7 @@ using Robust.Shared.Physics.Systems;
 
 namespace Content.Server._Sunrise.IncorporealSystem;
 
-public sealed class IncorporealSystem : EntitySystem
+public sealed partial class IncorporealSystem : EntitySystem
 {
     [Dependency] private MovementSpeedModifierSystem _movement = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;

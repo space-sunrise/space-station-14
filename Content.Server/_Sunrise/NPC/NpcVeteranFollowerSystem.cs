@@ -13,7 +13,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.NPC;
 
-public sealed class NpcVeteranFollowerSystem : EntitySystem
+public sealed partial class NpcVeteranFollowerSystem : EntitySystem
 {
     private const float FastAcquireDelay = 5f;
 

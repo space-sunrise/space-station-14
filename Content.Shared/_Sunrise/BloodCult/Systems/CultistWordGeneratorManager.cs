@@ -5,7 +5,7 @@ namespace Content.Shared._Sunrise.BloodCult.Systems;
 /// <summary>
 /// Words generator for whisper
 /// </summary>
-public sealed class CultistWordGeneratorManager
+public sealed partial class CultistWordGeneratorManager
 {
     private const string Vowels = "aeiou";
     private const string Consonants = "bcdfghjklmnpqrstvwxyz";

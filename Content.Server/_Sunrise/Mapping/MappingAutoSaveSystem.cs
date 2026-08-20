@@ -20,7 +20,7 @@ namespace Content.Server._Sunrise.Mapping;
 /// <summary>
 /// Runs mapper cleanup commands automatically right before maps are serialized.
 /// </summary>
-public sealed class MappingAutoSaveSystem : EntitySystem
+public sealed partial class MappingAutoSaveSystem : EntitySystem
 {
     [Dependency] private AtmosphereSystem _atmosphere = default!;
     [Dependency] private DeviceLinkSystem _deviceLink = default!;

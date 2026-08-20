@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
@@ -11,7 +11,7 @@ namespace Content.Server._Sunrise.AoEHeal;
 /// <summary>
 /// Лечение по области
 /// </summary>
-public sealed class AoEHealSystem : EntitySystem
+public sealed partial class AoEHealSystem : EntitySystem
 {
     [Dependency] private EntityLookupSystem _lookupSystem = default!;
     [Dependency] private DamageableSystem _damageableSystem = default!;

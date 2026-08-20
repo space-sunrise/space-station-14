@@ -1,9 +1,9 @@
-﻿using Content.Shared._RMC14.Explosion.Components;
+using Content.Shared._RMC14.Explosion.Components;
 using Robust.Shared.Timing;
 
 namespace Content.Client._RMC14._Sunrise.Explosion;
 
-public sealed class ClientExplosionShockWaveSystem : EntitySystem
+public sealed partial class ClientExplosionShockWaveSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
 

@@ -17,7 +17,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.SyndicateTeleporter;
 
-public sealed class SyndicateTeleporterSystem : EntitySystem
+public sealed partial class SyndicateTeleporterSystem : EntitySystem
 {
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedChargesSystem _charges = default!;

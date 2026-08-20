@@ -11,7 +11,7 @@ using Content.Shared._Sunrise.PlayerCache;
 
 namespace Content.Server._Sunrise.GhostTheme;
 
-public sealed class GhostThemeSystem : EntitySystem
+public sealed partial class GhostThemeSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private UserInterfaceSystem _uiSystem = default!;

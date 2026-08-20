@@ -14,7 +14,7 @@ using Robust.Shared.Random;
 
 namespace Content.Client._Sunrise.Drugs;
 
-public sealed class RainbowSmoothOverlaySystem : EntitySystem
+public sealed partial class RainbowSmoothOverlaySystem : EntitySystem
 {
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IOverlayManager _overlayMan = default!;
@@ -101,7 +101,7 @@ public sealed class RainbowSmoothOverlaySystem : EntitySystem
     }
 }
 
-public sealed class RainbowSmoothOverlay : Overlay
+public sealed partial class RainbowSmoothOverlay : Overlay
 {
     private static readonly ProtoId<ShaderPrototype> Shader = "Rainbow";
 

@@ -14,7 +14,7 @@ using Robust.Shared.Random;
 
 namespace Content.Client._Sunrise.LoveVision;
 
-public sealed class LoveVisionOverlay : Overlay
+public sealed partial class LoveVisionOverlay : Overlay
 {
     [Dependency] private IConfigurationManager _config = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;

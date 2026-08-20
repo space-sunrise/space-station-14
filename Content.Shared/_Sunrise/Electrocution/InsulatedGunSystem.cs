@@ -5,7 +5,7 @@ using Content.Shared.Weapons.Ranged.Events;
 
 namespace Content.Shared._Sunrise.Electrocution;
 
-public sealed class InsulatedGunSystem : EntitySystem
+public sealed partial class InsulatedGunSystem : EntitySystem
 {
     [Dependency] private SharedPopupSystem _popup = default!;
 

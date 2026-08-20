@@ -10,7 +10,7 @@ namespace Content.Server._Sunrise.Decals;
 /// <summary>
 /// Removes decals that now overlap wall tiles on a grid.
 /// </summary>
-public sealed class WalledDecalRemovalSystem : EntitySystem
+public sealed partial class WalledDecalRemovalSystem : EntitySystem
 {
     [Dependency] private DecalSystem _decal = default!;
     [Dependency] private MapSystem _map = default!;

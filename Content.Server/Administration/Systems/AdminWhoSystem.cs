@@ -8,7 +8,7 @@ namespace Content.Server.Administration.Systems;
 /// <summary>
 /// Server system for handling admin who requests
 /// </summary>
-public sealed class AdminWhoSystem : EntitySystem
+public sealed partial class AdminWhoSystem : EntitySystem
 {
     [Dependency] private IAfkManager _afkManager = default!;
     [Dependency] private IAdminManager _adminManager = default!;

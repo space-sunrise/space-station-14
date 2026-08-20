@@ -6,7 +6,7 @@ using Robust.Shared.Configuration;
 
 namespace Content.Server._Sunrise.GodModeRoundEnd;
 
-public sealed class GodModeRoundEndSystem : EntitySystem
+public sealed partial class GodModeRoundEndSystem : EntitySystem
 {
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IPlayerManager _playerManager = default!;

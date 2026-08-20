@@ -9,7 +9,7 @@ namespace Content.Server._Sunrise.Chat.Commands;
 ///     Toggles the display of connected device links.
 /// </summary>
 [AdminCommand(AdminFlags.Admin)]
-public sealed class ShowDeviceLinkCommand : LocalizedEntityCommands
+public sealed partial class ShowDeviceLinkCommand : LocalizedEntityCommands
 {
     [Dependency] private DeviceLinkingVisualizationSystem _deviceLinking = default!;
 

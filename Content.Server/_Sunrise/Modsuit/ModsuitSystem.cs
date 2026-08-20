@@ -16,7 +16,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.Modsuit;
 
-public sealed class ModsuitSystem : SharedModsuitSystem
+public sealed partial class ModsuitSystem : SharedModsuitSystem
 {
     [Dependency] private TagSystem _tag = default!;
 

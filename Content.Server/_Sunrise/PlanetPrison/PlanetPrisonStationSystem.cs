@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Maps;
@@ -21,7 +21,7 @@ using Robust.Shared.Random;
 namespace Content.Server._Sunrise.PlanetPrison;
 
 // TODO: Рефактор с целью устранения варнингов и перехода системы на более современное API
-public sealed class PlanetPrisonStationSystem : EntitySystem
+public sealed partial class PlanetPrisonStationSystem : EntitySystem
 {
     [Dependency] private ISharedPlayerManager _player = default!;
     [Dependency] private IConfigurationManager _cfg = default!;

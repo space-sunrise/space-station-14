@@ -16,7 +16,7 @@ namespace Content.Shared._Starlight.Actions.Stasis;
 /// This system prevents entities with StasisFrozenComponent from performing most actions,
 /// while still allowing them to use the exit stasis action.
 /// </summary>
-public abstract class SharedStasisFrozenSystem : EntitySystem
+public abstract partial class SharedStasisFrozenSystem : EntitySystem
 {
     [Dependency] private ActionBlockerSystem _blocker = default!;
     [Dependency] private PullingSystem _pulling = default!;

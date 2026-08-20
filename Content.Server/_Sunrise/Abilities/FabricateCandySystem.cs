@@ -3,7 +3,7 @@ using Content.Shared.Actions;
 
 namespace Content.Server._Sunrise.Abilities
 {
-    public sealed class FabricateCandySystem : EntitySystem
+    public sealed partial class FabricateCandySystem : EntitySystem
     {
         [Dependency] private SharedActionsSystem _actions = default!;
         public override void Initialize()

@@ -12,7 +12,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.Pacificator;
 
-public sealed class PacificatorSystems : EntitySystem
+public sealed partial class PacificatorSystems : EntitySystem
 {
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private IAdminLogManager _adminLogger = default!;

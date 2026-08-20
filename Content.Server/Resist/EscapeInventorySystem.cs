@@ -20,6 +20,7 @@ public sealed partial class EscapeInventorySystem : EntitySystem
     [Dependency] private SharedContainerSystem _containerSystem = default!;
     [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;
     [Dependency] private SharedHandsSystem _handsSystem = default!;
+    [Dependency] private CarryingSystem _carryingSystem = default!;
 
     public override void Initialize()
     {

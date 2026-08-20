@@ -1,4 +1,4 @@
-﻿using System.Reflection.Metadata;
+using System.Reflection.Metadata;
 using Content.Server.Chat.Systems;
 using Content.Shared._Sunrise.Animations;
 using Content.Shared._Sunrise.Flip;
@@ -17,7 +17,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.Animations;
 
-public sealed class EmoteAnimationSystem : EntitySystem
+public sealed partial class EmoteAnimationSystem : EntitySystem
 {
     [Dependency] private SharedStunSystem _stun = default!;
     [Dependency] private StandingStateSystem _standing = default!;

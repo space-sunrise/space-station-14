@@ -8,7 +8,7 @@ using Robust.Shared.Player;
 
 namespace Content.Server._Sunrise.Objectives.Systems;
 
-public sealed class EnsureLawBoundEntitiesHaveNoLawsConditionSystem : EntitySystem
+public sealed partial class EnsureLawBoundEntitiesHaveNoLawsConditionSystem : EntitySystem
 {
     [Dependency] private SiliconLawSystem _siliconLaw = default!;
     [Dependency] private EntityWhitelistSystem _whitelist = default!;

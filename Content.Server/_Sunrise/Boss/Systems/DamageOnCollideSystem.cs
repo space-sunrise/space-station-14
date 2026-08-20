@@ -1,4 +1,4 @@
-﻿using Content.Shared._Sunrise.Boss.Components;
+using Content.Shared._Sunrise.Boss.Components;
 using Content.Shared._Sunrise.Boss.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
@@ -12,7 +12,7 @@ using Robust.Shared.Physics.Systems;
 namespace Content.Server._Sunrise.Boss.Systems;
 
 /// <inheritdoc/>
-public sealed class DamageOnCollideSystem : SharedDamageOnCollideSystem
+public sealed partial class DamageOnCollideSystem : SharedDamageOnCollideSystem
 {
 
     [Dependency] private DamageableSystem _damageable = default!;

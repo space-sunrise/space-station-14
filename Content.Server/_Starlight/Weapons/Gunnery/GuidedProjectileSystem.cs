@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 using Content.Shared.Projectiles; // Sunrise-Edit
 using Content.Shared._Starlight.Weapons.Gunnery;
 using Robust.Shared.Physics.Components;
@@ -11,7 +11,7 @@ namespace Content.Server._Starlight.Weapons.Gunnery;
 /// <see cref="GuidedProjectileComponent.SteeringTarget"/> every physics frame, limited
 /// by the projectile's <see cref="GuidedProjectileComponent.TurnRate"/>.
 /// </summary>
-public sealed class GuidedProjectileSystem : EntitySystem
+public sealed partial class GuidedProjectileSystem : EntitySystem
 {
     [Dependency] private SharedPhysicsSystem    _physics   = default!;
     [Dependency] private SharedTransformSystem  _transform = default!;

@@ -14,7 +14,7 @@ namespace Content.Server._Sunrise.DamageOverlay;
 // TODO: Рефактор попапов, с целью поддержки передачи цвета, размера и иконок в сам попап, не клепая 999 енумов
 // Возможно стоит создать прототипы попапов
 
-public sealed class DamageOverlaySystem : EntitySystem
+public sealed partial class DamageOverlaySystem : EntitySystem
 {
     [Dependency] private PopupSystem _popupSystem = default!;
     [Dependency] private IRobustRandom _random = default!;

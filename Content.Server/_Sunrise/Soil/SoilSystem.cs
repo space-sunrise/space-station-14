@@ -1,4 +1,4 @@
-﻿using Content.Server.Damage.Systems;
+using Content.Server.Damage.Systems;
 using Content.Server.Movement.Systems;
 using Content.Server.Popups;
 using Content.Shared.Damage.Systems;
@@ -13,7 +13,7 @@ namespace Content.Server._Sunrise.Soil;
 /// <summary>
 /// Система для мешка с землей
 /// </summary>
-public sealed class SoilSystem : EntitySystem
+public sealed partial class SoilSystem : EntitySystem
 {
     [Dependency] private TransformSystem _transform = default!;
     [Dependency] private PopupSystem _popup = default!;

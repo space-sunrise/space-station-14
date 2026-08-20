@@ -1,9 +1,9 @@
-﻿using Content.Shared._Sunrise.FleshCult;
+using Content.Shared._Sunrise.FleshCult;
 using Content.Shared.StatusIcon.Components;
 using Robust.Shared.Prototypes;
 namespace Content.Client._Sunrise.FleshCult;
 
-public sealed class FleshCultistSystem : EntitySystem
+public sealed partial class FleshCultistSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototype = default!;
 

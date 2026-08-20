@@ -49,8 +49,6 @@ internal sealed partial class ChatManager : IChatManager
     [Dependency] private ILogManager _logManager = default!;
     private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Edit - логика OOC-оформления для спонсоров
 
-    private ISawmill _sawmill = default!;
-
     /// <summary>
     /// The maximum length a player-sent message can be sent
     /// </summary>

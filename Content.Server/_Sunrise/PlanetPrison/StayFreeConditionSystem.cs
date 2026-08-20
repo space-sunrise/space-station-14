@@ -12,7 +12,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._Sunrise.PlanetPrison;
 
-public sealed class StayFreeConditionSystem : EntitySystem
+public sealed partial class StayFreeConditionSystem : EntitySystem
 {
     [Dependency] private MindSystem _mind = default!;
     [Dependency] private EmergencyShuttleSystem _emergencyShuttle = default!;

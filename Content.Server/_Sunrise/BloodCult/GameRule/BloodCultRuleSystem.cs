@@ -42,7 +42,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.BloodCult.GameRule;
 
-public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
+public sealed partial class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
 {
     [Dependency] private AntagSelectionSystem _antagSelection = default!;
     [Dependency] private SharedAudioSystem _audioSystem = default!;

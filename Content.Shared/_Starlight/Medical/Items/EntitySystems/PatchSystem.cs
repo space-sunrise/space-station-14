@@ -18,7 +18,7 @@ using Content.Shared.Damage.Components;
 
 namespace Content.Shared.Medical.Items.EntitySystems;
 
-public sealed class PatchSystem : EntitySystem
+public sealed partial class PatchSystem : EntitySystem
 {
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedPopupSystem _popupSystem = default!;

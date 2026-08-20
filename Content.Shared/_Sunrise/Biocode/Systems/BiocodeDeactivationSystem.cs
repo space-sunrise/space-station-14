@@ -15,7 +15,7 @@ namespace Content.Shared._Sunrise.Biocode.Systems;
 /// <summary>
 /// System that handles automatic deactivation of biocoded items when they're not in authorized user's possession.
 /// </summary>
-public abstract class BiocodeDeactivationSystem : EntitySystem
+public abstract partial class BiocodeDeactivationSystem : EntitySystem
 {
     [Dependency] private BiocodeSystem _biocodeSystem = default!;
 

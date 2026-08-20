@@ -5,7 +5,7 @@ using Robust.Client.GameObjects;
 
 namespace Content.Client._Sunrise.Weapons.Ranged.Systems;
 
-public sealed class BatteryWeaponFireModesVisualSystem : EntitySystem
+public sealed partial class BatteryWeaponFireModesVisualSystem : EntitySystem
 {
     [Dependency] private GunSystem _gun = default!;
 

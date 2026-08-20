@@ -5,7 +5,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Client._Sunrise.BloodCult;
 
-public sealed class CultPentagramSystem : EntitySystem
+public sealed partial class CultPentagramSystem : EntitySystem
 {
     private const string Rsi = "_Sunrise/BloodCult/pentagram.rsi";
 

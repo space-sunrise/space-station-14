@@ -26,7 +26,7 @@ using Robust.Shared.Maths;
 
 namespace Content.Server._Sunrise.CarpQueen;
 
-public sealed class CarpEggSystem : CarpQueenAccessSystem
+public sealed partial class CarpEggSystem : CarpQueenAccessSystem
 {
     [Dependency] private PuddleSystem _puddles = default!;
     [Dependency] private IPrototypeManager _protos = default!;

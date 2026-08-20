@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Numerics;
 using Content.Server.Shuttles;
 using Content.Server.Shuttles.Components;
@@ -12,7 +12,7 @@ using Robust.Shared.Map.Components;
 
 namespace Content.Server._Sunrise.GridDock;
 
-public sealed class GridDockSystem : EntitySystem
+public sealed partial class GridDockSystem : EntitySystem
 {
     [Dependency] private MapLoaderSystem _loader = default!;
     [Dependency] private ShuttleSystem _shuttles = default!;

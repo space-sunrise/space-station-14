@@ -3,7 +3,7 @@ using Content.Shared._Sunrise.Tutorial.Components;
 
 namespace Content.Server._Sunrise.Tutorial;
 
-public sealed class TutorialRadioIsolationSystem : EntitySystem
+public sealed partial class TutorialRadioIsolationSystem : EntitySystem
 {
     [Dependency] private EntityQuery<TutorialPlayerComponent> _tutorialPlayerQuery = default!;
     [Dependency] private EntityQuery<TransformComponent> _transformQuery = default!;

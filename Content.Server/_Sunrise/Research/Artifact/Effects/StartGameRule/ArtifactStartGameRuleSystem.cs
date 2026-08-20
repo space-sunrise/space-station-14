@@ -1,10 +1,10 @@
-﻿using Content.Server.GameTicking;
+using Content.Server.GameTicking;
 using Content.Shared.Xenoarchaeology.Artifact;
 using Content.Shared.Xenoarchaeology.Artifact.XAE;
 
 namespace Content.Server._Sunrise.Research.Artifact.Effects.StartGamerule;
 
-public sealed class ArtifactStartGameRuleSystem : BaseXAESystem<ArtifactStartGameRuleComponent>
+public sealed partial class ArtifactStartGameRuleSystem : BaseXAESystem<ArtifactStartGameRuleComponent>
 {
     [Dependency] private GameTicker _gameTicker = default!;
 

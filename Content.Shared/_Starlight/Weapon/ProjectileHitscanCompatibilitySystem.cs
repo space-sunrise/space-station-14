@@ -7,7 +7,7 @@ using Robust.Shared.Physics.Systems;
 
 namespace Content.Shared._Starlight.Weapon;
 
-public sealed class ProjectileHitscanCompatibilitySystem : EntitySystem
+public sealed partial class ProjectileHitscanCompatibilitySystem : EntitySystem
 {
     [Dependency] private SharedPhysicsSystem _physics = default!;
 

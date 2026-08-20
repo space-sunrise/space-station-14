@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
@@ -9,7 +9,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Client._Sunrise.UserInterface.RichText;
 
-public sealed class RadioIconTag : BaseTextureTag
+public sealed partial class RadioIconTag : BaseTextureTag
 {
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IResourceCache _cache = default!;

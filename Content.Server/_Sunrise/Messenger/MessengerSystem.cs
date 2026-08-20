@@ -9,7 +9,7 @@ using Robust.Server.GameObjects;
 
 namespace Content.Server._Sunrise.Messenger;
 
-public sealed class MessengerSystem : EntitySystem
+public sealed partial class MessengerSystem : EntitySystem
 {
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private SharedHandsSystem _hands = default!;

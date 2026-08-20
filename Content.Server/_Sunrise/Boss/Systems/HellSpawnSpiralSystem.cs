@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 using Content.Server._Sunrise.Boss.Components;
 using Content.Server.Stunnable;
 using Content.Shared._Sunrise.Boss.Components;
@@ -8,7 +8,7 @@ using Robust.Shared.Map;
 
 namespace Content.Server._Sunrise.Boss.Systems;
 
-public sealed class HellSpawnSpiralSystem : EntitySystem
+public sealed partial class HellSpawnSpiralSystem : EntitySystem
 {
     [Dependency] private StunSystem _stun = default!;
     [Dependency] private SharedActionsSystem _actions = default!;

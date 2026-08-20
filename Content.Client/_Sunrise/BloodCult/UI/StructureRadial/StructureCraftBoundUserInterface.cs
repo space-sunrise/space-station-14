@@ -1,4 +1,4 @@
-﻿using Content.Client._Sunrise.UserInterface.Radial;
+using Content.Client._Sunrise.UserInterface.Radial;
 using Content.Client.Construction;
 using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.BloodCult.Structures;
@@ -12,7 +12,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client._Sunrise.BloodCult.UI.StructureRadial;
 
-public sealed class StructureCraftBoundUserInterface : BoundUserInterface
+public sealed partial class StructureCraftBoundUserInterface : BoundUserInterface
 {
     [Dependency] private IEntityManager _entMan = default!;
     [Dependency] private IPlacementManager _placement = default!;

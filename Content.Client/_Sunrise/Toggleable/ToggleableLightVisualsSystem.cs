@@ -13,7 +13,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Client.Toggleable;
 
-public sealed class ToggleableLightVisualsSystem : VisualizerSystem<ToggleableLightVisualsComponent>
+public sealed partial class ToggleableLightVisualsSystem : VisualizerSystem<ToggleableLightVisualsComponent>
 {
     [Dependency] private SharedItemSystem _item = default!;
     [Dependency] private SharedPointLightSystem _pointLight = default!;

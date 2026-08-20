@@ -8,7 +8,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared._Sunrise.InnateItem;
 
-public sealed class InnateItemSystem : EntitySystem
+public sealed partial class InnateItemSystem : EntitySystem
 {
     [Dependency] private SharedActionsSystem _actionsSystem = default!;
     [Dependency] private SharedInteractionSystem _interactionSystem = default!;

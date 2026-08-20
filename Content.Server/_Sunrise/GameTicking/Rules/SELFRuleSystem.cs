@@ -8,7 +8,7 @@ using Content.Server._Sunrise.Roles.Components;
 
 namespace Content.Server._Sunrise.GameTicking.Rules;
 
-public sealed class SELFRuleSystem : GameRuleSystem<SELFRuleComponent>
+public sealed partial class SELFRuleSystem : GameRuleSystem<SELFRuleComponent>
 {
     [Dependency] private AntagSelectionSystem _antag = default!;
 

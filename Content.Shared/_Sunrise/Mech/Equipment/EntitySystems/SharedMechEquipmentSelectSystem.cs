@@ -5,7 +5,7 @@ using Content.Shared.Popups;
 
 namespace Content.Shared._Sunrise.Mech.Equipment.EntitySystems;
 
-public sealed class SharedMechEquipmentSelectSystem : EntitySystem
+public sealed partial class SharedMechEquipmentSelectSystem : EntitySystem
 {
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedUserInterfaceSystem _ui = default!;

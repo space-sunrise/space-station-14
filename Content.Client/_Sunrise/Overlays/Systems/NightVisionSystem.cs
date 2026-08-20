@@ -9,7 +9,7 @@ using Content.Shared._Sunrise.NightVision;
 
 namespace Content.Client._Sunrise.Overlays;
 
-public sealed class NightVisionSystem : EntitySystem
+public sealed partial class NightVisionSystem : EntitySystem
 {
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IOverlayManager _overlayMan = default!;

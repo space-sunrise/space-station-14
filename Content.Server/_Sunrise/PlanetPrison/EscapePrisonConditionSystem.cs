@@ -2,7 +2,7 @@ using Content.Shared.Objectives.Components;
 
 namespace Content.Server._Sunrise.PlanetPrison;
 
-public sealed class EscapePrisonConditionSystem : EntitySystem
+public sealed partial class EscapePrisonConditionSystem : EntitySystem
 {
     [Dependency] private PlanetPrisonSystem _planetPrisonSystem = default!;
 

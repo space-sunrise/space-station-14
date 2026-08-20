@@ -19,7 +19,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Client._Sunrise.CartridgeLoader.Cartridges;
 
-public sealed class PhotoCartridgeClientSystem : EntitySystem
+public sealed partial class PhotoCartridgeClientSystem : EntitySystem
 {
     [Dependency] private ILogManager _logManager = default!;
     [Dependency] private IStateManager _stateManager = default!;

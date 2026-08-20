@@ -7,7 +7,7 @@ using Robust.Shared.Containers;
 
 namespace Content.Server._Sunrise.DontSellingGrid;
 
-public sealed class StationDontSellingSystems : EntitySystem
+public sealed partial class StationDontSellingSystems : EntitySystem
 {
     [Dependency] private EntityLookupSystem _lookup = default!;
 

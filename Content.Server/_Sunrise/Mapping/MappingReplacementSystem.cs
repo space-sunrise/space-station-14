@@ -11,7 +11,7 @@ namespace Content.Server._Sunrise.Mapping;
 /// <summary>
 /// Applies content-defined replacement rules before mapper placement falls back to engine behavior.
 /// </summary>
-public sealed class MappingReplacementSystem : EntitySystem
+public sealed partial class MappingReplacementSystem : EntitySystem
 {
     [Dependency] private MapSystem _map = default!;
     [Dependency] private TransformSystem _transform = default!;

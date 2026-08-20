@@ -8,7 +8,7 @@ namespace Content.Server._Sunrise.Biocode.Systems;
 /// <summary>
 /// Server-side implementation of biocode deactivation system.
 /// </summary>
-public sealed class ServerBiocodeDeactivationSystem : BiocodeDeactivationSystem
+public sealed partial class ServerBiocodeDeactivationSystem : BiocodeDeactivationSystem
 {
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private PinpointerSystem _pinpointerSystem = default!;

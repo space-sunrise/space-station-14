@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Numerics;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
@@ -26,7 +26,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.BloodCult.Pylon;
 
-public sealed class PylonSystem : EntitySystem
+public sealed partial class PylonSystem : EntitySystem
 {
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
@@ -41,6 +41,7 @@ public sealed class PylonSystem : EntitySystem
     [Dependency] private ITileDefinitionManager _tileDefinition = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private TurfSystem _turf = default!;
+    [Dependency] private MapSystem _map = default!;
 
     public override void Initialize()
     {
@@ -108,7 +109,7 @@ public sealed class PylonSystem : EntitySystem
             return;
 
         var radius = comp.TileConvertRange;
-        var tilesRefs = grid.GetLocalTilesIntersecting(new Box2(pylonPos.Position + new Vector2(-radius, -radius),
+        var tilesRefs = _map.GetLocalTilesIntersecting(gridUid.Value, grid, new Box2(pylonPos.Position + new Vector2(-radius, -radius),
             pylonPos.Position + new Vector2(radius, radius)));
         var tiles = ShuffleTiles(tilesRefs);
 

@@ -8,7 +8,7 @@ using Content.Shared.Trigger.Components.Effects;
 
 namespace Content.Shared._Sunrise.Trigger;
 
-public sealed class UnsnareOnTriggerSystem : EntitySystem
+public sealed partial class UnsnareOnTriggerSystem : EntitySystem
 {
     [Dependency] private SharedEnsnareableSystem _ensnareable = default!;
 

@@ -1,11 +1,11 @@
-﻿using Content.Shared._Sunrise.FleshCult;
+using Content.Shared._Sunrise.FleshCult;
 using Content.Shared.Actions;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Popups;
 
 namespace Content.Shared._Sunrise.FleshCult;
 
-public sealed class SharedFleshHuggerSystem : EntitySystem
+public sealed partial class SharedFleshHuggerSystem : EntitySystem
 {
     [Dependency] private SharedPopupSystem _popup = default!;
 

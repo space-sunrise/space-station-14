@@ -10,7 +10,7 @@ using Robust.Shared.Audio.Systems;
 
 namespace Content.Server._Sunrise.Razor;
 
-public sealed class RazorSystem : SharedRazorSystem
+public sealed partial class RazorSystem : SharedRazorSystem
 {
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private DoAfterSystem _doAfterSystem = default!;

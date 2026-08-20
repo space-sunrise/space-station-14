@@ -7,7 +7,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Starlight.Energy.Supermatter;
 
-public sealed class SupermatterCascadeSystem : EntitySystem
+public sealed partial class SupermatterCascadeSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedTransformSystem _transform = default!;

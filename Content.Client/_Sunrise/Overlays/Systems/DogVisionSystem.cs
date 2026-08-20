@@ -7,7 +7,7 @@ using Robust.Client.Player;
 using Robust.Shared.Player;
 
 namespace Content.Client._Sunrise.Overlays;
-public sealed class DogVisionSystem : EntitySystem
+public sealed partial class DogVisionSystem : EntitySystem
 {
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IOverlayManager _overlayMan = default!;

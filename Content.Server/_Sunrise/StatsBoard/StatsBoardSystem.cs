@@ -34,7 +34,7 @@ using Content.Shared.Damage.Systems;
 
 namespace Content.Server.StatsBoard;
 
-public sealed class StatsBoardSystem : EntitySystem
+public sealed partial class StatsBoardSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private TagSystem _tagSystem = default!;

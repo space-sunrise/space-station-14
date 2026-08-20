@@ -8,7 +8,7 @@ namespace Content.Client._Sunrise.MentorHelp
     /// Клиентская система менторской помощи.
     /// </summary>
     [UsedImplicitly]
-    public sealed class MentorHelpSystem : SharedMentorHelpSystem
+    public sealed partial class MentorHelpSystem : SharedMentorHelpSystem
     {
         [Dependency] private IGameTiming _gameTiming = default!;
 

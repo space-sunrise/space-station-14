@@ -16,7 +16,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.CriminalRecords.Systems;
 
-public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsSystem
+public sealed partial class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsSystem
 {
     [Dependency] private StationRecordsSystem _stationRecords = default!;
     [Dependency] private StationSystem _station = default!;

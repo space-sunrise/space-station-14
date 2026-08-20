@@ -7,7 +7,7 @@ using Content.Shared.Objectives.Components;
 
 namespace Content.Server._Sunrise.FleshCult.Objectives;
 
-public sealed class FleshCultConditionsSystem : EntitySystem
+public sealed partial class FleshCultConditionsSystem : EntitySystem
 {
     [Dependency] private NumberObjectiveSystem _number = default!;
 

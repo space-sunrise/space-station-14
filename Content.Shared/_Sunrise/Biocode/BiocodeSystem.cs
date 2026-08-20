@@ -5,7 +5,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Sunrise.Biocode;
 
-public sealed class BiocodeSystem : EntitySystem
+public sealed partial class BiocodeSystem : EntitySystem
 {
     [Dependency] private SharedPopupSystem _popup = default!;
 

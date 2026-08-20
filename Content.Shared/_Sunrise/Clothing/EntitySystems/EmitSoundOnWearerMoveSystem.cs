@@ -1,4 +1,4 @@
-﻿using Content.Shared._Sunrise.Clothing.Components;
+using Content.Shared._Sunrise.Clothing.Components;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Gravity;
 using Content.Shared.Inventory;
@@ -9,7 +9,7 @@ using Robust.Shared.Physics.Components;
 
 namespace Content.Shared._Sunrise.Clothing.EntitySystems;
 
-public sealed class EmitSoundOnWearerMoveSystem : EntitySystem
+public sealed partial class EmitSoundOnWearerMoveSystem : EntitySystem
 {
     [Dependency] private SharedGravitySystem _gravity = default!;
     [Dependency] private SharedAudioSystem _audio = default!;

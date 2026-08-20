@@ -14,7 +14,7 @@ namespace Content.Shared._Sunrise.Reagents.Convert;
 /// <summary>
 /// Конвертирует реагенты внутри сущности по клику на нее
 /// </summary>
-public sealed class ByClickReagentConvertSystem : EntitySystem
+public sealed partial class ByClickReagentConvertSystem : EntitySystem
 {
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedPopupSystem _popup = default!;

@@ -14,7 +14,7 @@ using Content.Shared.Clothing.EntitySystems;
 
 namespace Content.Server._Sunrise.PersonalBiocode;
 
-public sealed class PersonalBiocodeSystem : SharedPersonalBiocodeSystem // Пока только для модсьюитов
+public sealed partial class PersonalBiocodeSystem : SharedPersonalBiocodeSystem // Пока только для модсьюитов
 {
     [Dependency] private PopupSystem _popupSystem = default!;
     [Dependency] private InventorySystem _inventory = default!;

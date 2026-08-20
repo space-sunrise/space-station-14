@@ -4,7 +4,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client._Sunrise.Pirate;
 
-public sealed class PirateSystem : EntitySystem
+public sealed partial class PirateSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototype = default!;
 

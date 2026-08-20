@@ -5,7 +5,7 @@ using Content.Shared.Popups;
 
 namespace Content.Shared.Cabinet;
 
-public sealed class SealingCabinetSystem : EntitySystem
+public sealed partial class SealingCabinetSystem : EntitySystem
 {
     [Dependency] private ItemCabinetSystem _cabinet = default!;
     [Dependency] private OpenableSystem _openable = default!;

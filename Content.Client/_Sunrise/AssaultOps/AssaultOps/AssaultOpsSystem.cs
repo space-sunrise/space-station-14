@@ -4,7 +4,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client._Sunrise.AssaultOps.AssaultOps;
 
-public sealed class AssaultOpsSystem : EntitySystem
+public sealed partial class AssaultOpsSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototype = default!;
 

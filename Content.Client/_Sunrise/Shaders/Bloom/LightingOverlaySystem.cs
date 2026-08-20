@@ -10,7 +10,7 @@ namespace Content.Client._Sunrise.Shaders.Bloom;
 /// <summary>
 /// Collects compatible lights and supplies their state to the bloom overlays.
 /// </summary>
-public sealed class LightingOverlaySystem : EntitySystem
+public sealed partial class LightingOverlaySystem : EntitySystem
 {
     [Dependency] private IConfigurationManager _configuration = default!;
     [Dependency] private BloomOverlayTreeSystem _bloomTree = default!;

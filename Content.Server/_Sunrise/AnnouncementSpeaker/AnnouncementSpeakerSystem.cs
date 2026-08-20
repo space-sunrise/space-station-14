@@ -20,7 +20,7 @@ namespace Content.Server._Sunrise.AnnouncementSpeaker;
 /// System that manages announcement speakers distributed across stations.
 /// Replaces global announcements with spatial audio from speaker networks.
 /// </summary>
-public sealed class AnnouncementSpeakerSystem : EntitySystem
+public sealed partial class AnnouncementSpeakerSystem : EntitySystem
 {
     /// <summary>
     /// Represents a queued announcement waiting to be played.

@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Content.Client._Sunrise.UserInterface.Controls;
 using Robust.Client.GameObjects;
@@ -10,7 +10,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Client._Sunrise.UserInterface.RichText;
 
-public abstract class BaseTextureTag : IMarkupTagHandler
+public abstract partial class BaseTextureTag : IMarkupTagHandler
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IEntitySystemManager _entitySystemManager = default!;

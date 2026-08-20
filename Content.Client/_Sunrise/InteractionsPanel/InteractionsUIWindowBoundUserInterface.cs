@@ -5,7 +5,7 @@ using Robust.Shared.Configuration;
 
 namespace Content.Client._Sunrise.InteractionsPanel;
 
-public sealed class InteractionsWindowBoundUserInterface : BoundUserInterface
+public sealed partial class InteractionsWindowBoundUserInterface : BoundUserInterface
 {
     [Dependency] private IConfigurationManager _cfg = default!;
 

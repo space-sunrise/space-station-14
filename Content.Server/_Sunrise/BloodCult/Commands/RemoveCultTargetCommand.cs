@@ -7,7 +7,7 @@ using Robust.Server.Player;
 namespace Content.Server._Sunrise.BloodCult.Commands;
 
 [AdminCommand(AdminFlags.Admin)]
-public sealed class RemoveCultTargetCommand : IConsoleCommand
+public sealed partial class RemoveCultTargetCommand : IConsoleCommand
 {
     [Dependency] private IEntityManager _entManager = default!;
     [Dependency] private IPlayerManager _playerManager = default!;

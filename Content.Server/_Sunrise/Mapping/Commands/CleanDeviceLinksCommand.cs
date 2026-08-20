@@ -12,7 +12,7 @@ namespace Content.Server._Sunrise.Mapping.Commands;
 /// Removes invalid saved device-link references from a map before it is exported or fixed manually.
 /// </summary>
 [AdminCommand(AdminFlags.Mapping)]
-public sealed class CleanDeviceLinksCommand : LocalizedEntityCommands
+public sealed partial class CleanDeviceLinksCommand : LocalizedEntityCommands
 {
     [Dependency] private DeviceLinkSystem _deviceLink = default!;
     [Dependency] private MapSystem _map = default!;

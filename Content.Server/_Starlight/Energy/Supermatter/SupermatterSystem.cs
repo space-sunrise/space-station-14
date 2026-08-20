@@ -28,7 +28,7 @@ using Content.Server.Radiation.Systems;
 
 namespace Content.Server.Starlight.Energy.Supermatter;
 
-public sealed class SupermatterSystem : AccUpdateEntitySystem
+public sealed partial class SupermatterSystem : AccUpdateEntitySystem
 {
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private AtmosphereSystem _atmosphere = default!;

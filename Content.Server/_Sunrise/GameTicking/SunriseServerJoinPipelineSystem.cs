@@ -10,7 +10,7 @@ using RobustTimer = Robust.Shared.Timing.Timer;
 
 namespace Content.Server._Sunrise.GameTicking;
 
-public sealed class SunriseServerJoinPipelineSystem : EntitySystem
+public sealed partial class SunriseServerJoinPipelineSystem : EntitySystem
 {
     private const string JoinQueueFailureDisconnectReason = "Unexpected join queue error. Please reconnect.";
 

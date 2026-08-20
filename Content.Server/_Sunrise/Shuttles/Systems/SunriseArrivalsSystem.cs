@@ -33,7 +33,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._Sunrise.Shuttles.Systems;
 
-public sealed class SunriseArrivalsSystem : EntitySystem
+public sealed partial class SunriseArrivalsSystem : EntitySystem
 {
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IGameTiming _timing = default!;

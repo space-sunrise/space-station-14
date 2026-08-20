@@ -24,7 +24,7 @@ using Content.Sunrise.Interfaces.Shared;
 namespace Content.Server._Sunrise.NewLife;
 
 [UsedImplicitly]
-public sealed class NewLifeSystem : SharedNewLifeSystem
+public sealed partial class NewLifeSystem : SharedNewLifeSystem
 {
     [Dependency] private EuiManager _euiManager = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;

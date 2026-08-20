@@ -7,7 +7,7 @@ using Robust.Shared.GameStates;
 namespace Content.Client._Starlight.Medical.Surgery;
 // Based on the RMC14.
 // https://github.com/RMC-14/RMC-14
-public sealed class SurgerySystem : SharedSurgerySystem
+public sealed partial class SurgerySystem : SharedSurgerySystem
 {
     [Dependency] private UserInterfaceSystem _ui = default!;
 

@@ -20,6 +20,7 @@ public sealed partial class AlertLevelSystem : EntitySystem
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private StationSystem _stationSystem = default!;
     [Dependency] private GameTicker _gameTicker = default!; // Sunrise edit
+    [Dependency] private RoundEndSystem _roundEnd = default!; // Sunrise edit
 
     // Until stations are a prototype, this is how it's going to have to be.
     public const string DefaultAlertLevelSet = "stationAlerts";

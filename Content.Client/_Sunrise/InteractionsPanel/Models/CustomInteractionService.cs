@@ -5,7 +5,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Client._Sunrise.InteractionsPanel.Models;
 
-public sealed class CustomInteractionService
+public sealed partial class CustomInteractionService
 {
     [Dependency] private IResourceManager _resourceManager = default!;
     [Dependency] private ILogManager _logManager = default!;

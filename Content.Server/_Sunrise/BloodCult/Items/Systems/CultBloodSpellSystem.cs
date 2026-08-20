@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server._Sunrise.BloodCult.Items.Components;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
@@ -34,7 +34,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.BloodCult.Items.Systems;
 
-public sealed class CultBloodSpellSystem : EntitySystem
+public sealed partial class CultBloodSpellSystem : EntitySystem
 {
     [Dependency] private SharedAudioSystem _audioSystem = default!;
     [Dependency] private BloodstreamSystem _bloodstreamSystem = default!;

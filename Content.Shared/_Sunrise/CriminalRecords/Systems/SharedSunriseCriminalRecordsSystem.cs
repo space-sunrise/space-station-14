@@ -5,7 +5,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Sunrise.CriminalRecords.Systems;
 
-public abstract class SharedSunriseCriminalRecordsSystem : EntitySystem
+public abstract partial class SharedSunriseCriminalRecordsSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private SharedStationCorporateLawSystem _corporateLawSystem = default!;

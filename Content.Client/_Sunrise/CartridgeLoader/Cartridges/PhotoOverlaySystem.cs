@@ -2,7 +2,7 @@ using Robust.Client.Graphics;
 
 namespace Content.Client._Sunrise.CartridgeLoader.Cartridges;
 
-public sealed class PhotoOverlaySystem : EntitySystem
+public sealed partial class PhotoOverlaySystem : EntitySystem
 {
     [Dependency] private IOverlayManager _overlayManager = default!;
 

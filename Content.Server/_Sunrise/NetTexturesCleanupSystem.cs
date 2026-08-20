@@ -8,7 +8,7 @@ namespace Content.Server._Sunrise;
 /// A small system that handles event-based cleanup for the NetTexturesManager.
 /// Since NetTexturesManager is a standalone manager, it cannot safely subscribe to broadcast events.
 /// </summary>
-public sealed class NetTexturesCleanupSystem : EntitySystem
+public sealed partial class NetTexturesCleanupSystem : EntitySystem
 {
     [Dependency] private NetTexturesManager _netTexturesManager = default!;
 

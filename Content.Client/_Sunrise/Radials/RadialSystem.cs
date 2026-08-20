@@ -18,7 +18,7 @@ using Robust.Shared.Utility;
 namespace Content.Client._Sunrise.Radials;
 
 [UsedImplicitly]
-public sealed class RadialSystem : SharedRadialSystem
+public sealed partial class RadialSystem : SharedRadialSystem
 {
     [Dependency] private PopupSystem _popupSystem = default!;
     [Dependency] private ExamineSystem _examineSystem = default!;

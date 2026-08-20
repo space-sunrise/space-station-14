@@ -7,7 +7,7 @@ using Robust.Shared.Containers;
 
 namespace Content.Shared._Sunrise.Radials.Systems;
 
-public abstract class SharedRadialSystem : EntitySystem
+public abstract partial class SharedRadialSystem : EntitySystem
     {
         [Dependency] private SharedInteractionSystem _interactionSystem = default!;
         [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;

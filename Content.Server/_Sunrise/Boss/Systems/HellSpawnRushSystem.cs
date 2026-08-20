@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 using Content.Server._Sunrise.Boss.Components;
 using Content.Shared._Sunrise.Boss.Events;
 using Content.Shared.Actions;
@@ -17,7 +17,7 @@ namespace Content.Server._Sunrise.Boss.Systems;
 /// <summary>
 ///     Система для обработки способности Rush у босса
 /// </summary>
-public sealed class HellSpawnRushSystem : EntitySystem
+public sealed partial class HellSpawnRushSystem : EntitySystem
 {
     [Dependency] private SharedActionsSystem _actions = default!;
     [Dependency] private SharedContainerSystem _container = default!;

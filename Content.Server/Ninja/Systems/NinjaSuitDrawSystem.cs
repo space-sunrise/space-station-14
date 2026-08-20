@@ -12,7 +12,7 @@ namespace Content.Server.Ninja.Systems;
 /// Server system for ninja equipment that draws power from the ninja suit's battery.
 /// Handles the actual power draw logic using the ninja suit's battery.
 /// </summary>
-public sealed class NinjaSuitDrawSystem : SharedNinjaSuitDrawSystem
+public sealed partial class NinjaSuitDrawSystem : SharedNinjaSuitDrawSystem
 {
     [Dependency] private SpaceNinjaSystem _ninja = default!;
     [Dependency] private ItemToggleSystem _toggle = default!;

@@ -9,7 +9,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.RoundEndVote;
 
-public sealed class RoundEndVoteSystem : EntitySystem
+public sealed partial class RoundEndVoteSystem : EntitySystem
 {
     [Dependency] private GameTicker _gameTicker = default!;
     [Dependency] private IGameTiming _gameTiming = default!;

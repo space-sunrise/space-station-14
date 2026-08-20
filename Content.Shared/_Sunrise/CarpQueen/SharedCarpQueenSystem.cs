@@ -6,7 +6,7 @@ using Robust.Shared.Random;
 
 namespace Content.Shared._Sunrise.CarpQueen;
 
-public abstract class SharedCarpQueenSystem : EntitySystem
+public abstract partial class SharedCarpQueenSystem : EntitySystem
 {
     [Dependency] protected IPrototypeManager PrototypeManager = default!;
     [Dependency] protected IRobustRandom Random = default!;

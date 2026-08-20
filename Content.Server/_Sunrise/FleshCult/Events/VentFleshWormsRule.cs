@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Server.StationEvents.Components;
@@ -9,7 +9,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._Sunrise.FleshCult.Events;
 
-public sealed class VentFleshWormsRule : StationEventSystem<VentFleshWormsRuleComponent>
+public sealed partial class VentFleshWormsRule : StationEventSystem<VentFleshWormsRuleComponent>
 {
     [Dependency] private StationSystem _stationSystem = default!;
 

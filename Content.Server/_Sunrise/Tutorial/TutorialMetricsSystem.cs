@@ -12,7 +12,7 @@ namespace Content.Server._Sunrise.Tutorial;
 /// <summary>
 /// Exposes aggregated tutorial completion table data through Prometheus.
 /// </summary>
-public sealed class TutorialMetricsSystem : EntitySystem
+public sealed partial class TutorialMetricsSystem : EntitySystem
 {
     [Dependency] private IServerDbManager _db = default!;
     [Dependency] private IMetricsManager _metrics = default!;

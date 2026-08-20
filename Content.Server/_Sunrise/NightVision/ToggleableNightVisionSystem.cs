@@ -6,7 +6,7 @@ using Robust.Shared.GameStates;
 
 namespace Content.Server._Sunrise.NightVision;
 
-public sealed class ToggleableNightVisionSystem : EntitySystem
+public sealed partial class ToggleableNightVisionSystem : EntitySystem
 {
     [Dependency] private SharedActionsSystem _actionsSystem = default!;
 

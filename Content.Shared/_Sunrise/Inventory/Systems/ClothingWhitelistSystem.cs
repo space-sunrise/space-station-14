@@ -4,7 +4,7 @@ using Content.Shared._Sunrise.Inventory.Components;
 
 namespace Content.Shared._Sunrise.Inventory.Systems;
 
-public sealed class ClothingWhitelistSystem : EntitySystem
+public sealed partial class ClothingWhitelistSystem : EntitySystem
 {
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
 

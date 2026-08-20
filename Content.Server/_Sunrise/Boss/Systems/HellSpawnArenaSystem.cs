@@ -40,7 +40,7 @@ using Robust.Shared.Maths;
 namespace Content.Server._Sunrise.Boss.Systems;
 
 /// <inheritdoc />
-public sealed class HellSpawnArenaSystem : SharedHellSpawnArenaSystem
+public sealed partial class HellSpawnArenaSystem : SharedHellSpawnArenaSystem
 {
     [Dependency] private IConsoleHost _console = default!;
     [Dependency] private MapLoaderSystem _loader = default!;

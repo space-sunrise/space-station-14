@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using System.Linq;
 using Content.Server._Sunrise.BloodCult.GameRule;
 using Content.Server._Sunrise.BloodCult.Objectives.Components;
@@ -8,7 +8,7 @@ using Content.Shared.Roles.Jobs;
 
 namespace Content.Server._Sunrise.BloodCult.Objectives.Systems;
 
-public sealed class KillCultistTargetsConditionSystem : EntitySystem
+public sealed partial class KillCultistTargetsConditionSystem : EntitySystem
 {
     [Dependency] private SharedJobSystem _job = default!;
     [Dependency] private MetaDataSystem _metaData = default!;

@@ -8,7 +8,7 @@ namespace Content.Server.Ninja.Systems;
 /// <summary>
 /// Handles events to integrate NinjaSuitDraw with ItemToggle
 /// </summary>
-public sealed class ToggleNinjaSuitDrawSystem : EntitySystem
+public sealed partial class ToggleNinjaSuitDrawSystem : EntitySystem
 {
     [Dependency] private ItemToggleSystem _toggle = default!;
     [Dependency] private NinjaSuitDrawSystem _suitDraw = default!;

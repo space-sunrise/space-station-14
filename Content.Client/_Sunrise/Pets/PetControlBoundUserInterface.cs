@@ -8,7 +8,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Client._Sunrise.Pets;
 
 [UsedImplicitly]
-public sealed class PetControlBoundUserInterface : BoundUserInterface
+public sealed partial class PetControlBoundUserInterface : BoundUserInterface
 {
     [Dependency] private EntityManager _entityManager = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;

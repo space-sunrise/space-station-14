@@ -7,7 +7,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Sunrise.Humanoid;
 
-public sealed class SunriseHumanoidMarkingSystem : EntitySystem
+public sealed partial class SunriseHumanoidMarkingSystem : EntitySystem
 {
     [Dependency] private MarkingManager _marking = default!;
     [Dependency] private IPrototypeManager _prototype = default!;

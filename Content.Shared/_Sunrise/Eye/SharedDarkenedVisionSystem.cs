@@ -10,7 +10,7 @@ using Content.Shared.Sunrise.Clothing.Components;
 
 namespace Content.Shared.Sunrise.Eye;
 
-public abstract class SharedDarkenedVisionSystem : EntitySystem
+public abstract partial class SharedDarkenedVisionSystem : EntitySystem
 {
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private BlindableSystem _blinding = default!;

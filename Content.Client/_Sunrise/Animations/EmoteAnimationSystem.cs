@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 using Content.Shared._Sunrise.Animations;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
@@ -7,7 +7,7 @@ using Robust.Shared.GameStates;
 
 namespace Content.Client._Sunrise.Animations;
 
-public sealed class EmoteAnimationSystem : EntitySystem
+public sealed partial class EmoteAnimationSystem : EntitySystem
 {
     [Dependency] private AnimationPlayerSystem _animationSystem = default!;
 

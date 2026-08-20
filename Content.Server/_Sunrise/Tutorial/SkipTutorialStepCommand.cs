@@ -8,7 +8,7 @@ namespace Content.Server._Sunrise.Tutorial;
 /// Пропускает текущий шаг туториала для вызвавшего команду игрока.
 /// </summary>
 [AdminCommand(AdminFlags.Debug)]
-public sealed class SkipTutorialStepCommand : LocalizedEntityCommands
+public sealed partial class SkipTutorialStepCommand : LocalizedEntityCommands
 {
     [Dependency] private TutorialSystem _tutorial = default!;
 

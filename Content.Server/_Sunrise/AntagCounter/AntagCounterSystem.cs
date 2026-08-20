@@ -7,7 +7,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.AntagCounter;
 
-public sealed class AntagCounterSystem : EntitySystem
+public sealed partial class AntagCounterSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private RoleSystem _role = default!;

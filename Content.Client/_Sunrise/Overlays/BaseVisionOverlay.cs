@@ -12,7 +12,7 @@ youve added are different based on their fields. So to get around this,
 we define all the actual BEHAVIOUR here, but then just make it appear as a new
 type by inheriting from this and implementing nothing. Thanks Robust Toolbox team.
 */
-public abstract class BaseVisionOverlay : Overlay
+public abstract partial class BaseVisionOverlay : Overlay
 {
     [Dependency] private IEntityManager _entityManager = default!;
     [Dependency] private IPlayerManager _playerManager = default!;

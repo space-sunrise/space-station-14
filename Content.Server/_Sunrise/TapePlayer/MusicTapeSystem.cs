@@ -4,7 +4,7 @@ using Robust.Shared.Audio.Systems;
 
 namespace Content.Server._Sunrise.TapePlayer;
 
-public sealed class MusicTapeSystem : EntitySystem
+public sealed partial class MusicTapeSystem : EntitySystem
 {
     [Dependency] private SharedAudioSystem _audioSystem = default!;
 

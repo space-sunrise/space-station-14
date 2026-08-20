@@ -5,7 +5,7 @@ using Robust.Client.Player;
 using Robust.Shared.Player;
 
 namespace Content.Client._Sunrise.LoveVision;
-public sealed class LoveVisionSystem : EntitySystem
+public sealed partial class LoveVisionSystem : EntitySystem
 {
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IOverlayManager _overlayMan = default!;

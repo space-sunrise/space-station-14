@@ -4,7 +4,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared._Sunrise.Dice;
 
-public sealed class ChangeDiceVerbSystem : EntitySystem
+public sealed partial class ChangeDiceVerbSystem : EntitySystem
 {
     [Dependency] private SharedUserInterfaceSystem _ui = default!;
     public override void Initialize()

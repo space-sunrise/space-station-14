@@ -1,4 +1,4 @@
-﻿using Content.Shared.Nutrition.Components;
+using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Xenoarchaeology.Artifact;
 using Content.Shared.Xenoarchaeology.Artifact.XAE;
@@ -6,7 +6,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.Research.Artifact.Effects.ModifyThirst;
 
-public sealed class ArtifactModifyThirstSystem : BaseXAESystem<ArtifactModifyThirstComponent>
+public sealed partial class ArtifactModifyThirstSystem : BaseXAESystem<ArtifactModifyThirstComponent>
 {
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private ThirstSystem _thirst = default!;

@@ -12,7 +12,7 @@ using Content.Shared.PowerCell;
 
 namespace Content.Server._Sunrise.EnergyShield;
 
-public sealed class EnergyShieldSystem : EntitySystem
+public sealed partial class EnergyShieldSystem : EntitySystem
 {
     [Dependency] private BatterySystem _battery = default!;
     [Dependency] private ItemToggleSystem _itemToggle = default!;

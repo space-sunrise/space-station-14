@@ -3,7 +3,7 @@ using Content.Shared.Trigger.Systems;
 
 namespace Content.Shared._Sunrise.Trigger.TriggerOnBeingGibbed;
 
-public sealed class TriggerOnBeingGibbedSystem : EntitySystem
+public sealed partial class TriggerOnBeingGibbedSystem : EntitySystem
 {
     [Dependency] private TriggerSystem _trigger = default!;
 

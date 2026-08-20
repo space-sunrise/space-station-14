@@ -4,7 +4,7 @@ using Content.Shared._Sunrise.Radio;
 
 namespace Content.Client._Sunrise.Radio.Ui;
 
-public sealed class HeadsetBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
+public sealed partial class HeadsetBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private IEntityManager _ent = default!;

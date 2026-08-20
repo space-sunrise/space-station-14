@@ -1,4 +1,4 @@
-﻿using Content.Shared._Sunrise.BloodCult.Items;
+using Content.Shared._Sunrise.BloodCult.Items;
 using Content.Shared.Interaction;
 using Content.Shared.Item;
 using Content.Shared.Popups;
@@ -8,7 +8,7 @@ using Content.Shared.Damage;
 
 namespace Content.Server._Sunrise.SharpeningSystem;
 
-public sealed class SharpeningSystem : EntitySystem
+public sealed partial class SharpeningSystem : EntitySystem
 {
     [Dependency] private SharedPopupSystem _popupSystem = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;

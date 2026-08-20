@@ -7,7 +7,7 @@ using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Server.StationEvents.Events;
 
-public sealed class AnnounceRule : StationEventSystem<AnnounceRuleComponent>
+public sealed partial class AnnounceRule : StationEventSystem<AnnounceRuleComponent>
 {
     [Dependency] private ChatSystem _chat = default!;
 

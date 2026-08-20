@@ -1,11 +1,11 @@
-﻿using System.Text.RegularExpressions;
+using System.Text.RegularExpressions;
 using Content.Server.Speech.Components;
 using Robust.Shared.Random;
 using Content.Shared.Speech;
 
 namespace Content.Server.Speech.EntitySystems;
 
-public sealed class MothAccentSystem : EntitySystem
+public sealed partial class MothAccentSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!; // Russian-Localization
 

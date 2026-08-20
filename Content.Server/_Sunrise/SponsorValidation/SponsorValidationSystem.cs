@@ -7,7 +7,7 @@ using Robust.Shared.Network;
 
 namespace Content.Server._Sunrise.SponsorValidation;
 
-public sealed class SponsorValidationSystem : EntitySystem
+public sealed partial class SponsorValidationSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     private ISharedSponsorsManager? _sponsorsManager;

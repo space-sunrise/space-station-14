@@ -19,7 +19,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.FleshCult.GameRule;
 
-public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
+public sealed partial class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
 {
     [Dependency] private IChatManager _chatManager = default!;
     [Dependency] private SharedAudioSystem _audioSystem = default!;

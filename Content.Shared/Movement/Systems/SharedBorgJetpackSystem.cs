@@ -8,7 +8,7 @@ using Robust.Shared.Physics.Systems;
 
 namespace Content.Shared.Movement.Systems;
 
-public sealed class SharedBorgJetpackSystem : EntitySystem
+public sealed partial class SharedBorgJetpackSystem : EntitySystem
 {
     [Dependency] private ActionContainerSystem _actionContainer = default!;
     [Dependency] private MovementSpeedModifierSystem _movementSpeedModifier = default!;

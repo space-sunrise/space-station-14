@@ -1,4 +1,4 @@
-﻿using Content.Shared._Sunrise.BloodCult;
+using Content.Shared._Sunrise.BloodCult;
 using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.BloodCult.UI;
 using Content.Shared.Hands.EntitySystems;
@@ -11,7 +11,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.BloodCult.TimedProduction;
 
-public sealed class CultistFactorySystem : EntitySystem
+public sealed partial class CultistFactorySystem : EntitySystem
 {
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private IGameTiming _gameTiming = default!;

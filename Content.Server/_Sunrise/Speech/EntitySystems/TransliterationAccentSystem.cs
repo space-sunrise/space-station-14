@@ -6,7 +6,7 @@ using Content.Server.Speech.EntitySystems;
 using Content.Shared.Speech;
 
 namespace Content.Server._Sunrise.Speech.EntitySystems;
-public sealed class TransliterationAccentSystem : EntitySystem
+public sealed partial class TransliterationAccentSystem : EntitySystem
 {
     [Dependency] private ReplacementAccentSystem _replacement = default!;
     public override void Initialize()

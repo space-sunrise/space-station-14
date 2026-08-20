@@ -12,7 +12,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._Sunrise.MapperSync;
 
-public sealed class MapperSyncManager
+public sealed partial class MapperSyncManager
 {
     [Dependency] private IStatusHost _statusHost = default!;
     [Dependency] private IConfigurationManager _cfg = default!;

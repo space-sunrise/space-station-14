@@ -10,7 +10,7 @@ using Robust.Shared.Physics.Components;
 
 namespace Content.Server._Sunrise.Cleaning;
 
-public sealed class FoorprintAreaCleaningSystem : EntitySystem
+public sealed partial class FoorprintAreaCleaningSystem : EntitySystem
 {
     #region Entity Queries
     [Dependency] private EntityQuery<TransformComponent> _transformQuery = default!;

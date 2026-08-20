@@ -1,4 +1,4 @@
-﻿using Content.Client._Sunrise.UserInterface.Radial;
+using Content.Client._Sunrise.UserInterface.Radial;
 using Content.Shared._Sunrise.BloodCult.Items;
 using Content.Shared._Sunrise.BloodCult.UI;
 using Robust.Client.GameObjects;
@@ -6,7 +6,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client._Sunrise.BloodCult.UI.ListViewSelector;
 
-public sealed class ListViewSelectorBUI : BoundUserInterface
+public sealed partial class ListViewSelectorBUI : BoundUserInterface
 {
     [Dependency] private IEntityManager _entityManager = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;

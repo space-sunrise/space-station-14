@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Threading.Tasks;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Popups;
@@ -22,7 +22,7 @@ namespace Content.Server._Sunrise.ExpCollars;
 /// <summary>
 /// Система для взрывного ошейника.
 /// </summary>
-public sealed class ExpCollarsSystem : EntitySystem
+public sealed partial class ExpCollarsSystem : EntitySystem
 {
     [Dependency] private AudioSystem _audio = default!;
     [Dependency] private DamageableSystem _damageable = default!;

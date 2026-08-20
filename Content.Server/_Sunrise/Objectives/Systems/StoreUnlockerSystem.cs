@@ -6,7 +6,7 @@ namespace Content.Server.Objectives.Systems;
 /// <summary>
 /// Provides api for listings with <c>ObjectiveUnlockRequirement</c> to use.
 /// </summary>
-public sealed class StoreUnlockerSystem : EntitySystem
+public sealed partial class StoreUnlockerSystem : EntitySystem
 {
     [Dependency] private EntityQuery<StoreUnlockerComponent> _storeUnlockerQuery = default!;
 

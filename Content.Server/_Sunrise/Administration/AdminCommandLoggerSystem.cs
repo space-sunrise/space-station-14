@@ -1,4 +1,4 @@
-﻿using Content.Server.Administration;
+using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Shared.Database;
@@ -12,7 +12,7 @@ namespace Content.Server._Sunrise.Administration;
 /// Заставляет админов чувствовать себя уязвимыми.
 /// </summary>
 // TODO: Сделать дискорд вебхук с этим
-public sealed class AdminCommandLoggerSystem : EntitySystem
+public sealed partial class AdminCommandLoggerSystem : EntitySystem
 {
     [Dependency] private IAdminLogManager _adminLog = default!;
     [Dependency] private IAdminManager _admin = default!;

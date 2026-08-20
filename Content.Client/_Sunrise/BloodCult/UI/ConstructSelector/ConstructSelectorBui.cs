@@ -1,4 +1,4 @@
-﻿using Content.Client._Sunrise.UserInterface.Radial;
+using Content.Client._Sunrise.UserInterface.Radial;
 using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.BloodCult.UI;
 using Robust.Client.GameObjects;
@@ -9,7 +9,7 @@ using Robust.Shared.Random;
 
 namespace Content.Client._Sunrise.BloodCult.UI.ConstructSelector;
 
-public sealed class ConstructSelectorBui : BoundUserInterface
+public sealed partial class ConstructSelectorBui : BoundUserInterface
 {
     [Dependency] private IEntityManager _entityManager = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;

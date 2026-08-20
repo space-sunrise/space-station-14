@@ -1,4 +1,4 @@
-﻿using Content.Server._Sunrise.BloodCult.Items.Components;
+using Content.Server._Sunrise.BloodCult.Items.Components;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Shared._Sunrise.BloodCult.Components;
@@ -23,7 +23,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._Sunrise.BloodCult.Items.Systems;
 
-public sealed class BloodCultWeaponSystem : EntitySystem
+public sealed partial class BloodCultWeaponSystem : EntitySystem
 {
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private BodySystem _body = default!;

@@ -21,7 +21,7 @@ using Content.Shared.Actions;
 
 namespace Content.Server._Sunrise.Interrogator
 {
-    public sealed class InterrogatorSystem : SharedInterrogatorSystem
+    public sealed partial class InterrogatorSystem : SharedInterrogatorSystem
     {
         [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
         [Dependency] private IAdminLogManager _adminLogger = default!;

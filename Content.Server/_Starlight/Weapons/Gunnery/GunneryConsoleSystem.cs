@@ -22,7 +22,7 @@ namespace Content.Server._Starlight.Weapons.Gunnery;
 /// containing the standard radar data, cannon blip positions, and guided-projectile
 /// tracking info. Also handles fire and guidance BUI messages from the client.
 /// </summary>
-public sealed class GunneryConsoleSystem : EntitySystem
+public sealed partial class GunneryConsoleSystem : EntitySystem
 {
     [Dependency] private UserInterfaceSystem   _ui        = default!;
     [Dependency] private ShuttleConsoleSystem  _console   = default!;

@@ -35,6 +35,7 @@ public sealed partial class HealingSystem : EntitySystem
     [Dependency] private MobThresholdSystem _mobThresholdSystem = default!;
     [Dependency] private SharedPopupSystem _popupSystem = default!;
     [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
 
     public override void Initialize()
     {
@@ -233,7 +234,7 @@ public sealed partial class HealingSystem : EntitySystem
         //Sunrise-Start
         if (TryComp<MobStateComponent>(target.Owner, out var state))
         {
-            if (!healing.Comp.WorksOnTheDead && _mobStateSystem.IsDead(target.Owner, state))
+            if (!healing.Comp.WorksOnTheDead && _mobState.IsDead(target.Owner, state))
                 return false;
         }
         //Sunrise-End

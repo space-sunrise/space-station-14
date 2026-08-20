@@ -7,7 +7,7 @@ using Content.Shared.Slippery;
 
 namespace Content.Shared._Sunrise.Abilities;
 
-public sealed class SharedBorgMagbootsSystem : EntitySystem
+public sealed partial class SharedBorgMagbootsSystem : EntitySystem
 {
     [Dependency] private SharedActionsSystem _sharedActions = default!;
     [Dependency] private SharedGravitySystem _gravity = default!;

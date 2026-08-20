@@ -8,7 +8,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Server._Sunrise.StationGoal
 {
     [AdminCommand(AdminFlags.Fun)]
-    public sealed class StationGoalCommand : IConsoleCommand
+    public sealed partial class StationGoalCommand : IConsoleCommand
     {
         [Dependency] private IEntityManager _entManager = default!;
 

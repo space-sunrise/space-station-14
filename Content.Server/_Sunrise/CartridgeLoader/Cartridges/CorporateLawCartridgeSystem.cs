@@ -7,7 +7,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.CartridgeLoader.Cartridges;
 
-public sealed class CorporateLawCartridgeSystem : EntitySystem
+public sealed partial class CorporateLawCartridgeSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private CartridgeLoaderSystem _cartridgeLoader = default!;

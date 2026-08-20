@@ -4,7 +4,7 @@ using DrawDepth = Content.Shared.DrawDepth.DrawDepth;
 
 namespace Content.Client._Sunrise.SunriseStanding;
 
-public sealed class StandingStateSystem : EntitySystem
+public sealed partial class StandingStateSystem : EntitySystem
 {
     [Dependency] private SpriteSystem _sprite = default!;
 

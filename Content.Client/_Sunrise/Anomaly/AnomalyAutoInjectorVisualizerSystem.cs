@@ -5,7 +5,7 @@ using Robust.Shared.GameObjects;
 
 namespace Content.Client._Sunrise.Anomaly;
 
-public sealed class AnomalyAutoInjectorVisualizerSystem : EntitySystem
+public sealed partial class AnomalyAutoInjectorVisualizerSystem : EntitySystem
 {
     [Dependency] private SpriteSystem _spriteSystem = default!;
 

@@ -8,7 +8,7 @@ using Robust.Shared.Audio.Systems;
 
 namespace Content.Shared._Sunrise.Movement.Pulling;
 
-public sealed class SharedPullingAnimationSystem : EntitySystem
+public sealed partial class SharedPullingAnimationSystem : EntitySystem
 {
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedMeleeWeaponSystem _melee = default!;

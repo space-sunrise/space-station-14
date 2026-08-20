@@ -6,7 +6,7 @@ using Robust.Shared.Network;
 
 namespace Content.Client._Sunrise.TapePlayer
 {
-    public sealed class TapePlayerSystem : SharedTapePlayerSystem
+    public sealed partial class TapePlayerSystem : SharedTapePlayerSystem
     {
         [Dependency] private SharedAppearanceSystem _appearanceSystem = default!;
         [Dependency] private SharedUserInterfaceSystem _uiSystem = default!;

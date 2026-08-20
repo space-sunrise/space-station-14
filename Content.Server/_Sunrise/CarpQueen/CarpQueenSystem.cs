@@ -23,7 +23,7 @@ using Content.Shared.Chat;
 
 namespace Content.Server._Sunrise.CarpQueen;
 
-public sealed class CarpQueenSystem : SharedCarpQueenSystem
+public sealed partial class CarpQueenSystem : SharedCarpQueenSystem
 {
     [Dependency] private NPCSystem _npc = default!;
     [Dependency] private HTNSystem _htn = default!;

@@ -11,7 +11,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._Sunrise.CodeConsole;
 
-public sealed class CodeConsoleSystem : EntitySystem
+public sealed partial class CodeConsoleSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedAudioSystem _audio = default!;

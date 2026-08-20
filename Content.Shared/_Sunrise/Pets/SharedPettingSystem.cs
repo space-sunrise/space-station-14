@@ -1,4 +1,4 @@
-﻿// © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
+// © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
 
 using System.Linq;
 using Content.Shared.Actions;
@@ -14,7 +14,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._Sunrise.Pets;
 
-public abstract class SharedPettingSystem : EntitySystem
+public abstract partial class SharedPettingSystem : EntitySystem
 {
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedPopupSystem _popup = default!;

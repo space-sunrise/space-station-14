@@ -12,7 +12,7 @@ namespace Content.Server._Sunrise.Medical;
 /// <summary>
 /// System for handling borg hypospray announcements
 /// </summary>
-public sealed class BorgHypospraySystem : EntitySystem
+public sealed partial class BorgHypospraySystem : EntitySystem
 {
     [Dependency] private ChatSystem _chat = default!;
     [Dependency] private IGameTiming _timing = default!;

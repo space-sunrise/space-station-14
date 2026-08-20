@@ -11,7 +11,7 @@ namespace Content.Server._Sunrise.CriminalRecords.Systems;
 /// <summary>
 ///     Handles locking and unlocking of prison cell doors via signals or direct API.
 /// </summary>
-public sealed class PrisonCellDoorSystem : EntitySystem
+public sealed partial class PrisonCellDoorSystem : EntitySystem
 {
     [Dependency] private AccessReaderSystem _accessReader = default!;
     [Dependency] private DeviceLinkSystem _deviceLink = default!;

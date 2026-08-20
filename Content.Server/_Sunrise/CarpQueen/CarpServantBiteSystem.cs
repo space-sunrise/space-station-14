@@ -15,7 +15,7 @@ namespace Content.Server._Sunrise.CarpQueen;
 /// Система обрабатывает укусы карпов-слуг:
 /// вводит 1 единицу каждого реагента из жидкости, в которой вылупился карп.
 /// </summary>
-public sealed class CarpServantBiteSystem : EntitySystem
+public sealed partial class CarpServantBiteSystem : EntitySystem
 {
     [Dependency] private BloodstreamSystem _bloodstream = default!;
     [Dependency] private IPrototypeManager _protos = default!;

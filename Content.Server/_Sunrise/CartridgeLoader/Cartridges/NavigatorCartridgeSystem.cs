@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Content.Server.CartridgeLoader.Cartridges;
 
-public sealed class NavigatorCartridgeSystem : EntitySystem
+public sealed partial class NavigatorCartridgeSystem : EntitySystem
 {
     [Dependency] private CartridgeLoaderSystem _cartridgeLoader = default!;
     [Dependency] private StationSystem _stationSystem = default!;

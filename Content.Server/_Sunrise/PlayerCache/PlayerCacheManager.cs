@@ -7,7 +7,7 @@ using Content.Shared._Sunrise.PlayerCache;
 
 namespace Content.Server._Sunrise.PlayerCache;
 
-public sealed class PlayerCacheManager
+public sealed partial class PlayerCacheManager
 {
     [Dependency] private IServerNetManager _netManager = default!;
 

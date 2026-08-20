@@ -27,7 +27,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.CryoTeleport;
 
-public sealed class CryoTeleportationSystem : EntitySystem
+public sealed partial class CryoTeleportationSystem : EntitySystem
 {
     [Dependency] private CryostorageSystem _cryostorage = default!;
     [Dependency] private SharedMindSystem _mind = default!;

@@ -19,7 +19,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._Sunrise.Fugitive
 {
-    public sealed class FugitiveSystem : EntitySystem
+    public sealed partial class FugitiveSystem : EntitySystem
     {
         [Dependency] private IPrototypeManager _prototypeManager = default!;
         [Dependency] private MovementSpeedModifierSystem _movementSpeed = default!;

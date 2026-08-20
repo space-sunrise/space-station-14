@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server._Sunrise.Helpers;
 using Content.Server.Power.Components;
 using Content.Server.Station.Systems;
@@ -16,7 +16,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.Xenoarchaeology;
 
-public sealed class RandomXenoArtifactsSystem : EntitySystem
+public sealed partial class RandomXenoArtifactsSystem : EntitySystem
 {
     [Dependency] private StationSystem _station = default!;
     [Dependency] private SunriseHelpersSystem _helpers = default!;

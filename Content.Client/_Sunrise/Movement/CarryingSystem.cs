@@ -5,7 +5,7 @@ using Robust.Client.GameObjects;
 
 namespace Content.Client._Sunrise.Movement;
 
-public sealed class CarryingSystem : SharedCarryingSystem
+public sealed partial class CarryingSystem : SharedCarryingSystem
 {
     [Dependency] private SpriteSystem _sprite = default!;
 

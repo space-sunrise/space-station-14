@@ -1,4 +1,4 @@
-﻿using Content.Server._Sunrise.BloodCult.Items.Components;
+using Content.Server._Sunrise.BloodCult.Items.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Popups;
 using Content.Server.Station.Components;
@@ -21,7 +21,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.BloodCult.Items.Systems;
 
-public sealed class TorchCultistsProviderSystem : EntitySystem
+public sealed partial class TorchCultistsProviderSystem : EntitySystem
 {
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private AtmosphereSystem _atmosphere = default!;
@@ -35,6 +35,7 @@ public sealed class TorchCultistsProviderSystem : EntitySystem
     [Dependency] private UserInterfaceSystem _ui = default!;
     [Dependency] private SharedTransformSystem _xform = default!;
     [Dependency] private EntityQuery<PhysicsComponent> _physicsQuery = default!;
+    [Dependency] private MapSystem _map = default!;
 
     public override void Initialize()
     {
@@ -214,7 +215,7 @@ public sealed class TorchCultistsProviderSystem : EntitySystem
 
             // don't spawn inside of solid objects
             var valid = true;
-            foreach (var ent in gridComp.GetAnchoredEntities(tile))
+            foreach (var ent in _map.GetAnchoredEntities(grid, gridComp, tile))
             {
                 if (!_physicsQuery.TryGetComponent(ent, out var body))
                     continue;
@@ -231,7 +232,7 @@ public sealed class TorchCultistsProviderSystem : EntitySystem
             if (!valid)
                 continue;
 
-            targetCoords = gridComp.GridTileToLocal(tile);
+            targetCoords = _map.GridTileToLocal(grid, gridComp, tile);
             break;
         }
 

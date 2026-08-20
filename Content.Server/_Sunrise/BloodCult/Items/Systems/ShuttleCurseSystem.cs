@@ -10,7 +10,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.BloodCult.Items.Systems;
 
-public sealed class ShuttleCurseSystem : EntitySystem
+public sealed partial class ShuttleCurseSystem : EntitySystem
 {
     private const int MaxCurses = 3;
     [Dependency] private IEntityManager _entMan = default!;

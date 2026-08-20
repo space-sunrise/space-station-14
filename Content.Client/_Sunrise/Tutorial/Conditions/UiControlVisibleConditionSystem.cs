@@ -14,7 +14,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client._Sunrise.Tutorial.Conditions;
 
-public sealed class UiControlVisibleConditionSystem : EntitySystem
+public sealed partial class UiControlVisibleConditionSystem : EntitySystem
 {
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IUserInterfaceManager _ui = default!;

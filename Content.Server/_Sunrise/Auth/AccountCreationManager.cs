@@ -13,7 +13,7 @@ using Robust.Shared.Network;
 
 namespace Content.Server._Sunrise.Auth;
 
-public sealed class AccountCreationManager
+public sealed partial class AccountCreationManager
 {
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private ILogManager _logManager = default!;

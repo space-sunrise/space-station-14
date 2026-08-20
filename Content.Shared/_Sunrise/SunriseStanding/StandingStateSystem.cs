@@ -13,7 +13,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Sunrise.SunriseStanding;
 
-public sealed class SunriseStandingStateSystem : EntitySystem
+public sealed partial class SunriseStandingStateSystem : EntitySystem
 {
     [Dependency] private SharedGravitySystem _gravity = default!;
     [Dependency] private StatusEffectsSystem _statusEffects = default!;

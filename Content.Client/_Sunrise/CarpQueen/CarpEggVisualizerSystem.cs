@@ -4,7 +4,7 @@ using Robust.Shared.Maths;
 
 namespace Content.Client._Sunrise.CarpQueen;
 
-public sealed class CarpEggVisualizerSystem : VisualizerSystem<CarpEggComponent>
+public sealed partial class CarpEggVisualizerSystem : VisualizerSystem<CarpEggComponent>
 {
     [Dependency] private SpriteSystem _sprite = default!;
 

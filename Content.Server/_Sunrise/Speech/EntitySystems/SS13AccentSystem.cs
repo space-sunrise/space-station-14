@@ -7,7 +7,7 @@ using Content.Shared.Speech;
 
 namespace Content.Server._Sunrise.Speech.EntitySystems;
 
-public sealed class SS13AccentSystem : EntitySystem
+public sealed partial class SS13AccentSystem : EntitySystem
 {
     [Dependency] private ReplacementAccentSystem _replacement = default!;
     public override void Initialize()

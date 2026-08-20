@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 using Content.Server.Hands.Systems;
 using Content.Server.Popups;
 using Content.Shared._Sunrise.BloodCult.Actions;
@@ -16,7 +16,7 @@ using Robust.Shared.Audio.Systems;
 
 namespace Content.Server._Sunrise.BloodCult.Items.Systems;
 
-public sealed class CultBloodSpearSystem : EntitySystem
+public sealed partial class CultBloodSpearSystem : EntitySystem
 {
     [Dependency] private SharedActionsSystem _actionsSystem = default!;
     [Dependency] private SharedAudioSystem _audio = default!;

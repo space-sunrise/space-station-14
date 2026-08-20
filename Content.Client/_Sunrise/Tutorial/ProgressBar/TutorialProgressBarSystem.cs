@@ -15,7 +15,7 @@ namespace Content.Client._Sunrise.Tutorial.ProgressBar;
 /// <summary>
 /// Client-side system that attaches tutorial progress bars to the active in-game viewport.
 /// </summary>
-public sealed class TutorialProgressBarSystem : EntitySystem
+public sealed partial class TutorialProgressBarSystem : EntitySystem
 {
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IUserInterfaceManager _ui = default!;

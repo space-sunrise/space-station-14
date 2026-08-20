@@ -1,4 +1,4 @@
-﻿using Content.Server._Sunrise.ImmortalGrid;
+using Content.Server._Sunrise.ImmortalGrid;
 using Content.Server.AlertLevel;
 using Content.Server.Chat.Systems;
 using Content.Server.Pinpointer;
@@ -18,7 +18,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._Sunrise.Shuttles;
 
-public sealed class CodeEquipmentSystem : EntitySystem
+public sealed partial class CodeEquipmentSystem : EntitySystem
 {
     [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private MapLoaderSystem _loader = default!;

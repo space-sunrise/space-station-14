@@ -6,7 +6,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.Chat;
 
-public sealed class SayWithIntervalSystem : EntitySystem
+public sealed partial class SayWithIntervalSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IGameTiming _gameTiming = default!;

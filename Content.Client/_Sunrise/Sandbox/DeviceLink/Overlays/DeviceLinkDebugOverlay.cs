@@ -11,7 +11,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client._Sunrise.Sandbox.DeviceLink.Overlays;
 
-public sealed class DeviceLinkDebugOverlay : Overlay
+public sealed partial class DeviceLinkDebugOverlay : Overlay
 {
     private static readonly ProtoId<ShaderPrototype> OutlineShaderPrototype = "SunriseMappingAccessOutline";
     private static readonly ProtoId<ShaderPrototype> UnshadedShaderPrototype = "unshaded";

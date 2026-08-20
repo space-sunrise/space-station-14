@@ -11,7 +11,7 @@ namespace Content.Server._Sunrise.CarpQueen;
 /// <summary>
 /// Система заставляет прирученных карпов отвечать на атаку сущностей, которые вредят их запомненным друзьям.
 /// </summary>
-public sealed class CarpServantRetaliationSystem : EntitySystem
+public sealed partial class CarpServantRetaliationSystem : EntitySystem
 {
     [Dependency] private NpcFactionSystem _npcFaction = default!;
 

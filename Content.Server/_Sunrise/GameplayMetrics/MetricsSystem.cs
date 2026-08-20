@@ -33,7 +33,7 @@ namespace Content.Server._Sunrise.GameplayMetrics;
 /// Server-side system that reports gameplay metrics to Prometheus.
 /// Covers: retention, balance, general stats, job popularity.
 /// </summary>
-public sealed class MetricsSystem : EntitySystem
+public sealed partial class MetricsSystem : EntitySystem
 {
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private MindSystem _minds = default!;

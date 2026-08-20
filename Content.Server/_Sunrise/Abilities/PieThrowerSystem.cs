@@ -6,7 +6,7 @@ using Robust.Shared.Audio.Systems;
 
 namespace Content.Server._Sunrise.Abilities
 {
-    public sealed class PieThrowerSystem : EntitySystem
+    public sealed partial class PieThrowerSystem : EntitySystem
     {
         [Dependency] private SharedActionsSystem _actions = default!;
         [Dependency] private IEntityManager _entityManager = default!;

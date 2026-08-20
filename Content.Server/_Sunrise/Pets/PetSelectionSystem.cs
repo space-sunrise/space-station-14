@@ -7,7 +7,7 @@ using Content.Shared._Sunrise.PlayerCache;
 
 namespace Content.Server._Sunrise.Pets;
 
-public sealed class PetSelectionSystem : EntitySystem
+public sealed partial class PetSelectionSystem : EntitySystem
 {
     [Dependency] private SponsorValidationSystem _validationSystem = default!;
     [Dependency] private PlayerCacheManager _playerCache = default!;

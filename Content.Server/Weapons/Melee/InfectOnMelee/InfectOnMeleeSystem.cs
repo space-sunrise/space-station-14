@@ -15,7 +15,7 @@ using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Weapons.Melee.InfectOnMelee;
 
-public sealed class InfectOnMeleeSystem : EntitySystem
+public sealed partial class InfectOnMeleeSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private MobStateSystem _mob = default!;

@@ -16,7 +16,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.Contributors;
 
-public sealed class ContributorsManager
+public sealed partial class ContributorsManager
 {
     [Dependency] private IPlayerManager _playerManager = default!;
     [Dependency] private ILogManager _logManager = default!;

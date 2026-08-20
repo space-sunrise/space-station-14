@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 using Content.Client.Shuttles.UI;
 using Content.Shared._Starlight.Weapons.Gunnery;
 using Content.Shared.Shuttles.BUIStates;
@@ -31,7 +31,7 @@ namespace Content.Client._Starlight.Weapons.Gunnery;
 /// • Hold RMB on open space (with cannon selected) → automatic fire at cursor.
 /// • Hold RMB while guided projectile is active → steer rocket toward cursor.
 /// </summary>
-public sealed class GunneryRadarControl : BaseShuttleControl
+public sealed partial class GunneryRadarControl : BaseShuttleControl
 {
     [Dependency] private IMapManager _mapManager = default!;
 

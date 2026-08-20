@@ -6,7 +6,8 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Botany.PlantAnalyzer;
 
-public sealed class PlantAnalyzerLocalizationHelper : EntitySystem
+
+public sealed partial class PlantAnalyzerLocalizationHelper : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
 

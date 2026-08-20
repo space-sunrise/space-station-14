@@ -14,7 +14,7 @@ namespace Content.Server._Sunrise.Doors.Systems;
 ///     Нужна чтобы мультитайловые двойные или тройные шлюзы нормально не пропускали газы
 ///     Спавнит блокеры на соседних тайлах и регулирует когда блокеры не пропускают газ, когда пропускают. В зависимости от состояния шлюза
 /// </summary>
-public sealed class SunriseMultiTileAirtightSystem : EntitySystem
+public sealed partial class SunriseMultiTileAirtightSystem : EntitySystem
 {
     private const string BlockerPrototype = "SunriseMultiTileAirtightBlocker";
 

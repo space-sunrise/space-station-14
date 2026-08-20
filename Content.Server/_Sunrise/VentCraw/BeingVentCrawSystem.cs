@@ -13,7 +13,7 @@ using Robust.Shared.Player;
 
 namespace Content.Server._Sunrise.VentCraw;
 
-public sealed class BeingVentCrawSystem : EntitySystem
+public sealed partial class BeingVentCrawSystem : EntitySystem
 {
     [Dependency] private NodeContainerSystem _nodeContainer = default!;
     [Dependency] private IEntityManager _entities = default!;

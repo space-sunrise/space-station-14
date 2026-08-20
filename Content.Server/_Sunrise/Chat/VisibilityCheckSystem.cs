@@ -2,7 +2,7 @@ using Content.Server.Examine;
 
 namespace Content.Server._Sunrise.Chat;
 
-public sealed class EmoteVisibilityCheckSystem : EntitySystem
+public sealed partial class EmoteVisibilityCheckSystem : EntitySystem
 {
     [Dependency] private ExamineSystem _examineSystem = default!;
 

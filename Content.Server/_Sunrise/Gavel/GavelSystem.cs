@@ -1,4 +1,4 @@
-﻿using Content.Server.Popups;
+using Content.Server.Popups;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
@@ -7,7 +7,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.Gavel;
 
-public sealed class GavelSystem : EntitySystem
+public sealed partial class GavelSystem : EntitySystem
 {
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private IGameTiming _timing = default!;

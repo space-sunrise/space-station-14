@@ -15,7 +15,7 @@ using Robust.Shared.Input;
 
 namespace Content.Client._Sunrise.UserInterface.CustomControls;
 
-public sealed class EmojiPickerWindow : DefaultWindow
+public sealed partial class EmojiPickerWindow : DefaultWindow
 {
     [Dependency] private IEntityManager _entity = default!;
     [Dependency] private IResourceCache _resource = default!;

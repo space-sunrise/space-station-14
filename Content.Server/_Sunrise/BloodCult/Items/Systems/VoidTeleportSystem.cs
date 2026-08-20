@@ -1,4 +1,4 @@
-﻿using System.Threading;
+using System.Threading;
 using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.BloodCult.Items;
 using Content.Shared.Coordinates.Helpers;
@@ -17,7 +17,7 @@ using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Server._Sunrise.BloodCult.Items.Systems;
 
-public sealed class VoidTeleportSystem : EntitySystem
+public sealed partial class VoidTeleportSystem : EntitySystem
 {
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SharedAudioSystem _audio = default!;

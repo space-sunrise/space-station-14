@@ -24,7 +24,7 @@ namespace Content.Server._Sunrise.AssaultOps.Icarus;
 /// <summary>
 /// Handle Icarus activation terminal
 /// </summary>
-public sealed class IcarusTerminalSystem : EntitySystem
+public sealed partial class IcarusTerminalSystem : EntitySystem
 {
     private const string IcarusBeamPrototypeId = "IcarusBeam";
 

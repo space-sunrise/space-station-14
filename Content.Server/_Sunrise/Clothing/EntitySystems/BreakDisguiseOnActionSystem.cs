@@ -11,7 +11,7 @@ namespace Content.Server._Sunrise.Clothing.EntitySystems;
 /// <summary>
 /// Deactivates disguising clothing when its wearer is revealed by configured combat actions.
 /// </summary>
-public sealed class BreakDisguiseOnActionSystem : EntitySystem
+public sealed partial class BreakDisguiseOnActionSystem : EntitySystem
 {
     [Dependency] private ActionsSystem _actions = default!;
     [Dependency] private ItemToggleSystem _toggle = default!;

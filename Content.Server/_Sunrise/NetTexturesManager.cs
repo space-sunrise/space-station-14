@@ -22,7 +22,7 @@ namespace Content.Server._Sunrise;
 /// Использует High Bandwidth Transfer (WebSocket), чтобы не блокировать основной игровой трафик.
 /// На клиенте текстуры загружаются в MemoryContentRoot.
 /// </summary>
-public sealed class NetTexturesManager
+public sealed partial class NetTexturesManager
 {
     /// <summary>
     /// Ключ передачи для загрузки текстур server -> client через WebSocket.

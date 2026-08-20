@@ -7,7 +7,7 @@ using Robust.Shared.Player;
 
 namespace Content.Server._Sunrise.Greetings;
 
-public sealed class GreetingsSystem : EntitySystem
+public sealed partial class GreetingsSystem : EntitySystem
 {
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private BwoinkSystem _bwoinkSystem = default!;

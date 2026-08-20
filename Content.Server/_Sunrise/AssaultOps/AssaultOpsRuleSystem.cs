@@ -30,7 +30,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.AssaultOps;
 
-public sealed class AssaultOpsRuleSystem : GameRuleSystem<AssaultOpsRuleComponent>
+public sealed partial class AssaultOpsRuleSystem : GameRuleSystem<AssaultOpsRuleComponent>
 {
     [Dependency] private NpcFactionSystem _npcFaction = default!;
     [Dependency] private MindSystem _mind = default!;

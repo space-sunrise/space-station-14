@@ -12,7 +12,7 @@ using Content.Shared._Sunrise.Radials.Systems;
 
 namespace Content.Server._Sunrise.Radials;
 
-public sealed class RadialSystem : SharedRadialSystem
+public sealed partial class RadialSystem : SharedRadialSystem
     {
         [Dependency] private ISharedAdminLogManager _adminLogger = default!;
         [Dependency] private PopupSystem _popupSystem = default!;

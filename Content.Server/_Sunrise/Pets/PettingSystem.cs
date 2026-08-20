@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Numerics;
 using Content.Server.Actions;
 using Content.Server.Administration;
@@ -25,7 +25,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._Sunrise.Pets;
 
-public sealed class PettingSystem : SharedPettingSystem
+public sealed partial class PettingSystem : SharedPettingSystem
 {
     [Dependency] private HTNSystem _htn = default!;
     [Dependency] private NPCSystem _npc = default!;

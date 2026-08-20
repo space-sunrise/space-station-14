@@ -7,7 +7,7 @@ using Robust.Shared.Spawners;
 
 namespace Content.Shared._RMC14.Explosion;
 
-public abstract class SharedRMCExplosionSystem : EntitySystem
+public abstract partial class SharedRMCExplosionSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
 

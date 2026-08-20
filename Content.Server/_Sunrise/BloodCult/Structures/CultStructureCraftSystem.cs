@@ -1,4 +1,4 @@
-﻿using Content.Shared._Sunrise.BloodCult.Components;
+using Content.Shared._Sunrise.BloodCult.Components;
 using Content.Shared._Sunrise.BloodCult.Structures;
 using Content.Shared.Interaction.Events;
 using Robust.Server.GameObjects;
@@ -6,7 +6,7 @@ using Robust.Server.Player;
 
 namespace Content.Server._Sunrise.BloodCult.Structures;
 
-public sealed class CultStructureCraftSystem : EntitySystem
+public sealed partial class CultStructureCraftSystem : EntitySystem
 {
     [Dependency] private IPlayerManager _playerManager = default!;
     [Dependency] private UserInterfaceSystem _uiSystem = default!;

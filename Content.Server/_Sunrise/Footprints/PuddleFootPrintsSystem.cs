@@ -12,7 +12,7 @@ namespace Content.Server._Sunrise.Footprints;
 /// <summary>
 /// Handles footprint creation when entities interact with puddles
 /// </summary>
-public sealed class PuddleFootprintSystem : EntitySystem
+public sealed partial class PuddleFootprintSystem : EntitySystem
 {
     [Dependency] private SharedSolutionContainerSystem _solutionSystem = default!;
     [Dependency] private StandingStateSystem _standingStateSystem = default!;

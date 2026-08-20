@@ -10,7 +10,7 @@ namespace Content.Client._Sunrise.CarpQueen;
 /// based on the color of the liquid they hatched from.
 /// Overrides RgbLightController behavior to use fixed color.
 /// </summary>
-public sealed class CarpServantVisualizerSystem : VisualizerSystem<CarpServantMemoryComponent>
+public sealed partial class CarpServantVisualizerSystem : VisualizerSystem<CarpServantMemoryComponent>
 {
     [Dependency] private SharedPointLightSystem _lights = default!;
     [Dependency] private SpriteSystem _sprite = default!;

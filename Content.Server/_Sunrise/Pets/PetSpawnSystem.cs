@@ -8,7 +8,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.Pets;
 
-public sealed class PetSpawnSystem : EntitySystem
+public sealed partial class PetSpawnSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private SponsorValidationSystem _validationSystem = default!;

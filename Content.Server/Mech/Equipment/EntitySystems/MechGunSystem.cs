@@ -8,7 +8,7 @@ using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Weapons.Ranged.Events;
 
 namespace Content.Server.Mech.Equipment.EntitySystems;
-public sealed class MechGunSystem : EntitySystem
+public sealed partial class MechGunSystem : EntitySystem
 {
     [Dependency] private MechSystem _mech = default!;
     [Dependency] private BatterySystem _battery = default!;

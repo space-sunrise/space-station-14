@@ -29,7 +29,7 @@ namespace Content.Client._Sunrise.MentorHelp;
 /// Контроллер интерфейса системы менторской помощи.
 /// </summary>
 [UsedImplicitly]
-public sealed class MentorHelpUIController : UIController, IOnSystemChanged<MentorHelpSystem>, IOnStateChanged<GameplayState>, IOnStateChanged<LobbyState>
+public sealed partial class MentorHelpUIController : UIController, IOnSystemChanged<MentorHelpSystem>, IOnStateChanged<GameplayState>, IOnStateChanged<LobbyState>
 {
     [Dependency] private IClientAdminManager _adminManager = default!;
     [Dependency] private IConfigurationManager _config = default!;

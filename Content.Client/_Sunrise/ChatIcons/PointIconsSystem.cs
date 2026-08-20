@@ -1,4 +1,4 @@
-﻿using Content.Client.UserInterface.Systems.Chat;
+using Content.Client.UserInterface.Systems.Chat;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Chat;
 using Content.Shared.Examine;
@@ -12,7 +12,7 @@ namespace Content.Client._Sunrise.ChatIcons;
 // TODO: Придумать способ как убирать из чата уже написанные теги при выключении настройки
 // Очень желательно не делать это внутри класса тега
 
-public sealed class PointIconsSystem : EntitySystem
+public sealed partial class PointIconsSystem : EntitySystem
 {
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IUserInterfaceManager _ui = default!;

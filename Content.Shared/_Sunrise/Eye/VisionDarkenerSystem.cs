@@ -5,7 +5,7 @@ using Content.Shared.Item.ItemToggle.Components;
 
 namespace Content.Shared.Sunrise.Eye;
 
-public sealed class VisionDarkenerSystem : EntitySystem
+public sealed partial class VisionDarkenerSystem : EntitySystem
 {
     [Dependency] private SharedDarkenedVisionSystem _darkenedVision = default!;
     [Dependency] private InventorySystem _inventory = default!;

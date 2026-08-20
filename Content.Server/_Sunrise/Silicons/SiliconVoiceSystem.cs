@@ -13,7 +13,7 @@ namespace Content.Server.Silicons.Borgs;
 /// <summary>
 /// System that handles cyborg voice changing functionality.
 /// </summary>
-public sealed class SiliconVoiceSystem : EntitySystem
+public sealed partial class SiliconVoiceSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private SharedPopupSystem _popup = default!;

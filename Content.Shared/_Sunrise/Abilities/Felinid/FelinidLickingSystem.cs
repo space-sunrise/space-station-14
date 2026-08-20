@@ -16,7 +16,7 @@ using Content.Shared.Damage.Systems;
 
 namespace Content.Shared._Sunrise.Abilities.Felinid;
 
-public sealed class FelinidLickingSystem : EntitySystem
+public sealed partial class FelinidLickingSystem : EntitySystem
 {
     [Dependency] private SharedActionsSystem _actions = default!;
     [Dependency] private SharedAudioSystem _audio = default!;

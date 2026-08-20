@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 using Content.Server.Shuttles.Components;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Server.GameObjects;
@@ -11,7 +11,7 @@ namespace Content.Server._Starlight.Shuttles.Systems;
 /// so that <see cref="RadarConsoleSystem"/> can include them as transient laser lines
 /// in the radar BUI state.
 /// </summary>
-public sealed class RadarLaserSystem : EntitySystem
+public sealed partial class RadarLaserSystem : EntitySystem
 {
     [Dependency] private TransformSystem _transforms = default!;
     [Dependency] private IGameTiming _timing = default!;

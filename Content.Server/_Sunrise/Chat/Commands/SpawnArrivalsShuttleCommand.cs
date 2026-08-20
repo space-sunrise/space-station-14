@@ -9,7 +9,7 @@ namespace Content.Server._Sunrise.Chat.Commands;
 
 [UsedImplicitly]
 [AdminCommand(AdminFlags.Debug)]
-public sealed class SpawnArrivalsShuttleCommand : LocalizedCommands
+public sealed partial class SpawnArrivalsShuttleCommand : LocalizedCommands
 {
     [Dependency] private IEntityManager _entities = default!;
 

@@ -9,7 +9,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client._Sunrise.Tutorial.TutorialWindow;
 
-public sealed class TutorialUIController : UIController,
+public sealed partial class TutorialUIController : UIController,
     IOnStateEntered<LobbyState>,
     IOnStateExited<LobbyState>,
     IOnSystemChanged<TutorialSystem>
