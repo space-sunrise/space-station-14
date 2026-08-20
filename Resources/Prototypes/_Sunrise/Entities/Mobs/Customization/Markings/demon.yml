@@ -94,7 +94,7 @@
 
 - type: marking
   id: DemonChestCowSpots
-  bodyPart: LLeg
+  bodyPart: Overlay
   groupWhitelist: [ Demon ]
   sprites:
   - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
@@ -102,7 +102,7 @@
 
 - type: marking
   id: DemonChestGuard
-  bodyPart: LLeg
+  bodyPart: Overlay
   groupWhitelist: [ Demon ]
   sprites:
   - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
@@ -110,7 +110,7 @@
 
 - type: marking
   id: DemonChestLinesEmperos
-  bodyPart: LLeg
+  bodyPart: Overlay
   groupWhitelist: [ Demon ]
   sprites:
   - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
@@ -118,7 +118,7 @@
 
 - type: marking
   id: DemonChestQueenLines
-  bodyPart: LLeg
+  bodyPart: Overlay
   groupWhitelist: [ Demon ]
   sprites:
   - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
@@ -126,7 +126,7 @@
 
 - type: marking
   id: DemonChestTreeLines
-  bodyPart: LLeg
+  bodyPart: Overlay
   groupWhitelist: [ Demon ]
   sprites:
   - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
@@ -134,7 +134,7 @@
 
 - type: marking
   id: DemonChestTrinitySpots
-  bodyPart: LLeg
+  bodyPart: Overlay
   groupWhitelist: [ Demon ]
   sprites:
   - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
