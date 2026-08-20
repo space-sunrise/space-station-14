@@ -36,7 +36,7 @@ public sealed partial class HumanoidProfileEditor
             titleButton.SelectId(args.Id);
             Profile = Profile?.WithJobAlternativeTitle(
                 job.ID,
-                args.Id == 0 ? null : job.AlternativeTitles[args.Id - 1]);
+                args.Id == 0 ? (LocId?)null : job.AlternativeTitles[args.Id - 1]);
             SetDirty();
         };
 
