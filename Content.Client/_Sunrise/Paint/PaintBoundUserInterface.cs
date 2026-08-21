@@ -29,6 +29,6 @@ public sealed class PaintBoundUserInterface(EntityUid owner, Enum uiKey) : Bound
 
     private void OnApplyButtonPressed(Color color)
     {
-        SendPredictedMessage(new PaintSetColorMessage(color));
+        SendMessage(new PaintSetColorMessage(color));
     }
 }
