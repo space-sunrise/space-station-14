@@ -188,11 +188,12 @@ public sealed class PylonSystem : EntitySystem
             if (_mobStateSystem.IsDead(playerEntity))
                 continue;
 
-            var playerDamageComp = EntityManager.TryGetComponent<DamageableComponent>(playerEntity, out var damageComp)
+            var playerDamageComp = TryComp<DamageableComponent>(playerEntity, out var damageComp)
                 ? damageComp
                 : null;
 
-            if (playerDamageComp == null || playerDamageComp.Damage.GetTotal() == 0)
+            if (playerDamageComp == null ||
+                _damageSystem.GetTotalDamage((playerEntity, playerDamageComp)) == 0)
                 continue;
 
             var uid = comp.Owner;
@@ -225,7 +226,7 @@ public sealed class PylonSystem : EntitySystem
         var user = args.User;
         var pylon = args.Target;
 
-        if (!TryComp<TransformComponent>(uid, out var transformComponent) || !transformComponent.Anchored)
+        if (!TryComp(uid, out TransformComponent? transformComponent) || !transformComponent.Anchored)
         {
             return;
         }

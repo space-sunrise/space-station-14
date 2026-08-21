@@ -270,7 +270,7 @@ public sealed class ActionContainerSystem : EntitySystem
             return false;
 
         foreach (var act in actions.Container.ContainedEntities)
-            if (TryComp<MetaDataComponent>(act, out var metaData))
+            if (TryComp(act, out MetaDataComponent? metaData))
                 if (TryPrototype(act, out var actProto, metaData))
                     if (pId == actProto.ID)
                         return true;

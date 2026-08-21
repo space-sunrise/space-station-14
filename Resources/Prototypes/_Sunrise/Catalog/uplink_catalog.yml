@@ -303,7 +303,7 @@
 - type: listing
   id: UplinkMagazineRifleHP
   description: uplink-estoc-ammo-desc
-  productEntity: MagazineRifleHP
+  productEntity: MagazineRifleSP
   cost:
     Telecrystal: 1
   categories:
@@ -335,7 +335,7 @@
 - type: listing
   id: UplinkMagazineLightRifleHP
   description: uplink-skm24-ammo-desc
-  productEntity: MagazineLightRifleHP
+  productEntity: MagazineLightRifleSP
   cost:
     Telecrystal: 2
   categories:
@@ -365,7 +365,7 @@
   description: uplink-skm28-ammo-desc
   productEntity: MagazineRifleHeavySP
   cost:
-    Telecrystal: 3
+    Telecrystal: 2
   categories:
   - UplinkAmmo
   conditions:
@@ -377,9 +377,9 @@
 - type: listing
   id: UplinkMagazineRifleHeavyHP
   description: uplink-skm28-ammo-desc
-  productEntity: MagazineRifleHeavyHP
+  productEntity: MagazineRifleHeavySP
   cost:
-    Telecrystal: 3
+    Telecrystal: 2
   categories:
   - UplinkAmmo
   conditions:
@@ -393,7 +393,7 @@
   description: uplink-skm28-ammo-desc
   productEntity: MagazineRifleHeavyFMJ
   cost:
-    Telecrystal: 3
+    Telecrystal: 2
   categories:
   - UplinkAmmo
   conditions:
@@ -439,6 +439,43 @@
       - NukeOpsUplink
       - LoneOpsUplink
 
+# For the L6 MAX
+- type: listing
+  id: UplinkRifleHeavyMagazineSP
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/mg42_large.rsi, state: icon }
+  productEntity: RifleHeavyMagazineSP
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+
+- type: listing
+  id: UplinkRifleHeavyMagazineFMJ
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/mg42_large.rsi, state: icon }
+  productEntity: RifleHeavyMagazineFMJ
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 3
+  cost:
+    Telecrystal: 5
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      - LoneOpsUplink
+
 # For the SIAR52
 - type: listing
   id: UplinkMagazinePistolSubMachineGunCaselessExtended
@@ -453,26 +490,6 @@
     Telecrystal: 3
   categories:
   - UplinkAmmo
-
-- type: listing
-  id: UplinkMagazineDl6902
-  name: uplink-magazine-dl6902-name
-  description: uplink-magazine-dl6902-desc
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/dl6902_mag.rsi, state: base }
-  productEntity: MagazineDl6902
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 3
-  cost:
-    Telecrystal: 6
-  categories:
-  - UplinkAmmo
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-      - LoneOpsUplink
 
 # region SR-127
 - type: listing
@@ -668,9 +685,9 @@
 
 - type: listing
   id: UplinkMagazineDragunovHP
-  description: uplink-magazine-dragunov-hp-desc
+  description: uplink-magazine-dragunov-sp-desc
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/dragunov_mag.rsi, state: base }
-  productEntity: MagazineDragunovHP
+  productEntity: MagazineDragunovSP
   cost:
     Telecrystal: 1
   categories:
@@ -1259,9 +1276,9 @@
   productEntity: ClothingBackpackDuffelSyndicateFilledLMGMax
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 20
+    Telecrystal: 24
   cost:
-    Telecrystal: 25
+    Telecrystal: 30
   categories:
   - UplinkWeaponry
   conditions:
@@ -1269,26 +1286,6 @@
     blacklist:
       tags:
       - AssaultOpsUplink
-
-- type: listing
-  id: UplinkClothingBackpackSyndieDL6902Filled
-  name: uplink-clothing-backpack-syndie-dl6902-name
-  productEntity: ClothingBackpackSyndieDL6902Filled
-  description: uplink-clothing-backpack-syndie-dl6902-desc
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/LMGs/dl6902.rsi, state: icon }
-  discountCategory: veryRareDiscounts
-  discountDownTo:
-    Telecrystal: 20
-  cost:
-    Telecrystal: 30
-  categories:
-  - UplinkWeaponry
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-      - LoneOpsUplink
 
 - type: listing
   id: UplinkPowerpackDL6902
@@ -1377,7 +1374,7 @@
   discountDownTo:
     Telecrystal: 15
   cost:
-    Telecrystal: 25
+    Telecrystal: 20
   categories:
   - UplinkWeaponry
   conditions:
@@ -1409,7 +1406,7 @@
   discountDownTo:
     Telecrystal: 18
   cost:
-    Telecrystal: 25
+    Telecrystal: 28
   categories:
   - UplinkWeaponry
   conditions:
@@ -1771,7 +1768,7 @@
   description: uplink-stechkin-bundle-desc
   icon:
     {
-      sprite: /Textures/_Starlight/Objects/Weapons/Guns/Pistols/stechkin.rsi,
+      sprite: /Textures/_Starlight/Objects/Weapons/Guns/Pistols/aps.rsi,
       state: icon,
     }
   productEntity: BigBoxSyndicateBundle
@@ -3428,20 +3425,6 @@
   - UplinkPointless
 
 - type: listing
-  id: UplinkWeaponPistolTec9
-  name: uplink-pistoltec9-name
-  description: uplink-pistoltec9-desc
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Pistols/tec9tactical/big.rsi, state: icon }
-  productEntity: WeaponPistolTec9
-  discountCategory: rareDiscounts
-  discountDownTo:
-    Telecrystal: 3
-  cost:
-    Telecrystal: 5
-  categories:
-  - UplinkWeaponry
-
-- type: listing
   id: UplinkPizzaBomb
   name: uplink-pizza-bomb-name
   description: uplink-pizza-bomb-desc
@@ -3501,19 +3484,6 @@
     Telecrystal: 10
   cost:
     Telecrystal: 12
-  categories:
-  - UplinkWeaponry
-
-- type: listing
-  id: UplinkWeaponStechkinAPS
-  name: uplink-stechkin-aps-name
-  description: uplink-stechkin-aps-desc
-  productEntity: SunriseWeaponPistolAPS
-  discountCategory: rareDiscounts
-  discountDownTo:
-    Telecrystal: 3
-  cost:
-    Telecrystal: 4
   categories:
   - UplinkWeaponry
 

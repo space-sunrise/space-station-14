@@ -265,7 +265,7 @@
   id: VGRoidExteriorDungeonsMobs
   table: !type:GroupSelector
     children:
-    - id: SalvageSpawnerMobMiningAsteroid
+    - id: SalvageSpawnerMobMiningAsteroidTurret # Sunrise-Edit
       amount: 1
 
 #- type: dungeonConfig

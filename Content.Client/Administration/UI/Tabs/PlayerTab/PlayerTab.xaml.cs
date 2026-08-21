@@ -1,7 +1,6 @@
 using System.Linq;
 using Content.Client._Sunrise.AntagObjectives;
 using Content.Client.Administration.Systems;
-using Content.Shared.Administration; // Sunrise-Edit
 using Content.Shared.Administration.Managers; // Sunrise-Edit
 using Content.Client.Administration.UI.AntagObjectives;
 using Content.Client.UserInterface.Controls;

@@ -12,6 +12,14 @@ public sealed class LizardAccentSystem : EntitySystem
     private static readonly Regex RegexInternalX = new(@"(\w)x");
     private static readonly Regex RegexLowerEndX = new(@"\bx([\-|r|R]|\b)");
     private static readonly Regex RegexUpperEndX = new(@"\bX([\-|r|R]|\b)");
+    private static readonly Regex LowerEsRegex = new("с+");
+    private static readonly Regex UpperEsRegex = new("С+");
+    private static readonly Regex LowerZeRegex = new("з+");
+    private static readonly Regex UpperZeRegex = new("З+");
+    private static readonly Regex LowerShaRegex = new("ш+");
+    private static readonly Regex UpperShaRegex = new("Ш+");
+    private static readonly Regex LowerCheRegex = new("ч+");
+    private static readonly Regex UpperCheRegex = new("Ч+");
 
     [Dependency] private readonly IRobustRandom _random = default!; // Russian-Localization
 
@@ -38,51 +46,43 @@ public sealed class LizardAccentSystem : EntitySystem
 
         // Russian-Localization-Start
         // c => ссс
-        message = Regex.Replace(
+        message = LowerEsRegex.Replace(
             message,
-            "с+",
             _random.Pick(new List<string>() { "сс", "ссс" })
         );
         // С => CCC
-        message = Regex.Replace(
+        message = UpperEsRegex.Replace(
             message,
-            "С+",
             _random.Pick(new List<string>() { "СС", "ССС" })
         );
         // з => ссс
-        message = Regex.Replace(
+        message = LowerZeRegex.Replace(
             message,
-            "з+",
             _random.Pick(new List<string>() { "сс", "ссс" })
         );
         // З => CCC
-        message = Regex.Replace(
+        message = UpperZeRegex.Replace(
             message,
-            "З+",
             _random.Pick(new List<string>() { "СС", "ССС" })
         );
         // ш => шшш
-        message = Regex.Replace(
+        message = LowerShaRegex.Replace(
             message,
-            "ш+",
             _random.Pick(new List<string>() { "шш", "шшш" })
         );
         // Ш => ШШШ
-        message = Regex.Replace(
+        message = UpperShaRegex.Replace(
             message,
-            "Ш+",
             _random.Pick(new List<string>() { "ШШ", "ШШШ" })
         );
         // ч => щщщ
-        message = Regex.Replace(
+        message = LowerCheRegex.Replace(
             message,
-            "ч+",
             _random.Pick(new List<string>() { "щщ", "щщщ" })
         );
         // Ч => ЩЩЩ
-        message = Regex.Replace(
+        message = UpperCheRegex.Replace(
             message,
-            "Ч+",
             _random.Pick(new List<string>() { "ЩЩ", "ЩЩЩ" })
         );
         // Russian-Localization-End

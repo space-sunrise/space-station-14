@@ -6,6 +6,13 @@
   components:
   - type: MagnetPickup
     range: 3.75 # Sunrise-add
+  - type: ItemToggle # Sunrise start
+    activated: true
+    verbToggleOn: magnet-pickup-verb-enable
+    verbToggleOff: magnet-pickup-verb-disable
+    popupActivate: magnet-pickup-popup-enable
+    popupDeactivate: magnet-pickup-popup-disable
+    # Sunrise end
   - type: Sprite
     sprite: Objects/Specific/Mining/ore_bag.rsi
     state: icon
