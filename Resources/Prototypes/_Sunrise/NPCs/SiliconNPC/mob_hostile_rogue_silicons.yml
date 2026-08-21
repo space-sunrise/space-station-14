@@ -811,13 +811,13 @@
       params:
         volume: 1
         variation: 0.050
-  - type: SolutionContainerManager
-    solutions:
-      melee:
-        reagents:
-        - ReagentId: Heparin
-          Quantity: 90
-        maxVol: 90
+  - type: Solution
+    id: melee
+    solution:
+      reagents:
+      - ReagentId: Heparin
+        Quantity: 90
+      maxVol: 90
   - type: MeleeChemicalInjector
     solution: melee
     transferAmount: 1
@@ -926,13 +926,13 @@
       params:
         volume: 1
         variation: 0.050
-  - type: SolutionContainerManager
-    solutions:
-      melee:
-        reagents:
-        - ReagentId: Heparin
-          Quantity: 90
-        maxVol: 90
+  - type: Solution
+    id: melee
+    solution:
+      reagents:
+      - ReagentId: Heparin
+        Quantity: 90
+      maxVol: 90
   - type: MeleeChemicalInjector
     solution: melee
     transferAmount: 1
@@ -2315,13 +2315,13 @@
       path: /Audio/Weapons/punchmiss.ogg
     soundSwing:
       path: /Audio/Weapons/punchmiss.ogg
-  - type: SolutionContainerManager
-    solutions:
-      melee:
-        reagents:
-        - ReagentId: Nocturine
-          Quantity: 120
-        maxVol: 120
+  - type: Solution
+    id: melee
+    solution:
+      reagents:
+      - ReagentId: Nocturine
+        Quantity: 120
+      maxVol: 120
   - type: MeleeChemicalInjector
     solution: melee
     transferAmount: 3

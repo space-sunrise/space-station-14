@@ -24,6 +24,25 @@ public sealed partial class ShuttleSystem
     private const float SunriseArrivalsFtlOffset = 10000f;
     [Dependency] private EntityQuery<TransformComponent> _xformQuery = default!;
 
+    private void InitializeSunriseFtl()
+    {
+        SubscribeLocalEvent<FtlVisualizerComponent, ComponentShutdown>(OnSunriseFtlVisualizerShutdown);
+    }
+
+    private void OnSunriseFtlVisualizerShutdown(Entity<FtlVisualizerComponent> visualizer, ref ComponentShutdown args)
+    {
+        if (!TryComp<FTLComponent>(visualizer.Comp.Grid, out var ftl) ||
+            ftl.VisualizerEntity != visualizer.Owner)
+        {
+            return;
+        }
+
+        // Визуализатор может удалиться отдельно от шаттла при очистке тестовой карты.
+        // Не оставляем в сетевом состоянии FTL ссылку на уже удалённую сущность.
+        ftl.VisualizerEntity = null;
+        Dirty(visualizer.Comp.Grid, ftl);
+    }
+
     private void ClearSunriseFtlReservations(Entity<FTLComponent> ent)
     {
         if (!TryComp<SunriseArrivalsShuttleComponent>(ent, out var arrivals))

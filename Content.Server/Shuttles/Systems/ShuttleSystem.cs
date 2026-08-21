@@ -73,6 +73,7 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
         base.Initialize();
 
         InitializeFTL();
+        // InitializeSunriseFtl(); // Sunrise-Edit - подписываем обработчики расширения FTL из partial-класса.
         InitializeGridFills();
         InitializeIFF();
         InitializeImpact();

@@ -171,13 +171,13 @@
     emotesTakeDamage:
     - Scream
     - Crying
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 25
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 25
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 25
+      reagents:
+      - ReagentId: UncookedAnimalProteins
+        Quantity: 25
   - type: Edible
     requiresSpecialDigestion: true
   - type: CognizinFix

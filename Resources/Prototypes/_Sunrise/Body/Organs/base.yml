@@ -1,4 +1,60 @@
 - type: entity
+  id: SolutionSunriseOrganNutriment
+  parent: Solution
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: organ
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 10
+
+- type: entity
+  id: SolutionSunriseBrainFood
+  parent: Solution
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: GreyMatter
+        Quantity: 5
+
+- type: entity
+  id: SolutionSunriseRawProteinFood
+  parent: Solution
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: UncookedAnimalProteins
+        Quantity: 5
+
+- type: entity
+  id: SolutionSunriseStomachSmall
+  parent: SolutionStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    solution:
+      maxVol: 50
+
+- type: entity
+  id: SolutionSunriseStomachLarge
+  parent: SolutionStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    solution:
+      maxVol: 200
+
+- type: entity
   id: SunriseOrganHuman
   parent: OrganHuman
   abstract: true
