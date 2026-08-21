@@ -67,7 +67,11 @@ public sealed partial class DeliverySystem : SharedDeliverySystem
         }
         // Sunrise-End
 
-        if (!_records.TryGetRandomRecord<GeneralStationRecord>(stationId, out var entry, siliconIds)) // Sunrise-Edit
+        if (!_records.TryGetRandomRecord<GeneralStationRecord>(
+                stationId,
+                out var entry,
+                siliconIds,
+                seedEntity: ent)) // Sunrise-Edit
             return;
 
         ent.Comp.RecipientName = entry.Name;

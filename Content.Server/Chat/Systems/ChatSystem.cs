@@ -62,7 +62,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private StationSystem _stationSystem = default!;
     [Dependency] private MobStateSystem _mobStateSystem = default!;
-    [Dependency] private SharedAudioSystem _audio = default!;
+    // [Dependency] private SharedAudioSystem _audio = default!; // Мы не используем этот депенси
     [Dependency] private ReplacementAccentSystem _wordreplacement = default!;
     [Dependency] private ExamineSystemShared _examineSystem = default!;
     [Dependency] private AnnouncementSpeakerSystem _announcementSpeaker = default!;
@@ -401,19 +401,17 @@ public sealed partial class ChatSystem : SharedChatSystem
             if (playDefault && announcementSound == null)
                 announcementSound = new SoundPathSpecifier(DefaultSunriseAnnouncementSound);
 
-            var resolvedSound = announcementSound != null ? _audio.ResolveSound(announcementSound) : null;
-
             // If we have a source, try to use the station's speaker network
-            if (source != null)
+            if (source != null && _stationSystem.GetOwningStation(source.Value) is { } station)
             {
-                var station = _stationSystem.GetOwningStation(source.Value);
-                if (station != null)
-                {
-                    _announcementSpeaker.DispatchAnnouncementToSpeakers(station.Value, message, announcementSound, announceVoice);
-                }
+                _announcementSpeaker.DispatchAnnouncementToSpeakers(station, message, announcementSound, announceVoice);
+            }
+            else
+            {
+                // Sunrise edit: у игровых событий нет source, поэтому объявляем через динамики всех станций.
+                _announcementSpeaker.DispatchAnnouncementToAllStations(message, announcementSound, announceVoice);
             }
         }
-        // Sunrise-end
 
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Station Announcement from {sender}: {message}");
     }

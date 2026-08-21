@@ -15,7 +15,8 @@ public abstract partial class SharedStationRecordsSystem
     public bool TryGetRandomRecord<T>(
         Entity<StationRecordsComponent?> ent,
         [NotNullWhen(true)] out T? entry,
-        HashSet<uint> ignoredIds)
+        HashSet<uint> ignoredIds,
+        EntityUid? seedEntity = null)
     {
         entry = default;
 
@@ -32,7 +33,7 @@ public abstract partial class SharedStationRecordsSystem
         if (filtered.Count == 0)
             return false;
 
-        var random = SharedRandomExtensions.PredictedRandom(_timing, GetNetEntity(ent.Owner));
+        var random = SharedRandomExtensions.PredictedRandom(_timing, GetNetEntity(seedEntity ?? ent.Owner));
         var key = random.Pick(filtered);
         return ent.Comp.Records.TryGetRecordEntry(key, out entry);
     }
