@@ -1,6 +1,6 @@
 # Sunrise added start - проверка чейнджлога при изменении PR
 name: Validate Changelog
-run-name: Validate changelog for PR #${{ github.event.pull_request.number }}
+run-name: "Validate changelog for PR #${{ github.event.pull_request.number }}"
 
 on:
   pull_request_target:
