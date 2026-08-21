@@ -1,7 +1,5 @@
 using System.Numerics;
-using Content.Client.Resources;
 using Robust.Client.Graphics;
-using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Input;
@@ -10,9 +8,9 @@ namespace Content.Client._Sunrise.Paint.UI;
 
 public sealed class SaturationValueSelector : PanelContainer
 {
-    [Dependency] private readonly IResourceCache _resourceCache = default!;
-
-    private const string MarkerTexturePath = "/Textures/Interface/Nano/slider_grabber.svg.96dpi.png";
+    public const string StyleIdentifierSelector = "PaintSaturationValueSelector";
+    public const string StylePropertyBackgroundTexture = "paint-saturation-value-background-texture";
+    public const string StylePropertyMarkerTexture = "paint-saturation-value-marker-texture";
 
     public event Action? OnValueChanged;
 
@@ -20,16 +18,13 @@ public sealed class SaturationValueSelector : PanelContainer
     public float Value { get; private set; } = 1f;
 
     private readonly ColorSelectorStyleBox _style;
-    private readonly Texture _markerTexture;
+    private Texture? _markerTexture;
     private float _hue;
     private bool _dragging;
 
     public SaturationValueSelector()
     {
-        IoCManager.InjectDependencies(this);
-
         MouseFilter = MouseFilterMode.Stop;
-        _markerTexture = _resourceCache.GetTexture(MarkerTexturePath);
         PanelOverride = _style = new ColorSelectorStyleBox
         {
             Hsv = true,
@@ -38,6 +33,17 @@ public sealed class SaturationValueSelector : PanelContainer
         };
 
         SetHue(0f);
+    }
+
+    protected override void StylePropertiesChanged()
+    {
+        base.StylePropertiesChanged();
+
+        if (TryGetStyleProperty(StylePropertyBackgroundTexture, out Texture? backgroundTexture))
+            _style.Texture = backgroundTexture;
+
+        if (TryGetStyleProperty(StylePropertyMarkerTexture, out Texture? markerTexture))
+            _markerTexture = markerTexture;
     }
 
     public void SetColor(Vector4 hsv)
@@ -88,6 +94,9 @@ public sealed class SaturationValueSelector : PanelContainer
     protected override void Draw(DrawingHandleScreen handle)
     {
         base.Draw(handle);
+
+        if (_markerTexture == null)
+            return;
 
         var position = new Vector2(Saturation * Width, (1f - Value) * Height);
         var markerSize = new Vector2(16f);
