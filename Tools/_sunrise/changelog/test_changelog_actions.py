@@ -264,6 +264,25 @@ class ChangelogActionsTests(unittest.TestCase):
             parsed[1][1].media,
         )
 
+    def test_parser_accepts_github_html_image(self):
+        parsed = changelog_actions.parse_pr_body(
+            ":cl: KaiserMaus\n"
+            "- fix: Исправлено ночное зрение вульп.\n"
+            "media: <img width=\"521\" height=\"404\" alt=\"image\" "
+            "src=\"https://github.com/user-attachments/assets/ff98fa13-dac1-48cf-bd9d-98e7110f33e6\" />\n"
+            ":end-cl:",
+            "Fallback",
+        )
+
+        self.assertEqual(
+            [{
+                "url": "https://github.com/user-attachments/assets/ff98fa13-dac1-48cf-bd9d-98e7110f33e6",
+                "description": "image",
+                "change": 0,
+            }],
+            parsed[1][0].media,
+        )
+
     def test_parser_rejects_media_without_changes(self):
         with self.assertRaisesRegex(ValueError, "категория Admin содержит медиа"):
             changelog_actions.parse_pr_body(
@@ -417,7 +436,51 @@ class ChangelogActionsTests(unittest.TestCase):
             }
 
             with self.assertRaisesRegex(RuntimeError, "PR #123: не удалось распознать строку чейнжлога"):
-                changelog_actions.write_pull_request_parts(repo_root, [pull_request], "master")
+                changelog_actions.write_pull_request_parts(
+                    repo_root,
+                    [pull_request],
+                    "master",
+                    current_pull_request_number=123,
+                )
+
+    def test_malformed_old_pull_request_does_not_block_current_one(self):
+        with tempfile.TemporaryDirectory() as directory:
+            repo_root = Path(directory)
+            (repo_root / changelog_actions.CHANGELOG_PATH).mkdir(parents=True)
+            (repo_root / changelog_actions.PARTS_PATH).mkdir(parents=True)
+            old_pull_request = {
+                "number": 123,
+                "merged": True,
+                "merged_at": "2026-08-08T12:00:00Z",
+                "body": ":cl: Tester\n- add:",
+                "html_url": "https://github.com/makura-games/sunrise-station/pull/123",
+                "user": {"login": "Tester"},
+                "base": {"ref": "master"},
+            }
+            current_pull_request = {
+                "number": 124,
+                "merged": True,
+                "merged_at": "2026-08-08T13:00:00Z",
+                "body": ":cl: Tester\n- add: Новая запись",
+                "html_url": "https://github.com/makura-games/sunrise-station/pull/124",
+                "user": {"login": "Tester"},
+                "base": {"ref": "master"},
+            }
+            output = io.StringIO()
+
+            with redirect_stdout(output):
+                written = changelog_actions.write_pull_request_parts(
+                    repo_root,
+                    [old_pull_request, current_pull_request],
+                    "master",
+                    current_pull_request_number=124,
+                )
+
+            part = repo_root / changelog_actions.PARTS_PATH / "pr-124-Main.yml"
+            self.assertTrue(part.exists())
+
+        self.assertEqual(1, written)
+        self.assertIn("::warning::PR #123 пропущен из-за ошибки разбора", output.getvalue())
 
     def test_status_is_written_to_actions_log_and_summary(self):
         with tempfile.TemporaryDirectory() as directory:
