@@ -9,6 +9,7 @@ import sys
 import unicodedata
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
+from html import escape
 from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
@@ -141,6 +142,81 @@ def report_status(status: str, message: str) -> None:
             if is_empty:
                 summary.write("## Автоматический чейнджлог\n\n")
             summary.write(f"- {icon} {message}\n")
+
+
+def write_validation_summary(title: str, content: str) -> None:
+    if summary_path := os.environ.get("GITHUB_STEP_SUMMARY"):
+        with Path(summary_path).open("a", encoding="utf-8") as summary:
+            summary.write(f"## {title}\n\n{content}\n")
+
+
+def validate_pull_request_event(repo_root: Path, event_path: Path) -> None:
+    event = json.loads(event_path.read_text(encoding="utf-8"))
+    pull_request = event.get("pull_request")
+    if not isinstance(pull_request, dict):
+        raise RuntimeError("Событие не содержит pull_request")
+
+    number = int(pull_request["number"])
+    body = pull_request.get("body")
+    template = load_pull_request_template(repo_root)
+    if is_changelog_template(body, template):
+        report_status("success", f"PR #{number}: оставлен пустой шаблон чейнджлога.")
+        write_validation_summary(
+            "Проверка чейнджлога",
+            "Чейнджлог не будет опубликован: в описании оставлен пустой шаблон.",
+        )
+        return
+
+    category_names = [MAIN_CATEGORY]
+    for category in os.environ.get("CHANGELOG_EXTRA_CATEGORIES", "").split(","):
+        category = category.strip()
+        if not category:
+            continue
+        if re.fullmatch(r"[A-Za-z]+", category) is None:
+            raise RuntimeError(f"Недопустимое имя категории чейнджлога: {category}")
+        category_names.append(category)
+
+    try:
+        parsed = parse_pr_body(
+            body,
+            pull_request.get("user", {}).get("login", "unknown"),
+            tuple(category_names),
+        )
+        if parsed is not None and not parsed[1]:
+            raise ValueError("маркер чейнджлога найден, но ни одну запись изменений распознать не удалось")
+    except ValueError as error:
+        write_validation_summary(
+            "Ошибка разбора чейнджлога",
+            f"<pre><code>{escape(str(error))}</code></pre>",
+        )
+        raise RuntimeError(f"PR #{number}: чейнджлог не прошёл проверку") from error
+
+    if parsed is None:
+        report_status("success", f"PR #{number}: чейнджлог отсутствует.")
+        write_validation_summary(
+            "Проверка чейнджлога",
+            "Чейнджлог не будет опубликован: маркер `:cl:` или 🆑 отсутствует.",
+        )
+        return
+
+    author, categories = parsed
+    normalized = {
+        "author": author,
+        "categories": [
+            {
+                "name": category.name,
+                "changes": category.changes,
+                "media": category.media,
+            }
+            for category in categories
+        ],
+    }
+    preview = yaml.safe_dump(normalized, allow_unicode=True, sort_keys=False)
+    report_status("success", f"PR #{number}: чейнджлог успешно распознан.")
+    write_validation_summary(
+        "Результат разбора чейнджлога",
+        f"Именно эти данные будут опубликованы после слияния:\n\n<pre><code>{escape(preview)}</code></pre>",
+    )
 
 
 def parse_time(value: str) -> datetime:
@@ -635,11 +711,15 @@ def main() -> None:
     parser.add_argument("--event-path", type=Path, required=True)
     parser.add_argument("--pr-number", type=int)
     parser.add_argument("--manual-changelog", action="store_true")
+    parser.add_argument("--validate-only", action="store_true")
     parser.add_argument("--target-branch", default="master")
     parser.add_argument("--extra-category", action="append", default=[])
     args = parser.parse_args()
 
     repo_root = Path(__file__).resolve().parents[3]
+    if args.validate_only:
+        validate_pull_request_event(repo_root, args.event_path)
+        return
     if not (repo_root / CHANGELOG_FILE).is_file():
         raise RuntimeError(f"Файл чейнжлога не найден: {CHANGELOG_FILE}")
 
