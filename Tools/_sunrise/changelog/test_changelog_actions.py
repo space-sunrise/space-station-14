@@ -1820,7 +1820,7 @@ class ChangelogActionsTests(unittest.TestCase):
         self.assertIn("statuses: write", workflow)
         self.assertIn("group: validate-changelog-${{ github.event.pull_request.number }}", workflow)
         self.assertIn("cancel-in-progress: true", workflow)
-        self.assertIn("ref: ${{ github.event.pull_request.base.sha }}", workflow)
+        self.assertIn("ref: ${{ github.event.pull_request.base.ref }}", workflow)
         self.assertNotIn("ref: ${{ github.event.pull_request.head.sha }}", workflow)
         self.assertNotIn("github.event.pull_request.body", workflow)
         self.assertIn("persist-credentials: false", workflow)
