@@ -604,6 +604,74 @@
   - sprite: _Sunrise/Mobs/Customization/Vulpkanin/tail_markings.rsi
     state: dalmatian_wag
 
+- type: marking
+  id: VulpTailAltAnimated
+  bodyPart: Tail
+  groupWhitelist: []
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    state: vulp_wag
+  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    state: vulp_wag-fade
+
+- type: marking
+  id: VulpTailAltTipAnimated
+  bodyPart: Tail
+  groupWhitelist: []
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    state: vulp_wag
+  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    state: vulp_wag-tip
+
+- type: marking
+  id: VulpTailFox2Animated
+  bodyPart: Tail
+  groupWhitelist: []
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    state: fox_wag
+
+- type: marking
+  id: VulpTailFox3Animated
+  bodyPart: Tail
+  groupWhitelist: []
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    state: fox_wag
+  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    state: fox_wag-tip
+
+- type: marking
+  id: VulpTailOtieAnimated
+  bodyPart: Tail
+  groupWhitelist: []
+  sprites:
+  # Для этого хвоста нет отдельных кадров анимации; сохраняем его форму без warning.
+  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    state: otie
+
+- type: marking
+  id: VulpTailFluffyAltAnimated
+  bodyPart: Tail
+  groupWhitelist: []
+  sprites:
+  - sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
+    state: fluffy-wagging
+  - sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
+    state: fluffy-wagging-tip
+
+- type: marking
+  id: MoonTailAnimated
+  bodyPart: Tail
+  groupWhitelist: []
+  sprites:
+  # Для этого хвоста нет отдельных кадров анимации; сохраняем его форму без warning.
+  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/moon_tail.rsi
+    state: tail_doubletone_prime
+  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/moon_tail.rsi
+    state: tail_doubletone_second
+
 # Body Markings (Chest)
 - type: marking
   id: VulpBellyCrest
