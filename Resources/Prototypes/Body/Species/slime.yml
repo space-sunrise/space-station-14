@@ -68,7 +68,9 @@
       FootLeft: OrganSlimePersonFootLeft
       FootRight: OrganSlimePersonFootRight
       Brain: OrganSlimePersonCore
+      Eyes: OrganSlimePersonEyes
       Lungs: OrganSlimePersonLungs
+      Heart: OrganSlimeHeart # Sunrise-Edit
   - type: HumanoidProfile
     species: SlimePerson
 
@@ -281,7 +283,15 @@
   - type: Metabolizer
     maxReagents: 6
     metabolizerTypes: [ Slime ]
-    stages: [ Digestion, Bloodstream, Metabolites ]
+    stages: [ Digestion, Metabolites ] # Sunrise-Edit: Bloodstream обрабатывает OrganSlimeHeart.
+
+- type: entity
+  parent: [ OrganBaseEyes, OrganSlimePersonInternal, OrganSlimePersonExternal ]
+  id: OrganSlimePersonEyes
+  components:
+  - type: VisualOrgan
+    data:
+      sprite: Mobs/Customization/eyes.rsi
 
 - type: entity
   parent: [ OrganBaseLungs, OrganSlimePersonInternal, OrganSlimePersonMetabolizer ]
