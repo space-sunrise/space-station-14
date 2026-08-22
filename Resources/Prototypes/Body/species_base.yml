@@ -164,6 +164,9 @@
     - AnomalyHost
   # Sunrise-Start
   - type: Carrier
+    targetBlacklist:
+      components:
+      - Revenant
   - type: Paws
     screamInterval: 3
     thresholdDamage: 5
