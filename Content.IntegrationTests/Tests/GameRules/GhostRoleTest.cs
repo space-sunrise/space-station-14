@@ -29,8 +29,8 @@ public sealed partial class GhostRoleTest : GameTest
     public override PoolSettings PoolSettings => new()
     {
         Dirty = true,
-        Connected = false, // Sunrise-Edit: Тест проверяет только серверные гост-роли и не должен запускать prediction клиента.
         DummyTicker = false, // Sunrise-Edit: Для правил нужен настоящий GameTicker.
+        InLobby = true, // Sunrise-Edit: Неподключённый к сущности игрок сможет занимать гост-роли без latejoin-спавна.
         Map = PoolManager.TestStation
     };
 
@@ -40,8 +40,7 @@ public sealed partial class GhostRoleTest : GameTest
     public async Task TestAntagGhostRoles()
     {
         // Sunrise edit start - проверяем все правила на одной серверной сессии вместо запуска пары для каждого правила.
-        var sessions = await Pair.Server.AddDummySessions(1);
-        var serverSession = sessions[0];
+        var serverSession = ServerSession!;
 
         await Pair.Server.WaitPost(() =>
         {
@@ -56,9 +55,9 @@ public sealed partial class GhostRoleTest : GameTest
 
         foreach (var ruleId in _antagGameRules)
         {
-            // Не даём следующему правилу назначить роль напрямую уже захватившему гост-роль игроку.
             await Pair.Server.WaitAssertion(() =>
             {
+                // Не даём следующему правилу назначить роль напрямую уже захватившему гост-роль игроку.
                 Pair.Server.PlayerMan.SetAttachedEntity(serverSession, null);
                 TestAntagGhostRole(ruleId, serverSession);
             });

@@ -32,7 +32,8 @@ public sealed class MaterialArbitrageTest : GameTest
     // These sets are for selectively excluding recipes from arbitrage.
     // You should NOT be adding to these. They exist here for downstreams and potential future issues.
     private readonly HashSet<string> _destructionArbitrageIgnore = [];
-    private readonly HashSet<string> _compositionArbitrageIgnore = [];
+    // Sunrise-Edit - тест не учитывает SwordForged и Igniter из tag-шагов рецепта SwordFlaming.
+    private readonly HashSet<string> _compositionArbitrageIgnore = ["SwordFlaming"];
 
     [Test]
     public async Task NoMaterialArbitrage()

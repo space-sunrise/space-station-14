@@ -73,6 +73,7 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
         base.Initialize();
 
         InitializeFTL();
+        InitializeGridFills();
         InitializeIFF();
         InitializeImpact();
 
