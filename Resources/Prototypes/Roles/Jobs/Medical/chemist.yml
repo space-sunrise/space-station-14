@@ -25,6 +25,8 @@
   equipment:
     id: ChemistryPDA
     ears: ClothingHeadsetMedical
+    eyes: ClothingEyesGlassesChemical
+    belt: ChemBag
 
 - type: chameleonOutfit
   id: ChemistChameleonOutfit
