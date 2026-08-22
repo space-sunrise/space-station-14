@@ -138,7 +138,6 @@
     domePrototype: EnergyDomeMediumBlue
     canInteractUse: true
     canDeviceNetworkUse: true
-    transferDomeOnParentChange: true
   - type: PowerCellDraw
     drawRate: 0
     useCharge: 0
