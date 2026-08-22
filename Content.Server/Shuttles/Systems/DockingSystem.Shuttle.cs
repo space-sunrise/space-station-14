@@ -7,7 +7,6 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Components;
 using System.Collections.Concurrent;
-using System.Threading.Tasks;
 using System.Threading;
 using Content.Server._Sunrise.Shuttles.Components;
 
@@ -230,7 +229,8 @@ public sealed partial class DockingSystem
 
         if (shuttleDocks.Count > 0)
         {
-            Parallel.ForEach(shuttleDocks, (shuttleDockEntity) =>
+            // Sunrise-Edit: после перехода EntityQuery на dependency-генератор нельзя обращаться к ECS из worker-потоков.
+            foreach (var shuttleDockEntity in shuttleDocks)
             {
                 var (dockUid, shuttleDock) = shuttleDockEntity;
 
@@ -376,7 +376,7 @@ public sealed partial class DockingSystem
                         TargetGrid = targetGrid,
                     });
                 }
-            });
+            }
         }
 
         stopwatch.Stop();

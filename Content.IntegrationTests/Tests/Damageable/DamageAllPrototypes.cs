@@ -54,9 +54,17 @@ public sealed class DamageAllPrototypesTest : GameTest
 
                         await Server.WaitAssertion(() =>
                         {
+                            // Sunrise-Edit — игровые реакции на предыдущий тип урона могут временно включить Godmode.
+                            SEntMan.RemoveComponent<GodmodeComponent>(entity);
                             var damage = new DamageSpecifier(type, FixedPoint2.Epsilon);
                             var previousDamage = _damageableSystem.GetTotalDamage(entity);
-                            _damageableSystem.ChangeDamage(entity, damage, ignoreResistances: true);
+                            // Sunrise-Edit — проверяем хранение урона без игровых модификаторов и случайного разброса.
+                            _damageableSystem.ChangeDamage(
+                                entity,
+                                damage,
+                                ignoreResistances: true,
+                                ignoreGlobalModifiers: true,
+                                ignoreVariance: true);
                             Assert.That(
                                 _damageableSystem.GetTotalDamage(entity),
                                 Is.EqualTo(FixedPoint2.Epsilon + previousDamage),

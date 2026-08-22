@@ -367,7 +367,7 @@ public sealed partial class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleCo
         var ev = new UpdateCultAppearance();
         RaiseLocalEvent(ev);
 
-        _actionsSystem.AddAction(uid, BloodCultistComponent.BloodMagicAction);
+        _actionsSystem.AddAction(uid, ref component.BloodMagicEntity, BloodCultistComponent.BloodMagicAction);
     }
 
     private void OnCultistComponentRemoved(EntityUid uid, BloodCultistComponent component, ComponentRemove args)
@@ -401,7 +401,13 @@ public sealed partial class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleCo
             CheckRoundShouldEnd();
         }
 
-        _actionsSystem.RemoveAction(uid, component.BloodMagicEntity);
+        if (component.BloodMagicEntity is { } bloodMagicEntity && !TerminatingOrDeleted(bloodMagicEntity))
+        {
+            _actionsSystem.RemoveAction(uid, bloodMagicEntity);
+            QueueDel(bloodMagicEntity);
+        }
+
+        component.BloodMagicEntity = null;
         if (TryComp<ActionsComponent>(uid, out var actionsComponent))
         {
             foreach (var userAction in actionsComponent.Actions)

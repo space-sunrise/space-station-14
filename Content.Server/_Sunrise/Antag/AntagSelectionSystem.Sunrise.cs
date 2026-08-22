@@ -12,6 +12,9 @@ namespace Content.Server.Antag;
 
 public sealed partial class AntagSelectionSystem
 {
+    private const int SunrisePrimaryPreferencePriority = 1;
+    private const int SunriseFallbackPreferencePriority = 0;
+
     private ISharedSponsorsManager? _sponsorsManager;
 
     private void InitializeSunriseAntagSelection()
@@ -78,6 +81,70 @@ public sealed partial class AntagSelectionSystem
         return !ShouldCheckSunriseAntagPreference(definition) ||
                PrefsContain(preferences, definition.PrefRoles) ||
                PrefsContain(preferences, definition.FallbackRoles);
+    }
+
+    /// <summary>
+    /// Проверяет предпочтение для поэтапного назначения: сначала основное либо роль без требований,
+    /// и только после этого резервное.
+    /// </summary>
+    private bool MatchesSunriseAntagPreference(
+        bool hasPreferences,
+        List<ProtoId<AntagPrototype>> preferences,
+        AntagSpecifierPrototype definition,
+        int priority)
+    {
+        if (!ShouldCheckSunriseAntagPreference(definition))
+            return priority == SunrisePrimaryPreferencePriority;
+
+        if (!hasPreferences)
+            return false;
+
+        return priority switch
+        {
+            SunrisePrimaryPreferencePriority => PrefsContain(preferences, definition.PrefRoles),
+            SunriseFallbackPreferencePriority => PrefsContain(preferences, definition.FallbackRoles),
+            _ => false
+        };
+    }
+
+    private IEnumerable<int> GetSunriseAntagAssignmentOrder(
+        bool hasPreferences,
+        List<ProtoId<AntagPrototype>> preferences,
+        IReadOnlyList<AntagRule> antags)
+    {
+        for (var priority = SunrisePrimaryPreferencePriority;
+             priority >= SunriseFallbackPreferencePriority;
+            priority--)
+        {
+            for (var i = antags.Count - 1; i >= 0; i--)
+            {
+                if (antags[i].Count <= 0)
+                    continue;
+
+                if (MatchesSunriseAntagPreference(hasPreferences, preferences, antags[i].Definition, priority))
+                    yield return i;
+            }
+        }
+    }
+
+    private IEnumerable<int> GetSunriseAntagAssignmentOrder(
+        bool hasPreferences,
+        List<ProtoId<AntagPrototype>> preferences,
+        IReadOnlyList<AntagCount> antags)
+    {
+        for (var priority = SunrisePrimaryPreferencePriority;
+             priority >= SunriseFallbackPreferencePriority;
+            priority--)
+        {
+            for (var i = antags.Count - 1; i >= 0; i--)
+            {
+                if (antags[i].Count <= 0)
+                    continue;
+
+                if (MatchesSunriseAntagPreference(hasPreferences, preferences, antags[i].Definition, priority))
+                    yield return i;
+            }
+        }
     }
 
     private static bool ShouldCheckSunriseAntagPreference(AntagSpecifierPrototype definition)

@@ -405,7 +405,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         // If this session cannot be an antag, then get the next session!
         var hasPreferences = TryGetValidAntagPreferences(player, out var prefs); // Sunrise-Edit
 
-        for (var i = antags.Count - 1; i >= 0; i--)
+        // Sunrise-Edit: Сначала учитываем основное предпочтение, затем fallbackRoles.
+        foreach (var i in GetSunriseAntagAssignmentOrder(hasPreferences, prefs, antags))
         {
             var antag = antags[i];
 
@@ -416,10 +417,6 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
                     $"Antag prototype {antag.Definition.ID} was set to not pre-select, but it also had no ghost spawner to spawn.");
                 continue;
             }
-
-            if (ShouldCheckSunriseAntagPreference(antag.Definition) &&
-                (!hasPreferences || !HasSunriseAntagPreference(prefs, antag.Definition))) // Sunrise-Edit
-                continue;
 
             // We break it up like this to not log the server trying to make sessions without valid antag prefs into antags.
             if (!CanBeAntag(player, antag.GameRule, antag.Definition, false))
@@ -465,7 +462,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         // If this session cannot be an antag, then get the next session!
         var hasPreferences = TryGetValidAntagPreferences(player, out var prefs); // Sunrise-Edit
 
-        for (var i = antags.Count - 1; i >= 0; i--)
+        // Sunrise-Edit: Сначала учитываем основное предпочтение, затем fallbackRoles.
+        foreach (var i in GetSunriseAntagAssignmentOrder(hasPreferences, prefs, antags))
         {
             var antag = antags[i];
 
@@ -476,10 +474,6 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
                     $"Antag prototype {antag.Definition.ID} was set to not pre-select, but it also had no ghost spawner to spawn.");
                 continue;
             }
-
-            if (ShouldCheckSunriseAntagPreference(antag.Definition) &&
-                (!hasPreferences || !HasSunriseAntagPreference(prefs, antag.Definition))) // Sunrise-Edit
-                continue;
 
             // We break it up like this to not log the server trying to make sessions without valid antag prefs into antags.
             if (!CanBeAntag(player, antag, false))
@@ -517,7 +511,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         // If this session cannot be an antag, then get the next session!
         var hasPreferences = TryGetValidAntagPreferences(player, out var prefs); // Sunrise-Edit
 
-        for (var i = antags.Length - 1; i >= 0; i--)
+        // Sunrise-Edit: Сначала учитываем основное предпочтение, затем fallbackRoles.
+        foreach (var i in GetSunriseAntagAssignmentOrder(hasPreferences, prefs, antags))
         {
             var antag = antags[i];
 
@@ -528,10 +523,6 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
                     $"Antag prototype {antag.Definition.ID} was set to not pre-select, but it also had no ghost spawner to spawn.");
                 continue;
             }
-
-            if (ShouldCheckSunriseAntagPreference(antag.Definition) &&
-                (!hasPreferences || !HasSunriseAntagPreference(prefs, antag.Definition))) // Sunrise-Edit
-                continue;
 
             // We break it up like this to not log the server trying to make sessions without valid antag prefs into antags.
             if (!CanBeAntag(player, gameRule, antag.Definition, false))

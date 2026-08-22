@@ -118,7 +118,7 @@ public sealed class NukeOpsTest : GameTest
         // Maps now exist
         Assert.That(entMan.Count<MapComponent>(), Is.GreaterThan(0));
         Assert.That(entMan.Count<MapGridComponent>(), Is.GreaterThan(0));
-        Assert.That(entMan.Count<StationTransitHubComponent>(), Is.EqualTo(1)); // Sunrise-Edit
+        Assert.That(entMan.Count<StationTransitHubComponent>(), Is.Zero); // Sunrise-Edit
 
         // And we now have nukie related components
         Assert.That(entMan.Count<NukeopsRuleComponent>(), Is.EqualTo(1));

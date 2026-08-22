@@ -10,11 +10,15 @@ using Content.Server.Shuttles.Components;
 using Content.Shared.Antag;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
+using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
+using Content.Shared.Preferences;
+using Content.Shared.Roles;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Tests.GameRules;
 
@@ -26,6 +30,15 @@ public sealed class AllGamePresetsStartTest : GameTest
     /// This prevents them from being tested. If you use this to silence valid test fails and your game fails to start. Skill issue. Do 100 push-ups.
     /// </summary>
     private static readonly HashSet<string> IgnoredPresets = []; // Is a string to prevent YAML Linter from freaking if this is empty.
+
+    // Sunrise added start - тестовые кандидаты для правил с требованием к командному составу.
+    private static readonly ProtoId<JobPrototype>[] CommandJobs =
+    [
+        "Captain",
+        "HeadOfPersonnel",
+        "ChiefEngineer"
+    ];
+    // Sunrise added end
 
     private static string[] _gamePresets = GameDataScrounger.PrototypesOfKind<GamePresetPrototype>().Where(p => !IgnoredPresets.Contains(p)).ToArray();
 
@@ -77,6 +90,7 @@ public sealed class AllGamePresetsStartTest : GameTest
         List<(AntagSpecifierPrototype, int)> rules = [];
 
         var antags = 0;
+        var requiredCommandStaff = 0; // Sunrise-Edit - учитываем дополнительные условия запуска Sunrise.
         await server.WaitPost(() =>
         {
             foreach (var ruleId in preset.Rules)
@@ -86,6 +100,11 @@ public sealed class AllGamePresetsStartTest : GameTest
 
                 if (!protoMan.Resolve(ruleId, out var rule ))
                     continue; // Bruh moment
+
+                // Sunrise added start - подготавливаем необходимое число кандидатов командования.
+                if (rule.TryGetComponent<GameRuleComponent>(out var gameRule, entMan.ComponentFactory))
+                    requiredCommandStaff = Math.Max(requiredCommandStaff, gameRule.MinCommandStaff);
+                // Sunrise added end
 
                 // Ignore non-antag game-rules.
                 if (!rule.TryGetComponent<AntagSelectionComponent>(out var antag, entMan.ComponentFactory))
@@ -117,6 +136,22 @@ public sealed class AllGamePresetsStartTest : GameTest
 
         await Pair.RunUntilSynced();
 
+        // Sunrise added start - правила с minCommandStaff должны запускаться в корректных тестовых условиях.
+        Assert.That(requiredCommandStaff, Is.LessThanOrEqualTo(CommandJobs.Length),
+            $"Preset {presetId} requires more command jobs than the test provides.");
+        Assert.That(requiredCommandStaff, Is.LessThanOrEqualTo(players.Count),
+            $"Preset {presetId} requires more command candidates than there are players.");
+        Assert.That(antags + requiredCommandStaff, Is.LessThanOrEqualTo(players.Count),
+            $"Preset {presetId} requires overlapping antagonist and command candidates.");
+        for (var commandIndex = 0; commandIndex < requiredCommandStaff; commandIndex++)
+        {
+            await Pair.SetJobPriority(
+                CommandJobs[commandIndex],
+                JobPriority.Medium,
+                players[players.Count - commandIndex - 1].UserId);
+        }
+        // Sunrise added end
+
         // This also ensures that admin commands work properly :P
         await server.WaitPost(() =>
         {
@@ -128,8 +163,9 @@ public sealed class AllGamePresetsStartTest : GameTest
         {
             for (var count = 0; count < amount; count++)
             {
+                Assert.That(i, Is.LessThan(players.Count - requiredCommandStaff),
+                    "Tried to assign more antags than there were non-command players."); // Sunrise-Edit
                 await Pair.SetAntagPreference(antag.PrefRoles.FirstOrDefault(), true, players[i++].UserId);
-                Assert.That(i < min, $"Tried to assign more antags than there were players");
             }
         }
 
@@ -139,7 +175,8 @@ public sealed class AllGamePresetsStartTest : GameTest
         await Pair.RunUntilSynced();
 
         // Game should have started
-        Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.InRound));
+        Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.InRound),
+            $"Preset {presetId} failed to start."); // Sunrise-Edit - указываем проблемный режим.
         Assert.That(ticker.PlayerGameStatuses.Values.All(x => x == PlayerGameStatus.JoinedGame));
         Assert.That(ticker.PlayerGameStatuses.Count == players.Count);
         Assert.That(client.EntMan.EntityExists(client.AttachedEntity));
@@ -154,14 +191,14 @@ public sealed class AllGamePresetsStartTest : GameTest
         });
         await Pair.RunUntilSynced();
 
-        await server.WaitPost(() =>
+        await server.WaitAssertion(() =>
         {
-            var j = 0;
+            var playerIndex = 0;
             foreach (var (antag, amount) in rules)
             {
                 for (var count = 0; count < amount; count++)
                 {
-                    AssertAntagInitialized(antag, players[j++]);
+                    AssertAntagInitialized(antag, players[playerIndex++]);
                 }
             }
         });
@@ -175,6 +212,7 @@ public sealed class AllGamePresetsStartTest : GameTest
         await Pair.WaitCommand("golobby");
         ticker.SetGamePreset((GamePresetPrototype) null);
         await Pair.RunUntilSynced();
+
         void AssertAntagInitialized(AntagSpecifierPrototype antag, ICommonSession session)
         {
             Assert.That(mind.TryGetMind(session, out var mindEnt, out var mindComp),

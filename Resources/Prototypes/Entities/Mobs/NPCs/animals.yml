@@ -2862,12 +2862,9 @@
         types:
           Piercing: 8
     # Sunrise edit start
-    - type: Solution
-      id: melee
-      solution:
-        reagents:
-          - ReagentId: Laughter
-            Quantity: 50
+    - type: SolutionManager
+      solutions:
+      - SolutionVenomClownSpider
     - type: MeleeChemicalInjector
       solution: melee
       transferAmount: 5

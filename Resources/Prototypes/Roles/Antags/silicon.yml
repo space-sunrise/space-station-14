@@ -11,6 +11,7 @@
   id: GenericSiliconAntagonist
   name: roles-antag-generic-silicon-antagonist-name
   antagonist: true
+  playTimeTracker: AntagSiliconAntagonist # Sunrise-Edit
   objective: never-shown
 
 ## Derelict Borgs
