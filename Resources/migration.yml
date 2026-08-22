@@ -1232,4 +1232,9 @@ MagazineBoxHeavyRifleHP: MagazineBoxHeavyRifleSP
 RifleHeavyMagazineHP: RifleHeavyMagazineSP
 MagazineDragunovHP: MagazineDragunovSP
 MagazineBoxRifleMachineHP: MagazineBoxRifleMachineSP
+# 2026-08-22
+EnergyDomeGeneratorBackpackSyndie: SunriseEnergyDomeGrenadeSyndie
+EnergyDomeGeneratorBackpackSyndieBiocode: SunriseEnergyDomeGrenadeSyndie
+EnergyDomeGeneratorBackpackNT: SunriseEnergyDomeGrenadeERT
+EnergyDomeGeneratorPersonalSyndieBiocode: EnergyDomeGeneratorPersonalSyndie
 # region Sunrise-End

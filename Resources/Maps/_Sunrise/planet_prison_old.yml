@@ -43337,7 +43337,7 @@ entities:
         disableRefund: False
         costModifiersBySourceId: {}
       - id: UplinkEnergyDomePersonalSyndie
-        productEntity: EnergyDomeGeneratorPersonalSyndieBiocode
+        productEntity: EnergyDomeGeneratorPersonalSyndie
         name: uplink-energy-dome-personal-name
         discountCategory: rareDiscounts
         description: uplink-energy-dome-personal-desc
@@ -48107,10 +48107,10 @@ entities:
         disableRefund: False
         costModifiersBySourceId: {}
       - id: UplinkEnergyDomeBackpackSyndie
-        productEntity: EnergyDomeGeneratorBackpackSyndieBiocode
-        name: uplink-energy-dome-backpack-name
+        productEntity: SunriseEnergyDomeGrenadeSyndie
+        name: uplink-energy-dome-grenade-name
         discountCategory: rareDiscounts
-        description: uplink-energy-dome-backpack-desc
+        description: uplink-energy-dome-grenade-desc
         categories:
         - UplinkDisruption
         originalCost:
@@ -48306,7 +48306,7 @@ entities:
         disableRefund: False
         costModifiersBySourceId: {}
       - id: ERTUplinkEnergyDomeGeneratorBackpackNT
-        productEntity: EnergyDomeGeneratorBackpackNT
+        productEntity: SunriseEnergyDomeGrenadeERT
         name: null
         discountCategory: null
         description: null

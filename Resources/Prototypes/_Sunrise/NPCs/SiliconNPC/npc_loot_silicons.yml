@@ -853,9 +853,9 @@
       prob: 0.25
     - id: MechPaintDollHouseWarboss
       prob: 0.25
-    - id: EnergyDomeGeneratorBackpackNT
+    - id: SunriseEnergyDomeGrenadeERT
       prob: 0.15
-    - id: EnergyDomeGeneratorBackpackSyndie
+    - id: SunriseEnergyDomeGrenadeSyndie
       prob: 0.15
     - id: RogueAiNode
       prob: 0.1

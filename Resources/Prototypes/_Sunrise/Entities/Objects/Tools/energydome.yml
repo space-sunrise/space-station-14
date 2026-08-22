@@ -1,18 +1,72 @@
 - type: entity
-  name: blood red backpack shield generator
-  description: A backpack shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Uses a power cell.
-  id: EnergyDomeGeneratorBackpackSyndie
+  id: BaseSunriseEnergyDomeGeneratorTimed
+  parent: BaseStructureDynamic
+  abstract: true
+  components:
+  - type: InteractionOutline
+  - type: EnergyDomeGenerator
+    canInteractUse: false
+    canDeviceNetworkUse: true
+  - type: UseDelay
+    delay: 10.0
+  - type: DeviceLinkSink
+    ports:
+    - On
+  - type: DeviceLinkSource
+    range: 0.1
+    ports:
+    - On
+  - type: AutoLinkReceiver
+    channel: SunriseEnergyDomeGrenade
+  - type: AutoLinkTransmitter
+    channel: SunriseEnergyDomeGrenade
+  - type: TriggerOnSpawn
+  - type: TimerTrigger
+    delay: 0.1
+    popup: null
+    examinable: false
+  - type: SignalOnTrigger
+    keysIn:
+    - timer
+    port: On
+  - type: TimedDespawn
+    lifetime: 180
+
+- type: entity
+  id: SunriseEnergyDomeGeneratorSyndieTimed
+  parent: [ BaseSunriseEnergyDomeGeneratorTimed, BaseSyndicateContraband ]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/EnergyDome/syndie_back.rsi
+    noRot: true
+    layers:
+      - state: icon
+  - type: Battery
+    maxCharge: 100000
+    startingCharge: 100000
+  - type: BatterySelfRecharger
+    autoRechargeRate: 100
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 50
+    domePrototype: EnergyDomeMediumRed
+  - type: SpawnOnDespawn
+    prototype: RedspaceImplantEffect
+
+- type: entity
+  name: blood red personal shield generator
+  description: A personal shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Uses a power cell.
+  id: EnergyDomeGeneratorPersonalSyndie
   parent: [ BaseItem, BaseSyndicateContraband ]
   components:
   - type: Item
     size: Ginormous
-  - type: MultiHandedItem
   - type: Clothing
     quickEquip: false
     slots:
-    - Back
+    - Belt
   - type: Sprite
-    sprite: _Sunrise/Objects/Tools/EnergyDome/syndie_back.rsi
+    sprite: Objects/Tools/EnergyDome/syndie.rsi
     layers:
       - state: icon
   - type: ContainerContainer
@@ -29,35 +83,42 @@
           tags:
             - PowerCell
   - type: EnergyDomeGenerator
-    damageEnergyDraw: 3
-    domePrototype: EnergyDomeMediumRed
+    damageEnergyDraw: 5
+    domePrototype: EnergyDomeSmallRed
   - type: PowerCellDraw
     drawRate: 0
     useCharge: 0
   - type: UseDelay
     delay: 10.0
-  - type: Biocode
-    factions:
-    - Syndicate
-    - Pirate
 
 - type: entity
-  name: BR-50c "Bastion"
-  description: A backpack shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Uses a power cell.
-  id: EnergyDomeGeneratorBackpackNT
-  parent: [ BaseItem, BaseCentcommContraband ]
+  name: BR-40c "Turtle"
+  description: A heavy, two-handed energy barrier with extremely low passive energy consumption. Can be tethered with a multitool.
+  id: EnergyDomeDirectionalTurtle
+  parent: BaseItem
   components:
+  - type: Sprite
+    sprite: Objects/Tools/EnergyDome/reinhardt.rsi
+    layers:
+    - state: icon
+  - type: InteractionOutline
+  - type: MultiHandedItem
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
   - type: Item
     size: Ginormous
-  - type: MultiHandedItem
-  - type: Clothing
-    quickEquip: false
-    slots:
-    - Back
-  - type: Sprite
-    sprite: _Sunrise/Objects/Tools/EnergyDome/nanotrasen_back.rsi
-    layers:
-      - state: icon
+  - type: HeldSpeedModifier
+    walkModifier: 0.7
+    sprintModifier: 0.7
   - type: ContainerContainer
     containers:
       cell_slot: !type:ContainerSlot
@@ -67,18 +128,56 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellNanoTrasen
+        startingItem: PowerCellSmall
         whitelist:
           tags:
             - PowerCell
+            - PowerCellSmall
   - type: EnergyDomeGenerator
-    damageEnergyDraw: 3
+    damageEnergyDraw: 2
     domePrototype: EnergyDomeMediumBlue
+    canInteractUse: true
+    canDeviceNetworkUse: true
   - type: PowerCellDraw
     drawRate: 0
     useCharge: 0
   - type: UseDelay
     delay: 10.0
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+    - Toggle
+    - On
+    - Off
+  - type: Biocode
+    factions:
+    - Syndicate
+    - Pirate
+
+- type: entity
+  id: SunriseEnergyDomeGeneratorNTTimed
+  parent: [ BaseSunriseEnergyDomeGeneratorTimed, BaseCentcommContraband ]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/EnergyDome/nanotrasen_back.rsi
+    noRot: true
+    layers:
+      - state: icon
+  - type: Battery
+    maxCharge: 100000
+    startingCharge: 100000
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 75
+    domePrototype: EnergyDomeMediumBlue
+  - type: BatterySelfRecharger
+    autoRechargeRate: 125
+  - type: SpawnOnDespawn
+    prototype: BluespaceImplantEffect
 
 - type: entity
   name: BT-21b "Barrier"
