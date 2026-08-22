@@ -9,11 +9,23 @@
     layers:
       - state: icon
   - type: Item
-    size: Normal
+    size: Huge
+    shape:
+    - 1,1,2,2
+    - 0,0,0,0
+    - 3,0,3,0
+    - 0,3,0,3
+    - 3,3,3,3
+  - type: Clothing
+    sprite: _Sunrise/Objects/Tools/EnergyDome/syndie_back.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
   - type: SpawnOnTrigger
     keysIn:
     - trigger
-    proto: SunriseEnergyDomeGeneratorBackpackSyndieTimed
+    proto: SunriseEnergyDomeGeneratorSyndieTimed
     useMapCoords: true
   - type: DeleteOnTrigger
     keysIn:
@@ -30,11 +42,23 @@
     layers:
       - state: icon
   - type: Item
-    size: Normal
+    size: Huge
+    shape:
+    - 1,1,2,2
+    - 0,0,0,0
+    - 3,0,3,0
+    - 0,3,0,3
+    - 3,3,3,3
+  - type: Clothing
+    sprite: _Sunrise/Objects/Tools/EnergyDome/nanotrasen_back.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
   - type: SpawnOnTrigger
     keysIn:
     - trigger
-    proto: SunriseEnergyDomeGeneratorBackpackNTTimed
+    proto: SunriseEnergyDomeGeneratorNTTimed
     useMapCoords: true
   - type: DeleteOnTrigger
     keysIn:

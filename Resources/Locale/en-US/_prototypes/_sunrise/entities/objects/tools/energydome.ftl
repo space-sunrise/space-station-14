@@ -1,11 +1,11 @@
-ent-EnergyDomeGeneratorBackpackSyndie = blood red backpack shield generator
-    .desc = A backpack shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Uses a power cell.
-ent-SunriseEnergyDomeGeneratorBackpackSyndieTimed = temporary shield generator
+ent-SunriseEnergyDomeGeneratorSyndieTimed = temporary shield generator
     .desc = A disposable Syndicate energy shield generator with a limited service life.
-ent-EnergyDomeGeneratorBackpackNT = BR-50c "Bastion"
-    .desc = A backpack shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Uses a power cell.
-ent-SunriseEnergyDomeGeneratorBackpackNTTimed = temporary NT generator
+ent-SunriseEnergyDomeGeneratorNTTimed = temporary NT generator
     .desc = A disposable Nanotrasen energy shield generator with a limited service life.
+ent-SunriseEnergyDomeGrenadeSyndie = shield deployment grenade
+    .desc = An impact grenade that deploys a temporary Syndicate energy shield generator.
+ent-SunriseEnergyDomeGrenadeERT = ERT shield grenade
+    .desc = An impact grenade that deploys a temporary Nanotrasen energy shield generator.
 ent-EnergyDomeGeneratorPersonalNT = BT-21b "Barrier"
     .desc = A personal shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Uses a power cell.
 ent-EnergyDomeGeneratorPersonalSyndie = blood-red personal shield generator

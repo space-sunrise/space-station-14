@@ -1216,4 +1216,9 @@ WeaponDL6902Biocode: WeaponDL6902PowerPack
 MobPirateT1ExpeditionSpawner: MobPirateT1Spawner
 MobPirateT2ExpeditionSpawner: MobPirateT2Spawner
 MobPirateT3ExpeditionSpawner: MobPirateT3Spawner
+# 2026-08-22
+EnergyDomeGeneratorBackpackSyndie: SunriseEnergyDomeGrenadeSyndie
+EnergyDomeGeneratorBackpackSyndieBiocode: SunriseEnergyDomeGrenadeSyndie
+EnergyDomeGeneratorBackpackNT: SunriseEnergyDomeGrenadeERT
+EnergyDomeGeneratorPersonalSyndieBiocode: EnergyDomeGeneratorPersonalSyndie
 # region Sunrise-End

@@ -83,7 +83,9 @@
   - type: EnergyDomeGenerator
     damageEnergyDraw: 2
     domePrototype: EnergyDomeMediumBlue
+    canInteractUse: true # Sunrise-Edit - разрешаем включение в руках
     canDeviceNetworkUse: true
+    transferDomeOnParentChange: true # Sunrise-Edit - сохраняем купол при выкладывании и поднятии
   - type: PowerCellDraw
     drawRate: 0
     useCharge: 0

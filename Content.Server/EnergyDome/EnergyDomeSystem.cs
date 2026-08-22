@@ -233,6 +233,11 @@ public sealed partial class EnergyDomeSystem : EntitySystem
 
     private void OnParentChanged(Entity<EnergyDomeGeneratorComponent> generator, ref EntParentChangedMessage args)
     {
+        // Sunrise added start - перенос активного купола между владельцем и выложенным генератором
+        if (TryTransferDome(generator))
+            return;
+        // Sunrise added end
+
         //To do: taking the active barrier in hand for some reason does not manage to change the parent in this case,
         //and the barrier is not turned off.
         //
@@ -338,6 +343,11 @@ public sealed partial class EnergyDomeSystem : EntitySystem
     // Sunrise: обработчик смены парента защищаемой сущности
     private void OnProtectedEntityParentChanged(Entity<EnergyDomeProtectedUserComponent> ent, ref EntParentChangedMessage args)
     {
+        // Sunrise added start - переносимый купол обрабатывается генератором без отключения
+        if (CanPreserveDomeDuringGeneratorTransfer(ent))
+            return;
+        // Sunrise added end
+
         if (ent.Comp.DomeEntity == null)
             return;
         if (HasComp<ContainerManagerComponent>(Transform(ent).ParentUid))
