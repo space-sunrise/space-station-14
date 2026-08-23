@@ -909,9 +909,11 @@
         mirage: false
         hadOutline: true
         examineThreshold: 0.9
+        minVisibility: 0.01
+        lastVisibility: 0.01
       - type: StealthOnMove
-        passiveVisibilityRate: -1.25
-        movementVisibilityRate: 0.3
+        passiveVisibilityRate: -1.5
+        movementVisibilityRate: 0.05
   - type: PowerCellDraw
     drawRate: 7 # 500 seconds on PowerCellSyndicate
   - type: ToggleCellDraw

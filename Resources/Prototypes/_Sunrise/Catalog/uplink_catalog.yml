@@ -1438,27 +1438,6 @@
 
 # region Hardsuits
 - type: listing
-  id: UplinkHardsuitInfiltrationNukie
-  name: uplink-hardsuit-infiltration-name
-  description: uplink-hardsuit-infiltration-desc
-  icon: { sprite: _Starlight/Objects/Clothing/OuterClothing/Hardsuits/infiltrationsyndie.rsi, state: icon }
-  productEntity: ClothingBackpackDuffelSyndicateFilledInfiltration
-  discountCategory: veryRareDiscounts
-  discountDownTo:
-    Telecrystal: 8
-  cost:
-    Telecrystal: 12
-  categories:
-  - UplinkWearables
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-      - LoneOpsUplink
-      - AssaultOpsUplink
-
-- type: listing
   id: UplinkHardsuitInfiltration
   name: uplink-hardsuit-infiltration-name
   description: uplink-hardsuit-infiltration-desc
@@ -1468,17 +1447,9 @@
   discountDownTo:
     Telecrystal: 8
   cost:
-    Telecrystal: 12
+    Telecrystal: 10
   categories:
   - UplinkWearables
-  restockTime: 1800
-  conditions:
-  - !type:StoreWhitelistCondition
-    blacklist:
-      tags:
-      - NukeOpsUplink
-      - LoneOpsUplink
-      - AssaultOpsUplink
 
 # region Objective-specific
 - type: listing
@@ -2952,8 +2923,8 @@
 
 - type: listing
   id: UplinkGrenadeLauncherGL70
-  name: uplink-grenade-launcher-gl70-name
-  description: uplink-grenade-launcher-gl70-desc
+  name: uplink-sunrise-grenade-launcher-gl70-name
+  description: uplink-sunrise-grenade-launcher-gl70-desc
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/HMGs/gl-64/big.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSyndicateFilledGrenadeLauncherGL70
   discountCategory: veryRareDiscounts
