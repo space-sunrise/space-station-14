@@ -26,6 +26,7 @@ WORKFLOW_PATH = REPO_ROOT / ".github/workflows/changelog.yml"
 PUBLISH_WORKFLOW_PATH = REPO_ROOT / ".github/workflows/publish-stable.yml"
 DISCORD_WORKFLOW_PATH = REPO_ROOT / ".github/workflows/publish-discord-changelog.yml"
 DISPATCH_WORKFLOW_PATH = REPO_ROOT / ".github/workflows/dispatch-discord-changelogs.yml"
+VALIDATE_WORKFLOW_PATH = REPO_ROOT / ".github/workflows/validate-changelog.yml"
 RUNNER_PATH = REPO_ROOT / "Tools/_sunrise/changelog/run.sh"
 
 
@@ -264,6 +265,25 @@ class ChangelogActionsTests(unittest.TestCase):
             parsed[1][1].media,
         )
 
+    def test_parser_accepts_github_html_image(self):
+        parsed = changelog_actions.parse_pr_body(
+            ":cl: KaiserMaus\n"
+            "- fix: Исправлено ночное зрение вульп.\n"
+            "media: <img width=\"521\" height=\"404\" alt=\"image\" "
+            "src=\"https://github.com/user-attachments/assets/ff98fa13-dac1-48cf-bd9d-98e7110f33e6\" />\n"
+            ":end-cl:",
+            "Fallback",
+        )
+
+        self.assertEqual(
+            [{
+                "url": "https://github.com/user-attachments/assets/ff98fa13-dac1-48cf-bd9d-98e7110f33e6",
+                "description": "image",
+                "change": 0,
+            }],
+            parsed[1][0].media,
+        )
+
     def test_parser_rejects_media_without_changes(self):
         with self.assertRaisesRegex(ValueError, "категория Admin содержит медиа"):
             changelog_actions.parse_pr_body(
@@ -271,6 +291,92 @@ class ChangelogActionsTests(unittest.TestCase):
                 "Fallback",
                 ("Main", "Admin"),
             )
+
+    def test_validation_reports_normalized_changelog(self):
+        with tempfile.TemporaryDirectory() as directory:
+            repo_root = Path(directory)
+            event_path = repo_root / "event.json"
+            summary_path = repo_root / "summary.md"
+            event_path.write_text(
+                json.dumps({
+                    "pull_request": {
+                        "number": 123,
+                        "body": (
+                            ":cl: Иван\n"
+                            "- add: Добавлена <рыба>.\n"
+                            "media: <img alt=\"Рыба\" src=\"https://example.org/fish.png\" />"
+                        ),
+                        "user": {"login": "Fallback"},
+                    },
+                }),
+                encoding="utf-8",
+            )
+
+            with patch.dict(
+                "os.environ",
+                {
+                    "GITHUB_STEP_SUMMARY": str(summary_path),
+                    "CHANGELOG_EXTRA_CATEGORIES": "",
+                },
+            ):
+                changelog_actions.validate_pull_request_event(repo_root, event_path)
+
+            summary = summary_path.read_text(encoding="utf-8")
+
+        self.assertIn("Результат разбора чейнджлога", summary)
+        self.assertIn("author: Иван", summary)
+        self.assertIn("Добавлена &lt;рыба&gt;.", summary)
+        self.assertIn("https://example.org/fish.png", summary)
+        self.assertNotIn("Добавлена <рыба>.", summary)
+
+    def test_validation_reports_missing_changelog_as_success(self):
+        with tempfile.TemporaryDirectory() as directory:
+            repo_root = Path(directory)
+            event_path = repo_root / "event.json"
+            summary_path = repo_root / "summary.md"
+            event_path.write_text(
+                json.dumps({
+                    "pull_request": {
+                        "number": 123,
+                        "body": "Описание без чейнджлога",
+                        "user": {"login": "Tester"},
+                    },
+                }),
+                encoding="utf-8",
+            )
+
+            with patch.dict("os.environ", {"GITHUB_STEP_SUMMARY": str(summary_path)}):
+                changelog_actions.validate_pull_request_event(repo_root, event_path)
+
+            summary = summary_path.read_text(encoding="utf-8")
+
+        self.assertIn("Чейнджлог не будет опубликован", summary)
+        self.assertIn("маркер `:cl:` или 🆑 отсутствует", summary)
+
+    def test_validation_reports_parser_error(self):
+        with tempfile.TemporaryDirectory() as directory:
+            repo_root = Path(directory)
+            event_path = repo_root / "event.json"
+            summary_path = repo_root / "summary.md"
+            event_path.write_text(
+                json.dumps({
+                    "pull_request": {
+                        "number": 123,
+                        "body": ":cl: Tester\n- add:",
+                        "user": {"login": "Tester"},
+                    },
+                }),
+                encoding="utf-8",
+            )
+
+            with patch.dict("os.environ", {"GITHUB_STEP_SUMMARY": str(summary_path)}):
+                with self.assertRaisesRegex(RuntimeError, "PR #123: чейнджлог не прошёл проверку"):
+                    changelog_actions.validate_pull_request_event(repo_root, event_path)
+
+            summary = summary_path.read_text(encoding="utf-8")
+
+        self.assertIn("Ошибка разбора чейнджлога", summary)
+        self.assertIn("не удалось распознать строку чейнжлога", summary)
 
     def test_manual_parser_requires_ci_author_and_supports_media(self):
         author, categories = changelog_actions.parse_manual_changelog(
@@ -417,7 +523,51 @@ class ChangelogActionsTests(unittest.TestCase):
             }
 
             with self.assertRaisesRegex(RuntimeError, "PR #123: не удалось распознать строку чейнжлога"):
-                changelog_actions.write_pull_request_parts(repo_root, [pull_request], "master")
+                changelog_actions.write_pull_request_parts(
+                    repo_root,
+                    [pull_request],
+                    "master",
+                    current_pull_request_number=123,
+                )
+
+    def test_malformed_old_pull_request_does_not_block_current_one(self):
+        with tempfile.TemporaryDirectory() as directory:
+            repo_root = Path(directory)
+            (repo_root / changelog_actions.CHANGELOG_PATH).mkdir(parents=True)
+            (repo_root / changelog_actions.PARTS_PATH).mkdir(parents=True)
+            old_pull_request = {
+                "number": 123,
+                "merged": True,
+                "merged_at": "2026-08-08T12:00:00Z",
+                "body": ":cl: Tester\n- add:",
+                "html_url": "https://github.com/makura-games/sunrise-station/pull/123",
+                "user": {"login": "Tester"},
+                "base": {"ref": "master"},
+            }
+            current_pull_request = {
+                "number": 124,
+                "merged": True,
+                "merged_at": "2026-08-08T13:00:00Z",
+                "body": ":cl: Tester\n- add: Новая запись",
+                "html_url": "https://github.com/makura-games/sunrise-station/pull/124",
+                "user": {"login": "Tester"},
+                "base": {"ref": "master"},
+            }
+            output = io.StringIO()
+
+            with redirect_stdout(output):
+                written = changelog_actions.write_pull_request_parts(
+                    repo_root,
+                    [old_pull_request, current_pull_request],
+                    "master",
+                    current_pull_request_number=124,
+                )
+
+            part = repo_root / changelog_actions.PARTS_PATH / "pr-124-Main.yml"
+            self.assertTrue(part.exists())
+
+        self.assertEqual(1, written)
+        self.assertIn("::warning::PR #123 пропущен из-за ошибки разбора", output.getvalue())
 
     def test_status_is_written_to_actions_log_and_summary(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -1640,6 +1790,7 @@ class ChangelogActionsTests(unittest.TestCase):
         self.assertIn("for attempt in {1..5}", runner)
         self.assertIn("python Tools/_sunrise/changelog/changelog_actions.py", runner)
         self.assertIn('arguments+=(--manual-changelog)', runner)
+
         self.assertIn('if [[ -z "${MANUAL_CHANGELOG:-}" ]]', runner)
         self.assertNotIn("changelog-state.json", runner)
         self.assertIn('git commit -m "Automatic changelog update [skip ci]"', runner)
@@ -1655,6 +1806,30 @@ class ChangelogActionsTests(unittest.TestCase):
         self.assertIn("Чейнджлог успешно опубликован в master.", runner)
         self.assertIn("Не удалось отправить чейнджлог после пяти попыток.", runner)
         self.assertNotIn("github.event.pull_request.head", workflow)
+
+    def test_validation_workflow_uses_trusted_parser_and_head_status(self):
+        workflow = VALIDATE_WORKFLOW_PATH.read_text(encoding="utf-8")
+        document = yaml.load(workflow, Loader=yaml.BaseLoader)
+
+        self.assertIn("on", document)
+        self.assertIn("jobs", document)
+        self.assertIn(
+            "types: [opened, edited, reopened, synchronize, ready_for_review]",
+            workflow,
+        )
+        self.assertIn("statuses: write", workflow)
+        self.assertIn("group: validate-changelog-${{ github.event.pull_request.number }}", workflow)
+        self.assertIn("cancel-in-progress: true", workflow)
+        self.assertIn("ref: ${{ github.event.pull_request.base.ref }}", workflow)
+        self.assertNotIn("ref: ${{ github.event.pull_request.head.sha }}", workflow)
+        self.assertNotIn("github.event.pull_request.body", workflow)
+        self.assertIn("persist-credentials: false", workflow)
+        self.assertIn("HEAD_SHA: ${{ github.event.pull_request.head.sha }}", workflow)
+        self.assertIn("context=changelog/parse", workflow)
+        self.assertIn("-f state=pending", workflow)
+        self.assertIn("--validate-only", workflow)
+        self.assertIn("continue-on-error: true", workflow)
+        self.assertIn("steps.parse.outcome != 'success'", workflow)
 
     def test_parts_staging_includes_new_file(self):
         with tempfile.TemporaryDirectory() as directory:
