@@ -53,7 +53,7 @@ public sealed partial class SunriseMechSystem : EntitySystem
     {
         if (!TryComp<MechComponent>(component.Mech, out var mechComponent))
             return;
-        _mech.TryEject(uid, mechComponent);
+        _mech.TryEject(component.Mech, mechComponent);
     }
     // Sunrise-end
 

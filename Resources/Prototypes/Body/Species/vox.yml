@@ -10,6 +10,9 @@
       limit: 1
       onlyGroupWhitelisted: true
       required: false
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 1 # Sunrise-Edit - в верхней части головы допускается только одна маркировка
+      required: false
     enum.HumanoidVisualLayers.Head:
       limit: 4
       required: false

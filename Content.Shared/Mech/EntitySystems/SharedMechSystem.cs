@@ -64,6 +64,9 @@ public abstract partial class SharedMechSystem : EntitySystem
         SubscribeLocalEvent<MechComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<MechComponent, MobStateChangedEvent>(OnMobState);
         SubscribeLocalEvent<MechComponent, EntityStorageIntoContainerAttemptEvent>(OnEntityStorageDump);
+        // Sunrise added start - очищаем управление при внешнем извлечении пилота
+        SubscribeLocalEvent<MechComponent, EntRemovedFromContainerMessage>(OnPilotRemoved);
+        // Sunrise added end
         SubscribeLocalEvent<MechComponent, GetAdditionalAccessEvent>(OnGetAdditionalAccess);
         SubscribeLocalEvent<MechComponent, DragDropTargetEvent>(OnDragDrop);
         SubscribeLocalEvent<MechComponent, CanDropTargetEvent>(OnCanDragDrop);
@@ -179,12 +182,13 @@ public abstract partial class SharedMechSystem : EntitySystem
 
     private void RemoveUser(EntityUid mech, EntityUid pilot)
     {
-        if (!RemComp<MechPilotComponent>(pilot))
-            return;
+        // Sunrise edit start - очистка должна быть идемпотентной после внешнего извлечения из контейнера
+        RemComp<MechPilotComponent>(pilot);
         RemComp<RelayInputMoverComponent>(pilot);
         RemComp<InteractionRelayComponent>(pilot);
 
         _actions.RemoveProvidedActions(pilot, mech);
+        // Sunrise edit end
     }
 
     public void ToggleLights(EntityUid uid, MechComponent component)
@@ -436,10 +440,14 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (!CanInsert(uid, toInsert.Value, component))
             return false;
 
-        SetupUser(uid, toInsert.Value);
+        // Sunrise edit start - выдаём управление только после успешной вставки пилота
+        if (!_container.Insert(toInsert.Value, component.PilotSlot))
+            return false;
+
+        SetupUser(uid, toInsert.Value, component);
+        // Sunrise edit end
         var ev = new MechSayEvent(uid, component.MessageHello);
         RaiseLocalEvent(uid, ref ev, true);
-        _container.Insert(toInsert.Value, component.PilotSlot);
         UpdateAppearance(uid, component);
         return true;
     }
@@ -458,16 +466,12 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (component.PilotSlot.ContainedEntity == null)
             return false;
 
-        if (HasComp<NoRotateOnMoveComponent>(uid))
-        {
-            RemComp<NoRotateOnMoveComponent>(uid);
-        }
-
         var pilot = component.PilotSlot.ContainedEntity.Value;
 
-        RemoveUser(uid, pilot);
-        _container.RemoveEntity(uid, pilot);
-        UpdateAppearance(uid, component);
+        // Sunrise edit start - удаление из контейнера само очищает управление через OnPilotRemoved
+        if (!_container.RemoveEntity(uid, pilot))
+            return false;
+        // Sunrise edit end
         var sayEv = new MechSayEvent(uid, component.MessageGoodbye);
         RaiseLocalEvent(uid, ref sayEv, true);
         return true;
