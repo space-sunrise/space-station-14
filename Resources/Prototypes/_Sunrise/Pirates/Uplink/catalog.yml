@@ -2652,14 +2652,6 @@
   - UplinkPiratePointless
 
 - type: listing
-  id: UplinkPiratePaintWarboss
-  productEntity: MechPaintDollHouseWarboss
-  cost:
-    Doubloon: 5
-  categories:
-  - UplinkPiratePointless
-
-- type: listing
   id: UplinkPirateOperativeSkirt
   name: uplink-operative-skirt-name
   description: uplink-operative-skirt-desc
