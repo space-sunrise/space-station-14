@@ -9,6 +9,8 @@ import sys
 import unicodedata
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
+from html import escape
+from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
 from urllib.error import HTTPError
@@ -71,6 +73,7 @@ CHANGE_TYPES = {
 STATUS_FORMAT = {
     "success": ("notice", "✅"),
     "skip": ("notice", "⏭️"),
+    "warning": ("warning", "⚠️"),
     "error": ("error", "❌"),
 }
 
@@ -114,6 +117,19 @@ class ParsedCategory:
     media: list[dict[str, Any]] = field(default_factory=list)
 
 
+class _MediaHTMLParser(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.attributes: dict[str, str | None] | None = None
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if tag == "img" and self.attributes is None:
+            self.attributes = dict(attrs)
+
+    def handle_startendtag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        self.handle_starttag(tag, attrs)
+
+
 def report_status(status: str, message: str) -> None:
     command, icon = STATUS_FORMAT[status]
     escaped = message.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
@@ -126,6 +142,81 @@ def report_status(status: str, message: str) -> None:
             if is_empty:
                 summary.write("## Автоматический чейнджлог\n\n")
             summary.write(f"- {icon} {message}\n")
+
+
+def write_validation_summary(title: str, content: str) -> None:
+    if summary_path := os.environ.get("GITHUB_STEP_SUMMARY"):
+        with Path(summary_path).open("a", encoding="utf-8") as summary:
+            summary.write(f"## {title}\n\n{content}\n")
+
+
+def validate_pull_request_event(repo_root: Path, event_path: Path) -> None:
+    event = json.loads(event_path.read_text(encoding="utf-8"))
+    pull_request = event.get("pull_request")
+    if not isinstance(pull_request, dict):
+        raise RuntimeError("Событие не содержит pull_request")
+
+    number = int(pull_request["number"])
+    body = pull_request.get("body")
+    template = load_pull_request_template(repo_root)
+    if is_changelog_template(body, template):
+        report_status("success", f"PR #{number}: оставлен пустой шаблон чейнджлога.")
+        write_validation_summary(
+            "Проверка чейнджлога",
+            "Чейнджлог не будет опубликован: в описании оставлен пустой шаблон.",
+        )
+        return
+
+    category_names = [MAIN_CATEGORY]
+    for category in os.environ.get("CHANGELOG_EXTRA_CATEGORIES", "").split(","):
+        category = category.strip()
+        if not category:
+            continue
+        if re.fullmatch(r"[A-Za-z]+", category) is None:
+            raise RuntimeError(f"Недопустимое имя категории чейнджлога: {category}")
+        category_names.append(category)
+
+    try:
+        parsed = parse_pr_body(
+            body,
+            pull_request.get("user", {}).get("login", "unknown"),
+            tuple(category_names),
+        )
+        if parsed is not None and not parsed[1]:
+            raise ValueError("маркер чейнджлога найден, но ни одну запись изменений распознать не удалось")
+    except ValueError as error:
+        write_validation_summary(
+            "Ошибка разбора чейнджлога",
+            f"<pre><code>{escape(str(error))}</code></pre>",
+        )
+        raise RuntimeError(f"PR #{number}: чейнджлог не прошёл проверку") from error
+
+    if parsed is None:
+        report_status("success", f"PR #{number}: чейнджлог отсутствует.")
+        write_validation_summary(
+            "Проверка чейнджлога",
+            "Чейнджлог не будет опубликован: маркер `:cl:` или 🆑 отсутствует.",
+        )
+        return
+
+    author, categories = parsed
+    normalized = {
+        "author": author,
+        "categories": [
+            {
+                "name": category.name,
+                "changes": category.changes,
+                "media": category.media,
+            }
+            for category in categories
+        ],
+    }
+    preview = yaml.safe_dump(normalized, allow_unicode=True, sort_keys=False)
+    report_status("success", f"PR #{number}: чейнджлог успешно распознан.")
+    write_validation_summary(
+        "Результат разбора чейнджлога",
+        f"Именно эти данные будут опубликованы после слияния:\n\n<pre><code>{escape(preview)}</code></pre>",
+    )
 
 
 def parse_time(value: str) -> datetime:
@@ -142,7 +233,8 @@ def format_changelog_time(value: str | None) -> str:
 
 
 def parse_media_value(value: str) -> dict[str, Any]:
-    markdown = MEDIA_MARKDOWN_RE.fullmatch(value.strip())
+    source = value.strip()
+    markdown = MEDIA_MARKDOWN_RE.fullmatch(source)
     if markdown:
         url = markdown.group(2)
         description = markdown.group(1).strip()
@@ -151,7 +243,19 @@ def parse_media_value(value: str) -> dict[str, Any]:
             result["description"] = description
         return result
 
-    url = value.strip()
+    if source.casefold().startswith("<img") and source.endswith(">"):
+        parser = _MediaHTMLParser()
+        parser.feed(source)
+        if parser.attributes is not None:
+            url = (parser.attributes.get("src") or "").strip()
+            if MEDIA_URL_RE.fullmatch(url):
+                result = {"url": url}
+                description = (parser.attributes.get("alt") or "").strip()
+                if description:
+                    result["description"] = description
+                return result
+
+    url = source
     if MEDIA_URL_RE.fullmatch(url):
         return {"url": url}
 
@@ -470,6 +574,7 @@ def write_pull_request_parts(
     pull_requests: list[dict[str, Any]],
     target_branch: str,
     category_files: dict[str, str] = CATEGORY_FILES,
+    current_pull_request_number: int | None = None,
 ) -> int:
     known_urls = load_known_urls(repo_root, category_files)
     pull_request_template = load_pull_request_template(repo_root)
@@ -491,18 +596,18 @@ def write_pull_request_parts(
                 pull_request.get("user", {}).get("login", "unknown"),
                 tuple(category_files),
             )
+            if parsed is not None and not parsed[1]:
+                raise ValueError("маркер чейнжлога найден, но ни одну запись изменений распознать не удалось")
         except ValueError as error:
-            raise RuntimeError(f"PR #{number}: {error}") from error
+            if current_pull_request_number is None or number == current_pull_request_number:
+                raise RuntimeError(f"PR #{number}: {error}") from error
+            report_status("warning", f"PR #{number} пропущен из-за ошибки разбора: {error}.")
+            continue
         if parsed is None:
             report_status("skip", f"PR #{number} пропущен: отсутствует маркер :cl: или 🆑.")
             continue
 
         author, categories = parsed
-        if not categories:
-            raise RuntimeError(
-                f"PR #{number}: маркер чейнжлога найден, но ни одну запись изменений распознать не удалось.",
-            )
-
         url = str(pull_request["html_url"])
         merged_at = format_changelog_time(pull_request.get("merged_at"))
         pull_request_written = 0
@@ -606,11 +711,15 @@ def main() -> None:
     parser.add_argument("--event-path", type=Path, required=True)
     parser.add_argument("--pr-number", type=int)
     parser.add_argument("--manual-changelog", action="store_true")
+    parser.add_argument("--validate-only", action="store_true")
     parser.add_argument("--target-branch", default="master")
     parser.add_argument("--extra-category", action="append", default=[])
     args = parser.parse_args()
 
     repo_root = Path(__file__).resolve().parents[3]
+    if args.validate_only:
+        validate_pull_request_event(repo_root, args.event_path)
+        return
     if not (repo_root / CHANGELOG_FILE).is_file():
         raise RuntimeError(f"Файл чейнжлога не найден: {CHANGELOG_FILE}")
 
@@ -637,6 +746,7 @@ def main() -> None:
         pull_requests = list_merged_pull_requests(checkpoint)
 
         explicit = load_pull_request(args.pr_number) if args.pr_number else load_event_pull_request(args.event_path)
+        current_pull_request_number = int(explicit["number"]) if explicit is not None else None
         by_number = {int(item["number"]): item for item in pull_requests}
         if explicit is not None:
             by_number[int(explicit["number"])] = explicit
@@ -646,6 +756,7 @@ def main() -> None:
             list(by_number.values()),
             args.target_branch,
             category_files,
+            current_pull_request_number=current_pull_request_number,
         )
     update_changelogs(repo_root, category_files)
 
