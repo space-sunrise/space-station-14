@@ -1,10 +1,24 @@
-namespace Content.Shared.NPC.Components
+using Content.Shared.Whitelist;
+using Robust.Shared.GameStates;
+
+//namespace Content.Shared.NPC.Components;
+namespace Content.Shared._Sunrise.NoTarget.Components;
+
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+public sealed partial class NpcNoTargetComponent : Component
 {
     /// <summary>
-    /// Marks an entity as excluded from NPC targeting and reactions.
-    /// NPC systems should treat entities with this component as non-targetable.
+    ///     Текущее состояние активности.
     /// </summary>
-    [RegisterComponent]
-    public sealed partial class NoTargetComponent : Component;
+    [AutoNetworkedField]
+    public bool Enabled = false;
 
+    /// <summary>
+    ///     Компоненты, при наличии которых активируется поведение.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public EntityWhitelist? Whitelist = new()
+    {
+        Components = ["Stealth"]
+    };
 }
