@@ -55,6 +55,8 @@ public sealed partial class DecalPlacerWindow : DefaultWindow
 
         Search.OnTextChanged += _ => RefreshList();
         ColorPicker.OnColorChanged += OnColorPicked;
+		
+		InitializeHexInput(); // Sunrise add
 
         PickerOpen.OnPressed += _ =>
         {
@@ -115,7 +117,34 @@ public sealed partial class DecalPlacerWindow : DefaultWindow
             UpdateDecalPlacementInfo();
         };
     }
+	
+    // Sunrise start
+    private void InitializeHexInput()
+    {
+        ColorPicker.OnColorChanged += color =>
+        {
+            HexInput.Text = color.ToHex();
+        };
 
+        HexInput.OnTextEntered += OnHexEntered;
+        HexInput.OnFocusExit += OnHexEntered;
+
+        HexInput.Text = ColorPicker.Color.ToHex();
+    }
+
+    private void OnHexEntered(LineEdit.LineEditEventArgs args)
+    {
+        var currentAlpha = ColorPicker.Color.A;
+        if (Color.TryParse(args.Text, out var newColor))
+        {
+            if (!ColorPicker.IsAlphaVisible)
+                newColor.A = currentAlpha;
+
+            ColorPicker.Color = newColor;
+        }
+    }
+    // Sunrise end
+	
     private void OnColorPicked(Color color)
     {
         _color = color;
