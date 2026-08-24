@@ -4728,3 +4728,11 @@
     message: Перчатки Корниворы больше не позволяют использовать огнестрельное оружие. Скорость атаки снижена.
   id: 2015
   url: https://github.com/makura-games/sunrise-station/pull/4733
+- author: dng-cher
+  time: '2026-08-24T08:36:00.0000000+00:00'
+  changes:
+  - type: Add
+    message: Добавлен ввод HEX цветов в окно декалей
+  id: 2016
+  url: https://github.com/makura-games/sunrise-station/pull/4760
+  
