@@ -134,14 +134,23 @@ public sealed partial class DecalPlacerWindow : DefaultWindow
 
     private void OnHexEntered(LineEdit.LineEditEventArgs args)
     {
-        var currentAlpha = ColorPicker.Color.A;
-        if (Color.TryParse(args.Text, out var newColor))
-        {
-            if (!ColorPicker.IsAlphaVisible)
-                newColor.A = currentAlpha;
+        TryApplyHexColor(args.Text);
+    }
 
-            ColorPicker.Color = newColor;
-        }
+    private bool TryApplyHexColor(string text)
+    {
+        if (!Color.TryParse(text, out var newColor))
+            return false;
+
+        var currentAlpha = ColorPicker.Color.A;
+        if (!ColorPicker.IsAlphaVisible)
+            newColor.A = currentAlpha;
+
+        ColorPicker.Color = newColor;
+        OnColorPicked(newColor);
+        HexInput.Text = newColor.ToHex();
+
+        return true;
     }
     // Sunrise added end
 	
