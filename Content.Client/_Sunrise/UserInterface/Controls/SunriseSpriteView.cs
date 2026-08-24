@@ -161,6 +161,8 @@ public class SunriseStaticSpriteView : Control
         _previewEntity = null;
         _cachedSprite = null;
         Entity = default;
+        _spriteSize = Vector2.Zero;
+        InvalidateMeasure();
 
         if (clearSource)
             _sourceEntity = null;
