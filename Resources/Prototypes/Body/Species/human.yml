@@ -8,6 +8,11 @@
     enum.HumanoidVisualLayers.FacialHair:
       limit: 1
       required: false
+    # Sunrise edit start - в верхней части головы допускается только одна маркировка
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 1
+      required: false
+    # Sunrise edit end
     enum.HumanoidVisualLayers.Chest:
       limit: 2
       required: false
