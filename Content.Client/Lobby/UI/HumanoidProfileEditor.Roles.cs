@@ -255,6 +255,7 @@ public sealed partial class HumanoidProfileEditor
 
                 var collection = IoCManager.Instance!;
                 var protoManager = collection.Resolve<IPrototypeManager>();
+                var jobLoadoutId = LoadoutSystem.GetJobPrototype(job.ID); // Sunrise-Edit — сохраняем лодаут под каноническим ID должности
 
                 // If no loadout found then disabled button
                 // Sunrise-Edit — открываем набор из активного Sunrise-пула
@@ -270,12 +271,12 @@ public sealed partial class HumanoidProfileEditor
                         RoleLoadout? loadout = null;
 
                         // Clone so we don't modify the underlying loadout.
-                        Profile?.Loadouts.TryGetValue(LoadoutSystem.GetJobPrototype(job.ID), out loadout);
+                        Profile?.Loadouts.TryGetValue(jobLoadoutId, out loadout); // Sunrise-Edit
                         loadout = loadout?.Clone();
 
                         if (loadout == null)
                         {
-                            loadout = new RoleLoadout(roleLoadoutProto.ID);
+                            loadout = new RoleLoadout(jobLoadoutId); // Sunrise-Edit
                             SetSunriseDefaultLoadout(loadout); // Sunrise-Edit — спонсорский набор по умолчанию
                         }
 
@@ -285,6 +286,7 @@ public sealed partial class HumanoidProfileEditor
 
                 _jobPriorities.Add((job.ID, selector));
                 jobContainer.AddChild(selector);
+                SetupSunriseAlternativeJobTitles(job, selector); // Sunrise-Edit — альтернативные названия должностей
                 jobContainer.AddChild(loadoutWindowBtn);
                 category.AddChild(jobContainer);
             }
