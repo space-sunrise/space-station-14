@@ -298,10 +298,6 @@
         weight: 0.10
       # Sunrise-start
       - id: DeathPaint
-      - id: MechPaintRipleyZairjah
-      - id: MechPaintRipleyHauler
-      - id: MechPaintRipleyFirestarter
-      - id: MechPaintRipleyAluminizer
       # Sunrise-end
 
 - type: entity
