@@ -4750,10 +4750,17 @@
     message: У мехов вырезана покраска.
   id: 2016
   url: https://github.com/makura-games/sunrise-station/pull/4759
+- author: Kinar_7
+  time: '2026-08-25T08:07:30.0000000+00:00'
+  changes:
+  - type: Tweak
+    message: Вы чувствуете, что законы мироздания изменились. Вы слышите эхом что "Теневая Дымка" теряет свою плотность и ослабевает.
+  id: 2017
+  url: https://github.com/makura-games/sunrise-station/pull/4761
 - author: dng-cher
-  time: '2026-08-24T08:36:00.0000000+00:00'
+  time: '2026-08-25T08:36:00.0000000+00:00'
   changes:
   - type: Add
     message: Добавлен ввод HEX цветов в окно декалей
-  id: 2017
+  id: 2018
   url: https://github.com/makura-games/sunrise-station/pull/4760
