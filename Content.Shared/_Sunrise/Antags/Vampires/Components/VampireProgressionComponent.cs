@@ -35,12 +35,6 @@ public sealed partial class VampireProgressionComponent : Component
     [DataField]
     public int ClassSelectThreshold = 150;
 
-    /// <summary>
-    /// Последний уровень крови, запустивший обновление действий.
-    /// </summary>
-    [ViewVariables(VVAccess.ReadOnly)]
-    public int LastRefreshedBloodLevel = -1;
-
     [ViewVariables(VVAccess.ReadOnly), DataField, AutoNetworkedField]
     public bool FullPower = false;
 

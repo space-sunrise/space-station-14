@@ -402,7 +402,6 @@ public sealed partial class VampireSystem : EntitySystem
         if (!TryComp<VampireProgressionComponent>(uid, out var progression))
             return;
 
-        progression.LastRefreshedBloodLevel = progression.TotalBlood;
         foreach (var (_, actionEntity) in comp.ActionEntities)
             TryRefreshVampireAction(uid, actionEntity);
     }

@@ -48,7 +48,6 @@ public sealed partial class GargantuaSystem : EntitySystem
 
     [Dependency] private VampireSystem _vampire = default!;
 
-    [Dependency] private ActionsSystem _actions = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
@@ -126,21 +125,6 @@ public sealed partial class GargantuaSystem : EntitySystem
             return;
 
         _damageableSystem.TryChangeDamage(uid, spec, true);
-    }
-
-    private bool TryGetVampireActionEvent<T>(VampireComponent vampire, string actionId, out T ev)
-        where T : BaseActionEvent
-    {
-        ev = default!;
-
-        if (!vampire.ActionEntities.TryGetValue(actionId, out var actionEntity))
-            return false;
-
-        if (_actions.GetEvent(actionEntity) is not T typed)
-            return false;
-
-        ev = typed;
-        return true;
     }
 
     #region Blood Swell

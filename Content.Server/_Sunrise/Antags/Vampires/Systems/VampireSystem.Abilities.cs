@@ -56,6 +56,7 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private SharedStealthSystem _stealth = default!;
     private static readonly SoundSpecifier _biteSound = new SoundPathSpecifier("/Audio/Effects/bite.ogg");
     private static readonly SoundSpecifier _devourSound = new SoundPathSpecifier("/Audio/Effects/demon_consume.ogg");
+    private static readonly string[] _mouthBlockerSlots = ["mask", "head"];
     [Dependency] private FlashImmunitySystem _flashImmunity = default!;
 
     private void InitializeAbilities()
@@ -457,34 +458,8 @@ public sealed partial class VampireSystem : EntitySystem
         if (args.Handled || !args.CanReach || !Exists(args.Target))
             return;
 
-        if (!TryComp<VampireBloodDrinkerComponent>(uid, out var drinker) || !drinker.FangsExtended)
-            return;
-
-        var target = args.Target.Value;
-
-        if (target == uid
-            || !HasComp<BloodstreamComponent>(target)
-            )
-            return;
-
-        if (IsInvalidDrinkTarget(uid, target))
-            return;
-
-        if (IsProtectedByFaith(target)
-            && (!TryComp<VampireProgressionComponent>(uid, out var progression) || progression.FullPower != true))
-        {
-            _popup.PopupEntity(Loc.GetString("vampire-target-protected-by-faith"), uid, uid, Shared.Popups.PopupType.MediumCaution);
-            return;
-        }
-
-        if (IsMouthBlocked(uid))
-        {
-            _popup.PopupEntity(Loc.GetString("vampire-mouth-covered"), uid, uid);
-            return;
-        }
-
-        StartDrinkDoAfter(uid, comp, target, showPopup: true);
-        args.Handled = true;
+        if (TryStartDrinkFromTarget(uid, comp, args.Target.Value))
+            args.Handled = true;
     }
 
     private void OnBeforeInteractHand(EntityUid uid, VampireComponent comp, ref BeforeInteractHandEvent args)
@@ -492,34 +467,39 @@ public sealed partial class VampireSystem : EntitySystem
         if (args.Handled)
             return;
 
-        if (!TryComp<VampireBloodDrinkerComponent>(uid, out var drinker) || !drinker.FangsExtended)
-            return;
+        if (Exists(args.Target) && TryStartDrinkFromTarget(uid, comp, args.Target))
+            args.Handled = true;
+    }
 
-        var target = args.Target;
-        if (!Exists(target)
-            || target == uid
-            || !HasComp<BloodstreamComponent>(target)
-            )
-            return;
+    /// <summary>
+    /// Общая проверка цели питья и запуск doafter укуса (для AfterInteract и BeforeInteractHand)
+    /// </summary>
+    private bool TryStartDrinkFromTarget(EntityUid uid, VampireComponent comp, EntityUid target)
+    {
+        if (!TryComp<VampireBloodDrinkerComponent>(uid, out var drinker) || !drinker.FangsExtended)
+            return false;
+
+        if (target == uid || !HasComp<BloodstreamComponent>(target))
+            return false;
 
         if (IsInvalidDrinkTarget(uid, target))
-            return;
+            return false;
 
         if (IsProtectedByFaith(target)
             && (!TryComp<VampireProgressionComponent>(uid, out var progression) || progression.FullPower != true))
         {
             _popup.PopupEntity(Loc.GetString("vampire-target-protected-by-faith"), uid, uid, Shared.Popups.PopupType.MediumCaution);
-            return;
+            return false;
         }
 
         if (IsMouthBlocked(uid))
         {
             _popup.PopupEntity(Loc.GetString("vampire-mouth-covered"), uid, uid);
-            return;
+            return false;
         }
 
         StartDrinkDoAfter(uid, comp, target, showPopup: true);
-        args.Handled = true;
+        return true;
     }
 
     /// <summary>
@@ -905,7 +885,11 @@ public sealed partial class VampireSystem : EntitySystem
                 continue;
 
             var targetPosition = Transform(target).LocalPosition;
-            var vectorToTarget = Vector2.Normalize(targetPosition - ourPosition);
+            var rawVector = targetPosition - ourPosition;
+            if (rawVector == Vector2.Zero)
+                continue;
+
+            var vectorToTarget = Vector2.Normalize(rawVector);
 
             var dot = Vector2.Dot(ourDirection, vectorToTarget);
 
@@ -1220,7 +1204,7 @@ public sealed partial class VampireSystem : EntitySystem
         if (!HasComp<InventoryComponent>(uid))
             return false;
 
-        var slots = new[] { "mask", "head" };
+        var slots = _mouthBlockerSlots;
         foreach (var slot in slots)
             if (_inventory.TryGetSlotEntity(uid, slot, out var ent) &&
                 TryComp<IngestionBlockerComponent>(ent.Value, out var blocker) &&

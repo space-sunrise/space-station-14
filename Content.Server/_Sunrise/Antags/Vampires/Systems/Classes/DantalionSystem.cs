@@ -318,8 +318,8 @@ public sealed partial class DantalionSystem : EntitySystem
         if (_mind.TryGetMind(thrall, out var mindId, out var mind))
         {
             //Удаляем цели
-            if (_mind.TryFindObjective((mindId, mind), comp.ObeyObjectiveId, out var Objective) && Objective != null)
-                _mind.TryRemoveObjective(mindId, mind, mind.Objectives.IndexOf(Objective.Value));
+            if (_mind.TryFindObjective((mindId, mind), comp.ObeyObjectiveId, out var objective) && objective != null)
+                _mind.TryRemoveObjective(mindId, mind, mind.Objectives.IndexOf(objective.Value));
             //Удаляем роль
             _role.MindRemoveRole<VampireThrallComponent>(mindId);
         }
