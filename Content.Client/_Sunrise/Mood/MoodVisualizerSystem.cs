@@ -17,7 +17,7 @@ namespace Content.Client._Sunrise.Mood;
 public sealed class MoodVisualizerSystem : VisualizerSystem<MoodVisualsComponent>
 {
     [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly SunriseHumanoidBodySystem _sunriseBody = default!;
+    [Dependency] private readonly SunriseHumanoidBodySystem _body = default!;
 
     public override void Initialize()
     {
@@ -63,10 +63,7 @@ public sealed class MoodVisualizerSystem : VisualizerSystem<MoodVisualsComponent
         if (HasComp<PentagramComponent>(ent) && HasComp<WingToggleComponent>(ent))
             return false;
 
-        if (!AppearanceSystem.TryGetData<MoodThreshold>(ent, MoodVisuals.CurrentMoodThreshold, out var moodThreshold, appearance))
-            return ent.Comp.VisibleWithoutMood;
-
-        return ent.Comp.MoodStates.TryGetValue(moodThreshold, out state);
+        return !AppearanceSystem.TryGetData<MoodThreshold>(ent, MoodVisuals.CurrentMoodThreshold, out var moodThreshold, appearance) ? ent.Comp.VisibleWithoutMood : ent.Comp.MoodStates.TryGetValue(moodThreshold, out state);
     }
 
     private void UpdateMoodMarking(
@@ -80,7 +77,7 @@ public sealed class MoodVisualizerSystem : VisualizerSystem<MoodVisualsComponent
 
         Entity<SpriteComponent> spriteEnt = (ent, sprite);
         var nullableSpriteEnt = spriteEnt.AsNullable();
-        var visible = moodVisible && _sunriseBody.IsLayerVisible(ent, prototype.BodyPart);
+        var visible = moodVisible && _body.IsLayerVisible(ent, prototype.BodyPart);
         foreach (var markingSprite in prototype.Sprites)
         {
             if (markingSprite is not SpriteSpecifier.Rsi rsi)
