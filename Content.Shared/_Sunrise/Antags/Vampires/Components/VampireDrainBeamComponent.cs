@@ -33,21 +33,33 @@ public readonly partial record struct DrainBeamConnection(
 );
 
 /// <summary>
-/// Сетевое событие создания/обновления луча вытягивания на клиенте
-/// </summary>
-[Serializable, NetSerializable]
-public sealed class VampireDrainBeamEvent : EntityEventArgs
-{
-    public NetEntity Source { get; }
-    public NetEntity Target { get; }
-    public bool Create { get; }
-    public string VisualPrototype { get; }
-
-    public VampireDrainBeamEvent(NetEntity source, NetEntity target, bool create, string visualPrototype)
+    /// Сетевое событие создания/обновления луча вытягивания на клиенте
+    /// </summary>
+    [Serializable, NetSerializable]
+    public sealed class VampireDrainBeamEvent : EntityEventArgs
     {
-        Source = source;
-        Target = target;
-        Create = create;
-        VisualPrototype = visualPrototype;
+        /// <summary>
+        /// Сетевая сущность источника луча.
+        /// </summary>
+        public NetEntity Source { get; }
+        /// <summary>
+        /// Сетевая сущность цели луча.
+        /// </summary>
+        public NetEntity Target { get; }
+        /// <summary>
+        /// Создать (true) или удалить (false) луч.
+        /// </summary>
+        public bool Create { get; }
+        /// <summary>
+        /// Прототип визуального луча.
+        /// </summary>
+        public string VisualPrototype { get; }
+
+        public VampireDrainBeamEvent(NetEntity source, NetEntity target, bool create, string visualPrototype)
+        {
+            Source = source;
+            Target = target;
+            Create = create;
+            VisualPrototype = visualPrototype;
+        }
     }
-}
