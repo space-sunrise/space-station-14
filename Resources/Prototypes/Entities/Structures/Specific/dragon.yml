@@ -40,8 +40,6 @@
     enabled: false
   - type: Damageable
     damageModifierSet: Metallic
-  - type: Injurable
-    damageContainer: Inorganic
   - type: Destructible
     thresholds:
     - trigger:
