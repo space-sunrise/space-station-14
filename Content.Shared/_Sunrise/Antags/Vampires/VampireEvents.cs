@@ -492,8 +492,11 @@ public sealed partial class VampireEternalDarknessActionEvent : InstantActionEve
     [DataField]
     public float TargetFreezeTemp = 233.15f;
 
+    /// <summary>
+    /// Интервал между снижениями температуры цели.
+    /// </summary>
     [DataField]
-    public int TempDropInterval = 2;
+    public TimeSpan TempDropInterval = TimeSpan.FromSeconds(2);
 
     [DataField]
     public float TempDropPerInterval = 60f;

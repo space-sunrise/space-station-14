@@ -84,7 +84,6 @@ public sealed partial class VampireSystem : EntitySystem
     private static readonly ProtoId<DamageTypePrototype> _oxyLossTypeId = "Asphyxiation";
     private static readonly ProtoId<DamageTypePrototype> _heatTypeId = "Heat";
     private static readonly ProtoId<DamageTypePrototype> _pierceTypeId = "Piercing";
-    private static readonly SoundSpecifier _spaceBurnSound = new SoundPathSpecifier("/Audio/Effects/lightburn.ogg");
 
     public override void Initialize()
     {
@@ -239,8 +238,8 @@ public sealed partial class VampireSystem : EntitySystem
                 return false;
         }
 
-        var damageable = CompOrNull<DamageableComponent>(uid);
-        var thresholds = CompOrNull<MobThresholdsComponent>(uid);
+        TryComp<DamageableComponent>(uid, out var damageable);
+        TryComp<MobThresholdsComponent>(uid, out var thresholds);
         var healthy = IsAboveHalfHealth(uid, damageable, thresholds);
 
         var chance = hadBlood ? sunlight.BloodEffectChance : sunlight.BloodlessEffectChance;
@@ -276,7 +275,7 @@ public sealed partial class VampireSystem : EntitySystem
             return true;
         }
 
-        _audio.PlayPvs(_spaceBurnSound, uid);
+        _audio.PlayPvs(sunlight.SpaceBurnSound, uid);
 
         if (geneticDamage < sunlight.GeneticDustThreshold)
             return true;
@@ -303,13 +302,13 @@ public sealed partial class VampireSystem : EntitySystem
             _flammable.AdjustFireStacks(uid, sunlight.FireStacksOnIgnite, ignite: true);
         }
 
-        _audio.PlayPvs(_spaceBurnSound, uid);
+        _audio.PlayPvs(sunlight.SpaceBurnSound, uid);
     }
 
     private bool IsAboveHalfHealth(EntityUid uid, DamageableComponent? damageable, MobThresholdsComponent? thresholds)
     {
-        damageable ??= CompOrNull<DamageableComponent>(uid);
-        thresholds ??= CompOrNull<MobThresholdsComponent>(uid);
+        TryComp<DamageableComponent>(uid, out damageable);
+        TryComp<MobThresholdsComponent>(uid, out thresholds);
 
         if (damageable == null)
             return true;
@@ -784,7 +783,9 @@ public sealed partial class VampireSystem : EntitySystem
         if (!TryComp(uid, out DamageableComponent? damageable))
             return 100f;
 
-        if (!_mobThreshold.TryGetDeadThreshold(uid, out var deadThreshold, CompOrNull<MobThresholdsComponent>(uid))
+        TryComp(uid, out MobThresholdsComponent? thresholds);
+
+        if (!_mobThreshold.TryGetDeadThreshold(uid, out var deadThreshold, thresholds)
             || deadThreshold == null
             || deadThreshold.Value == FixedPoint2.Zero)
         {

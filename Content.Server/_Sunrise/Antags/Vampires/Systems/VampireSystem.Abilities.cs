@@ -54,8 +54,6 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private DamageableSystem _damageableSystem = default!;
     [Dependency] private BlindableSystem _blindable = default!;
     [Dependency] private SharedStealthSystem _stealth = default!;
-    private static readonly SoundSpecifier _biteSound = new SoundPathSpecifier("/Audio/Effects/bite.ogg");
-    private static readonly SoundSpecifier _devourSound = new SoundPathSpecifier("/Audio/Effects/demon_consume.ogg");
     private static readonly string[] _mouthBlockerSlots = ["mask", "head"];
     [Dependency] private FlashImmunitySystem _flashImmunity = default!;
 
@@ -140,6 +138,9 @@ public sealed partial class VampireSystem : EntitySystem
         if (!TryComp<VampireBloodDrinkerComponent>(uid, out var drinker))
             return;
 
+        if (!TryComp<VampireDevourableComponent>(used, out var devourable))
+            return;
+
         var wasStarving = drinker.BloodFullness <= 0f;
         drinker.BloodFullness = MathF.Min(drinker.MaxBloodFullness, drinker.BloodFullness + args.BloodFullnessRestore);
         var isStarving = drinker.BloodFullness <= 0f;
@@ -149,7 +150,7 @@ public sealed partial class VampireSystem : EntitySystem
         Dirty(uid, drinker);
         UpdateVampireFedAlert(uid, comp);
 
-        _audio.PlayPvs(_devourSound, uid);
+        _audio.PlayPvs(devourable.DevourSound, uid);
         QueueDel(used);
 
         args.Handled = true;
@@ -621,7 +622,7 @@ public sealed partial class VampireSystem : EntitySystem
                 _damageableSystem.TryChangeDamage(uid, baseHealSpec, true);
             }
 
-            _audio.PlayPvs(_biteSound, target, AudioParams.Default.WithVolume(-7f));
+            _audio.PlayPvs(drinker.BiteSound, target, AudioParams.Default.WithVolume(-7f));
             var targetCoords = Transform(target).Coordinates;
             Spawn("WeaponArcBite", targetCoords);
 

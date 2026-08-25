@@ -205,19 +205,21 @@ public sealed partial class ActiveVampireEternalDarknessComponent : Component
     [DataField] public int TicksRemaining;
 
     /// <summary>
-    /// Текущий тик Вечной тьмы.
-    /// </summary>
-    [DataField] public int CurrentTick;
-
-    /// <summary>
     /// Стоимость крови за тик Вечной тьмы.
     /// </summary>
     [DataField] public int BloodPerTick;
 
     /// <summary>
-    /// Интервал снижения температуры в тиках.
+    /// Время следующего снижения температуры.
     /// </summary>
-    [DataField] public int TempDropInterval;
+    [DataField]
+    public TimeSpan NextTempDropTime;
+
+    /// <summary>
+    /// Интервал между снижениями температуры.
+    /// </summary>
+    [DataField]
+    public TimeSpan TempDropInterval = TimeSpan.FromSeconds(2);
 
     /// <summary>
     /// Радиус заморозки вокруг ауры.

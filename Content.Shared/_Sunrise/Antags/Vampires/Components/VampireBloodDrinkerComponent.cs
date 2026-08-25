@@ -1,3 +1,4 @@
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared._Sunrise.Antags.Vampires.Components;
@@ -51,6 +52,12 @@ public sealed partial class VampireBloodDrinkerComponent : Component
     /// </summary>
     [DataField]
     public float BiteDistanceThreshold = 1.5f;
+
+    /// <summary>
+    /// Звук укуса жертвы.
+    /// </summary>
+    [DataField]
+    public SoundSpecifier BiteSound = new SoundPathSpecifier("/Audio/Effects/bite.ogg");
 
     /// <summary>
     /// Текущая сытость кровью вместо обычной потребности в еде.

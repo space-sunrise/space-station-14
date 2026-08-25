@@ -1,3 +1,5 @@
+using Robust.Shared.Audio;
+
 namespace Content.Shared._Sunrise.Antags.Vampires.Components;
 
 /// <summary>
@@ -17,4 +19,10 @@ public sealed partial class VampireDevourableComponent : Component
     /// </summary>
     [DataField]
     public float BloodFullnessRestore = 25f;
+
+    /// <summary>
+    /// Звук потребления сущности.
+    /// </summary>
+    [DataField]
+    public SoundSpecifier DevourSound = new SoundPathSpecifier("/Audio/Effects/demon_consume.ogg");
 }

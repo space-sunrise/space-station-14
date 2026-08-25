@@ -1,4 +1,5 @@
 using Content.Shared.FixedPoint;
+using Robust.Shared.Audio;
 
 namespace Content.Shared._Sunrise.Antags.Vampires.Components;
 
@@ -91,4 +92,10 @@ public sealed partial class VampireSunlightComponent : Component
     [ViewVariables]
     [AutoPausedField]
     public TimeSpan NextWarningPopup;
+
+    /// <summary>
+    /// Звук горения вампира в космосе.
+    /// </summary>
+    [DataField]
+    public SoundSpecifier SpaceBurnSound = new SoundPathSpecifier("/Audio/Effects/lightburn.ogg");
 }

@@ -278,9 +278,9 @@ public sealed partial class UmbraeSystem : EntitySystem
 
             var active = EnsureComp<ActiveVampireEternalDarknessComponent>(uid);
             active.TicksRemaining = Math.Max(1, args.MaxTicks);
-            active.CurrentTick = 0;
             active.BloodPerTick = args.BloodPerTick;
             active.TempDropInterval = args.TempDropInterval;
+            active.NextTempDropTime = _timing.CurTime + args.TempDropInterval;
             active.FreezeRadius = args.FreezeRadius;
             active.TargetFreezeTemp = args.TargetFreezeTemp;
             active.TempDropPerInterval = args.TempDropPerInterval;
@@ -319,10 +319,11 @@ public sealed partial class UmbraeSystem : EntitySystem
                 continue;
             }
 
-            ProcessEternalDarknessEffects(uid, active.CurrentTick, active.TempDropInterval, active.FreezeRadius, active.TargetFreezeTemp,
+            ProcessEternalDarknessEffects(uid, now, active.NextTempDropTime, active.TempDropInterval, active.FreezeRadius, active.TargetFreezeTemp,
                 active.TempDropPerInterval);
 
-            active.CurrentTick++;
+            if (now >= active.NextTempDropTime)
+                active.NextTempDropTime = now + active.TempDropInterval;
             active.TicksRemaining--;
 
             if (active.TicksRemaining <= 0)
@@ -380,8 +381,9 @@ public sealed partial class UmbraeSystem : EntitySystem
     }
 
     private void ProcessEternalDarknessEffects(EntityUid uid,
-        int tick,
-        int dropInterval,
+        TimeSpan now,
+        TimeSpan nextTempDropTime,
+        TimeSpan dropInterval,
         float freezeRadius,
         float targetTemp,
         float tempDrop)
@@ -389,9 +391,10 @@ public sealed partial class UmbraeSystem : EntitySystem
         var vampXform = Transform(uid);
         var center = _transform.GetWorldPosition(vampXform);
 
-        var doCoolingThisTick = (tick % dropInterval) == 0;
-        if (doCoolingThisTick)
-            ProcessTemperatureEffects(uid, vampXform, center, freezeRadius, targetTemp, tempDrop);
+        if (now < nextTempDropTime)
+            return;
+
+        ProcessTemperatureEffects(uid, vampXform, center, freezeRadius, targetTemp, tempDrop);
     }
 
     private void ProcessTemperatureEffects(EntityUid uid,
