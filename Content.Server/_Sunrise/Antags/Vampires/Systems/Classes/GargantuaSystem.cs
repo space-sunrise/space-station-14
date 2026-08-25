@@ -40,8 +40,6 @@ namespace Content.Server._Sunrise.Antags.Vampires.Systems.Classes;
 
 public sealed partial class GargantuaSystem : EntitySystem
 {
-    private const string ChargeActionId = "ActionVampireCharge";
-
     private static readonly ProtoId<DamageGroupPrototype> _bruteGroupId = "Brute";
     private static readonly ProtoId<DamageGroupPrototype> _burnGroupId = "Burn";
 

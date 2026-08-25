@@ -103,7 +103,7 @@ public sealed partial class UmbraeSystem : EntitySystem
         _sharedUmbrae.DeactivateCloakOfDarkness(uid, umbrae);
 
         if (TryComp<VampireComponent>(uid, out var vampire)
-            && vampire.ActionEntities.TryGetValue("ActionVampireCloakOfDarkness", out var actionEntity)
+            && vampire.ActionEntities.TryGetValue(VampireComponent.CloakOfDarknessActionId, out var actionEntity)
             && _actions.GetAction(actionEntity) is { } action)
         {
             _actions.SetToggled(action.AsNullable(), false);
@@ -212,7 +212,7 @@ public sealed partial class UmbraeSystem : EntitySystem
     private void OnExtinguish(EntityUid uid, VampireComponent comp, ref VampireExtinguishActionEvent args)
     {
         if (args.Handled
-            || !comp.ActionEntities.TryGetValue("ActionVampireExtinguish", out var actionEntity)
+            || !comp.ActionEntities.TryGetValue(VampireComponent.ExtinguishActionId, out var actionEntity)
             || !HasComp<UmbraeComponent>(uid)
             || !_vampire.CheckAndConsumeBloodCost(uid, comp, actionEntity))
             return;
@@ -365,7 +365,7 @@ public sealed partial class UmbraeSystem : EntitySystem
     {
         umbrae.EternalDarknessActive = false;
 
-        if (comp.ActionEntities.TryGetValue("ActionVampireEternalDarkness", out var actionEntity) && _actions.GetAction(actionEntity) is { } action)
+        if (comp.ActionEntities.TryGetValue(VampireComponent.EternalDarknessActionId, out var actionEntity) && _actions.GetAction(actionEntity) is { } action)
             _actions.SetToggled(action.AsNullable(), false);
 
         if (umbrae.EternalDarknessAuraEntity != null && Exists(umbrae.EternalDarknessAuraEntity))

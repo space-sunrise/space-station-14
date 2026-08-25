@@ -14,6 +14,18 @@ namespace Content.Shared._Sunrise.Antags.Vampires.Components;
 public sealed partial class VampireComponent : Component
 {
     /// <summary>
+    /// Идентификаторы ключевых действий, используемые системами в коде.
+    /// </summary>
+    public const string ToggleFangsActionId = "ActionVampireToggleFangs";
+    public const string GlareActionId = "ActionVampireGlare";
+    public const string RejuvenateIActionId = "ActionVampireRejuvenateI";
+    public const string RejuvenateIIActionId = "ActionVampireRejuvenateII";
+    public const string BloodBringersRiteActionId = "ActionVampireBloodBringersRite";
+    public const string CloakOfDarknessActionId = "ActionVampireCloakOfDarkness";
+    public const string ExtinguishActionId = "ActionVampireExtinguish";
+    public const string EternalDarknessActionId = "ActionVampireEternalDarkness";
+
+    /// <summary>
     /// Идентификатор прототипа выбранного класса вампира.
     /// </summary>
     [DataField, AutoNetworkedField]

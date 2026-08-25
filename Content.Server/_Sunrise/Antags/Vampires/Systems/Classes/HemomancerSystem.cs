@@ -548,7 +548,7 @@ public sealed partial class HemomancerSystem : EntitySystem
     private void OnBloodBringersRite(EntityUid uid, VampireComponent comp, ref VampireBloodBringersRiteActionEvent args)
     {
         if (args.Handled
-            || !comp.ActionEntities.TryGetValue("ActionVampireBloodBringersRite", out var actionEntity)
+            || !comp.ActionEntities.TryGetValue(VampireComponent.BloodBringersRiteActionId, out var actionEntity)
             || !TryComp<HemomancerComponent>(uid, out var hemomancer)
             || !TryComp<VampireProgressionComponent>(uid, out var progression))
             return;

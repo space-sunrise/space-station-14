@@ -448,7 +448,7 @@ public sealed partial class VampireSystem : EntitySystem
 
         _popup.PopupEntity(Loc.GetString(drinker.FangsExtended ? "vampire-fangs-extended" : "vampire-fangs-retracted"), uid, uid);
 
-        if (comp.ActionEntities.TryGetValue("ActionVampireToggleFangs", out var actionEntity) && _actions.GetAction(actionEntity) is { } action)
+        if (comp.ActionEntities.TryGetValue(VampireComponent.ToggleFangsActionId, out var actionEntity) && _actions.GetAction(actionEntity) is { } action)
             _actions.SetToggled(action.AsNullable(), drinker.FangsExtended);
         Dirty(uid, drinker);
         args.Handled = true;
@@ -846,7 +846,7 @@ public sealed partial class VampireSystem : EntitySystem
             return;
 
         if (args.Handled
-            || !comp.ActionEntities.TryGetValue("ActionVampireGlare", out var actionEntity)
+            || !comp.ActionEntities.TryGetValue(VampireComponent.GlareActionId, out var actionEntity)
             || !CheckAndConsumeBloodCost(uid, comp, actionEntity))
             return;
 
@@ -959,7 +959,7 @@ public sealed partial class VampireSystem : EntitySystem
     private void OnRejuvenateI(EntityUid uid, VampireComponent comp, ref VampireRejuvenateIActionEvent args)
     {
         if (args.Handled
-            || !comp.ActionEntities.TryGetValue("ActionVampireRejuvenateI", out var actionEntity)
+            || !comp.ActionEntities.TryGetValue(VampireComponent.RejuvenateIActionId, out var actionEntity)
             || !CheckAndConsumeBloodCost(uid, comp, actionEntity))
             return;
 
@@ -971,7 +971,7 @@ public sealed partial class VampireSystem : EntitySystem
     private void OnRejuvenateII(EntityUid uid, VampireComponent comp, ref VampireRejuvenateIIActionEvent args)
     {
         if (args.Handled
-            || !comp.ActionEntities.TryGetValue("ActionVampireRejuvenateII", out var actionEntity)
+            || !comp.ActionEntities.TryGetValue(VampireComponent.RejuvenateIIActionId, out var actionEntity)
             || !CheckAndConsumeBloodCost(uid, comp, actionEntity))
             return;
 
