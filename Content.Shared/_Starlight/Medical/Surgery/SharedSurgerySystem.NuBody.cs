@@ -55,7 +55,7 @@ public abstract partial class SharedSurgerySystem
     {
         return part switch
         {
-            "Head" => SlotFlags.HEAD | SlotFlags.MASK | SlotFlags.EYES,
+            "Head" => SlotFlags.HEAD | SlotFlags.EYES,
             "Torso" => SlotFlags.OUTERCLOTHING | SlotFlags.INNERCLOTHING,
             "Arm" => SlotFlags.OUTERCLOTHING | SlotFlags.INNERCLOTHING,
             "Hand" => SlotFlags.GLOVES,

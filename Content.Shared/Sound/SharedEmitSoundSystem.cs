@@ -126,6 +126,11 @@ public abstract class SharedEmitSoundSystem : EntitySystem
 
     private void OnEmitSoundOnPickup(EntityUid uid, EmitSoundOnPickupComponent component, GotEquippedHandEvent args)
     {
+        // Sunrise added start - не воспроизводим pickup-звук при первичной синхронизации контейнеров
+        if (Timing.ApplyingState)
+            return;
+        // Sunrise added end
+
         TryEmitSound(uid, component, args.User);
     }
 

@@ -1,5 +1,6 @@
 ﻿using Content.Server._Sunrise.TTS;
 using Content.Shared._Sunrise.TTS;
+using Content.Shared.Implants.Components;
 using Content.Shared.VoiceMask;
 using Content.Shared.Silicons.StationAi;
 
@@ -17,6 +18,19 @@ public partial class VoiceMaskSystem
     {
         if (TryComp<VoiceMaskerComponent>(uid, out var maskerComponent))
             args.VoiceId = maskerComponent.VoiceId;
+
+        // Голосовой имплант находится в отдельном контейнере и не получает TTS-событие через общий implant relay.
+        if (!_container.TryGetContainer(uid, ImplanterComponent.ImplantSlotId, out var implantContainer))
+            return;
+
+        foreach (var implant in implantContainer.ContainedEntities)
+        {
+            if (TryComp<VoiceMaskComponent>(implant, out var voiceMask) && voiceMask.Active)
+            {
+                args.VoiceId = voiceMask.VoiceId;
+                break;
+            }
+        }
     }
 
     private void OnChangeVoice(EntityUid uid, VoiceMaskComponent component, VoiceMaskChangeVoiceMessage message)

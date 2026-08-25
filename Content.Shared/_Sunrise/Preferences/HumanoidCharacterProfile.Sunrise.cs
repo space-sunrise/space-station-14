@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared._Sunrise;
+using Content.Shared._Sunrise.Loadouts;
 using Content.Shared._Sunrise.Preferences;
 using Content.Shared._Sunrise.TTS;
 using Content.Shared.Humanoid;
@@ -73,7 +74,29 @@ public sealed partial class HumanoidCharacterProfile
         IDependencyCollection collection,
         string[] sponsorPrototypes)
     {
+        NormalizeSunriseLoadoutIds(collection.Resolve<IPrototypeManager>());
         SunriseProfile = SunriseProfile.Validated(this, species, sex, session, collection, sponsorPrototypes);
+    }
+
+    /// <summary>
+    /// Возвращает лодауты, ошибочно сохранённые под ID из Sunrise-пула, к каноническим ID должностей.
+    /// </summary>
+    private void NormalizeSunriseLoadoutIds(IPrototypeManager prototypeManager)
+    {
+        foreach (var pool in prototypeManager.EnumeratePrototypes<LoadoutPoolPrototype>())
+        {
+            foreach (var (roleId, effectiveRoleId) in pool.RoleLoadouts)
+            {
+                if (roleId == effectiveRoleId || !_loadouts.Remove(effectiveRoleId.Id, out var loadout))
+                    continue;
+
+                if (_loadouts.ContainsKey(roleId.Id))
+                    continue;
+
+                loadout.Role = roleId;
+                _loadouts.Add(roleId.Id, loadout);
+            }
+        }
     }
 
     private static HumanoidCharacterAppearance EnsureSunriseAppearanceValid(

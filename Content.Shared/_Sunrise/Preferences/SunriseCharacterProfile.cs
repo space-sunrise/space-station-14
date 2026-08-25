@@ -184,9 +184,6 @@ public sealed partial class SunriseCharacterProfile : IEquatable<SunriseCharacte
         var validAlternativeTitles = new Dictionary<ProtoId<JobPrototype>, LocId>();
         foreach (var (jobId, alternativeTitle) in result._jobAlternativeTitles)
         {
-            if (!profile.JobPriorities.ContainsKey(jobId))
-                continue;
-
             if (!prototype.TryIndex<JobPrototype>(jobId, out var job))
                 continue;
 
