@@ -30,12 +30,6 @@ public sealed partial class VampireProgressionComponent : Component
     public int BlindInc = 0;
 
     /// <summary>
-    /// Минимальное изменение крови, запускающее обновление состояния действий.
-    /// </summary>
-    [DataField]
-    public int ActionRefreshThreshold = 5;
-
-    /// <summary>
     /// Общий объём крови, необходимый для предложения выбора класса.
     /// </summary>
     [DataField]

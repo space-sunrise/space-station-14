@@ -54,15 +54,6 @@ public sealed partial class DantalionComponent : VampireClassComponent
     public EntProtoId RallyOverlayEffect = "VampireRallyOverlayEffect";
 
     [DataField]
-    public int ThrallHealBurn = 3;
-
-    [DataField]
-    public int ThrallHealBrute = 3;
-
-    [DataField]
-    public int ThrallHealAsphyxiation = 5;
-
-    [DataField]
     public int ThrallLevel2Blood = 400;
 
     [DataField]

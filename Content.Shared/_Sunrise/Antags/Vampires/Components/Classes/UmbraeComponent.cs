@@ -10,8 +10,6 @@ public sealed partial class UmbraeComponent : VampireClassComponent
     [AutoNetworkedField]
     public bool CloakOfDarknessActive = false;
 
-    public int CloakOfDarknessLoopId = 0;
-
     [DataField]
     public int BreakLightBloodThreshold = 300;
 
