@@ -336,12 +336,13 @@ public sealed partial class DantalionSystem : EntitySystem
             }
         }
 
+        // Читаем значение до удаления компонента
+        var stunTime = comp.DeconvertStunDuration;
+
         //Удаляем компонент
         RemComp<VampireThrallComponent>(thrall);
 
-
-        //Если всё сработало, тхралл оглушается на пару секунд, чтобы осознать произошедшееand notice they are no longer a thrall
-        var stunTime = comp.DeconvertStunDuration;
+        //Если всё сработало, тхралл оглушается на пару секунд, чтобы осознать произошедшее
         _stun.TryUpdateParalyzeDuration(thrall, stunTime);
 
         return true;
