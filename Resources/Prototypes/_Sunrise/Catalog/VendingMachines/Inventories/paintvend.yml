@@ -2,5 +2,3 @@
   id: PaintVendInventory
   startingInventory:
     SprayPaint: 4
-  emaggedInventory:
-    MechPaintRipleyReaper: 1
