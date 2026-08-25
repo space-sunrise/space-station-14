@@ -1,0 +1,65 @@
+using Content.Shared._Sunrise.Antags.Vampires.Prototypes;
+using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
+
+namespace Content.Shared._Sunrise.Antags.Vampires.Components;
+
+/// <summary>
+/// Идентичность вампира: класс и выдача способностей.
+/// Прогрессия, питьё, лечение, святая вода вынесены в отдельные компоненты:
+/// VampireProgressionComponent, VampireBloodDrinkerComponent, VampireHealingComponent, VampireHolyComponent.
+/// </summary>
+[RegisterComponent, NetworkedComponent]
+[AutoGenerateComponentState]
+public sealed partial class VampireComponent : Component
+{
+    /// <summary>
+    /// Идентификатор прототипа выбранного класса вампира.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public ProtoId<VampireClassPrototype>? ChosenClassId;
+
+    /// <summary>
+    /// Базовые способности, добавляются при старте.
+    /// </summary>
+    [DataField]
+    public List<EntProtoId> BaseVampireActions = new()
+    {
+        "ActionVampireToggleFangs",
+        "ActionVampireGlare",
+        "ActionVampireRejuvenateI",
+        "ActionVampireSleep"
+    };
+
+    /// <summary>
+    /// Ключевые идентификаторы действий, которыми системы управляют явно.
+    /// </summary>
+    [DataField]
+    public EntProtoId ClassSelectActionId = "ActionClassSelectId";
+
+    [DataField]
+    public List<EntProtoId> RejuvenateActions = new()
+    {
+        "ActionVampireRejuvenateI",
+        "ActionVampireRejuvenateII"
+    };
+
+    /// <summary>
+    /// Сущности действий вампира: ActionId -> EntityUid.
+    /// </summary>
+    public Dictionary<EntProtoId, EntityUid> ActionEntities = new();
+
+    /// <summary>
+    /// Текущая созданная сущность вампирских когтей, если есть.
+    /// </summary>
+    public EntityUid? SpawnedClaws = null;
+}
+
+[RegisterComponent]
+public sealed partial class ShadowSnareBlindMarkerComponent : Component { }
+
+[RegisterComponent]
+public sealed partial class ShadowSnareEnsnareComponent : Component
+{
+    public EntityUid Victim;
+}
