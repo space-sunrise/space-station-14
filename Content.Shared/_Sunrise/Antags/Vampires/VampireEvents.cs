@@ -719,6 +719,12 @@ public sealed partial class VampireSeismicStompActionEvent : InstantActionEvent
     public float ThrowDistance = 3f;
     [DataField]
     public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/Effects/Footsteps/largethud.ogg");
+
+    /// <summary>
+    /// Прототип визуального эффекта топота.
+    /// </summary>
+    [DataField]
+    public EntProtoId EffectPrototype = "VampireSeismicStompEffect";
 }
 
 public sealed partial class VampireOverwhelmingForceActionEvent : InstantActionEvent;

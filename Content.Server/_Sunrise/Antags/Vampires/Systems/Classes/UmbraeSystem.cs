@@ -133,8 +133,7 @@ public sealed partial class UmbraeSystem : EntitySystem
     private void OnShadowSnare(EntityUid uid, VampireComponent comp, ref VampireShadowSnareActionEvent args)
     {
         if (args.Handled
-            || !TryComp<UmbraeComponent>(uid, out var umbrae)
-            || !HasComp<UmbraeComponent>(uid))
+            || !TryComp<UmbraeComponent>(uid, out var umbrae))
             return;
 
         var target = args.Target;
@@ -240,8 +239,7 @@ public sealed partial class UmbraeSystem : EntitySystem
     private void OnEternalDarkness(EntityUid uid, VampireComponent comp, ref VampireEternalDarknessActionEvent args)
     {
         if (args.Handled
-            || !TryComp<UmbraeComponent>(uid, out var umbrae)
-            || !HasComp<UmbraeComponent>(uid))
+            || !TryComp<UmbraeComponent>(uid, out var umbrae))
             return;
 
         if (!umbrae.EternalDarknessActive)
@@ -428,8 +426,7 @@ public sealed partial class UmbraeSystem : EntitySystem
     private void OnShadowAnchor(EntityUid uid, VampireComponent comp, ref VampireShadowAnchorActionEvent args)
     {
         if (args.Handled
-            || !TryComp<UmbraeComponent>(uid, out var umbrae)
-            || !HasComp<UmbraeComponent>(uid))
+            || !TryComp<UmbraeComponent>(uid, out var umbrae))
             return;
 
         if (umbrae.SpawnedShadowAnchorBeacon != null && Exists(umbrae.SpawnedShadowAnchorBeacon))

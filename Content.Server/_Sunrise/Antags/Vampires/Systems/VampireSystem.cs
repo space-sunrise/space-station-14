@@ -69,7 +69,6 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private StatusEffectsSystem _statusEffects = default!;
     [Dependency] private ILogManager _log = default!;
-    //[Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private FlammableSystem _flammable = default!;
     [Dependency] private MobThresholdSystem _mobThreshold = default!;
     [Dependency] private MovementSpeedModifierSystem _movementSpeed = default!;
@@ -228,10 +227,7 @@ public sealed partial class VampireSystem : EntitySystem
         var hadBlood = progression.DrunkBlood > 0;
 
         if (hadBlood)
-        {
             DrainBlood(uid, vampire, sunlight);
-
-        }
         else
         {
             if (!ApplyGeneticSpaceDamage(uid, sunlight))

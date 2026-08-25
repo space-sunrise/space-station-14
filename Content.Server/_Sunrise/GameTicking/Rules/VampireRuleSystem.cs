@@ -24,8 +24,6 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
     [Dependency] private ObjectivesSystem _objective = default!;
     [Dependency] private SharedUserInterfaceSystem _ui = default!; // Sunrise-Edit: для выбора класса
 
-    public readonly SoundSpecifier BriefingSound = new SoundPathSpecifier("/Audio/_Sunrise/Ambience/Antag/vampire_start.ogg");
-
     public override void Initialize()
     {
         base.Initialize();
@@ -52,15 +50,14 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
         var meta = MetaData(target);
         var name = meta?.EntityName ?? "Unknown";
         var briefing = Loc.GetString("vampire-role-greeting", ("name", name));
-        _antag.SendBriefing(target, briefing, Color.Yellow, BriefingSound);
+        _antag.SendBriefing(target, briefing, Color.Yellow, rule.BriefingSound);
 
         if (
              _role.MindHasRole<VampireRoleComponent>(mindId, out var vampRole)
           && _role.MindHasRole<RoleBriefingComponent>(mindId, out var briefingComp)
         )
         {
-            AddComp<RoleBriefingComponent>(vampRole.Value.Owner);
-            Comp<RoleBriefingComponent>(vampRole.Value.Owner).Briefing = briefing;
+            EnsureComp<RoleBriefingComponent>(vampRole.Value.Owner).Briefing = briefing;
         }
 
         EnsureComp<VampireComponent>(target);

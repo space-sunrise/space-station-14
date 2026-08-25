@@ -232,7 +232,7 @@ public sealed partial class GargantuaSystem : EntitySystem
         _audio.PlayPvs(args.Sound, xform.Coordinates, AudioParams.Default.WithVolume(3f));
 
         // Спавним визуальный эффект на позиции вампира
-        Spawn("VampireSeismicStompEffect", xform.Coordinates);
+        Spawn(args.EffectPrototype, xform.Coordinates);
 
         args.Handled = true;
     }
@@ -243,7 +243,6 @@ public sealed partial class GargantuaSystem : EntitySystem
 
     private void OnDoorPried(ref PriedEvent args)
     {
-
         if (!TryComp<GargantuaComponent>(args.User, out var component))
             return;
 
@@ -285,10 +284,10 @@ public sealed partial class GargantuaSystem : EntitySystem
         if (_transform.GetGrid(args.Target) != gridUid)
             return;
 
-        var direction = (args.Target.Position - xform.Coordinates.Position).Normalized();
-
+        var direction = args.Target.Position - xform.Coordinates.Position;
         if (direction == Vector2.Zero)
             return;
+        direction = direction.Normalized();
 
         if (!Exists(actionEntity)
             || !_vampireActions.TryUse(uid, actionEntity))

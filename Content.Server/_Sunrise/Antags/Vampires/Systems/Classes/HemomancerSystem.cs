@@ -134,11 +134,11 @@ public sealed partial class HemomancerSystem : EntitySystem
             || !TryComp<VampireBloodDrinkerComponent>(uid, out var drinker))
             return;
 
-        if (progression.TotalBlood < 300)
+        if (progression.TotalBlood < hemomancer.BloodHealThreshold)
             return;
 
         var wasStarving = drinker.BloodFullness <= 0f;
-        drinker.BloodFullness = MathF.Min(drinker.MaxBloodFullness, drinker.BloodFullness + 5f);
+        drinker.BloodFullness = MathF.Min(drinker.MaxBloodFullness, drinker.BloodFullness + hemomancer.BloodFullnessRestore);
         if (wasStarving && drinker.BloodFullness > 0f)
             _movementSpeed.RefreshMovementSpeedModifiers(uid);
 
@@ -166,7 +166,10 @@ public sealed partial class HemomancerSystem : EntitySystem
         }
 
         var coords = Transform(uid).Coordinates;
-        var claws = Spawn("VampiricClawsItem", coords);
+        var clawsPrototype = TryComp<HemomancerComponent>(uid, out var hemomancerComp)
+            ? hemomancerComp.ClawsPrototype
+            : new EntProtoId("VampiricClawsItem");
+        var claws = Spawn(clawsPrototype, coords);
         active.SpawnedClaws = claws;
 
         if (TryComp<VampireComponent>(uid, out var vampire))
@@ -523,9 +526,6 @@ public sealed partial class HemomancerSystem : EntitySystem
             if (!TryComp(targetUid, out TransformComponent? targetXform) || _container.IsEntityOrParentInContainer(targetUid))
                 continue;
 
-            if (targetXform == null)
-                continue;
-
             var visual = Spawn("VampireBloodEruptionVisual", targetXform.Coordinates);
             _audio.PlayPvs(args.Sound, visual, AudioParams.Default.WithVolume(-2f));
         }
@@ -671,7 +671,7 @@ public sealed partial class HemomancerSystem : EntitySystem
         VampireComponent comp,
         HemomancerComponent hemomancer)
     {
-        if (!comp.ActionEntities.TryGetValue("ActionVampireBloodBringersRite", out var actionEntity)
+        if (!comp.ActionEntities.TryGetValue(VampireComponent.BloodBringersRiteActionId, out var actionEntity)
             || !hemomancer.BloodBringersRiteActive
             || !TryComp<VampireProgressionComponent>(uid, out var progression))
             return false;
@@ -922,7 +922,8 @@ public sealed partial class HemomancerSystem : EntitySystem
         var warps = AllEntityQuery<WarpPointComponent, TransformComponent>();
         while (warps.MoveNext(out var warpUid, out var warp, out var warpXform))
         {
-            if (_whitelist.IsWhitelistPass(warp.Blacklist, warpUid))
+            // Пропускаем warp'ы, которые в blacklist (например, GhostWarpPoint для живых)
+            if (!_whitelist.IsWhitelistPass(warp.Blacklist, warpUid))
                 continue;
 
             if (string.IsNullOrWhiteSpace(warp.Location))

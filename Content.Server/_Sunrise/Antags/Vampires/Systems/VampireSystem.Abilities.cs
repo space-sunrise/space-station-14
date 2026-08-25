@@ -190,32 +190,10 @@ public sealed partial class VampireSystem : EntitySystem
     /// Общая валидация вампирских способностей
     /// проверка компонента + валидация класса + стоимость действия
     /// </summary>
-    internal bool ValidateVampireAbility(EntityUid uid, [NotNullWhen(true)] out VampireComponent? comp, ProtoId<VampireClassPrototype>? requiredClass = null, EntityUid? actionEntity = null)
-    {
-        if (!TryComp(uid, out comp))
-            return false;
-
-        if (!ValidateVampireClass(uid, comp, requiredClass))
-            return false;
-
-        if (actionEntity.HasValue && !CheckAndConsumeBloodCost(uid, comp, actionEntity.Value))
-            return false;
-
-        return true;
-    }
-
     internal bool CanUseVampireAbility(EntityUid uid, VampireComponent comp, EntityUid? actionEntity = null, int bloodCost = 0, bool showPopup = true)
     {
         return TryResolveVampireActionCost(uid, comp, actionEntity, bloodCost, out var resolvedCost, showPopup)
             && CanSpendBlood(uid, comp, resolvedCost, showPopup);
-    }
-
-    internal bool CanUseGrantedVampireAction(EntityUid uid, EntityUid? actionEntity = null, int bloodCost = 0, bool showPopup = true)
-    {
-        if (TryComp<VampireComponent>(uid, out var comp))
-            return CanUseVampireAbility(uid, comp, actionEntity, bloodCost, showPopup);
-
-        return CanUseNonVampireGrantedAction(uid, actionEntity, showPopup);
     }
 
     internal bool CheckAndConsumeGrantedVampireAction(EntityUid uid, EntityUid? actionEntity = null, int bloodCost = 0)
@@ -385,10 +363,7 @@ public sealed partial class VampireSystem : EntitySystem
         if (!TryComp<VampireActionComponent>(action, out var vac))
             return true;
 
-        if (vac.AllowNonVampireUsers)
-            return true;
-
-        return false;
+        return vac.AllowNonVampireUsers;
     }
 
     internal bool IsProtectedByFaith(EntityUid target)

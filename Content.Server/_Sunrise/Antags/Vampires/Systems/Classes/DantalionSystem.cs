@@ -264,7 +264,6 @@ public sealed partial class DantalionSystem : EntitySystem
 
         TryAssignThrallObeyObjective(uid, target, thrallComp);
 
-
         _popup.PopupEntity(Loc.GetString("vampire-enthrall-success", ("target", Identity.Entity(target, EntityManager))), uid, uid);
         _popup.PopupEntity(Loc.GetString("vampire-enthrall-target"), target, target, PopupType.Medium);
         args.Handled = true;
