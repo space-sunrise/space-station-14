@@ -6,6 +6,9 @@ namespace Content.Shared._Sunrise.Antags.Vampires.Components;
 [RegisterComponent]
 public sealed partial class VampireDevourableComponent : Component
 {
+    /// <summary>
+    /// Длительность doafter потребления сущности.
+    /// </summary>
     [DataField]
     public TimeSpan DevourDelay = TimeSpan.FromSeconds(2);
 

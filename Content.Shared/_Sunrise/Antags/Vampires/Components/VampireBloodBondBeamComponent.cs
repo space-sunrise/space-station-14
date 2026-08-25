@@ -9,6 +9,9 @@ namespace Content.Shared._Sunrise.Antags.Vampires.Components;
 [RegisterComponent]
 public sealed partial class VampireBloodBondBeamComponent : Component
 {
+    /// <summary>
+    /// Прототип визуального луча Кровавой связи.
+    /// </summary>
     [DataField(required: true)]
     public EntProtoId VisualPrototype;
 

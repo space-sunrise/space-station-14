@@ -35,6 +35,9 @@ public sealed partial class VampireProgressionComponent : Component
     [DataField]
     public int ClassSelectThreshold = 150;
 
+    /// <summary>
+    /// Достигнута ли полная сила вампира.
+    /// </summary>
     [ViewVariables(VVAccess.ReadOnly), DataField, AutoNetworkedField]
     public bool FullPower = false;
 

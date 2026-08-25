@@ -11,6 +11,9 @@ namespace Content.Shared._Sunrise.Antags.Vampires.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class HysteriaVisionComponent : Component
 {
+    /// <summary>
+    /// Время окончания эффекта истерического зрения.
+    /// </summary>
     [DataField, AutoNetworkedField]
     public TimeSpan EndTime;
 

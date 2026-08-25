@@ -9,6 +9,9 @@ namespace Content.Shared._Sunrise.Antags.Vampires.Components;
 [RegisterComponent]
 public sealed partial class VampireDrainBeamComponent : Component
 {
+    /// <summary>
+    /// Прототип визуального луча вытягивания.
+    /// </summary>
     [DataField(required: true)]
     public EntProtoId VisualPrototype;
 

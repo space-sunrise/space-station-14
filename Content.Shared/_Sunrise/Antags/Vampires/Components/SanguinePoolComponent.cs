@@ -20,18 +20,33 @@ public sealed partial class SanguinePoolComponent : Component
     [DataField]
     public EntProtoId? TrailPrototype = "PuddleBlood";
 
+    /// <summary>
+    /// Прототип эффекта при выходе из формы Кровавой лужи.
+    /// </summary>
     [DataField]
     public EntProtoId ExitEffectPrototype = "VampireSanguinePoolIn";
 
+    /// <summary>
+    /// Звук выхода из формы Кровавой лужи.
+    /// </summary>
     [DataField]
     public SoundSpecifier ExitSound = new SoundPathSpecifier("/Audio/_Sunrise/Effects/vampire/exit_blood.ogg");
 
+    /// <summary>
+    /// Реагент, добавляемый в лужу-след при движении.
+    /// </summary>
     [DataField]
     public ProtoId<ReagentPrototype> TrailReagent = "Blood";
 
+    /// <summary>
+    /// Количество реагента, добавляемого в лужу-след.
+    /// </summary>
     [DataField]
     public FixedPoint2 TrailReagentQuantity = FixedPoint2.New(30);
 
+    /// <summary>
+    /// Последний тайл, на котором оставлен след (для защиты от дублей).
+    /// </summary>
     [ViewVariables]
     public (EntityUid Grid, Vector2i Tile)? LastTrail;
 }

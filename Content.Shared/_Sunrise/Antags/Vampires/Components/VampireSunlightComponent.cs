@@ -71,14 +71,23 @@ public sealed partial class VampireSunlightComponent : Component
     [DataField]
     public LocId WarningPopup = "vampire-space-burn-warning";
 
+    /// <summary>
+    /// Время входа вампира в космос (null — вне космоса).
+    /// </summary>
     [ViewVariables]
     [AutoPausedField]
     public TimeSpan? TimeEnteredSpace;
 
+    /// <summary>
+    /// Время следующего тика урона от космоса.
+    /// </summary>
     [ViewVariables]
     [AutoPausedField]
     public TimeSpan? NextDamageTime;
 
+    /// <summary>
+    /// Время следующего предупреждения о горении в космосе.
+    /// </summary>
     [ViewVariables]
     [AutoPausedField]
     public TimeSpan NextWarningPopup;

@@ -8,6 +8,9 @@ namespace Content.Shared._Sunrise.Antags.Vampires.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class ShadowSnareComponent : Component
 {
+    /// <summary>
+    /// Урон, наносимый цели при срабатывании ловушки.
+    /// </summary>
     [DataField]
     public DamageSpecifier Damage = new()
     {
@@ -17,6 +20,9 @@ public sealed partial class ShadowSnareComponent : Component
         }
     };
 
+    /// <summary>
+    /// Длительность слепоты при срабатывании ловушки.
+    /// </summary>
     [DataField, AutoNetworkedField]
     public float BlindDuration = 20f;
 
@@ -50,9 +56,15 @@ public sealed partial class ShadowSnareComponent : Component
     [DataField, AutoNetworkedField]
     public float BreakoutTime = 8f;
 
+    /// <summary>
+    /// Звук срабатывания ловушки.
+    /// </summary>
     [DataField]
     public SoundSpecifier TriggerSound = new SoundPathSpecifier("/Audio/Effects/snap.ogg");
 
+    /// <summary>
+    /// Прототип сущности-ловушки, применяемой к цели.
+    /// </summary>
     [DataField]
     public EntProtoId EnsnarePrototype = "VampireShadowSnareEnsnare";
 }

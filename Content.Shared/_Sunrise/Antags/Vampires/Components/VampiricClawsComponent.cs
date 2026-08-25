@@ -11,6 +11,9 @@ public sealed partial class VampiricClawsComponent : Component
     [DataField]
     public int HitsRemaining = 15;
 
+    /// <summary>
+    /// Количество крови, высасываемое за успешный удар.
+    /// </summary>
     [DataField]
     public int BloodPerHit = 5;
 }

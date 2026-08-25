@@ -37,6 +37,9 @@ public sealed partial class VampireComponent : Component
     [DataField]
     public EntProtoId ClassSelectActionId = "ActionClassSelectId";
 
+    /// <summary>
+    /// Пара действий Омоложения: базовое и улучшенное (I, II).
+    /// </summary>
     [DataField]
     public List<EntProtoId> RejuvenateActions = new()
     {
