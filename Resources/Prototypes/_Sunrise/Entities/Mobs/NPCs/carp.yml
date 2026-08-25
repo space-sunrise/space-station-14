@@ -24,22 +24,6 @@
     - type: Temperature
     - type: TemperatureDamage
       heatDamageThreshold: 1200
-    - type: MobThresholds
-      thresholds:
-        0: Alive
-        60: Dead
-    - type: MeleeWeapon
-      damage:
-        types:
-          Blunt: 6
-          Slash: 6
-          Structural: 15
-    - type: Tag
-      tags:
-      - Carp
-      - DoorBumpOpener
-      - NoPaint
-      - CarpRiftHealTarget
 
 - type: entity
   id: MobSharkDragon
@@ -74,23 +58,12 @@
       - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
         state: mouth
         shader: unshaded
-    - type: MobThresholds
-      thresholds:
-        0: Alive
-        125: Dead
     - type: MeleeWeapon
       damage:
         types:
-          Blunt: 9
-          Slash: 9
+          Slash: 10
           Bloodloss: 5
-          Structural: 25
-    - type: Tag
-      tags:
-      - Carp
-      - DoorBumpOpener
-      - NoPaint
-      - CarpRiftHealTarget
+          Structural: 30
 
 - type: entity
   id: MobCarpRainbowDragon
@@ -125,25 +98,9 @@
       maxCharge: 1000
       startingCharge: 1000
     - type: Gun
-      fireRate: 1
+      fireRate: 1.3
       useKey: false
       selectedMode: SemiAuto
       availableModes:
       - SemiAuto
       soundGunshot: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-    - type: MobThresholds
-      thresholds:
-        0: Alive
-        70: Dead
-    - type: MeleeWeapon
-      damage:
-        types:
-          Blunt: 7
-          Slash: 7
-          Structural: 15
-    - type: Tag
-      tags:
-      - Carp
-      - DoorBumpOpener
-      - NoPaint
-      - CarpRiftHealTarget
