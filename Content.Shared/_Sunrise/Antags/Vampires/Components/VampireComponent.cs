@@ -54,12 +54,3 @@ public sealed partial class VampireComponent : Component
     /// </summary>
     public EntityUid? SpawnedClaws = null;
 }
-
-[RegisterComponent]
-public sealed partial class ShadowSnareBlindMarkerComponent : Component { }
-
-[RegisterComponent]
-public sealed partial class ShadowSnareEnsnareComponent : Component
-{
-    public EntityUid Victim;
-}
