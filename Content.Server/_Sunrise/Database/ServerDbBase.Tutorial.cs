@@ -46,6 +46,10 @@ public abstract partial class ServerDbBase
         {
             entry!.CompletedAt = now;
             entry.CompletionCount++;
+
+            // Восстанавливаем возраст для записей, созданных во время недоступности auth API.
+            if (entry.AccountAgeDays == null && accountAgeDays != null)
+                entry.AccountAgeDays = accountAgeDays;
         }
 
         await db.DbContext.SaveChangesAsync();
