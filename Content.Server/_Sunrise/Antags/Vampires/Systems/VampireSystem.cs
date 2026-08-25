@@ -551,16 +551,6 @@ public sealed partial class VampireSystem : EntitySystem
             umbrae.SpawnedShadowAnchorBeacon = null;
             umbrae.ShadowAnchorAutoReturnTime = null;
         }
-
-        if (_playerShadowSnares.TryGetValue(uid, out var snares))
-        {
-            foreach (var trap in snares.ToArray())
-            {
-                if (Exists(trap))
-                    QueueDel(trap);
-            }
-            _playerShadowSnares.Remove(uid);
-        }
     }
 
     partial void UpdateVampireAlert(EntityUid uid);

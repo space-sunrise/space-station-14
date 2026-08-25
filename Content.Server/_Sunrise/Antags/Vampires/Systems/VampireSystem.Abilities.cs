@@ -56,7 +56,6 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private SharedStealthSystem _stealth = default!;
     private static readonly SoundSpecifier _biteSound = new SoundPathSpecifier("/Audio/Effects/bite.ogg");
     private static readonly SoundSpecifier _devourSound = new SoundPathSpecifier("/Audio/Effects/demon_consume.ogg");
-    private readonly Dictionary<EntityUid, List<EntityUid>> _playerShadowSnares = new();
     [Dependency] private FlashImmunitySystem _flashImmunity = default!;
 
     private void InitializeAbilities()
