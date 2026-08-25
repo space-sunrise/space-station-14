@@ -1,6 +1,5 @@
 using System.Linq;
 using System.Numerics;
-using Content.Server.Actions;
 using Content.Server.Destructible;
 using Content.Shared._Sunrise.Antags.Vampires;
 using Content.Shared._Sunrise.Antags.Vampires.Components;

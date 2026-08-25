@@ -752,7 +752,7 @@ public sealed partial class VampireSystem : EntitySystem
 
         var target = args.Target;
 
-       if (target == uid)
+        if (target == uid)
             return;
 
         if (IsProtectedByFaith(target)
