@@ -148,8 +148,6 @@
   - GygaxPeripheralsElectronics
   - GygaxTargetingElectronics
   - WeaponMechCombatUltraRifle
-  - PaintGygaxWhite
-  - PaintGygaxOld
   technologyPrerequisites:
   - Ripley2
   radioChannels:
@@ -194,9 +192,6 @@
   - DurandTargetingElectronics
   - WeaponMechCombatShotgun
   - WeaponMechCombatShotgunIncendiary
-  - PaintDurandExecutor
-  - PaintDurandShire
-  - PaintDurandOld
   - PowerCageHigh
   technologyPrerequisites:
   - Gygax

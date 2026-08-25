@@ -1113,22 +1113,6 @@
       - NukeOpsUplink
 
 - type: listing
-  id: UplinkMechPaintMaulerMeowler
-  name: uplink-mechpaint-mauler-name
-  description: uplink-mechpaint-mauler-desc
-  productEntity: MechPaintMaulerMeowler
-  cost:
-    Telecrystal: 1
-  categories:
-  - UplinkPointless
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-      - LoneOpsUplink
-
-- type: listing
   id: UplinkClothingBackpackSyndie
   name: uplink-clothing-backpack-syndie-name
   productEntity: ClothingBackpackSyndie

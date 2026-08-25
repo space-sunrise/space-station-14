@@ -4735,4 +4735,25 @@
     message: Добавлен ввод HEX цветов в окно декалей
   id: 2016
   url: https://github.com/makura-games/sunrise-station/pull/4760
-  
+- author: kanopus7
+  time: '2026-08-24T19:08:19.0000000+00:00'
+  changes:
+  - type: Fix
+    message: Пофикшена войсмаска.
+  - type: Fix
+    message: Пофикшен дарвиниум.
+  - type: Fix
+    message: Пофикшено количество маркингов.
+  - type: Fix
+    message: Пофикшена хирургия на голове при наличии маски.
+  - type: Remove
+    message: У мехов вырезана покраска.
+  id: 2016
+  url: https://github.com/makura-games/sunrise-station/pull/4759
+- author: dng-cher
+  time: '2026-08-24T08:36:00.0000000+00:00'
+  changes:
+  - type: Add
+    message: Добавлен ввод HEX цветов в окно декалей
+  id: 2017
+  url: https://github.com/makura-games/sunrise-station/pull/4760

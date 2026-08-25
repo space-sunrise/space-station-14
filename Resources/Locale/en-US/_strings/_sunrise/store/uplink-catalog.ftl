@@ -92,9 +92,6 @@ uplink-sniper-ammo-hp-desc = A box of 14 hollow point cartridges for the Hristov
 
 uplink-music-boombox-name = Syndicate Music Kit
 uplink-music-boombox-desc = Contains a Syndicate boombox and several cassette tapes for it.
-uplink-mechpaint-mauler-name = "MEOWLER" Spray Can
-uplink-mechpaint-mauler-desc = Contains paint for the Mauler. Turn that hulking mech into a cute kitty!
-
 ## Clothing
 
 uplink-syndie-nvd-name = Syndicate NVGs
