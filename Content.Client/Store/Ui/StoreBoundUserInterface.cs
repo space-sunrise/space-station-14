@@ -7,9 +7,9 @@ using Robust.Shared.Prototypes;
 namespace Content.Client.Store.Ui;
 
 [UsedImplicitly]
-public sealed class StoreBoundUserInterface : BoundUserInterface
+public sealed partial class StoreBoundUserInterface : BoundUserInterface // Sunrise-Edit - генератор инъекции зависимостей требует partial-класс.
 {
-    private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!; // Sunrise-Edit - менеджер нужен для поиска по прототипам товаров.
     private readonly StoreSystem _storeSystem = default!;
 
     [ViewVariables]

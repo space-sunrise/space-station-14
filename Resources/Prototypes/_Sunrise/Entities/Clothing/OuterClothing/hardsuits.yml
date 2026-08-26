@@ -1215,12 +1215,6 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
-  - type: EmitSoundOnWearerMove
-    sound:
-      collection: FootstepBoots
-      params:
-        volume: -6
-        variation: 0.09
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitTSF

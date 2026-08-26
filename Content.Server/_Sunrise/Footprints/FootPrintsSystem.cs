@@ -377,9 +377,8 @@ public sealed partial class FootprintSystem : EntitySystem
     /// </summary>
     private void TransferReagents(EntityUid footprintEntity, Entity<FootprintEmitterComponent> emitter, Entity<SolutionComponent> emitterSolution, bool stand)
     {
-        if (!_solutionQuery.TryComp(footprintEntity, out var container)
-            || !_footprintQuery.TryComp(footprintEntity, out var footprint)
-            || !_solution.ResolveSolution((footprintEntity, container),
+        if (!_footprintQuery.TryComp(footprintEntity, out var footprint)
+            || !_solution.ResolveSolution(footprintEntity,
                 footprint.ContainerName,
                 ref footprint.SolutionContainer,
                 out _))
