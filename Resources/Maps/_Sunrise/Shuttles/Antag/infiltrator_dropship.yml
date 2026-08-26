@@ -1474,7 +1474,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 12.673821,-3.4985032
       parent: 1
-- proto: VendingMachineWallMedicalCivilian
+- proto: VendingMachineWallMedicalCivilianSyndicate
   entities:
   - uid: 189
     components:
@@ -1681,7 +1681,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 7.5,-4.5
       parent: 1
-- proto: WeaponLightMachineGunL6MaxBiocode
+- proto: WeaponLightMachineGunL6
   entities:
   - uid: 172
     components:

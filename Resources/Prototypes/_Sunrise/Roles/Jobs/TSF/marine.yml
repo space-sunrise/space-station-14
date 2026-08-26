@@ -102,11 +102,11 @@
     - MedkitCombatFilled
     - CableDetStack
     belt:
-    - MagazineBoxRifleHP
-    - MagazineRifleM52HP
-    - MagazineRifleM52HP
-    - MagazineRifleM52HP
-    - MagazineRifleM52HP
+    - MagazineBoxRifleSP
+    - MagazineRifleM52SP
+    - MagazineRifleM52SP
+    - MagazineRifleM52SP
+    - MagazineRifleM52SP
     - MagazineBoxMagnumSP
     - MagazineMagnum
     - MagazineMagnum

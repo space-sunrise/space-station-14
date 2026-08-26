@@ -24,6 +24,7 @@ public sealed partial class NetTexturesManager
     private const int MinTransferPublishBudgetBytes = 512 * 1024;
     private const int MaxTransferPublishBudgetBytes = 8 * 1024 * 1024;
     private const int TransferPublishBytesPerSecond = 64 * 1024 * 1024;
+    private const int MaxDeferredDisposalsPerFrame = 8;
     #endregion
 
     #region Dependencies
@@ -50,6 +51,7 @@ public sealed partial class NetTexturesManager
     private readonly Queue<PreparationRequest> _prepareRequests = new();
     private readonly List<(string ResourceKey, ResPath ResPath)> _resourcesReadyToPrepare = new();
     private readonly Dictionary<ResPath, RsiCompletenessEntry> _rsiCompleteness = new();
+    private readonly Queue<IDisposable> _deferredDisposals = new();
 
     private CancellationTokenSource _sessionCts = new();
     private int _sessionGeneration;
@@ -135,6 +137,8 @@ public sealed partial class NetTexturesManager
     /// <param name="frameTime">Прошедшее время кадра в секундах.</param>
     public void Update(float frameTime)
     {
+        ProcessDeferredDisposals();
+
         lock (_pendingTransferBatches)
         {
             if (_pendingTransferBatches.Count != 0)
@@ -146,6 +150,18 @@ public sealed partial class NetTexturesManager
 
         if (_preparedUploads.Count != 0)
             ProcessPreparedUploads(frameTime);
+    }
+
+    /// <summary>
+    /// Постепенно освобождает ресурсы прошлой сессии, не блокируя переход в меню одним большим пакетом GPU-вызовов.
+    /// </summary>
+    private void ProcessDeferredDisposals()
+    {
+        var remaining = MaxDeferredDisposalsPerFrame;
+        while (remaining-- > 0 && _deferredDisposals.TryDequeue(out var disposable))
+        {
+            disposable.Dispose();
+        }
     }
     #endregion
 }

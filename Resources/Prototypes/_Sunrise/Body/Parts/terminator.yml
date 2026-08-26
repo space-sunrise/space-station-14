@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: BaseItem
+  parent: OrganBase
   id: PartTerminator
   name: nt-800 body part
   components:
@@ -11,16 +11,14 @@
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Cybernetic
-  - type: BodyPart
-  - type: ContainerContainer
-    containers:
-      bodypart: !type:Container
-        ents: []
   - type: StaticPrice
     price: 200
+  - type: VisualOrganMarkings
+    markingData:
+      group: Terminator
 
 - type: entity
-  parent: PartTerminator
+  parent: [PartTerminator, OrganBaseTorso]
   id: TorsoTerminator
   name: nt-800 torso
   components:
@@ -28,11 +26,8 @@
     state: torso_m
   - type: Icon
     state: torso_m
-  - type: BodyPart
-    partType: Torso
-
 - type: entity
-  parent: PartTerminator
+  parent: [PartTerminator, OrganBaseHead]
   id: HeadTerminator
   name: nt-800 skull
   description: Its red eyes have powered down... for now.
@@ -42,8 +37,6 @@
     state: skull_icon
   - type: Icon
     state: skull_icon
-  - type: BodyPart
-    partType: Head
   # killing a terminators worth big bucks
   - type: StaticPrice
     price: 2000
@@ -52,7 +45,7 @@
     - Head
 
 - type: entity
-  parent: PartTerminator
+  parent: [PartTerminator, OrganBaseArmLeft]
   id: LeftArmTerminator
   name: left nt-800 arm
   components:
@@ -60,12 +53,8 @@
     state: l_arm
   - type: Icon
     state: l_arm
-  - type: BodyPart
-    partType: Arm
-    symmetry: Left
-
 - type: entity
-  parent: PartTerminator
+  parent: [PartTerminator, OrganBaseArmRight]
   id: RightArmTerminator
   name: right nt-800 arm
   components:
@@ -73,12 +62,8 @@
     state: r_arm
   - type: Icon
     state: r_arm
-  - type: BodyPart
-    partType: Arm
-    symmetry: Right
-
 - type: entity
-  parent: PartTerminator
+  parent: [PartTerminator, OrganBaseHandLeft]
   id: LeftHandTerminator
   name: left nt-800 hand
   components:
@@ -86,12 +71,8 @@
     state: l_hand
   - type: Icon
     state: l_hand
-  - type: BodyPart
-    partType: Hand
-    symmetry: Left
-
 - type: entity
-  parent: PartTerminator
+  parent: [PartTerminator, OrganBaseHandRight]
   id: RightHandTerminator
   name: right nt-800 hand
   components:
@@ -99,12 +80,8 @@
     state: r_hand
   - type: Icon
     state: r_hand
-  - type: BodyPart
-    partType: Hand
-    symmetry: Right
-
 - type: entity
-  parent: PartTerminator
+  parent: [PartTerminator, OrganBaseLegLeft]
   id: LeftLegTerminator
   name: left nt-800 leg
   components:
@@ -112,13 +89,9 @@
     state: l_leg
   - type: Icon
     state: l_leg
-  - type: BodyPart
-    partType: Leg
-    symmetry: Left
-  - type: MovementBodyPart
 
 - type: entity
-  parent: PartTerminator
+  parent: [PartTerminator, OrganBaseLegRight]
   id: RightLegTerminator
   name: right nt-800 leg
   components:
@@ -126,13 +99,9 @@
     state: r_leg
   - type: Icon
     state: r_leg
-  - type: BodyPart
-    partType: Leg
-    symmetry: Right
-  - type: MovementBodyPart
 
 - type: entity
-  parent: PartTerminator
+  parent: [PartTerminator, OrganBaseFootLeft]
   id: LeftFootTerminator
   name: left nt-800 foot
   components:
@@ -140,12 +109,8 @@
     state: l_foot
   - type: Icon
     state: l_foot
-  - type: BodyPart
-    partType: Foot
-    symmetry: Left
-
 - type: entity
-  parent: PartTerminator
+  parent: [PartTerminator, OrganBaseFootRight]
   id: RightFootTerminator
   name: right nt-800 foot
   components:
@@ -153,6 +118,3 @@
     state: r_foot
   - type: Icon
     state: r_foot
-  - type: BodyPart
-    partType: Foot
-    symmetry: Right

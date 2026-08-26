@@ -62,29 +62,6 @@
         state: sp
 
 - type: entity
-  id: BulletRifleTraceHeavyHP
-  parent: BulletTrace
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: RadarBlip
-    color: "#FF6A6A"
-    scale: 0.3
-    shape: Triangle
-    requireInSpace: true
-  - type: Projectile
-    armorPenetration: -0.75
-    damage:
-      types:
-        Piercing: 30 # +30%
-  - type: StaminaDamageOnCollide
-    damage: 30
-  - type: ProjectilePierce
-    chance: 0.05
-    deviation: 0.05
-  - type: ProjectileRicochet
-    chance: 0.15
-
-- type: entity
   id: BulletRifleTraceHeavyFMJ
   parent: BulletTrace
   categories: [ HideSpawnMenu ]

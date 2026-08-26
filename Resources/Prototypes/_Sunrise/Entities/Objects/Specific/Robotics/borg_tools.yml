@@ -984,7 +984,7 @@
     materialComposition:
       Steel: 50
   - type: ReactionMixer
-    mixOnInteract: false
+    mixerType: None
     reactionTypes:
     - Shake
   - type: ExaminableSolution

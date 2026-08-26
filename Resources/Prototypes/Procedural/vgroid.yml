@@ -99,68 +99,68 @@
     - !type:OreDunGen
       replacement: IronRock
       entity: IronRockIronCrab
-      count: 15
-      minGroupSize: 3
+      count: 8
+      minGroupSize: 2
       maxGroupSize: 3
     - !type:OreDunGen
       replacement: IronRock
       entity: IronRockCoalCrab
-      count: 15
-      minGroupSize: 2
+      count: 8
+      minGroupSize: 1
       maxGroupSize: 2
     - !type:OreDunGen
       replacement: IronRock
       entity: IronRockQuartzCrab
-      count: 15
-      minGroupSize: 4
+      count: 8
+      minGroupSize: 2
       maxGroupSize: 4
     - !type:OreDunGen
       replacement: IronRock
       entity: IronRockGoldCrab
-      count: 10
-      minGroupSize: 3
+      count: 5
+      minGroupSize: 2
       maxGroupSize: 3
     - !type:OreDunGen
       replacement: IronRock
       entity: IronRockSilverCrab
-      count: 10
-      minGroupSize: 3
+      count: 5
+      minGroupSize: 2
       maxGroupSize: 3
     - !type:OreDunGen
       replacement: IronRock
       entity: SunriseVGRoidIronRockBananiumCrabChance
-      count: 5
-      minGroupSize: 2
+      count: 3
+      minGroupSize: 1
       maxGroupSize: 3
     - !type:OreDunGen
       replacement: IronRock
       entity: IronRockBananiumCrab
-      count: 5
-      minGroupSize: 2
+      count: 3
+      minGroupSize: 1
       maxGroupSize: 3
     - !type:OreDunGen
       replacement: IronRock
       entity: IronRockSaltCrab
-      count: 15
-      minGroupSize: 8
-      maxGroupSize: 12
+      count: 8
+      minGroupSize: 3
+      maxGroupSize: 8
     - !type:OreDunGen
       replacement: IronRock
       entity: IronRockPlasmaCrab
-      count: 15
-      minGroupSize: 4
+      count: 8
+      minGroupSize: 2
       maxGroupSize: 8
     - !type:OreDunGen
       replacement: IronRock
       entity: IronRockDiamondCrab
-      count: 5
+      count: 3
       minGroupSize: 1
       maxGroupSize: 2
     - !type:OreDunGen
       replacement: IronRock
       entity: IronRockUraniumCrab
-      count: 10
-      minGroupSize: 2
+      count: 5
+      minGroupSize: 1
       maxGroupSize: 3
       # Sunrise-end
 
@@ -265,7 +265,7 @@
   id: VGRoidExteriorDungeonsMobs
   table: !type:GroupSelector
     children:
-    - id: SalvageSpawnerMobMiningAsteroid
+    - id: SalvageSpawnerMobMiningAsteroidTurret # Sunrise-Edit
       amount: 1
 
 #- type: dungeonConfig

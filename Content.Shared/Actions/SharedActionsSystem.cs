@@ -46,8 +46,8 @@ public abstract partial class SharedActionsSystem : EntitySystem
         InitializeActionDoAfter();
 
         _actionQuery = GetEntityQuery<ActionComponent>();
-        // Sunrise-Edit - инициализация query для динамических параметров target action
-        _targetActionQuery = GetEntityQuery<TargetActionComponent>();
+
+        _targetActionQuery = GetEntityQuery<TargetActionComponent>(); // Sunrise-Edit - кеш для настроек целевых действий
         _actionsQuery = GetEntityQuery<ActionsComponent>();
         _mindQuery = GetEntityQuery<MindComponent>();
 

@@ -32,7 +32,6 @@
     outerClothing: ClothingOuterArmorBlueShield
     id: BlueShieldOperativePDA
     ears: ClothingHeadsetCentCom
-    belt: ClothingBeltBlueShieldWebbingFilled
     gloves: ClothingHandsGlovesCombat
     neck: ClothingBSMantle
     back: ClothingBackpackSatchelBlueShield

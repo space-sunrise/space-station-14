@@ -5,14 +5,15 @@ using Content.Server.Chat.Systems;
 using Content.Server.Cuffs;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Fluids.EntitySystems;
-using Content.Server.Humanoid;
 using Content.Server.Mind;
 using Content.Server.Popups;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
 using Content.Server.Store.Systems;
 using Content.Server.Weapons.Ranged.Systems;
+using Content.Shared._Sunrise.Humanoid;
 using Content.Shared.Alert;
+using Content.Shared.Body;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
@@ -45,12 +46,11 @@ public sealed partial class FleshCultSystem : EntitySystem
     [Dependency] private readonly StoreSystem _store = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly PuddleSystem _puddleSystem = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly HumanoidAppearanceSystem _sharedHuApp = default!;
+    [Dependency] private readonly SunriseHumanoidBodySystem _sunriseBody = default!;
     [Dependency] private readonly SharedAppearanceSystem _sharedAppearance = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly BodySystem _body = default!;
+    [Dependency] private readonly GibbingSystem _gibbing = default!;
     [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private readonly GunSystem _gunSystem = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
@@ -80,7 +80,6 @@ public sealed partial class FleshCultSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly MapSystem _mapSystem = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
-    [Dependency] private readonly GibbingSystem _gibbingSystem = default!;
 
     private readonly List<string> _speciesWhitelist =
     [
