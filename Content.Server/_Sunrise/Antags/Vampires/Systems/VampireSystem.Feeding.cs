@@ -24,11 +24,11 @@ public sealed partial class VampireSystem
 {
     // Укусы и питание кровью.
 
-    [Dependency] private readonly BloodstreamSystem _blood = default!;
-    [Dependency] private readonly DoAfterSystem _doAfter = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly BlindableSystem _blindable = default!;
+    [Dependency] private readonly BloodstreamSystem _blood = null!;
+    [Dependency] private readonly DoAfterSystem _doAfter = null!;
+    [Dependency] private readonly AudioSystem _audio = null!;
+    [Dependency] private readonly InventorySystem _inventory = null!;
+    [Dependency] private readonly BlindableSystem _blindable = null!;
 
     private void InitializeFeeding()
     {

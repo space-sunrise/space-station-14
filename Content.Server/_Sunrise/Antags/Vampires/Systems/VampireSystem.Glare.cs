@@ -16,7 +16,7 @@ public sealed partial class VampireSystem
 {
     // Вампирский взгляд.
 
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = null!;
 
     private void InitializeGlare()
     {

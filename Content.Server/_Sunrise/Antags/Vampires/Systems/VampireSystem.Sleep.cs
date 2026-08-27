@@ -14,7 +14,7 @@ public sealed partial class VampireSystem
 {
     // Усыпление цели.
 
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IRobustRandom _random = null!;
 
     private void InitializeSleep()
     {

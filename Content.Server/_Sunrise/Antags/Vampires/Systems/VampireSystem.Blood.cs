@@ -172,6 +172,8 @@ public sealed partial class VampireSystem
         return true;
     }
 
+    // Возможно, можно добавить сюда расу милир
+
     internal bool IsProtectedByFaith(EntityUid target)
         => HasComp<BibleUserComponent>(target);
 

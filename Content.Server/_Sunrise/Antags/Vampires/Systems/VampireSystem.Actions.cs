@@ -13,8 +13,8 @@ public sealed partial class VampireSystem
 {
     // Выдача и настройка действий.
 
-    [Dependency] private readonly IComponentFactory _componentFactory = default!;
-    [Dependency] private readonly ChargesSystem _charges = default!;
+    [Dependency] private readonly IComponentFactory _componentFactory = null!;
+    [Dependency] private readonly ChargesSystem _charges = null!;
 
     private readonly List<EntProtoId> _missingActions = [];
 
