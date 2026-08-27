@@ -27,7 +27,6 @@ using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using DrawDepth = Content.Shared.DrawDepth.DrawDepth;
-using Content.Shared._Sunrise.Paint;
 using Content.Shared.Humanoid;
 using Content.Shared.SubFloor;
 using Content.Shared.Nutrition.EntitySystems;

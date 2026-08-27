@@ -50487,29 +50487,6 @@ entities:
         discountDownTo: {}
         disableRefund: False
         costModifiersBySourceId: {}
-      - id: UplinkPiratePaintWarboss
-        productEntity: MechPaintDollHouseWarboss
-        name: null
-        discountCategory: null
-        description: null
-        categories:
-        - UplinkPiratePointless
-        originalCost:
-          Doubloon: 5
-        conditions: null
-        icon: null
-        priority: 0
-        productAction: null
-        applyToMob: False
-        productUpgradeId: null
-        productActionEntity: null
-        productEvent: null
-        raiseProductEventOnUser: False
-        purchaseAmount: 0
-        restockTime: 0
-        discountDownTo: {}
-        disableRefund: False
-        costModifiersBySourceId: {}
       - id: Vomit
         productEntity: null
         name: listing-disease-vomit-name
@@ -56499,41 +56476,6 @@ entities:
         productEvent: !type:FleshCultistUnlockAbilityEvent
           prototype: FleshCultistArmor
         raiseProductEventOnUser: True
-        purchaseAmount: 0
-        restockTime: 0
-        discountDownTo: {}
-        disableRefund: False
-        costModifiersBySourceId: {}
-      - id: UplinkMechPaintMaulerMeowler
-        productEntity: MechPaintMaulerMeowler
-        name: uplink-mechpaint-mauler-name
-        discountCategory: null
-        description: uplink-mechpaint-mauler-desc
-        categories:
-        - UplinkPointless
-        originalCost:
-          Telecrystal: 1
-        conditions:
-        - !type:StoreWhitelistCondition
-          blacklist: null
-          whitelist:
-            requireAll: False
-            statusEffects: null
-            species: null
-            requireAllTags: False
-            tags:
-            - NukeOpsUplink
-            - LoneOpsUplink
-            sizes: null
-            components: null
-        icon: null
-        priority: 0
-        productAction: null
-        applyToMob: False
-        productUpgradeId: null
-        productActionEntity: null
-        productEvent: null
-        raiseProductEventOnUser: False
         purchaseAmount: 0
         restockTime: 0
         discountDownTo: {}

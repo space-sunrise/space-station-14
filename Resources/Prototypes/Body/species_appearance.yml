@@ -56,6 +56,10 @@
     - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
+    # Sunrise added start - опорные слои маркировок хищника
+    - map: [ "enum.HumanoidVisualLayers.Dreadlocks" ]
+    - map: [ "enum.HumanoidVisualLayers.Rings" ]
+    # Sunrise added end
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
     - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
     - map: [ "enum.HumanoidVisualLayers.Tail" ]
