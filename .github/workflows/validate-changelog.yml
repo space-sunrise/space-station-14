@@ -54,6 +54,7 @@ jobs:
         id: parse
         continue-on-error: true
         env:
+          GITHUB_TOKEN: ${{ github.token }}
           CHANGELOG_FILE: ${{ vars.CHANGELOG_FILE || 'Resources/Changelog/ChangelogSunrise.yml' }}
           CHANGELOG_EXTRA_CATEGORIES: ${{ vars.CHANGELOG_EXTRA_CATEGORIES }}
         run: >-

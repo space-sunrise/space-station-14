@@ -16,6 +16,7 @@ os.environ["CHANGELOG_FILE"] = "Resources/Changelog/ChangelogSunrise.yml"
 
 import actions_changelogs_since_last_run as discord_changelog
 import changelog_actions
+import changelog_schema
 import changelog_targets
 import dispatch_changelogs
 import manual_changelog
@@ -627,6 +628,9 @@ class ChangelogActionsTests(unittest.TestCase):
             updater_path.write_bytes(
                 (REPO_ROOT / changelog_actions.UPDATER_PATH).read_bytes(),
             )
+            updater_path.with_name("changelog_schema.py").write_bytes(
+                (REPO_ROOT / "Tools/_sunrise/changelog/changelog_schema.py").read_bytes(),
+            )
 
             pull_request = {
                 "number": 123,
@@ -662,6 +666,32 @@ class ChangelogActionsTests(unittest.TestCase):
                 0,
                 changelog_actions.write_pull_request_parts(repo_root, [pull_request], "master"),
             )
+
+    def test_updater_reports_multiple_categories_without_corrupting_json(self):
+        with tempfile.TemporaryDirectory() as directory:
+            repo_root = Path(directory)
+            changelog_dir = repo_root / changelog_actions.CHANGELOG_PATH
+            parts_dir = repo_root / changelog_actions.PARTS_PATH
+            updater_path = repo_root / changelog_actions.UPDATER_PATH
+            parts_dir.mkdir(parents=True)
+            updater_path.parent.mkdir(parents=True)
+            updater_path.write_bytes((REPO_ROOT / changelog_actions.UPDATER_PATH).read_bytes())
+            updater_path.with_name("changelog_schema.py").write_bytes(
+                (REPO_ROOT / "Tools/_sunrise/changelog/changelog_schema.py").read_bytes(),
+            )
+            (changelog_dir / "ChangelogSunrise.yml").write_text("Entries: []\n", encoding="utf-8")
+            (changelog_dir / "Fish.yml").write_text("Entries: []\n", encoding="utf-8")
+            (parts_dir / "fish.yml").write_text(
+                "category: Fish\nauthor: Рыба\nchanges:\n- type: Add\n  message: Добавлено\n",
+                encoding="utf-8",
+            )
+
+            reports = changelog_actions.update_changelogs(
+                repo_root,
+                {changelog_actions.MAIN_CATEGORY: "ChangelogSunrise.yml", "Fish": "Fish.yml"},
+            )
+
+        self.assertEqual([0, 1], [report["added"] for report in reports])
 
     def test_updater_handles_null_entries_deterministically_and_keeps_unicode(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -704,14 +734,33 @@ class ChangelogActionsTests(unittest.TestCase):
         self.assertEqual(2, len(message_lines))
         self.assertTrue(all(long_message in line for line in message_lines))
 
-    def test_updater_ignores_existing_entry_without_id(self):
+    def test_updater_repairs_missing_nested_and_duplicate_ids(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             changelog = root / "Changelog.yml"
             parts = root / "Parts"
             parts.mkdir()
             changelog.write_text(
-                "Entries:\n- author: Без идентификатора\n- author: С идентификатором\n  id: 7\n",
+                """Entries:
+- author: Без идентификатора
+  time: '2026-08-16T10:30:08+00:00'
+  changes:
+  - type: Add
+    message: Добавлено
+    id: 7
+- author: С идентификатором
+  time: '2026-08-16T11:30:08+00:00'
+  changes:
+  - type: Fix
+    message: Исправлено
+  id: 7
+- author: С повтором
+  time: '2026-08-16T12:30:08+00:00'
+  changes:
+  - type: Tweak
+    message: Изменено
+  id: 7
+""",
                 encoding="utf-8",
             )
             (parts / "part.yml").write_text(
@@ -719,7 +768,7 @@ class ChangelogActionsTests(unittest.TestCase):
                 encoding="utf-8",
             )
 
-            subprocess.run(
+            result = subprocess.run(
                 [
                     sys.executable,
                     str(REPO_ROOT / "Tools/_sunrise/changelog/update_changelog.py"),
@@ -731,8 +780,14 @@ class ChangelogActionsTests(unittest.TestCase):
                 text=True,
             )
             document = yaml.safe_load(changelog.read_text(encoding="utf-8-sig"))
+            report = json.loads(result.stdout)
 
-        self.assertEqual(8, document["Entries"][-1]["id"])
+        self.assertEqual([7, 8, 9, 10], [entry["id"] for entry in document["Entries"]])
+        self.assertNotIn("id", document["Entries"][1]["changes"][0])
+        self.assertEqual(
+            ["nested_id", "missing_id", "duplicate_id"],
+            [repair["code"] for repair in report["repairs"]],
+        )
 
     def test_changelog_targets_are_sorted_and_require_complete_configuration(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -1048,6 +1103,10 @@ class ChangelogActionsTests(unittest.TestCase):
 
     def test_first_discord_workflow_uses_previous_stable_publish(self):
         previous = {"id": 100, "head_commit": {"id": "abc"}}
+        first_attempt = {
+            "id": 250,
+            "display_title": f"Discord changelog sunrise for {'b' * 40}",
+        }
 
         with patch.dict(
             "os.environ",
@@ -1061,8 +1120,16 @@ class ChangelogActionsTests(unittest.TestCase):
         ), patch.object(
             discord_changelog,
             "get_most_recent_workflow",
-            side_effect=[None, previous],
+            return_value=None,
         ) as recent, patch.object(
+            discord_changelog,
+            "get_earliest_target_attempt",
+            return_value=first_attempt,
+        ) as earliest, patch.object(
+            discord_changelog,
+            "get_source_release_before_attempt",
+            return_value=previous,
+        ) as source, patch.object(
             discord_changelog,
             "get_last_changelog_by_sha",
             return_value="Entries: []",
@@ -1070,9 +1137,11 @@ class ChangelogActionsTests(unittest.TestCase):
             result = discord_changelog.get_last_changelog(Path("Resources/Changelog/ChangelogSunrise.yml"))
 
         self.assertEqual("Entries: []", result)
-        self.assertEqual("300", recent.call_args_list[0].args[2])
-        self.assertEqual("sunrise", recent.call_args_list[0].args[3])
-        self.assertEqual("200", recent.call_args_list[1].args[2])
+        recent.assert_called_once()
+        self.assertEqual("300", recent.call_args.args[2])
+        self.assertEqual("sunrise", recent.call_args.args[3])
+        self.assertEqual(("300", "sunrise"), earliest.call_args.args[2:])
+        self.assertEqual(("200", first_attempt), source.call_args.args[2:])
         self.assertEqual("abc", load.call_args.args[1])
         self.assertTrue(load.call_args.kwargs["allow_missing"])
 
@@ -1112,6 +1181,10 @@ class ChangelogActionsTests(unittest.TestCase):
     def test_discord_workflow_falls_back_when_previous_title_has_no_sha(self):
         previous_discord = {"id": 250, "display_title": "Старое имя запуска"}
         previous_stable = {"id": 100, "head_commit": {"id": "stable-sha"}}
+        first_attempt = {
+            "id": 251,
+            "display_title": f"Discord changelog sunrise for {'b' * 40}",
+        }
 
         with patch.dict(
             "os.environ",
@@ -1125,16 +1198,25 @@ class ChangelogActionsTests(unittest.TestCase):
         ), patch.object(
             discord_changelog,
             "get_most_recent_workflow",
-            side_effect=[previous_discord, previous_stable],
+            return_value=previous_discord,
         ) as recent, patch.object(
+            discord_changelog,
+            "get_earliest_target_attempt",
+            return_value=first_attempt,
+        ), patch.object(
+            discord_changelog,
+            "get_source_release_before_attempt",
+            return_value=previous_stable,
+        ), patch.object(
             discord_changelog,
             "get_last_changelog_by_sha",
             return_value="Entries: []",
         ) as load:
             discord_changelog.get_last_changelog(Path("Resources/Changelog/ChangelogSunrise.yml"))
 
-        self.assertEqual(["300", "200"], [item.args[2] for item in recent.call_args_list])
-        self.assertEqual("sunrise", recent.call_args_list[0].args[3])
+        recent.assert_called_once()
+        self.assertEqual("300", recent.call_args.args[2])
+        self.assertEqual("sunrise", recent.call_args.args[3])
         self.assertEqual("stable-sha", load.call_args.args[1])
 
     def test_checkpoint_falls_back_to_latest_changelog_entry(self):
@@ -1170,6 +1252,9 @@ class ChangelogActionsTests(unittest.TestCase):
             updater_path.parent.mkdir(parents=True)
             updater_path.write_bytes(
                 (REPO_ROOT / changelog_actions.UPDATER_PATH).read_bytes(),
+            )
+            updater_path.with_name("changelog_schema.py").write_bytes(
+                (REPO_ROOT / "Tools/_sunrise/changelog/changelog_schema.py").read_bytes(),
             )
             (changelog_dir / "ChangelogSunrise.yml").write_text("Entries: []\n", encoding="utf-8")
             event_path = repo_root / "event.json"
@@ -1793,7 +1878,8 @@ class ChangelogActionsTests(unittest.TestCase):
 
         self.assertIn('if [[ -z "${MANUAL_CHANGELOG:-}" ]]', runner)
         self.assertNotIn("changelog-state.json", runner)
-        self.assertIn('git commit -m "Automatic changelog update [skip ci]"', runner)
+        self.assertIn('commit_message_file="$(mktemp)"', runner)
+        self.assertIn('git commit -F "$commit_message_file"', runner)
         self.assertIn('if [[ -z "${CHANGELOG_FILE:-}" ]]', runner)
         self.assertIn('changelog_directory="$(dirname -- "$CHANGELOG_FILE")"', runner)
         self.assertIn('"$category" == *".."*', runner)
@@ -1828,6 +1914,7 @@ class ChangelogActionsTests(unittest.TestCase):
         self.assertIn("context=changelog/parse", workflow)
         self.assertIn("-f state=pending", workflow)
         self.assertIn("--validate-only", workflow)
+        self.assertIn("GITHUB_TOKEN: ${{ github.token }}", workflow)
         self.assertIn("continue-on-error: true", workflow)
         self.assertIn("steps.parse.outcome != 'success'", workflow)
 
@@ -1867,6 +1954,224 @@ class ChangelogActionsTests(unittest.TestCase):
             ],
             staged,
         )
+
+    def test_schema_validator_and_repair_share_issue_messages(self):
+        document = {
+            "Entries": [
+                {
+                    "author": "Fish",
+                    "time": "2026-08-16T10:30:08+00:00",
+                    "changes": [{"type": "Add", "message": "Карта", "id": 21}],
+                },
+                {
+                    "author": "Sunrise",
+                    "time": "2026-08-16T11:30:08+00:00",
+                    "changes": [{"type": "Fix", "message": "Исправление"}],
+                    "id": 7,
+                },
+                {
+                    "author": "Duplicate",
+                    "time": "2026-08-16T12:30:08+00:00",
+                    "changes": [{"type": "Tweak", "message": "Повтор"}],
+                    "id": 7,
+                },
+            ],
+        }
+
+        issues = changelog_schema.inspect_changelog_document(document)
+        repairs = changelog_schema.repair_changelog_document(document)
+
+        self.assertEqual(
+            [issue.message for issue in issues],
+            [repair.issue.message for repair in repairs],
+        )
+        self.assertEqual([7, 8, 9], sorted(entry["id"] for entry in document["Entries"]))
+        self.assertNotIn("id", document["Entries"][0]["changes"][0])
+
+    def test_commit_message_describes_repairs_and_keeps_normal_subject(self):
+        normal = changelog_actions.build_commit_message(
+            [{"file": "Resources/Changelog/ChangelogSunrise.yml", "added": 1, "repairs": []}],
+        )
+        repaired = changelog_actions.build_commit_message(
+            [
+                {
+                    "file": "Resources/Changelog/ChangelogFish.yml",
+                    "added": 2,
+                    "repairs": [
+                        {
+                            "code": "nested_id",
+                            "message": "Запись #1: ошибка id.",
+                            "resolution": "Поле id удалено.",
+                        },
+                    ],
+                },
+            ],
+        )
+
+        self.assertEqual("Automatic changelog update [skip ci]\n", normal)
+        self.assertTrue(repaired.startswith("Automatic changelog update + fix [skip ci]\n\n"))
+        self.assertIn("📄 Resources/Changelog/ChangelogFish.yml", repaired)
+        self.assertIn("- ❌ Запись #1: ошибка id.", repaired)
+        self.assertIn("  - ✅ Поле id удалено.", repaired)
+        self.assertIn("❓ Причина исправления:", repaired)
+
+    def test_pr_file_validation_reuses_schema_diagnostic(self):
+        document = """Entries:
+- author: Fish
+  time: '2026-08-16T10:30:08+00:00'
+  changes:
+  - type: Add
+    message: Карта
+    id: 21
+"""
+        expected = (
+            "Запись #1, изменение #1: поле id находится внутри changes; "
+            "id должен быть полем записи."
+        )
+
+        with tempfile.TemporaryDirectory() as directory:
+            summary = Path(directory) / "summary.md"
+            with patch.dict(
+                "os.environ",
+                {
+                    "GITHUB_TOKEN": "token",
+                    "GITHUB_REPOSITORY": "makura-games/fish-station",
+                    "GITHUB_STEP_SUMMARY": str(summary),
+                },
+            ), patch.object(
+                changelog_actions,
+                "list_changed_changelog_paths",
+                return_value=["Resources/Changelog/ChangelogFish.yml"],
+            ), patch.object(
+                changelog_actions,
+                "load_repository_file",
+                return_value=document,
+            ):
+                with self.assertRaisesRegex(RuntimeError, "не прошёл проверку структуры"):
+                    changelog_actions.validate_changed_changelog_files(
+                        {"number": 123, "head": {"sha": "a" * 40}},
+                    )
+
+            report = summary.read_text(encoding="utf-8")
+
+        self.assertIn(expected, report)
+        self.assertIn("Авторемонт удалит вложенное поле id.", report)
+
+    def test_discord_diff_falls_back_for_fish_ids_without_losing_entries(self):
+        old = {
+            "Entries": [
+                {
+                    "author": "Old",
+                    "time": "2026-08-16T10:30:08+00:00",
+                    "changes": [{"type": "Add", "message": "Карта", "id": 21}],
+                },
+                {
+                    "author": "Existing",
+                    "time": "2026-08-16T11:30:08+00:00",
+                    "changes": [{"type": "Fix", "message": "Старое"}],
+                    "id": 21,
+                },
+            ],
+        }
+        current = {
+            "Entries": [
+                {
+                    "author": "Old",
+                    "time": "2026-08-20T10:30:08+00:00",
+                    "changes": [{"type": "Add", "message": "Карта"}],
+                    "id": 27,
+                },
+                {
+                    "author": "New",
+                    "time": "2026-08-20T11:30:08+00:00",
+                    "changes": [{"type": "Fix", "message": "Новое"}],
+                    "id": 21,
+                },
+            ],
+        }
+
+        diff = list(discord_changelog.diff_changelog(old, current))
+
+        self.assertEqual(["New"], [entry["author"] for entry in diff])
+
+    def test_earliest_failed_target_attempt_is_used_for_bootstrap(self):
+        current = {
+            "id": 300,
+            "created_at": "2026-08-25T22:39:08Z",
+            "display_title": f"Discord changelog fish for {'d' * 40}",
+        }
+        past = {
+            "workflow_runs": [
+                {
+                    "id": 200,
+                    "created_at": "2026-08-18T23:03:34Z",
+                    "display_title": f"Discord changelog fish for {'b' * 40}",
+                },
+                {
+                    "id": 210,
+                    "created_at": "2026-08-18T23:03:36Z",
+                    "display_title": f"Discord changelog sunrise for {'b' * 40}",
+                },
+                {
+                    "id": 220,
+                    "created_at": "2026-08-18T23:15:39Z",
+                    "display_title": f"Discord changelog fish  for {'c' * 40}",
+                },
+            ],
+        }
+
+        with patch.object(discord_changelog, "get_current_run", return_value=current), patch.object(
+            discord_changelog,
+            "get_past_runs",
+            return_value=past,
+        ):
+            result = discord_changelog.get_earliest_target_attempt(
+                Mock(),
+                "makura-games/fish-station",
+                "300",
+                "fish",
+            )
+
+        self.assertEqual(200, result["id"])
+
+    def test_source_release_before_first_failed_attempt_stays_fixed(self):
+        first_sha = "b" * 40
+        first_attempt = {
+            "created_at": "2026-08-18T23:03:34Z",
+            "display_title": f"Discord changelog fish for {first_sha}",
+        }
+        source_run = {"workflow_url": "https://api.github.test/workflows/stable"}
+        source_history = {
+            "workflow_runs": [
+                {
+                    "id": 200,
+                    "created_at": "2026-08-18T22:50:00Z",
+                    "head_commit": {"id": first_sha},
+                },
+                {
+                    "id": 100,
+                    "created_at": "2026-08-14T22:00:00Z",
+                    "head_commit": {"id": "a" * 40},
+                },
+            ],
+        }
+
+        with patch.object(discord_changelog, "get_current_run", return_value=source_run), patch.object(
+            discord_changelog,
+            "get_past_runs",
+            return_value=source_history,
+        ):
+            result = discord_changelog.get_source_release_before_attempt(
+                Mock(),
+                "makura-games/fish-station",
+                "200",
+                first_attempt,
+            )
+
+        self.assertEqual(100, result["id"])
+
+    def test_target_id_trims_manual_whitespace(self):
+        self.assertEqual("fish", changelog_targets.validate_target_id(" fish "))
 
 
 if __name__ == "__main__":

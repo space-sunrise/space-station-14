@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
+import base64
 import json
 import os
 import re
@@ -14,12 +15,13 @@ from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
 from urllib.error import HTTPError
-from urllib.parse import urlencode
+from urllib.parse import quote, urlencode
 from urllib.request import Request, urlopen
 
 import yaml
 
 from changelog_path import validate_changelog_path
+from changelog_schema import ChangelogIssue, inspect_changelog_document
 
 
 MAIN_CATEGORY = "Main"
@@ -150,6 +152,98 @@ def write_validation_summary(title: str, content: str) -> None:
             summary.write(f"## {title}\n\n{content}\n")
 
 
+def list_changed_changelog_paths(number: int) -> list[str]:
+    repository = os.environ.get("GITHUB_REPOSITORY", "")
+    if not repository or "/" not in repository:
+        return []
+
+    paths: list[str] = []
+    page = 1
+    while True:
+        files = github_request(
+            f"/repos/{repository}/pulls/{number}/files",
+            {"per_page": 100, "page": page},
+        )
+        if not isinstance(files, list):
+            raise RuntimeError("GitHub API не вернул список файлов PR")
+
+        for item in files:
+            if not isinstance(item, dict) or not isinstance(item.get("filename"), str):
+                continue
+            filename = item["filename"]
+            path = Path(filename)
+            if (
+                path.parent == CHANGELOG_PATH
+                and path.suffix.casefold() in {".yml", ".yaml"}
+                and path.name.casefold().startswith("changelog")
+            ):
+                paths.append(filename)
+
+        if len(files) < 100:
+            return sorted(set(paths))
+        page += 1
+
+
+def load_repository_file(path: str, ref: str) -> str:
+    repository = os.environ.get("GITHUB_REPOSITORY", "")
+    response = github_request(
+        f"/repos/{repository}/contents/{quote(path, safe='/')}",
+        {"ref": ref},
+    )
+    if not isinstance(response, dict) or not isinstance(response.get("content"), str):
+        raise RuntimeError(f"GitHub API не вернул содержимое файла {path}")
+    try:
+        return base64.b64decode(response["content"]).decode("utf-8-sig")
+    except (ValueError, UnicodeDecodeError) as error:
+        raise RuntimeError(f"Не удалось декодировать файл {path}") from error
+
+
+def validate_changed_changelog_files(pull_request: dict[str, Any]) -> None:
+    if not os.environ.get("GITHUB_TOKEN") or not os.environ.get("GITHUB_REPOSITORY"):
+        return
+
+    number = int(pull_request["number"])
+    head = pull_request.get("head")
+    head_sha = head.get("sha") if isinstance(head, dict) else None
+    if not isinstance(head_sha, str) or not head_sha:
+        raise RuntimeError(f"PR #{number}: не найден SHA ветки для проверки чейнжлога")
+
+    reports: list[tuple[str, list[ChangelogIssue]]] = []
+    for path in list_changed_changelog_paths(number):
+        try:
+            document = yaml.safe_load(load_repository_file(path, head_sha))
+            issues = inspect_changelog_document(document)
+        except yaml.YAMLError as error:
+            issues = [
+                ChangelogIssue(
+                    "yaml",
+                    f"Файл {path}: YAML не удалось разобрать: {error.problem or error}.",
+                    "Исправьте синтаксис YAML вручную.",
+                ),
+            ]
+        reports.append((path, issues))
+
+    failed = False
+    for path, issues in reports:
+        if not issues:
+            report_status("success", f"{path}: структура чейнжлога корректна, авторемонт не требуется.")
+            write_validation_summary(
+                f"Структура {path}",
+                "✅ Структура чейнжлога корректна, авторемонт не требуется.",
+            )
+            continue
+
+        failed = True
+        lines = []
+        for issue in issues:
+            report_status("error", f"{path}: {issue.message}")
+            lines.append(f"- ❌ {escape(issue.message)}\n  - 🔧 {escape(issue.suggestion)}")
+        write_validation_summary(f"Ошибки структуры {path}", "\n".join(lines))
+
+    if failed:
+        raise RuntimeError(f"PR #{number}: изменённый файл чейнжлога не прошёл проверку структуры")
+
+
 def validate_pull_request_event(repo_root: Path, event_path: Path) -> None:
     event = json.loads(event_path.read_text(encoding="utf-8"))
     pull_request = event.get("pull_request")
@@ -157,6 +251,7 @@ def validate_pull_request_event(repo_root: Path, event_path: Path) -> None:
         raise RuntimeError("Событие не содержит pull_request")
 
     number = int(pull_request["number"])
+    validate_changed_changelog_files(pull_request)
     body = pull_request.get("body")
     template = load_pull_request_template(repo_root)
     if is_changelog_template(body, template):
@@ -690,20 +785,94 @@ def write_manual_parts(
     return written
 
 
-def update_changelogs(repo_root: Path, category_files: dict[str, str] = CATEGORY_FILES) -> None:
+def update_changelogs(
+    repo_root: Path,
+    category_files: dict[str, str] = CATEGORY_FILES,
+) -> list[dict[str, Any]]:
     updater = repo_root / UPDATER_PATH
     parts = repo_root / PARTS_PATH
+    reports: list[dict[str, Any]] = []
 
     for category, filename in category_files.items():
+        changelog_file = repo_root / CHANGELOG_PATH / filename
         command = [
             sys.executable,
             str(updater),
-            str(repo_root / CHANGELOG_PATH / filename),
+            str(changelog_file),
             str(parts),
         ]
         if category != MAIN_CATEGORY:
             command.extend(["--category", category])
-        subprocess.run(command, check=True)
+        try:
+            result = subprocess.run(
+                command,
+                check=True,
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+            )
+        except subprocess.CalledProcessError as error:
+            if error.stdout:
+                print(error.stdout, end="")
+            if error.stderr:
+                print(error.stderr, end="", file=sys.stderr)
+            raise
+
+        if result.stderr:
+            print(result.stderr, end="", file=sys.stderr)
+        try:
+            report = json.loads(result.stdout)
+        except json.JSONDecodeError as error:
+            raise RuntimeError(f"Обновлятор не вернул JSON-отчёт для {changelog_file}") from error
+        if not isinstance(report, dict) or not isinstance(report.get("repairs"), list):
+            raise RuntimeError(f"Обновлятор вернул некорректный отчёт для {changelog_file}")
+        report["file"] = changelog_file.relative_to(repo_root).as_posix()
+        reports.append(report)
+
+    return reports
+
+
+def build_commit_message(reports: list[dict[str, Any]]) -> str:
+    repair_count = sum(len(report["repairs"]) for report in reports)
+    if not repair_count:
+        return "Automatic changelog update [skip ci]\n"
+
+    added = sum(int(report.get("added", 0)) for report in reports)
+    lines = [
+        "Automatic changelog update + fix [skip ci]",
+        "",
+        "🛠 Автоматически исправлена структура чейнжлога.",
+        "",
+        f"📦 Добавлено новых записей: {added}",
+    ]
+    for report in reports:
+        repairs = report["repairs"]
+        if not repairs:
+            continue
+        lines.extend(("", f"📄 {report['file']}"))
+        for repair in repairs:
+            lines.append(f"- ❌ {repair['message']}")
+            lines.append(f"  - ✅ {repair['resolution']}")
+
+    lines.extend(
+        (
+            "",
+            "❓ Причина исправления:",
+            "Отсутствующие, вложенные или повторяющиеся идентификаторы id ломают сравнение релизов",
+            "и могут остановить либо пропустить публикацию в Discord.",
+            "",
+            "✅ Текст, авторы, время, ссылки и медиа записей не изменялись.",
+            "🤖 Исправление выполнено Sunrise-Bot.",
+        ),
+    )
+    return "\n".join(lines) + "\n"
+
+
+def write_commit_message(reports: list[dict[str, Any]]) -> None:
+    output_path = os.environ.get("CHANGELOG_COMMIT_MESSAGE_FILE")
+    if not output_path:
+        return
+    Path(output_path).write_text(build_commit_message(reports), encoding="utf-8")
 
 
 def main() -> None:
@@ -758,7 +927,8 @@ def main() -> None:
             category_files,
             current_pull_request_number=current_pull_request_number,
         )
-    update_changelogs(repo_root, category_files)
+    reports = update_changelogs(repo_root, category_files)
+    write_commit_message(reports)
 
     if written:
         report_status("success", f"Чейнджлог обновлён: подготовлено фрагментов — {written}.")
