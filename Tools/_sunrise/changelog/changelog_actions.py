@@ -63,6 +63,15 @@ CATEGORY_RE = re.compile(r"^\s*([a-z]+):\s*$", re.IGNORECASE)
 MEDIA_RE = re.compile(r"^\s*media:\s*(.+?)\s*$", re.IGNORECASE)
 MEDIA_MARKDOWN_RE = re.compile(r"^!?\[([^\]]*)\]\(\s*([^()\s]+)\s*\)$")
 MEDIA_URL_RE = re.compile(r"^[A-Za-z][A-Za-z0-9+.-]*://\S+$")
+MARKDOWN_HEADER_RE = re.compile(r"^[ \t]{0,3}(#{1,6})[ \t]+(.+?)[ \t]*#*[ \t]*$")
+MEDIA_SECTION_TITLE_RE = re.compile(
+    r"^(?:медиа|media)(?=$|[\s(:/|—-])",
+    re.IGNORECASE,
+)
+MEDIA_SECTION_MARKER_RE = re.compile(
+    r"^\s*<!--\s*changelog-media-section\s*-->\s*$",
+    re.IGNORECASE,
+)
 END_MARKER_RE = re.compile(r"^\s*:end-cl:\s*$", re.IGNORECASE)
 CHANGE_TYPES = {
     "add": "Add",
@@ -433,11 +442,68 @@ def parse_media_value(value: str) -> dict[str, Any]:
     raise ValueError(f"не удалось распознать строку медиа: media: {value.strip()[:120]}")
 
 
+def parse_pr_media_section(body: str | None) -> list[dict[str, Any]]:
+    source = body or ""
+    marker_lines = {
+        index
+        for index, line in enumerate(source.splitlines())
+        if MEDIA_SECTION_MARKER_RE.match(line)
+    }
+    text = _mask_ignored_text(source)
+    media: list[dict[str, Any]] = []
+    pending_description: list[str] = []
+    in_media_section = False
+
+    for line_index, source_line in enumerate(text.splitlines()):
+        had_ignored_text = COMMENT_PLACEHOLDER in source_line
+        line = source_line.replace(COMMENT_PLACEHOLDER, "")
+        heading = MARKDOWN_HEADER_RE.match(line)
+
+        if line_index in marker_lines:
+            in_media_section = True
+            pending_description.clear()
+            continue
+
+        if not in_media_section:
+            if MARKER_RE.match(line):
+                return []
+            if (
+                heading is not None
+                and len(heading.group(1)) == 2
+                and MEDIA_SECTION_TITLE_RE.match(heading.group(2).strip())
+            ):
+                in_media_section = True
+            continue
+
+        if heading is not None or MARKER_RE.match(line):
+            break
+        if had_ignored_text or not line.strip():
+            continue
+
+        source = line.strip()
+        if media_match := MEDIA_RE.match(source):
+            source = media_match.group(1)
+        try:
+            item = parse_media_value(source)
+        except ValueError:
+            pending_description.append(line.strip())
+            continue
+
+        if pending_description:
+            item["description"] = " ".join(pending_description)
+            pending_description.clear()
+        media.append(item)
+
+    return media
+
+
 def parse_pr_body(
     body: str | None,
     fallback_author: str,
     category_names: tuple[str, ...] = tuple(CATEGORY_FILES),
+    allow_inline_media: bool = False,
 ) -> tuple[str, list[ParsedCategory]] | None:
+    section_media = parse_pr_media_section(body)
     text = _mask_ignored_text(body or "")
     header = HEADER_RE.search(text)
     if header is None:
@@ -477,12 +543,20 @@ def parse_pr_body(
 
         media_match = MEDIA_RE.match(line)
         if media_match:
-            category = entries.setdefault(current_category, {"changes": [], "media": []})
-            if not category["changes"]:
-                raise ValueError(f"категория {current_category} содержит медиа, но не содержит записей изменений")
-            media = parse_media_value(media_match.group(1))
-            media["change"] = len(category["changes"]) - 1
-            category["media"].append(media)
+            if allow_inline_media:
+                category = entries.setdefault(current_category, {"changes": [], "media": []})
+                if not category["changes"]:
+                    raise ValueError(f"категория {current_category} содержит медиа, но не содержит записей изменений")
+                media = parse_media_value(media_match.group(1))
+                media["change"] = len(category["changes"]) - 1
+                category["media"].append(media)
+            continue
+
+        try:
+            parse_media_value(line)
+        except ValueError:
+            pass
+        else:
             continue
 
         entry_match = ENTRY_RE.match(line)
@@ -497,6 +571,10 @@ def parse_pr_body(
         category = entries.setdefault(current_category, {"changes": [], "media": []})
         current_change = {"type": change_type, "message": entry_match.group(2).strip()}
         category["changes"].append(current_change)
+
+    if section_media and entries:
+        media_category = MAIN_CATEGORY if MAIN_CATEGORY in entries else next(iter(entries))
+        entries[media_category]["media"].extend(section_media)
 
     return author, [
         ParsedCategory(name, category["changes"], category["media"])
@@ -521,7 +599,7 @@ def parse_manual_changelog(
         raise ValueError("после :ci: необходимо указать имя автора")
 
     normalized = f":cl: {author}{source[header.end():]}"
-    parsed = parse_pr_body(normalized, "", category_names)
+    parsed = parse_pr_body(normalized, "", category_names, allow_inline_media=True)
     if parsed is None:
         raise ValueError("не удалось разобрать ручной чейнжлог")
     return parsed
