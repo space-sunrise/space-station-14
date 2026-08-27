@@ -5,7 +5,6 @@
 # Автоматически определяет последний запуск и получает чейнджлог через GitHub API.
 #
 import http.client
-import io
 import ipaddress
 import json
 import math
@@ -54,14 +53,58 @@ DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL")
 
 CHANGELOG_FILE = os.environ.get("CHANGELOG_FILE")
 
-TYPES_TO_EMOJI = {
-    "Fix":    "🪛",
-    "Add":    "🆕",
-    "Remove": "❌",
-    "Tweak":  "⚒️"
-}
+CHANGE_GROUPS = (
+    ("Add", "🆕", "Добавлено"),
+    ("Tweak", "⚒️", "Изменено"),
+    ("Fix", "🪛", "Исправлено"),
+    ("Remove", "❌", "Удалено"),
+)
 
 ChangelogEntry = dict[str, Any]
+
+
+def grouped_changes(
+    changes: list[dict[str, Any]],
+) -> list[tuple[str, str, list[tuple[int, dict[str, Any]]]]]:
+    groups = []
+    known_types = {change_type for change_type, _, _ in CHANGE_GROUPS}
+    for change_type, emoji, title in CHANGE_GROUPS:
+        items = [(index, change) for index, change in enumerate(changes) if change.get("type") == change_type]
+        if items:
+            groups.append((emoji, title, items))
+
+    other = [(index, change) for index, change in enumerate(changes) if change.get("type") not in known_types]
+    if other:
+        groups.append(("❓", "Прочее", other))
+    return groups
+
+
+def format_grouped_change_parts(
+    changes: list[dict[str, Any]],
+    url: str | None = None,
+    limit: int = DISCORD_SPLIT_LIMIT,
+) -> list[str]:
+    sections: list[tuple[str, bool]] = []
+    for emoji, title, items in grouped_changes(changes):
+        header = f"{emoji} **{title}**"
+        body = "\n".join(f"• {change['message']}" for _, change in items)
+        for index, part in enumerate(split_message(body, limit - len(header) - 1)):
+            sections.append((f"{header}\n{part}", index > 0))
+
+    parts: list[str] = []
+    for section, continues_group in sections:
+        if not continues_group and parts and len(parts[-1]) + len(section) + 2 <= limit:
+            parts[-1] += f"\n\n{section}"
+        else:
+            parts.append(section)
+
+    if url and url.strip():
+        link = f"[GitHub Pull Request]({url})"
+        if parts and len(parts[-1]) + len(link) + 2 <= limit:
+            parts[-1] += f"\n\n{link}"
+        else:
+            parts.append(link)
+    return parts
 
 
 @dataclass(frozen=True)
@@ -803,21 +846,34 @@ def build_media_payload(
         pending_lines: list[str] = []
         separate_from_previous_media = False
         selected_indices = {item.change_index for item in media if item.change_index is not None}
-        for index, change in enumerate(entry["changes"]):
-            change_media = [item for item in media if item.change_index == index]
-            if text_embed is None and index not in selected_indices:
+        for emoji, title, items in grouped_changes(entry["changes"]):
+            visible_items = [
+                (index, change)
+                for index, change in items
+                if text_embed is not None or index in selected_indices
+            ]
+            if not visible_items:
                 continue
 
-            if separate_from_previous_media:
-                components.append({"type": 14, "divider": True, "spacing": 2})
-                separate_from_previous_media = False
-            emoji = TYPES_TO_EMOJI.get(change["type"], "❓")
-            pending_lines.append(f"{emoji} {change['message']}")
-            if change_media:
-                _append_text_components(components, "\n".join(pending_lines))
-                pending_lines.clear()
-                components.extend(_media_components(change_media))
-                separate_from_previous_media = True
+            group_started = False
+            for index, change in visible_items:
+                if separate_from_previous_media:
+                    components.append({"type": 14, "divider": True, "spacing": 2})
+                    separate_from_previous_media = False
+                if not group_started:
+                    if pending_lines:
+                        pending_lines.append("")
+                    pending_lines.append(f"{emoji} **{title}**")
+                    group_started = True
+
+                pending_lines.append(f"• {change['message']}")
+                change_media = [item for item in media if item.change_index == index]
+                if change_media:
+                    _append_text_components(components, "\n".join(pending_lines))
+                    pending_lines.clear()
+                    components.extend(_media_components(change_media))
+                    separate_from_previous_media = True
+                    group_started = False
 
         if pending_lines:
             _append_text_components(components, "\n".join(pending_lines))
@@ -969,21 +1025,11 @@ def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
 
     deadline = time.monotonic() + DISCORD_PUBLISH_TIMEOUT
     for entry in entries:
-        content_string = io.StringIO()
-        for change in entry["changes"]:
-            emoji = TYPES_TO_EMOJI.get(change['type'], "❓")
-            message = change['message']
-            content_string.write(f"{emoji} {message}\n")
-        url = entry.get("url")
-        if url and url.strip():
-            content_string.write(f"[GitHub Pull Request]({url})\n")
-
-        full_content = content_string.getvalue()
-        parts = split_message(full_content, DISCORD_SPLIT_LIMIT)
+        parts = format_grouped_change_parts(entry["changes"], entry.get("url"))
 
         embeds = [
             {
-                "title": f"Автор: {entry['author']}",
+                "title": f"👤 {entry['author']}",
                 "description": part,
                 "color": 0x3498db
             }
