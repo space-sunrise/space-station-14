@@ -32,6 +32,10 @@ class ChangelogSchemaError(ValueError):
         super().__init__("; ".join(issue.message for issue in issues))
 
 
+def format_issue_for_user(issue: ChangelogIssue) -> str:
+    return f"Проблема: {issue.message} Как исправить: {issue.suggestion}"
+
+
 def _entry_label(index: int) -> str:
     return f"Запись #{index + 1}"
 
@@ -117,7 +121,7 @@ def inspect_changelog_document(document: Any) -> list[ChangelogIssue]:
                         ChangelogIssue(
                             "nested_id",
                             f"{change_label}: поле id находится внутри changes; id должен быть полем записи.",
-                            "Авторемонт удалит вложенное поле id.",
+                            "Перенесите id на уровень записи, рядом с author, time и changes.",
                         ),
                     )
 
@@ -147,7 +151,7 @@ def inspect_changelog_document(document: Any) -> list[ChangelogIssue]:
                 ChangelogIssue(
                     "missing_id",
                     f"{label}: отсутствует положительный целочисленный верхнеуровневый id.",
-                    "Авторемонт назначит новый уникальный верхнеуровневый id.",
+                    "Добавьте записи новый уникальный положительный целочисленный id.",
                 ),
             )
         elif entry_id in seen_ids:
@@ -155,7 +159,7 @@ def inspect_changelog_document(document: Any) -> list[ChangelogIssue]:
                 ChangelogIssue(
                     "duplicate_id",
                     f"{label}: верхнеуровневый id {entry_id} уже используется другой записью.",
-                    "Авторемонт назначит новый уникальный верхнеуровневый id.",
+                    "Замените повторяющийся id на новый уникальный номер.",
                 ),
             )
         else:
@@ -198,7 +202,7 @@ def repair_changelog_document(document: Any) -> list[ChangelogRepair]:
                 "nested_id",
                 f"{label}, изменение #{change_index + 1}: поле id находится внутри changes; "
                 "id должен быть полем записи.",
-                "Авторемонт удалит вложенное поле id.",
+                "Перенесите id на уровень записи, рядом с author, time и changes.",
             )
             del change["id"]
             repairs.append(ChangelogRepair(issue, "Вложенное поле id удалено."))
@@ -213,14 +217,14 @@ def repair_changelog_document(document: Any) -> list[ChangelogRepair]:
             issue = ChangelogIssue(
                 "duplicate_id",
                 f"{label}: верхнеуровневый id {entry_id} уже используется другой записью.",
-                "Авторемонт назначит новый уникальный верхнеуровневый id.",
+                "Замените повторяющийся id на новый уникальный номер.",
             )
             resolution = f"Повторяющийся id {entry_id} заменён на {max_id}."
         else:
             issue = ChangelogIssue(
                 "missing_id",
                 f"{label}: отсутствует положительный целочисленный верхнеуровневый id.",
-                "Авторемонт назначит новый уникальный верхнеуровневый id.",
+                "Добавьте записи новый уникальный положительный целочисленный id.",
             )
             resolution = f"Назначен новый верхнеуровневый id {max_id}."
 

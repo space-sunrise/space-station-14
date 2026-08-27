@@ -21,7 +21,7 @@ from urllib.request import Request, urlopen
 import yaml
 
 from changelog_path import validate_changelog_path
-from changelog_schema import ChangelogIssue, inspect_changelog_document
+from changelog_schema import ChangelogIssue, format_issue_for_user, inspect_changelog_document
 
 
 MAIN_CATEGORY = "Main"
@@ -226,19 +226,45 @@ def validate_changed_changelog_files(pull_request: dict[str, Any]) -> None:
     failed = False
     for path, issues in reports:
         if not issues:
-            report_status("success", f"{path}: структура чейнжлога корректна, авторемонт не требуется.")
+            report_status("success", f"{path}: проверка структуры завершена, ошибок нет.")
             write_validation_summary(
                 f"Структура {path}",
-                "✅ Структура чейнжлога корректна, авторемонт не требуется.",
+                """### Результат
+
+✅ Проверка пройдена, ошибок структуры не найдено.
+
+### Что это значит
+
+Файл можно объединять с основной веткой. Авторемонт после слияния не потребуется.
+""",
             )
             continue
 
         failed = True
-        lines = []
-        for issue in issues:
-            report_status("error", f"{path}: {issue.message}")
-            lines.append(f"- ❌ {escape(issue.message)}\n  - 🔧 {escape(issue.suggestion)}")
-        write_validation_summary(f"Ошибки структуры {path}", "\n".join(lines))
+        found = []
+        solutions = []
+        for index, issue in enumerate(issues, 1):
+            report_status("error", f"{path}: {format_issue_for_user(issue)}")
+            found.append(f"{index}. {escape(issue.message)}")
+            solutions.append(f"{index}. {escape(issue.suggestion)}")
+        write_validation_summary(
+            f"Проверка структуры {path}",
+            "\n".join(
+                (
+                    "### Результат",
+                    "",
+                    f"❌ Проверка не пройдена. Найдено ошибок: {len(issues)}.",
+                    "",
+                    "### Что обнаружено",
+                    "",
+                    *found,
+                    "",
+                    "### Как исправить",
+                    "",
+                    *solutions,
+                ),
+            ),
+        )
 
     if failed:
         raise RuntimeError(f"PR #{number}: изменённый файл чейнжлога не прошёл проверку структуры")
@@ -255,10 +281,21 @@ def validate_pull_request_event(repo_root: Path, event_path: Path) -> None:
     body = pull_request.get("body")
     template = load_pull_request_template(repo_root)
     if is_changelog_template(body, template):
-        report_status("success", f"PR #{number}: оставлен пустой шаблон чейнджлога.")
+        report_status("success", f"PR #{number}: проверка завершена, шаблон чейнжлога не заполнен.")
         write_validation_summary(
             "Проверка чейнджлога",
-            "Чейнджлог не будет опубликован: в описании оставлен пустой шаблон.",
+            """### Результат
+
+✅ Проверка пройдена. В описании PR оставлен пустой шаблон чейнжлога.
+
+### Что это значит
+
+После слияния этого PR запись в чейнжлог добавлена не будет.
+
+### Что делать дальше
+
+Если изменение должно быть видно игрокам, заполните блок `:cl:` в описании PR.
+""",
         )
         return
 
@@ -281,16 +318,41 @@ def validate_pull_request_event(repo_root: Path, event_path: Path) -> None:
             raise ValueError("маркер чейнджлога найден, но ни одну запись изменений распознать не удалось")
     except ValueError as error:
         write_validation_summary(
-            "Ошибка разбора чейнджлога",
-            f"<pre><code>{escape(str(error))}</code></pre>",
+            "Проверка чейнжлога",
+            "\n".join(
+                (
+                    "### Результат",
+                    "",
+                    "❌ Проверка не пройдена: описание PR содержит некорректный чейнжлог.",
+                    "",
+                    "### Что обнаружено",
+                    "",
+                    f"<pre><code>{escape(str(error))}</code></pre>",
+                    "",
+                    "### Как исправить",
+                    "",
+                    "Исправьте блок `:cl:` по примеру из шаблона PR и запустите проверку повторно.",
+                ),
+            ),
         )
         raise RuntimeError(f"PR #{number}: чейнджлог не прошёл проверку") from error
 
     if parsed is None:
-        report_status("success", f"PR #{number}: чейнджлог отсутствует.")
+        report_status("success", f"PR #{number}: проверка завершена, блок чейнжлога отсутствует.")
         write_validation_summary(
             "Проверка чейнджлога",
-            "Чейнджлог не будет опубликован: маркер `:cl:` или 🆑 отсутствует.",
+            """### Результат
+
+✅ Проверка пройдена. Блок чейнжлога в описании PR отсутствует.
+
+### Что это значит
+
+После слияния этого PR запись в чейнжлог добавлена не будет.
+
+### Что делать дальше
+
+Если изменение должно быть видно игрокам, добавьте блок `:cl:` по примеру из шаблона PR.
+""",
         )
         return
 
@@ -307,10 +369,24 @@ def validate_pull_request_event(repo_root: Path, event_path: Path) -> None:
         ],
     }
     preview = yaml.safe_dump(normalized, allow_unicode=True, sort_keys=False)
-    report_status("success", f"PR #{number}: чейнджлог успешно распознан.")
+    report_status("success", f"PR #{number}: проверка завершена, чейнжлог распознан.")
     write_validation_summary(
-        "Результат разбора чейнджлога",
-        f"Именно эти данные будут опубликованы после слияния:\n\n<pre><code>{escape(preview)}</code></pre>",
+        "Проверка чейнжлога",
+        "\n".join(
+            (
+                "### Результат",
+                "",
+                "✅ Проверка пройдена. Чейнжлог распознан без ошибок.",
+                "",
+                "### Что это значит",
+                "",
+                "После слияния PR бот добавит показанные ниже данные в чейнжлог.",
+                "",
+                "### Предварительный результат",
+                "",
+                f"<pre><code>{escape(preview)}</code></pre>",
+            ),
+        ),
     )
 
 
@@ -841,27 +917,34 @@ def build_commit_message(reports: list[dict[str, Any]]) -> str:
     lines = [
         "Automatic changelog update + fix [skip ci]",
         "",
-        "🛠 Автоматически исправлена структура чейнжлога.",
+        "## Автоматическое исправление чейнжлога",
         "",
-        f"📦 Добавлено новых записей: {added}",
+        "### Результат",
+        "",
+        "✅ Структура чейнжлога исправлена автоматически.",
+        f"📦 Добавлено новых записей: {added}.",
     ]
     for report in reports:
         repairs = report["repairs"]
         if not repairs:
             continue
-        lines.extend(("", f"📄 {report['file']}"))
-        for repair in repairs:
-            lines.append(f"- ❌ {repair['message']}")
-            lines.append(f"  - ✅ {repair['resolution']}")
+        lines.extend(("", f"### Что исправлено в `{report['file']}`", ""))
+        for index, repair in enumerate(repairs, 1):
+            lines.append(f"{index}. Проблема: {repair['message']}")
+            lines.append(f"   Решение: {repair['resolution']}")
 
     lines.extend(
         (
             "",
-            "❓ Причина исправления:",
+            "### Почему это было необходимо",
+            "",
             "Отсутствующие, вложенные или повторяющиеся идентификаторы id ломают сравнение релизов",
             "и могут остановить либо пропустить публикацию в Discord.",
             "",
-            "✅ Текст, авторы, время, ссылки и медиа записей не изменялись.",
+            "### Что не изменялось",
+            "",
+            "Текст, авторы, время, ссылки и медиа записей не изменялись.",
+            "",
             "🤖 Исправление выполнено Sunrise-Bot.",
         ),
     )
