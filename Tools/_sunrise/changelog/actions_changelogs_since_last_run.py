@@ -54,7 +54,7 @@ DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL")
 CHANGELOG_FILE = os.environ.get("CHANGELOG_FILE")
 
 CHANGE_GROUPS = (
-    ("Add", "🆕", "Добавлено"),
+    ("Add", "💡", "Добавлено"),
     ("Tweak", "⚒️", "Изменено"),
     ("Fix", "🪛", "Исправлено"),
     ("Remove", "❌", "Удалено"),
@@ -836,7 +836,7 @@ def build_media_payload(
 ) -> tuple[dict[str, Any], list[tuple[str, tuple[str, bytes, str]]]]:
     components: list[dict[str, Any]] = []
     if text_embed is not None:
-        components.append({"type": 10, "content": f"### {text_embed['title']}"})
+        components.append({"type": 10, "content": f"**{text_embed['title']}**"})
         components.append({"type": 14, "divider": True, "spacing": 1})
 
     if entry is None:
