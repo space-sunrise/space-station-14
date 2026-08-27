@@ -9,7 +9,7 @@ from typing import Any, List
 
 import yaml
 
-from changelog_schema import ChangelogSchemaError, repair_changelog_document
+from changelog_schema import ChangelogSchemaError, format_issue_for_user, repair_changelog_document
 
 MAX_ENTRIES = 5000
 CATEGORY_MAIN = "Main"
@@ -51,7 +51,10 @@ def main():
         repairs = repair_changelog_document(current_data)
     except ChangelogSchemaError as error:
         for issue in error.issues:
-            print(f"::error::{args.changelog_file}: {issue.message}", file=sys.stderr)
+            print(
+                f"::error::{args.changelog_file}: {format_issue_for_user(issue)}",
+                file=sys.stderr,
+            )
         raise
     entries_list: List[Any] = current_data["Entries"]
     max_id = max(

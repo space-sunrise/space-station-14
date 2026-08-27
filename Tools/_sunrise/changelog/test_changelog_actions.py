@@ -324,7 +324,8 @@ class ChangelogActionsTests(unittest.TestCase):
 
             summary = summary_path.read_text(encoding="utf-8")
 
-        self.assertIn("Результат разбора чейнджлога", summary)
+        self.assertIn("### Результат", summary)
+        self.assertIn("### Предварительный результат", summary)
         self.assertIn("author: Иван", summary)
         self.assertIn("Добавлена &lt;рыба&gt;.", summary)
         self.assertIn("https://example.org/fish.png", summary)
@@ -351,8 +352,11 @@ class ChangelogActionsTests(unittest.TestCase):
 
             summary = summary_path.read_text(encoding="utf-8")
 
-        self.assertIn("Чейнджлог не будет опубликован", summary)
-        self.assertIn("маркер `:cl:` или 🆑 отсутствует", summary)
+        self.assertIn("### Результат", summary)
+        self.assertIn("### Что это значит", summary)
+        self.assertIn("### Что делать дальше", summary)
+        self.assertIn("Блок чейнжлога в описании PR отсутствует", summary)
+        self.assertIn("добавьте блок `:cl:` по примеру из шаблона PR", summary)
 
     def test_validation_reports_parser_error(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -376,7 +380,7 @@ class ChangelogActionsTests(unittest.TestCase):
 
             summary = summary_path.read_text(encoding="utf-8")
 
-        self.assertIn("Ошибка разбора чейнджлога", summary)
+        self.assertIn("### Как исправить", summary)
         self.assertIn("не удалось распознать строку чейнжлога", summary)
 
     def test_manual_parser_requires_ci_author_and_supports_media(self):
@@ -1893,7 +1897,7 @@ class ChangelogActionsTests(unittest.TestCase):
         self.assertIn("Не удалось отправить чейнджлог после пяти попыток.", runner)
         self.assertNotIn("github.event.pull_request.head", workflow)
 
-    def test_validation_workflow_uses_trusted_parser_and_head_status(self):
+    def test_validation_workflow_uses_trusted_parser_and_single_check_run(self):
         workflow = VALIDATE_WORKFLOW_PATH.read_text(encoding="utf-8")
         document = yaml.load(workflow, Loader=yaml.BaseLoader)
 
@@ -1903,20 +1907,21 @@ class ChangelogActionsTests(unittest.TestCase):
             "types: [opened, edited, reopened, synchronize, ready_for_review]",
             workflow,
         )
-        self.assertIn("statuses: write", workflow)
+        self.assertNotIn("statuses: write", workflow)
         self.assertIn("group: validate-changelog-${{ github.event.pull_request.number }}", workflow)
         self.assertIn("cancel-in-progress: true", workflow)
         self.assertIn("ref: ${{ github.event.pull_request.base.ref }}", workflow)
         self.assertNotIn("ref: ${{ github.event.pull_request.head.sha }}", workflow)
         self.assertNotIn("github.event.pull_request.body", workflow)
         self.assertIn("persist-credentials: false", workflow)
-        self.assertIn("HEAD_SHA: ${{ github.event.pull_request.head.sha }}", workflow)
-        self.assertIn("context=changelog/parse", workflow)
-        self.assertIn("-f state=pending", workflow)
+        self.assertIn("name: Validate Changelog", workflow)
+        self.assertNotIn("HEAD_SHA: ${{ github.event.pull_request.head.sha }}", workflow)
+        self.assertNotIn("context=changelog/parse", workflow)
+        self.assertNotIn("-f state=pending", workflow)
         self.assertIn("--validate-only", workflow)
         self.assertIn("GITHUB_TOKEN: ${{ github.token }}", workflow)
-        self.assertIn("continue-on-error: true", workflow)
-        self.assertIn("steps.parse.outcome != 'success'", workflow)
+        self.assertNotIn("continue-on-error: true", workflow)
+        self.assertNotIn("steps.parse.outcome != 'success'", workflow)
 
     def test_parts_staging_includes_new_file(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -2010,10 +2015,10 @@ class ChangelogActionsTests(unittest.TestCase):
 
         self.assertEqual("Automatic changelog update [skip ci]\n", normal)
         self.assertTrue(repaired.startswith("Automatic changelog update + fix [skip ci]\n\n"))
-        self.assertIn("📄 Resources/Changelog/ChangelogFish.yml", repaired)
-        self.assertIn("- ❌ Запись #1: ошибка id.", repaired)
-        self.assertIn("  - ✅ Поле id удалено.", repaired)
-        self.assertIn("❓ Причина исправления:", repaired)
+        self.assertIn("### Что исправлено в `Resources/Changelog/ChangelogFish.yml`", repaired)
+        self.assertIn("1. Проблема: Запись #1: ошибка id.", repaired)
+        self.assertIn("Решение: Поле id удалено.", repaired)
+        self.assertIn("### Почему это было необходимо", repaired)
 
     def test_pr_file_validation_reuses_schema_diagnostic(self):
         document = """Entries:
@@ -2055,7 +2060,7 @@ class ChangelogActionsTests(unittest.TestCase):
             report = summary.read_text(encoding="utf-8")
 
         self.assertIn(expected, report)
-        self.assertIn("Авторемонт удалит вложенное поле id.", report)
+        self.assertIn("Перенесите id на уровень записи", report)
 
     def test_discord_diff_falls_back_for_fish_ids_without_losing_entries(self):
         old = {
