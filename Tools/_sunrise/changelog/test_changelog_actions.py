@@ -241,37 +241,43 @@ class ChangelogActionsTests(unittest.TestCase):
             parsed[1][0].changes,
         )
 
-    def test_parser_attaches_media_to_preceding_change(self):
+    def test_parser_reads_only_media_section_in_authored_order(self):
         parsed = changelog_actions.parse_pr_body(
+            "## Медиа (Видео/Скриншоты)\n"
+            "Рыба в игре\n"
+            "![Встроенная подпись](https://example.org/fish.png)\n"
+            "<!-- Служебный комментарий не становится описанием. -->\n"
+            "Демонстрация\n"
+            "механики\n"
+            "<img alt=\"image\" src=\"https://example.org/demo.gif\" />\n"
+            "[Видео](https://example.org/demo.webm)\n"
+            "### Следующий раздел\n"
+            "![Игнорируется](https://example.org/ignored.png)\n"
             ":cl: Иван\n"
             "- add: Добавлена новая рыба\n"
-            "media: https://example.org/fish.mp4\n"
-            "media: ![Рыба в игре](https://example.org/fish.png)\n"
-            "media: [Демонстрация](https://example.org/demo.webm)\n"
-            "ADMIN:\n"
-            "- fix: Исправлен доступ\n"
-            "media: ![Админская панель](https://example.org/admin.gif)",
+            "media: ![Вне раздела](https://example.org/outside.png)\n"
+            "![Тоже вне раздела](https://example.org/outside-2.png)",
             "Fallback",
-            ("Main", "Admin"),
         )
 
         self.assertEqual("Иван", parsed[0])
-        self.assertEqual([
-            {"url": "https://example.org/fish.mp4", "change": 0},
-            {"url": "https://example.org/fish.png", "description": "Рыба в игре", "change": 0},
-            {"url": "https://example.org/demo.webm", "description": "Демонстрация", "change": 0},
-        ], parsed[1][0].media)
         self.assertEqual(
-            [{"url": "https://example.org/admin.gif", "description": "Админская панель", "change": 0}],
-            parsed[1][1].media,
+            [{"type": "Add", "message": "Добавлена новая рыба"}],
+            parsed[1][0].changes,
         )
+        self.assertEqual([
+            {"url": "https://example.org/fish.png", "description": "Рыба в игре"},
+            {"url": "https://example.org/demo.gif", "description": "Демонстрация механики"},
+            {"url": "https://example.org/demo.webm", "description": "Видео"},
+        ], parsed[1][0].media)
 
     def test_parser_accepts_github_html_image(self):
         parsed = changelog_actions.parse_pr_body(
+            "## Медиа (Видео/Скриншоты) | Media (Video/Screenshots)\n"
+            "<img width=\"521\" height=\"404\" alt=\"image\" "
+            "src=\"https://github.com/user-attachments/assets/ff98fa13-dac1-48cf-bd9d-98e7110f33e6\" />\n"
             ":cl: KaiserMaus\n"
             "- fix: Исправлено ночное зрение вульп.\n"
-            "media: <img width=\"521\" height=\"404\" alt=\"image\" "
-            "src=\"https://github.com/user-attachments/assets/ff98fa13-dac1-48cf-bd9d-98e7110f33e6\" />\n"
             ":end-cl:",
             "Fallback",
         )
@@ -280,18 +286,80 @@ class ChangelogActionsTests(unittest.TestCase):
             [{
                 "url": "https://github.com/user-attachments/assets/ff98fa13-dac1-48cf-bd9d-98e7110f33e6",
                 "description": "image",
-                "change": 0,
             }],
             parsed[1][0].media,
         )
 
-    def test_parser_rejects_media_without_changes(self):
-        with self.assertRaisesRegex(ValueError, "категория Admin содержит медиа"):
+    def test_media_section_stops_at_any_heading_or_changelog(self):
+        for ending in ("# Раздел", "### Раздел", "###### Раздел", ":cl: Иван"):
+            with self.subTest(ending=ending):
+                media = changelog_actions.parse_pr_media_section(
+                    "## Media\n"
+                    "![Первое](https://example.org/first.png)\n"
+                    f"{ending}\n"
+                    "![Второе](https://example.org/second.png)"
+                )
+                self.assertEqual(
+                    [{"url": "https://example.org/first.png", "description": "Первое"}],
+                    media,
+                )
+
+        self.assertEqual(
+            [],
+            changelog_actions.parse_pr_media_section(
+                ":cl: Иван\n- add: Запись\n## Медиа\n![Поздно](https://example.org/late.png)"
+            ),
+        )
+
+    def test_media_marker_supports_translated_templates_and_heading_captions(self):
+        translated = changelog_actions.parse_pr_media_section(
+            "## Medien und Videos\n"
+            "<!-- changelog-media-section -->\n"
+            "Beschreibung aus der Vorlage\n"
+            "![Bild](https://example.org/image.png)\n"
+            "## Nächster Abschnitt"
+        )
+        self.assertEqual(
+            [{"url": "https://example.org/image.png", "description": "Beschreibung aus der Vorlage"}],
+            translated,
+        )
+
+        for heading in ("## Media — screenshots", "## Media: video", "## Медиа / Скриншоты"):
+            with self.subTest(heading=heading):
+                self.assertEqual(
+                    [{"url": "https://example.org/image.png", "description": "Подпись"}],
+                    changelog_actions.parse_pr_media_section(
+                        f"{heading}\nПодпись\n![Встроенный alt](https://example.org/image.png)"
+                    ),
+                )
+
+        self.assertEqual(
+            [],
+            changelog_actions.parse_pr_media_section(
+                "## Medien und Videos\n![Без маркера](https://example.org/image.png)"
+            ),
+        )
+
+        template = (REPO_ROOT / changelog_actions.PULL_REQUEST_TEMPLATE_PATH).read_text(encoding="utf-8")
+        self.assertIn("<!-- changelog-media-section -->", template)
+
+    def test_media_is_ignored_without_changelog_and_outside_media_section(self):
+        self.assertIsNone(
             changelog_actions.parse_pr_body(
-                ":cl: Иван\nADMIN:\nmedia: https://example.org/admin.png",
+                "## Медиа\n![Рыба](https://example.org/fish.png)",
                 "Fallback",
-                ("Main", "Admin"),
-            )
+            ),
+        )
+
+        parsed = changelog_actions.parse_pr_body(
+            ":cl: Иван\n"
+            "- add: Добавлена рыба\n"
+            "media: ![Вне раздела](https://example.org/outside.png)\n"
+            "![Тоже вне раздела](https://example.org/outside-2.png)",
+            "Fallback",
+        )
+        self.assertEqual([], parsed[1][0].media)
+        self.assertEqual("Добавлена рыба", parsed[1][0].changes[0]["message"])
 
     def test_validation_reports_normalized_changelog(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -303,9 +371,11 @@ class ChangelogActionsTests(unittest.TestCase):
                     "pull_request": {
                         "number": 123,
                         "body": (
+                            "## Медиа\n"
+                            "Рыба\n"
+                            "<img alt=\"Старая подпись\" src=\"https://example.org/fish.png\" />\n"
                             ":cl: Иван\n"
-                            "- add: Добавлена <рыба>.\n"
-                            "media: <img alt=\"Рыба\" src=\"https://example.org/fish.png\" />"
+                            "- add: Добавлена <рыба>."
                         ),
                         "user": {"login": "Fallback"},
                     },
@@ -641,9 +711,10 @@ class ChangelogActionsTests(unittest.TestCase):
                 "merged": True,
                 "merged_at": "2026-07-29T11:16:50Z",
                 "body": (
+                    "## Медиа\n"
+                    "![Рыба](https://example.org/fish.png)\n"
                     ":cl: Tester\n"
-                    "- add: Added\n"
-                    "media: ![Рыба](https://example.org/fish.png)"
+                    "- add: Added"
                 ),
                 "html_url": "https://github.com/makura-games/sunrise-station/pull/123",
                 "user": {"login": "Fallback"},
@@ -662,7 +733,7 @@ class ChangelogActionsTests(unittest.TestCase):
             self.assertEqual("Tester", document["Entries"][0]["author"])
             self.assertEqual("Add", document["Entries"][0]["changes"][0]["type"])
             self.assertEqual(
-                [{"url": "https://example.org/fish.png", "description": "Рыба", "change": 0}],
+                [{"url": "https://example.org/fish.png", "description": "Рыба"}],
                 document["Entries"][0]["media"],
             )
             self.assertEqual("2026-07-29T11:16:50.0000000+00:00", document["Entries"][0]["time"])
@@ -1462,6 +1533,28 @@ class ChangelogActionsTests(unittest.TestCase):
         )
         self.assertEqual(["files[0]", "files[1]"], [field for field, _ in files])
         self.assertEqual(("media-2.mp4", b"mp4", "video/mp4"), files[1][1])
+
+    def test_pr_media_gallery_is_rendered_last_after_divider(self):
+        image = discord_changelog.DownloadedMedia(
+            "image", "Изображение", b"png", "image/png", "media-1.png"
+        )
+        entry = {
+            "author": "Tester",
+            "changes": [{"type": "Add", "message": "Добавлена рыба"}],
+            "url": "https://example.org/pr/1",
+        }
+
+        payload, _ = discord_changelog.build_media_payload(
+            {"title": "👤 Tester", "description": ""},
+            [image],
+            entry,
+        )
+
+        components = payload["components"][0]["components"]
+        self.assertEqual("🆕 **Добавлено**\n• Добавлена рыба", components[1]["content"])
+        self.assertEqual("[GitHub Pull Request](https://example.org/pr/1)", components[2]["content"])
+        self.assertEqual({"type": 14, "divider": True, "spacing": 2}, components[3])
+        self.assertEqual("attachment://media-1.png", components[4]["items"][0]["media"]["url"])
 
     def test_media_gallery_keeps_author_order_regardless_of_type(self):
         video = discord_changelog.DownloadedMedia(

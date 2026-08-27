@@ -879,13 +879,15 @@ def build_media_payload(
             _append_text_components(components, "\n".join(pending_lines))
 
         root_media = [item for item in media if item.change_index is None]
-        if root_media:
-            components.extend(_media_components(root_media))
-            separate_from_previous_media = True
         if text_embed is not None and (url := entry.get("url")) and url.strip():
             if separate_from_previous_media:
                 components.append({"type": 14, "divider": True, "spacing": 1})
             _append_text_components(components, f"[GitHub Pull Request]({url})")
+            separate_from_previous_media = False
+        if root_media:
+            if components:
+                components.append({"type": 14, "divider": True, "spacing": 2})
+            components.extend(_media_components(root_media))
 
     downloaded = [item for item in media if isinstance(item, DownloadedMedia)]
     files = [
