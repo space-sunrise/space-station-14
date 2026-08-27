@@ -1,13 +1,99 @@
 using Content.Shared.Damage;
+using Robust.Shared.Audio;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Server._Sunrise.Antags.Vampires.Components;
 
 /// <summary>
 /// Состояние питания вампира.
 /// </summary>
-[RegisterComponent]
+[RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class VampireFeedingComponent : Component
 {
+    /// <summary>
+    /// Всего крови гуманоидов.
+    /// </summary>
+    public int TotalBlood;
+
+    /// <summary>
+    /// Предел сытости.
+    /// </summary>
+    [DataField]
+    public float MaxBloodFullness = 200f;
+
+    /// <summary>
+    /// Убывание сытости в секунду.
+    /// </summary>
+    [DataField]
+    public float FullnessDecayPerSecond = 0.15f;
+
+    /// <summary>
+    /// Расход крови при голоде.
+    /// </summary>
+    [DataField]
+    public int StarvationDrunkBloodDrainPerSecond = 2;
+
+    /// <summary>
+    /// Остаток расхода крови.
+    /// </summary>
+    public float StarvationDrunkBloodDrainAccumulator;
+
+    /// <summary>
+    /// Следующее обновление.
+    /// </summary>
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoPausedField]
+    public TimeSpan NextUpdate;
+
+    /// <summary>
+    /// Предыдущее обновление.
+    /// </summary>
+    [AutoPausedField]
+    public TimeSpan LastUpdate;
+
+    /// <summary>
+    /// Интервал обновления.
+    /// </summary>
+    [DataField]
+    public TimeSpan UpdateDelay = TimeSpan.FromSeconds(1);
+
+    /// <summary>
+    /// Звук укуса.
+    /// </summary>
+    [DataField]
+    public SoundSpecifier BiteSound = new SoundPathSpecifier("/Audio/Effects/bite.ogg");
+
+    /// <summary>
+    /// Эффект укуса.
+    /// </summary>
+    [DataField]
+    public EntProtoId BiteEffect = "WeaponArcBite";
+
+    /// <summary>
+    /// Слоты, способные закрыть рот.
+    /// </summary>
+    [DataField]
+    public string[] MouthCoveringSlots = ["mask", "head"];
+
+    /// <summary>
+    /// Громкость укуса.
+    /// </summary>
+    [DataField]
+    public float BiteVolume = -7f;
+
+    /// <summary>
+    /// Укусов до травмы глаз.
+    /// </summary>
+    [DataField]
+    public int BitesPerEyeDamage = 3;
+
+    /// <summary>
+    /// Травма глаз от укусов.
+    /// </summary>
+    [DataField]
+    public int EyeDamage = 1;
+
     /// <summary>
     /// Интервал глотков.
     /// </summary>
@@ -46,6 +132,7 @@ public sealed partial class VampireFeedingComponent : Component
     /// <summary>
     /// Эффективность по стадии гниения.
     /// </summary>
+    [DataField]
     public Dictionary<int, float> RotEfficiencyByStage = new()
     {
         [0] = 1f,
