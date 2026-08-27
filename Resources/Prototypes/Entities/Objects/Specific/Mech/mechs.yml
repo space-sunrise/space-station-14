@@ -188,13 +188,6 @@
       - Mangleness # Sunrise-Edit
     locPrefix: mech
   - type: Appearance
-  # Sunrise added start - визуальное отображение накопленных повреждений меха
-  - type: DamageVisuals
-    thresholds: [25, 50, 75, 100, 200, 300, 400]
-    trackAllDamage: true
-    damageOverlay:
-      sprite: _Sunrise/Mobs/Silicon/durand.rsi
-  # Sunrise added end
   - type: ContainerContainer
     containers:
       mech-pilot-slot: !type:ContainerSlot
