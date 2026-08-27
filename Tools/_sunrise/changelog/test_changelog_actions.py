@@ -1514,7 +1514,7 @@ class ChangelogActionsTests(unittest.TestCase):
 
         container = payload["components"][0]
         self.assertEqual(discord_changelog.DISCORD_COMPONENTS_V2_FLAG, payload["flags"])
-        self.assertEqual("### Автор", container["components"][0]["content"])
+        self.assertEqual("**Автор**", container["components"][0]["content"])
         self.assertEqual({"type": 14, "divider": True, "spacing": 1}, container["components"][1])
         self.assertEqual("Текст", container["components"][2]["content"])
         self.assertEqual(
@@ -1553,7 +1553,7 @@ class ChangelogActionsTests(unittest.TestCase):
 
         components = payload["components"][0]["components"]
         self.assertEqual({"type": 14, "divider": True, "spacing": 1}, components[1])
-        self.assertEqual("🆕 **Добавлено**\n• Добавлена рыба", components[2]["content"])
+        self.assertEqual("💡 **Добавлено**\n• Добавлена рыба", components[2]["content"])
         self.assertEqual("[GitHub Pull Request](https://example.org/pr/1)", components[3]["content"])
         self.assertEqual({"type": 14, "divider": True, "spacing": 2}, components[4])
         self.assertEqual("attachment://media-1.png", components[5]["items"][0]["media"]["url"])
@@ -1661,9 +1661,9 @@ class ChangelogActionsTests(unittest.TestCase):
         )
 
         components = payload["components"][0]["components"]
-        self.assertEqual("### 👤 Tester", components[0]["content"])
+        self.assertEqual("**👤 Tester**", components[0]["content"])
         self.assertEqual({"type": 14, "divider": True, "spacing": 1}, components[1])
-        self.assertEqual("🆕 **Добавлено**\n• Первая строка", components[2]["content"])
+        self.assertEqual("💡 **Добавлено**\n• Первая строка", components[2]["content"])
         self.assertEqual("attachment://media-1.png", components[3]["items"][0]["media"]["url"])
         self.assertEqual("attachment://media-2.webm", components[3]["items"][1]["media"]["url"])
         self.assertEqual({"type": 14, "divider": True, "spacing": 2}, components[4])
@@ -1845,10 +1845,10 @@ class ChangelogActionsTests(unittest.TestCase):
         ) as send_text:
             discord_changelog.send_to_discord([entry])
 
-        self.assertEqual("🆕 **Добавлено**\nПоследняя часть", send.call_args_list[0].args[1]["description"])
+        self.assertEqual("💡 **Добавлено**\nПоследняя часть", send.call_args_list[0].args[1]["description"])
         self.assertEqual([None, None], [item.args[3] for item in send.call_args_list])
         send_text.assert_called_once()
-        self.assertEqual("🆕 **Добавлено**\nПервая часть", send_text.call_args.args[0]["description"])
+        self.assertEqual("💡 **Добавлено**\nПервая часть", send_text.call_args.args[0]["description"])
 
     def test_all_split_text_parts_are_sent_when_there_is_no_media(self):
         entry = {"author": "Tester", "changes": [{"type": "Add", "message": "Добавлено"}]}
@@ -1865,7 +1865,7 @@ class ChangelogActionsTests(unittest.TestCase):
             discord_changelog.send_to_discord([entry])
 
         self.assertEqual(
-            ["🆕 **Добавлено**\nПервая часть", "🆕 **Добавлено**\nПоследняя часть"],
+            ["💡 **Добавлено**\nПервая часть", "💡 **Добавлено**\nПоследняя часть"],
             [item.args[0]["description"] for item in send.call_args_list],
         )
 
@@ -1902,7 +1902,7 @@ class ChangelogActionsTests(unittest.TestCase):
         embed = send.call_args.args[0]
         self.assertEqual("👤 Tester", embed["title"])
         self.assertEqual(
-            """🆕 **Добавлено**
+            """💡 **Добавлено**
 • Добавлено первым
 • Добавлено вторым
 
