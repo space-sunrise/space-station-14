@@ -31,3 +31,6 @@ ent-WeaponMechCombatUVM31 = UVM-31 "Drake"
 ent-WeaponMechCombatDuster = Mounted EXP-220 Duster
     .desc = An  heavy Auto Cannon as a mech-mounted gun with Frag ammo
     .suffix = Mech Weapon, Gun, Combat
+ent-WeaponMechCombatShotgunAuto = mounted AS-12 "Minotaur"
+    .desc = A mounted automatic shotgun for combat mechs.
+    .suffix = Mech Weapon, Gun, Combat, Shotgun
