@@ -1,5 +1,6 @@
 using Content.Client.Alerts;
 using Content.Shared._Sunrise.Antags.Vampires.Components;
+using Content.Shared._Sunrise.Antags.Vampires.Systems;
 using Content.Shared.Body.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
@@ -10,7 +11,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client._Sunrise.Antags.Vampires.Systems;
 
-public sealed class VampireSystem : EntitySystem
+public sealed class VampireSystem : SharedVampireSystem
 {
     [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
@@ -28,14 +29,17 @@ public sealed class VampireSystem : EntitySystem
 
     private void OnBeforeInteractHand(Entity<VampireComponent> ent, ref BeforeInteractHandEvent args)
     {
-        if (!ent.Comp.FangsExtended || !args.Target.IsValid())
+        if (args.Handled || !ent.Comp.FangsExtended || !args.Target.IsValid())
             return;
 
-        if (!HasComp<BloodstreamComponent>(args.Target) &&
-            !HasComp<InteractionPopupComponent>(args.Target))
+        if (TryComp<BloodstreamComponent>(args.Target, out var bloodstream))
+        {
+            args.Handled = HasBloodToDrink((args.Target, bloodstream));
             return;
+        }
 
-        args.Handled = true;
+        if (HasComp<InteractionPopupComponent>(args.Target))
+            args.Handled = true;
     }
 
     private void OnUpdateAlert(Entity<VampireComponent> ent, ref UpdateAlertSpriteEvent args)
@@ -65,11 +69,4 @@ public sealed class VampireSystem : EntitySystem
             ev.StatusIcons.Add(icon);
     }
 
-    private enum VampireVisualLayers : byte
-    {
-        Digit1,
-        Digit2,
-        Digit3,
-        Digit4,
-    }
 }

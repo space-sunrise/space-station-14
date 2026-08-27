@@ -10,14 +10,23 @@
     targetBloodDrain: 20
     animalEfficiency: 0.05
     corpseEfficiency: 0.1
-    pierceDamage: 0.5
+    biteDamage:
+      types:
+        Piercing: 0.5
     bleedAmount: 1
     range: 1.5
     maxBloodPerTarget: 200
-    healBrute: 1
-    healBurn: 1
-    healPoison: 2
-    healAsphyxiation: 4
+    healing:
+      types:
+        Blunt: -0.33
+        Slash: -0.33
+        Piercing: -0.34
+        Heat: -0.25
+        Shock: -0.25
+        Cold: -0.25
+        Caustic: -0.25
+        Poison: -2
+        Asphyxiation: -4
   glare:
     action:
       maxCharges: 1
@@ -57,14 +66,23 @@
     targetBloodDrain: 20
     animalEfficiency: 0.08
     corpseEfficiency: 0.15
-    pierceDamage: 0.6
+    biteDamage:
+      types:
+        Piercing: 0.6
     bleedAmount: 1
     range: 1.5
     maxBloodPerTarget: 225
-    healBrute: 1.5
-    healBurn: 1.5
-    healPoison: 3
-    healAsphyxiation: 5
+    healing:
+      types:
+        Blunt: -0.5
+        Slash: -0.5
+        Piercing: -0.5
+        Heat: -0.38
+        Shock: -0.37
+        Cold: -0.38
+        Caustic: -0.37
+        Poison: -3
+        Asphyxiation: -5
   glare:
     action:
       maxCharges: 1
@@ -104,14 +122,23 @@
     targetBloodDrain: 20
     animalEfficiency: 0.12
     corpseEfficiency: 0.2
-    pierceDamage: 0.7
+    biteDamage:
+      types:
+        Piercing: 0.7
     bleedAmount: 1
     range: 1.5
     maxBloodPerTarget: 250
-    healBrute: 2
-    healBurn: 2
-    healPoison: 4
-    healAsphyxiation: 6
+    healing:
+      types:
+        Blunt: -0.67
+        Slash: -0.66
+        Piercing: -0.67
+        Heat: -0.5
+        Shock: -0.5
+        Cold: -0.5
+        Caustic: -0.5
+        Poison: -4
+        Asphyxiation: -6
   glare:
     action:
       maxCharges: 2
@@ -139,12 +166,19 @@
       rechargeDuration: 65
       useDelay: 7
     reagentPurgeAmount: 10
-    healTicks: 5
-    healTickInterval: 3.5
-    healBrute: 4
-    healBurn: 4
-    healPoison: 4
-    healAsphyxiation: 5
+    healApplications: 5
+    healInterval: 3.5
+    healing:
+      types:
+        Blunt: -1.33
+        Slash: -1.33
+        Piercing: -1.34
+        Heat: -1
+        Shock: -1
+        Cold: -1
+        Caustic: -1
+        Poison: -4
+        Asphyxiation: -5
 
 - type: vampirePowerLevel
   id: SunriseVampirePowerAncient
@@ -158,14 +192,23 @@
     targetBloodDrain: 20
     animalEfficiency: 0.18
     corpseEfficiency: 0.25
-    pierceDamage: 0.8
+    biteDamage:
+      types:
+        Piercing: 0.8
     bleedAmount: 1
     range: 1.5
     maxBloodPerTarget: 275
-    healBrute: 2.5
-    healBurn: 2.5
-    healPoison: 5
-    healAsphyxiation: 8
+    healing:
+      types:
+        Blunt: -0.83
+        Slash: -0.83
+        Piercing: -0.84
+        Heat: -0.63
+        Shock: -0.62
+        Cold: -0.63
+        Caustic: -0.62
+        Poison: -5
+        Asphyxiation: -8
   glare:
     action:
       maxCharges: 2
@@ -194,12 +237,19 @@
       rechargeDuration: 60
       useDelay: 7
     reagentPurgeAmount: 15
-    healTicks: 5
-    healTickInterval: 3.25
-    healBrute: 5
-    healBurn: 5
-    healPoison: 5
-    healAsphyxiation: 6
+    healApplications: 5
+    healInterval: 3.25
+    healing:
+      types:
+        Blunt: -1.67
+        Slash: -1.66
+        Piercing: -1.67
+        Heat: -1.25
+        Shock: -1.25
+        Cold: -1.25
+        Caustic: -1.25
+        Poison: -5
+        Asphyxiation: -6
 
 # Этот уровень будет выдаваться отдельной механикой возвышения.
 - type: vampirePowerLevel
@@ -213,14 +263,23 @@
     targetBloodDrain: 22
     animalEfficiency: 0.25
     corpseEfficiency: 0.35
-    pierceDamage: 0.95
+    biteDamage:
+      types:
+        Piercing: 0.95
     bleedAmount: 1.25
     range: 1.75
     maxBloodPerTarget: 325
-    healBrute: 3
-    healBurn: 3
-    healPoison: 6
-    healAsphyxiation: 10
+    healing:
+      types:
+        Blunt: -1
+        Slash: -1
+        Piercing: -1
+        Heat: -0.75
+        Shock: -0.75
+        Cold: -0.75
+        Caustic: -0.75
+        Poison: -6
+        Asphyxiation: -10
   glare:
     action:
       maxCharges: 3
@@ -249,12 +308,19 @@
       rechargeDuration: 55
       useDelay: 6
     reagentPurgeAmount: 20
-    healTicks: 6
-    healTickInterval: 3
-    healBrute: 5
-    healBurn: 5
-    healPoison: 6
-    healAsphyxiation: 7
+    healApplications: 6
+    healInterval: 3
+    healing:
+      types:
+        Blunt: -1.67
+        Slash: -1.66
+        Piercing: -1.67
+        Heat: -1.25
+        Shock: -1.25
+        Cold: -1.25
+        Caustic: -1.25
+        Poison: -6
+        Asphyxiation: -7
 
 # Этот уровень выставляется только администрацией.
 - type: vampirePowerLevel
@@ -268,14 +334,23 @@
     targetBloodDrain: 24
     animalEfficiency: 0.5
     corpseEfficiency: 0.5
-    pierceDamage: 1.1
+    biteDamage:
+      types:
+        Piercing: 1.1
     bleedAmount: 1.5
     range: 2
     maxBloodPerTarget: 400
-    healBrute: 3.5
-    healBurn: 3.5
-    healPoison: 7
-    healAsphyxiation: 12
+    healing:
+      types:
+        Blunt: -1.17
+        Slash: -1.16
+        Piercing: -1.17
+        Heat: -0.88
+        Shock: -0.87
+        Cold: -0.88
+        Caustic: -0.87
+        Poison: -7
+        Asphyxiation: -12
   glare:
     action:
       maxCharges: 6
@@ -304,9 +379,16 @@
       rechargeDuration: 45
       useDelay: 5
     reagentPurgeAmount: 25
-    healTicks: 6
-    healTickInterval: 2.75
-    healBrute: 6
-    healBurn: 6
-    healPoison: 7
-    healAsphyxiation: 8
+    healApplications: 6
+    healInterval: 2.75
+    healing:
+      types:
+        Blunt: -2
+        Slash: -2
+        Piercing: -2
+        Heat: -1.5
+        Shock: -1.5
+        Cold: -1.5
+        Caustic: -1.5
+        Poison: -7
+        Asphyxiation: -8

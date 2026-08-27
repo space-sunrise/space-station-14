@@ -1,7 +1,7 @@
 namespace Content.Server._Sunrise.Antags.Vampires.Components;
 
 /// <summary>
-/// Условие цели, прогресс которой определяется общим количеством выпитой вампиром крови.
+/// Условие цели по выпитой крови.
 /// </summary>
 [RegisterComponent]
 public sealed partial class BloodDrainConditionComponent : Component;

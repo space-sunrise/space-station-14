@@ -4,7 +4,7 @@
   parent: BaseAction
   id: ActionVampireToggleFangs
   name: Extend Fangs
-  description: Bare your fangs to feed on a blood-bearing creature with an empty hand. A covered mouth, movement, damage, changing hands or losing range interrupts feeding; vampires cannot be drained and faith may protect the target.
+  description: Drink from a blood-bearing creature with an empty hand, restoring fullness and mending wounds. Movement, damage, changing hands, a covered mouth or losing range interrupts feeding. Vampires are immune, and faith protects prey until you become Ancient.
   components:
   - type: Action
     useDelay: 2
@@ -24,7 +24,7 @@
   parent: BaseAction
   id: ActionVampireGlare
   name: Glare
-  description: Drains the stamina of nearby creatures and paralyzes those in front for longer. Cannot be used while blind; flash protection such as sunglasses may weaken or block it.
+  description: Drains the stamina of nearby creatures and paralyzes those in front of you. Blindness prevents its use, while flash protection weakens the effect. Range, strength and charges improve with your power level.
   components:
   - type: Action
     useDelay: 12
@@ -45,7 +45,7 @@
   parent: BaseAction
   id: ActionVampireSleep
   name: Sleep
-  description: Hypnotizes a humanoid after a short concentration. Movement, damage or losing proximity interrupts the attempt, while protected eyes, a guarded mind or faith may resist it.
+  description: Puts a humanoid to sleep after a short concentration. Movement, damage or losing proximity interrupts the attempt; protected eyes, a mindshield or faith may protect the target. Blood cost and concentration time decrease with your power level.
   components:
   - type: Action
     useDelay: 15
@@ -62,7 +62,7 @@
     canTargetSelf: false
     whitelist:
       components:
-      - HumanoidAppearance
+      - HumanoidProfile
     event: !type:VampireSleepActionEvent
   - type: LimitedCharges
     maxCharges: 1
@@ -75,7 +75,7 @@
   parent: BaseAction
   id: ActionVampireRejuvenateI
   name: Rejuvenation
-  description: Removes stuns and knockdown, even while incapacitated. Does not heal or purge chemicals.
+  description: Removes stuns and knockdown even while incapacitated. Does not heal wounds or purge chemicals.
   components:
   - type: Action
     useDelay: 8
@@ -98,7 +98,7 @@
   parent: BaseAction
   id: ActionVampireRejuvenateII
   name: Greater Rejuvenation
-  description: Removes stuns, purges poisons and gradually heals common injuries. Cannot revive the dead.
+  description: Removes stuns and knockdown, purges poisons and gradually heals wounds. Cannot revive the dead.
   components:
   - type: Action
     useDelay: 7
@@ -110,7 +110,7 @@
       sprite: _Sunrise/Vampire/actions_vampire.rsi
       state: rejuvinate
   - type: InstantAction
-    event: !type:VampireRejuvenateIIActionEvent {}
+    event: !type:VampireRejuvenateIiActionEvent {}
   - type: LimitedCharges
     maxCharges: 1
   - type: AutoRecharge

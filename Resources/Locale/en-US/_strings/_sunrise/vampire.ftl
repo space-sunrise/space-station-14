@@ -21,7 +21,6 @@ vampire-target-protected-by-faith = This person is protected by their faith!
 vampire-drink-target-empty = This being is out of blood!
 vampire-drink-target-maxed = You have already drunk { $amount } units of blood from this target.
 vampire-drink-target-hard-max = You have drunk the maximum amount of blood from this target ({ $amount } units).
-vampire-full-power-achieved = Your vampiric essence surges to full power!
 vampire-drink-target-not-viable = This being does not have a beating heart!
 vampire-drink-target-rot = This being's essence is foul!
 vampire-sleep-shielded = The hypnosis fails. Something is protecting this being's mind.
@@ -31,9 +30,20 @@ vampire-sleep-target-warning-2 = An unfamiliar heaviness settles behind your eye
 vampire-sleep-target-warning-3 = Your thoughts briefly slip out of rhythm.
 vampire-sleep-target-warning-4 = A faint chill runs down your spine.
 vampire-sleep-target-warning-5 = Something at the edge of your awareness feels wrong.
-vampire-space-burn-warning = The harsh void light scorches your undead flesh!
 vampire-holy-place-burn = The sacred ground sears your unholy flesh!
 action-vampire-not-enough-power = Your power is insufficient.
+
+vampire-power-awakened-message =
+    You have become an awakened vampire.
+    Hunger grows more slowly, and blood strengthens your flesh more effectively. Still, it leaves a strange aftertaste in your mouth. You wonder what they feed these people.
+
+vampire-power-nightborn-message =
+    You have become a mature vampire.
+    Your body holds more blood, and your strength returns faster. Do not grow conceited; you remain weak and fragile before mere mortals.
+
+vampire-power-ancient-message =
+    You have become an ancient vampire.
+    Hunger has weakened, and the faith of those poor little mortals can no longer hold you back (probably).
 
 vampire-role-greeting =
     You have become a vampire. Hide your nature, feed on the crew and complete your objectives.

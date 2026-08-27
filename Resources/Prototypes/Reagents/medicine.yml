@@ -1263,9 +1263,6 @@
       effects:
       - !type:HealthChange
         conditions:
-
-        - !type:TotalDamageCondition
-          max: 50
         # Sunrise-Start
         - !type:MetabolizerTypeCondition
           type: [ Vampire ]

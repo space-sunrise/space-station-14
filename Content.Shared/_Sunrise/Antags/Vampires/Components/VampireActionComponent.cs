@@ -1,20 +1,20 @@
 namespace Content.Shared._Sunrise.Antags.Vampires.Components;
 
 /// <summary>
-/// Настройки стоимости и минимального уровня силы вампирской способности.
+/// Настройки вампирского action.
 /// </summary>
 [RegisterComponent]
 public sealed partial class VampireActionComponent : Component
 {
     /// <summary>
-    /// Минимальный уровень силы для использования способности.
+    /// Требуемый уровень.
     /// </summary>
     [DataField]
     public VampirePowerLevel RequiredPowerLevel = VampirePowerLevel.Neonate;
 
     /// <summary>
-    /// Стоимость использования способности в накопленной крови.
+    /// Стоимость в крови.
     /// </summary>
     [DataField]
-    public float BloodCost = 0f;
+    public int BloodCost;
 }
