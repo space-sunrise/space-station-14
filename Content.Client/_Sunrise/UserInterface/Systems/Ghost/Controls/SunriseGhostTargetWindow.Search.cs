@@ -32,18 +32,57 @@ public sealed partial class SunriseGhostTargetWindow
 
             foreach (var departmentCandidate in bigGrid.Children)
             {
-                if (departmentCandidate is not GridContainer departmentGrid)
+                if (departmentCandidate is Collapsible collapsible &&
+                    collapsible.Body is CollapsibleBody body)
+                {
+                    var departmentGrid = GetDepartmentGrid(body);
+                    var anyButtonVisible = departmentGrid != null && UpdateButtonsVisibility(departmentGrid);
+
+                    collapsible.Visible = anyButtonVisible;
+
+                    if (!string.IsNullOrEmpty(_searchText))
+                        collapsible.BodyVisible = anyButtonVisible;
+                    else if (_departmentCollapsibles.TryGetValue(collapsible, out var departmentKey))
+                        collapsible.BodyVisible = !_collapsedDepartments.Contains(departmentKey);
+
+                    if (anyButtonVisible)
+                        anyDepartmentVisible = true;
+
+                    continue;
+                }
+
+                if (departmentCandidate is not GridContainer directGrid)
                     continue;
 
-                var anyButtonVisible = UpdateButtonsVisibility(departmentGrid);
-                departmentGrid.Visible = anyButtonVisible;
+                var anyDirectButtonVisible = UpdateButtonsVisibility(directGrid);
+                directGrid.Visible = anyDirectButtonVisible;
 
-                if (anyButtonVisible)
+                if (anyDirectButtonVisible)
                     anyDepartmentVisible = true;
             }
 
             bigGrid.Visible = anyDepartmentVisible;
         }
+    }
+
+    private static GridContainer? GetDepartmentGrid(CollapsibleBody body)
+    {
+        foreach (var child in body.Children)
+        {
+            if (child is GridContainer directGrid)
+                return directGrid;
+
+            if (child is not PanelContainer panel)
+                continue;
+
+            foreach (var panelChild in panel.Children)
+            {
+                if (panelChild is GridContainer panelGrid)
+                    return panelGrid;
+            }
+        }
+
+        return null;
     }
 
     /// <summary>

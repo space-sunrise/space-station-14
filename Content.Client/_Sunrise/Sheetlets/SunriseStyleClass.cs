@@ -18,4 +18,6 @@ public static class SunriseStyleClass
     public const string StyleClassSocialButtonForum = "SocialButtonForum";
     public const string StyleClassSocialButtonDiscord = "SocialButtonDiscord";
     public const string StyleClassSocialButtonTelegram = "SocialButtonTelegram";
+    public const string GhostDepartmentHeading = "GhostDepartmentHeading";
+    public const string GhostDepartmentBody = "GhostDepartmentBody";
 }

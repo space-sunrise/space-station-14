@@ -36,11 +36,15 @@ public sealed partial class SunriseGhostTargetWindow : DefaultWindow
     private readonly List<GhostWarpPlayer> _ghostPlayers = [];
 
     public event Action<NetEntity>? WarpClicked;
+    public event Action? GhostnadoClicked;
 
     public SunriseGhostTargetWindow()
     {
         IoCManager.InjectDependencies(this);
         RobustXamlLoader.Load(this);
+
+        GhostnadoButton.OnPressed += _ => GhostnadoClicked?.Invoke();
+        SearchBar.OnTextChanged += OnSearchTextChanged;
     }
 
     public void Populate()
@@ -52,14 +56,14 @@ public sealed partial class SunriseGhostTargetWindow : DefaultWindow
         _chatIcons = _entity.System<ChatIconsHelpersSystem>();
 
         GhostTeleportContainer.DisposeAllChildren();
+        _departmentCollapsibles.Clear();
         _playerWarps = GetSortedByName(_playerWarps);
         _placeWarps = GetSortedByName(_placeWarps);
         _antagonists = GetSortedByName(_antagonists);
 
         PlayersAllocation();
         AddButtons();
-
-        SearchBar.OnTextChanged += OnSearchTextChanged;
+        UpdateVisibleButtons();
     }
 
     /// <summary>

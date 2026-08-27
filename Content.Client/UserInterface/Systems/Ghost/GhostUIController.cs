@@ -164,9 +164,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         Gui.RespawnPressed += Respawn; // Sunrise-Sponsors
         Gui.ChangeServerPressed += ChangeServerPressed;
         Gui.TargetWindow.WarpClicked += OnWarpClicked;
-
-        // Sunrise edit - нету фичи
-        // Gui.TargetWindow.OnGhostnadoClicked += OnGhostnadoClicked;
+        Gui.TargetWindow.GhostnadoClicked += OnGhostnadoClicked; // Sunrise-Edit - телепорт к самому наблюдаемому игроку
 
         UpdateGui();
     }
@@ -182,6 +180,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         Gui.RespawnPressed -= Respawn; // Sunrise-Sponsors
         Gui.ChangeServerPressed -= ChangeServerPressed;
         Gui.TargetWindow.WarpClicked -= OnWarpClicked;
+        Gui.TargetWindow.GhostnadoClicked -= OnGhostnadoClicked; // Sunrise-Edit - телепорт к самому наблюдаемому игроку
 
         Gui.Hide();
     }

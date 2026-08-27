@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Content.Client._Sunrise.Sheetlets;
 using Content.Client._Sunrise.UserInterface.Controls;
 using Robust.Client.UserInterface.Controls;
 using GhostWarpPlayer = Content.Shared.Ghost.SharedGhostSystem.GhostWarpPlayer;
@@ -20,6 +21,9 @@ public sealed partial class SunriseGhostTargetWindow
 
     private const int MaxLenght = 15;
     private const int MaxLenghtWithoutIcons = 18;
+
+    private readonly HashSet<string> _collapsedDepartments = [];
+    private readonly Dictionary<Collapsible, string> _departmentCollapsibles = [];
 
     // TODO: Дедупликация одинакового кода генерации
     // UDPATE: Сначала я хотел это сделать, но потом понял, что AddPlayerButtons разительно отличается от остальных
@@ -53,12 +57,6 @@ public sealed partial class SunriseGhostTargetWindow
                 Columns = 5,
             };
 
-            var departmentLabel = new Label
-            {
-                Text = Loc.GetString(department.Name) + ": " + players.Count,
-                StyleClasses = { "LabelSecondaryColor" },
-            };
-
             foreach (var player in players)
             {
                 var playerButton = new RichTextButton
@@ -80,8 +78,48 @@ public sealed partial class SunriseGhostTargetWindow
                 departmentGrid.AddChild(playerButton);
             }
 
-            bigGrid.AddChild(departmentLabel);
-            bigGrid.AddChild(departmentGrid);
+            var departmentKey = $"{text}:{department.ID}";
+            var departmentHeading = new CollapsibleHeading($"{Loc.GetString(department.Name)}  ·  {players.Count}")
+            {
+                HorizontalExpand = true,
+                MinHeight = 34,
+                Margin = new Thickness(0, 2),
+                ChevronMargin = new Thickness(10, 0, 8, 0),
+            };
+            departmentHeading.AddStyleClass(SunriseStyleClass.GhostDepartmentHeading);
+            departmentHeading.Label.HorizontalExpand = true;
+            departmentHeading.Label.VerticalAlignment = VAlignment.Center;
+
+            var departmentPanel = new PanelContainer
+            {
+                HorizontalExpand = true,
+                Margin = new Thickness(6, 1, 6, 6),
+                StyleClasses = { SunriseStyleClass.GhostDepartmentBody },
+            };
+            departmentPanel.AddChild(departmentGrid);
+
+            var departmentBody = new CollapsibleBody
+            {
+                HorizontalExpand = true,
+            };
+            departmentBody.AddChild(departmentPanel);
+
+            var departmentCollapsible = new Collapsible(departmentHeading, departmentBody)
+            {
+                HorizontalExpand = true,
+                BodyVisible = !_collapsedDepartments.Contains(departmentKey),
+            };
+
+            departmentHeading.OnToggled += args =>
+            {
+                if (args.Pressed)
+                    _collapsedDepartments.Remove(departmentKey);
+                else
+                    _collapsedDepartments.Add(departmentKey);
+            };
+
+            _departmentCollapsibles[departmentCollapsible] = departmentKey;
+            bigGrid.AddChild(departmentCollapsible);
         }
 
         GhostTeleportContainer.AddChild(bigGrid);
