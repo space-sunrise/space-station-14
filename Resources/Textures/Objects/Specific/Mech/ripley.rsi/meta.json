@@ -8,36 +8,6 @@
   },
   "states": [
     {
-      "name": "aluminizer",
-      "directions": 4
-    },
-    {
-      "name": "aluminizer-open"
-    },
-    {
-      "name": "aluminizer-broken"
-    },
-    {
-      "name": "combatripley",
-      "directions": 4
-    },
-    {
-      "name": "combatripley-open"
-    },
-    {
-      "name": "combatripley-broken"
-    },
-    {
-      "name": "deathripley",
-      "directions": 4
-    },
-    {
-      "name": "deathripley-open"
-    },
-    {
-      "name": "deathripley-broken"
-    },
-    {
       "name": "firefighter",
       "directions": 4
     },
@@ -90,26 +60,6 @@
     },
     {
       "name": "ripleymkii-broken"
-    },
-    {
-      "name": "ripley_flames_red",
-      "directions": 4
-    },
-    {
-      "name": "ripley_flames_red-broken"
-    },
-    {
-      "name": "ripley_flames_red-open"
-    },
-    {
-      "name": "ripley_zairjah",
-      "directions": 4
-    },
-    {
-      "name": "ripley_zairjah-broken"
-    },
-    {
-      "name": "ripley_zairjah-open"
     },
     {
       "name": "ripley-g",

@@ -489,7 +489,6 @@
     pocket2: RipleyPeripheralsElectronics
     shoes: ClothingBackOreCrateTier1Mech
     belt: BorgOreBag
-    back: MechPaintClarkeRipleyBigBrother
 
 - type: startingGear
   id: MobPirateT1BorgAssaultGear
@@ -566,6 +565,5 @@
     pocket2: DurandPeripheralsElectronics
     shoes: ClothingBackOreCrateTier3Mech
     back: DurandTargetingElectronics
-    belt: MechPaintDurandDollhouse
 
 
