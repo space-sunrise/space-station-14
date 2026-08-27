@@ -837,6 +837,7 @@ def build_media_payload(
     components: list[dict[str, Any]] = []
     if text_embed is not None:
         components.append({"type": 10, "content": f"### {text_embed['title']}"})
+        components.append({"type": 14, "divider": True, "spacing": 1})
 
     if entry is None:
         if text_embed is not None:
@@ -915,6 +916,11 @@ def build_media_payload(
         "attachments": attachments,
         "allowed_mentions": {"parse": []},
     }, files
+
+
+def send_changelog_text(embed: dict[str, Any], deadline: float | None = None) -> None:
+    payload, _ = build_media_payload(embed, [])
+    _send_discord_payload(payload, deadline)
 
 
 def iter_entry_media_batches(
@@ -1018,7 +1024,7 @@ def send_media_batch(
         for item in batch:
             report_media_warning(item.url, f"не удалось отправить файл: {error}")
         if text_embed is not None:
-            send_embed_discord(text_embed, deadline)
+            send_changelog_text(text_embed, deadline)
 
 
 def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
@@ -1047,11 +1053,11 @@ def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
             first_batch = next(media_batches)
         except StopIteration:
             for embed in embeds:
-                send_embed_discord(embed, deadline)
+                send_changelog_text(embed, deadline)
             continue
 
         for embed in embeds[:-1]:
-            send_embed_discord(embed, deadline)
+            send_changelog_text(embed, deadline)
 
         media_entry = entry if len(embeds) == 1 else None
         send_media_batch(first_batch, last_embed, deadline, media_entry)
