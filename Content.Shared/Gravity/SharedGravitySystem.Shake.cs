@@ -16,7 +16,7 @@ public abstract partial class SharedGravitySystem
         {
             if (comp.NextShake <= curTime)
             {
-                if (comp.ShakeTimes == 0 || !GravityQuery.TryGetComponent(uid, out var gravity))
+                if (comp.ShakeTimes == 0 || !_gravityQuery.TryGetComponent(uid, out var gravity))
                 {
                     RemCompDeferred<GravityShakeComponent>(uid);
                     continue;
