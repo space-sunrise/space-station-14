@@ -1560,21 +1560,22 @@ class ChangelogActionsTests(unittest.TestCase):
         }
 
         payload, _ = discord_changelog.build_media_payload(
-            {"title": "Автор: Tester", "description": ""},
+            {"title": "👤 Tester", "description": ""},
             [image, video, second_image],
             entry,
         )
 
         components = payload["components"][0]["components"]
-        self.assertEqual("### Автор: Tester", components[0]["content"])
-        self.assertEqual("🆕 Первая строка", components[1]["content"])
+        self.assertEqual("### 👤 Tester", components[0]["content"])
+        self.assertEqual("🆕 **Добавлено**\n• Первая строка", components[1]["content"])
         self.assertEqual("attachment://media-1.png", components[2]["items"][0]["media"]["url"])
         self.assertEqual("attachment://media-2.webm", components[2]["items"][1]["media"]["url"])
         self.assertEqual({"type": 14, "divider": True, "spacing": 2}, components[3])
-        self.assertEqual("🪛 Вторая строка\n⚒️ Третья строка", components[4]["content"])
+        self.assertEqual("⚒️ **Изменено**\n• Третья строка", components[4]["content"])
         self.assertEqual("attachment://media-3.png", components[5]["items"][0]["media"]["url"])
-        self.assertEqual({"type": 14, "divider": True, "spacing": 1}, components[6])
-        self.assertEqual("[GitHub Pull Request](https://example.org/pr/1)", components[7]["content"])
+        self.assertEqual({"type": 14, "divider": True, "spacing": 2}, components[6])
+        self.assertEqual("🪛 **Исправлено**\n• Вторая строка", components[7]["content"])
+        self.assertEqual("[GitHub Pull Request](https://example.org/pr/1)", components[8]["content"])
 
     def test_media_batches_obey_file_count_and_request_size(self):
         def batches_for(media):
@@ -1748,10 +1749,10 @@ class ChangelogActionsTests(unittest.TestCase):
         ) as send_text:
             discord_changelog.send_to_discord([entry])
 
-        self.assertEqual("Последняя часть", send.call_args_list[0].args[1]["description"])
+        self.assertEqual("🆕 **Добавлено**\nПоследняя часть", send.call_args_list[0].args[1]["description"])
         self.assertEqual([None, None], [item.args[3] for item in send.call_args_list])
         send_text.assert_called_once()
-        self.assertEqual("Первая часть", send_text.call_args.args[0]["description"])
+        self.assertEqual("🆕 **Добавлено**\nПервая часть", send_text.call_args.args[0]["description"])
 
     def test_all_split_text_parts_are_sent_when_there_is_no_media(self):
         entry = {"author": "Tester", "changes": [{"type": "Add", "message": "Добавлено"}]}
@@ -1768,8 +1769,59 @@ class ChangelogActionsTests(unittest.TestCase):
             discord_changelog.send_to_discord([entry])
 
         self.assertEqual(
-            ["Первая часть", "Последняя часть"],
+            ["🆕 **Добавлено**\nПервая часть", "🆕 **Добавлено**\nПоследняя часть"],
             [item.args[0]["description"] for item in send.call_args_list],
+        )
+
+    def test_long_discord_group_repeats_its_heading_after_split(self):
+        parts = discord_changelog.format_grouped_change_parts(
+            [{"type": "Fix", "message": "Очень длинное исправление " * 20}],
+            limit=100,
+        )
+
+        self.assertGreater(len(parts), 1)
+        self.assertTrue(all(part.startswith("🪛 **Исправлено**\n") for part in parts))
+        self.assertTrue(all(len(part) <= 100 for part in parts))
+
+    def test_discord_groups_changes_in_fixed_order_and_keeps_author_order(self):
+        entry = {
+            "author": "Tester",
+            "changes": [
+                {"type": "Remove", "message": "Удалено"},
+                {"type": "Add", "message": "Добавлено первым"},
+                {"type": "Fix", "message": "Исправлено"},
+                {"type": "Tweak", "message": "Изменено"},
+                {"type": "Add", "message": "Добавлено вторым"},
+                {"type": "Legacy", "message": "Неизвестный старый тип"},
+            ],
+        }
+
+        with patch.object(discord_changelog, "DISCORD_WEBHOOK_URL", "https://discord.example/webhook"), patch.object(
+            discord_changelog,
+            "iter_entry_media_batches",
+            return_value=iter([]),
+        ), patch.object(discord_changelog, "send_embed_discord") as send:
+            discord_changelog.send_to_discord([entry])
+
+        embed = send.call_args.args[0]
+        self.assertEqual("👤 Tester", embed["title"])
+        self.assertEqual(
+            """🆕 **Добавлено**
+• Добавлено первым
+• Добавлено вторым
+
+⚒️ **Изменено**
+• Изменено
+
+🪛 **Исправлено**
+• Исправлено
+
+❌ **Удалено**
+• Удалено
+
+❓ **Прочее**
+• Неизвестный старый тип""",
+            embed["description"],
         )
 
     def test_manual_and_reader_timestamps_support_optional_microseconds(self):
