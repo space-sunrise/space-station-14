@@ -5,6 +5,7 @@ import datetime
 import json
 import os
 import sys
+from collections.abc import Mapping
 from typing import Any, List
 
 import yaml
@@ -44,7 +45,7 @@ def main():
 
     if current_data is None:
         current_data = {"Entries": []}
-    elif current_data.get("Entries") is None:
+    elif isinstance(current_data, Mapping) and current_data.get("Entries") is None:
         current_data["Entries"] = []
 
     try:

@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: read # Чтение доверенного парсера из базовой ветки.
+  pull-requests: read # Чтение списка изменённых файлов PR.
 
 concurrency:
   group: validate-changelog-${{ github.event.pull_request.number }}

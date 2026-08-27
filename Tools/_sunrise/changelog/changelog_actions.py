@@ -166,6 +166,12 @@ def list_changed_changelog_paths(number: int) -> list[str]:
     if not repository or "/" not in repository:
         return []
 
+    filenames = {CHANGELOG_FILE.name.casefold()}
+    for category in os.environ.get("CHANGELOG_EXTRA_CATEGORIES", "").split(","):
+        category = category.strip()
+        if re.fullmatch(r"[A-Za-z]+", category):
+            filenames.add(f"{category}.yml".casefold())
+
     paths: list[str] = []
     page = 1
     while True:
@@ -184,7 +190,7 @@ def list_changed_changelog_paths(number: int) -> list[str]:
             if (
                 path.parent == CHANGELOG_PATH
                 and path.suffix.casefold() in {".yml", ".yaml"}
-                and path.name.casefold().startswith("changelog")
+                and path.name.casefold() in filenames
             ):
                 paths.append(filename)
 
@@ -199,6 +205,10 @@ def load_repository_file(path: str, ref: str) -> str:
         f"/repos/{repository}/contents/{quote(path, safe='/')}",
         {"ref": ref},
     )
+    if not isinstance(response, dict):
+        raise RuntimeError(f"GitHub API не вернул содержимое файла {path}")
+    if response.get("encoding") == "none" and isinstance(response.get("sha"), str):
+        response = github_request(f"/repos/{repository}/git/blobs/{response['sha']}")
     if not isinstance(response, dict) or not isinstance(response.get("content"), str):
         raise RuntimeError(f"GitHub API не вернул содержимое файла {path}")
     try:
@@ -226,7 +236,7 @@ def validate_changed_changelog_files(pull_request: dict[str, Any]) -> None:
             issues = [
                 ChangelogIssue(
                     "yaml",
-                    f"Файл {path}: YAML не удалось разобрать: {error.problem or error}.",
+                    f"Файл {path}: YAML не удалось разобрать: {getattr(error, 'problem', None) or error}.",
                     "Исправьте синтаксис YAML вручную.",
                 ),
             ]
@@ -550,6 +560,11 @@ def parse_pr_body(
                 media = parse_media_value(media_match.group(1))
                 media["change"] = len(category["changes"]) - 1
                 category["media"].append(media)
+            else:
+                report_status(
+                    "warning",
+                    "Строка media: вне раздела «## Медиа» или «## Media» проигнорирована.",
+                )
             continue
 
         try:

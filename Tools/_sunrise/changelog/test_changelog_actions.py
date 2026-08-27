@@ -1,3 +1,4 @@
+import base64
 import io
 import json
 import os
@@ -351,15 +352,18 @@ class ChangelogActionsTests(unittest.TestCase):
             ),
         )
 
-        parsed = changelog_actions.parse_pr_body(
-            ":cl: Иван\n"
-            "- add: Добавлена рыба\n"
-            "media: ![Вне раздела](https://example.org/outside.png)\n"
-            "![Тоже вне раздела](https://example.org/outside-2.png)",
-            "Fallback",
-        )
+        output = io.StringIO()
+        with redirect_stdout(output):
+            parsed = changelog_actions.parse_pr_body(
+                ":cl: Иван\n"
+                "- add: Добавлена рыба\n"
+                "media: ![Вне раздела](https://example.org/outside.png)\n"
+                "![Тоже вне раздела](https://example.org/outside-2.png)",
+                "Fallback",
+            )
         self.assertEqual([], parsed[1][0].media)
         self.assertEqual("Добавлена рыба", parsed[1][0].changes[0]["message"])
+        self.assertIn("Строка media: вне раздела", output.getvalue())
 
     def test_validation_reports_normalized_changelog(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -863,6 +867,31 @@ class ChangelogActionsTests(unittest.TestCase):
             ["nested_id", "missing_id", "duplicate_id"],
             [repair["code"] for repair in report["repairs"]],
         )
+
+    def test_updater_reports_non_mapping_changelog_root(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            changelog = root / "Changelog.yml"
+            parts = root / "Parts"
+            parts.mkdir()
+            changelog.write_text("- broken\n", encoding="utf-8")
+
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(REPO_ROOT / "Tools/_sunrise/changelog/update_changelog.py"),
+                    str(changelog),
+                    str(parts),
+                ],
+                check=False,
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                env={**os.environ, "PYTHONIOENCODING": "utf-8"},
+            )
+
+        self.assertNotEqual(0, result.returncode)
+        self.assertIn("Корень чейнжлога должен быть YAML-отображением", result.stderr)
 
     def test_changelog_targets_are_sorted_and_require_complete_configuration(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -1920,6 +1949,32 @@ class ChangelogActionsTests(unittest.TestCase):
             embed["description"],
         )
 
+    def test_discord_skips_invalid_change_records_without_losing_valid_ones(self):
+        entry = {
+            "changes": [
+                "broken",
+                {},
+                {"type": "Add"},
+                {"type": None, "message": "Без типа"},
+                {"type": "Add", "message": "Рабочая запись"},
+                {"type": "Legacy", "message": "Неизвестный тип"},
+            ],
+        }
+
+        payload, _ = discord_changelog.build_media_payload(
+            {"title": "👤 Tester", "description": ""},
+            [],
+            entry,
+        )
+        content = "\n".join(
+            component.get("content", "")
+            for component in payload["components"][0]["components"]
+        )
+
+        self.assertIn("💡 **Добавлено**\n• Рабочая запись", content)
+        self.assertIn("❓ **Прочее**\n• Неизвестный тип", content)
+        self.assertNotIn("Без типа", content)
+
     def test_manual_and_reader_timestamps_support_optional_microseconds(self):
         self.assertRegex(manual_changelog.make_timestamp(), r"\.\d{6}\+00:00$")
 
@@ -2056,6 +2111,7 @@ class ChangelogActionsTests(unittest.TestCase):
             workflow,
         )
         self.assertNotIn("statuses: write", workflow)
+        self.assertIn("pull-requests: read", workflow)
         self.assertIn("group: validate-changelog-${{ github.event.pull_request.number }}", workflow)
         self.assertIn("cancel-in-progress: true", workflow)
         self.assertIn("ref: ${{ github.event.pull_request.base.ref }}", workflow)
@@ -2210,6 +2266,88 @@ class ChangelogActionsTests(unittest.TestCase):
         self.assertIn(expected, report)
         self.assertIn("Перенесите id на уровень записи", report)
 
+    def test_changed_changelog_filter_includes_configured_category_files(self):
+        files = [
+            {"filename": "Resources/Changelog/ChangelogSunrise.yml"},
+            {"filename": "Resources/Changelog/Admin.yml"},
+            {"filename": "Resources/Changelog/Fish.yml"},
+            {"filename": "Resources/Changelog/Other.yml"},
+            {"filename": "Resources/Changelog/Nested/Admin.yml"},
+            {"filename": "Resources/Changelog/Admin.txt"},
+        ]
+        with patch.dict(
+            "os.environ",
+            {
+                "GITHUB_REPOSITORY": "makura-games/sunrise-station",
+                "CHANGELOG_EXTRA_CATEGORIES": "Admin, Fish",
+            },
+        ), patch.object(changelog_actions, "github_request", return_value=files):
+            paths = changelog_actions.list_changed_changelog_paths(123)
+
+        self.assertEqual(
+            [
+                "Resources/Changelog/Admin.yml",
+                "Resources/Changelog/ChangelogSunrise.yml",
+                "Resources/Changelog/Fish.yml",
+            ],
+            paths,
+        )
+
+    def test_large_repository_file_falls_back_to_git_blob(self):
+        text = "Entries: []\n# Рыба\n"
+        contents = {"encoding": "none", "content": "", "sha": "blob-sha"}
+        blob = {
+            "encoding": "base64",
+            "content": base64.b64encode(text.encode("utf-8")).decode("ascii"),
+        }
+        with patch.dict("os.environ", {"GITHUB_REPOSITORY": "makura-games/fish-station"}), patch.object(
+            changelog_actions,
+            "github_request",
+            side_effect=[contents, blob],
+        ) as request:
+            result = changelog_actions.load_repository_file(
+                "Resources/Changelog/ChangelogFish.yml",
+                "a" * 40,
+            )
+
+        self.assertEqual(text, result)
+        self.assertEqual(
+            call("/repos/makura-games/fish-station/git/blobs/blob-sha"),
+            request.call_args_list[1],
+        )
+
+    def test_yaml_error_without_problem_is_reported(self):
+        with tempfile.TemporaryDirectory() as directory:
+            summary = Path(directory) / "summary.md"
+            with patch.dict(
+                "os.environ",
+                {
+                    "GITHUB_TOKEN": "token",
+                    "GITHUB_REPOSITORY": "makura-games/fish-station",
+                    "GITHUB_STEP_SUMMARY": str(summary),
+                },
+            ), patch.object(
+                changelog_actions,
+                "list_changed_changelog_paths",
+                return_value=["Resources/Changelog/ChangelogFish.yml"],
+            ), patch.object(
+                changelog_actions,
+                "load_repository_file",
+                return_value="broken",
+            ), patch.object(
+                changelog_actions.yaml,
+                "safe_load",
+                side_effect=yaml.YAMLError("неверная кодировка"),
+            ):
+                with self.assertRaisesRegex(RuntimeError, "не прошёл проверку структуры"):
+                    changelog_actions.validate_changed_changelog_files(
+                        {"number": 123, "head": {"sha": "a" * 40}},
+                    )
+
+            report = summary.read_text(encoding="utf-8")
+
+        self.assertIn("неверная кодировка", report)
+
     def test_discord_diff_falls_back_for_fish_ids_without_losing_entries(self):
         old = {
             "Entries": [
@@ -2322,6 +2460,37 @@ class ChangelogActionsTests(unittest.TestCase):
             )
 
         self.assertEqual(100, result["id"])
+
+    def test_source_release_falls_back_when_first_sha_is_absent(self):
+        first_attempt = {
+            "created_at": "2026-08-18T23:03:34Z",
+            "display_title": f"Discord changelog fish for {'b' * 40}",
+        }
+        source_run = {"workflow_url": "https://api.github.test/workflows/stable"}
+        latest_before_attempt = {
+            "id": 200,
+            "created_at": "2026-08-18T22:50:00Z",
+            "head_commit": {"id": "c" * 40},
+        }
+        incomplete_run = {
+            "id": 300,
+            "created_at": "2026-08-18T22:55:00Z",
+            "head_commit": None,
+        }
+
+        with patch.object(discord_changelog, "get_current_run", return_value=source_run), patch.object(
+            discord_changelog,
+            "get_past_runs",
+            return_value={"workflow_runs": [incomplete_run, latest_before_attempt]},
+        ):
+            result = discord_changelog.get_source_release_before_attempt(
+                Mock(),
+                "makura-games/fish-station",
+                "200",
+                first_attempt,
+            )
+
+        self.assertEqual(200, result["id"])
 
     def test_target_id_trims_manual_whitespace(self):
         self.assertEqual("fish", changelog_targets.validate_target_id(" fish "))

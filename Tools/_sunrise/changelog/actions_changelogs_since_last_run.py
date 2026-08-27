@@ -64,23 +64,31 @@ ChangelogEntry = dict[str, Any]
 
 
 def grouped_changes(
-    changes: list[dict[str, Any]],
-) -> list[tuple[str, str, list[tuple[int, dict[str, Any]]]]]:
+    changes: list[Any],
+) -> list[tuple[str, str, list[tuple[int, Mapping[str, Any]]]]]:
     groups = []
+    valid_changes = [
+        (index, change)
+        for index, change in enumerate(changes)
+        if isinstance(change, Mapping)
+        and isinstance(change.get("type"), str)
+        and change["type"].strip()
+        and isinstance(change.get("message"), str)
+    ]
     known_types = {change_type for change_type, _, _ in CHANGE_GROUPS}
     for change_type, emoji, title in CHANGE_GROUPS:
-        items = [(index, change) for index, change in enumerate(changes) if change.get("type") == change_type]
+        items = [(index, change) for index, change in valid_changes if change["type"] == change_type]
         if items:
             groups.append((emoji, title, items))
 
-    other = [(index, change) for index, change in enumerate(changes) if change.get("type") not in known_types]
+    other = [(index, change) for index, change in valid_changes if change["type"] not in known_types]
     if other:
         groups.append(("❓", "Прочее", other))
     return groups
 
 
 def format_grouped_change_parts(
-    changes: list[dict[str, Any]],
+    changes: list[Any],
     url: str | None = None,
     limit: int = DISCORD_SPLIT_LIMIT,
 ) -> list[str]:
@@ -527,6 +535,16 @@ def get_source_release_before_attempt(
         page += 1
 
     runs.sort(key=lambda run: run["created_at"], reverse=True)
+    fallback = next(
+        (
+            run
+            for run in runs
+            if isinstance(run.get("head_commit"), Mapping)
+            and isinstance(run["head_commit"].get("id"), str)
+            and run["head_commit"]["id"]
+        ),
+        None,
+    )
     first_release_found = False
     for run in runs:
         head_commit = run.get("head_commit")
@@ -538,6 +556,8 @@ def get_source_release_before_attempt(
         if sha and sha != first_sha:
             return run
 
+    if not first_release_found and fallback is not None:
+        return fallback
     raise RuntimeError(f"Не найден успешный релиз перед первым запуском цели {first_sha}")
 
 
