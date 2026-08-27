@@ -140,7 +140,8 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
     /// <returns>The amount of points</returns>
     public int GetAnomalyPointValue(EntityUid anomaly, AnomalyComponent? component = null)
     {
-        if (!Resolve(anomaly, ref component, false))
+        if (!Resolve(anomaly, ref component, false) ||
+            IsPaused(anomaly)) // Sunrise-Edit - замороженная в криохранилище аномалия не должна приносить очки
             return 0;
 
         var multiplier = 1f;
