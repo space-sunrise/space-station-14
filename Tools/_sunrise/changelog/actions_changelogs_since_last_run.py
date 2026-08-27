@@ -25,6 +25,7 @@ import yaml
 from typing import Any, Iterable
 
 from changelog_path import validate_changelog_path
+from changelog_schema import changelog_entry_identity
 from changelog_targets import validate_target_id
 
 DEBUG = False
@@ -382,7 +383,7 @@ def get_most_recent_workflow(
             if target_id is not None:
                 title = str(run.get("display_title", ""))
                 match = DISCORD_RUN_TITLE_RE.fullmatch(title)
-                if match is None or match.group("target") != target_id:
+                if match is None or match.group("target").strip() != target_id:
                     continue
 
             return run
@@ -403,16 +404,22 @@ def get_current_run(
     return resp.json()
 
 
-def get_past_runs(sess: requests.Session, current_run: Any, page: int = 1) -> Any:
+def get_past_runs(
+    sess: requests.Session,
+    current_run: Any,
+    page: int = 1,
+    status: str | None = "success",
+) -> Any:
     """
-    Возвращает все успешные запуски рабочего процесса до текущего.
+    Возвращает запуски рабочего процесса с выбранным статусом до текущего.
     """
     params = {
-        "status": "success",
         "created": f"<={current_run['created_at']}",
         "per_page": 100,
         "page": page,
     }
+    if status is not None:
+        params["status"] = status
     resp = sess.get(
         f"{current_run['workflow_url']}/runs",
         params=params,
@@ -420,6 +427,75 @@ def get_past_runs(sess: requests.Session, current_run: Any, page: int = 1) -> An
     )
     resp.raise_for_status()
     return resp.json()
+
+
+def get_earliest_target_attempt(
+    sess: requests.Session,
+    github_repository: str,
+    github_run: str,
+    target_id: str,
+) -> Any:
+    current = get_current_run(sess, github_repository, github_run)
+    attempts = [current]
+    page = 1
+    while True:
+        response = get_past_runs(sess, current, page, "completed")
+        runs = response["workflow_runs"]
+        attempts.extend(run for run in runs if run.get("id") != current.get("id"))
+        if len(runs) < 100:
+            break
+        page += 1
+
+    matching = []
+    for run in attempts:
+        match = DISCORD_RUN_TITLE_RE.fullmatch(str(run.get("display_title", "")))
+        if match is not None and match.group("target").strip() == target_id:
+            matching.append(run)
+    if not matching:
+        raise RuntimeError(f"Не найден первый запуск публикации цели {target_id}")
+    return min(matching, key=lambda run: run["created_at"])
+
+
+def get_source_release_before_attempt(
+    sess: requests.Session,
+    github_repository: str,
+    source_run_id: str,
+    first_attempt: Any,
+) -> Any:
+    source_run = get_current_run(sess, github_repository, source_run_id)
+    checkpoint = {
+        "workflow_url": source_run["workflow_url"],
+        "created_at": first_attempt["created_at"],
+    }
+    title = str(first_attempt.get("display_title", ""))
+    match = DISCORD_RUN_TITLE_RE.fullmatch(title)
+    if match is None:
+        raise RuntimeError("Первый запуск цели не содержит SHA релиза в заголовке")
+    first_sha = match.group("sha")
+
+    runs: list[Any] = []
+    page = 1
+    while True:
+        response = get_past_runs(sess, checkpoint, page)
+        page_runs = response["workflow_runs"]
+        runs.extend(page_runs)
+        if len(page_runs) < 100:
+            break
+        page += 1
+
+    runs.sort(key=lambda run: run["created_at"], reverse=True)
+    first_release_found = False
+    for run in runs:
+        head_commit = run.get("head_commit")
+        sha = head_commit.get("id") if isinstance(head_commit, Mapping) else None
+        if not first_release_found:
+            if sha == first_sha:
+                first_release_found = True
+            continue
+        if sha and sha != first_sha:
+            return run
+
+    raise RuntimeError(f"Не найден успешный релиз перед первым запуском цели {first_sha}")
 
 
 def get_last_changelog(changelog_file: Path | None = None) -> str:
@@ -452,7 +528,18 @@ def get_last_changelog(changelog_file: Path | None = None) -> str:
             last_sha = match.group("sha")
 
     if last_sha is None:
-        most_recent = get_most_recent_workflow(session, github_repository, source_run)
+        first_attempt = get_earliest_target_attempt(
+            session,
+            github_repository,
+            github_run,
+            target_id,
+        )
+        most_recent = get_source_release_before_attempt(
+            session,
+            github_repository,
+            source_run,
+            first_attempt,
+        )
         head_commit = most_recent.get("head_commit") if isinstance(most_recent, Mapping) else None
         last_sha = head_commit.get("id") if isinstance(head_commit, Mapping) else None
 
@@ -525,8 +612,31 @@ def diff_changelog(
     """
     Находит новые записи, которых не было в предыдущей публикации.
     """
-    old_entry_ids = {e["id"] for e in old["Entries"]}
-    return (e for e in cur["Entries"] if e["id"] not in old_entry_ids)
+    old_entries = old.get("Entries")
+    current_entries = cur.get("Entries")
+    if not isinstance(old_entries, list) or not isinstance(current_entries, list):
+        raise RuntimeError("Обе версии чейнжлога должны содержать список Entries")
+    if not all(isinstance(entry, Mapping) for entry in old_entries + current_entries):
+        raise RuntimeError("Все элементы Entries должны быть YAML-отображениями")
+
+    def unique_ids(entries: list[ChangelogEntry]) -> set[int] | None:
+        ids = [entry.get("id") for entry in entries]
+        if any(type(entry_id) is not int or entry_id <= 0 for entry_id in ids):
+            return None
+        unique = set(ids)
+        return unique if len(unique) == len(ids) else None
+
+    old_ids = unique_ids(old_entries)
+    current_ids = unique_ids(current_entries)
+    if old_ids is not None and current_ids is not None:
+        return (entry for entry in current_entries if entry["id"] not in old_ids)
+
+    old_identities = {changelog_entry_identity(entry) for entry in old_entries}
+    return (
+        entry
+        for entry in current_entries
+        if changelog_entry_identity(entry) not in old_identities
+    )
 
 
 def get_discord_body(content: str):
