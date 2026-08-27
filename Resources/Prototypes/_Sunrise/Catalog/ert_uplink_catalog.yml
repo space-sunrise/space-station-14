@@ -1714,6 +1714,26 @@
     stock: 8
 
 - type: listing
+  id: ERTUplinkEnergyShieldERT
+  productEntity: SunriseEnergyShieldERT
+  icon:
+    sprite: _Starlight/Objects/Weapons/Melee/cybershield.rsi
+    state: ertshield-icon
+  cost:
+    Crystallite: 10
+  categories:
+    - NTEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERTRed
+      - ERTGamma
+      - ERTEpsilon
+
+- type: listing
   id: ERTUplinkJetpackBlueFilled
   name: ntuplink-equip-jetpack-name
   productEntity: JetpackBlueFilled
@@ -1795,7 +1815,9 @@
   - !type:StoreWhitelistCondition
     blacklist:
       tags:
+      - ERTRed
       - ERTGamma
+      - ERTEpsilon
 
 - type: listing
   id: ERTUplinkClothingEyesGlassesThermalSec

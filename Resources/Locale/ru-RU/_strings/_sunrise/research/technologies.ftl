@@ -43,3 +43,4 @@ research-technology-bluespace-ammo = Боеприпасы для блюспей�
 research-technology-budget-cyber-organs = Бюджетные киберорганы
 research-technology-advanced-cyberlimbs = Продвинутые киберорганы
 research-technology-ion-weaponry = Ионное вооружение
+research-technology-holographic-light-crystallization = Голографическая кристаллизация света

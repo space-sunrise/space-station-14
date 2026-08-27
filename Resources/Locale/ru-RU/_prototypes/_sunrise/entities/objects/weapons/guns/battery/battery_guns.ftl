@@ -1,6 +1,6 @@
 ent-BaseWeaponAutoPowerCell = { ent-BaseWeaponPowerCell }
     .desc = { ent-BaseWeaponPowerCell.desc }
-ent-WeaponLaserLNT620 = лнт620 «искра»
+ent-WeaponLaserLNT620 = лазерный пп Искра
     .desc = Автоматический батарейный лазер Нанотрейзен ЛНТ620 «Искра»
 ent-SunriseWeaponLaserLNT620Empty = { ent-WeaponLaserLNT620 }
     .desc = { ent-WeaponLaserLNT620.desc }
