@@ -47,8 +47,8 @@
 - type: entity
   id: WeaponMechCombatHeavyRifle
   name: Mounted Heavy Rifle Gun
-  description: A battlemech-mounted heavy rifle with selectable armor-piercing, anti-materiel, and hollow-point ammunition. Its ammunition feed must be configured on the weapon before installation. # Sunrise-Edit - описание выбора боеприпасов
-  suffix: Mech Weapon, Gun, Combat, Selectable Ammo # Sunrise-Edit - уточнение вариативности боеприпасов
+  description: A battlemech-mounted heavy rifle with selectable armor-piercing, anti-materiel, and hollow-point ammunition. Its ammunition feed must be configured on the weapon before installation.
+  suffix: Mech Weapon, Gun, Combat, Selectable Ammo
   parent: [ BaseMechWeaponRange, CombatMechEquipment ]
   components:
   - type: Sprite
