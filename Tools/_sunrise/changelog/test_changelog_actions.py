@@ -1515,14 +1515,15 @@ class ChangelogActionsTests(unittest.TestCase):
         container = payload["components"][0]
         self.assertEqual(discord_changelog.DISCORD_COMPONENTS_V2_FLAG, payload["flags"])
         self.assertEqual("### Автор", container["components"][0]["content"])
-        self.assertEqual("Текст", container["components"][1]["content"])
+        self.assertEqual({"type": 14, "divider": True, "spacing": 1}, container["components"][1])
+        self.assertEqual("Текст", container["components"][2]["content"])
         self.assertEqual(
             "attachment://media-1.png",
-            container["components"][2]["items"][0]["media"]["url"],
+            container["components"][3]["items"][0]["media"]["url"],
         )
         self.assertEqual(
             "attachment://media-2.mp4",
-            container["components"][2]["items"][1]["media"]["url"],
+            container["components"][3]["items"][1]["media"]["url"],
         )
         self.assertEqual(
             [
@@ -1551,10 +1552,11 @@ class ChangelogActionsTests(unittest.TestCase):
         )
 
         components = payload["components"][0]["components"]
-        self.assertEqual("🆕 **Добавлено**\n• Добавлена рыба", components[1]["content"])
-        self.assertEqual("[GitHub Pull Request](https://example.org/pr/1)", components[2]["content"])
-        self.assertEqual({"type": 14, "divider": True, "spacing": 2}, components[3])
-        self.assertEqual("attachment://media-1.png", components[4]["items"][0]["media"]["url"])
+        self.assertEqual({"type": 14, "divider": True, "spacing": 1}, components[1])
+        self.assertEqual("🆕 **Добавлено**\n• Добавлена рыба", components[2]["content"])
+        self.assertEqual("[GitHub Pull Request](https://example.org/pr/1)", components[3]["content"])
+        self.assertEqual({"type": 14, "divider": True, "spacing": 2}, components[4])
+        self.assertEqual("attachment://media-1.png", components[5]["items"][0]["media"]["url"])
 
     def test_media_gallery_keeps_author_order_regardless_of_type(self):
         video = discord_changelog.DownloadedMedia(
@@ -1660,15 +1662,16 @@ class ChangelogActionsTests(unittest.TestCase):
 
         components = payload["components"][0]["components"]
         self.assertEqual("### 👤 Tester", components[0]["content"])
-        self.assertEqual("🆕 **Добавлено**\n• Первая строка", components[1]["content"])
-        self.assertEqual("attachment://media-1.png", components[2]["items"][0]["media"]["url"])
-        self.assertEqual("attachment://media-2.webm", components[2]["items"][1]["media"]["url"])
-        self.assertEqual({"type": 14, "divider": True, "spacing": 2}, components[3])
-        self.assertEqual("⚒️ **Изменено**\n• Третья строка", components[4]["content"])
-        self.assertEqual("attachment://media-3.png", components[5]["items"][0]["media"]["url"])
-        self.assertEqual({"type": 14, "divider": True, "spacing": 2}, components[6])
-        self.assertEqual("🪛 **Исправлено**\n• Вторая строка", components[7]["content"])
-        self.assertEqual("[GitHub Pull Request](https://example.org/pr/1)", components[8]["content"])
+        self.assertEqual({"type": 14, "divider": True, "spacing": 1}, components[1])
+        self.assertEqual("🆕 **Добавлено**\n• Первая строка", components[2]["content"])
+        self.assertEqual("attachment://media-1.png", components[3]["items"][0]["media"]["url"])
+        self.assertEqual("attachment://media-2.webm", components[3]["items"][1]["media"]["url"])
+        self.assertEqual({"type": 14, "divider": True, "spacing": 2}, components[4])
+        self.assertEqual("⚒️ **Изменено**\n• Третья строка", components[5]["content"])
+        self.assertEqual("attachment://media-3.png", components[6]["items"][0]["media"]["url"])
+        self.assertEqual({"type": 14, "divider": True, "spacing": 2}, components[7])
+        self.assertEqual("🪛 **Исправлено**\n• Вторая строка", components[8]["content"])
+        self.assertEqual("[GitHub Pull Request](https://example.org/pr/1)", components[9]["content"])
 
     def test_media_batches_obey_file_count_and_request_size(self):
         def batches_for(media):
@@ -1788,7 +1791,7 @@ class ChangelogActionsTests(unittest.TestCase):
             discord_changelog, "download_media", return_value=media
         ), patch.object(
             discord_changelog, "send_multipart_discord", side_effect=RuntimeError("Discord недоступен")
-        ) as multipart, patch.object(discord_changelog, "send_embed_discord") as text_send, redirect_stdout(output):
+        ) as multipart, patch.object(discord_changelog, "send_changelog_text") as text_send, redirect_stdout(output):
             discord_changelog.send_to_discord([entry])
 
         multipart.assert_called_once()
@@ -1813,7 +1816,7 @@ class ChangelogActionsTests(unittest.TestCase):
             return_value=iter([[image, video]]),
         ), patch.object(discord_changelog, "send_media_batch") as send, patch.object(
             discord_changelog,
-            "send_embed_discord",
+            "send_changelog_text",
         ) as send_text:
             discord_changelog.send_to_discord([entry])
 
@@ -1838,7 +1841,7 @@ class ChangelogActionsTests(unittest.TestCase):
             return_value=iter([[media], [media]]),
         ), patch.object(discord_changelog, "send_media_batch") as send, patch.object(
             discord_changelog,
-            "send_embed_discord",
+            "send_changelog_text",
         ) as send_text:
             discord_changelog.send_to_discord([entry])
 
@@ -1858,7 +1861,7 @@ class ChangelogActionsTests(unittest.TestCase):
             discord_changelog,
             "iter_entry_media_batches",
             return_value=iter([]),
-        ), patch.object(discord_changelog, "send_embed_discord") as send:
+        ), patch.object(discord_changelog, "send_changelog_text") as send:
             discord_changelog.send_to_discord([entry])
 
         self.assertEqual(
@@ -1893,7 +1896,7 @@ class ChangelogActionsTests(unittest.TestCase):
             discord_changelog,
             "iter_entry_media_batches",
             return_value=iter([]),
-        ), patch.object(discord_changelog, "send_embed_discord") as send:
+        ), patch.object(discord_changelog, "send_changelog_text") as send:
             discord_changelog.send_to_discord([entry])
 
         embed = send.call_args.args[0]
