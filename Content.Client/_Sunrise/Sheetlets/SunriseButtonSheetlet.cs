@@ -31,6 +31,8 @@ public sealed class SunriseButtonSheetlet : Sheetlet<PalettedStylesheet>
                     ContentMarginTopOverride = 12,
                     ContentMarginBottomOverride = 12,
                 }),
+            // Стандартная палитра кнопок делает pressed-состояние зелёным,
+            // поэтому для секций используем PrimaryPalette напрямую.
             E<ContainerButton>()
                 .Class(SunriseStyleClass.GhostDepartmentHeading)
                 .PseudoNormal()

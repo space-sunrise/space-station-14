@@ -36,6 +36,10 @@ public sealed partial class SunriseGhostTargetWindow : DefaultWindow
     private readonly List<GhostWarpPlayer> _ghostPlayers = [];
 
     public event Action<NetEntity>? WarpClicked;
+
+    /// <summary>
+    /// Запрашивает телепортацию к игроку, за которым наблюдает больше всего призраков.
+    /// </summary>
     public event Action? GhostnadoClicked;
 
     public SunriseGhostTargetWindow()
