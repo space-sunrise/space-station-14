@@ -22,7 +22,7 @@ public sealed partial class VampireSystem
     {
         if (!TryComp<VampireFeedingComponent>(ent, out var feeding) ||
             !TryComp<VampireHolyComponent>(ent, out var holy) ||
-            feeding.UniqueHumanoidVictims < holy.RequiredVictims)
+            feeding.UniqueVictims < holy.RequiredVictims)
         {
             return;
         }
@@ -66,7 +66,7 @@ public sealed partial class VampireSystem
     {
         if (!TryComp<VampireFeedingComponent>(ent, out var feeding) ||
             !TryComp<VampireHolyComponent>(ent, out var holy) ||
-            feeding.UniqueHumanoidVictims < holy.RequiredVictims)
+            feeding.UniqueVictims < holy.RequiredVictims)
         {
             return;
         }

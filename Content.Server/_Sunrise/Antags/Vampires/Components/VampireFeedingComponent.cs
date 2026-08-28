@@ -110,16 +110,6 @@ public sealed partial class VampireFeedingComponent : Component
     public float TargetBloodDrainPerSip = 20f;
 
     /// <summary>
-    /// Эффективность крови животных.
-    /// </summary>
-    public float AnimalEfficiency = 0.05f;
-
-    /// <summary>
-    /// Эффективность крови трупов.
-    /// </summary>
-    public float CorpseEfficiency = 0.1f;
-
-    /// <summary>
     /// Урон укуса.
     /// </summary>
     public DamageSpecifier BiteDamage = new();
@@ -128,19 +118,6 @@ public sealed partial class VampireFeedingComponent : Component
     /// Кровотечение от укуса.
     /// </summary>
     public float BiteBleedAmount = 1f;
-
-    /// <summary>
-    /// Эффективность по стадии гниения.
-    /// </summary>
-    [DataField]
-    public Dictionary<int, float> RotEfficiencyByStage = new()
-    {
-        [0] = 1f,
-        [1] = 0.5f,
-        [2] = 0.25f,
-        [3] = 0.1f,
-        [4] = 0f,
-    };
 
     /// <summary>
     /// Дистанция кормления.
@@ -185,5 +162,5 @@ public sealed partial class VampireFeedingComponent : Component
     /// <summary>
     /// Уникальные жертвы.
     /// </summary>
-    public int UniqueHumanoidVictims;
+    public int UniqueVictims;
 }

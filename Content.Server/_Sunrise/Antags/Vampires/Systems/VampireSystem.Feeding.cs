@@ -3,12 +3,12 @@ using Content.Server.DoAfter;
 using Content.Server._Sunrise.Antags.Vampires.Components;
 using Content.Shared._Sunrise.Antags.Vampires.Components;
 using Content.Shared._Sunrise.Antags.Vampires.Events;
+using Content.Shared._Sunrise.Body.Components;
 using Content.Shared.Atmos.Rotting;
 using Content.Shared.Body.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Eye.Blinding.Systems;
-using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory;
@@ -80,6 +80,8 @@ public sealed partial class VampireSystem
             !ent.Comp.FangsExtended ||
             args.Args.Target is not { } targetUid ||
             !HasComp<BloodstreamComponent>(targetUid) ||
+            !TryComp<BloodSourceComponent>(targetUid, out var bloodSource) ||
+            bloodSource.Value <= 0f ||
             IsInvalidDrinkTarget(ent.Owner, targetUid, showPopup: false))
         {
             feeding.IsDrinking = false;
@@ -98,19 +100,18 @@ public sealed partial class VampireSystem
             return;
         }
 
-        var targetIsHumanoid = HasComp<HumanoidProfileComponent>(targetUid);
-        var bloodEfficiency = targetIsHumanoid ? 1f : feeding.AnimalEfficiency;
+        var bloodEfficiency = bloodSource.Value;
 
         if (TryComp<MobStateComponent>(targetUid, out var mobState) &&
             mobState.CurrentState == Shared.Mobs.MobState.Dead)
         {
-            bloodEfficiency *= feeding.CorpseEfficiency;
+            bloodEfficiency *= bloodSource.CorpseMultiplier;
         }
 
         if (TryComp<PerishableComponent>(targetUid, out var rot))
         {
             var stage = Math.Clamp(rot.Stage, 0, 4);
-            bloodEfficiency *= feeding.RotEfficiencyByStage.GetValueOrDefault(stage);
+            bloodEfficiency *= bloodSource.RotMultipliers.GetValueOrDefault(stage);
         }
 
         if (bloodEfficiency <= 0f)
@@ -152,7 +153,7 @@ public sealed partial class VampireSystem
             return;
         }
 
-        AddBlood(ent, actualSipGain, targetUid, countTotalBlood: targetIsHumanoid);
+        AddBlood(ent, actualSipGain, targetUid);
 
         _damageable.TryChangeDamage(targetUid, feeding.BiteDamage, ignoreResistances: true);
         _blood.TryModifyBleedAmount(targetUid, feeding.BiteBleedAmount);
@@ -196,6 +197,9 @@ public sealed partial class VampireSystem
 
     protected override bool TryStartDrinkBlood(Entity<VampireComponent> ent, EntityUid target)
     {
+        if (!base.TryStartDrinkBlood(ent, target))
+            return false;
+
         if (!TryComp<VampireFeedingComponent>(ent, out var feeding) ||
             !TryComp<VampireConfigurationComponent>(ent, out var configuration))
         {
@@ -209,17 +213,6 @@ public sealed partial class VampireSystem
         {
             _popup.PopupEntity(
                 Loc.GetString("vampire-target-protected-by-faith"),
-                ent.Owner,
-                ent.Owner,
-                PopupType.MediumCaution);
-            return false;
-        }
-
-        if (!TryComp<BloodstreamComponent>(target, out var bloodstream) ||
-            !HasBloodToDrink((target, bloodstream)))
-        {
-            _popup.PopupEntity(
-                Loc.GetString("vampire-drink-target-empty"),
                 ent.Owner,
                 ent.Owner,
                 PopupType.MediumCaution);

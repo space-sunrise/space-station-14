@@ -8,8 +8,6 @@
     sipInterval: 1.25
     bloodGain: 10
     targetBloodDrain: 20
-    animalEfficiency: 0.05
-    corpseEfficiency: 0.1
     biteDamage:
       types:
         Piercing: 0.5
@@ -64,8 +62,6 @@
     sipInterval: 1.2
     bloodGain: 12
     targetBloodDrain: 20
-    animalEfficiency: 0.08
-    corpseEfficiency: 0.15
     biteDamage:
       types:
         Piercing: 0.6
@@ -120,8 +116,6 @@
     sipInterval: 1.15
     bloodGain: 14
     targetBloodDrain: 20
-    animalEfficiency: 0.12
-    corpseEfficiency: 0.2
     biteDamage:
       types:
         Piercing: 0.7
@@ -190,8 +184,6 @@
     sipInterval: 1.1
     bloodGain: 16
     targetBloodDrain: 20
-    animalEfficiency: 0.18
-    corpseEfficiency: 0.25
     biteDamage:
       types:
         Piercing: 0.8
@@ -261,8 +253,6 @@
     sipInterval: 1
     bloodGain: 19
     targetBloodDrain: 22
-    animalEfficiency: 0.25
-    corpseEfficiency: 0.35
     biteDamage:
       types:
         Piercing: 0.95
@@ -332,8 +322,6 @@
     sipInterval: 0.9
     bloodGain: 22
     targetBloodDrain: 24
-    animalEfficiency: 0.5
-    corpseEfficiency: 0.5
     biteDamage:
       types:
         Piercing: 1.1

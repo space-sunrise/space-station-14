@@ -121,7 +121,7 @@ public sealed partial class VampireSystem
             feeding.BloodDrunkFromTargets[targetUid] = targetBlood + amount;
 
             if (isNewTarget && countTotalBlood)
-                feeding.UniqueHumanoidVictims++;
+                feeding.UniqueVictims++;
         }
 
         ent.Comp.BloodFullness = MathF.Min(feeding.MaxBloodFullness, ent.Comp.BloodFullness + amount);

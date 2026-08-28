@@ -125,18 +125,6 @@ public sealed partial class VampireFangsLevelSettings
     public float TargetBloodDrain = 20f;
 
     /// <summary>
-    /// Эффективность крови животных.
-    /// </summary>
-    [DataField]
-    public float AnimalEfficiency = 0.05f;
-
-    /// <summary>
-    /// Эффективность крови трупов.
-    /// </summary>
-    [DataField]
-    public float CorpseEfficiency = 0.1f;
-
-    /// <summary>
     /// Урон укуса.
     /// </summary>
     [DataField]

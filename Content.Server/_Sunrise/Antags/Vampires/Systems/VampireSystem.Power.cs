@@ -66,8 +66,6 @@ public sealed partial class VampireSystem
         feeding.SipInterval = fangs.SipInterval;
         feeding.BloodGainPerSip = fangs.BloodGain;
         feeding.TargetBloodDrainPerSip = fangs.TargetBloodDrain;
-        feeding.AnimalEfficiency = fangs.AnimalEfficiency;
-        feeding.CorpseEfficiency = fangs.CorpseEfficiency;
         feeding.BiteDamage = new DamageSpecifier(fangs.BiteDamage);
         feeding.BiteBleedAmount = fangs.BleedAmount;
         feeding.BiteDistanceThreshold = fangs.Range;
