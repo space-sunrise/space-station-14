@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Charges;
 using Content.Server._Sunrise.Antags.Vampires.Components;
 using Content.Shared._Sunrise.Antags.Vampires;
@@ -15,8 +16,6 @@ public sealed partial class VampireSystem
 
     [Dependency] private readonly IComponentFactory _componentFactory = null!;
     [Dependency] private readonly ChargesSystem _charges = null!;
-
-    private readonly List<EntProtoId> _missingActions = [];
 
     private void InitializeActions()
     {
@@ -42,83 +41,62 @@ public sealed partial class VampireSystem
 
     private void SyncVampireActions(Entity<VampireComponent> ent)
     {
-        if (!TryComp<VampireActionStateComponent>(ent, out var actionState) ||
-            !TryComp<VampireConfigurationComponent>(ent, out var configuration))
-        {
+        if (!TryComp<VampireConfigurationComponent>(ent, out var configuration))
             return;
-        }
 
-        CleanMissingActions(actionState);
         EnsureRejuvenateUpgrade(ent, configuration);
         RefreshAllActions(ent, configuration);
-    }
-
-    private void CleanMissingActions(VampireActionStateComponent actionState)
-    {
-        if (actionState.Actions.Count == 0)
-            return;
-
-        _missingActions.Clear();
-        foreach (var (actionId, actionEntity) in actionState.Actions)
-        {
-            if (!Exists(actionEntity))
-                _missingActions.Add(actionId);
-        }
-
-        foreach (var actionId in _missingActions)
-        {
-            actionState.Actions.Remove(actionId);
-        }
     }
 
     private void EnsureRejuvenateUpgrade(
         Entity<VampireComponent> ent,
         VampireConfigurationComponent configuration)
     {
-        if (!TryComp<VampireActionStateComponent>(ent, out var actionState))
-            return;
-
         var upgradedActionId = configuration.RejuvenateUpgradedAction;
         var baseActionId = configuration.RejuvenateAction;
         var requiredPowerLevel = GetRequiredPowerLevel(upgradedActionId);
         if (ent.Comp.PowerLevel < requiredPowerLevel)
             return;
 
+        var baseAction = FindVampireAction(ent.Owner, baseActionId);
+        var upgradedAction = FindVampireAction(ent.Owner, upgradedActionId);
         VampireActionChargeState? previousChargeState = null;
-        if (actionState.Actions.TryGetValue(baseActionId, out var firstAction))
+        if (baseAction is { } firstAction)
             previousChargeState = CaptureActionChargeState(firstAction);
 
-        if (!actionState.Actions.ContainsKey(upgradedActionId))
+        if (upgradedAction is not { } secondAction)
         {
-            EntityUid? action = null;
-            _actions.AddAction(ent.Owner, ref action, upgradedActionId, ent.Owner);
-            if (action is { } actionEntity)
-            {
-                actionState.Actions[upgradedActionId] = actionEntity;
-                ConfigureVampireAction(ent, configuration, upgradedActionId, actionEntity, previousChargeState);
-            }
+            var actionEntity = _actions.AddAction(ent.Owner, upgradedActionId, ent.Owner);
+            if (actionEntity is not { } addedAction)
+                return;
+
+            ConfigureVampireAction(ent, configuration, upgradedActionId, addedAction, previousChargeState);
+        }
+        else
+        {
+            TryRefreshVampireAction(ent, configuration, upgradedActionId, secondAction);
         }
 
-        if (actionState.Actions.TryGetValue(upgradedActionId, out var secondAction))
-            TryRefreshVampireAction(ent, configuration, upgradedActionId, secondAction);
-
-        if (!actionState.Actions.TryGetValue(baseActionId, out firstAction))
+        if (baseAction is not { } actionToRemove)
             return;
 
-        _actions.RemoveAction(ent.Owner, firstAction);
-        actionState.Actions.Remove(baseActionId);
+        _actions.RemoveAction(ent.Owner, actionToRemove.AsNullable());
     }
 
     private void RefreshAllActions(
         Entity<VampireComponent> ent,
         VampireConfigurationComponent configuration)
     {
-        if (!TryComp<VampireActionStateComponent>(ent, out var actionState))
-            return;
-
-        foreach (var (actionId, actionEntity) in actionState.Actions)
+        foreach (var action in _actions.GetActions(ent.Owner))
         {
-            TryRefreshVampireAction(ent, configuration, actionId, actionEntity);
+            if (action.Comp.Container != ent.Owner ||
+                !HasComp<VampireActionComponent>(action.Owner) ||
+                Prototype(action) is not { } prototype)
+            {
+                continue;
+            }
+
+            TryRefreshVampireAction(ent, configuration, prototype.ID, action);
         }
     }
 
@@ -126,28 +104,37 @@ public sealed partial class VampireSystem
         Entity<VampireComponent> ent,
         VampireConfigurationComponent configuration)
     {
-        var actionState = EnsureComp<VampireActionStateComponent>(ent);
         foreach (var actionId in configuration.BaseActions)
         {
-            EntityUid? action = null;
-            _actions.AddAction(ent.Owner, ref action, actionId, ent.Owner);
-
-            if (action is { } actionEntity)
-                actionState.Actions[actionId] = actionEntity;
+            _actions.AddAction(ent.Owner, actionId, ent.Owner);
         }
     }
 
     private void RemoveVampireActions(Entity<VampireComponent> ent)
     {
-        if (!TryComp<VampireActionStateComponent>(ent, out var actionState))
-            return;
-
-        foreach (var action in actionState.Actions.Values)
+        foreach (var action in _actions.GetActions(ent.Owner).ToArray())
         {
-            _actions.RemoveAction(ent.Owner, action);
+            if (action.Comp.Container != ent.Owner ||
+                !HasComp<VampireActionComponent>(action.Owner))
+                continue;
+
+            _actions.RemoveAction(ent.Owner, action.AsNullable());
+        }
+    }
+
+    private Entity<ActionComponent>? FindVampireAction(EntityUid holder, EntProtoId actionId)
+    {
+        foreach (var action in _actions.GetActions(holder))
+        {
+            if (action.Comp.Container == holder &&
+                HasComp<VampireActionComponent>(action.Owner) &&
+                Prototype(action)?.ID == actionId.Id)
+            {
+                return action;
+            }
         }
 
-        actionState.Actions.Clear();
+        return null;
     }
 
     private void TryRefreshVampireAction(

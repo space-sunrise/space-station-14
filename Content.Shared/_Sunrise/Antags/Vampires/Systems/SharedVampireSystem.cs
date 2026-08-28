@@ -13,8 +13,8 @@ public abstract class SharedVampireSystem : EntitySystem
 {
     // Общие проверки и модификаторы вампира.
 
-    [Dependency] private readonly SharedBloodstreamSystem _bloodstream = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedBloodstreamSystem _bloodstream = null!;
+    [Dependency] private readonly SharedPopupSystem _popup = null!;
 
     public override void Initialize()
     {
@@ -43,7 +43,7 @@ public abstract class SharedVampireSystem : EntitySystem
         if (!Exists(target) || target == ent.Owner)
             return;
 
-        if (!TryComp<BloodstreamComponent>(target, out _))
+        if (!HasComp<BloodstreamComponent>(target))
         {
             if (HasComp<InteractionPopupComponent>(target))
                 args.Handled = true;

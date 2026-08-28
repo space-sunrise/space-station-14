@@ -34,14 +34,10 @@ public sealed partial class VampireSystem
         if (!TryGetPowerLevelPrototype(ent.Comp.PowerLevel, out var level))
             return;
 
-        if (!TryComp<VampireConfigurationComponent>(ent, out var configuration) ||
-            !TryComp<VampireActionStateComponent>(ent, out var actionState) ||
-            !actionState.Actions.TryGetValue(configuration.GlareAction, out var actionEntity))
-        {
+        if (!TryComp<VampireConfigurationComponent>(ent, out var configuration))
             return;
-        }
 
-        if (!CheckAndConsumeBloodCost(ent, actionEntity))
+        if (!CheckAndConsumeBloodCost(ent, args.Action))
             return;
 
         var settings = level.Glare;

@@ -52,7 +52,6 @@ public sealed partial class VampireSystem
 
         RemoveVampireActions(ent);
 
-        RemCompDeferred<VampireActionStateComponent>(ent);
         RemCompDeferred<VampireFeedingComponent>(ent);
         RemCompDeferred<VampireHolyComponent>(ent);
         RemCompDeferred<ActiveVampireRejuvenateComponent>(ent);

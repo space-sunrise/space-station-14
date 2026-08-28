@@ -46,13 +46,7 @@ public sealed partial class VampireSystem
         if (!ent.Comp.FangsExtended && TryComp<VampireFeedingComponent>(ent, out var feeding))
             feeding.IsDrinking = false;
 
-        if (TryComp<VampireConfigurationComponent>(ent, out var configuration) &&
-            TryComp<VampireActionStateComponent>(ent, out var actionState) &&
-            actionState.Actions.TryGetValue(configuration.FangsAction, out var actionEntity) &&
-            _actions.GetAction(actionEntity) is { } action)
-        {
-            _actions.SetToggled(action.AsNullable(), ent.Comp.FangsExtended);
-        }
+        _actions.SetToggled(args.Action.AsNullable(), ent.Comp.FangsExtended);
 
         DirtyField(ent, ent.Comp, nameof(VampireComponent.FangsExtended));
         args.Handled = true;
