@@ -69,3 +69,5 @@ ent-ClothingBeltMedicalEMTAdvanced = advanced emt medical belt
     .desc = { ent-ClothingBeltMedicalAdvanced.desc }
 ent-ClothingBeltMedicalCMOAdvanced = advanced cmo medical belt
     .desc = { ent-ClothingBeltMedicalAdvanced.desc }
+ent-ClothingBeltMilitaryBeltGrenade = grenade belt
+    .desc = A tactical belt for Gorlex Marauder grenadiers. Holds hand grenades and grenade magazines and can be worn on the belt or suit storage slot.

@@ -86,6 +86,9 @@
     enum.HumanoidVisualLayers.FacialHair:
       limit: 0
       required: false
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 1
+      required: false
     enum.HumanoidVisualLayers.Tail:
       limit: 0
       required: false
