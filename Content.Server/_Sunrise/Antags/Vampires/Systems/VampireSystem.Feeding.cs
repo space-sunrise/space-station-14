@@ -110,7 +110,7 @@ public sealed partial class VampireSystem
 
         if (bloodEfficiency <= 0f)
         {
-            _popup.PopupEntity(Loc.GetString("vampire-drink-target-rot"), ent.Owner, ent, PopupType.MediumCaution);
+            _popup.PopupEntity(Loc.GetString("vampire-drink-target-rot"), ent.Owner, ent.Owner, PopupType.MediumCaution);
             feeding.IsDrinking = false;
             return;
         }
@@ -123,7 +123,7 @@ public sealed partial class VampireSystem
             !TryComp<BloodstreamComponent>(targetUid, out var blood))
         {
             feeding.IsDrinking = false;
-            _popup.PopupEntity(Loc.GetString("vampire-drink-target-empty"), ent.Owner, ent, PopupType.MediumCaution);
+            _popup.PopupEntity(Loc.GetString("vampire-drink-target-empty"), ent.Owner, ent.Owner, PopupType.MediumCaution);
             return;
         }
 
@@ -132,7 +132,10 @@ public sealed partial class VampireSystem
         if (targetBloodLevel <= 0f)
         {
             feeding.IsDrinking = false;
-            _popup.PopupEntity(Loc.GetString("vampire-drink-target-empty"), ent.Owner, ent, PopupType.MediumCaution);
+            _popup.PopupEntity(Loc.GetString("vampire-drink-target-empty"),
+                ent.Owner,
+                ent.Owner,
+                PopupType.MediumCaution);
             return;
         }
 
@@ -143,7 +146,10 @@ public sealed partial class VampireSystem
         if (!_blood.TryModifyBloodLevel(targetUid, -actualDrain))
         {
             feeding.IsDrinking = false;
-            _popup.PopupEntity(Loc.GetString("vampire-drink-target-empty"), ent.Owner, ent, PopupType.MediumCaution);
+            _popup.PopupEntity(Loc.GetString("vampire-drink-target-empty"),
+                ent.Owner,
+                ent.Owner,
+                PopupType.MediumCaution);
             return;
         }
 
@@ -184,7 +190,7 @@ public sealed partial class VampireSystem
             _popup.PopupEntity(
                 Loc.GetString("vampire-drink-target-hard-max", ("amount", feeding.MaxBloodPerTarget)),
                 ent.Owner,
-                ent,
+                ent.Owner,
                 PopupType.MediumCaution);
         }
     }
@@ -226,7 +232,12 @@ public sealed partial class VampireSystem
             return false;
 
         if (showPopup)
-            _popup.PopupEntity(Loc.GetString("vampire-drink-invalid-target"), user, user, PopupType.MediumCaution);
+        {
+            _popup.PopupEntity(Loc.GetString("vampire-drink-invalid-target"),
+                user,
+                user,
+                PopupType.MediumCaution);
+        }
 
         return true;
     }
@@ -239,7 +250,11 @@ public sealed partial class VampireSystem
         if (IsMouthBlocked(ent.Owner, feeding))
         {
             if (showPopup)
-                _popup.PopupEntity(Loc.GetString("vampire-mouth-covered"), ent.Owner, ent.Owner);
+            {
+                _popup.PopupEntity(Loc.GetString("vampire-mouth-covered"),
+                    ent.Owner,
+                    ent.Owner);
+            }
 
             return false;
         }
