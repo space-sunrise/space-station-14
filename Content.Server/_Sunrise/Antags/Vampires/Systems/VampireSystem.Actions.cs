@@ -109,6 +109,19 @@ public sealed partial class VampireSystem
         actionState.Actions.Remove(baseActionId);
     }
 
+    private void RefreshAllActions(
+        Entity<VampireComponent> ent,
+        VampireConfigurationComponent configuration)
+    {
+        if (!TryComp<VampireActionStateComponent>(ent, out var actionState))
+            return;
+
+        foreach (var (actionId, actionEntity) in actionState.Actions)
+        {
+            TryRefreshVampireAction(ent, configuration, actionId, actionEntity);
+        }
+    }
+
     private void GrantBaseActions(
         Entity<VampireComponent> ent,
         VampireConfigurationComponent configuration)
@@ -135,19 +148,6 @@ public sealed partial class VampireSystem
         }
 
         actionState.Actions.Clear();
-    }
-
-    private void RefreshAllActions(
-        Entity<VampireComponent> ent,
-        VampireConfigurationComponent configuration)
-    {
-        if (!TryComp<VampireActionStateComponent>(ent, out var actionState))
-            return;
-
-        foreach (var (actionId, actionEntity) in actionState.Actions)
-        {
-            TryRefreshVampireAction(ent, configuration, actionId, actionEntity);
-        }
     }
 
     private void TryRefreshVampireAction(

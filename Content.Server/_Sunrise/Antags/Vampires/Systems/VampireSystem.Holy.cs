@@ -97,6 +97,14 @@ public sealed partial class VampireSystem
         _damageable.TryChangeDamage(ent.Owner, damage, true);
     }
 
+    private void ApplyDistributedDamage(
+        EntityUid uid,
+        IReadOnlyList<ProtoId<DamageTypePrototype>> damageTypes,
+        FixedPoint2 amount)
+    {
+        _damageable.TryChangeDamage(uid, CreateDistributedDamage(damageTypes, amount), true);
+    }
+
     private bool IsInHolyPlace(EntityUid uid, float range)
     {
         if (_container.IsEntityInContainer(uid))
@@ -115,14 +123,6 @@ public sealed partial class VampireSystem
         }
 
         return false;
-    }
-
-    private void ApplyDistributedDamage(
-        EntityUid uid,
-        IReadOnlyList<ProtoId<DamageTypePrototype>> damageTypes,
-        FixedPoint2 amount)
-    {
-        _damageable.TryChangeDamage(uid, CreateDistributedDamage(damageTypes, amount), true);
     }
 
     private static DamageSpecifier CreateDistributedDamage(

@@ -244,29 +244,6 @@ public sealed partial class VampireSystem
         return true;
     }
 
-    private void UpdateVampireAlert(Entity<VampireComponent> ent)
-        => _alerts.ShowAlert(ent.Owner, ent.Comp.BloodAlert);
-
-    private void UpdateVampireFedAlert(Entity<VampireComponent> ent)
-    {
-        if (!TryComp<VampireConfigurationComponent>(ent, out var configuration) ||
-            !TryComp<VampireFeedingComponent>(ent, out var feeding))
-        {
-            return;
-        }
-
-        var fraction = feeding.MaxBloodFullness <= 0f
-            ? 0f
-            : ent.Comp.BloodFullness / feeding.MaxBloodFullness;
-        var minSeverity = _alerts.GetMinSeverity(configuration.FedAlert);
-        var maxSeverity = _alerts.GetMaxSeverity(configuration.FedAlert);
-        var severity = (short)Math.Clamp(
-            (int)MathF.Ceiling(fraction * (maxSeverity - minSeverity)) + minSeverity,
-            minSeverity,
-            maxSeverity);
-        _alerts.ShowAlert(ent.Owner, configuration.FedAlert, severity);
-    }
-
     private bool StartDrinkDoAfter(Entity<VampireComponent> ent, EntityUid target, bool showPopup)
     {
         if (!TryComp<VampireFeedingComponent>(ent, out var feeding) || feeding.IsDrinking)
@@ -329,5 +306,28 @@ public sealed partial class VampireSystem
         }
 
         return false;
+    }
+
+    private void UpdateVampireAlert(Entity<VampireComponent> ent)
+        => _alerts.ShowAlert(ent.Owner, ent.Comp.BloodAlert);
+
+    private void UpdateVampireFedAlert(Entity<VampireComponent> ent)
+    {
+        if (!TryComp<VampireConfigurationComponent>(ent, out var configuration) ||
+            !TryComp<VampireFeedingComponent>(ent, out var feeding))
+        {
+            return;
+        }
+
+        var fraction = feeding.MaxBloodFullness <= 0f
+            ? 0f
+            : ent.Comp.BloodFullness / feeding.MaxBloodFullness;
+        var minSeverity = _alerts.GetMinSeverity(configuration.FedAlert);
+        var maxSeverity = _alerts.GetMaxSeverity(configuration.FedAlert);
+        var severity = (short)Math.Clamp(
+            (int)MathF.Ceiling(fraction * (maxSeverity - minSeverity)) + minSeverity,
+            minSeverity,
+            maxSeverity);
+        _alerts.ShowAlert(ent.Owner, configuration.FedAlert, severity);
     }
 }
