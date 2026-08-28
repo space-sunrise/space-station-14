@@ -123,7 +123,7 @@ public sealed partial class VampireConfigurationComponent : Component
     /// Порог направления взгляда.
     /// </summary>
     [DataField]
-    public float GlareDirectionThreshold = 0.7f;
+    public float GlareDirectionThreshold = 0.8f;
 
     /// <summary>
     /// Допустимое движение во время сна.

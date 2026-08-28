@@ -25,19 +25,80 @@ public sealed partial class VampireSystem
 
     private void OnGlare(Entity<VampireComponent> ent, ref VampireGlareActionEvent args)
     {
-        if (args.Handled ||
-            TryComp<BlindableComponent>(ent, out var blindable) && blindable.IsBlind)
-        {
+        if (args.Handled)
             return;
+
+        args.Handled = TryGlare(
+            ent.AsNullable(),
+            args.Action);
+    }
+
+    public bool TryGlare(
+        Entity<VampireComponent?> ent,
+        EntityUid action,
+        bool quiet = false)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return false;
+
+        if (!CanGlare(
+                (ent.Owner, ent.Comp),
+                action,
+                quiet))
+        {
+            return false;
         }
 
+        if (!CheckAndConsumeBloodCost(
+                (ent.Owner, ent.Comp),
+                action))
+        {
+            return false;
+        }
+
+        DoGlare((ent.Owner, ent.Comp));
+        return true;
+    }
+
+    public bool CanGlare(
+        Entity<VampireComponent> ent,
+        EntityUid action,
+        bool quiet = false)
+    {
+        if (TryComp<BlindableComponent>(ent, out var blindable) &&
+            blindable.IsBlind)
+        {
+            return false;
+        }
+
+        if (!TryGetPowerLevelPrototype(ent.Comp.PowerLevel, out _))
+            return false;
+
+        if (!HasComp<VampireConfigurationComponent>(ent))
+            return false;
+
+        if (!TryResolveVampireActionCost(
+                ent,
+                action,
+                0,
+                out var bloodCost,
+                showPopup: !quiet))
+        {
+            return false;
+        }
+
+        return CanSpendBlood(
+            ent,
+            bloodCost,
+            showPopup: !quiet);
+    }
+
+    private void DoGlare(Entity<VampireComponent> ent)
+    {
         if (!TryGetPowerLevelPrototype(ent.Comp.PowerLevel, out var level))
             return;
 
         if (!TryComp<VampireConfigurationComponent>(ent, out var configuration))
-            return;
-
-        if (!CheckAndConsumeBloodCost(ent, args.Action))
             return;
 
         var settings = level.Glare;
@@ -46,7 +107,9 @@ public sealed partial class VampireSystem
             settings.Range,
             LookupFlags.Dynamic | LookupFlags.Sundries);
 
-        var (ourPosition, ourRotation) = _transform.GetWorldPositionRotation(Transform(ent));
+        var (ourPosition, ourRotation) =
+            _transform.GetWorldPositionRotation(Transform(ent));
+
         var ourDirection = ourRotation.ToWorldVec();
 
         foreach (var target in targets)
@@ -73,12 +136,16 @@ public sealed partial class VampireSystem
 
             if (dot > configuration.GlareDirectionThreshold && !knockedDown)
             {
-                _stun.TryAddParalyzeDuration(target, settings.FrontParalyzeDuration * effectScale);
+                _stun.TryAddParalyzeDuration(
+                    target,
+                    settings.FrontParalyzeDuration * effectScale);
+
                 _stamina.TakeStaminaDamage(
                     target,
                     settings.StaminaDamage * effectScale,
                     stamina,
                     source: ent.Owner);
+
                 TryInjectMuteToxin(
                     target,
                     settings.MuteToxinAmount * effectScale,
@@ -94,7 +161,10 @@ public sealed partial class VampireSystem
             }
             else
             {
-                _stun.TryAddParalyzeDuration(target, settings.SideParalyzeDuration * effectScale);
+                _stun.TryAddParalyzeDuration(
+                    target,
+                    settings.SideParalyzeDuration * effectScale);
+
                 _stamina.TakeStaminaDamage(
                     target,
                     settings.StaminaDamage * effectScale,
@@ -102,8 +172,6 @@ public sealed partial class VampireSystem
                     source: ent.Owner);
             }
         }
-
-        args.Handled = true;
     }
 
     private bool TryInjectMuteToxin(
@@ -117,9 +185,16 @@ public sealed partial class VampireSystem
         var solution = new Solution();
         solution.AddReagent(reagent, FixedPoint2.New(amount));
 
-        if (!_solution.TryGetInjectableSolution(target, out var targetSolution, out _))
+        if (!_solution.TryGetInjectableSolution(
+                target,
+                out var targetSolution,
+                out _))
+        {
             return false;
+        }
 
-        return _solution.TryAddSolution(targetSolution.Value, solution);
+        return _solution.TryAddSolution(
+            targetSolution.Value,
+            solution);
     }
 }

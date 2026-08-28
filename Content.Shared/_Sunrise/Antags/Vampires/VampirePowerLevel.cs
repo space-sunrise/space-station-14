@@ -177,7 +177,7 @@ public sealed partial class VampireGlareLevelSettings
     /// Паралич спереди.
     /// </summary>
     [DataField]
-    public TimeSpan FrontParalyzeDuration = TimeSpan.FromSeconds(3);
+    public TimeSpan FrontParalyzeDuration = TimeSpan.FromSeconds(5);
 
     /// <summary>
     /// Паралич сбоку.

@@ -31,10 +31,10 @@
       rechargeDuration: 55
       useDelay: 12
     range: 1
-    frontParalyzeDuration: 3
+    frontParalyzeDuration: 4.5
     sideParalyzeDuration: 1
-    staminaDamage: 20
-    muteToxinAmount: 0.25
+    staminaDamage: 30
+    muteToxinAmount: 0.3
     flashProtectionEffectScale: 0
   sleep:
     action:
@@ -86,9 +86,9 @@
       rechargeDuration: 52
       useDelay: 12
     range: 1.25
-    frontParalyzeDuration: 4
+    frontParalyzeDuration: 6
     sideParalyzeDuration: 1.5
-    staminaDamage: 23
+    staminaDamage: 35
     muteToxinAmount: 0.4
     flashProtectionEffectScale: 0.35
   sleep:
@@ -141,9 +141,9 @@
       rechargeDuration: 48
       useDelay: 11
     range: 1.5
-    frontParalyzeDuration: 5
+    frontParalyzeDuration: 8
     sideParalyzeDuration: 2
-    staminaDamage: 26
+    staminaDamage: 45
     muteToxinAmount: 0.6
     flashProtectionEffectScale: 0.55
   sleep:
@@ -210,9 +210,9 @@
       rechargeDuration: 45
       useDelay: 10
     range: 1.75
-    frontParalyzeDuration: 5.5
+    frontParalyzeDuration: 8
     sideParalyzeDuration: 2.5
-    staminaDamage: 30
+    staminaDamage: 50
     muteToxinAmount: 0.75
     flashProtectionEffectScale: 0.7
   sleep:
@@ -280,9 +280,9 @@
       rechargeDuration: 40
       useDelay: 9
     range: 2
-    frontParalyzeDuration: 6
+    frontParalyzeDuration: 8
     sideParalyzeDuration: 3
-    staminaDamage: 34
+    staminaDamage: 60
     muteToxinAmount: 1
     flashProtectionEffectScale: 0.85
   sleep:
@@ -350,9 +350,9 @@
       rechargeDuration: 35
       useDelay: 8
     range: 2.5
-    frontParalyzeDuration: 7
+    frontParalyzeDuration: 15
     sideParalyzeDuration: 3.5
-    staminaDamage: 40
+    staminaDamage: 80
     muteToxinAmount: 1.25
     flashProtectionEffectScale: 1
   sleep:
