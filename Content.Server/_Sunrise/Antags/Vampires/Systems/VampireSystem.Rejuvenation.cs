@@ -25,20 +25,17 @@ public sealed partial class VampireSystem
         SubscribeLocalEvent<VampireComponent, VampireRejuvenateIiActionEvent>(OnRejuvenateUpgraded);
     }
 
-    private void OnRejuvenate(Entity<VampireComponent> ent, ref VampireRejuvenateIActionEvent args)
+    private void OnRejuvenate(
+        Entity<VampireComponent> ent,
+        ref VampireRejuvenateIActionEvent args)
     {
         if (args.Handled)
             return;
 
-        if (!TryGetPowerLevelPrototype(ent.Comp.PowerLevel, out var level))
-            return;
-
-        if (!CheckAndConsumeBloodCost(ent, args.Action))
-            return;
-
-        RemoveRejuvenateStuns(ent.Owner);
-        _stamina.RestoreStamina(ent.Owner, level.Rejuvenation.StaminaRestoreAmount);
-        args.Handled = true;
+        args.Handled = TryRejuvenate(
+            ent.AsNullable(),
+            args.Action.Owner,
+            upgraded: false);
     }
 
     private void OnRejuvenateUpgraded(
@@ -48,29 +45,114 @@ public sealed partial class VampireSystem
         if (args.Handled)
             return;
 
-        if (!TryComp<VampireConfigurationComponent>(ent, out var configuration))
-            return;
+        args.Handled = TryRejuvenate(
+            ent.AsNullable(),
+            args.Action.Owner,
+            upgraded: true);
+    }
 
+
+    public bool TryRejuvenate(
+        Entity<VampireComponent?> ent,
+        EntityUid action,
+        bool upgraded)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return false;
+
+        if (!CanRejuvenate(
+                (ent.Owner, ent.Comp),
+                action,
+                upgraded))
+        {
+            return false;
+        }
+
+        if (!CheckAndConsumeBloodCost(
+                (ent.Owner, ent.Comp),
+                action))
+        {
+            return false;
+        }
+
+        DoRejuvenate(
+            (ent.Owner, ent.Comp),
+            upgraded);
+
+        return true;
+    }
+
+    public bool CanRejuvenate(
+        Entity<VampireComponent> ent,
+        EntityUid action,
+        bool upgraded,
+        bool quiet = false)
+    {
+        if (!TryGetPowerLevelPrototype(ent.Comp.PowerLevel, out _))
+            return false;
+
+        if (upgraded &&
+            !HasComp<VampireConfigurationComponent>(ent))
+        {
+            return false;
+        }
+
+        if (!TryResolveVampireActionCost(
+                ent,
+                action,
+                0,
+                out var bloodCost,
+                showPopup: !quiet))
+        {
+            return false;
+        }
+
+        return CanSpendBlood(
+            ent,
+            bloodCost,
+            showPopup: !quiet);
+    }
+
+    private void DoRejuvenate(
+        Entity<VampireComponent> ent,
+        bool upgraded)
+    {
         if (!TryGetPowerLevelPrototype(ent.Comp.PowerLevel, out var level))
             return;
 
-        if (!CheckAndConsumeBloodCost(ent, args.Action))
+        var settings = level.Rejuvenation;
+
+        RemoveRejuvenateStuns(ent.Owner);
+        _stamina.RestoreStamina(
+            ent.Owner,
+            settings.StaminaRestoreAmount);
+
+        if (!upgraded)
             return;
 
-        var settings = level.Rejuvenation;
-        RemoveRejuvenateStuns(ent.Owner);
-        _stamina.RestoreStamina(ent.Owner, settings.StaminaRestoreAmount);
+        if (!TryComp<VampireConfigurationComponent>(
+                ent,
+                out var configuration))
+        {
+            return;
+        }
+
         PurgeRejuvenateReagents(
             ent.Owner,
             settings.ReagentPurgeAmount,
             configuration.RejuvenatePurgeMetabolismStage);
-        StartRejuvenateHealing(ent.Owner, settings);
-        args.Handled = true;
+
+        StartRejuvenateHealing(
+            ent.Owner,
+            settings);
     }
 
     private void RemoveRejuvenateStuns(EntityUid uid)
     {
-        _statusEffects.TryRemoveStatusEffect(uid, SharedStunSystem.StunId);
+        _statusEffects.TryRemoveStatusEffect(
+            uid,
+            SharedStunSystem.StunId);
+
         _stun.TryUnstun(uid);
         RemComp<KnockedDownComponent>(uid);
     }
@@ -81,8 +163,12 @@ public sealed partial class VampireSystem
         ProtoId<MetabolismStagePrototype> metabolismStage)
     {
         var purgeAmount = FixedPoint2.New(configuredAmount);
-        if (purgeAmount <= FixedPoint2.Zero || !TryComp<BloodstreamComponent>(uid, out var blood))
+
+        if (purgeAmount <= FixedPoint2.Zero ||
+            !TryComp<BloodstreamComponent>(uid, out var blood))
+        {
             return;
+        }
 
         if (!_solution.ResolveSolution(
                 uid,
@@ -101,25 +187,40 @@ public sealed partial class VampireSystem
             if (removed >= purgeAmount)
                 break;
 
-            if (!_prototype.TryIndex<ReagentPrototype>(quantity.Reagent.Prototype, out var prototype) ||
+            if (!_prototype.TryIndex<ReagentPrototype>(
+                    quantity.Reagent.Prototype,
+                    out var prototype) ||
                 prototype.Metabolisms is null ||
                 !prototype.Metabolisms.Metabolisms.ContainsKey(metabolismStage))
             {
                 continue;
             }
 
-            var removeAmount = FixedPoint2.Min(quantity.Quantity, purgeAmount - removed);
-            _solution.RemoveReagent(solutionEntity, quantity.Reagent, removeAmount);
+            var removeAmount = FixedPoint2.Min(
+                quantity.Quantity,
+                purgeAmount - removed);
+
+            _solution.RemoveReagent(
+                solutionEntity,
+                quantity.Reagent,
+                removeAmount);
+
             removed += removeAmount;
         }
     }
 
-    private void StartRejuvenateHealing(EntityUid uid, VampireRejuvenationLevelSettings settings)
+    private void StartRejuvenateHealing(
+        EntityUid uid,
+        VampireRejuvenationLevelSettings settings)
     {
-        if (settings.HealApplications <= 0 || settings.Healing.Empty)
+        if (settings.HealApplications <= 0 ||
+            settings.Healing.Empty)
+        {
             return;
+        }
 
         var active = EnsureComp<ActiveVampireRejuvenateComponent>(uid);
+
         active.ApplicationsRemaining = settings.HealApplications;
         active.ApplicationInterval = settings.HealInterval;
         active.NextApplication = _timing.CurTime;
@@ -129,12 +230,17 @@ public sealed partial class VampireSystem
     private void ProcessActiveRejuvenation(TimeSpan now)
     {
         var query = EntityQueryEnumerator<ActiveVampireRejuvenateComponent>();
+
         while (query.MoveNext(out var uid, out var rejuvenate))
         {
             if (now < rejuvenate.NextApplication)
                 continue;
 
-            _damageable.TryChangeDamage(uid, rejuvenate.Healing, true);
+            _damageable.TryChangeDamage(
+                uid,
+                rejuvenate.Healing,
+                true);
+
             rejuvenate.ApplicationsRemaining--;
 
             if (rejuvenate.ApplicationsRemaining <= 0)
@@ -143,7 +249,8 @@ public sealed partial class VampireSystem
                 continue;
             }
 
-            rejuvenate.NextApplication = now + rejuvenate.ApplicationInterval;
+            rejuvenate.NextApplication =
+                now + rejuvenate.ApplicationInterval;
         }
     }
 }
