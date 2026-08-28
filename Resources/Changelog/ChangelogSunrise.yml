@@ -3444,13 +3444,6 @@
     type: Tweak
   id: 1877
   time: '2026-06-01T15:20:14.135186+00:00'
-- author: Kinar_7
-  changes:
-  - message: Абдуктору вернули панель взаимодействий
-    type: Fix
-  id: 1877
-  time: '2026-06-01T14:42:00.0000000+00:00'
-  url: https://github.com/makura-games/sunrise-station/pull/4446
 - author: VigersRay
   changes:
   - message: Разумная болезнь полностью удалена для создания с нуля в необозримом будущем.
@@ -3510,13 +3503,6 @@
     type: Tweak
   id: 1883
   time: '2026-06-02T20:21:43.917148+00:00'
-- author: KaiserMaus
-  changes:
-  - message: Добавлено много видов различной плитки резательный станок. Удачи в креативности!
-    type: Add
-  id: 1883
-  time: '2026-06-02T20:37:02.0000000+00:00'
-  url: https://github.com/makura-games/sunrise-station/pull/4450
 - author: KaiserMaus
   changes:
   - message: Добавлена граната выпускающая Висцерапторов в аплинк. Небольших дронов с острыми пилами.
@@ -3629,12 +3615,6 @@
   id: 1894
   time: '2026-06-06T16:31:17.0000000+00:00'
   url: https://github.com/makura-games/sunrise-station/pull/4205
-- author: VigersRay
-  changes:
-  - message: Исправлена тенденция экипажа слепнуть навсегда от временных источников слепоты.
-    type: Fix
-  id: 1894
-  time: '2026-06-07T14:59:46.522694+00:00'
 - author: Nrd-K
   changes:
   - message: Добавлен способ получения газа - галона посредством электролиза БЗ.
@@ -4750,3 +4730,48 @@
     message: Вы чувствуете, что законы мироздания изменились. Вы слышите эхом что "Теневая Дымка" теряет свою плотность и ослабевает.
   id: 2017
   url: https://github.com/makura-games/sunrise-station/pull/4761
+- author: Kinar_7
+  changes:
+  - message: Абдуктору вернули панель взаимодействий
+    type: Fix
+  id: 2018
+  time: '2026-06-01T14:42:00.0000000+00:00'
+  url: https://github.com/makura-games/sunrise-station/pull/4446
+- author: KaiserMaus
+  changes:
+  - message: Добавлено много видов различной плитки резательный станок. Удачи в креативности!
+    type: Add
+  id: 2019
+  time: '2026-06-02T20:37:02.0000000+00:00'
+  url: https://github.com/makura-games/sunrise-station/pull/4450
+- author: VigersRay
+  changes:
+  - message: Исправлена тенденция экипажа слепнуть навсегда от временных источников слепоты.
+    type: Fix
+  id: 2020
+  time: '2026-06-07T14:59:46.522694+00:00'
+- author: ThereDrD0
+  time: '2026-08-27T17:52:36.0000000+00:00'
+  changes:
+  - type: Add
+    message: Добавлено автоматическое подтягивание медиа в чейнжлоги, теперь вы увидите больше видео или картинок.
+  - type: Tweak
+    message: Изменено внешний вид чейнжлога, добавлены категории. А этот чейнжлог финальный тест итогового варианта
+  id: 2021
+  url: https://github.com/makura-games/sunrise-station/pull/4767
+  media:
+  - url: https://github.com/user-attachments/assets/733242bb-ce44-4a79-a748-fd4d0379f091
+- author: Nordstream17
+  time: '2026-08-28T16:01:49.0000000+00:00'
+  changes:
+  - type: Add
+    message: Добавлен новый кроваво-красный шкаф с доступами агентов синдиката и содержимым, больше подходящим для скрытного выполнения целей ДО.
+  id: 2022
+  url: https://github.com/makura-games/sunrise-station/pull/4611
+- author: Nordstream17
+  time: '2026-08-28T16:04:52.0000000+00:00'
+  changes:
+  - type: Add
+    message: Добавлен крафт кнопки с замком
+  id: 2023
+  url: https://github.com/makura-games/sunrise-station/pull/4662

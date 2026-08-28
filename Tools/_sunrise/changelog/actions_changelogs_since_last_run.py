@@ -5,7 +5,6 @@
 # Автоматически определяет последний запуск и получает чейнджлог через GitHub API.
 #
 import http.client
-import io
 import ipaddress
 import json
 import math
@@ -25,6 +24,7 @@ import yaml
 from typing import Any, Iterable
 
 from changelog_path import validate_changelog_path
+from changelog_schema import changelog_entry_identity
 from changelog_targets import validate_target_id
 
 DEBUG = False
@@ -53,14 +53,66 @@ DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL")
 
 CHANGELOG_FILE = os.environ.get("CHANGELOG_FILE")
 
-TYPES_TO_EMOJI = {
-    "Fix":    "🪛",
-    "Add":    "🆕",
-    "Remove": "❌",
-    "Tweak":  "⚒️"
-}
+CHANGE_GROUPS = (
+    ("Add", "💡", "Добавлено"),
+    ("Tweak", "⚒️", "Изменено"),
+    ("Fix", "🪛", "Исправлено"),
+    ("Remove", "❌", "Удалено"),
+)
 
 ChangelogEntry = dict[str, Any]
+
+
+def grouped_changes(
+    changes: list[Any],
+) -> list[tuple[str, str, list[tuple[int, Mapping[str, Any]]]]]:
+    groups = []
+    valid_changes = [
+        (index, change)
+        for index, change in enumerate(changes)
+        if isinstance(change, Mapping)
+        and isinstance(change.get("type"), str)
+        and change["type"].strip()
+        and isinstance(change.get("message"), str)
+    ]
+    known_types = {change_type for change_type, _, _ in CHANGE_GROUPS}
+    for change_type, emoji, title in CHANGE_GROUPS:
+        items = [(index, change) for index, change in valid_changes if change["type"] == change_type]
+        if items:
+            groups.append((emoji, title, items))
+
+    other = [(index, change) for index, change in valid_changes if change["type"] not in known_types]
+    if other:
+        groups.append(("❓", "Прочее", other))
+    return groups
+
+
+def format_grouped_change_parts(
+    changes: list[Any],
+    url: str | None = None,
+    limit: int = DISCORD_SPLIT_LIMIT,
+) -> list[str]:
+    sections: list[tuple[str, bool]] = []
+    for emoji, title, items in grouped_changes(changes):
+        header = f"{emoji} **{title}**"
+        body = "\n".join(f"• {change['message']}" for _, change in items)
+        for index, part in enumerate(split_message(body, limit - len(header) - 1)):
+            sections.append((f"{header}\n{part}", index > 0))
+
+    parts: list[str] = []
+    for section, continues_group in sections:
+        if not continues_group and parts and len(parts[-1]) + len(section) + 2 <= limit:
+            parts[-1] += f"\n\n{section}"
+        else:
+            parts.append(section)
+
+    if url and url.strip():
+        link = f"[GitHub Pull Request]({url})"
+        if parts and len(parts[-1]) + len(link) + 2 <= limit:
+            parts[-1] += f"\n\n{link}"
+        else:
+            parts.append(link)
+    return parts
 
 
 @dataclass(frozen=True)
@@ -382,7 +434,7 @@ def get_most_recent_workflow(
             if target_id is not None:
                 title = str(run.get("display_title", ""))
                 match = DISCORD_RUN_TITLE_RE.fullmatch(title)
-                if match is None or match.group("target") != target_id:
+                if match is None or match.group("target").strip() != target_id:
                     continue
 
             return run
@@ -403,16 +455,22 @@ def get_current_run(
     return resp.json()
 
 
-def get_past_runs(sess: requests.Session, current_run: Any, page: int = 1) -> Any:
+def get_past_runs(
+    sess: requests.Session,
+    current_run: Any,
+    page: int = 1,
+    status: str | None = "success",
+) -> Any:
     """
-    Возвращает все успешные запуски рабочего процесса до текущего.
+    Возвращает запуски рабочего процесса с выбранным статусом до текущего.
     """
     params = {
-        "status": "success",
         "created": f"<={current_run['created_at']}",
         "per_page": 100,
         "page": page,
     }
+    if status is not None:
+        params["status"] = status
     resp = sess.get(
         f"{current_run['workflow_url']}/runs",
         params=params,
@@ -420,6 +478,87 @@ def get_past_runs(sess: requests.Session, current_run: Any, page: int = 1) -> An
     )
     resp.raise_for_status()
     return resp.json()
+
+
+def get_earliest_target_attempt(
+    sess: requests.Session,
+    github_repository: str,
+    github_run: str,
+    target_id: str,
+) -> Any:
+    current = get_current_run(sess, github_repository, github_run)
+    attempts = [current]
+    page = 1
+    while True:
+        response = get_past_runs(sess, current, page, "completed")
+        runs = response["workflow_runs"]
+        attempts.extend(run for run in runs if run.get("id") != current.get("id"))
+        if len(runs) < 100:
+            break
+        page += 1
+
+    matching = []
+    for run in attempts:
+        match = DISCORD_RUN_TITLE_RE.fullmatch(str(run.get("display_title", "")))
+        if match is not None and match.group("target").strip() == target_id:
+            matching.append(run)
+    if not matching:
+        raise RuntimeError(f"Не найден первый запуск публикации цели {target_id}")
+    return min(matching, key=lambda run: run["created_at"])
+
+
+def get_source_release_before_attempt(
+    sess: requests.Session,
+    github_repository: str,
+    source_run_id: str,
+    first_attempt: Any,
+) -> Any:
+    source_run = get_current_run(sess, github_repository, source_run_id)
+    checkpoint = {
+        "workflow_url": source_run["workflow_url"],
+        "created_at": first_attempt["created_at"],
+    }
+    title = str(first_attempt.get("display_title", ""))
+    match = DISCORD_RUN_TITLE_RE.fullmatch(title)
+    if match is None:
+        raise RuntimeError("Первый запуск цели не содержит SHA релиза в заголовке")
+    first_sha = match.group("sha")
+
+    runs: list[Any] = []
+    page = 1
+    while True:
+        response = get_past_runs(sess, checkpoint, page)
+        page_runs = response["workflow_runs"]
+        runs.extend(page_runs)
+        if len(page_runs) < 100:
+            break
+        page += 1
+
+    runs.sort(key=lambda run: run["created_at"], reverse=True)
+    fallback = next(
+        (
+            run
+            for run in runs
+            if isinstance(run.get("head_commit"), Mapping)
+            and isinstance(run["head_commit"].get("id"), str)
+            and run["head_commit"]["id"]
+        ),
+        None,
+    )
+    first_release_found = False
+    for run in runs:
+        head_commit = run.get("head_commit")
+        sha = head_commit.get("id") if isinstance(head_commit, Mapping) else None
+        if not first_release_found:
+            if sha == first_sha:
+                first_release_found = True
+            continue
+        if sha and sha != first_sha:
+            return run
+
+    if not first_release_found and fallback is not None:
+        return fallback
+    raise RuntimeError(f"Не найден успешный релиз перед первым запуском цели {first_sha}")
 
 
 def get_last_changelog(changelog_file: Path | None = None) -> str:
@@ -452,7 +591,18 @@ def get_last_changelog(changelog_file: Path | None = None) -> str:
             last_sha = match.group("sha")
 
     if last_sha is None:
-        most_recent = get_most_recent_workflow(session, github_repository, source_run)
+        first_attempt = get_earliest_target_attempt(
+            session,
+            github_repository,
+            github_run,
+            target_id,
+        )
+        most_recent = get_source_release_before_attempt(
+            session,
+            github_repository,
+            source_run,
+            first_attempt,
+        )
         head_commit = most_recent.get("head_commit") if isinstance(most_recent, Mapping) else None
         last_sha = head_commit.get("id") if isinstance(head_commit, Mapping) else None
 
@@ -525,8 +675,31 @@ def diff_changelog(
     """
     Находит новые записи, которых не было в предыдущей публикации.
     """
-    old_entry_ids = {e["id"] for e in old["Entries"]}
-    return (e for e in cur["Entries"] if e["id"] not in old_entry_ids)
+    old_entries = old.get("Entries")
+    current_entries = cur.get("Entries")
+    if not isinstance(old_entries, list) or not isinstance(current_entries, list):
+        raise RuntimeError("Обе версии чейнжлога должны содержать список Entries")
+    if not all(isinstance(entry, Mapping) for entry in old_entries + current_entries):
+        raise RuntimeError("Все элементы Entries должны быть YAML-отображениями")
+
+    def unique_ids(entries: list[ChangelogEntry]) -> set[int] | None:
+        ids = [entry.get("id") for entry in entries]
+        if any(type(entry_id) is not int or entry_id <= 0 for entry_id in ids):
+            return None
+        unique = set(ids)
+        return unique if len(unique) == len(ids) else None
+
+    old_ids = unique_ids(old_entries)
+    current_ids = unique_ids(current_entries)
+    if old_ids is not None and current_ids is not None:
+        return (entry for entry in current_entries if entry["id"] not in old_ids)
+
+    old_identities = {changelog_entry_identity(entry) for entry in old_entries}
+    return (
+        entry
+        for entry in current_entries
+        if changelog_entry_identity(entry) not in old_identities
+    )
 
 
 def get_discord_body(content: str):
@@ -683,7 +856,8 @@ def build_media_payload(
 ) -> tuple[dict[str, Any], list[tuple[str, tuple[str, bytes, str]]]]:
     components: list[dict[str, Any]] = []
     if text_embed is not None:
-        components.append({"type": 10, "content": f"### {text_embed['title']}"})
+        components.append({"type": 10, "content": f"**{text_embed['title']}**"})
+        components.append({"type": 14, "divider": True, "spacing": 1})
 
     if entry is None:
         if text_embed is not None:
@@ -693,33 +867,48 @@ def build_media_payload(
         pending_lines: list[str] = []
         separate_from_previous_media = False
         selected_indices = {item.change_index for item in media if item.change_index is not None}
-        for index, change in enumerate(entry["changes"]):
-            change_media = [item for item in media if item.change_index == index]
-            if text_embed is None and index not in selected_indices:
+        for emoji, title, items in grouped_changes(entry["changes"]):
+            visible_items = [
+                (index, change)
+                for index, change in items
+                if text_embed is not None or index in selected_indices
+            ]
+            if not visible_items:
                 continue
 
-            if separate_from_previous_media:
-                components.append({"type": 14, "divider": True, "spacing": 2})
-                separate_from_previous_media = False
-            emoji = TYPES_TO_EMOJI.get(change["type"], "❓")
-            pending_lines.append(f"{emoji} {change['message']}")
-            if change_media:
-                _append_text_components(components, "\n".join(pending_lines))
-                pending_lines.clear()
-                components.extend(_media_components(change_media))
-                separate_from_previous_media = True
+            group_started = False
+            for index, change in visible_items:
+                if separate_from_previous_media:
+                    components.append({"type": 14, "divider": True, "spacing": 2})
+                    separate_from_previous_media = False
+                if not group_started:
+                    if pending_lines:
+                        pending_lines.append("")
+                    pending_lines.append(f"{emoji} **{title}**")
+                    group_started = True
+
+                pending_lines.append(f"• {change['message']}")
+                change_media = [item for item in media if item.change_index == index]
+                if change_media:
+                    _append_text_components(components, "\n".join(pending_lines))
+                    pending_lines.clear()
+                    components.extend(_media_components(change_media))
+                    separate_from_previous_media = True
+                    group_started = False
 
         if pending_lines:
             _append_text_components(components, "\n".join(pending_lines))
 
         root_media = [item for item in media if item.change_index is None]
-        if root_media:
-            components.extend(_media_components(root_media))
-            separate_from_previous_media = True
         if text_embed is not None and (url := entry.get("url")) and url.strip():
             if separate_from_previous_media:
                 components.append({"type": 14, "divider": True, "spacing": 1})
             _append_text_components(components, f"[GitHub Pull Request]({url})")
+            separate_from_previous_media = False
+        if root_media:
+            if components:
+                components.append({"type": 14, "divider": True, "spacing": 2})
+            components.extend(_media_components(root_media))
 
     downloaded = [item for item in media if isinstance(item, DownloadedMedia)]
     files = [
@@ -747,6 +936,11 @@ def build_media_payload(
         "attachments": attachments,
         "allowed_mentions": {"parse": []},
     }, files
+
+
+def send_changelog_text(embed: dict[str, Any], deadline: float | None = None) -> None:
+    payload, _ = build_media_payload(embed, [])
+    _send_discord_payload(payload, deadline)
 
 
 def iter_entry_media_batches(
@@ -850,7 +1044,7 @@ def send_media_batch(
         for item in batch:
             report_media_warning(item.url, f"не удалось отправить файл: {error}")
         if text_embed is not None:
-            send_embed_discord(text_embed, deadline)
+            send_changelog_text(text_embed, deadline)
 
 
 def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
@@ -859,21 +1053,11 @@ def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
 
     deadline = time.monotonic() + DISCORD_PUBLISH_TIMEOUT
     for entry in entries:
-        content_string = io.StringIO()
-        for change in entry["changes"]:
-            emoji = TYPES_TO_EMOJI.get(change['type'], "❓")
-            message = change['message']
-            content_string.write(f"{emoji} {message}\n")
-        url = entry.get("url")
-        if url and url.strip():
-            content_string.write(f"[GitHub Pull Request]({url})\n")
-
-        full_content = content_string.getvalue()
-        parts = split_message(full_content, DISCORD_SPLIT_LIMIT)
+        parts = format_grouped_change_parts(entry["changes"], entry.get("url"))
 
         embeds = [
             {
-                "title": f"Автор: {entry['author']}",
+                "title": f"👤 {entry['author']}",
                 "description": part,
                 "color": 0x3498db
             }
@@ -889,11 +1073,11 @@ def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
             first_batch = next(media_batches)
         except StopIteration:
             for embed in embeds:
-                send_embed_discord(embed, deadline)
+                send_changelog_text(embed, deadline)
             continue
 
         for embed in embeds[:-1]:
-            send_embed_discord(embed, deadline)
+            send_changelog_text(embed, deadline)
 
         media_entry = entry if len(embeds) == 1 else None
         send_media_batch(first_batch, last_embed, deadline, media_entry)
