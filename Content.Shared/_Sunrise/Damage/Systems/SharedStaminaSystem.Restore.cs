@@ -2,20 +2,25 @@ using Content.Shared.Damage.Components;
 
 namespace Content.Shared.Damage.Systems;
 
-// Возможно оффы позже добавят
+// Методы восстановления выносливости.
 public abstract partial class SharedStaminaSystem
 {
     /// <summary>
     /// Восстанавливает выносливость.
     /// </summary>
-    public void RestoreStamina(EntityUid uid, float amount)
+    public void RestoreStamina(Entity<StaminaComponent?> ent, float amount)
     {
-        if (amount <= 0f || !TryComp<StaminaComponent>(uid, out var stamina))
+        if (amount <= 0f || !Resolve(ent, ref ent.Comp))
             return;
 
-        if (stamina.Critical)
-            ExitStamCrit(uid, stamina);
+        if (ent.Comp.Critical)
+            ExitStamCrit(ent, ent.Comp);
 
-        TakeStaminaDamage(uid, -amount, stamina, visual: false, ignoreResist: true);
+        TakeStaminaDamage(
+            ent,
+            -amount,
+            ent.Comp,
+            visual: false,
+            ignoreResist: true);
     }
 }
