@@ -8,7 +8,7 @@ ent-ActionVampireSleep = Sleep
     .desc = Puts a humanoid to sleep after a short concentration. Movement, damage or losing proximity interrupts the attempt; protected eyes, a mindshield or faith may protect the target. Blood cost and concentration time decrease with your power level.
 
 ent-ActionVampireRejuvenateI = Rejuvenation
-    .desc = Removes stuns and knockdown even while incapacitated. Does not heal wounds or purge chemicals.
+    .desc = Removes stuns and knockdown and restores stamina even while incapacitated. Its strength scales with vampire power. Does not heal wounds or purge chemicals.
 
 ent-ActionVampireRejuvenateII = Greater Rejuvenation
-    .desc = Removes stuns and knockdown, purges poisons and gradually heals wounds. Cannot revive the dead.
+    .desc = Removes stuns and knockdown, restores stamina, purges poisons and gradually heals wounds. Its strength scales with vampire power.

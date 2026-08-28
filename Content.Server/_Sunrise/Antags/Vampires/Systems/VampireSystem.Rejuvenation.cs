@@ -37,10 +37,14 @@ public sealed partial class VampireSystem
             return;
         }
 
+        if (!TryGetPowerLevelPrototype(ent.Comp.PowerLevel, out var level))
+            return;
+
         if (!CheckAndConsumeBloodCost(ent, actionEntity))
             return;
 
         RemoveRejuvenateStuns(ent.Owner);
+        _stamina.RestoreStamina(ent.Owner, level.Rejuvenation.StaminaRestoreAmount);
         args.Handled = true;
     }
 
@@ -58,14 +62,15 @@ public sealed partial class VampireSystem
             return;
         }
 
-        if (!CheckAndConsumeBloodCost(ent, actionEntity))
+        if (!TryGetPowerLevelPrototype(ent.Comp.PowerLevel, out var level))
             return;
 
-        if (!TryGetPowerLevelPrototype(ent.Comp.PowerLevel, out var level))
+        if (!CheckAndConsumeBloodCost(ent, actionEntity))
             return;
 
         var settings = level.Rejuvenation;
         RemoveRejuvenateStuns(ent.Owner);
+        _stamina.RestoreStamina(ent.Owner, settings.StaminaRestoreAmount);
         PurgeRejuvenateReagents(
             ent.Owner,
             settings.ReagentPurgeAmount,

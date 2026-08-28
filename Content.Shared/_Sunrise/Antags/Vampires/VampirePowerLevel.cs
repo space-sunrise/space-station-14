@@ -266,6 +266,12 @@ public sealed partial class VampireRejuvenationLevelSettings
     public VampireActionChargeSettings Action = new();
 
     /// <summary>
+    /// Восстановление выносливости.
+    /// </summary>
+    [DataField]
+    public float StaminaRestoreAmount;
+
+    /// <summary>
     /// Объём очищения реагентов.
     /// </summary>
     [DataField]
