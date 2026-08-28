@@ -200,14 +200,7 @@
     - id: RightArmCyberRobust
     - id: LeftArmCyberRipper
     - id: LeftArmCyberGorilla
-    - id: MechPaintRipleyReaper
-    - id: MechPaintDurandUnathi
-    - id: MechPaintDurandDollhouse
-    - id: MechPaintGygaxMolot
-    - id: MechPaintGygaxPirate
-    - id: MechPaintGygaxBlack
       #Sunrise-end
-      weight: 2
     - id: ClothingHandsKnuckleDustersSyndicate
 
 - type: entityTable

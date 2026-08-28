@@ -219,6 +219,8 @@
   - type: ItemBorgModule
     hands:
     - item: JetpackBorg
+    - item: BorgHandheldGPSBasic
+    - item: HandHeldMassScannerBorg
   - type: BorgModuleIcon
     icon: { sprite: Objects/Tanks/Jetpacks/void.rsi, state: icon }
 
