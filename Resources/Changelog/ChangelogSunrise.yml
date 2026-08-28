@@ -4768,3 +4768,10 @@
     message: Добавлен новый кроваво-красный шкаф с доступами агентов синдиката и содержимым, больше подходящим для скрытного выполнения целей ДО.
   id: 2022
   url: https://github.com/makura-games/sunrise-station/pull/4611
+- author: Nordstream17
+  time: '2026-08-28T16:04:52.0000000+00:00'
+  changes:
+  - type: Add
+    message: Добавлен крафт кнопки с замком
+  id: 2023
+  url: https://github.com/makura-games/sunrise-station/pull/4662
