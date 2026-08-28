@@ -24,7 +24,7 @@ public sealed partial class VampirePowerLevelPrototype : IPrototype
 {
     /// <inheritdoc />
     [IdDataField]
-    public string ID { get; private set; } = null!;
+    public string ID { get; private set; } = default!;
 
     /// <summary>
     /// Уровень силы.

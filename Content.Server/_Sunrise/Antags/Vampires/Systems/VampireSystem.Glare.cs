@@ -16,7 +16,7 @@ public sealed partial class VampireSystem
 {
     // Вампирский взгляд.
 
-    [Dependency] private readonly SharedTransformSystem _transform = null!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     private void OnGlare(Entity<VampireComponent> ent, ref VampireGlareActionEvent args)
     {

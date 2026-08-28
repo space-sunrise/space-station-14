@@ -13,8 +13,8 @@ public abstract class SharedVampireSystem : EntitySystem
 {
     // Общие проверки и модификаторы вампира.
 
-    [Dependency] private readonly SharedBloodstreamSystem _bloodstream = null!;
-    [Dependency] private readonly SharedPopupSystem _popup = null!;
+    [Dependency] private readonly SharedBloodstreamSystem _bloodstream = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {

@@ -90,7 +90,7 @@ public sealed partial class VampireSystem
         }
 
         _sawmill.Error($"Missing vampire power level prototype for {powerLevel}");
-        prototype = null!;
+        prototype = default!;
         return false;
     }
 }

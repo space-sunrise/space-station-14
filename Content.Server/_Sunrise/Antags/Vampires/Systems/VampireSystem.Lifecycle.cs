@@ -12,8 +12,8 @@ public sealed partial class VampireSystem
 {
     // Создание и удаление состояния вампира.
 
-    [Dependency] private readonly BodySystem _body = null!;
-    [Dependency] private readonly MetabolizerSystem _metabolizer = null!;
+    [Dependency] private readonly BodySystem _body = default!;
+    [Dependency] private readonly MetabolizerSystem _metabolizer = default!;
 
 
     private void OnStartup(Entity<VampireComponent> ent, ref ComponentStartup args)

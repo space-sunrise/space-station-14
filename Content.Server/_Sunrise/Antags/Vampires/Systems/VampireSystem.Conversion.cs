@@ -15,10 +15,10 @@ public sealed partial class VampireSystem
 {
     // Обращение в вампира и выдача целей.
 
-    [Dependency] private readonly MindSystem _mind = null!;
-    [Dependency] private readonly NumberObjectiveSystem _number = null!;
-    [Dependency] private readonly ObjectivesSystem _objectives = null!;
-    [Dependency] private readonly RoleSystem _role = null!;
+    [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private readonly NumberObjectiveSystem _number = default!;
+    [Dependency] private readonly ObjectivesSystem _objectives = default!;
+    [Dependency] private readonly RoleSystem _role = default!;
 
 
     private void OnBloodDrainGetProgress(Entity<BloodDrainConditionComponent> ent, ref ObjectiveGetProgressEvent args)

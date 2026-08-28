@@ -28,20 +28,20 @@ public sealed partial class VampireSystem : SharedVampireSystem
 {
     // Инициализация и обновление вампиров.
 
-    [Dependency] private readonly ActionsSystem _actions = null!;
-    [Dependency] private readonly AntagSelectionSystem _antag = null!;
-    [Dependency] private readonly AlertsSystem _alerts = null!;
-    [Dependency] private readonly IPrototypeManager _prototype = null!;
-    [Dependency] private readonly IGameTiming _timing = null!;
-    [Dependency] private readonly PopupSystem _popup = null!;
-    [Dependency] private readonly StunSystem _stun = null!;
-    [Dependency] private readonly StaminaSystem _stamina = null!;
-    [Dependency] private readonly EntityLookupSystem _lookup = null!;
-    [Dependency] private readonly ILogManager _log = null!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = null!;
-    [Dependency] private readonly InteractionSystem _interaction = null!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solution = null!;
-    [Dependency] private readonly DamageableSystem _damageable = null!;
+    [Dependency] private readonly ActionsSystem _actions = default!;
+    [Dependency] private readonly AntagSelectionSystem _antag = default!;
+    [Dependency] private readonly AlertsSystem _alerts = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly StunSystem _stun = default!;
+    [Dependency] private readonly StaminaSystem _stamina = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly ILogManager _log = default!;
+    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
+    [Dependency] private readonly InteractionSystem _interaction = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
 
     private ISawmill _sawmill = null!;
 

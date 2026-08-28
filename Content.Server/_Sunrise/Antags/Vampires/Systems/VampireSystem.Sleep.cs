@@ -14,7 +14,7 @@ public sealed partial class VampireSystem
 {
     // Усыпление цели.
 
-    [Dependency] private readonly IRobustRandom _random = null!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
 
     private void OnSleep(Entity<VampireComponent> ent, ref VampireSleepActionEvent args)

@@ -16,7 +16,7 @@ public sealed partial class VampireSystem
 {
     // Урон от святынь.
 
-    [Dependency] private readonly ContainerSystem _container = null!;
+    [Dependency] private readonly ContainerSystem _container = default!;
 
     private void HandleHolyWater(Entity<VampireComponent> ent)
     {

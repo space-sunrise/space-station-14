@@ -17,7 +17,7 @@ public sealed partial class VampireSystem
 {
     // Омоложение и его эффекты.
 
-    [Dependency] private readonly StatusEffectsSystem _statusEffects = null!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
 
 
     private void OnRejuvenate(
