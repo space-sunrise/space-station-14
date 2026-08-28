@@ -15,7 +15,7 @@ on:
       - 'RobustToolbox/**'
   merge_group:
   pull_request:
-    types: [ opened, reopened, synchronize ]
+    types: [ opened, reopened, synchronize, ready_for_review ]
     branches: [ master, staging, stable ]
     paths:
       - '**.cs'
@@ -36,7 +36,7 @@ jobs:
   # Sunrise edit start - распределяем независимые цели упаковки по матрице и сохраняем единый обязательный статус
   package:
     name: Package ${{ matrix.name }}
-    if: github.actor != 'Sunrise-Bot'
+    if: github.actor != 'Sunrise-Bot' && github.actor != 'PJBot' && (github.event_name != 'pull_request' || github.event.pull_request.draft == false)
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -73,10 +73,11 @@ jobs:
           cd RobustToolbox/
           git submodule update --init --recursive
 
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v4.1.0
-        with:
-          dotnet-version: 10.0.x
+      # ubuntu-latest has .NET 10
+      # - name: Setup .NET Core
+      #   uses: actions/setup-dotnet@v4.1.0
+      #   with:
+      #     dotnet-version: 10.0.x
 
       - name: Install dependencies
         run: dotnet restore
@@ -85,12 +86,18 @@ jobs:
         run: dotnet build Content.Packaging --configuration Release --no-restore /m
 
       - name: Package ${{ matrix.name }}
-        run: dotnet run --project Content.Packaging --configuration Release --no-build -- ${{ matrix.arguments }}
+        run: dotnet run --project Content.Packaging --configuration Release --no-build -- ${{ matrix.arguments }} --log-build
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: binlogs-${{ matrix.name }}
+          path: release/*.binlog
+          retention-days: 7
 
   build:
     name: Test Packaging
     needs: package
-    if: ${{ always() && github.actor != 'Sunrise-Bot' }}
+    if: ${{ always() && github.actor != 'Sunrise-Bot' && github.actor != 'PJBot' && (github.event_name != 'pull_request' || github.event.pull_request.draft == false) }}
     runs-on: ubuntu-latest
     steps:
       - name: Verify packaging jobs

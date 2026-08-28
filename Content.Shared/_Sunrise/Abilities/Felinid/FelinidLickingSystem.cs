@@ -154,9 +154,10 @@ public sealed class FelinidLickingSystem : EntitySystem
     /// </summary>
     private bool HasDamageToHeal(EntityUid target, DamageableComponent damageable, FelinidLickingComponent licking)
     {
+        var damage = _damageable.GetAllDamage((target, damageable));
         foreach (var (type, _) in licking.Damage.DamageDict)
         {
-            if (damageable.Damage.DamageDict.TryGetValue(type, out var currentDamage) &&
+            if (damage.DamageDict.TryGetValue(type, out var currentDamage) &&
                 currentDamage > FixedPoint2.Zero)
             {
                 return true;

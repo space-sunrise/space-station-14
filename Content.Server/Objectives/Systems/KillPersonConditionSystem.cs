@@ -74,7 +74,7 @@ public sealed class KillPersonConditionSystem : EntitySystem
     {
         var allTargets = new HashSet<Entity<MindComponent>>();
 
-        var query = EntityQueryEnumerator<MobStateComponent, AntagTargetComponent, HumanoidAppearanceComponent>();
+        var query = EntityQueryEnumerator<MobStateComponent, AntagTargetComponent, HumanoidProfileComponent>();
         while (query.MoveNext(out var uid, out var mobState, out var antagTarget, out _))
         {
             if (!_mind.TryGetMind(uid, out var mind, out var mindComp) ||

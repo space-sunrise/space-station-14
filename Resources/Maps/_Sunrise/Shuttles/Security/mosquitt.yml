@@ -1077,7 +1077,7 @@ entities:
     - type: Transform
       pos: 0.5,-1.5
       parent: 1
-- proto: MagazineGrenadeEMP
+- proto: MagazineGrenadeEMPExtended
   entities:
   - uid: 129
     components:

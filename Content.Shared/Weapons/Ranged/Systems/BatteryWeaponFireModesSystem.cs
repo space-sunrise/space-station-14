@@ -2,6 +2,7 @@ using Content.Shared.Access.Systems;
 using Content.Shared.Database;
 using Content.Shared.Examine;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Item; // Sunrise-Edit - обновление спрайта предмета в руках при смене режима
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Content.Shared.Weapons.Ranged.Components;
@@ -15,6 +16,7 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly SharedGunSystem _gun = default!;
+    [Dependency] private readonly SharedItemSystem _item = default!; // Sunrise-Edit - поддержка heldPrefix режимов стрельбы
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
 
     public override void Initialize()
@@ -115,6 +117,8 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
         var fireMode = ent.Comp.FireModes[index];
         ent.Comp.CurrentFireMode = index;
         Dirty(ent);
+
+        _item.SetHeldPrefix(ent, fireMode.HeldPrefix); // Sunrise-Edit - синхронизируем спрайт в руках с режимом стрельбы
 
         if (_prototypeManager.TryIndex<EntityPrototype>(fireMode.Prototype, out var prototype))
         {
