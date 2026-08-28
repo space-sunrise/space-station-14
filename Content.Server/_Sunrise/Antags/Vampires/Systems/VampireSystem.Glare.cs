@@ -28,7 +28,33 @@ public sealed partial class VampireSystem
             args.Action);
     }
 
+    /// <summary>
+    /// Пытается применить вампирский взгляд.
+    /// </summary>
     public bool TryGlare(
+        Entity<VampireComponent?> ent,
+        EntityUid action,
+        bool quiet = false)
+    {
+        if (!CanGlare(ent, action, quiet))
+            return false;
+
+        if (!Resolve(ent, ref ent.Comp, false))
+            return false;
+
+        var vampire = new Entity<VampireComponent>(ent.Owner, ent.Comp);
+
+        if (!CheckAndConsumeBloodCost(vampire, action))
+            return false;
+
+        DoGlare(vampire);
+        return true;
+    }
+
+    /// <summary>
+    /// Проверяет, может ли вампир применить вампирский взгляд.
+    /// </summary>
+    public bool CanGlare(
         Entity<VampireComponent?> ent,
         EntityUid action,
         bool quiet = false)
@@ -36,31 +62,7 @@ public sealed partial class VampireSystem
         if (!Resolve(ent, ref ent.Comp, false))
             return false;
 
-        if (!CanGlare(
-                (ent.Owner, ent.Comp),
-                action,
-                quiet))
-        {
-            return false;
-        }
-
-        if (!CheckAndConsumeBloodCost(
-                (ent.Owner, ent.Comp),
-                action))
-        {
-            return false;
-        }
-
-        DoGlare((ent.Owner, ent.Comp));
-        return true;
-    }
-
-    public bool CanGlare(
-        Entity<VampireComponent> ent,
-        EntityUid action,
-        bool quiet = false)
-    {
-        if (TryComp<BlindableComponent>(ent, out var blindable) &&
+        if (TryComp<BlindableComponent>(ent.Owner, out var blindable) &&
             blindable.IsBlind)
         {
             return false;
@@ -69,11 +71,13 @@ public sealed partial class VampireSystem
         if (!TryGetPowerLevelPrototype(ent.Comp.PowerLevel, out _))
             return false;
 
-        if (!HasComp<VampireConfigurationComponent>(ent))
+        if (!HasComp<VampireConfigurationComponent>(ent.Owner))
             return false;
 
+        var vampire = new Entity<VampireComponent>(ent.Owner, ent.Comp);
+
         if (!TryResolveVampireActionCost(
-                ent,
+                vampire,
                 action,
                 0,
                 out var bloodCost,
@@ -83,7 +87,7 @@ public sealed partial class VampireSystem
         }
 
         return CanSpendBlood(
-            ent,
+            vampire,
             bloodCost,
             showPopup: !quiet);
     }

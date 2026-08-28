@@ -10,7 +10,7 @@ public abstract partial class SharedStaminaSystem
     /// </summary>
     public void RestoreStamina(Entity<StaminaComponent?> ent, float amount)
     {
-        if (amount <= 0f || !Resolve(ent, ref ent.Comp))
+        if (amount <= 0f || !Resolve(ent, ref ent.Comp, false))
             return;
 
         if (ent.Comp.Critical)
