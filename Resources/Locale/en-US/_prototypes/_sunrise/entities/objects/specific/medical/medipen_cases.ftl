@@ -1,12 +1,12 @@
 ent-MedipenCaseBlueShield = medipen case
     .desc = A small medipen case. Saves a lot of space!
-    .suffix = Blue Shield Officer
+    .suffix = Blue Shield Offcer
 ent-MedipenCaseBrigmedic = { ent-MedipenCaseBlueShield }
     .desc = { ent-MedipenCaseBlueShield.desc }
     .suffix = Brigmedic
-ent-MedipenCaseChiefMedicalOfficier = { ent-MedipenCaseBlueShield }
+ent-MedipenCaseChiefMedicalOfficer = { ent-MedipenCaseBlueShield }
     .desc = { ent-MedipenCaseBlueShield.desc }
-    .suffix = Chief Medical Officier
+    .suffix = Chief Medical Officer
 ent-MedipenCaseERTMedic = { ent-MedipenCaseBlueShield }
     .desc = { ent-MedipenCaseBlueShield.desc }
     .suffix = ERT Medic
