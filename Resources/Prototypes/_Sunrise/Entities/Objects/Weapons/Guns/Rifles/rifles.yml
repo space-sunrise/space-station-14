@@ -395,7 +395,7 @@
     availablePrefixes: []
   - type: WeaponDismantleOnShoot
     dismantleDistance: 4
-    dismantleChance: 0.004 # Примерно 150-200 патронов
+    dismantleChance: 0.009 # Примерно 120-150 патронов
     selfDamage:
       types:
         Blunt: 8
