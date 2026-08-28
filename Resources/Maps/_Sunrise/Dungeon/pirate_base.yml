@@ -15418,13 +15418,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 30.531189,42.832554
       parent: 1
-- proto: MechPaintGygaxPirate
-  entities:
-  - uid: 1053
-    components:
-    - type: Transform
-      pos: 33.779366,59.789165
-      parent: 1
 - proto: MedicalBed
   entities:
   - uid: 1540

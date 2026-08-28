@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Sprited by Nimfar11 (Github) for Space Station 14, inhands by mubururu_ (github)",
+  "copyright": "Sprited by Nimfar11 (Github) for Space Station 14, eyes & inhands by mubururu_ (github)",
   "size": {
     "x": 32,
     "y": 32
@@ -17,6 +17,12 @@
     {
         "name": "brain-inhand-right",
         "directions": 4
+    },
+    {
+      "name": "eyeball-l"
+    },
+    {
+      "name": "eyeball-r"
     },
     {
         "name": "lungs-inhand-left",

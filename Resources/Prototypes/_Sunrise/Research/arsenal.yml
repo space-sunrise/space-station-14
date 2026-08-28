@@ -2,7 +2,7 @@
   id: EnergyBarriers
   name: research-technology-energy_barriers
   icon:
-    sprite: Objects/Tools/EnergyDome/reinhardt.rsi
+    sprite: _Sunrise/Objects/Tools/EnergyDome/reinhardt.rsi
     state: icon
   discipline: Arsenal
   tier: 2
@@ -148,8 +148,6 @@
   - GygaxPeripheralsElectronics
   - GygaxTargetingElectronics
   - WeaponMechCombatUltraRifle
-  - PaintGygaxWhite
-  - PaintGygaxOld
   technologyPrerequisites:
   - Ripley2
   radioChannels:
@@ -194,9 +192,6 @@
   - DurandTargetingElectronics
   - WeaponMechCombatShotgun
   - WeaponMechCombatShotgunIncendiary
-  - PaintDurandExecutor
-  - PaintDurandShire
-  - PaintDurandOld
   - PowerCageHigh
   technologyPrerequisites:
   - Gygax
