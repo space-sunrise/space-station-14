@@ -1,7 +1,7 @@
 - type: entity
   name: monkey
   id: MobBasePirateMonkey
-  parent: MobBaseAncestor
+  parent: [ SunrisePrimateDarviniumBody, MobBaseAncestor ]
   description: New church of neo-darwinists actually believe that EVERY animal evolved from a monkey. Tastes like pork, and killing them is both fun and relaxing.
   suffix: fake pirate
   components:
@@ -145,6 +145,9 @@
         - MobLayer
   - type: NpcFactionMember
     factions:
+    - Pirate
+  - type: Access
+    tags:
     - Pirate
   - type: NpcVeteranFollower
   - type: CollectiveMind

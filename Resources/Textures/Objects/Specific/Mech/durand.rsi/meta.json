@@ -74,34 +74,6 @@
         ]
       },
     {
-      "name": "durand_old",
-      "directions": 4
-    },
-    {
-      "name": "durand-open_old",
-      "delays": [
-        [
-          1,
-          0.1,
-          0.1,
-          0.5,
-          0.1,
-          0.1
-        ]
-      ]
-    },
-    {
-      "name": "durand-broken_old",
-      "delays": [
-        [
-          0.5,
-          1,
-          0.5,
-          1
-        ]
-      ]
-    },
-    {
       "name": "darkdurand",
       "directions": 4
     },
@@ -130,57 +102,6 @@
       ]
     },
     {
-      "name": "unathi",
-      "directions": 4,
-      "delays": [
-        [
-          0.5,
-          0.5,
-          0.5,
-          0.5
-        ],
-        [
-          0.5,
-          0.5,
-          0.5,
-          0.5
-        ],
-        [
-          0.5,
-          0.5,
-          0.5,
-          0.5
-        ],
-        [
-          0.5,
-          0.5,
-          0.5,
-          0.5
-        ]
-      ]
-    },
-    {
-      "name": "unathi-open",
-      "delays": [
-        [
-          0.5,
-          0.5,
-          0.5
-        ]
-      ]
-    },
-    {
-      "name": "unathi-broken",
-      "delays": [
-        [
-          0.5,
-          0.5,
-          0.5,
-          0.5
-        ]
-      ]
-    },
-    {
       "name": "dollhouse",
       "directions": 4
     },
@@ -199,64 +120,6 @@
     },
     {
       "name": "dollhouse-broken"
-    },
-    {
-      "name": "shire",
-      "directions": 4
-    },
-    {
-      "name": "shire-open"
-    },
-    {
-      "name": "shire-broken"
-    },
-    {
-      "name": "executor",
-      "directions": 4,
-      "delays": [
-        [
-          0.5,
-          0.5,
-          0.5,
-          0.5,
-          0.5
-        ],
-        [
-          0.5,
-          0.5,
-          0.5,
-          0.5,
-          0.5
-        ],
-        [
-          0.5,
-          0.5,
-          0.5,
-          0.5,
-          0.5
-        ],
-        [
-          0.5,
-          0.5,
-          0.5,
-          0.5,
-          0.5
-        ]
-      ]
-    },
-    {
-      "name": "executor-open"
-    },
-    {
-      "name": "executor-broken",
-      "delays": [
-        [
-          0.5,
-          0.5,
-          0.5,
-          0.5
-        ]
-      ]
     },
     {
         "name": "warboss",

@@ -7,8 +7,7 @@
   sprites:
   - sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
     state: fennec-wagging
-  - sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
-    state: fennec-wagging-tip
+  # Sunrise-Edit: статический хвост имеет один цветовой слой.
 
 - type: marking
   id: VulpTailFluffyAnimated
@@ -17,8 +16,7 @@
   sprites:
   - sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
     state: fluffy-wagging
-  - sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
-    state: fluffy-wagging-tip
+  # Sunrise-Edit: статический хвост имеет один цветовой слой.
 
 - type: marking
   id: VulpTailHuskyAnimated
@@ -26,11 +24,10 @@
   groupWhitelist: []
   sprites:
   - sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
-    state: husky-wagging
-  - sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
     state: husky-wagging-inner
   - sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
     state: husky-wagging-outer
+  # Sunrise-Edit: сохраняем два цветовых слоя Sunrise-варианта.
 
 - type: marking
   id: VulpTailLongAnimated
