@@ -48,4 +48,5 @@ markings-organ-FootRight = Правая стопа
 markings-organ-Eyes = Глаза
 
 markings-layer-TailOverlay = Наложение на хвост
+markings-layer-Back = Спина
 

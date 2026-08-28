@@ -851,8 +851,6 @@
       prob: 0.8
     - id: WeaponMechCombatKord
       prob: 0.25
-    - id: MechPaintDollHouseWarboss
-      prob: 0.25
     - id: EnergyDomeGeneratorBackpackNT
       prob: 0.15
     - id: EnergyDomeGeneratorBackpackSyndie

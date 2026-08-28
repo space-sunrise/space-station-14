@@ -115,7 +115,8 @@ public sealed class WaggingSystem : EntitySystem
                     continue;
                 }
 
-                layerMarkings[i] = new Marking(newMarkingId, layerMarkings[i].MarkingColors);
+                // Sunrise-Edit: сохраняем градиенты и прочие эффекты маркировки при смене анимации.
+                layerMarkings[i] = layerMarkings[i].DeepClone() with { MarkingId = newMarkingId };
             }
         }
 

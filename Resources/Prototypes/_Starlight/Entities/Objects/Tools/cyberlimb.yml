@@ -186,15 +186,6 @@
     components:
     - type: DisarmMalus
       malus: 0.6
-  - type: ToggleableVisuals
-    spriteLayer: flame
-    inhandVisuals:
-      left:
-      - state: inhand-left-flame
-        shader: unshaded
-      right:
-      - state: inhand-right-flame
-        shader: unshaded
   - type: UseDelay
   - type: MeleeWeapon
     wideAnimationRotation: -90
