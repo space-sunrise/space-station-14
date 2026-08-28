@@ -107,7 +107,6 @@
     AutoMenderBurnFilled: 1
     MedipenCaseBrigmedic: 2
   contrabandInventory:
-    MedipenCaseERTMedic: 1
     PillCanisterRandom: 1
     ToyFigurineBrigmedic: 1
     BeerMedipen: 3

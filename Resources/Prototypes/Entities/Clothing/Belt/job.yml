@@ -188,7 +188,7 @@
       - Patch # Sunrise-Add
       - PatchPack # Sunrise-Add
       - AutoMender # Sunrise-Add
-      - Medkit # Sunrise-edit
+      - MedipenCase # Sunrise-edit
       components:
       - Injector
       - Pill
