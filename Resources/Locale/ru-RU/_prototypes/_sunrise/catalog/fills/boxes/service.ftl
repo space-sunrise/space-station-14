@@ -3,5 +3,5 @@ ent-BoxTapeRecorder = коробка с диктофоном
 
 ent-BoxCandleInfinite = коробка волшебных свечей
     .desc = Картонная коробка с волшебными свечами.
-ent-BoxCandleInfiniteSmall = коробка маленьких волшебных свечей
+ent-BoxCandleInfiniteSmall = коробка волшебных мини-свечей
     .desc = { ent-BoxCandleInfinite.desc }
