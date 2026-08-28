@@ -19,11 +19,6 @@ public sealed partial class VampireSystem
 
     [Dependency] private readonly StatusEffectsSystem _statusEffects = null!;
 
-    private void InitializeRejuvenation()
-    {
-        SubscribeLocalEvent<VampireComponent, VampireRejuvenateIActionEvent>(OnRejuvenate);
-        SubscribeLocalEvent<VampireComponent, VampireRejuvenateIiActionEvent>(OnRejuvenateUpgraded);
-    }
 
     private void OnRejuvenate(
         Entity<VampireComponent> ent,

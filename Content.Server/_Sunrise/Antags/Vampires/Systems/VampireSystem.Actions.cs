@@ -17,11 +17,6 @@ public sealed partial class VampireSystem
     [Dependency] private readonly IComponentFactory _componentFactory = null!;
     [Dependency] private readonly ChargesSystem _charges = null!;
 
-    private void InitializeActions()
-    {
-        SubscribeLocalEvent<ActionsComponent, ComponentStartup>(OnActionsComponentStartup);
-        SubscribeLocalEvent<PlayerAttachedEvent>(OnPlayerAttached);
-    }
 
     private void OnActionsComponentStartup(Entity<ActionsComponent> ent, ref ComponentStartup args)
     {

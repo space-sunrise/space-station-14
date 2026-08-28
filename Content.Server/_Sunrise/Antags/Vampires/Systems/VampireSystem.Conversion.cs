@@ -20,10 +20,6 @@ public sealed partial class VampireSystem
     [Dependency] private readonly ObjectivesSystem _objectives = null!;
     [Dependency] private readonly RoleSystem _role = null!;
 
-    private void InitializeConversion()
-    {
-        SubscribeLocalEvent<BloodDrainConditionComponent, ObjectiveGetProgressEvent>(OnBloodDrainGetProgress);
-    }
 
     private void OnBloodDrainGetProgress(Entity<BloodDrainConditionComponent> ent, ref ObjectiveGetProgressEvent args)
     {
@@ -45,9 +41,10 @@ public sealed partial class VampireSystem
     /// </summary>
     public bool CanMakeVampire(EntityUid target)
     {
-        return Exists(target) &&
-               !HasComp<VampireComponent>(target) &&
-               _mind.TryGetMind(target, out _, out _);
+        return target.IsValid() &&
+            Exists(target) &&
+            !HasComp<VampireComponent>(target) &&
+            _mind.TryGetMind(target, out _, out _);
     }
 
     /// <summary>

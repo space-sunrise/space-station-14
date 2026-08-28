@@ -30,12 +30,6 @@ public sealed partial class VampireSystem
     [Dependency] private readonly InventorySystem _inventory = null!;
     [Dependency] private readonly BlindableSystem _blindable = null!;
 
-    private void InitializeFeeding()
-    {
-        SubscribeLocalEvent<VampireComponent, VampireToggleFangsActionEvent>(OnToggleFangs);
-        SubscribeLocalEvent<VampireComponent, AfterInteractEvent>(OnAfterInteract);
-        SubscribeLocalEvent<VampireComponent, VampireDrinkBloodDoAfterEvent>(OnDrinkDoAfter);
-    }
 
     private void OnToggleFangs(Entity<VampireComponent> ent, ref VampireToggleFangsActionEvent args)
     {

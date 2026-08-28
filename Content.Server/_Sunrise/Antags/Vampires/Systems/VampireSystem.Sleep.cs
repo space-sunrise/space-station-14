@@ -16,12 +16,6 @@ public sealed partial class VampireSystem
 
     [Dependency] private readonly IRobustRandom _random = null!;
 
-    private void InitializeSleep()
-    {
-        SubscribeLocalEvent<VampireComponent, VampireSleepActionEvent>(OnSleep);
-        SubscribeLocalEvent<VampireComponent, DoAfterAttemptEvent<VampireSleepDoAfterEvent>>(OnSleepDoAfterAttempt);
-        SubscribeLocalEvent<VampireComponent, VampireSleepDoAfterEvent>(OnSleepDoAfter);
-    }
 
     private void OnSleep(Entity<VampireComponent> ent, ref VampireSleepActionEvent args)
     {

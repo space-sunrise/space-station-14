@@ -15,12 +15,6 @@ public sealed partial class VampireSystem
     [Dependency] private readonly BodySystem _body = null!;
     [Dependency] private readonly MetabolizerSystem _metabolizer = null!;
 
-    private void InitializeLifecycle()
-    {
-        SubscribeLocalEvent<VampireComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<VampireComponent, ComponentShutdown>(OnShutdown);
-        SubscribeLocalEvent<MetabolizerComponent, BodyRelayedEvent<SetVampireMetabolismEvent>>(OnSetVampireMetabolism);
-    }
 
     private void OnStartup(Entity<VampireComponent> ent, ref ComponentStartup args)
     {
