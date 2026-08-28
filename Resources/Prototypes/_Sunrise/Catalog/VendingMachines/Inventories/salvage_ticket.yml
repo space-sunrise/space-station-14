@@ -225,8 +225,8 @@
     stock: 5
 
 - type: listing
-  id: VendorSalvageMedipenCaseRecycler
-  productEntity: MedipenCaseRecycler
+  id: VendorSalvageMedipenCaseSalvage
+  productEntity: MedipenCaseSalvage
   cost:
     SalvageTicket: 100
   categories:

@@ -35,17 +35,10 @@
   - type: Appearance
 
 - type: entity
-  name: medipen case
-  description: A small medipen case. Saves a lot of space!
   parent: MedipenCaseBase
-  id: MedipenCaseBlueShield
-  suffix: Blue Shield Officier
+  id: MedipenCaseBaseExtended
+  abstract: true
   components:
-  - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Specific/Medical/MedipenCases/blue_shield_officer.rsi
-    state: icon
-  - type: Item
-    sprite: _Sunrise/Entities/Objects/Specific/Medical/MedipenCases/blue_shield_officer.rsi
   - type: Storage
     whitelist:
       components:
@@ -54,8 +47,17 @@
     - 0,0,3,1
 
 - type: entity
-  name: medipen case
-  description: A small medipen case. Saves a lot of space!
+  parent: MedipenCaseBaseExtended
+  id: MedipenCaseBlueShield
+  suffix: Blue Shield Officier
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Specific/Medical/MedipenCases/blue_shield_officer.rsi
+    state: icon
+  - type: Item
+    sprite: _Sunrise/Entities/Objects/Specific/Medical/MedipenCases/blue_shield_officer.rsi
+
+- type: entity
   parent: MedipenCaseBase
   id: MedipenCaseBrigmedic
   suffix: Brigmedic
@@ -67,9 +69,7 @@
     sprite: _Sunrise/Entities/Objects/Specific/Medical/MedipenCases/brigmedic.rsi
 
 - type: entity
-  name: medipen case
-  description: A small medipen case. Saves a lot of space!
-  parent: MedipenCaseBase
+  parent: MedipenCaseBaseExtended
   id: MedipenCaseChiefMedicalOfficier
   suffix: Chief Medical Officier
   components:
@@ -78,17 +78,9 @@
     state: icon
   - type: Item
     sprite: _Sunrise/Entities/Objects/Specific/Medical/MedipenCases/chief_medical_officer.rsi
-  - type: Storage
-    whitelist:
-      components:
-        - Injector
-    grid:
-    - 0,0,3,1
 
 - type: entity
-  name: medipen case
-  description: A small medipen case. Saves a lot of space!
-  parent: MedipenCaseBase
+  parent: MedipenCaseBaseExtended
   id: MedipenCaseERTMedic
   suffix: ERT Medic
   components:
@@ -97,16 +89,8 @@
     state: icon
   - type: Item
     sprite: _Sunrise/Entities/Objects/Specific/Medical/MedipenCases/ert_medic.rsi
-  - type: Storage
-    whitelist:
-      components:
-        - Injector
-    grid:
-    - 0,0,3,1
 
 - type: entity
-  name: medipen case
-  description: A small medipen case. Saves a lot of space!
   parent: MedipenCaseBase
   id: MedipenCaseMedic
   suffix: Medic
@@ -118,8 +102,6 @@
     sprite: _Sunrise/Entities/Objects/Specific/Medical/MedipenCases/medic.rsi
 
 - type: entity
-  name: medipen case
-  description: A small medipen case. Saves a lot of space!
   parent: MedipenCaseBase
   id: MedipenCaseMiner
   suffix: Miner
@@ -131,8 +113,6 @@
     sprite: _Sunrise/Entities/Objects/Specific/Medical/MedipenCases/miner.rsi
 
 - type: entity
-  name: medipen case
-  description: A small medipen case. Saves a lot of space!
   parent: MedipenCaseBase
   id: MedipenCaseParamedic
   suffix: Paramedic
@@ -144,8 +124,6 @@
     sprite: _Sunrise/Entities/Objects/Specific/Medical/MedipenCases/paramedic.rsi
 
 - type: entity
-  name: medipen case
-  description: A small medipen case. Saves a lot of space!
   parent: MedipenCaseBase
   id: MedipenCasePirate
   suffix: Pirate
@@ -157,22 +135,18 @@
     sprite: _Sunrise/Entities/Objects/Specific/Medical/MedipenCases/pirate.rsi
 
 - type: entity
-  name: medipen case
-  description: A small medipen case. Saves a lot of space!
   parent: MedipenCaseBase
-  id: MedipenCaseRecycler
-  suffix: Recycler
+  id: MedipenCaseSalvage
+  suffix: Salvage
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Specific/Medical/MedipenCases/recycler.rsi
+    sprite: _Sunrise/Entities/Objects/Specific/Medical/MedipenCases/salvage.rsi
     state: icon
   - type: Item
-    sprite: _Sunrise/Entities/Objects/Specific/Medical/MedipenCases/recycler.rsi
+    sprite: _Sunrise/Entities/Objects/Specific/Medical/MedipenCases/salvage.rsi
 
 - type: entity
-  name: medipen case
-  description: A small medipen case. Saves a lot of space!
-  parent: MedipenCaseBase
+  parent: MedipenCaseBaseExtended
   id: MedipenCaseSyndicate
   suffix: Syndicate
   components:
@@ -181,9 +155,3 @@
     state: icon
   - type: Item
     sprite: _Sunrise/Entities/Objects/Specific/Medical/MedipenCases/syndicate.rsi
-  - type: Storage
-    whitelist:
-      components:
-        - Injector
-    grid:
-    - 0,0,3,1
