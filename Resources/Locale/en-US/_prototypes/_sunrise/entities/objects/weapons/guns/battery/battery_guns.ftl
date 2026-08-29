@@ -47,4 +47,4 @@ ent-XenoborgTemperatureGun = xenoborg temperature gun
     .desc = An advanced gun that shoots body-temperature-changing beams. This one has a self-recharging battery for xenoborg use.
 ent-SunriseWeaponTemperatureGun = { ent-WeaponTemperatureGun }
     .desc = { ent-WeaponTemperatureGun.desc }
-    .suffis = Sunrise
+    .suffix = Sunrise

@@ -70,3 +70,8 @@ ent-SunriseBulletDisposableSmokeRocket = дымовая ракета
 
 ent-SunriseBulletDisposableIncendiaryRocket = термобарическая ракета
     .desc = Компактная ракета с нестабильным химическим зарядом.
+
+ent-SunriseBoltTempgunCold = { ent-BoltTempgunCold }
+    .desc = { ent-BoltTempgunCold.desc }
+ent-SunriseBoltTempgunHot = { ent-BoltTempgunHot }
+    .desc = { ent-BoltTempgunHot.desc }

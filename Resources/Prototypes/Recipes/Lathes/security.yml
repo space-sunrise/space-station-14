@@ -257,8 +257,8 @@
 
 - type: latheRecipe
   parent: BaseWeaponRecipeLong
-  id: SunriseWeaponTemperatureGun
-  result: SunriseWeaponTemperatureGun
+  id: WeaponTemperatureGun
+  result: WeaponTemperatureGun
   materials:
     Steel: 2000
     Glass: 500

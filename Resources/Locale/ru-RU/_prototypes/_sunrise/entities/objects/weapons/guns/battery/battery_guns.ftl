@@ -54,4 +54,4 @@ ent-WeaponPilotLasgun = пилотский лазган
     .desc = Главный аргумент Империума в спорах с еретиками и культистами. Прижигает раны при попадании, экономя бинты боевому товарищу.
 ent-SunriseWeaponTemperatureGun = { ent-WeaponTemperatureGun }
     .desc = { ent-WeaponTemperatureGun.desc }
-    .suffis = Санрайз
+    .suffix = Санрайз

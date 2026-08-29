@@ -1135,6 +1135,9 @@
   id: SunriseWeaponTemperatureGun
   suffix: Sunrise
   components:
+  - type: BatteryAmmoProvider
+    proto: SunriseBoltTempgunCold
+    fireCost: 100
   - type: BatteryWeaponFireModes
     fireModes:
     - proto: SunriseBoltTempgunCold
