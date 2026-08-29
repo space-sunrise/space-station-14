@@ -12,3 +12,5 @@ ent-ShellShotgunBooze = shell (.50 beanbag)
     .desc = { ent-BaseShellHitscanShotgun.desc }
 ent-ShellShotgunHoly = shell (.50 holy)
     .desc = { ent-BaseShellShotgun.desc }
+ent-ShellShotgunBirdshot = 12 gauge birdshot
+    .desc = A wide-spread shell loaded with dozens of tiny pellets. Devastating up close, nearly useless at range.

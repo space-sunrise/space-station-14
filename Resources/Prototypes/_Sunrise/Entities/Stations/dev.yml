@@ -4,6 +4,10 @@
   parent:
   - BaseStation
   - BaseStationJobsSpawning
+  - BaseStationAllEventsEligible
+  - BaseStationAlertLevels
+  - BaseStationNanotrasen
+  - BaseStationMainStation
   components:
   - type: Transform
 
@@ -29,5 +33,8 @@
   - BaseStationCryoTeleport
   - BaseStationMeteorSwarmTarget
   - BaseStationRandomXenoArtifact
+  - BaseStationCriminalRecords
+  - BaseStationCorporateLaw
+  - BaseStationMainStation
   components:
   - type: Transform

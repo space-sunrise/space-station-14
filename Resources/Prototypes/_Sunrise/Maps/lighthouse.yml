@@ -1,7 +1,7 @@
 ﻿- type: gameMap
   id: Lighthouse
   mapName: 'Lighthouse'
-  mapPath: /Maps/_Sunrise/Station/lighthouse.yml
+  mapPath: /Maps/_Sunrise/Station/OutPool/lighthouse.yml
   minPlayers: 0
   stations:
     Lighthouse:
@@ -13,7 +13,7 @@
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/_Sunrise/Shuttles/NTES_BC20.yml
+          emergencyShuttlePath: /Maps/_Sunrise/Shuttles/Evac/emergency.yml
         - type: StationJobs
           availableJobs:
             Passenger: [ -1, -1 ]

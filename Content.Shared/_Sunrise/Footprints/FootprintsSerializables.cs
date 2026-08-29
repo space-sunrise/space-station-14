@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+using System;
+using System.Numerics;
 using Content.Shared.Chemistry.Components;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -8,7 +9,7 @@ using Robust.Shared.Utility;
 namespace Content.Shared._Sunrise.Footprints;
 
 /// <summary>
-/// Component that represents a single footprint entity in the world
+/// Компонент, представляющий отдельный след в мире.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
 public sealed partial class FootprintComponent : Component
@@ -17,13 +18,13 @@ public sealed partial class FootprintComponent : Component
     public ResPath SpritePath = new("/Textures/_Sunrise/Effects/footprints.rsi");
 
     /// <summary>
-    /// Name of the solution container for this footprint
+    /// Имя контейнера раствора для этого следа.
     /// </summary>
     [DataField]
     public string ContainerName = "step";
 
     /// <summary>
-    /// Reference to the solution component containing reagents
+    /// Ссылка на компонент раствора с реагентами.
     /// </summary>
     [ViewVariables]
     public Entity<SolutionComponent>? SolutionContainer;
@@ -39,7 +40,7 @@ public enum PrintType
 }
 
 /// <summary>
-/// Component that handles footprint creation when entities step in puddles
+/// Компонент, отвечающий за создание следов, когда сущности наступают в лужи.
 /// </summary>
 [RegisterComponent]
 public sealed partial class PuddleFootprintComponent : Component
@@ -52,13 +53,13 @@ public sealed partial class PuddleFootprintComponent : Component
 }
 
 /// <summary>
-/// Component that manages footprint creation for entities that can leave tracks
+/// Компонент, управляющий созданием следов у сущностей, которые могут их оставлять.
 /// </summary>
 [RegisterComponent]
 public sealed partial class FootprintEmitterComponent : Component
 {
     /// <summary>
-    /// State ID for left bare footprint
+    /// ID состояния для левого босого следа.
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly), DataField]
     public string[] LeftBareFootState =
@@ -67,7 +68,7 @@ public sealed partial class FootprintEmitterComponent : Component
     };
 
     /// <summary>
-    /// State ID for right bare footprint
+    /// ID состояния для правого босого следа.
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly), DataField]
     public string[] RightBareFootState =
@@ -76,7 +77,7 @@ public sealed partial class FootprintEmitterComponent : Component
     };
 
     /// <summary>
-    /// State ID for shoe footprint
+    /// ID состояния для следа обуви.
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly), DataField]
     public string[] ShoeFootState =
@@ -85,7 +86,7 @@ public sealed partial class FootprintEmitterComponent : Component
     };
 
     /// <summary>
-    /// State ID for pressure suit footprint
+    /// ID состояния для следа скафандра.
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly), DataField]
     public string[] PressureSuitFootState =
@@ -94,7 +95,7 @@ public sealed partial class FootprintEmitterComponent : Component
     };
 
     /// <summary>
-    /// Array of state IDs for dragging animations
+    /// Массив ID состояний для анимаций волочения.
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly), DataField]
     public string[] DraggingStates =
@@ -107,7 +108,7 @@ public sealed partial class FootprintEmitterComponent : Component
     };
 
     /// <summary>
-    /// Prototype ID for footprint entity
+    /// ID прототипа сущности следа.
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly), DataField]
     public EntProtoId<FootprintComponent> FootprintPrototype = "Footstep";
@@ -116,13 +117,13 @@ public sealed partial class FootprintEmitterComponent : Component
     public EntProtoId<FootprintComponent> DragMarkPrototype = "DragMark";
 
     /// <summary>
-    /// Distance between footprints when walking
+    /// Расстояние между следами при ходьбе.
     /// </summary>
     [DataField]
     public float WalkStepInterval = 0.7f;
 
     /// <summary>
-    /// Distance between marks when being dragged
+    /// Расстояние между отметками при волочении.
     /// </summary>
     [DataField]
     public float DragMarkInterval = 0.5f;
@@ -140,30 +141,36 @@ public sealed partial class FootprintEmitterComponent : Component
     public Entity<SolutionComponent>? BodySurfaceSolution;
 
     [ViewVariables(VVAccess.ReadWrite)]
-    public float TransferVolumeFoot = 0.5f;
+    public float TransferVolumeFoot = 2.5f;
 
     [ViewVariables(VVAccess.ReadWrite)]
-    public float TransferVolumeDragMark = 1.0f;
+    public float TransferVolumeDragMark = 5.0f;
 
     /// <summary>
-    /// Offset from entity center for footprint placement
+    /// Смещение от центра сущности для размещения следа.
     /// </summary>
     [DataField]
     public Vector2 PlacementOffset = new(0.1f, 0f);
 
     /// <summary>
-    /// Tracks which foot is currently stepping
+    /// Отслеживает, какая нога делает текущий шаг.
     /// </summary>
     public bool IsRightStep = true;
 
     /// <summary>
-    /// Position of last footprint
+    /// Позиция последнего следа.
     /// </summary>
     public Vector2 LastStepPosition = Vector2.Zero;
+
+    /// <summary>
+    /// Timestamp (game time) until which the emitter cannot absorb fluid from puddles.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan PuddleAbsorptionCooldownUntil = TimeSpan.Zero;
 }
 
 /// <summary>
-/// Visual states for footprint appearances
+/// Визуальные состояния внешнего вида следов.
 /// </summary>
 [Serializable, NetSerializable]
 public enum FootprintVisualType : byte
@@ -175,7 +182,7 @@ public enum FootprintVisualType : byte
 }
 
 /// <summary>
-/// Visual state parameters for footprints
+/// Параметры визуального состояния следов.
 /// </summary>
 [Serializable, NetSerializable]
 public enum FootprintVisualParameter : byte
@@ -185,7 +192,7 @@ public enum FootprintVisualParameter : byte
 }
 
 /// <summary>
-/// Sprite layers for footprint visuals
+/// Слои спрайта для визуала следов.
 /// </summary>
 [Serializable, NetSerializable]
 public enum FootprintSpriteLayer : byte

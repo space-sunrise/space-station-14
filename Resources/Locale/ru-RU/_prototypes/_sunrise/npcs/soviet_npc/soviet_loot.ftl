@@ -1,5 +1,10 @@
 ﻿ent-SovietSoldierPoolLootSpawner = спавнер лута советского бойца
     .desc = Случайно спавнит один элемент экипировки советского бойца.
+ent-SovietMedicalSupplySpawner = спавнер медицинских припасов
+    .desc = Случайно спавнит один предмет медицинских припасов из набора охранного медицинского торгового автомата.
+ent-SovietMedicalSupplyRandomSpawner = случайный спавнер медицинских припасов
+    .desc = Случайно решает, появится ли предмет медицинских припасов советского бойца.
+
 ent-SovietMarineWebbingBox = набор экипировки USSP
     .desc = Контейнер с комплектом снаряжения морпеха USSP.
 ent-SovietLightWebbingBox = набор экипировки USSP
@@ -44,7 +49,6 @@ ent-ClothingHandsSovietFlakRPD = перчатки
 ent-ClothingHandsFinkaSovietFlak = перчатки
 ent-ClothingHandsFinkaSovietNoOuter = перчатки
 ent-ClothingHandsMercMosinSovietNoOuter = перчатки
-ent-ClothingHandsMp38SovietNoOuter = перчатки
 ent-ClothingHandsBottleSovietNoOuter = перчатки
 ent-ClothingHandsSKM24GSovietNoOuter = перчатки
 ent-ClothingHandsSKM24GSovietUSSPLight = перчатки
@@ -58,4 +62,24 @@ ent-ClothingHandsPPSHSovietFlak = перчатки
 ent-ClothingHandsPPSHSovietNoOuter = перчатки
 ent-ClothingHandsDragunovSovietUSSPHeavy = перчатки
 ent-ClothingHandsType88SovietUSSPHeavy = перчатки
+
+ent-ClothingBeltWebbingSovietTier1PPSHSLSergeant = разгрузка советского бойца
+    .desc = Разгрузка советского сержанта, наполненная боеприпасами для ППШ.
+    .suffix = Сержант, ППШ
+ent-SovietDamagedIDCardSpawner = спавнер повреждённого ID
+    .desc = Случайно создаёт повреждённую советскую ID-карту.
+ent-SovietDamagedIDCardSpawnerCaptain = спавнер капитанского ID
+    .desc = Случайно создаёт повреждённую ID-карту советского капитана.
+ent-SovietDamagedIDCardSpawnerPartisan = спавнер партизанского ID
+    .desc = Случайно создаёт повреждённую ID-карту советского партизана.
+ent-SovietDamagedIDCardSpawnerSergeant = спавнер сержантского ID
+    .desc = Случайно создаёт повреждённую ID-карту советского сержанта.
+ent-SovietPinSpawnerT1 = спавнер значка T1
+    .desc = Случайно создаёт обычный советский значок.
+ent-SovietPinSpawnerT2 = спавнер значка T2
+    .desc = Случайно создаёт необычный советский значок.
+ent-SovietPinSpawnerT3 = спавнер значка T3
+    .desc = Случайно создаёт редкий советский значок.
+ent-SovietSmokingSpawner = спавнер советского курева
+    .desc = Случайно создаёт советские курительные принадлежности.
 

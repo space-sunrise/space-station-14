@@ -1,6 +1,6 @@
-# © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
+# © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/makura-games/sunrise-station/blob/master/CLA.txt
 - type: entity
-  id: BaseHumanoidXenoOrganUnGibbable
+  id: BaseHumanoidXenoOrgan
   parent: BaseItem
   abstract: true
   components:
@@ -28,15 +28,8 @@
       - Meat
 
 - type: entity
-  id: BaseHumanoidXenoOrgan
-  parent: BaseHumanoidXenoOrganUnGibbable
-  abstract: true
-  components:
-  - type: Gibbable
-
-- type: entity
   id: OrganHumanoidXenoBrain
-  parent: [BaseHumanoidXenoOrgan, BaseOrganBrain]
+  parent: [BaseHumanoidXenoOrgan, SunriseOrganBaseBrain]
   name: brain
   description: The nexus of the alien mind. Thoughts you don't want to know.
   components:
@@ -70,7 +63,7 @@
 
 - type: entity
   id: OrganHumanoidXenoTongue
-  parent: [BaseHumanoidXenoOrgan, BaseOrganTongue]
+  parent: [BaseHumanoidXenoOrgan, SunriseOrganBaseTongue]
   name: tongue
   description: Long and flexible.
   components:
@@ -79,7 +72,7 @@
 
 - type: entity
   id: OrganHumanoidXenoAppendix
-  parent: [BaseHumanoidXenoOrgan, BaseOrganAppendix]
+  parent: [BaseHumanoidXenoOrgan, SunriseOrganBaseAppendix]
   name: appendix
   description: An evolutionary greeting from the past.
   components:
@@ -91,7 +84,7 @@
 
 - type: entity
   id: OrganHumanoidXenoEars
-  parent: [BaseHumanoidXenoOrgan, BaseOrganEars]
+  parent: [BaseHumanoidXenoOrgan, SunriseOrganBaseEars]
   name: ears
   description: Ultra-sensitive locators. Hear your fears.
   components:
@@ -100,7 +93,7 @@
 
 - type: entity
   id: OrganHumanoidXenoLungs
-  parent: [BaseHumanoidXenoOrgan, BaseOrganLungs]
+  parent: [BaseHumanoidXenoOrgan, SunriseOrganBaseLungs]
   name: lungs
   description: They filter oxygen from the atmosphere and channel it into the bloodstream, where it is used as an electron carrier.
   components:
@@ -110,13 +103,6 @@
       - state: lung-r
   - type: Lung
   - type: Metabolizer
-    removeEmpty: true
-    solutionOnBody: false
-    solution: "Lung"
-    metabolizerTypes: [ Human ]
-    groups:
-    - id: Gas
-      rateModifier: 100.0
   - type: SolutionContainerManager
     solutions:
       organ:
@@ -134,7 +120,7 @@
 
 - type: entity
   id: OrganHumanoidXenoHeart
-  parent: [BaseHumanoidXenoOrgan, BaseOrganHeart]
+  parent: [BaseHumanoidXenoOrgan, SunriseOrganBaseHeart]
   name: xenomorph heart
   description: A powerful organ that pumps acidic blood through tough tissues and provides incredible stamina and strength to every xenomorph.
   components:
@@ -143,14 +129,11 @@
   - type: Metabolizer
     maxReagents: 2
     metabolizerTypes: [Animal]
-    groups:
-    - id: Medicine
-    - id: Poison
-    - id: Narcotic
+    stages: [ Bloodstream ]
 
 - type: entity
   id: OrganHumanoidXenoStomach
-  parent: [BaseHumanoidXenoOrgan, BaseOrganStomach]
+  parent: [BaseHumanoidXenoOrgan, SunriseOrganBaseStomach]
   name: stomach
   description: A voracious pit.
   components:
@@ -169,13 +152,11 @@
   - type: Metabolizer
     maxReagents: 3
     metabolizerTypes: [Animal]
-    groups:
-    - id: Food
-    - id: Drink
+    stages: [ Digestion ]
 
 - type: entity
   id: OrganHumanoidXenoLiver
-  parent: [BaseHumanoidXenoOrgan, BaseOrganLiver]
+  parent: [BaseHumanoidXenoOrgan, SunriseOrganBaseLiver]
   name: liver
   description: A powerful detoxifier that neutralizes dangerous substances with ease.
   components:
@@ -184,13 +165,12 @@
   - type: Metabolizer
     maxReagents: 1
     metabolizerTypes: [Human]
-    groups:
-    - id: Alcohol
-      rateModifier: 0.1
+    stages: [ Metabolites ]
+    updateIntervalMultiplier: 10
 
 - type: entity
   id: OrganHumanoidXenoKidneys
-  parent: [BaseHumanoidXenoOrgan, BaseOrganKidneys]
+  parent: [BaseHumanoidXenoOrgan, SunriseOrganBaseKidneys]
   name: kidneys
   description: Paired filters, ruthlessly taking out anything superfluous.
   components:
@@ -201,13 +181,17 @@
   - type: Metabolizer
     maxReagents: 5
     metabolizerTypes: [Human]
-    removeEmpty: true
 
 - type: entity
   id: OrganHumanoidXenoEyes
-  parent: [BaseHumanoidXenoOrgan, BaseOrganEyes]
+  parent: [BaseHumanoidXenoOrgan, SunriseOrganBaseEyes]
   name: eyes
   description: Eyes. They see
   components:
   - type: Sprite
     state: eyes
+  - type: VisualOrganMarkings
+    markingData:
+      layers:
+      - Eyes
+      group: HumanoidXeno

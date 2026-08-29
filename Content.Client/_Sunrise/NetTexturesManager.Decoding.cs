@@ -17,44 +17,40 @@ public sealed partial class NetTexturesManager
     private const int UploadBytesPerSecond = 96 * 1024 * 1024;
 
     /// <summary>
-    /// Commits a fully uploaded texture into the ready resource map and notifies listeners.
+    /// Коммитит полностью загруженную текстуру в карту готовых ресурсов и уведомляет слушателей.
     /// </summary>
-    /// <param name="resourceKey">The normalized resource key.</param>
-    /// <param name="loadedTexture">The uploaded texture entry.</param>
+    /// <param name="resourceKey">Нормализованный ключ ресурса.</param>
+    /// <param name="loadedTexture">Запись загруженной текстуры.</param>
     private void FinishPreparedTexture(string resourceKey, LoadedTextureEntry loadedTexture)
     {
         _preparingResources.Remove(resourceKey);
         _pendingResources.Remove(resourceKey);
 
-        if (_loadedTextures.Remove(resourceKey, out var oldTexture))
-            oldTexture.Dispose();
-
+        // Не освобождаем заменяемую запись явно: её Texture могла быть передана внешнему UI.
         _loadedTextures[resourceKey] = loadedTexture;
         ResourceLoaded?.Invoke(resourceKey);
     }
 
     /// <summary>
-    /// Commits a fully uploaded RSI animation set into the ready resource map and notifies listeners.
+    /// Коммитит полностью загруженный набор RSI-анимаций в карту готовых ресурсов и уведомляет слушателей.
     /// </summary>
-    /// <param name="resourceKey">The normalized resource key.</param>
-    /// <param name="loadedRsi">The uploaded RSI entry.</param>
+    /// <param name="resourceKey">Нормализованный ключ ресурса.</param>
+    /// <param name="loadedRsi">Запись загруженного RSI.</param>
     private void FinishPreparedRsi(string resourceKey, LoadedRsiEntry loadedRsi)
     {
         _preparingResources.Remove(resourceKey);
         _pendingResources.Remove(resourceKey);
 
-        if (_loadedRsis.Remove(resourceKey, out var oldRsi))
-            oldRsi.Dispose();
-
+        // Не освобождаем заменяемую запись явно: её состояния могли быть переданы внешнему UI.
         _loadedRsis[resourceKey] = loadedRsi;
         ResourceLoaded?.Invoke(resourceKey);
     }
 
     /// <summary>
-    /// Processes a bounded number of staged GPU upload steps for the current frame.
+    /// Обрабатывает ограниченное количество этапов staged GPU upload за текущий кадр.
     /// </summary>
     /// <remarks>
-    /// Upload work is intentionally spread across frames so large RSI resources do not monopolize the main thread.
+    /// Работа загрузки намеренно распределяется по кадрам, чтобы большие RSI-ресурсы не монополизировали главный поток.
     /// </remarks>
     private void ProcessPreparedUploads(float frameTime)
     {
@@ -70,7 +66,7 @@ public sealed partial class NetTexturesManager
 
             if (upload.Generation != ReadSessionGeneration())
             {
-                _preparedUploads.Dequeue().Dispose();
+                _preparedUploads.Dequeue().EnqueueDisposals(_deferredDisposals);
                 continue;
             }
 
@@ -89,22 +85,22 @@ public sealed partial class NetTexturesManager
             }
             catch (OperationCanceledException)
             {
-                _preparedUploads.Dequeue().Dispose();
+                _preparedUploads.Dequeue().EnqueueDisposals(_deferredDisposals);
                 _preparingResources.Remove(upload.ResourceKey);
             }
             catch (Exception ex)
             {
-                _preparedUploads.Dequeue().Dispose();
+                _preparedUploads.Dequeue().EnqueueDisposals(_deferredDisposals);
                 MarkResourceFailed(upload.ResourceKey, ex.Message);
             }
         }
     }
 
     /// <summary>
-    /// Records a resource failure and prevents it from being treated as ready.
+    /// Записывает сбой ресурса и не дает считать ресурс готовым.
     /// </summary>
-    /// <param name="resourceKey">The failing normalized resource key.</param>
-    /// <param name="reason">The failure reason used for logging.</param>
+    /// <param name="resourceKey">Нормализованный ключ ресурса, завершившегося с ошибкой.</param>
+    /// <param name="reason">Причина сбоя для логирования.</param>
     private void MarkResourceFailed(string resourceKey, string reason)
     {
         _preparingResources.Remove(resourceKey);
@@ -116,10 +112,10 @@ public sealed partial class NetTexturesManager
 
     #region Resource Decoding
     /// <summary>
-    /// Verifies that an uploaded RSI directory contains all files required for safe decode.
+    /// Проверяет, что загруженная RSI-директория содержит все файлы для безопасного декодирования.
     /// </summary>
-    /// <param name="relativePath">The relative uploaded RSI path.</param>
-    /// <returns><see langword="true"/> if all required RSI files are present.</returns>
+    /// <param name="relativePath">Относительный путь загруженного RSI.</param>
+    /// <returns><see langword="true"/>, если все требуемые RSI-файлы присутствуют.</returns>
     private bool CheckRsiFilesComplete(ResPath relativePath)
     {
         if (_rsiCompleteness.TryGetValue(relativePath, out var cached))
@@ -179,11 +175,11 @@ public sealed partial class NetTexturesManager
     }
 
     /// <summary>
-    /// Decodes a non-RSI uploaded image into an intermediate texture payload.
+    /// Декодирует загруженное не-RSI изображение в промежуточную полезную нагрузку текстуры.
     /// </summary>
-    /// <param name="resourcePath">The normalized uploaded resource path.</param>
-    /// <param name="cancellationToken">The current session cancellation token.</param>
-    /// <returns>The decoded texture payload ready for staged upload.</returns>
+    /// <param name="resourcePath">Нормализованный путь загруженного ресурса.</param>
+    /// <param name="cancellationToken">Текущий токен отмены сессии.</param>
+    /// <returns>Декодированная полезная нагрузка текстуры, готовая для staged upload.</returns>
     private PreparedTexture DecodeTexture(ResPath resourcePath, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
@@ -195,15 +191,15 @@ public sealed partial class NetTexturesManager
     }
 
     /// <summary>
-    /// Decodes an uploaded RSI directory into per-frame image payloads ready for staged upload.
+    /// Декодирует загруженную RSI-директорию в покадровые полезные нагрузки изображений, готовые для staged upload.
     /// </summary>
     /// <remarks>
-    /// The decode path validates metadata, image dimensions, frame references, and direction counts before any
-    /// uploaded state is exposed to consumers.
+    /// Путь декодирования проверяет metadata, размеры изображения, ссылки на кадры и количество направлений до того,
+    /// как загруженное состояние становится доступно потребителям.
     /// </remarks>
-    /// <param name="resourcePath">The normalized uploaded RSI path.</param>
-    /// <param name="cancellationToken">The current session cancellation token.</param>
-    /// <returns>The prepared RSI payload ready for staged upload.</returns>
+    /// <param name="resourcePath">Нормализованный путь загруженного RSI.</param>
+    /// <param name="cancellationToken">Текущий токен отмены сессии.</param>
+    /// <returns>Подготовленная полезная нагрузка RSI, готовая для staged upload.</returns>
     private PreparedRsi DecodeRsi(ResPath resourcePath, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();

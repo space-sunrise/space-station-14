@@ -5,6 +5,7 @@
   setPreference: false
   playTimeTracker: AntagPlanetPrisoner
   objective: roles-antag-planet-prisoner-objective
+  storytellerStress: 0
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 7200 # 2h

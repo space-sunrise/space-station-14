@@ -6,11 +6,9 @@
   description: A suit that protects against biological contamination.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Bio/general.rsi
-  - type: DiseaseImmuneClothing
-    prob: 0.8
+    sprite: _Sunrise/Clothing/OuterClothing/Bio/general.rsi # Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/OuterClothing/Bio/general.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Bio/general.rsi # Sunrise-Edit
   - type: HideLayerClothing
     slots:
     - Tail
@@ -84,6 +82,9 @@
     sprite: _Sunrise/Clothing/OuterClothing/Bio/security.rsi #Sunrise-Edit
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Bio/security.rsi #Sunrise-Edit
+  - type: HideLayerClothing
+    slots:
+    - Tail
   - type: Armor
     modifiers:
       coefficients:
@@ -96,7 +97,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.95
     sprintModifier: 0.95
-    
+
 - type: entity
   parent: ClothingOuterBioGeneral
   id: ClothingOuterBioVirology

@@ -14,7 +14,7 @@ using Robust.Shared.Utility;
 namespace Content.Client._Sunrise;
 
 /// <summary>
-/// Coordinates client-side loading of server-provided textures and RSI resources.
+/// Координирует клиентскую загрузку предоставленных сервером текстур и RSI-ресурсов.
 /// </summary>
 public sealed partial class NetTexturesManager
 {
@@ -24,6 +24,7 @@ public sealed partial class NetTexturesManager
     private const int MinTransferPublishBudgetBytes = 512 * 1024;
     private const int MaxTransferPublishBudgetBytes = 8 * 1024 * 1024;
     private const int TransferPublishBytesPerSecond = 64 * 1024 * 1024;
+    private const int MaxDeferredDisposalsPerFrame = 8;
     #endregion
 
     #region Dependencies
@@ -50,6 +51,7 @@ public sealed partial class NetTexturesManager
     private readonly Queue<PreparationRequest> _prepareRequests = new();
     private readonly List<(string ResourceKey, ResPath ResPath)> _resourcesReadyToPrepare = new();
     private readonly Dictionary<ResPath, RsiCompletenessEntry> _rsiCompleteness = new();
+    private readonly Queue<IDisposable> _deferredDisposals = new();
 
     private CancellationTokenSource _sessionCts = new();
     private int _sessionGeneration;
@@ -62,7 +64,7 @@ public sealed partial class NetTexturesManager
 
     #region Helpers
     /// <summary>
-    /// Reads the current session generation with interlocked semantics for background-worker handoff.
+    /// Читает текущее поколение сессии с interlocked-семантикой для передачи в фоновый worker.
     /// </summary>
     private int ReadSessionGeneration()
     {
@@ -70,7 +72,7 @@ public sealed partial class NetTexturesManager
     }
 
     /// <summary>
-    /// Advances the reconnect generation and returns the new value.
+    /// Продвигает поколение переподключения и возвращает новое значение.
     /// </summary>
     private int AdvanceSessionGeneration()
     {
@@ -78,7 +80,7 @@ public sealed partial class NetTexturesManager
     }
 
     /// <summary>
-    /// Returns whether an exception is an expected RSI metadata parse failure without hard-linking banned types.
+    /// Возвращает, является ли исключение ожидаемой ошибкой разбора RSI metadata без жесткой ссылки на запрещенные типы.
     /// </summary>
     private static bool IsHandledRsiMetadataException(Exception ex)
     {
@@ -102,14 +104,14 @@ public sealed partial class NetTexturesManager
 
     #region Events
     /// <summary>
-    /// Raised after a network resource becomes ready for consumer use.
+    /// Вызывается после того, как сетевой ресурс готов к использованию потребителями.
     /// </summary>
     public event Action<string>? ResourceLoaded;
     #endregion
 
     #region Lifecycle
     /// <summary>
-    /// Registers transfer handlers and mounts the in-memory uploaded resource root.
+    /// Регистрирует обработчики передачи и монтирует in-memory корень для загруженных ресурсов.
     /// </summary>
     public void Initialize()
     {
@@ -130,11 +132,13 @@ public sealed partial class NetTexturesManager
     }
 
     /// <summary>
-    /// Advances pending resource preparation and staged GPU upload work.
+    /// Продвигает подготовку ожидающих ресурсов и staged GPU upload.
     /// </summary>
-    /// <param name="frameTime">The elapsed frame time in seconds.</param>
+    /// <param name="frameTime">Прошедшее время кадра в секундах.</param>
     public void Update(float frameTime)
     {
+        ProcessDeferredDisposals();
+
         lock (_pendingTransferBatches)
         {
             if (_pendingTransferBatches.Count != 0)
@@ -146,6 +150,18 @@ public sealed partial class NetTexturesManager
 
         if (_preparedUploads.Count != 0)
             ProcessPreparedUploads(frameTime);
+    }
+
+    /// <summary>
+    /// Постепенно освобождает ресурсы прошлой сессии, не блокируя переход в меню одним большим пакетом GPU-вызовов.
+    /// </summary>
+    private void ProcessDeferredDisposals()
+    {
+        var remaining = MaxDeferredDisposalsPerFrame;
+        while (remaining-- > 0 && _deferredDisposals.TryDequeue(out var disposable))
+        {
+            disposable.Dispose();
+        }
     }
     #endregion
 }

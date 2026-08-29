@@ -8,6 +8,7 @@ guide-entry-disease = Разумная болезнь
 guide-entry-expeditions = Экспедиции
 guide-entry-expedition-pirates = Пираты
 guide-entry-expedition-soviets = Коммунисты
+guide-entry-expedition-silicons = Железяки
 guide-entry-expedition-xenos = Ксено
 guide-entry-expedition-carps = Карпы
 
@@ -42,7 +43,9 @@ guide-entry-sr-rule-excep-1 = Исключение/прецедент 1
 guide-entry-sr-rule-excep-2 = Исключение/прецедент 2
 guide-entry-sr-rule-excep-3 = Исключение/прецедент 3
 guide-entry-sr-rule-excep-3-1 = Исключение/прецедент 3.1
+guide-entry-sr-rule-excep-3-2 = Исключение/прецедент 3.2
 guide-entry-sr-rule-excep-3-3 = Исключение/прецедент 3.3
+guide-entry-sr-rule-excep-3-4 = Исключение/прецедент 3.4
 guide-entry-sr-rule-excep-3-6 = Исключение/прецедент 3.6
 guide-entry-sr-rule-excep-3-7 = Исключение/прецедент 3.7
 guide-entry-sr-rule-excep-4 = Исключение/прецедент 4

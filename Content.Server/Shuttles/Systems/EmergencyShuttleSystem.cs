@@ -56,7 +56,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.Parallax.Biomes;
 
 namespace Content.Server.Shuttles.Systems;
@@ -82,17 +81,13 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
     [Dependency] private readonly IdCardSystem _idSystem = default!;
     [Dependency] private readonly NavMapSystem _navMap = default!;
     [Dependency] private readonly MapLoaderSystem _loader = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly TransformSystem _transformSystem = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly AtmosphereSystem _atmos = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly SharedAirlockSystem _airlockSystem = default!;
     [Dependency] private readonly BiomeSystem _biomes = default!;
 
     private const float ShuttleSpawnBuffer = 1f;
@@ -145,18 +140,8 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
         _roundEndCancelToken = null;
     }
 
-    private void OnCentcommShutdown(EntityUid uid, StationTransitHubComponent component, ComponentShutdown args) // Sunrise-Edit
-    {
-        ClearTransitHub(component);
-    }
-
-    private void ClearTransitHub(StationTransitHubComponent component) // Sunrise-Edit
-    {
-        QueueDel(component.Entity);
-        QueueDel(component.MapEntity);
-        component.Entity = null;
-        component.MapEntity = null;
-    }
+    // Sunrise edit start - TransitHub shutdown handlers moved to partial class EmergencyShuttleSystem.TransitHub.cs
+    // Sunrise edit end
 
     /// <summary>
     ///     Attempts to get the EntityUid of the emergency shuttle
@@ -338,7 +323,7 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
         }
 
         ShuttleDockResultType resultType;
-        if (_shuttle.TryFTLDock(stationShuttle.EmergencyShuttle.Value, shuttle, targetGrid.Value, out var config, DockTag, true, true)) // Sunrise-Edit
+        if (_shuttle.TrySunriseFtlDock(stationShuttle.EmergencyShuttle.Value, shuttle, targetGrid.Value, out var config, DockTag, true, true)) // Sunrise-Edit - используем FTL-расширение из partial-класса.
         {
             _logger.Add(
                 LogType.EmergencyShuttle,
@@ -450,22 +435,8 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
         //_audio.PlayGlobal(audioFile, Filter.Broadcast(), true);
     }
 
-    private void OnTransitHubInit(EntityUid uid, StationTransitHubComponent component, MapInitEvent args) // Sunrise-Edit
-    {
-        // This is handled on map-init, so that centcomm has finished initializing by the time the StationPostInitEvent
-        // gets raised
-        if (!_emergencyShuttleEnabled)
-            return;
-
-        // Post mapinit? fancy
-        if (TryComp<TransformComponent>(component.Entity, out var xform)) // Sunrise-Edit
-        {
-            component.MapEntity = xform.MapUid;
-            return;
-        }
-
-        AddTransitHub(uid, component); // Sunrise-Edit
-    }
+    // Sunrise edit start - OnTransitHubInit moved to EmergencyShuttleSystem.TransitHub.cs
+    // Sunrise edit end
 
     private void OnStationStartup(Entity<StationEmergencyShuttleComponent> ent, ref StationPostInitEvent args)
     {
@@ -547,94 +518,8 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
         }
     }
 
-    private void AddTransitHub(EntityUid station, StationTransitHubComponent component) // Sunrise-Edit
-    {
-        DebugTools.Assert(LifeStage(station) >= EntityLifeStage.MapInitialized);
-        if (component.MapEntity != null || component.Entity != null)
-        {
-            Log.Warning("Attempted to re-add an existing centcomm map.");
-            return;
-        }
-
-        // Check for existing centcomms and just point to that
-        var query = AllEntityQuery<StationTransitHubComponent>(); // Sunrise-Edit
-        while (query.MoveNext(out var otherComp))
-        {
-            if (otherComp == component)
-                continue;
-
-            if (!Exists(otherComp.MapEntity) || !Exists(otherComp.Entity))
-            {
-                Log.Error($"Discovered invalid centcomm component?");
-                ClearTransitHub(otherComp);
-                continue;
-            }
-
-            component.MapEntity = otherComp.MapEntity;
-            component.Entity = otherComp.Entity;
-            return;
-        }
-
-        if (string.IsNullOrEmpty(component.Map.ToString()))
-        {
-            Log.Warning("No CentComm map found, skipping setup.");
-            return;
-        }
-
-        // Sunrise-start
-        var mapUid = _mapSystem.CreateMap(out var mapId, runMapInit: false);
-
-        if (!_loader.TryLoadGrid(mapId, component.Map, out var uid))
-        {
-            Log.Error($"Failed to set up transit hub map!");
-            QueueDel(mapUid);
-            return;
-        }
-
-        EnsureComp<LightCycleComponent>(mapUid);
-
-        Log.Info($"Created transit hub grid {ToPrettyString(uid)} on map {ToPrettyString(mapUid)} for station {ToPrettyString(station)}");
-
-        EnsureComp<ProtectedGridComponent>(uid.Value.Owner);
-        EnsureComp<ArrivalsSourceComponent>(uid.Value.Owner); // Sunrise-edit
-        EnsureComp<UnbuildableGridComponent>(uid.Value.Owner); // Sunrise-edit
-        EnsureComp<ImmortalGridComponent>(uid.Value.Owner); // Sunrise-edit
-
-       var template = _random.Pick(component.Biomes);
-       var biome = _prototypeManager.Index<BiomeTemplatePrototype>(template);
-       _biomes.EnsurePlanet(mapUid, biome);
-
-        component.MapEntity = mapUid;
-        component.Entity = uid;
-
-        // Sunrise-Start
-        var restricted = new RestrictedRangeComponent
-        {
-            Origin = new Vector2(0, 0),
-            Range = 160,
-        };
-        AddComp(mapUid, restricted);
-        // Sunrise-End
-
-        _mapManager.DoMapInitialize(mapId);
-        // Sunrise-end
-    }
-
-    // Sunrise-start
-    public HashSet<EntityUid> GetTransitHubMaps()
-    {
-        var query = AllEntityQuery<StationTransitHubComponent>();
-        var maps = new HashSet<EntityUid>(Count<StationTransitHubComponent>());
-
-        while (query.MoveNext(out var comp))
-        {
-            if (comp.MapEntity != null)
-                maps.Add(comp.MapEntity.Value);
-        }
-
-        return maps;
-    }
-    // Sunrise-end
+    // Sunrise edit start - AddTransitHub and GetTransitHubMaps moved to EmergencyShuttleSystem.TransitHub.cs
+    // Sunrise edit end
 
     private void AddEmergencyShuttle(Entity<StationEmergencyShuttleComponent?, StationTransitHubComponent?> ent) // Sunrise-edit
     {

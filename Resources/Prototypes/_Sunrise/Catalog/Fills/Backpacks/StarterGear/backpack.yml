@@ -13,19 +13,9 @@
         - id: MagazinePistol40SubMachineGunSP
         - id: MagazineRifleSP
         - id: MagazineLightRifleSP
-
-- type: entity
-  parent: ClothingBackpackSyndie
-  id: ClothingBackpackSyndieDL6902Filled
-  name: DL-6902 kit
-  description: Includes a DL6902 machine gun and one magazine of ammunition.
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: WeaponDL6902Biocode
-        - id: MagazineDl6902
+        - id: MagazinePistol40SP
+        - id: MagazinePistolHighCapacitySP
+        - id: MagazinePistol
 
 - type: entity
   parent: ClothingBackpackSyndie
@@ -38,5 +28,5 @@
       storagebase: !type:AllSelector
         children:
         - id: WeaponSIAR52Biocode
-        - id: MagazinePistolSubMachineGunCaselessExtended
-          amount: 2
+        - id: CaselessAmmoKit
+        - id: CaselessAmmoKit

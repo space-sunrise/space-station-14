@@ -1,0 +1,59 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Sprited by discord: odlieerr",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon"
+        },
+        {
+            "name": "icon-ammo"
+        },
+        {
+            "name": "icon-ammo-state"
+        },
+        {
+            "name": "icon-med"
+        },
+        {
+            "name": "equipped-BACKPACK",
+            "directions": 4
+        },
+        {
+            "name": "ammo-equipped-BACKPACK",
+            "directions": 4
+        },
+        {
+            "name": "med-equipped-BACKPACK",
+            "directions": 4
+        },
+        {
+            "name": "inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "ammo-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "ammo-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "med-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "med-inhand-right",
+            "directions": 4
+        }
+    ]
+}

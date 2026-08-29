@@ -10,9 +10,9 @@ using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Speech.Prototypes;
 using Content.Server.Speech.EntitySystems;
-using Content.Server.Speech.Prototypes;
 using Content.Server.Station.Systems;
 using Content.Shared._Sunrise.Antags.Abductor;
+using Content.Shared._Sunrise.Chat;
 using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration;
@@ -63,13 +63,12 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    // [Dependency] private readonly SharedAudioSystem _audio = default!; // Мы не используем этот депенси
     [Dependency] private readonly ReplacementAccentSystem _wordreplacement = default!;
     [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly AnnouncementSpeakerSystem _announcementSpeaker = default!;
 
-    public const string DefaultAnnouncementSound = "/Audio/_Sunrise/Announcements/announce_dig.ogg"; // Sunrise-edit
+    public const string DefaultSunriseAnnouncementSound = "/Audio/_Sunrise/Announcements/announce_dig.ogg"; // Sunrise-edit
 
     private bool _loocEnabled = true;
     private bool _deadLoocEnabled;
@@ -163,7 +162,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         bool isFormatted = false //sunrise-edit
         )
     {
-        if (TryComp<AbductorComponent>(source, out var comp))
+        if (TryComp<AbductorComponent>(source, out var comp) && desiredType != InGameICChatType.Emote) // Sunrise-Edit for abuctors to speak in emoutes
         {
             if (!TryProcessSunriseChatMessage(source, ref message, InGameICChatType.CollectiveMind))
                 return;
@@ -361,7 +360,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         {
             if (playDefault && announcementSound == null)
             {
-                announcementSound = new SoundPathSpecifier(DefaultAnnouncementSound);
+                announcementSound = new SoundPathSpecifier(DefaultSunriseAnnouncementSound);
             }
 
             // Send announcement to all stations through their speaker networks
@@ -400,21 +399,19 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (playTts && (playDefault || announcementSound != null))
         {
             if (playDefault && announcementSound == null)
-                announcementSound = new SoundPathSpecifier(DefaultAnnouncementSound);
-
-            var resolvedSound = announcementSound != null ? _audio.ResolveSound(announcementSound) : null;
+                announcementSound = new SoundPathSpecifier(DefaultSunriseAnnouncementSound);
 
             // If we have a source, try to use the station's speaker network
-            if (source != null)
+            if (source != null && _stationSystem.GetOwningStation(source.Value) is { } station)
             {
-                var station = _stationSystem.GetOwningStation(source.Value);
-                if (station != null)
-                {
-                    _announcementSpeaker.DispatchAnnouncementToSpeakers(station.Value, message, announcementSound, announceVoice);
-                }
+                _announcementSpeaker.DispatchAnnouncementToSpeakers(station, message, announcementSound, announceVoice);
+            }
+            else
+            {
+                // Sunrise edit: у игровых событий нет source, поэтому объявляем через динамики всех станций.
+                _announcementSpeaker.DispatchAnnouncementToAllStations(message, announcementSound, announceVoice);
             }
         }
-        // Sunrise-end
 
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Station Announcement from {sender}: {message}");
     }
@@ -459,7 +456,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (playTts)
         {
             if (playDefault && announcementSound == null)
-                announcementSound = new SoundPathSpecifier(DefaultAnnouncementSound);
+                announcementSound = new SoundPathSpecifier(DefaultSunriseAnnouncementSound);
 
             // Send announcement to this specific station's speaker network
             _announcementSpeaker.DispatchAnnouncementToSpeakers(station.Value, message, announcementSound, announceVoice);
@@ -473,84 +470,8 @@ public sealed partial class ChatSystem : SharedChatSystem
 
     #region Private API
 
-    // Sunrise-Start
-    private void SendCollectiveMindChat(EntityUid source, string message, CollectiveMindPrototype? collectiveMind)
-    {
-        if (_mobStateSystem.IsDead(source))
-            return;
-
-        if (collectiveMind == null || message == "")
-            return;
-
-        if (!TryComp<CollectiveMindComponent>(source, out var sourseCollectiveMindComp))
-            return;
-
-        if (!sourseCollectiveMindComp.Minds.Contains(collectiveMind.ID))
-            return;
-
-        var clients = Filter.Empty();
-        var receivers = new HashSet<EntityUid>();
-        var mindQuery = EntityQueryEnumerator<CollectiveMindComponent, ActorComponent>();
-        while (mindQuery.MoveNext(out var uid, out var collectMindComp, out var actorComp))
-        {
-            if (_mobStateSystem.IsDead(uid))
-                continue;
-
-            if (collectMindComp.Minds.Contains(collectiveMind.ID))
-            {
-                clients.AddPlayer(actorComp.PlayerSession);
-                receivers.Add(uid);
-            }
-        }
-
-        var admins = _adminManager.ActiveAdmins
-            .Select(p => p.Channel);
-        string messageWrap;
-        string adminMessageWrap;
-
-        if (collectiveMind.ShowAuthor)
-        {
-            messageWrap = Loc.GetString("collective-mind-chat-wrap-message-with-author",
-                ("source", source),
-                ("message", message),
-                ("channel", collectiveMind.LocalizedName));
-        }
-        else
-        {
-            messageWrap = Loc.GetString("collective-mind-chat-wrap-message",
-                ("message", message),
-                ("channel", collectiveMind.LocalizedName));
-        }
-
-        adminMessageWrap = Loc.GetString("collective-mind-chat-wrap-message-admin",
-            ("source", source),
-            ("message", message),
-            ("channel", collectiveMind.LocalizedName));
-
-        _adminLogger.Add(LogType.Chat, LogImpact.Low, $"CollectiveMind chat from {ToPrettyString(source):Player}: {message}");
-
-        _chatManager.ChatMessageToManyFiltered(clients,
-            ChatChannel.CollectiveMind,
-            message,
-            messageWrap,
-            source,
-            false,
-            true,
-            collectiveMind.Color);
-
-        _chatManager.ChatMessageToMany(ChatChannel.CollectiveMind,
-            message,
-            adminMessageWrap,
-            source,
-            false,
-            true,
-            admins,
-            collectiveMind.Color);
-
-        // Raise event for TTS
-        RaiseLocalEvent(new CollectiveMindSpokeEvent(source, message, receivers, collectiveMind.ID));
-    }
-    // Sunrise-End
+    // Sunrise edit start - SendCollectiveMindChat moved to partial class ChatSystem.Sunrise.cs
+    // Sunrise edit end
 
     private void SendEntitySpeak(
         EntityUid source,
@@ -762,6 +683,11 @@ public sealed partial class ChatSystem : SharedChatSystem
             }
         } // sunrise-end
 
+        // Sunrise added start - событие для произвольных эмоций в туториалах
+        var ev = new EntityEmotedEvent(source, action);
+        RaiseLocalEvent(source, ref ev, true);
+        // Sunrise added end
+
         if (hideLog)
             return;
 
@@ -820,52 +746,8 @@ public sealed partial class ChatSystem : SharedChatSystem
     }
     #endregion
 
-    #region Utility
-
-    /// <summary>
-    /// Gets all players who have working announcement speakers nearby.
-    /// Used to filter chat recipients for announcements.
-    /// </summary>
-    private Filter GetPlayersWithWorkingSpeakers()
-    {
-        var filteredPlayers = Filter.Empty();
-
-        foreach (var player in _playerManager.Sessions)
-        {
-            if (player.AttachedEntity is not { Valid: true } playerEntity)
-                continue;
-
-            if (_announcementSpeaker.HasWorkingSpeakersNearby(playerEntity))
-            {
-                filteredPlayers = filteredPlayers.AddPlayer(player);
-            }
-        }
-
-        return filteredPlayers;
-    }
-
-    /// <summary>
-    /// Filters an existing filter to only include players with working speakers nearby.
-    /// </summary>
-    private Filter FilterPlayersByWorkingSpeakers(Filter originalFilter)
-    {
-        var filteredPlayers = Filter.Empty();
-
-        foreach (var player in originalFilter.Recipients)
-        {
-            if (player.AttachedEntity is not { Valid: true } playerEntity)
-                continue;
-
-            if (_announcementSpeaker.HasWorkingSpeakersNearby(playerEntity))
-            {
-                filteredPlayers = filteredPlayers.AddPlayer(player);
-            }
-        }
-
-        return filteredPlayers;
-    }
-
-    #endregion
+    // Sunrise edit start - Speaker filter utility methods moved to partial class ChatSystem.Sunrise.cs
+    // Sunrise edit end
 
     #region Utility
 
@@ -925,6 +807,16 @@ public sealed partial class ChatSystem : SharedChatSystem
             var entRange = MessageRangeCheck(session, data, range);
             if (entRange == MessageRangeCheckResult.Disallowed)
                 continue;
+            // Sunrise-start
+            // Проверка на наличие прямой видимости для эмоутов
+            if (channel == ChatChannel.Emotes)
+            {
+                var ev = new EmoteVisibilityCheckEvent(source, session.AttachedEntity, VoiceRange);
+                RaiseLocalEvent(ref ev);
+                if (!ev.Visible)
+                    continue;
+            }
+            // Sunrise-end
             var entHideChat = entRange == MessageRangeCheckResult.HideChat;
             _chatManager.ChatMessageToOne(channel, message, wrappedMessage, source, entHideChat, session.Channel, author: author, colorOverride: color);
         }
@@ -989,7 +881,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     public string TransformSpeech(EntityUid sender, string message)
     {
         var ev = new TransformSpeechEvent(sender, message);
-        RaiseLocalEvent(ev);
+        RaiseLocalEvent(sender, ev, true);
 
         return ev.Message;
     }
@@ -1125,11 +1017,12 @@ public record ExpandICChatRecipientsEvent(EntityUid Source, float VoiceRange, Di
 }
 
 // Sunrise-TTS-Start
-public sealed class RadioSpokeEvent(EntityUid source, string message, EntityUid[] receivers) : EntityEventArgs
+public sealed class RadioSpokeEvent(EntityUid source, string message, EntityUid[] receivers, string channelId) : EntityEventArgs
 {
     public readonly EntityUid Source = source;
     public readonly string Message = message;
     public readonly EntityUid[] Receivers = receivers;
+    public readonly string ChannelId = channelId;
 }
 
 public sealed class CollectiveMindSpokeEvent(EntityUid source, string message, IReadOnlyCollection<EntityUid> receivers, string collectiveMindId) : EntityEventArgs

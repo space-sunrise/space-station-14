@@ -7,11 +7,11 @@ using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 using Robust.Shared.Utility;
-using Content.Shared._Starlight.Combat.Ranged.Pierce;
+using Content.Shared._Sunrise.Weapons.Enums;
 
 namespace Content.Shared.Weapons.Ranged;
 
-[Prototype("hitscan")]
+[Prototype]
 public sealed partial class HitscanPrototype : IPrototype, IShootable, IInheritingPrototype
 {
     [ViewVariables]

@@ -5,6 +5,28 @@
   name: computer
   components:
   - type: Sprite
+    sprite: Structures/Machines/computers.rsi
+    layers:
+    - map: [ "computerLayerBody" ]
+      state: computer
+    - map: [ "computerLayerKeyboard" ]
+      state: generic_keyboard
+    - map: [ "computerLayerScreen" ]
+      sprite: _Sunrise/Structures/Machines/computers.rsi
+      state: generic
+    - map: [ "computerLayerKeys" ]
+      sprite: _Sunrise/Structures/Machines/computers.rsi
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+
+- type: entity
+  parent: BaseComputer
+  id: BaseComputerSunriseUniqueFrame
+  abstract: true
+  name: computer
+  components:
+  - type: Sprite
     sprite: _Sunrise/Structures/Machines/computers.rsi
     layers:
     - map: [ "computerLayerBody" ]
@@ -63,8 +85,10 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
+      sprite: _Sunrise/Structures/Machines/computers.rsi
       state: request
     - map: ["computerLayerKeys"]
+      sprite: _Sunrise/Structures/Machines/computers.rsi
       state: tech_key
 
 - type: entity
@@ -99,8 +123,10 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
+      sprite: _Sunrise/Structures/Machines/computers.rsi
       state: station_account
     - map: ["computerLayerKeys"]
+      sprite: _Sunrise/Structures/Machines/computers.rsi
       state: station_account_key
   #- type: StationBankConsole
   #- type: ActivatableUI
@@ -132,8 +158,10 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
+      sprite: _Sunrise/Structures/Machines/computers.rsi
       state: salary
     - map: ["computerLayerKeys"]
+      sprite: _Sunrise/Structures/Machines/computers.rsi
       state: salary_key
   #- type: CargoSalaryConsole
   #- type: ActivatableUI
@@ -165,8 +193,10 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
+      sprite: _Sunrise/Structures/Machines/computers.rsi
       state: financial_accounting
     - map: ["computerLayerKeys"]
+      sprite: _Sunrise/Structures/Machines/computers.rsi
       state: financial_accounting_key
   #- type: CargoFinanceConsole
   #- type: ActivatableUI
@@ -266,6 +296,77 @@
     access: [["Captain"], ["HeadOfPersonnel"]]
 
 - type: entity
+  parent: [BaseComputerSunriseUniqueFrame, StorePresetNTUplink]
+  id: BaseComputerNTERTUplink
+  name: ERT uplink console
+  description: A stationary bluespace uplink console for emergency response teams.
+  suffix: Empty
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: _Sunrise/Structures/Machines/computers.rsi
+      state: station_account
+    - map: ["computerLayerKeys"]
+      sprite: _Sunrise/Structures/Machines/computers.rsi
+      state: station_account_key
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    balance:
+      Bluecrystal: 0
+      Crystallite: 0
+    buySuccessSound:
+      path: /Audio/Effects/Arcade/newgame.ogg
+  - type: AccessReader
+    access: [["CentralCommand"]]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#4fa8ff"
+  - type: Tag
+    tags:
+    - NTUplink
+
+- type: entity
+  parent: BaseComputerNTERTUplink
+  id: ComputerNTERTUplinkAmber
+  suffix: Empty, Amber
+  components:
+  - type: Tag
+    tags:
+    - NTUplink
+
+- type: entity
+  parent: BaseComputerNTERTUplink
+  id: ComputerNTERTUplinkRed
+  suffix: Empty, Red
+  components:
+  - type: Tag
+    tags:
+    - NTUplink
+    - ERTRed
+
+- type: entity
+  parent: BaseComputerNTERTUplink
+  id: ComputerNTERTUplinkGamma
+  suffix: Empty, Gamma
+  components:
+  - type: Tag
+    tags:
+    - NTUplink
+    - ERTGamma
+
+- type: entity
   parent: BaseComputerSunrise
   id: ComputerFineRecords
   name: fine records computer
@@ -288,8 +389,10 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
+      sprite: _Sunrise/Structures/Machines/computers.rsi
       state: forfeiture
     - map: ["computerLayerKeys"]
+      sprite: _Sunrise/Structures/Machines/computers.rsi
       state: forfeiture_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
@@ -325,8 +428,10 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
+      sprite: _Sunrise/Structures/Machines/computers.rsi
       state: contraband_sell
     - map: ["computerLayerKeys"]
+      sprite: _Sunrise/Structures/Machines/computers.rsi
       state: contraband_sell_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open

@@ -18,12 +18,17 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellMedium
+        # Sunrise-Start
+        whitelist:
+          tags:
+          - PowerCell
+        # Sunrise-End
   - type: Sprite
     sprite: Objects/Devices/Holoprojectors/custodial.rsi
     state: icon
   - type: Tag
     tags:
-      - HolosignProjector
+    - HolosignProjector
 
 - type: entity
   parent: Holoprojector
@@ -34,6 +39,11 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
+        # Sunrise-Start
+        whitelist:
+          tags:
+          - PowerCell
+        # Sunrise-End
 
 - type: entity
   parent: Holoprojector
@@ -90,7 +100,7 @@
     state: icon
   - type: Tag
     tags:
-      - HolofanProjector
+    - HolofanProjector
   - type: StaticPrice
     price: 50
   - type: GuideHelp
@@ -108,6 +118,11 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
+        # Sunrise-Start
+        whitelist:
+          tags:
+          - PowerCell
+        # Sunrise-End
 
 - type: entity
   parent: HolofanProjector
@@ -129,20 +144,20 @@
   name: force field projector
   description: Creates an impassable forcefield that won't let anything through. Close proximity may or may not cause cancer.
   components:
-    - type: HolosignProjector
-      signProto: HolosignForcefield
-      # Sunrise - Start
-      chargeUse: 350
-      countPerTileLimit: 1
-      # Sunrise - End
-    - type: Sprite
-      sprite: Objects/Devices/Holoprojectors/field.rsi
-      state: icon
-    - type: Tag
-      tags:
-        - HolofanProjector
-    - type: StaticPrice
-      price: 130
+  - type: HolosignProjector
+    signProto: HolosignForcefield
+    # Sunrise - Start
+    chargeUse: 350
+    countPerTileLimit: 1
+    # Sunrise - End
+  - type: Sprite
+    sprite: Objects/Devices/Holoprojectors/field.rsi
+    state: icon
+  - type: Tag
+    tags:
+    - HolofanProjector
+  - type: StaticPrice
+    price: 130
 
 - type: entity
   parent: HoloprojectorField
@@ -153,6 +168,11 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
+        # Sunrise-Start
+        whitelist:
+          tags:
+          - PowerCell
+        # Sunrise-End
 
 - type: entity
   parent: Holoprojector
@@ -183,3 +203,8 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
+        # Sunrise-Start
+        whitelist:
+          tags:
+          - PowerCell
+        # Sunrise-End

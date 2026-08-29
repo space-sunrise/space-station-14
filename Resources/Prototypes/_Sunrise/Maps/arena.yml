@@ -1,7 +1,7 @@
 ﻿- type: gameMap
   id: Arena
   mapName: 'Arena'
-  mapPath: /Maps/_Sunrise/Station/arena.yml
+  mapPath: /Maps/_Sunrise/Station/OutPool/arena.yml
   minPlayers: 0
   stations:
     Arena:
@@ -13,7 +13,7 @@
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/_Sunrise/Shuttles/UCLB_grid.yml
+          emergencyShuttlePath: /Maps/_Sunrise/Shuttles/Evac/emergency.yml
         - type: StationJobs
           availableJobs:
             Passenger: [ -1, -1 ]

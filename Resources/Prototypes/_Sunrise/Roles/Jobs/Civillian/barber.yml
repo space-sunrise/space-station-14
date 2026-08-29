@@ -1,4 +1,4 @@
-# © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt;
+# © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/makura-games/sunrise-station/blob/master/CLA.txt;
 
 - type: job
   id: Barber
@@ -8,6 +8,8 @@
   startingGear: BarberGear
   icon: "JobIconBarber"
   supervisors: job-supervisors-hop
+  alternativeTitles:
+  - job-alt-title-stylist
   access:
   - Barber
   - Service

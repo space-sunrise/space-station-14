@@ -10,6 +10,14 @@
   startingGear: ChefGear
   icon: "JobIconChef"
   supervisors: job-supervisors-hop
+  # Sunrise-Start
+  alternativeTitles:
+  - job-alt-title-cook
+  - job-alt-title-confectioner
+  - job-alt-title-baker
+  - job-alt-title-culinarian
+  - job-alt-title-cafeteria-worker
+  # Sunrise-End
   access:
   - Service
   - Maintenance

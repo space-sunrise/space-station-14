@@ -83,6 +83,11 @@ namespace Content.Client.Sandbox
             RaiseNetworkEvent(new MsgSandboxSuicide());
         }
 
+        public void ToggleThermalVision()
+        {
+            RaiseNetworkEvent(new MsgSandboxThermalVision());
+        }
+
         public bool Copy(ICommonSession? session, EntityCoordinates coords, EntityUid uid)
         {
             if (!SandboxAllowed)
@@ -147,16 +152,6 @@ namespace Content.Client.Sandbox
         {
             _consoleHost.ExecuteCommand("showsubfloor");
         }
-
-        // Sunrise added start - mapper transparency toggle
-        /// <summary>
-        /// Toggles the mapper transparency overlay command.
-        /// </summary>
-        public void ToggleMappingTransparency()
-        {
-            _consoleHost.ExecuteCommand("showmappingtransparency");
-        }
-        // Sunrise added end
 
         public void ShowMarkers()
         {

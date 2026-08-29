@@ -1,4 +1,4 @@
-// © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
+// © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/makura-games/sunrise-station/blob/master/CLA.txt
 using System.Linq;
 using Content.Client.Resources;
 using Content.Client.Stylesheets;
@@ -35,6 +35,9 @@ public sealed partial class SponsorTiers : Control
 
     private void ReloadSponsorTiers(List<SponsorInfo> sponsorTiers)
     {
+        if (Disposed)
+            return;
+
         SponsorTiersContainer.RemoveAllChildren();
         for (var i = 0; i < sponsorTiers.Count; i++)
         {
@@ -61,6 +64,16 @@ public sealed partial class SponsorTiers : Control
 
             stylesheet = new Stylesheet(rules.ToArray());
             SponsorTiersContainer.Stylesheet = stylesheet;
+        }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+
+        if (disposing && _sponsorsManager != null)
+        {
+            _sponsorsManager.LoadedSponsorTiers -= ReloadSponsorTiers;
         }
     }
 }

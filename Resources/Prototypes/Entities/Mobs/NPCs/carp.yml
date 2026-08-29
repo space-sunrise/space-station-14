@@ -29,7 +29,7 @@
         fix1:
           shape:
             !type:PhysShapeCircle
-            radius: 0.40
+            radius: 0.15 # Sunrise-Edit
           density: 80
           mask:
             - FlyingMobMask
@@ -137,7 +137,7 @@
         fix1:
           shape:
             !type:PhysShapeCircle
-            radius: 0.40
+            radius: 0.15 # Sunrise-Edit
           density: 10
           mask:
             - MobMask
@@ -202,9 +202,9 @@
     - type: MeleeWeapon
       damage:
         types:
-          Blunt: 8
+          Blunt: 9
           Slash: 9
-          Structural: 12
+          Structural: 15
     - type: Tag
       tags:
       - Carp
@@ -233,7 +233,7 @@
 
 - type: entity
   name: sharkminnow
-  parent: BaseMobCarp
+  parent: [ BaseMobBloodsucker, BaseMobCarp ]
   id: MobShark
   description: A dangerous shark from the blackness of endless space, who loves to drink blood.
   components:
@@ -270,9 +270,6 @@
         Dead:
           Base: dead
           BaseUnshaded: dead_mouth
-    - type: Body
-      prototype: Bloodsucker
-      requiredLegs: 1
     - type: Butcherable
       spawned:
         - id: FoodMeatFish

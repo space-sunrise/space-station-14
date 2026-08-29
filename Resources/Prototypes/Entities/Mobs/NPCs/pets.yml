@@ -296,7 +296,6 @@
   - type: StealTarget
     stealGroup: AnimalNamedCat
   # Sunrise-start
-  - type: Carriable
   - type: CanEscapeInventory
   - type: AttackOnInteractionFail
     attackMemoryLength: 10
@@ -381,7 +380,6 @@
     stealGroup: AnimalMcGriff
   - type: MessyDrinker
   # Sunrise-start
-  - type: Carriable
   - type: CanEscapeInventory
   - type: AttackOnInteractionFail
     attackMemoryLength: 10
@@ -487,7 +485,6 @@
   - type: MessyDrinker
   # Sunrise-start
   - type: DogVision
-  - type: Carriable
   - type: CanEscapeInventory
   - type: AttackOnInteractionFail
     attackMemoryLength: 10
@@ -916,10 +913,14 @@
     actionTime: 5
     affectionPopupText: "smile-affection-popup"
     damageSpecifier:
-      groups:
-        Brute: -5
-        Burn: -5
       types:
+        Blunt: -1.67
+        Slash: -1.67
+        Piercing: -1.66
+        Heat: -1.25
+        Shock: -1.25
+        Cold: -1.25
+        Caustic: -1.25
         Bloodloss: -5
     messages:
     - goodfeeling-artifact-1

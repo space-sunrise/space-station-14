@@ -1,6 +1,14 @@
 # Sunrise-specific security loadout groups.
 
 - type: loadoutGroup
+  id: SunriseDetectiveJobTools
+  name: loadout-group-jobtrinkets
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - DetectiveTapeRecorderBox
+
+- type: loadoutGroup
   id: SunriseHeadofSecurityHead
   name: loadout-group-head-of-security-head
   minLimit: 0
@@ -111,6 +119,23 @@
   - WardenHead
   - WardenBeret
   - ClothingHeadHatCapWardenAlt
+
+- type: loadoutGroup
+  id: SunriseSecurityOuterClothing
+  name: loadout-group-security-outerclothing
+  loadouts:
+  - ArmorVest
+  - ArmorVestSlim
+  - SunriseSecurityArmorVestSec
+  - SecurityOfficerWintercoat
+
+- type: loadoutGroup
+  id: SunriseSecurityShoes
+  name: loadout-group-security-shoes
+  loadouts:
+  - JackBoots
+  - SunriseSecurityJackBootsSec
+  - SecurityWinterBoots
 
 - type: loadoutGroup
   id: SunriseWardenOuterClothing

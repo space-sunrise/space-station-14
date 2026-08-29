@@ -1,5 +1,5 @@
 using System.Linq;
-using Content.Shared.Body.Systems;
+using Content.Shared.Body;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Preferences;
@@ -29,7 +29,7 @@ public sealed partial class LoadoutSystem : EntitySystem // Sunrise-edit Доб�
         base.Initialize();
 
         // Wait until the character has all their organs before we give them their loadout
-        SubscribeLocalEvent<LoadoutComponent, MapInitEvent>(OnMapInit, after: [typeof(SharedBodySystem)]);
+        SubscribeLocalEvent<LoadoutComponent, MapInitEvent>(OnMapInit, after: [typeof(InitialBodySystem)]);
 
         InitializeSunrise(); // Sunrise-edit
     }
@@ -163,7 +163,8 @@ public sealed partial class LoadoutSystem : EntitySystem // Sunrise-edit Доб�
         // Then, randomly pick a RoleLoadout profile from those specified, and process/equip all LoadoutGroups from it.
         // For non-roundstart mobs there is no SelectedLoadout data, so minValue must be set in each LoadoutGroup to force selection.
         var id = _random.Pick(loadoutGroups);
-        var proto = _protoMan.Index(id);
+        var effectiveId = GetEffectiveRolePrototype(id, _protoMan); // Sunrise-edit
+        var proto = _protoMan.Index(effectiveId); // Sunrise-edit
         var loadout = new RoleLoadout(id);
         // Sunrise-Fix: Я пока-что в душе не ебу как здесь достать спонсорские прототипы, потому []
         loadout.SetDefault(GetProfile(uid), _actors.GetSession(uid), _protoMan, [], true);
@@ -180,11 +181,8 @@ public sealed partial class LoadoutSystem : EntitySystem // Sunrise-edit Доб�
 
     public HumanoidCharacterProfile GetProfile(EntityUid? uid)
     {
-        if (TryComp(uid, out HumanoidAppearanceComponent? appearance))
-        {
-            return HumanoidCharacterProfile.DefaultWithSpecies(appearance.Species);
-        }
-
-        return HumanoidCharacterProfile.Random();
+        return TryComp<HumanoidProfileComponent>(uid, out var profile)
+            ? HumanoidCharacterProfile.DefaultWithSpecies(profile.Species, profile.Sex)
+            : HumanoidCharacterProfile.Random();
     }
 }

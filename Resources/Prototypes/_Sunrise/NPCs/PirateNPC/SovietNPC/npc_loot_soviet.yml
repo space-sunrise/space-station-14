@@ -57,6 +57,181 @@
     offset: 0
     deleteSpawnerAfterSpawn: true
 
+- type: entityTable
+  id: SovietMedicalSupplyTable
+  table: !type:GroupSelector
+    children:
+    - id: HandheldHealthAnalyzer
+      weight: 3
+    - id: BodyBagFolded
+      weight: 5
+    - id: Brutepack
+      weight: 5
+    - id: Ointment
+      weight: 5
+    - id: RedPunctPack
+      weight: 3
+    - id: RedLacePack
+      weight: 3
+    - id: RedBruizPack
+      weight: 3
+    - id: RedBrutePack
+      weight: 2
+    - id: RedOintment
+      weight: 2
+    - id: RegenerativeMesh
+      weight: 2
+    - id: MedicatedSuture
+      weight: 2
+    - id: Bloodpack
+      weight: 5
+    - id: Tourniquet
+      weight: 5
+    - id: ChemistryBottleEpinephrine
+      weight: 3
+    - id: ChemistryBottleBicaridine
+    - id: ChemistryBottleBruizine
+    - id: ChemistryBottleDermaline
+    - id: ChemistryBottleDexalin
+    - id: ChemistryBottleDylovene
+    - id: Syringe
+      weight: 3
+    - id: PillCanisterTricordrazine
+      weight: 2
+    - id: PillCanisterIron
+    - id: PillCanisterCopper
+    - id: PillCanisterPotassiumIodide
+    - id: PillCanisterHyronalin
+    - id: PillCanisterCharcoal
+    - id: AutoMenderBruteFilled
+    - id: AutoMenderBurnFilled
+    - id: PillCanisterRandom
+    - id: StrangePill
+
+- type: entity
+  id: SovietMedicalSupplySpawner
+  name: soviet medical security supply spawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: SovietMedicalSupplyTable
+    offset: 0
+    deleteSpawnerAfterSpawn: true
+
+- type: entity
+  id: SovietMedicalSupplyRandomSpawner
+  name: soviet medical supply spawner
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - SovietMedicalSupplySpawner
+    chance: 0.9
+    offset: 0
+    deleteSpawnerAfterSpawn: true
+
+- type: entityTable
+  id: SovietPinLootTableT1
+  table: !type:AllSelector
+    children:
+    - id: ClothingNeckUSSPPinNPC
+      prob: 0.2
+
+- type: entityTable
+  id: SovietPinLootTableT2
+  table: !type:AllSelector
+    children:
+    - id: ClothingNeckUSSPPinNPC
+      prob: 0.3
+
+- type: entityTable
+  id: SovietPinLootTableT3
+  table: !type:AllSelector
+    children:
+    - id: ClothingNeckUSSPPinNPC
+      prob: 0.5
+
+- type: entity
+  id: SovietPinSpawnerT1
+  name: soviet pin spawner t1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: SovietPinLootTableT1
+    offset: 0
+    deleteSpawnerAfterSpawn: true
+
+- type: entity
+  id: SovietPinSpawnerT2
+  name: soviet pin spawner t2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: SovietPinLootTableT2
+    offset: 0
+    deleteSpawnerAfterSpawn: true
+
+- type: entity
+  id: SovietPinSpawnerT3
+  name: soviet pin spawner t3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: SovietPinLootTableT3
+    offset: 0
+    deleteSpawnerAfterSpawn: true
+
+- type: entity
+  id: SovietDamagedIDCardSpawnerPartisan
+  name: soviet damaged id card spawner t1 cheap
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - USSPDamagedIDCardRandomSpawner
+    chance: 0.7
+    offset: 0
+    deleteSpawnerAfterSpawn: true
+
+- type: entity
+  id: SovietDamagedIDCardSpawner
+  name: soviet damaged id card spawner t1 t2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - USSPSoldierDamagedIDCardRandomSpawner
+    chance: 0.7
+    offset: 0
+    deleteSpawnerAfterSpawn: true
+
+- type: entity
+  id: SovietDamagedIDCardSpawnerSergeant
+  name: soviet damaged id card spawner sergeant
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - USSPSoldierOfficerDamagedIDCardRandomSpawner
+    chance: 1
+    offset: 0
+    deleteSpawnerAfterSpawn: true
+
+- type: entity
+  id: SovietDamagedIDCardSpawnerCaptain
+  name: soviet damaged id card spawner captain
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - USSPCaptainDamagedIDCardRandomSpawner
+    chance: 1
+    offset: 0
+    deleteSpawnerAfterSpawn: true
+
 # MERCENARY NPC LOOT
 - type: entity
   parent: MercenaryWebbingBox
@@ -152,6 +327,8 @@
       prob: 0.1
     - id: ExShrapnelGrenade
       prob: 0.05
+    - id: SovietDamagedIDCardSpawnerSergeant
+    - id: SovietMedicalSupplyRandomSpawner
     - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -182,6 +359,40 @@
       prob: 0.2
     - id: ExShrapnelGrenade
       prob: 0.05
+    - id: SovietDamagedIDCardSpawner
+    - id: SovietMedicalSupplyRandomSpawner
+    - id: SovietSmokingSpawner
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBeltWebbingSovietTier1PPSHSL
+  id: ClothingBeltWebbingSovietTier1PPSHSLSergeant
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: WeaponSubMachineGunPPSH
+      prob: 0.25
+    - id: MagazinePistolSubMachineGunPPSH
+      prob: 0.3
+    - id: MagazinePistolSubMachineGunPPSH
+      prob: 0.25
+    - id: MagazinePistolSubMachineGunPPSH
+      prob: 0.1
+    - id: MagazinePistolSubMachineGunPPSHExtended
+      prob: 0.05
+    - id: SovietSoldierPoolLootSpawner
+    - id: Tourniquet
+      prob: 0.3
+    - id: Tourniquet
+      prob: 0.1
+    - id: ExShrapnelGrenade
+      prob: 0.2
+    - id: ExShrapnelGrenade
+      prob: 0.05
+    - id: SovietDamagedIDCardSpawnerSergeant
+    - id: SovietMedicalSupplyRandomSpawner
     - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -206,6 +417,8 @@
       prob: 0.2
     - id: MagazineLightRifleAP
       prob: 0.01
+    - id: SovietDamagedIDCardSpawner
+    - id: SovietMedicalSupplyRandomSpawner
     - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -254,6 +467,8 @@
       prob: 0.25
     - id: NukeOpsMedkitSpawner
       prob: 0.25
+    - id: SovietPinSpawnerT1
+    - id: SovietMedicalSupplyRandomSpawner
     - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -283,6 +498,7 @@
       prob: 0.1
     - id: NukeOpsMedkitSpawner
       prob: 0.1
+    - id: SovietDamagedIDCardSpawner
     - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -307,6 +523,8 @@
       prob: 0.9
     - id: PirateCashSpawner03
       prob: 0.7
+    - id: SovietPinSpawnerT1
+    - id: SovietMedicalSupplyRandomSpawner
     - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -329,6 +547,7 @@
       prob: 0.4
     - id: MagazineBoxPistolFMJ
       prob: 0.3
+    - id: SovietDamagedIDCardSpawner
     - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -349,7 +568,7 @@
     - id: WeaponLightMachineGunDP28
       prob: 0.05
       orGroup: DP28Pool
-    - id: WeaponPistolHIB88M4
+    - id: WeaponPistolViper
       prob: 0.5
       orGroup: DP28Pool
     - id: CrateAmmunitionSmallLightRifle
@@ -365,6 +584,8 @@
       prob: 0.7
     - id: LootSpawnerIndustrial
       prob: 0.7
+    - id: SovietPinSpawnerT1
+    - id: SovietMedicalSupplyRandomSpawner
     - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -389,7 +610,7 @@
     - id: WeaponLightMachineGunMG60Empty
       prob: 0.25
       orGroup: DP28Pool
-    - id: WeaponPistolHIB88M4
+    - id: WeaponPistolViper
       prob: 0.3
       orGroup: DP28Pool
     - id: CrateAmmunitionSmallLightRifle
@@ -409,6 +630,8 @@
       prob: 0.7
     - id: LootSpawnerIndustrial
       prob: 0.7
+    - id: SovietPinSpawnerT1
+    - id: SovietMedicalSupplyRandomSpawner
     - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -430,6 +653,7 @@
       prob: 0.1
     - id: MagazineLightMachineGunMG60
       prob: 0.1
+    - id: SovietDamagedIDCardSpawner
     - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -447,7 +671,7 @@
     - id: WeaponLightMachineGunRPD
       prob: 0.05
       orGroup: MgPool
-    - id: WeaponPistolHIB88M4
+    - id: WeaponPistolViper
       prob: 0.5
       orGroup: MgPool
     - id: MagazineLightRifleBeltBoxFMJ
@@ -466,6 +690,8 @@
       prob: 0.7
     - id: LootSpawnerIndustrial
       prob: 0.7
+    - id: SovietPinSpawnerT1
+    - id: SovietMedicalSupplyRandomSpawner
     - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -488,6 +714,7 @@
       prob: 0.1
     - id: MagazineLightRifleMaxim
       prob: 0.1
+    - id: SovietDamagedIDCardSpawner
     - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -510,6 +737,7 @@
       prob: 0.25
     - id: MagazineLightRifleBeltBoxFMJ
       prob: 0.15
+    - id: SovietDamagedIDCardSpawner
     - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -543,6 +771,8 @@
       prob: 0.7
     - id: LootSpawnerIndustrial
       prob: 0.3
+    - id: SovietPinSpawnerT1
+    - id: SovietMedicalSupplyRandomSpawner
     - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -567,6 +797,7 @@
       prob: 0.2
     - id: MagazineBoxRifleMachineBig
       prob: 0.1
+    - id: SovietDamagedIDCardSpawner
     - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -626,6 +857,9 @@
     - id: JugDexPlusSaline
       prob: 0.15
     - id: PirateMedSpawner01
+    - id: SovietPinSpawnerT2
+    - id: SovietDamagedIDCardSpawner
+    - id: SovietMedicalSupplyRandomSpawner
     - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -665,6 +899,8 @@
       prob: 0.7
     - id: LootSpawnerIndustrial
       prob: 0.3
+    - id: SovietPinSpawnerT2
+    - id: SovietMedicalSupplyRandomSpawner
     - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -689,6 +925,7 @@
       prob: 0.9
     - id: MagazineBoxPistolFMJ
       prob: 0.2
+    - id: SovietDamagedIDCardSpawner
     - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -705,16 +942,16 @@
     - id: PirateCashSpawner03
     # Weapons
     - id: WeaponShotgunGA12
-      prob: 0.75
+      prob: 0.25
       orGroup: Weapons
     - id: WeaponShotgunCombat
-      prob: 0.5
+      prob: 0.25
       orGroup: Weapons
     - id: WeaponShotgunBulldogBiocode
-      prob: 0.4
+      prob: 0.3
       orGroup: Weapons
     - id: WeaponShotgunBulldog
-      prob: 0.1
+      prob: 0.25
       orGroup: Weapons
     - id: MagazineShotgunXL
       prob: 0.05
@@ -740,6 +977,8 @@
       prob: 0.5
     - id: LootSpawnerIndustrial
       prob: 0.3
+    - id: SovietPinSpawnerT3
+    - id: SovietMedicalSupplyRandomSpawner
     - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -769,6 +1008,7 @@
       prob: 0.1
     - id: MagazineShotgunIncendiary
       prob: 0.1
+    - id: SovietDamagedIDCardSpawner
     - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -812,6 +1052,8 @@
       prob: 0.5
     - id: NukeOpsMedkitSpawner
       prob: 0.5
+    - id: SovietPinSpawnerT3
+    - id: SovietMedicalSupplyRandomSpawner
     - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -932,6 +1174,8 @@
       prob: 0.5
     - id: LootSpawnerIndustrial
       prob: 0.4
+    - id: SovietPinSpawnerT3
+    - id: SovietMedicalSupplyRandomSpawner
     - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -980,10 +1224,10 @@
     - id: PirateCashSpawner06
     # Weapons
     - id: WeaponRifleType88AMRBiocode
-      prob: 0.65
+      prob: 0.5
       orGroup: PistolT3Pool
     - id: WeaponRifleType88AMR
-      prob: 0.4
+      prob: 0.5
       orGroup: PistolT3Pool
     # Armor
     - id: SovietSoldierPoolLootSpawner
@@ -1011,6 +1255,8 @@
       prob: 0.7
     - id: LootSpawnerArmoryGunsOnly
       prob: 0.3
+    - id: SovietDamagedIDCardSpawnerCaptain
+    - id: SovietMedicalSupplyRandomSpawner
     - id: SovietSmokingSpawner
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -1089,15 +1335,20 @@
       prob: 0.3
     # Weapon
     - id: WeaponShotgunMinotaur
-      prob: 0.05
+      prob: 0.4
+      orGroup: WeaponPool
     - id: WeaponShotgunMinotaurBiocode
-      prob: 0.25
+      prob: 0.4
+      orGroup: WeaponPool
     - id: MagazineShotgunXL
-      prob: 0.3
+      prob: 0.2
+      orGroup: WeaponPool
     - id: MagazineShotgunFlechetteXL
       prob: 0.15
+      orGroup: WeaponPool
     - id: MagazineShotgunSlugXL
       prob: 0.05
+      orGroup: WeaponPool
     # Present for looters
     - id: BulletTearGasGrenade
       prob: 0.3
@@ -1118,6 +1369,7 @@
       prob: 0.7
     - id: LootSpawnerMaterialsHighValueConstruction
       prob: 0.5
+    - id: SovietMedicalSupplyRandomSpawner
     - id: SovietSmokingSpawner
     sound:
       path: /Audio/Effects/closetopen.ogg

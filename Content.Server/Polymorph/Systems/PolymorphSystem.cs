@@ -1,7 +1,9 @@
 using Content.Server.Actions;
-using Content.Server.Humanoid;
 using Content.Server.Inventory;
 using Content.Server.Polymorph.Components;
+using Content.Shared.Body;
+using Content.Shared._Sunrise.Humanoid;
+using Content.Server._Sunrise.Movement.Carrying;
 using Content.Shared.Buckle;
 using Content.Shared.Coordinates;
 using Content.Shared.Damage.Components;
@@ -12,19 +14,17 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Mind.Components;
 using Content.Shared.Nutrition;
 using Content.Shared.Polymorph;
 using Content.Shared.Popups;
+using Content.Shared._Sunrise.Movement.Carrying;
 using Robust.Server.Audio;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-// Sunrise-Start
-using Content.Shared.EntityEffects;
-using Content.Shared.Mind.Components;
-// Sunrise-End
 
 namespace Content.Server.Polymorph.Systems;
 
@@ -36,15 +36,18 @@ public sealed partial class PolymorphSystem : EntitySystem
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly SharedBuckleSystem _buckle = default!;
+    [Dependency] private readonly CarryingSystem _carrying = default!; // Sunrise-Edit
     [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
     [Dependency] private readonly ServerInventorySystem _inventory = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly SharedVisualBodySystem _visualBody = default!;
+    [Dependency] private readonly SunriseHumanoidBodySystem _sunriseBody = default!; // Sunrise-Edit
+    [Dependency] private readonly SunriseHumanoidProfileSystem _sunriseProfile = default!; // Sunrise-Edit
     [Dependency] private readonly SharedMindSystem _mindSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
 
@@ -216,6 +219,14 @@ public sealed partial class PolymorphSystem : EntitySystem
         // mostly just for vehicles
         _buckle.TryUnbuckle(uid, uid, true);
 
+        // Sunrise-Start
+        if (TryComp<ActiveCarrierComponent>(uid, out var activeCarrier))
+            _carrying.TryDropCarried((uid, activeCarrier));
+
+        if (TryComp<ActiveCanBeCarriedComponent>(uid, out var activeCanBeCarried))
+            _carrying.TryDropCarriedByTarget((uid, activeCanBeCarried));
+        // Sunrise-End
+
         var targetTransformComp = Transform(uid);
 
         if (configuration.PolymorphSound != null)
@@ -281,7 +292,12 @@ public sealed partial class PolymorphSystem : EntitySystem
 
         if (configuration.TransferHumanoidAppearance)
         {
-            _humanoid.CloneAppearance(uid, child);
+            _visualBody.CopyAppearanceFrom(uid, child);
+            // Sunrise edit start - transfer Sunrise humanoid profile extensions
+            _sunriseBody.CloneHumanoidProfile(uid, child);
+            _sunriseProfile.CloneProfile(uid, child);
+            _sunriseBody.CloneBaseLayers(uid, child);
+            // Sunrise edit end
         }
 
         if (_mindSystem.TryGetMind(uid, out var mindId, out var mind))

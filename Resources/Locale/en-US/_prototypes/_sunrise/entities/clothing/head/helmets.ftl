@@ -1,5 +1,7 @@
 ent-ClothingHeadHelmetSecurityMedic = security medic helmet
     .desc = A standard issue combat helmet for security medics. Has decent tensile strength and armor. Keep your head down.
+ent-ClothingHeadHelmetBlueShield = blueshield helmet
+    .desc = An extremely robust helmet, commonly used by blueshield forces. This one has the Nanotrasen logo emblazoned on the top.
 ent-ClothingHeadHelmetPilot = security pilot's helmet
     .desc = A thick pilot's helmet that provides good head protection.
 ent-ClothingHeadHelmetPubg = Altyn
@@ -22,3 +24,5 @@ ent-ClothingHeadHelmetAbductor = helmet
     .desc = { ent-ClothingHeadHelmetBase.desc }
 ent-ClothingHeadHelmetDogi = kabuto
     .desc = Traditional Japanese helmet.
+ent-ClothingHeadHelmetArmoredSalvageMerc = scrapper helmet
+    .desc = A durable, lightweight helmet favored by salvagers.

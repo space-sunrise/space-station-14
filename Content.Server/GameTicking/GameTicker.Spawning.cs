@@ -7,7 +7,6 @@ using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
 using Content.Server.GameTicking.Events;
 using Content.Server.Ghost;
-using Content.Server.Ghost;
 using Content.Server.Shuttles.Components;
 using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Spawners.Components;
@@ -43,8 +42,6 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly IAdminManager _adminManager = default!;
         [Dependency] private readonly SharedJobSystem _jobs = default!;
         [Dependency] private readonly AdminSystem _admin = default!;
-        [Dependency] private readonly PlayTimeTrackingManager _playTimeTracking = default!;
-        [Dependency] private readonly ArrivalsSystem _arrivals = default!;
 
         // Sunrise added start
         [Dependency] private readonly NewLifeSystem _newLife = default!;
@@ -226,7 +223,7 @@ namespace Content.Server.GameTicking
                     }
 
                     speciesId = roundStart.Count == 0
-                        ? SharedHumanoidAppearanceSystem.DefaultSpecies
+                        ? HumanoidCharacterProfile.DefaultSpecies
                         : _robustRandom.Pick(roundStart);
                 }
                 else
@@ -236,6 +233,7 @@ namespace Content.Server.GameTicking
                 }
 
                 character = HumanoidCharacterProfile.RandomWithSpecies(speciesId);
+                character.Appearance = HumanoidCharacterAppearance.EnsureValid(character.Appearance, character.Species, character.Sex);
             }
 
             // We raise this event to allow other systems to handle spawning this player themselves. (e.g. late-join wizard, etc)
@@ -279,15 +277,14 @@ namespace Content.Server.GameTicking
                 return;
             }
 
-            // Sunrise edit start - почему-то тут проебан тип спавна,
-            // что приводит к тому, что ивент о спавне игрока не знает, куда его спавнить.
-            // Учитывая, что у нас система из Delta-V с этими спавнпоинтами - я думаю, что тут наша ошибка, а не виздена.
-            var spawnPointType = lateJoin ? SpawnPointType.LateJoin : SpawnPointType.Job;
+            // Sunrise-Start
+            var selectedJob = _prototypeManager.Index<JobPrototype>(jobId);
+            var spawnPointType = !lateJoin || selectedJob.AlwaysUseSpawner
+                ? SpawnPointType.Job
+                : SpawnPointType.LateJoin;
 
             DoSpawn(player, character, station, jobId, silent, out var mob, out var jobPrototype, out var jobName, spawnPointType);
-            // Sunrise edit end
 
-            // Sunrise-Start
             if (HasComp<StationAntagsTargetsComponent>(station))
                 EnsureComp<AntagTargetComponent>(mob);
             // Sunrise-End

@@ -1,6 +1,7 @@
 using Content.Server.Administration;
 using Content.Shared.Administration;
 using Content.Shared.Maps;
+using Content.Shared.Parallax.Biomes;
 using Content.Shared.Tag;
 using Robust.Shared.Console;
 using Robust.Shared.Map;
@@ -25,7 +26,7 @@ public sealed class TileWallsCommand : IConsoleCommand
     public static readonly ProtoId<TagPrototype> WallTag = "Wall";
     public static readonly ProtoId<TagPrototype> DiagonalTag = "Diagonal";
 
-    // Sunrise added start - allow prototypes to opt out from tilewalls underplating
+    // Sunrise added start - разрешаем прототипам отключать tilewalls underplating
     public static readonly ProtoId<TagPrototype> ForceNoTileWallsTag = "ForceNoTileWalls";
     // Sunrise added end
 
@@ -71,6 +72,14 @@ public sealed class TileWallsCommand : IConsoleCommand
             return;
         }
 
+        // Sunrise added start
+        if (_entManager.HasComponent<BiomeComponent>(gridId))
+        {
+            shell.WriteError($"Using {Command} on grid with biome isn't supported. Command will be aborted");
+            return;
+        }
+        // Sunrise added end
+
         var tagSystem = _entManager.EntitySysManager.GetEntitySystem<TagSystem>();
         var underplating = _tileDefManager[TilePrototypeId];
         var underplatingTile = new Tile(underplating.TileId);
@@ -88,7 +97,7 @@ public sealed class TileWallsCommand : IConsoleCommand
                 continue;
             }
 
-            // Sunrise added start - allow prototypes to opt out from tilewalls underplating
+            // Sunrise added start - разрешаем прототипам отключать tilewalls underplating
             if (tagSystem.HasTag(child, ForceNoTileWallsTag))
                 continue;
             // Sunrise added end

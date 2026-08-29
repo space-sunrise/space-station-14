@@ -17,6 +17,7 @@
     bodyType: Dynamic
     linearDamping: 0
     angularDamping: 0
+    fixedRotation: true
   - type: Fixtures
     fixtures:
       projectile:
@@ -198,7 +199,7 @@
     maxIntensity: 20
     intensitySlope: 3
     totalIntensity: 100
-    maxTileBreak: 1
+    maxTileBreak: 0
   - type: PointLight
     radius: 3.5
     color: orange

@@ -2,7 +2,7 @@
   id: EnergyBarriers
   name: research-technology-energy_barriers
   icon:
-    sprite: Objects/Tools/EnergyDome/reinhardt.rsi
+    sprite: _Sunrise/Objects/Tools/EnergyDome/reinhardt.rsi
     state: icon
   discipline: Arsenal
   tier: 2
@@ -13,17 +13,102 @@
   - Security
 
 - type: technology
+  id: SunriseHybridEnergyWeaponry
+  name: research-technology-hybrid-energy-weaponry
+  icon:
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/mini.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - WeaponEnergyGunPistol
+  - WeaponMiniEnergyGun
+  technologyPrerequisites:
+  - NonlethalAmmunition
+  - WeaponizedLaserManipulation
+  radioChannels:
+  - Security
+
+- type: technology
+  id: SunriseFullMetalJacketAmmunition
+  name: research-technology-full-metal-jacket-ammunition
+  icon:
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle_mag.rsi
+    state: base
+  discipline: Arsenal
+  tier: 2
+  cost: 7500
+  recipeUnlocks:
+  - MagazineBoxLightRifleFMJ
+  - MagazineBoxMagnumFMJ
+  - MagazineBoxPistolFMJ
+  - MagazineBoxPistol40FMJ
+  - MagazineBoxRifleFMJ
+  - MagazineBoxHeavyRifleFMJ
+  - BoxShotgunFlechette
+  - MagazineLightRifleBeltBoxFMJ
+  - MagazineLightRifleFMJ
+  - SpeedLoaderMagnumFMJ
+  - SpeedLoaderShotgunFlechette
+  - MagazinePistolFMJ
+  - MagazinePistol40FMJ
+  - MagazinePistolSubMachineGunFMJ
+  - MagazinePistolSubMachineGunTopMounted
+  - MagazineRifleFMJ
+  - MagazineRifleHeavyFMJ
+  technologyPrerequisites:
+  - NonlethalAmmunition
+  radioChannels:
+  - Security
+
+- type: technology
+  id: SunriseBatteryEnergyWeaponry
+  name: research-technology-battery-energy-weaponry
+  icon:
+    sprite: Objects/Weapons/Guns/Battery/svalinn.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 2
+  cost: 7500
+  recipeUnlocks:
+  - WeaponLaserSvalinn
+  - SunriseWeaponLaserCarbineBattery
+  - MagazineBatteryLr30
+  technologyPrerequisites:
+  - WeaponizedLaserManipulation
+  radioChannels:
+  - Security
+
+- type: technology
+  id: SunriseAdvancedBatteryEnergyWeaponry
+  name: research-technology-advanced-battery-energy-weaponry
+  icon:
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/smg_laser.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 3
+  cost: 12500
+  recipeUnlocks:
+  - WeaponLaserLNT620
+  - MagazineBatteryLr60
+  technologyPrerequisites:
+  - SunriseBatteryEnergyWeaponry
+  radioChannels:
+  - Security
+
+- type: technology
   id: ArmorPenetrationMunitions
   name: research-technology-armor-penetration
   icon:
     sprite: Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle_mag.rsi
     state: ap
   discipline: Arsenal
-  tier: 2
+  tier: 3
   cost: 11500
   recipeUnlocks:
   - SpeedLoaderMagnumAP
-  - MagazineMagnumAP
+  #- MagazineMagnumAP
   - MagazinePistolAP
   - MagazinePistol40AP
   - MagazineRifleAP
@@ -39,8 +124,6 @@
   - MagazinePistolHighCapacityAP
   - MagazineBoxHeavyRifleAP
   - MagazineRifleHeavyAP
-  - BoxShotgunFlechette
-  - SpeedLoaderShotgunFlechette
   radioChannels:
   - Security
 
@@ -65,8 +148,6 @@
   - GygaxPeripheralsElectronics
   - GygaxTargetingElectronics
   - WeaponMechCombatUltraRifle
-  - PaintGygaxWhite
-  - PaintGygaxOld
   technologyPrerequisites:
   - Ripley2
   radioChannels:
@@ -111,9 +192,6 @@
   - DurandTargetingElectronics
   - WeaponMechCombatShotgun
   - WeaponMechCombatShotgunIncendiary
-  - PaintDurandExecutor
-  - PaintDurandShire
-  - PaintDurandOld
   - PowerCageHigh
   technologyPrerequisites:
   - Gygax
@@ -143,9 +221,6 @@
 #- type: technology
 #  id: ExtendedAmunitions
 #  name: research-technology-extended-amunitions
-#  icon:
-#    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/famas.rsi
-#    state: base
 #  discipline: Arsenal
 #  tier: 2
 #  cost: 12500
@@ -170,7 +245,7 @@
   cost: 7500
   recipeUnlocks:
   - ClothingShoesBootsMagCombat
-  - ModularReceiverAuto
+  #- ModularReceiverAuto
   - LecterUpgrade
   - DrozdUpgrade
   - ClothingHeadHelmetPubg
@@ -194,6 +269,7 @@
   recipeUnlocks:
   - VestSecUpgradeBulletHeavy
   - VestSecUpgradeWeb
+  - LecterMk3Upgrade
   technologyPrerequisites:
   - CombatEquipment
   radioChannels:
@@ -214,22 +290,6 @@
   - ClothingOuterHardsuitMilira
   - ClothingEyesHudMilira
   - ClothingHeadHelmetEVAMilira
-  radioChannels:
-  - Security
-
-- type: technology
-  id: AdvancedLaserManipulation
-  name: research-technology-advance-laser
-  icon:
-    sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_carbine.rsi
-    state: icon
-  discipline: Arsenal
-  tier: 2
-  cost: 12500
-  recipeUnlocks:
-  - WeaponGunLaserCarbineAutomatic
-  - MagazineBatteryLr30
-  - WeaponEnergyGunPistol
   radioChannels:
   - Security
 
@@ -263,4 +323,33 @@
   technologyPrerequisites:
   - AdvancedShuttleWeapon
   radioChannels: # Sunrise-Add
+  - Security
+
+# Tier 4
+- type: technology
+  id: DecloneTechnology
+  name: research-technology-declone-technology
+  icon:
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/decloner.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 4
+  cost: 30000
+  recipeUnlocks:
+  - WeaponDecloner
+  radioChannels:
+  - Security
+
+- type: technology
+  id: ScanGateTechnology
+  name: research-technology-scan-gate
+  icon:
+    sprite: _Sunrise/Structures/Machines/scan_gate.rsi
+    state: base
+  discipline: Arsenal
+  tier: 4
+  cost: 5000
+  recipeUnlocks:
+  - ScanGateMachineCircuitboard
+  radioChannels:
   - Security

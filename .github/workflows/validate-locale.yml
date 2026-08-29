@@ -4,16 +4,21 @@ on:
   push:
     branches: [ staging, trying ]
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [opened, reopened, synchronize]
     paths:
       - '**.yml'
       - '**.ftl'
+
+# Sunrise added start - отменяем устаревший запуск этой проверки для того же PR
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+# Sunrise added end
 
 jobs:
   validate_ymls:
     name: Validate Locales
     runs-on: ubuntu-latest
-    if: github.event.pull_request.draft == false
     steps:
       - uses: actions/checkout@v3.6.0
       - name: Set up Python

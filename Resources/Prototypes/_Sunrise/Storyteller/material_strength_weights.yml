@@ -1,0 +1,26 @@
+# Storyteller: per-cm³ weights for station material strength.
+# ID must match material prototype id. Materials without an entry use max(price / 3, 0.25).
+
+- type: storytellerMaterialWeight
+  id: Plasteel
+  weight: 0.1
+
+- type: storytellerMaterialWeight
+  id: Uranium
+  weight: 0.5
+
+- type: storytellerMaterialWeight
+  id: Diamond
+  weight: 1.0
+
+- type: storytellerMaterialWeight
+  id: Gold
+  weight: 0.25
+
+- type: storytellerMaterialWeight
+  id: Steel
+  weight: 0.001
+
+- type: storytellerMaterialWeight
+  id: Glass
+  weight: 0.001

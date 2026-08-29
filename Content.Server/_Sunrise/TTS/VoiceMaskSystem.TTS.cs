@@ -1,6 +1,8 @@
 ﻿using Content.Server._Sunrise.TTS;
 using Content.Shared._Sunrise.TTS;
+using Content.Shared.Implants.Components;
 using Content.Shared.VoiceMask;
+using Content.Shared.Silicons.StationAi;
 
 namespace Content.Server.VoiceMask;
 
@@ -16,10 +18,32 @@ public partial class VoiceMaskSystem
     {
         if (TryComp<VoiceMaskerComponent>(uid, out var maskerComponent))
             args.VoiceId = maskerComponent.VoiceId;
+
+        // Голосовой имплант находится в отдельном контейнере и не получает TTS-событие через общий implant relay.
+        if (!_container.TryGetContainer(uid, ImplanterComponent.ImplantSlotId, out var implantContainer))
+            return;
+
+        foreach (var implant in implantContainer.ContainedEntities)
+        {
+            if (TryComp<VoiceMaskComponent>(implant, out var voiceMask) && voiceMask.Active)
+            {
+                args.VoiceId = voiceMask.VoiceId;
+                break;
+            }
+        }
     }
 
     private void OnChangeVoice(EntityUid uid, VoiceMaskComponent component, VoiceMaskChangeVoiceMessage message)
     {
+        if (!_proto.TryIndex<TTSVoicePrototype>(message.Voice, out var voiceProto))
+            return;
+
+        if (HasComp<StationAiHeldComponent>(message.Actor))
+        {
+            _popupSystem.PopupEntity(Loc.GetString("voice-mask-ai-cannot-use-this-voice"), uid);
+            return;
+        }
+
         component.VoiceId = message.Voice;
 
         if (TryComp<VoiceMaskerComponent>(message.Actor, out var maskerComponent))
@@ -35,9 +59,7 @@ public partial class VoiceMaskSystem
     private void TrySetLastKnownVoice(EntityUid maskWearer, string voiceId)
     {
         if (!TryComp<VoiceMaskComponent>(maskWearer, out var maskComp))
-        {
             return;
-        }
 
         maskComp.VoiceId = voiceId;
     }

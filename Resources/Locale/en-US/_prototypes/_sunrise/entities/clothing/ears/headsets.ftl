@@ -28,3 +28,5 @@ ent-ClothingHeadsetAltERT = full-headset ERT
     .desc = The headset, designed for ERT fighters, allows you to clearly hear the orders of your comrades without being distracted from the fight.
 ent-ClothingHeadsetAltSpecOpsOfficer = full-headset SOO
     .desc = The headset for a special operations officer is designed to manage and coordinate special operations in the sector, it's better for you not to know what they're talking about on this walkie-talkie.
+ent-ClothingHeadsetAltRepresentativeNT = representative over-ear headset
+    .desc = A headset for a corporate representative, featuring a modified intercom module.

@@ -28,9 +28,8 @@
   addComponents:
   - type: ShowCriminalRecordIcons
   - type: SiliconLawProvider
-    laws: PeaceLawset
+    laws: PeaceLawsetAiAssigned
   - type: Pacified
-  - type: FlashImmunity
   - type: FabricateCookie
     cookieList:
     - FoodBakedCookieOatmeal
@@ -73,7 +72,9 @@
     - DoorBumpOpener
     - CanPilot
     - FootstepSound
-    - EmagImmune
+    - SiliconEmotes
+    - Unimplantable
+    - NoPaint
 
   # Sounds
   footstepCollection:
@@ -124,8 +125,6 @@
     - SoapNT
     - SoapDeluxe
     - SoapHomemade
-  - type: PieThrower
-    pieProtoId: FoodPieBananaCream
   - type: TTS
     voice: NecoArcTwo
 
@@ -160,8 +159,6 @@
     tags:
     - BorgModuleGeneric
     - BorgModuleSecurity
-    - BorgModuleSyndicate
-    - BorgModuleSyndicateAssault
 
   defaultModules:
   - BorgModuleStandart
@@ -202,9 +199,8 @@
   - type: ShowCriminalRecordIcons
   - type: ShowMindShieldIcons
   - type: BorgCuffed
-  - type: FlashImmunity
   - type: SiliconLawProvider
-    laws: SecurityLawset
+    laws: SecurityLawsetAiAssigned
   - type: Access
     tags:
     - EmergencyShuttleRepealAll
@@ -235,4 +231,6 @@
     - DoorBumpOpener
     - CanPilot
     - FootstepSound
-    - EmagImmune
+    - SiliconEmotes
+    - Unimplantable
+    - NoPaint

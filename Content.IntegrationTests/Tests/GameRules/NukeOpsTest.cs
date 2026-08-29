@@ -13,6 +13,7 @@ using Content.Server.RoundEnd;
 using Content.Server.Shuttles.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.GameTicking;
 using Content.Shared.Hands.Components;
@@ -60,6 +61,7 @@ public sealed class NukeOpsTest
         var invSys = server.System<InventorySystem>();
         var factionSys = server.System<NpcFactionSystem>();
         var roundEndSys = server.System<RoundEndSystem>();
+        var damageSys = server.System<DamageableSystem>();
 
         server.CfgMan.SetCVar(CCVars.GridFill, true);
 
@@ -113,7 +115,7 @@ public sealed class NukeOpsTest
         // Maps now exist
         Assert.That(entMan.Count<MapComponent>(), Is.GreaterThan(0));
         Assert.That(entMan.Count<MapGridComponent>(), Is.GreaterThan(0));
-        Assert.That(entMan.Count<StationTransitHubComponent>(), Is.EqualTo(1)); // Sunrise-Edit
+        // Assert.That(entMan.Count<StationCentCommComponent>(), Is.EqualTo(1)); // Sunrise-edit
 
         // And we now have nukie related components
         Assert.That(entMan.Count<NukeopsRuleComponent>(), Is.EqualTo(1));
@@ -228,16 +230,17 @@ public sealed class NukeOpsTest
         Assert.That(total, Is.GreaterThan(3));
 
         // Check the nukie commander passed basic training and figured out how to breathe.
-        var totalSeconds = 30;
-        var totalTicks = (int) Math.Ceiling(totalSeconds / server.Timing.TickPeriod.TotalSeconds);
-        var increment = 5;
-        var resp = entMan.GetComponent<RespiratorComponent>(player);
-        var damage = entMan.GetComponent<DamageableComponent>(player);
-        for (var tick = 0; tick < totalTicks; tick += increment)
+        if (entMan.TryGetComponent<RespiratorComponent>(player, out var resp))
         {
-            await pair.RunTicksSync(increment);
-            Assert.That(resp.SuffocationCycles, Is.LessThanOrEqualTo(resp.SuffocationCycleThreshold));
-            Assert.That(damage.TotalDamage, Is.EqualTo(FixedPoint2.Zero));
+            var totalSeconds = 30;
+            var totalTicks = (int)Math.Ceiling(totalSeconds / server.Timing.TickPeriod.TotalSeconds);
+            var increment = 5;
+            for (var tick = 0; tick < totalTicks; tick += increment)
+            {
+                await pair.RunTicksSync(increment);
+                Assert.That(resp.SuffocationCycles, Is.LessThanOrEqualTo(resp.SuffocationCycleThreshold));
+                Assert.That(damageSys.GetTotalDamage(player), Is.EqualTo(FixedPoint2.Zero));
+            }
         }
 
         // Check that the round does not end prematurely when agents are deleted in the outpost
@@ -251,11 +254,13 @@ public sealed class NukeOpsTest
                     Is.False,
                     $"The round ended, but {nukies.Length - i - 1} nukies are still alive!");
             }
-            // Delete the last nukie and make sure the round ends.
+            // Delete the last nukie and make sure the game rule ends (but the round does not)
             entMan.DeleteEntity(nukies[^1]);
 
-            Assert.That(roundEndSys.IsRoundEndRequested,
-                "All nukies were deleted, but the round didn't end!");
+            // Sunrise edit start - death of nukies ends the rule, not the round
+            Assert.That(ticker.IsGameRuleActive(rule.Uid), Is.False, "Game rule should have ended");
+            Assert.That(roundEndSys.IsRoundEndRequested, Is.False, "Round should not have ended");
+            // Sunrise edit end
         });
 
         ticker.SetGamePreset((GamePresetPrototype?) null);

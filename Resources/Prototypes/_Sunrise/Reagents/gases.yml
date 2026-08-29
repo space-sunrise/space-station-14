@@ -6,7 +6,7 @@
   flavor: bitter
   color: "#9370db"
   metabolisms:
-    Gas:
+    Respiration:
       effects:
       - !type:Emote
         conditions:
@@ -105,7 +105,7 @@
   flavor: sweet
   color: "#8b0000"
   metabolisms:
-    Gas:
+    Respiration:
       effects:
       - !type:HealthChange
         conditions:
@@ -115,11 +115,16 @@
         scaling: true
         ignoreResistances: true
         damage:
-          groups:
-            Burn: -0.7
-            Toxin: -0.7
-            Brute: -0.7
           types:
+            Heat: -0.18
+            Shock: -0.18
+            Cold: -0.17
+            Caustic: -0.17
+            Poison: -0.35
+            Radiation: -0.35
+            Blunt: -0.23
+            Slash: -0.23
+            Piercing: -0.24
             Mangleness: 0.015
       - !type:ModifyBleed
         amount: -0.15
@@ -158,7 +163,7 @@
   flavor: bitter
   color: "#8B4513"
   metabolisms:
-    Gas:
+    Respiration:
       metabolismRate: 1.0
       effects:
       - !type:MovementSpeedModifier
@@ -181,7 +186,7 @@
         ignoreResistances: true
         damage:
           types:
-            Mangleness: 0.4
+            Mangleness: 0.2
       - !type:HealthChange
         conditions:
           - !type:ReagentCondition
@@ -231,7 +236,7 @@
   boilingPoint: -183.0
   meltingPoint: -218.4
   metabolisms:
-    Gas:
+    Respiration:
       effects:
       - !type:Oxygenate
         factor: 8
@@ -291,33 +296,101 @@
   boilingPoint: -253.0
   meltingPoint: -259.2
   metabolisms:
-    Gas:
+    Respiration:
       effects:
+      - !type:Vomit
+        conditions:
+        - !type:ReagentCondition
+          reagent: Zauker
+          min: 0.01
+          max: 10
+        probability: 0.30
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
           reagent: Zauker
-          min: 0.25
-          max: 8
+          min: 0.01
+          max: 10
         ignoreResistances: true
         damage:
           types:
-            Slash: 0.75
-            Heat: 0.25
-            Poison: 0.25
-            Bloodloss: 0.25
+            Asphyxiation: 0.5
+            Poison: 2
+            Bloodloss: 0.5
+      - !type:Vomit
+        conditions:
+        - !type:ReagentCondition
+          reagent: Zauker
+          min: 10.01
+          max: 100
+        probability: 0.60
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
           reagent: Zauker
-          min: 8
+          min: 10.01
+          max: 100
         ignoreResistances: true
         damage:
           types:
-            Slash: 0.15
-            Heat: 0.05
-            Poison: 0.05
-            Bloodloss: 0.05
+            Asphyxiation: 0.5
+            Poison: 3
+            Bloodloss: 0.5
+      - !type:Vomit
+        conditions:
+        - !type:ReagentCondition
+          reagent: Zauker
+          min: 100.01
+        probability: 0.90
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Zauker
+          min: 100.01
+        ignoreResistances: true
+        damage:
+          types:
+            Asphyxiation: 1
+            Poison: 5
+            Bloodloss: 1
+    Bloodstream:
+      effects:
+      - !type:Vomit
+        conditions:
+        - !type:ReagentCondition
+          reagent: Zauker
+          min: 0.01
+          max: 10
+        probability: 0.30
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Zauker
+          min: 0.01
+          max: 10
+        ignoreResistances: true
+        damage:
+          types:
+            Asphyxiation: 1
+            Poison: 8
+            Bloodloss: 1
+      - !type:Vomit
+        conditions:
+        - !type:ReagentCondition
+          reagent: Zauker
+          min: 10.01
+        probability: 0.60
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Zauker
+          min: 10.01
+        ignoreResistances: true
+        damage:
+          types:
+            Asphyxiation: 2
+            Poison: 10
+            Bloodloss: 3
 
 - type: reagent
   id: Halon
@@ -360,13 +433,13 @@
   boilingPoint: -116.1
   meltingPoint: -149.9
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
           types:
             Poison: 0.5
-    Gas:
+    Respiration:
       effects:
       - !type:HealthChange
         scaling: true
@@ -392,13 +465,13 @@
   boilingPoint: -114.3
   meltingPoint: -142.8
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
           types:
             Poison: 1.0
-    Gas:
+    Respiration:
       effects:
       - !type:HealthChange
         scaling: true

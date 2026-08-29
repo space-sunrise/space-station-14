@@ -19,6 +19,9 @@ public sealed partial class ElectrovaeProductionReaction : IGasReactionEffect
 {
     public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
     {
+        if (atmosphereSystem.IsSunriseReactionSuppressed(mixture))
+            return ReactionResult.NoReaction;
+
         var initialN2 = mixture.GetMoles(Gas.Nitrogen);
         var initialN2O = mixture.GetMoles(Gas.NitrousOxide);
         var initialH2O = mixture.GetMoles(Gas.WaterVapor);

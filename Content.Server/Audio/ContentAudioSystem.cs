@@ -55,7 +55,7 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundCleanup);
         SubscribeLocalEvent<RoundStartingEvent>(OnRoundStart);
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnProtoReload);
-        // Sunrise added start - lobby playlist refresh for the fresh post-cleanup lobby.
+        // Sunrise added start - обновляем lobby playlist для свежего лобби после cleanup.
         InitializeSunriseRoundFlowAudio();
         // Sunrise added end
     }
@@ -89,7 +89,7 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
 
     private void OnRoundEnd(RoundEndMessageEvent ev)
     {
-        // Sunrise edit start - discard the old playlist so PlayerJoinLobby cannot resend stale tracks.
+        // Sunrise edit start - сбрасываем старый плейлист, чтобы PlayerJoinLobby не отправил устаревшие tracks.
         // A fresh shuffled playlist is generated after cleanup in the Sunrise round-flow hook.
         HandleSunriseRoundEndLobbyPlaylist();
         // Sunrise edit end

@@ -15,6 +15,12 @@
 	},
     {
       "name": "prison_general"
+    },
+    {
+      "name": "centralcommand"
+    },
+    {
+      "name": "syndicate"
     }
   ]
 }

@@ -23,6 +23,9 @@
   id: CartridgeLightRifleImprovised
 
 - type: Tag
+  id: CartridgeRifleImprovised
+
+- type: Tag
   id: ImprovisedMultitool
 
 - type: Tag
@@ -99,6 +102,9 @@
 
 - type: Tag
   id: ModularBarrel
+
+- type: Tag
+  id: ModularReceiverForged
 
 - type: Tag
   id: CartridgeBattery

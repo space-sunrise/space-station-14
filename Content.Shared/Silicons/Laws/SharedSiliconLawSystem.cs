@@ -1,6 +1,8 @@
 using Content.Shared.Emag.Systems;
 using Content.Shared.Mind;
+using Content.Shared.Overlays;
 using Content.Shared.Popups;
+using Content.Shared._Sunrise.Silicons.Laws.Components;
 using Content.Shared.Silicons.Laws.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Wires;
@@ -48,12 +50,21 @@ public abstract partial class SharedSiliconLawSystem : EntitySystem
             return;
         }
 
-        var ev = new SiliconEmaggedEvent(args.UserUid);
+        var ev = new SiliconEmaggedEvent(args.UserUid, args.EmagUid); // Sunrise Edit
         RaiseLocalEvent(uid, ref ev);
 
         component.OwnerName = Name(args.UserUid);
 
-        NotifyLawsChanged(uid, component.EmaggedSound);
+        // Sunrise-Start - FreeMAG has its own distinctive sound, so don't stack the default emagged borg cue on top.
+        var cue = component.EmaggedSound;
+        if (args.EmagUid is { } emagUid &&
+            TryComp<LawsetEmagComponent>(emagUid, out var lawsetEmag))
+        {
+            cue = lawsetEmag.EmaggedSound;
+        }
+
+        NotifyLawsChanged(uid, cue);
+        // Sunrise-End
         if(_mind.TryGetMind(uid, out var mindId, out _))
             EnsureSubvertedSiliconRole(mindId);
 
@@ -69,14 +80,30 @@ public abstract partial class SharedSiliconLawSystem : EntitySystem
 
     protected virtual void EnsureSubvertedSiliconRole(EntityUid mindId)
     {
-
+        if (TryComp<MindComponent>(mindId, out var mind))
+        {
+            var owner = mind.OwnedEntity;
+            if (TryComp<ShowCrewIconsComponent>(owner, out var crewIconComp))
+            {
+                crewIconComp.UncertainCrewBorder = true;
+                Dirty(owner.Value, crewIconComp);
+            }
+        }
     }
 
     protected virtual void RemoveSubvertedSiliconRole(EntityUid mindId)
     {
-
+        if (TryComp<MindComponent>(mindId, out var mind))
+        {
+            var owner = mind.OwnedEntity;
+            if (TryComp<ShowCrewIconsComponent>(owner, out var crewIconComp))
+            {
+                crewIconComp.UncertainCrewBorder = false;
+                Dirty(owner.Value, crewIconComp);
+            }
+        }
     }
 }
 
 [ByRefEvent]
-public record struct SiliconEmaggedEvent(EntityUid user);
+public record struct SiliconEmaggedEvent(EntityUid user, EntityUid? EmagUid = null); // Sunrise Edit

@@ -2,7 +2,6 @@ using System.Linq;
 using Content.Server._Sunrise.Silicons.Laws.Components;
 using Content.Server.Administration;
 using Content.Server.Chat.Managers;
-using Content.Server.Chat.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared.Administration;
 using Content.Shared.Chat;
@@ -10,6 +9,7 @@ using Content.Shared.Emag.Systems;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
+using Content.Shared.Overlays;
 using Content.Shared.Radio.Components;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Components;
@@ -25,7 +25,7 @@ using Robust.Shared.Toolshed;
 namespace Content.Server.Silicons.Laws;
 
 /// <inheritdoc/>
-public sealed class SiliconLawSystem : SharedSiliconLawSystem
+public sealed partial class SiliconLawSystem : SharedSiliconLawSystem // Sunrise-Edit
 {
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
@@ -34,9 +34,8 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
     [Dependency] private readonly EmagSystem _emag = default!;
-    // Sunrise-Start
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
-    // Sunrise-End
+
+    private static readonly ProtoId<SiliconLawsetPrototype> DefaultCrewLawset = "Crewsimov";
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -54,6 +53,9 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         SubscribeLocalEvent<SiliconLawProviderComponent, MindAddedMessage>(OnLawProviderMindAdded);
         SubscribeLocalEvent<SiliconLawProviderComponent, MindRemovedMessage>(OnLawProviderMindRemoved);
         SubscribeLocalEvent<SiliconLawProviderComponent, SiliconEmaggedEvent>(OnEmagLawsAdded);
+        // Sunrise added start - initialize Sunrise silicon law extensions.
+        InitializeSunrise();
+        // Sunrise added end
     }
 
     private void OnMapInit(EntityUid uid, SiliconLawBoundComponent component, MapInitEvent args)
@@ -161,6 +163,11 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         // Show the silicon has been subverted.
         component.Subverted = true;
 
+        // Sunrise added start - allow special emags to set a custom lawset.
+        if (TryApplyLawsetEmag(uid, component, ref args))
+            return;
+        // Sunrise added end
+
         // Add the first emag law before the others
         component.Lawset?.Laws.Insert(0, new SiliconLaw
         {
@@ -176,11 +183,9 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
             Order = component.Lawset.Laws.Max(law => law.Order) + 1
         });
 
-        _chatSystem.TrySendInGameICMessage(uid, Loc.GetString("borg-emagged-message"), InGameICChatType.Emote, false, isFormatted: true);
-        // Sunrise-Start
-        // In the emag handler, mark emagged borgs so they will be skipped when applying the Epsilon lawset
-        EnsureComp<BlockLawChangeComponent>(uid);
-        // Sunrise-End
+        // Sunrise added start - notify and mark emagged borgs for Sunrise law systems.
+        OnRegularEmagLawsAdded(uid);
+        // Sunrise added end
     }
 
     protected override void EnsureSubvertedSiliconRole(EntityUid mindId)
@@ -315,6 +320,11 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
 
         while (query.MoveNext(out var update))
         {
+            if (TryComp<ShowCrewIconsComponent>(update, out var crewIconComp))
+            {
+                crewIconComp.UncertainCrewBorder = DefaultCrewLawset != provider.Laws;
+                Dirty(update, crewIconComp);
+            }
             SetLaws(lawset.Laws, update, provider.LawUploadSound);
         }
     }

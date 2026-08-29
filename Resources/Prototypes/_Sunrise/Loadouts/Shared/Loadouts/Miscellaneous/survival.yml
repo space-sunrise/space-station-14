@@ -80,81 +80,21 @@
     back:
     - BoxSurvivalSyndicateWithoutGas
 
-# Dwarf
-
-- type: loadoutEffectGroup
-  id: Dwarf
-  effects:
-  - !type:SpeciesLoadoutEffect
-    species:
-    - Dwarf
-
-# Basic
+# Sunrise Syndicate
 - type: loadout
-  id: EmergencyDwarf
+  id: SunriseEmergencyOxygenSyndicate
   effects:
   - !type:GroupLoadoutEffect
-    proto: Dwarf
+    proto: OxygenBreather
   storage:
     back:
-    - BoxSurvivalWithBeer
+    - SunriseBoxSurvivalSyndicate
 
-# Clown
 - type: loadout
-  id: EmergencyDwarfClown
+  id: SunriseEmergencyNitrogenSyndicate
   effects:
   - !type:GroupLoadoutEffect
-    proto: Dwarf
+    proto: NitrogenBreather
   storage:
     back:
-    - BoxHugWithBeer
-
-# Mime
-- type: loadout
-  id: EmergencyDwarfMime
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: Dwarf
-  storage:
-    back:
-    - BoxMimeWithBeer
-
-# Engineering / Extended
-- type: loadout
-  id: EmergencyDwarfExtended
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: Dwarf
-  storage:
-    back:
-    - BoxSurvivalEngineeringWithBeer
-
-# Medical
-- type: loadout
-  id: EmergencyDwarfMedical
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: Dwarf
-  storage:
-    back:
-    - BoxSurvivalMedicalWithBeer
-
-# Security
-- type: loadout
-  id: EmergencyDwarfSecurity
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: Dwarf
-  storage:
-    back:
-    - BoxSurvivalSecurityWithBeer
-
-# Syndicate
-- type: loadout
-  id: EmergencyDwarfSyndicate
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: Dwarf
-  storage:
-    back:
-    - BoxSurvivalSyndicateWithBeer
+    - SunriseBoxSurvivalSyndicateNitrogen

@@ -11,7 +11,6 @@
     - MeteorSwarmScheduler
     - RampingStationEventScheduler
     - SpaceTrafficControlEventScheduler
-    - SpaceTrafficControlFriendlyEventScheduler
     - BasicRoundstartVariation
 
 #- type: gamePreset
@@ -85,7 +84,6 @@
     - MeteorSwarmScheduler
     - RampingStationEventScheduler
     - SpaceTrafficControlEventScheduler
-    - SpaceTrafficControlFriendlyEventScheduler
     - BasicRoundstartVariation
 
 # Sunrise-Edit: Replace by Extra
@@ -110,11 +108,11 @@
   - shittersafarideluxeedition
   name: greenshift-title
   showInVote: true
-  hide: true # Sunrise-Edit
+  hide: False
   description: greenshift-description
   rules:
-  - SpaceTrafficControlFriendlyEventScheduler
   - BasicRoundstartVariation
+  - GreenShitStationEventScheduler
 
 - type: gamePreset
   id: Dynamic
@@ -124,6 +122,7 @@
   - director
   name: dynamic-title
   showInVote: true # Sunrise-Edit
+  hide: false # Sunrise-Edit
   description: dynamic-description
   rules:
   - DynamicRule

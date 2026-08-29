@@ -63,8 +63,9 @@
       shader: unshaded
   - type: Physics
     bodyType: Dynamic
-    linearDamping: 0
-    angularDamping: 0
+    fixedRotation: true
+  - type: TileFrictionModifier
+    modifier: 0
   - type: Fixtures
     fixtures:
       projectile:
@@ -560,6 +561,10 @@
   - type: TimedDespawn
     lifetime: 0.275 # roughly 6.5 tiles
   - type: GatheringProjectile
+  # Sunrise-Start
+  - type: StaminaDamageOnCollide
+    damage: 10
+  # Sunrise-End
 
 - type: entity
   id: BulletKineticShuttle
@@ -578,6 +583,9 @@
       types:
         Blunt: 30
         Structural: 35
+    penetrationThreshold: 80
+    penetrationDamageTypeRequirement:
+    - Structural
   - type: Ammo
     muzzleFlash: HitscanEffect
   - type: TimedDespawn
@@ -586,12 +594,14 @@
     radius: 2.5
     color: white
     energy: 0.5
-  - type: GatheringProjectile
   # Sunrise-Start
+  #- type: GatheringProjectile
   - type: RadarBlip
     color: "#ffdd44"
     scale: 0.7
     shape: Circle
+  - type: StaminaDamageOnCollide
+    damage: 6
   # Sunrise-End
 
 - type: entity
@@ -845,14 +855,14 @@
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     layers:
-      - state: frag
+      - state: smallfrag # Sunrise-Edit
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
     maxIntensity: 2 # max 30 per tile
     intensitySlope: 1
     totalIntensity: 4 # 60 total damage to distribute over tiles
-    maxTileBreak: 1
+    maxTileBreak: 0 # Sunrise-Edit
   - type: PointLight
     radius: 3.5
     color: orange
@@ -1028,8 +1038,8 @@
   - type: Clickable
   - type: Physics
     bodyType: Dynamic
-    linearDamping: 0
-    angularDamping: 0
+  - type: TileFrictionModifier
+    modifier: 0
   - type: TimedDespawn
     lifetime: 10
   - type: Projectile
@@ -1112,8 +1122,8 @@
         - state: hook
     - type: Physics
       bodyType: Dynamic
-      linearDamping: 0
-      angularDamping: 0
+    - type: TileFrictionModifier
+      modifier: 0
     - type: Projectile
       deleteOnCollide: false
       damage:
@@ -1337,7 +1347,7 @@
     impactEffect: BulletImpactEffectOrangeDisabler
     damage:
       types:
-        Heat: 20
+        Heat: 13
 
 - type: entity
   name: destroying bolt

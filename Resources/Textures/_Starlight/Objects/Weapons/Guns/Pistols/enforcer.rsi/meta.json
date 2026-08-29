@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from RU Paradise Station, Nerf Dart Tip recolored to Black by Killer Tamashi",
+    "copyright": "Taken from RU Paradise Station, Nerf Dart Tip recolored to Black by Killer Tamashi, Inhand and Steel variants Taken from desertrose at https://github.com/DesertRose2/desertrose/commit/120961e254d7f83a6e00a02c76e734f9e5019345, https://github.com/DesertRose2/desertrose/blob/master/icons/obj/guns/projectile.dmi, rusty variant created by KAVALDi, sacura by just_useless (discord)",
     "size": {
         "x": 32,
         "y": 32
@@ -92,12 +92,46 @@
             "name": "mag-0"
         },
         {
+            "name": "base_steel"
+        },
+        {
+            "name": "bolt-open_steel"
+        },
+        {
+            "name": "base_rusty"
+        },
+        {
+            "name": "bolt-open_rusty"
+        },
+        {
             "name": "inhand-left",
             "directions": 4
         },
         {
             "name": "inhand-right",
             "directions": 4
+        },
+        {
+            "name": "equipped-BELT",
+            "directions": 4
+        },
+        {
+            "name": "base_sacura"
+        },
+        {
+            "name": "bolt-open_sacura"
+        },
+        {
+            "name": "base_flowers"
+        },
+        {
+            "name": "bolt-open_flowers"
+        },
+        {
+            "name": "base_rabbit"
+        },
+        {
+            "name": "bolt-open_rabbit"
         }
     ]
 }

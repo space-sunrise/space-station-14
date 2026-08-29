@@ -8,8 +8,11 @@
   components:
   - type: AtmosPipeLayers
     pipeLayer: 1
-  - type: PlacementReplacement # Sunrise-Edit
-    key: atmos_pipes_secondary
+  # Sunrise edit start - mapping replacement rules
+  - type: MappingReplacement
+    usePrototypeId: true
+    requireSameRotation: true
+  # Sunrise edit end
 
 # Layer 2
 - type: entity
@@ -18,8 +21,11 @@
   components:
   - type: AtmosPipeLayers
     pipeLayer: 2
-  - type: PlacementReplacement # Sunrise-Edit
-    key: atmos_pipes_tertiary
+  # Sunrise edit start - mapping replacement rules
+  - type: MappingReplacement
+    usePrototypeId: true
+    requireSameRotation: true
+  # Sunrise edit end
 
 # GasPipeStraight
 - type: entity

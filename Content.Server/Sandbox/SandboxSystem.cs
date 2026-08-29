@@ -1,5 +1,6 @@
-using System.Linq;
 using Content.Server.GameTicking;
+using System.Linq;
+using Content.Server._Sunrise.Mapping;
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
@@ -7,6 +8,7 @@ using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
+using Content.Shared.Overlays;
 using Content.Shared.PDA;
 using Content.Shared.Sandbox;
 using Robust.Server.Console;
@@ -22,6 +24,7 @@ namespace Content.Server.Sandbox
     {
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly IPlacementManager _placementManager = default!;
+        [Dependency] private readonly MappingReplacementSystem _mappingReplacement = default!;
         [Dependency] private readonly IConGroupController _conGroupController = default!;
         [Dependency] private readonly IServerConsoleHost _host = default!;
         [Dependency] private readonly SharedAccessSystem _access = default!;
@@ -50,6 +53,7 @@ namespace Content.Server.Sandbox
             SubscribeNetworkEvent<MsgSandboxGiveAccess>(SandboxGiveAccessReceived);
             SubscribeNetworkEvent<MsgSandboxGiveAghost>(SandboxGiveAghostReceived);
             SubscribeNetworkEvent<MsgSandboxSuicide>(SandboxSuicideReceived);
+            SubscribeNetworkEvent<MsgSandboxThermalVision>(UpdateSandboxThermalVision);
 
             SubscribeLocalEvent<GameRunLevelChangedEvent>(GameTickerOnOnRunLevelChanged);
 
@@ -59,7 +63,9 @@ namespace Content.Server.Sandbox
             {
                 if (IsSandboxEnabled)
                 {
-                    return true;
+                    // Sunrise edit start - выполняем content-side замену placement до engine placement
+                    return _mappingReplacement.TryHandlePlacementReplacement(placement);
+                    // Sunrise edit end
                 }
 
                 var channel = placement.MsgChannel;
@@ -67,7 +73,7 @@ namespace Content.Server.Sandbox
 
                 if (_conGroupController.CanAdminPlace(player))
                 {
-                    return true;
+                    return _mappingReplacement.TryHandlePlacementReplacement(placement);
                 }
 
                 return false;
@@ -192,6 +198,19 @@ namespace Content.Server.Sandbox
         private void UpdateSandboxStatusForAll()
         {
             RaiseNetworkEvent(new MsgSandboxStatus { SandboxAllowed = IsSandboxEnabled });
+        }
+
+        private void UpdateSandboxThermalVision(MsgSandboxThermalVision message, EntitySessionEventArgs args)
+        {
+            if (!IsSandboxEnabled)
+                return;
+
+            var ent = args.SenderSession.AttachedEntity;
+            if (ent == null) return;
+            if (HasComp<ThermalSightComponent>(ent))
+                RemComp<ThermalSightComponent>(ent.Value);
+            else
+                EnsureComp<ThermalSightComponent>(ent.Value);
         }
     }
 }

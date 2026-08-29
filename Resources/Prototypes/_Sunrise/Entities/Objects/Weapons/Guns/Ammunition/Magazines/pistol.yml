@@ -177,49 +177,100 @@
     capacity: 42
 
 - type: entity
-  id: MagazineGlock22
-  name: Glock22 magazine
-  parent: BaseItem
+  id: MagazinePistolSubMachineGunFMJ
+  name: SMG magazine (.35 auto FMJ)
+  parent: BaseMagazinePistolSubMachineGun
+  description: 30-round double-stack magazine for submachine guns. Intended to hold general-purpose kinetic ammunition.
   components:
-  - type: Tag
-    tags:
-    - MagazineGlock22
   - type: BallisticAmmoProvider
-    mayTransfer: true
-    proto: CartridgePistolSP  # 57x28
+    capacity: 30
+    proto: CartridgePistolFMJ
     whitelist:
       tags:
-      - CartridgePistol  # 57x28
-    capacity: 15
-  - type: Item
-    size: Small
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
+      - CartridgePistol
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
   - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/glock22.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
-  - type: MagazineVisuals
-    magState: mag
-    steps: 6
-    zeroVisible: false
-  - type: Appearance
+    - state: stripe
+      color: "#6e6e6e"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#6e6e6e"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#6e6e6e"
 
 - type: entity
-  id: MagazineGlock22Metus
-  parent: MagazineGlock22
+  id: MagazinePistolSubMachineGunPractice
+  name: SMG magazine (.35 auto practice)
+  parent: BaseMagazinePistolSubMachineGun
+  description: 30-round double-stack magazine for submachine guns. Intended to hold non-lethal practice ammunition.
   components:
-  - type: Tag
-    tags:
-    - MagazinePistolHighCapacityRubber
   - type: BallisticAmmoProvider
-    mayTransfer: true
-    proto: CartridgePistolRubber
+    capacity: 30
+    proto: CartridgePistolPractice
     whitelist:
       tags:
       - CartridgePistol
-    capacity: 18
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#bf8e24"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#bf8e24"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#bf8e24"
+
+- type: entity
+  id: MagazinePistolSubMachineGunAP
+  name: SMG magazine (.35 auto AP)
+  parent: BaseMagazinePistolSubMachineGun
+  description: 30-round double-stack magazine for submachine guns. Intended to hold armor-piercing kinetic ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 30
+    proto: CartridgePistolAP
+    whitelist:
+      tags:
+      - CartridgePistol
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#383838"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#383838"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#383838"

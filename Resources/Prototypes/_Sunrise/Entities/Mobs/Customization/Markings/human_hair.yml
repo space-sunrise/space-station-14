@@ -2,7 +2,6 @@
   id: BaseSunriseMarkingHumanHair
   abstract: true
   bodyPart: Hair
-  markingCategory: Hair
 
 - type: marking
   id: HumanHairAfricanPigtails
@@ -778,3 +777,24 @@
   sprites:
     - sprite: _Sunrise/Mobs/Customization/human_hair.rsi
       state: cattail
+
+- type: marking
+  id: HairEmoNew
+  parent: BaseSunriseMarkingHumanHair
+  sprites:
+    - sprite: _Sunrise/Mobs/Customization/sunrise_human_hair.rsi
+      state: emo_new
+
+- type: marking
+  id: HairCascade
+  parent: BaseSunriseMarkingHumanHair
+  sprites:
+    - sprite: _Sunrise/Mobs/Customization/sunrise_human_hair.rsi
+      state: cascade
+
+- type: marking
+  id: HairLacePonytail
+  parent: BaseSunriseMarkingHumanHair
+  sprites:
+    - sprite: _Sunrise/Mobs/Customization/sunrise_human_hair.rsi
+      state: lace_ponytail

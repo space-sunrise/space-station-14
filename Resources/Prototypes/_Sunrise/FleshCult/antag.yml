@@ -11,6 +11,7 @@
   previewIcon:
     sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
     state: flesh_cultist
+  storytellerStress: 1
 
 - type: antag
   id: FleshCultistLeader
@@ -25,5 +26,6 @@
   previewIcon:
     sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
     state: flesh_cultist
+  storytellerStress: 1
 
 

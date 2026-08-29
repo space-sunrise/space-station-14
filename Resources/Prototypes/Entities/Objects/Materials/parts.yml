@@ -24,7 +24,7 @@
     - ConstructionMaterial
 
 - type: entity
-  parent: PartBase
+  parent: [PartBase, BaseQuickConstructionMaterial] # Sunrise-Edit
   id: PartRodMetal
   name: metal rod
   suffix: Full
@@ -93,6 +93,10 @@
   - type: GuideHelp
     guides:
     - ExpandingRepairingStation
+  # Sunrise-start
+  - type: QuickConstructable
+    category: MetalRod
+  # Sunrise-end
 
 - type: entity
   parent: PartRodMetal

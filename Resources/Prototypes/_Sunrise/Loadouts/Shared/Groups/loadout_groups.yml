@@ -61,6 +61,17 @@
   - PinkBra
   - PurpleBra
   - BlackBra
+  - BraTshirtWhite
+  - BraTshirtRed
+  - BraTshirtYellow
+  - BraTshirtGreen
+  - BraTshirtBlue
+  - BraTshirtLightBlue
+  - BraTshirtBlack
+  - BraTshirtGrey
+  - BraTshirtPurple
+  - BraTshirtBrown
+  - BraTshirtOrange
 
 - type: loadoutGroup
   id: Pants
@@ -100,6 +111,16 @@
   - BrigmedicBackpack
   - BrigmedicSatchel
   - BrigmedicDuffel
+
+- type: loadoutGroup
+  id: BrigmedicOuterClothing
+  name: loadout-group-brigmedic-outer-clothing
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - BrigmedicCoatLab
+  - BrigmedicArmoredRobe
+  - BrigmedicBulletproof
 
 - type: loadoutGroup
   id: BrigmedicJumpsuit
@@ -163,6 +184,15 @@
   - CommonSatchel
   - CommonDuffel
   - NanoTrasenRepresentativeModsuit
+
+- type: loadoutGroup
+  id: BlueShieldHead
+  name: loadout-group-blueshield-head
+  maxLimit: 1
+  loadouts:
+  - BlueShieldBeret
+  - BlueShieldSwatHelmet
+  - BlueShieldTSFMarineHelmet
 
 - type: loadoutGroup
   id: BlueShieldBackpack
@@ -314,11 +344,12 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - BlueshieldACP14
-  - BlueshieldWT550
   - BlueshieldLecterMk2
-  - BlueshieldVP78
+  - BlueshieldWT550
+  - BlueshieldWT550Blue
+  - BlueshieldLecterMk3
   - BlueshieldAsh12
+  - BlueshieldLecterXL8
 
 - type: loadoutGroup
   id: BarberJumpsuit
@@ -399,7 +430,7 @@
   - MK58Box
   - MK58GoldBox
   - SnubRevolverBox
-  - WeaponDominator
+  - SunriseLaserPistol
   - WeaponDisabler
   - WeaponTaser
 
@@ -438,7 +469,6 @@
   - WeaponRevolverSnubRevolver
   - DetectiveWeapon20h
   - DetectiveWeapon50h
-  - DetectiveWeapon50h2
   - DetectiveWeapon100h
 
 - type: loadoutGroup
@@ -450,9 +480,9 @@
   - GlockBox
   - MK58Box
   - MK58GoldBox
-  - ACP14Box
   - SnubRevolverBox
-  - WeaponDominator
+  - SunriseLaserPistol
+  - CadetWeaponMiniEnergyGun
   - WeaponDisabler
   - WeaponTaser
 
@@ -463,8 +493,9 @@
   maxLimit: 1
   loadouts:
   - WeaponDisabler
-  - WeaponDominatorBrigmed
+  - SunriseWeaponTaserBrigmed
   - WeaponTaserBrigmed
+  - WeaponMiniEnergyGunBrigmed
 
 # Security  HoS
 - type: loadoutGroup
@@ -473,15 +504,9 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - GlockBox
-  - MK58Box
-  - ACP14Box
-  - MK58GoldBox
-  - HeadofSecurityWeapon20h
+  - HeadofSecurityWeapon
   - HeadofSecurityWeapon50h
-  - HeadofSecurityWeapon50h2
-  - HeadofSecurityWeapon100h
-  - HeadofSecurityWeapon100h2
+  - HeadofSecurityWeapon1984h
 
 # Medical
 - type: loadoutGroup
@@ -534,7 +559,7 @@
   - SunriseGlovesNitrileRed
   - SunriseGlovesNitrileOrange
   - SunriseGlovesNitrileGreen
-  - NitrileGloves
+  - SunriseNitrileGloves
   - SunriseGlovesNitrileBlue
 
 - type: loadoutGroup
@@ -654,7 +679,7 @@
   - SunriseGlovesNitrileRed
   - SunriseGlovesNitrileOrange
   - SunriseGlovesNitrileGreen
-  - NitrileGloves
+  - SunriseNitrileGloves
   - SunriseGlovesNitrileBlue
 
 - type: loadoutGroup
@@ -717,7 +742,7 @@
   - SunriseGlovesNitrileRed
   - SunriseGlovesNitrileOrange
   - SunriseGlovesNitrileGreen
-  - NitrileGloves
+  - SunriseNitrileGloves
 
 - type: loadoutGroup
   id: SunriseChemistShoes
@@ -786,7 +811,7 @@
   loadouts:
   - LatexGloves
   - SunriseWhiteGloves
-  - NitrileGloves
+  - SunriseNitrileGloves
 
 - type: loadoutGroup
   id: SunrisePsychologistShoes
@@ -851,7 +876,7 @@
   - SunriseBlueGloves
   - SunriseGlovesNitrileRed
   - SunriseGlovesNitrileGreen
-  - NitrileGloves
+  - SunriseNitrileGloves
   - SunriseGlovesNitrileBlue
 
 - type: loadoutGroup
@@ -942,7 +967,7 @@
   - SunriseGlovesNitrileBlack
   - SunriseGlovesNitrileRed
   - SunriseGlovesNitrileGreen
-  - NitrileGloves
+  - SunriseNitrileGloves
 
 - type: loadoutGroup
   id: MedicalTrinkets
@@ -961,6 +986,15 @@
   - TrinketsMedicalTFC
   - TrinketsMedicalTFCMO
   - TrinketsMedicalCNSG
+
+- type: loadoutGroup
+  id: SunrisePassengerJobTrinkets
+  name: loadout-group-jobtrinkets
+  minLimit: 0
+  loadouts:
+  - SunriseLizardPlushiePassengerLoadout
+  - SunriseRubberStampPassenger
+  - SunriseToyFigurinePassenger
 
 - type: loadoutGroup
   id: SeniorEngineerJumpsuit
@@ -1566,10 +1600,10 @@
 - type: loadoutGroup
   id: PlanetPrisonSecurityLoot
   name: loadout-group-prison-security-loot
-  minLimit: 0
+  minLimit: 1
   maxLimit: 1
   loadouts:
-  - PlanetPrisonSecurityMasterHandheldCamera
+  - PlanetPrisonSecurityHandheldCamera
   - PlanetPrisonSecurityMasterHandheldCamera
 
 # Planet Prison - Inspector

@@ -29,6 +29,7 @@
     - NanoTrasen
   - type: Mech
     entryDelay: 1
+  - type: MechVulnerableToEMP
   - type: MechAir
   - type: GravityAffected
   - type: AirFilter
@@ -73,13 +74,15 @@
     interfaces:
       enum.MechUiKey.Key:
         type: MechBoundUserInterface
+      enum.MechEquipmentSelectUiKey.Key:
+        type: MechEquipmentSelectBoundUserInterface
   - type: Puller
     needsHands: false
   - type: InputMover
   - type: InteractionOutline
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2
-    baseSprintSpeed: 5
+    baseWalkSpeed: 1
+    baseSprintSpeed: 4
     baseWeightlessModifier: 2
   - type: MovementAlwaysTouching
   - type: Pullable
@@ -187,12 +190,12 @@
     baseState: sec_pod
     openState: sec_pod_open
     brokenState: sec_pod_broken
-    mechToPilotDamageMultiplier: 0.3
+    mechToPilotDamageMultiplier: 0.0
     maxEquipmentAmount: 2
     airtight: true
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
     equipmentWhitelist:
       tags:
       - CombatMech
@@ -226,7 +229,7 @@
 
 - type: entity
   id: MechMiningPod
-  parent: [ BaseMechPod, BaseSalvageSpecialistContraband ]
+  parent: [ BaseMechPod, BaseSalvageContraband ]
   name: Mining Pod
   description: Despite its size, the Mining Pod has incredible survability in space.
   suffix: Filled
@@ -262,12 +265,12 @@
     baseState: mining_pod
     openState: mining_pod_open
     brokenState: mining_pod_broken
-    mechToPilotDamageMultiplier: 0.25
+    mechToPilotDamageMultiplier: 0.0
     maxEquipmentAmount: 4
     airtight: true
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
     equipmentWhitelist:
       tags:
       - IndustrialMech
@@ -303,16 +306,6 @@
     whitelist:
       tags:
       - Ore
-  - type: UserInterface
-    interfaces:
-      enum.StorageUiKey.Key:
-        type: StorageBoundUserInterface
-      enum.MechUiKey.Key:
-        type: MechBoundUserInterface
-  - type: ContainerContainer
-    containers:
-      storagebase: !type:Container
-        ents: [ ]
   - type: Speech
     speechSounds: Borg
   - type: TTS
@@ -359,6 +352,9 @@
   name: Ripley APLU MK-II
   description: The "MK-II" has a pressurized cabin for space opera....wait!! why is it red? Oh no, it's a Death Ripley!
   components:
+  - type: FootprintEmitter # Sunrise-Add
+    leftBareFootState: [ footprint-mech-heavy ]
+    rightBareFootState: [ footprint-mech-heavy ]
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -370,22 +366,24 @@
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+      params:
+        pitch: 0.6
   - type: Mech
     baseState: death
     openState: death-open
     brokenState: death-broken
-    mechToPilotDamageMultiplier: 0.1
+    mechToPilotDamageMultiplier: 0.0
     airtight: true
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
     equipmentWhitelist:
       tags:
       - IndustrialMech
       - CombatMech
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 8
+    distance: 2
+    speed: 10
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -459,13 +457,13 @@
     baseState: paddy
     openState: paddy-open
     brokenState: paddy-broken
-    mechToPilotDamageMultiplier: 0.60
+    mechToPilotDamageMultiplier: 0.0
     airtight: true
     maxEquipmentAmount: 4
     #siren: true # Todo: port siren system from starlight
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
   - type: Reflect
     reflectProb: 0.05
     spread: 180
@@ -511,7 +509,7 @@
     startingEquipment:
       - WeaponMechCombatDisabler
       - WeaponMechCombatFlashbangLauncher
-      - MechEquipmentGrabberSmall
+      - MechEquipmentGrabber
 
 # region Pirate Yarrk
 - type: entity
@@ -524,7 +522,6 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/clarke.rsi
-    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: bigbrother
@@ -537,11 +534,11 @@
     baseState: bigbrother
     openState: bigbrother-open
     brokenState: bigbrother-broken
-    mechToPilotDamageMultiplier: 0.15
+    mechToPilotDamageMultiplier: 0.05
     airtight: true
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
     equipmentWhitelist:
       tags:
       - IndustrialMech
@@ -563,11 +560,11 @@
       path: "/Audio/Items/drill_use.ogg"
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 3.5
+    baseSprintSpeed: 3.6
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.1
+    reflectProb: 0.05
     spread: 180
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
@@ -585,8 +582,11 @@
     - FootstepSound
     - Clarke
     - Pickaxe
+  - type: MeleeThrowOnHit
+    speed: 0
+    distance: 0
   - type: AccessReader
-    access: [["NuclearOperative"]]
+    access: [["Pirate"]]
 
 - type: entity
   id: MechBigYarrkeBattery
@@ -610,40 +610,38 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/gygax.rsi
-    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: ntgygax
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+      params:
+        pitch: 0.8
   - type: Mech
     baseState: ntgygax
     openState: ntgygax-open
     brokenState: ntgygax-broken
-    mechToPilotDamageMultiplier: 0.3
+    mechToPilotDamageMultiplier: 0.0
     airtight: true
     maxEquipmentAmount: 4
     pilotWhitelist:
       components:
-        - HumanoidAppearance
-    pilotBlacklist:
-      species:
-      - Felinid
+        - HumanoidProfile
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 8
+    distance: 2.5
+    speed: 15
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
     damage:
       types:
-        Blunt: 35
+        Blunt: 30
         Structural: 180
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 3
+    baseSprintSpeed: 3.5
   - type: Reflect
     reflectProb: 0.10
     spread: 180
@@ -664,7 +662,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      275: Critical
+      350: Critical
 
 - type: entity
   id: MechNTGygaxBattery
@@ -684,7 +682,7 @@
   - type: Mech
     startingEquipment:
       - WeaponMechChainSword
-      - WeaponMechCombatShotgun
+      - WeaponMechCombatShotgunAuto
       - WeaponMechCombatPulseRifle
       - WeaponMechCombatMissileRack8
 
@@ -711,12 +709,12 @@
     baseState: phazon
     openState: phazon-open
     brokenState: phazon-broken
-    mechToPilotDamageMultiplier: 0.25
+    mechToPilotDamageMultiplier: 0.0
     maxEquipmentAmount: 5
     airtight: true
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -766,6 +764,9 @@
   name: Rover
   description: A modified Durand used for nefarious purposes. On the back of the armor plate there is an inscription "Cybersun Inc."
   components:
+  - type: FootprintEmitter # Sunrise-Add
+    leftBareFootState: [ footprint-mech-heavy ]
+    rightBareFootState: [ footprint-mech-heavy ]
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -781,18 +782,15 @@
     baseState: darkdurand
     openState: darkdurand-open
     brokenState: darkdurand-broken
-    mechToPilotDamageMultiplier: 0.1
+    mechToPilotDamageMultiplier: 0.0
     airtight: true
     maxEquipmentAmount: 5
     pilotWhitelist:
       components:
-        - HumanoidAppearance
-    pilotBlacklist:
-      species:
-      - Felinid
+        - HumanoidProfile
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 8
+    distance: 4
+    speed: 18
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -850,6 +848,9 @@
   name: Doll House
   description: The Heavy Mech USSP, a communist variant of the Durand, features stronger armor and a powerful machine gun.
   components:
+  - type: FootprintEmitter # Sunrise-Add
+    leftBareFootState: [ footprint-mech-heavy ]
+    rightBareFootState: [ footprint-mech-heavy ]
   - type: Sprite
     drawdepth: Mobs
     noRot: true
@@ -865,15 +866,15 @@
     baseState: dollhouse
     openState: dollhouse-open
     brokenState: dollhouse-broken
-    mechToPilotDamageMultiplier: 0.15
+    mechToPilotDamageMultiplier: 0.0
     airtight: true
     maxEquipmentAmount: 2
     pilotWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 8
+    distance: 4
+    speed: 18
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -883,8 +884,8 @@
         Structural: 220
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1
-    baseSprintSpeed: 1.75
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 2
   - type: Loadout
     prototypes: [ MechArmorHeavySyndiLoadout ]
   - type: CanMoveInAir

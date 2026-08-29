@@ -132,36 +132,15 @@ stack-ointment = мазь
 stack-aloe-cream = крем с алоэ
 stack-gauze = марля
 stack-brutepack = набор для грубой силы
-stack-blueointment =
-    { $amount ->
-        [1] blueointment
-       *[other] blueointments
-    }
-stack-redointment =
-    { $amount ->
-        [1] redointment
-       *[other] redointments
-    }
-stack-redbrutepack =
-    { $amount ->
-        [1] redbrutepack
-       *[other] redbrutepacks
-    }
-stack-redpunctpack =
-    { $amount ->
-        [1] redpunctpack
-       *[other] redpunctpacks
-    }
-stack-redlacepack =
-    { $amount ->
-        [1] redlacepack
-       *[other] redlacepacks
-    }
-stack-redbruizpack =
-    { $amount ->
-        [1] redbruizpack
-       *[other] redbruizpacks
-    }
+stack-bluebrutepack = синий набор от ушибов
+stack-blueointment = синяя мазь
+stack-redointment = красная мазь
+stack-redbrutepack = красный набор от ушибов
+stack-interdynebrutepack = набор от ушибов Интердайн
+stack-interdyneointment = мазь Интердайн
+stack-redpunctpack = красный набор с пунктуразой
+stack-redlacepack = красный набор с лацеринолом
+stack-redbruizpack = красный набор с бруизином
 stack-bloodpack = пакет крови
 stack-medicated-suture = медикаментозный шов
 stack-regenerative-mesh = регенеративная сетка
@@ -258,7 +237,7 @@ stack-old-concrete-tile = старая бетонная плитка
 stack-old-concrete-mono-tile = старая бетонная моноплитка
 stack-old-concrete-smooth = старый гладкий бетон
 stack-silver-floor-tile = серебряная напольная плитка
-stack-bcircuit-floor-tile = плитка пола bcircuit
+stack-bcircuit-floor-tile = плитка пола с синим контуром
 stack-grass-floor-tile = плитка травяного пола
 stack-grass-jungle-floor-tile = плитка травяного пола джунглей
 stack-snow-floor-tile = плитка снежного пола
@@ -273,7 +252,8 @@ stack-jungle-astro-grass-floor = пол из астро-травы джунгл�
 stack-astro-ice-floor = астро-ледяной пол
 stack-astro-snow-floor = астро-снежный пол
 stack-large-wood-floor = большой деревянный пол
-stack-red-circuit-floor = red-circuit floor
+stack-light-fancy-wood = большой светлый деревянный пол
+stack-red-circuit-floor = плитка пола с красным контуром
 stack-asteroid-astro-sand-floor = пол из астероидного астро-песка
 stack-xeno-floor = ксено-пол
 stack-xeno-steel = плитка из ксено-стали

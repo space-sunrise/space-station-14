@@ -5,6 +5,7 @@ using Content.Server._Sunrise.MapperSync;
 using Content.Server._Sunrise.PlayerCache;
 using Content.Server._Sunrise.ServersHub;
 using Content.Server._Sunrise.TTS;
+using System.Threading.Tasks;
 using Content.Server.Acz;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
@@ -18,6 +19,7 @@ using Content.Server.Database;
 using Content.Server.Discord;
 using Content.Server.Discord.DiscordLink;
 using Content.Server.EUI;
+using Content.Server.FeedbackSystem;
 using Content.Server.GameTicking;
 using Content.Server.GhostKick;
 using Content.Server.GuideGenerator;
@@ -33,6 +35,7 @@ using Content.Server.ServerInfo;
 using Content.Server.ServerUpdates;
 using Content.Server.Voting.Managers;
 using Content.Shared.CCVar;
+using Content.Shared.FeedbackSystem;
 using Content.Shared.Kitchen;
 using Content.Shared.Localizations;
 using Content.Sunrise.Interfaces.Server;
@@ -42,8 +45,10 @@ using Robust.Server.ServerStatus;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Server._Sunrise.Auth;
 
 namespace Content.Server.Entry
 {
@@ -88,6 +93,7 @@ namespace Content.Server.Entry
         [Dependency] private readonly ServerApi _serverApi = default!;
         [Dependency] private readonly ServerInfoManager _serverInfo = default!;
         [Dependency] private readonly ServerUpdateManager _updateManager = default!;
+        [Dependency] private readonly ServerFeedbackManager _feedbackManager = null!;
         [Dependency] private readonly ServersHubManager _serversHubManager = default!; // Sunrise-Edit
         [Dependency] private readonly ContributorsManager _contributorsManager = default!; // Sunrise-Edit
         [Dependency] private readonly PlayerCacheManager _playerCacheManager = default!; // Sunrise-Edit
@@ -95,6 +101,7 @@ namespace Content.Server.Entry
         [Dependency] private readonly NetTexturesManager _netTexturesManager = default!; // Sunrise-Edit
         [Dependency] private readonly DiscordWebhook _discord = default!; // Sunrise-Edit
         [Dependency] private readonly MapperSyncManager _mapperSyncManager = default!; // Sunrise-Edit
+        [Dependency] private readonly AccountCreationManager _accountCreation = default!; // Sunrise-Edit
         private IIPBlockingSystem? _ipBlockingSystem;
         private ITrustedProxyService? _trustedProxyService;
         private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
@@ -107,6 +114,8 @@ namespace Content.Server.Entry
                 var cast = (ServerModuleTestingCallbacks)callback;
                 cast.ServerBeforeIoC?.Invoke();
             }
+
+            Dependencies.Resolve<IRobustSerializer>().FloatFlags = SerializerFloatFlags.RemoveReadNan;
         }
 
         /// <inheritdoc />
@@ -153,7 +162,9 @@ namespace Content.Server.Entry
             _serverApi.Initialize();
 
             // Sunrise-Start
+            _discord.SetupClient();
             _ttsManager.Initialize();
+            _accountCreation.Initialize();
             _netTexturesManager.Initialize();
             IoCManager.Instance!.TryResolveType(out _trustedProxyService);
             _trustedProxyService?.Initialize();
@@ -161,7 +172,6 @@ namespace Content.Server.Entry
             _ipBlockingSystem?.Initialize();
             SunriseServerEntry.Init();
             IoCManager.Instance!.TryResolveType(out _sponsorsManager);
-            _discord.SetupClient();
             // Sunrise-End
 
             _voteManager.Initialize();
@@ -206,6 +216,7 @@ namespace Content.Server.Entry
             _connection.PostInit();
             _multiServerKick.Initialize();
             _cvarCtrl.Initialize();
+            _feedbackManager.Initialize();
             _contributorsManager.Initialize(); // Sunrise-Edit
             _mapperSyncManager.Initialize(); // Sunrise-Edit
             _serversHubManager.Initialize(); // Sunrise-Edit
@@ -257,8 +268,8 @@ namespace Content.Server.Entry
 
             _serverApi.Shutdown();
 
-            // TODO Should this be awaited?
-            _discordLink.Shutdown();
+            // We don't care when or how this finishes, just spin the task off into the void.
+            _ = _discordLink.Shutdown();
             _discordChatLink.Shutdown();
 
             // Sunrise added start

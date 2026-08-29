@@ -119,7 +119,7 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
 
     private void OnMidiStart(InstrumentStartMidiEvent msg, EntitySessionEventArgs args)
     {
-        // Sunrise edit start - validate instrument usage server-side
+        // Sunrise edit start - валидируем использование инструмента на сервере
         if (!TryValidateInstrumentRequest(msg.Uid, args, out var uid, out _, out var instrument, requireActiveInstrument: true))
             return;
         // Sunrise edit end
@@ -130,7 +130,7 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
 
     private void OnMidiStop(InstrumentStopMidiEvent msg, EntitySessionEventArgs args)
     {
-        // Sunrise edit start - validate instrument usage server-side
+        // Sunrise edit start - валидируем использование инструмента на сервере
         if (!TryValidateInstrumentRequest(msg.Uid, args, out var uid, out _, out var instrument, requireActiveInstrument: true))
             return;
         // Sunrise edit end
@@ -141,7 +141,7 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
 
     private void OnMidiSetChannels(InstrumentSetChannelsEvent msg, EntitySessionEventArgs args)
     {
-        // Sunrise edit start - validate instrument usage server-side
+        // Sunrise edit start - валидируем использование инструмента на сервере
         if (!TryValidateInstrumentRequest(msg.Uid, args, out var uid, out _, out _, requireActiveInstrument: true)
             || !TryComp(uid, out ActiveInstrumentComponent? activeInstrument))
             return;
@@ -181,7 +181,7 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
     {
         var master = GetEntity(msg.Master);
 
-        // Sunrise edit start - validate instrument usage server-side
+        // Sunrise edit start - валидируем использование инструмента на сервере
         if (!TryValidateInstrumentRequest(msg.Uid, args, out var uid, out var user, out var instrument, requireActiveInstrument: true))
             return;
         // Sunrise edit end
@@ -210,7 +210,7 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
 
     private void OnMidiSetFilteredChannel(InstrumentSetFilteredChannelEvent msg, EntitySessionEventArgs args)
     {
-        // Sunrise edit start - validate instrument usage server-side
+        // Sunrise edit start - валидируем использование инструмента на сервере
         if (!TryValidateInstrumentRequest(msg.Uid, args, out var uid, out var user, out var instrument, requireActiveInstrument: true))
             return;
 
@@ -226,7 +226,7 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
         if (msg.Value)
         {
             // Prevent stuck notes when turning off a channel... Shrimple.
-            // Sunrise edit start - scope all-notes-off to nearby listeners
+            // Sunrise edit start - ограничиваем all-notes-off ближайшими слушателями
             RaiseInstrumentMidiEvent(uid,
                 new InstrumentMidiEventEvent(msg.Uid, new[] { RobustMidiEvent.AllNotesOff((byte) msg.Channel, 0) }),
                 user);
@@ -319,7 +319,7 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
             var netUid = GetNetEntity(uid);
 
             // Reset puppet instruments too.
-            // Sunrise edit start - scope shutdown MIDI events to nearby listeners
+            // Sunrise edit start - ограничиваем shutdown MIDI events ближайшими слушателями
             RaiseInstrumentMidiEvent(uid, new InstrumentMidiEventEvent(netUid, new[] { RobustMidiEvent.SystemReset(0) }));
             RaiseInstrumentStopEvent(uid, new InstrumentStopMidiEvent(netUid));
             // Sunrise edit end
@@ -328,15 +328,19 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
         instrument.Playing = false;
         instrument.Master = null;
         instrument.FilteredChannels.SetAll(false);
-        instrument.LastSequencerTick = 0;
         instrument.BatchesDropped = 0;
-        instrument.LaggedBatches = 0;
         Dirty(uid, instrument);
     }
 
     private void OnMidiEventRx(InstrumentMidiEventEvent msg, EntitySessionEventArgs args)
     {
-        // Sunrise edit start - validate instrument usage server-side
+        // Sunrise edit start - ограничение MIDI до валидации и обработки
+        var eventCount = msg.MidiEvent.Length;
+        if (!TryConsumeSessionMidiBudget(args.SenderSession.UserId, eventCount))
+            return;
+        // Sunrise edit end
+
+        // Sunrise edit start - валидируем использование инструмента на сервере
         if (!TryValidateInstrumentRequest(msg.Uid,
                 args,
                 out var uid,
@@ -348,64 +352,23 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
             return;
         }
 
-        var eventCount = msg.MidiEvent.Length;
-        if (eventCount == 0
-            || eventCount > MaxMidiEventsPerBatch
-            || !InstrumentMidiValidation.IsValidBatch(msg.MidiEvent))
+        if (eventCount == 0 || eventCount > MaxMidiEventsPerBatch)
         {
             instrument.BatchesDropped++; // Sunrise added
             return;
         }
+
+        if (!InstrumentMidiValidation.TryFilterBatch(msg.MidiEvent, out var validEvents))
+            return;
+
+        if (validEvents != msg.MidiEvent)
+            msg = new InstrumentMidiEventEvent(msg.Uid, validEvents);
         // Sunrise edit end
 
         var send = true;
         var droppedBatch = false; // Sunrise added
 
-        var minTick = uint.MaxValue;
-        var maxTick = uint.MinValue;
-
-        for (var i = 0; i < eventCount; i++)  // Sunrise edit
-        {
-            var tick = msg.MidiEvent[i].Tick;
-
-            if (tick < minTick)
-                minTick = tick;
-
-            if (tick > maxTick)
-                maxTick = tick;
-        }
-
-        if (instrument.LastSequencerTick > minTick)
-        {
-            instrument.LaggedBatches++;
-
-            if (instrument.RespectMidiLimits)
-            {
-                if (instrument.LaggedBatches == (int) (MaxMidiLaggedBatches * (1 / 3d) + 1))
-                {
-                    _popup.PopupEntity(Loc.GetString("instrument-component-finger-cramps-light-message"),
-                        uid, attached, PopupType.SmallCaution);
-                }
-                else if (instrument.LaggedBatches == (int) (MaxMidiLaggedBatches * (2 / 3d) + 1))
-                {
-                    _popup.PopupEntity(Loc.GetString("instrument-component-finger-cramps-serious-message"),
-                        uid, attached, PopupType.MediumCaution);
-                }
-            }
-
-            if (instrument.LaggedBatches > MaxMidiLaggedBatches)
-            {
-                send = false;
-            }
-        }
-
         // Sunrise added start
-        if (!TryConsumeSessionMidiBudget(args.SenderSession.UserId, eventCount))
-        {
-            droppedBatch = true;
-            send = false;
-        }
-
         instrument.MidiEventCount += eventCount;
         if (instrument.MidiEventCount > MaxMidiEventsPerSecond)
         {
@@ -417,9 +380,7 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
             instrument.BatchesDropped++;
         // Sunrise added end
 
-        instrument.LastSequencerTick = Math.Max(maxTick, minTick);
-
-        // Sunrise edit start - scope forwarded MIDI traffic to nearby listeners
+        // Sunrise edit start - ограничиваем forwarded MIDI traffic ближайшими слушателями
         if (!send)
             return;
 
@@ -457,26 +418,26 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
                 if (Deleted(master))
                 {
                     Clean(uid, instrument);
+                    continue;
                 }
 
                 var masterActive = activeQuery.CompOrNull(master);
                 if (masterActive == null)
                 {
                     Clean(uid, instrument);
+                    continue;
                 }
 
                 var trans = transformQuery.GetComponent(uid);
                 var masterTrans = transformQuery.GetComponent(master);
-                if (!_transform.InRange(masterTrans.Coordinates, trans.Coordinates, 10f)
-)
+                if (!_transform.InRange(masterTrans.Coordinates, trans.Coordinates, 10f))
                 {
                     Clean(uid, instrument);
+                    continue;
                 }
             }
 
-            if (instrument.RespectMidiLimits &&
-                (instrument.BatchesDropped >= MaxMidiBatchesDropped
-                 || instrument.LaggedBatches >= MaxMidiLaggedBatches))
+            if (instrument.RespectMidiLimits && instrument.BatchesDropped >= MaxMidiBatchesDropped)
             {
                 if (instrument.InstrumentPlayer is {Valid: true} mob)
                 {
@@ -497,7 +458,6 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
 
             instrument.Timer = 0f;
             instrument.MidiEventCount = 0;
-            instrument.LaggedBatches = 0;
             instrument.BatchesDropped = 0;
         }
     }

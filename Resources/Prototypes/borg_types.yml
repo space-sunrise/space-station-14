@@ -17,10 +17,12 @@
     - BorgModuleScience #until sciborgs are added
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool
   - BorgModuleInflatable
   - BorgModuleArtifact
   - BorgModuleAnomaly
+  - BorgModuleRobotics # Sunrise-Edit
 
   radioChannels:
   - Science
@@ -64,6 +66,7 @@
 
   defaultModules:
   - BorgModuleStandart
+  - BorgModulePrying
   - BorgModuleAdvancedTool
   - BorgModuleCable
   - BorgModuleConstruction
@@ -122,6 +125,7 @@
 
   defaultModules:
   - BorgModuleStandart
+  - BorgModulePrying
   - BorgModuleTool
   - BorgModuleMining
   - BorgModuleTraversal
@@ -174,6 +178,7 @@
 
   defaultModules:
   - BorgModuleStandart
+  - BorgModulePrying
   - BorgModuleCleaning
   - BorgModuleCustodial
 
@@ -186,7 +191,7 @@
     collection: FootstepJanitorBorg
     params:
       volume: -5
-  # Sunrise-Start
+  # Sunrise-End
 
   # Visual
   inventoryTemplateId: borgShort
@@ -231,7 +236,7 @@
     - BorgModuleMedical
 
   defaultModules:
-  - BorgModuleStandart
+  - BorgModulePrying
   - BorgModuleChemical
   - BorgModuleTopicals
   - BorgModuleRescue
@@ -260,7 +265,7 @@
     - HandheldStationMapUnpowered
     - HandheldEmergencyCrewMonitorBorg
     entityTargetActions:
-    - HandheldHealthAnalyzerUnpowered
+    - HandheldHealthAnalyzer
   # Sunrise-End
 
   # Visual
@@ -301,6 +306,7 @@
   # Sunrise-Start
   defaultModules:
   - BorgModuleStandart
+  - BorgModulePrying
   - BorgModuleMusique
   - BorgModulePaperwork
   - BorgModuleBartender

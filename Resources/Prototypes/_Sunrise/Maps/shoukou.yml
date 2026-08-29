@@ -1,7 +1,7 @@
 ﻿- type: gameMap
   id: Shoukou
   mapName: 'Shōkō'
-  mapPath: /Maps/_Sunrise/Station/shoukou.yml
+  mapPath: /Maps/_Sunrise/Station/OutPool/shoukou.yml
   minPlayers: 0
   stations:
     Shoukou:
@@ -13,7 +13,7 @@
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/_Sunrise/Shuttles/NTES_Kaeri.yml
+          emergencyShuttlePath: /Maps/_Sunrise/Shuttles/Evac/emergency.yml
         - type: StationJobs
           availableJobs:
             Passenger: [ -1, -1 ]

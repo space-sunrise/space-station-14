@@ -6,8 +6,8 @@
   parent: BaseComputer
   components:
   - type: StationAiWhitelist
-  - type: ApcPowerReceiver
-    powerLoad: 350
+  - type: PowerState
+    workingPowerDraw: 350
   - type: ExtensionCableReceiver
   - type: PointLight
     radius: 1.8
@@ -104,6 +104,11 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallic
+  - type: GenericVisualizer
+    visuals:
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: base, sprite: _Sunrise/Structures/Machines/atm.rsi }
 
 - type: entity
   parent: [ATMWallmountBase]
@@ -121,3 +126,8 @@
     - map: ["enum.WiresVisualLayers.MaintenancePanel"]
       state: panel
       visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: base, sprite: _Sunrise/Structures/Machines/wall_atm.rsi }

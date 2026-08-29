@@ -69,7 +69,7 @@ public sealed class BeforeInteractHandEvent : HandledEntityEventArgs
     public EntityUid Target { get; }
         public EntityUid User { get; } // Sunrise added
 
-    // Sunrise edit - EntityUid user
+    // Sunrise edit - параметр EntityUid user
     public BeforeInteractHandEvent(EntityUid target, EntityUid user)
     {
         Target = target;

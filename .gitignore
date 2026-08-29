@@ -309,3 +309,10 @@ Resources/MapImages
 
 # Direnv stuff
 .direnv/
+
+# C-sharp cache files
+*.lscache
+
+# Sunrise added start - не отслеживаем локально сгенерированные настройки шардов тестов
+.integration-filters/
+# Sunrise added end

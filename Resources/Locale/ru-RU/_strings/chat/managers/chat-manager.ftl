@@ -27,6 +27,7 @@ chat-manager-entity-whisper-unknown-wrap-message = [font size=11][italic][Bubble
 chat-manager-entity-me-wrap-message = [italic]{ $entityName } { $message }[/italic]
 chat-manager-entity-looc-wrap-message = LOOC: [bold]{ $entityName }:[/bold] { $message }
 chat-manager-send-ooc-wrap-message = OOC: [bold]{ $playerName }:[/bold] { $message }
+chat-manager-send-ooc-sponsor-wrap-message = OOC: [bold][color={ $sponsorColor }]{ $playerName }[/color]:[/bold] { $message }
 chat-manager-send-dead-chat-wrap-message = { $deadChannelName }: [bold][BubbleHeader]{ $playerName }[/BubbleHeader]:[/bold] [BubbleContent]{ $message }[/BubbleContent]
 # Sunrise-Sponsor-Start
 chat-manager-send-ooc-patron-wrap-message = OOC: [bold][color={ $patronColor }]{ $patronTitle }{ $playerName }[/color]:[/bold] { $message }
@@ -124,3 +125,11 @@ chat-speech-verb-name-electricity = Электричество
 chat-speech-verb-electricity-1 = трещит
 chat-speech-verb-electricity-2 = гудит
 chat-speech-verb-electricity-3 = скрипит
+chat-manager-send-hook-admin-wrap-message = ADMIN: [bold](D){$senderName}:[/bold] {$message}
+chat-speech-verb-vulpkanin = Вульпканин
+
+chat-speech-verb-name-wawa = Вава
+chat-speech-verb-wawa-1 = произносит
+chat-speech-verb-wawa-2 = сообщает
+chat-speech-verb-wawa-3 = объявляет
+chat-speech-verb-wawa-4 = размышляет

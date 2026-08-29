@@ -1,0 +1,29 @@
+<Document>
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+                                  [color=#8D1010]☆[/color] [color=#1B2333][bold]ОТЧЁТ[/bold][/color] [color=#8D1010]☆[/color]
+[color=#4A4F5D][mono]────────────────────────────────────────────[/mono][/color]
+[mono][color=#1E4C7A][bold]{corpString} / ЦК[/bold][/color]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[bold][color=#4D5F80]Станция:[/color] [color=#1B2333]{stationName}[/color][/bold]
+[bold][color=#4D5F80]Время:[/color] [color=#1B2333]{timeString}[/color][/bold]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[color=#1B2333][bold]Составитель[/bold][/color]
+[bold][color=#4D5F80]Имя и Фамилия:[/color][/bold] [color=#0F5E2B][bold][signature="Имя и Фамилия"][/bold][/color]
+[bold][color=#4D5F80]Должность:[/color][/bold] [color=#7A4A00][bold]Представитель {corpString}[/bold][/color]
+
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[color=#1B2333][bold]Отчёт Представителя {corpString}[/bold][/color]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+
+[color=#2D3442]Я, [bold][color=#1E4C7A][signature="Имя и Фамилия"][/color][/bold], в должности [bold][color=#1E4C7A][form="Должность"][/color][/bold], в ходе наблюдений за командованием станции [bold][color=#1B2333]{stationName}[/color][/bold], информирую Центральное Командование о следующем:[/color]
+[bold][color=#1E4C7A][form="Описание сведений"][/color][/bold]
+
+[color=#2D3442]Прошу оператора или одного из членов Центрального Командования дать ответ по донесённым сведениям и, при необходимости, предоставить дальнейшие инструкции или приказы.[/color]
+
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+                     [italic][color=#5A616F]Место для печатей[/color][/italic]
+
+
+
+
+</Document>

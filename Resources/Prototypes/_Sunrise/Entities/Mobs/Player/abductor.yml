@@ -4,6 +4,7 @@
   id: MobAbductor
   components:
   - type: Abductor
+  - type: Interactions
   - type: Tag
     tags:
       - Abductor
@@ -11,6 +12,12 @@
       - CanPilot
       - DoorBumpOpener
       - FootstepSound
+
+- type: entity
+  save: false
+  name: Urist McAbductor
+  parent: MobAbductor
+  id: MobAbductorNonAntag
 
 - type: entity
   name: abductor scientist

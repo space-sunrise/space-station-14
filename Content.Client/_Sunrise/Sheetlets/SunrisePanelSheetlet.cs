@@ -1,4 +1,3 @@
-using Content.Client._Sunrise.Stylesheets;
 using Content.Client.Stylesheets;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
@@ -14,9 +13,21 @@ public sealed class SunrisePanelSheetlet<T> : Sheetlet<T> where T : PalettedStyl
     {
         var mappingWidgetPanel = new StyleBoxFlat(sheet.SecondaryPalette.BackgroundDark.WithAlpha(0.8f));
 
+        var prisonerRecordPanel = new StyleBoxFlat
+        {
+            BackgroundColor = sheet.SecondaryPalette.BackgroundDark,
+            BorderColor = sheet.SecondaryPalette.BackgroundLight,
+            BorderThickness = new Thickness(1),
+            ContentMarginLeftOverride = 8,
+            ContentMarginRightOverride = 8,
+            ContentMarginTopOverride = 8,
+            ContentMarginBottomOverride = 8
+        };
+
         return
         [
             E<PanelContainer>().Class(SunriseStyleClass.MappingWidgetPanel).Panel(mappingWidgetPanel),
+            E<PanelContainer>().Class(SunriseStyleClass.PrisonerRecordPanel).Panel(prisonerRecordPanel),
         ];
     }
 }

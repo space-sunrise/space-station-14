@@ -1,5 +1,5 @@
 using System.Numerics;
-using Content.Client._Sunrise.Sandbox;
+using Content.Client._Sunrise.Sandbox.Transparency.Systems;
 using Content.Client._Sunrise.UserInterface.Systems.Sandbox.Widgets;
 using Content.Client.UserInterface.Screens;
 using Content.Client.UserInterface.Systems.Gameplay;

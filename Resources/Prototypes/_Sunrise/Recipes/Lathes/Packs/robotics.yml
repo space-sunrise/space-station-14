@@ -29,13 +29,13 @@
   - GygaxLLeg
   - GygaxRArm
   - GygaxRLeg
-  - PhazonHarness
-  - PhazonArmor
-  - PhazonHead
-  - PhazonLArm
-  - PhazonLLeg
-  - PhazonRArm
-  - PhazonRLeg
+  # - PhazonHarness
+  # - PhazonArmor
+  # - PhazonHead
+  # - PhazonLArm
+  # - PhazonLLeg
+  # - PhazonRArm
+  # - PhazonRLeg
   - PowerCageHigh
   - PowerCageMedium
   - MechEquipmentDrill
@@ -46,20 +46,10 @@
   - MechEquipmentHonkerMousetrapMortar
   - WeaponMechCombatDisabler
   - WeaponMechCombatFlashbangLauncher
-  - MechPhasicScanningModule
+  # - MechPhasicScanningModule
   - WeaponMechCombatSolarisLaser
   - WeaponMechCombatFiredartLaser
   - WeaponMechCombatUltraRifle
-  - PaintRipleyAluminizer
-  - PaintRipleyFirestarter
-  - PaintRipleyHauler
-  - PaintRipleyZairjah
-  - PaintDurandExecutor
-  - PaintDurandShire
-  - PaintDurandOld
-  - PaintGygaxOld
-  - PaintGygaxWhite
-  - PaintClarkeOrangey
   - Nanopaste
   - HandheldRoboAnalyzer
 
@@ -69,3 +59,13 @@
   - BorgModuleJetpack
   - BorgModuleMiningCombat
   - BorgModuleAdvancedCombat
+  - BorgModuleAdvancedChemical # Sunrise-Edit
+  - BorgModuleRobotics
+  - BorgModuleSurgical
+
+- type: latheRecipePack
+  id: SyndicateBorgModulesEmagSunrise
+  recipes:
+  - BorgModuleSyndicateCombatAdvanced
+  - BorgModuleSyndicateHypoAdvanced
+  - BorgModuleSyndicatePenetration

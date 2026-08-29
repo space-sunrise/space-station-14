@@ -167,7 +167,7 @@ namespace Content.Server.Voting.Managers
         {
             // Handle active votes.
             var remQueue = new RemQueue<int>();
-            foreach (var v in _votes.Values)
+            foreach (var v in _votes.Values.ToArray()) // Sunrise-Edit: для системы многоэтапных голосований, без этого вызывал ошибку при старте голосования в тот же момент, когда закончено старое
             {
                 // Logger.Debug($"{_timing.ServerTime}");
                 if (_timing.RealTime >= v.EndTime)
@@ -411,9 +411,10 @@ namespace Content.Server.Voting.Managers
             // Still allow vote if availbable one is different from current one
             if (voteType == StandardVoteType.Preset)
             {
-                var presets = GetGamePresets();
-                if (presets.Count == 1 && presets.Select(x => x.Key).Single() == _entityManager.System<GameTicker>().Preset?.ID)
+                // Sunrise edit start
+                if (!CanCallSunrisePresetVote())
                     return false;
+                // Sunrise edit end
             }
 
             return !_voteTimeout.TryGetValue(initiator.UserId, out timeSpan);
@@ -528,9 +529,11 @@ namespace Content.Server.Voting.Managers
 
                 if (eligibility == VoterEligibility.GhostMinimumPlaytime)
                 {
-                    var playtime = _playtimeManager.GetPlayTimes(player);
-                    if (!playtime.TryGetValue(PlayTimeTrackingShared.TrackerOverall, out TimeSpan overallTime) || overallTime < TimeSpan.FromHours(_cfg.GetCVar(CCVars.VotekickEligibleVoterPlaytime)))
+                    // Sunrise-Start
+                    if (!TryGetOverallPlaytime(player, out var overallTime) ||
+                        overallTime < TimeSpan.FromHours(_cfg.GetCVar(CCVars.VotekickEligibleVoterPlaytime)))
                         return false;
+                    // Sunrise-End
 
                     if ((int)_timing.RealTime.Subtract(ghostComp.TimeOfDeath).TotalSeconds < _cfg.GetCVar(CCVars.VotekickEligibleVoterDeathtime))
                         return false;
@@ -539,13 +542,37 @@ namespace Content.Server.Voting.Managers
 
             if (eligibility == VoterEligibility.MinimumPlaytime)
             {
-                var playtime = _playtimeManager.GetPlayTimes(player);
-                if (!playtime.TryGetValue(PlayTimeTrackingShared.TrackerOverall, out TimeSpan overallTime) || overallTime < TimeSpan.FromHours(_cfg.GetCVar(CCVars.VotekickEligibleVoterPlaytime)))
+                // Sunrise-Start
+                if (!TryGetOverallPlaytime(player, out var overallTime) ||
+                    overallTime < TimeSpan.FromHours(_cfg.GetCVar(CCVars.VotekickEligibleVoterPlaytime)))
                     return false;
+                // Sunrise-End
             }
 
             return true;
         }
+
+        // Sunrise added start - безопасно читаем playtime без InvalidOperationException
+        /// <summary>
+        /// Safely retrieves the overall playtime for a player.
+        /// Returns false if playtime data has not been loaded from the database yet,
+        /// instead of throwing InvalidOperationException.
+        /// </summary>
+        private bool TryGetOverallPlaytime(ICommonSession player, out TimeSpan overallTime)
+        {
+            overallTime = default;
+
+            try
+            {
+                var playTimes = _playtimeManager.GetPlayTimes(player);
+                return playTimes.TryGetValue(PlayTimeTrackingShared.TrackerOverall, out overallTime);
+            }
+            catch (InvalidOperationException)
+            {
+                return false;
+            }
+        }
+        // Sunrise added end
 
         public IEnumerable<IVoteHandle> ActiveVotes => _voteHandles.Values;
 

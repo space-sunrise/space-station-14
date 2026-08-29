@@ -16,6 +16,7 @@ namespace Content.Server.Mapping;
 
 public sealed class MappingManager : IPostInjectInit
 {
+#if !FULL_RELEASE
     [Dependency] private readonly IAdminManager _admin = default!;
     [Dependency] private readonly ILogManager _log = default!;
     [Dependency] private readonly IServerNetManager _net = default!;
@@ -26,6 +27,7 @@ public sealed class MappingManager : IPostInjectInit
 
     private ISawmill _sawmill = default!;
     private ZStdCompressionContext _zstd = default!;
+#endif
 
     public void PostInject()
     {
@@ -53,7 +55,7 @@ public sealed class MappingManager : IPostInjectInit
                 return;
             }
 
-            // Sunrise added start - report configurable map save auto-commands before serialization
+            // Sunrise added start - сообщаем настраиваемые автокоманды сохранения карты перед сериализацией
             var autoCommands = _systems.GetEntitySystem<MappingAutoSaveSystem>().GetMapSaveAutoCommandsSummary(mapUid);
             if (autoCommands is not null)
                 _console.WriteLine(session, Loc.GetString("mapping-save-auto-commands", ("commands", autoCommands)));

@@ -1,0 +1,16 @@
+- type: constructionGraph
+  id: ImprovisedModularReceiverGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: receiver
+      steps:
+      - material: Steel
+        amount: 3
+        doAfter: 5
+      - material: Cloth
+        amount: 2
+        doAfter: 3
+  - node: receiver
+    entity: ImprovisedModularReceiver

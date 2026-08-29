@@ -6,7 +6,7 @@
   physicalDesc: reagent-physical-desc-glowing
   color: "#59b23a"
   metabolisms:
-    Medicine:
+    Bloodstream:
       metabolismRate: 250
       effects:
       - !type:Polymorph
@@ -113,7 +113,7 @@
         emote: Scream
         probability: 0.5
   metabolisms:
-    Poison:
+    Bloodstream:
       metabolismRate : 3.00
       effects:
       - !type:HealthChange
@@ -128,3 +128,19 @@
       - !type:Emote
         emote: Scream
         probability: 0.3
+
+- type: reagent
+  id: UE
+  name: reagent-name-universal-evaporator
+  group: Special
+  desc: reagent-desc-universal-evaporator
+  physicalDesc: reagent-physical-desc-bubbling
+  color: "#4B0082"
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 1.5
+            Radiation: 2.5

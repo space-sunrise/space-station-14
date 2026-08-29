@@ -67,6 +67,10 @@
   background: /NetTextures/Lobby/Arts/space-mudaki.webp
 
 - type: lobbyArt
+  id: TajarmaParty
+  background: /NetTextures/Lobby/Arts/tajarmaparty.webp
+
+- type: lobbyArt
   id: Traitor
   background: /NetTextures/Lobby/Arts/traitor.webp
 
@@ -157,6 +161,10 @@
 - type: lobbyArt
   id: NukieWar
   background: /NetTextures/Lobby/Arts/nukie-war.webp
+
+- type: lobbyArt
+  id: GiftAnomaly
+  background: /NetTextures/Lobby/Arts/gift-anomaly.webp
 
 # region New Year
 - type: lobbyArt

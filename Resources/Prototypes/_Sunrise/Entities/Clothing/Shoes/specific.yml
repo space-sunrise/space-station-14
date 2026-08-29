@@ -108,3 +108,13 @@
   - type: FootstepModifier
     footstepSoundCollection:
       collection: BarestepHard
+
+- type: entity
+  parent: ClothingShoesChameleon
+  id: ClothingShoesChameleonSilent
+  suffix: Chameleon, Silent
+  name: black shoes
+  description: Stylish black shoes.
+  components:
+  - type: FootstepModifier
+    footstepSoundCollection: null

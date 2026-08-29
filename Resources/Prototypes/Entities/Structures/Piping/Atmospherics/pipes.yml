@@ -63,8 +63,11 @@
   - type: Physics
     canCollide: false
     bodyType: static
-  - type: PlacementReplacement # Sunrise-Edit
-    key: atmos_pipes_primary
+  # Sunrise edit start - mapping replacement rules
+  - type: MappingReplacement
+    usePrototypeId: true
+    requireSameRotation: true
+  # Sunrise edit end
   - type: StaticPrice
     price: 30
   # Sunrise-start

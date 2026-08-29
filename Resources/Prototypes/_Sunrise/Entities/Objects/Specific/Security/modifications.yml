@@ -37,6 +37,25 @@
     - Metal
 
 - type: entity
+  parent: BaseItem
+  id: ImprovisedModularReceiver
+  name: improvised modular receiver
+  description: A crude but functional receiver cobbled together from scrap.
+  components:
+  - type: Item
+    storedRotation: -90
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/improvised_modular_receiver.rsi
+    state: icon
+  - type: Construction
+    graph: ImprovisedModularReceiverGraph
+    node: receiver
+  - type: Tag
+    tags:
+    - ImprovisedModularReceiver
+    - Metal
+
+- type: entity
   id: DrozdUpgrade
   name: upgrade kit (Drozd)
   parent: BaseSecurityUpgrade
@@ -53,6 +72,16 @@
   - type: Tag
     tags:
     - UpgradeLecter
+
+- type: entity
+  id: LecterMk3Upgrade
+  name: Lecter Mk3 kit
+  description: An advanced modification kit that converts a Lecter Mk2 into a Lecter Mk3.
+  parent: BaseSecurityUpgrade
+  components:
+  - type: Tag
+    tags:
+    - UpgradeLecterMk3
 
 - type: entity
   name: G.O.R.I.L.L.A. gauntlet upgrade chip

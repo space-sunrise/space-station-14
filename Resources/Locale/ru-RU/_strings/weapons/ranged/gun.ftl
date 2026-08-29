@@ -8,7 +8,7 @@ gun-set-fire-mode = Выбран режим { $mode }
 gun-alert-level-condition = Слишком низкий станционный код для этого режима стрельбы!
 gun-magazine-whitelist-fail = Это не помещается в оружие!
 gun-magazine-fired-empty = Патронов не осталось!
-gun-Insulated-gloves = У вас слишком толстые пальцы чтобы нажать курок!
+gun-Insulated-gloves = У вас слишком толстые пальцы чтобы нажать спуск!
 # SelectiveFire
 gun-SemiAuto = полуавто
 gun-Burst = очередь
@@ -60,3 +60,7 @@ gun-revolver-spin = Вращать барабан
 gun-revolver-spun = Барабан вращается
 gun-speedloader-empty = Спидлоадер пуст
 examine-weapon-dismantle-on-shoot = Оружие может развалиться при выстреле ([color=yellow]{ $chance }%[/color]).
+gun-set-fire-mode-examine = Установлен режим [color=yellow]{$mode}[/color].
+gun-set-fire-mode-popup = Изменено на {$mode}
+examine-gun-spread-modifier-reduction = Разброс был уменьшен на [color=yellow]{$percentage}%[/color].
+examine-gun-spread-modifier-increase = Разброс был увеличен на [color=yellow]{$percentage}%[/color].

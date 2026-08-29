@@ -12,6 +12,8 @@
   recipeUnlocks:
   - WeaponProtoKineticAccelerator
   - ShuttleGunKineticCircuitboard
+  - WeaponProtoKineticRepeater # Sunrise-Add
+  - WeaponProtoKineticShotgun # Sunrise-Add
   - MechEquipmentKineticAccelerator # Sunrise-Add
   - BorgModuleMiningCombat # Sunrise-Add
   # These are roundstart but not replenishable for salvage
@@ -60,8 +62,7 @@
   - WeaponLaserCarbine
   # Sunrise-Start
   - WeaponMechCombatFiredartLaser
-  - WeaponEnergyGun
-  - WeaponMiniEnergyGun
+  - WeaponSunriseLaserPistol
   # Sunrise-End
 
 - type: technology
@@ -101,7 +102,6 @@
   - MagazinePistolSubMachineGunUranium
   - MagazineLightRifleUranium
   - SpeedLoaderMagnumUranium
-  - MagazineMagnumUranium
   - MagazineBoxPistolUranium
   - MagazineBoxMagnumUranium
   - MagazineBoxLightRifleUranium
@@ -229,10 +229,9 @@
   - ShellFlashArtillery # Sunrise-Edit
   - ShellBlastArtillery # Sunrise-Edit
   - ShellFragArtillery # Sunrise-Add
+  - RifleHeavyMagazineEmpty # Sunrise-Add
   - RifleHeavyMagazineFMJ # Sunrise-Add
-  - RifleHeavyMagazineHP # Sunrise-Add
   - RifleHeavyMagazineSP # Sunrise-Add
-  - RifleHeavyMagazineArtillery # Sunrise-Add
   - ShuttleGunSvalinnMachineGunCircuitboard
   - ShuttleGunPerforatorCircuitboard
   - ShuttleGunFriendshipCircuitboard
@@ -317,8 +316,16 @@
   #- MagazineBoxBelt127Blast # To much
   - MagazineBoxBelt127Frag
   - MagazineBoxBelt127Emp
+  - RifleHeavyMagazineAP # Sunrise-Add
+  - RifleHeavyMagazineIncendiary # Sunrise-Add
+  - RifleHeavyMagazineUranium # Sunrise-Add
   # Sunrise-end
   technologyPrerequisites:
   - BasicShuttleArmament
+  # Sunrise-start
+  - ArmorPenetrationMunitions
+  - DraconicMunitions
+  - UraniumMunitions
+  # Sunrise-end
   radioChannels: # Sunrise-Add
   - Security

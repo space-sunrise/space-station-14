@@ -38,6 +38,9 @@
     - BaseStationCryoTeleport
     - BaseStationMeteorSwarmTarget
     - BaseStationRandomXenoArtifact
+    - BaseStationCriminalRecords
+    - BaseStationCorporateLaw
+    - BaseStationMainStation
   # Sunrise-End
   components:
     - type: Transform
@@ -56,6 +59,7 @@
     - BaseStationImmortal
     - BaseStationDontSelling
     - BaseStationCryoTeleport
+    - BaseStationCorporateLaw # Sunrise-Edit
     # Sunrise-End
   components:
     - type: Transform
@@ -70,6 +74,7 @@
   - BaseStationJobsSpawning
   - BaseStationRecords
   - BaseStationNanotrasen
+  - BaseStationCorporateLaw # Sunrise-Edit
   categories: [ HideSpawnMenu ]
   components:
     - type: Transform

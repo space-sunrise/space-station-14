@@ -88,7 +88,7 @@ public sealed class SpraySystem : SharedSpraySystem
 
     public override void Spray(Entity<SprayComponent> entity, MapCoordinates mapcoord, EntityUid? user = null)
     {
-        if (!_solutionContainer.TryGetSolution(entity.Owner, SprayComponent.SolutionName, out var soln, out var solution))
+        if (!_solutionContainer.TryGetSolution(entity.Owner, entity.Comp.Solution, out var soln, out var solution))
             return;
 
         var ev = new SprayAttemptEvent(user);
@@ -117,7 +117,7 @@ public sealed class SpraySystem : SharedSpraySystem
         var clickMapPos = mapcoord;
 
         var diffPos = clickMapPos.Position - sprayerMapPos.Position;
-        if (diffPos == Vector2.Zero || diffPos == Vector2Helpers.NaN)
+        if (diffPos == Vector2.Zero || !diffPos.IsValid())
             return;
 
         var diffNorm = diffPos.Normalized();

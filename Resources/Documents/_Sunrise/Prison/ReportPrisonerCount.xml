@@ -1,28 +1,35 @@
-<Document>
-[head=2][color=#4d1f1f][bold]Отчёт о численности заключённых[/bold][/color][/head]
-[color=#8a3a3a][bold]{corpString}[/bold][/color][mono] / КТК-КОД[/mono]
-[color=#666666][bold]Станция:[/bold][/color] {stationName}
-[color=#666666][bold]Время:[/bold][/color] {timeString}
+﻿<Document>
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+                                  [color=#1B2333][bold]ОТЧЁТ[/bold][/color]
+[color=#4A4F5D][mono]────────────────────────────────────────────[/mono][/color]
+[mono][color=#1E4C7A][bold]{corpString} / КТК-[form="КОД"][/bold][/color][/mono]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[bold][color=#4D5F80]Станция:[/color] [color=#1B2333]{stationName}[/color][/bold]
+[bold][color=#4D5F80]Время:[/color] [color=#1B2333]{timeString}[/color][/bold]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[color=#1B2333][bold]Составитель[/bold][/color]
+[bold][color=#4D5F80]Имя и Фамилия:[/color][/bold] [color=#0F5E2B][bold][signature="Имя и Фамилия"][/bold][/color]
+[bold][color=#4D5F80]Должность:[/color][/bold] [color=#7A4A00][bold][job="Должность"][/bold][/color]
 
-[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
-[color=#8a3a3a][bold]Составитель[/bold][/color]
-[mono]ФИО:      [/mono]
-[mono]Должность:[/mono]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+[color=#1B2333][bold]Отчёт о численности заключённых[/bold][/color]
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
 
-[color=#9a9a9a][mono]────────────────────────────────[/mono][/color]
-[color=#8a3a3a][bold]Отчёт[/bold][/color]
+[bold]Отчёт:[/bold]
+Состояние заключённых: [form="Состояние заключённых"]
 
-Состояние заключённых:
+Количество заключённых: [form="Количество заключённых"]
 
-Количество заключённых:
+Количество свободных/не заполненных камер: [form="Количество свободных/не заполненных камер"]
 
-Количество свободных/не заполненных камер:
+Состояние камер: [form="Состояние камер"]
 
-Состояние камер:
+Количество попыток побега: [form="Количество попыток побега"]
 
-Количество попыток побега:
+[mono][color=#4A4F5D]════════════════════════════════════════════[/color][/mono]
+                     [italic][color=#5A616F]Место для печатей[/color][/italic]
 
-[color=#666666][italic]Место для печатей[/italic][/color]
+
 
 
 </Document>

@@ -1,50 +1,54 @@
 - type: latheRecipe
-  id: WeaponEnergyGun
-  result: WeaponEnergyGun
-  categories:
-  - Weapons
-  completetime: 8
-  materials:
-    Steel: 2000
-    Glass: 800
-    Plastic: 500
-
-- type: latheRecipe
   id: WeaponMiniEnergyGun
   result: WeaponMiniEnergyGun
   categories:
   - Weapons
   completetime: 4
   materials:
-    Steel: 1000
-    Glass: 400
-    Plastic: 250
+    Steel: 600
+    Glass: 200
+    Plastic: 50
 
 - type: latheRecipe
   id: WeaponEnergyGunPistol
   result: WeaponEnergyGunPistol
   categories:
   - Weapons
-  completetime: 10
+  completetime: 5
   materials:
-    Steel: 1500
-    Glass: 600
-    Plastic: 400
-    Gold: 150
+    Steel: 1000
+    Glass: 400
+    Plastic: 200
 
 - type: latheRecipe
-  id: WeaponGunLaserCarbineAutomatic
-  result: WeaponGunLaserCarbineAutomatic
-  categories:
-  - Weapons
-  completetime: 15
+  parent: BaseWeaponRecipeLong
+  id: WeaponLaserLNT620
+  result: SunriseWeaponLaserLNT620Empty
   materials:
     Steel: 2000
-    Glass: 1000
+    Gold: 900
+    Glass: 400
+    Plastic: 600
+
+- type: latheRecipe
+  parent: BaseWeaponRecipeLong
+  id: SunriseWeaponLaserCarbineBattery
+  result: SunriseWeaponLaserCarbineBattery
+  materials:
+    Steel: 2000
+    Glass: 800
     Plastic: 500
-    Gold: 250
-    Silver: 100
-    Plasma: 500
+
+- type: latheRecipe
+  id: WeaponSunriseLaserPistol
+  result: WeaponSunriseLaserPistol
+  categories:
+  - Weapons
+  completetime: 5
+  materials:
+    Steel: 1000
+    Glass: 400
+    Plastic: 200
 
 - type: latheRecipe
   parent: BaseWeaponRecipeSidearm
@@ -56,15 +60,15 @@
     Plastic: 50
     Steel: 250
 
-- type: latheRecipe
-  id: ModularReceiverAuto
-  result: ModularReceiverAuto
-  categories:
-  - Weapons
-  completetime: 10
-  materials:
-    Steel: 500
-    Plastic: 50
+# - type: latheRecipe # Not use right now
+#   id: ModularReceiverAuto
+#   result: ModularReceiverAuto
+#   categories:
+#   - Weapons
+#   completetime: 10
+#   materials:
+#     Steel: 500
+#     Plastic: 50
 
 - type: latheRecipe
   id: DrozdUpgrade
@@ -87,6 +91,18 @@
     Steel: 150
     Plastic: 300
     Gold: 50
+
+- type: latheRecipe
+  id: LecterMk3Upgrade
+  result: LecterMk3Upgrade
+  categories:
+  - Weapons
+  completetime: 24
+  materials:
+    Steel: 300
+    Plastic: 600
+    Gold: 100
+    Plasma: 100
 
 - type: latheRecipe
   id: EnergyDomeDirectionalTurtle
@@ -265,14 +281,13 @@
   result: ImplantCaseMantisBladeMaxGuard
   categories:
   - Cyberlimbs
-  completetime: 50
+  completetime: 25
   materials:
-    Steel: 1750
-    Plastic: 550
-    Silver: 250
-    Gold: 250
-    Glass: 300
-    Plasma: 200
+    Plastic: 450
+    Steel: 450
+    Silver: 100
+    Glass: 100
+    Plasma: 100
     Diamond: 200
     Uranium: 50
 
@@ -282,62 +297,53 @@
   result: ImplantCaseGrenadeThrower
   categories:
   - Cyberlimbs
-  completetime: 50
+  completetime: 25
   materials:
-    Plastic: 550
-    Steel: 2050
-    Silver: 250
-    Gold: 250
+    Plastic: 450
+    Steel: 450
+    Silver: 100
     Glass: 100
-
+    Plasma: 100
+    Uranium: 200
 #
 - type: latheRecipe
   id: ImplantCaseLaserEmitter
   result: ImplantCaseLaserEmitter
   categories:
   - Cyberlimbs
-  completetime: 50
+  completetime: 25
   materials:
-    Plastic: 550
-    Steel: 1850
-    Silver: 250
-    Gold: 250
-    Glass: 400
-    Diamond: 100
-    Uranium: 250
-    Plasma: 250
+    Plastic: 450
+    Steel: 450
+    Silver: 100
+    Glass: 100
+    Plasma: 100
 #
 - type: latheRecipe
   id: ImplantCaseBulwark
   result: ImplantCaseBulwark
   categories:
   - Cyberlimbs
-  completetime: 50
+  completetime: 25
   materials:
-    Plastic: 550
-    Steel: 1650
-    Silver: 250
-    Gold: 250
-    Glass: 250
-    Diamond: 300
-    Uranium: 250
-    Plasma: 250
+    Plastic: 450
+    Steel: 450
+    Silver: 100
+    Glass: 100
+    Plasma: 100
 #
 - type: latheRecipe
   id: ImplantCaseBonesaw
   result: ImplantCaseBonesaw
   categories:
   - Cyberlimbs
-  completetime: 50
+  completetime: 25
   materials:
-    Plastic: 550
-    Steel: 1850
-    Silver: 250
-    Gold: 250
-    Glass: 200
-    Diamond: 300
-    Uranium: 250
-    Plasma: 250
+    Plastic: 450
+    Steel: 450
+    Silver: 100
+    Glass: 100
+    Plasma: 100
 
 # Clothing
 - type: latheRecipe
@@ -532,3 +538,14 @@
     Plastic: 500
     Gold: 500
     Uranium: 400
+
+- type: latheRecipe
+  parent: BaseWeaponRecipeLong
+  id: WeaponDecloner
+  result: WeaponDecloner
+  materials:
+    Steel: 2000
+    Glass: 1000
+    Plastic: 750
+    Gold: 600
+    Uranium: 600

@@ -87,6 +87,26 @@
 
 - type: entity
   parent: Doubloon
+  id: Doubloon20
+  name: Doubloon
+  suffix: 20 DB
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Stack
+    count: 20
+
+- type: entity
+  parent: Doubloon
+  id: Doubloon29
+  name: Doubloon
+  suffix: 29 DB
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Stack
+    count: 29
+
+- type: entity
+  parent: Doubloon
   id: Doubloon50
   name: Doubloon
   suffix: 50 DB
@@ -137,7 +157,7 @@
       Doubloon: 9999
 
 - type: entity
-  parent: [BaseComputerSunrise, StorePresetPirateUplink]
+  parent: [BaseComputerSunriseUniqueFrame, StorePresetPirateUplink]
   id: ComputerPirateUplink
   name: black market console
   description: An old, rusted console barely held together by loose wiring and luck. The screen flickers, but the black market network still responds to requests.
@@ -157,11 +177,12 @@
     energy: 1.6
     color: "#c99342"
   - type: AccessReader
-    access: [[ "NuclearOperative" ]]
+    access: [[ "Pirate" ]]
   - type: UserInterface
     interfaces:
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
+  - type: ActivatableUIRequiresAccess
   - type: ActivatableUI
     key: enum.StoreUiKey.Key
   - type: Store
@@ -188,7 +209,7 @@
 
 # Exchanger
 - type: entity
-  parent: [BaseComputerSunrise, StorePresetPirateExchanger]
+  parent: [BaseComputerSunriseUniqueFrame, StorePresetPirateExchanger]
   id: ComputerPirateExchanger # Обменник для Пиратской бухты и прочих логовищ
   name: black market exchanger
   description: An old, rusted console barely held together by loose wiring and luck. The screen flickers, but the black market network still responds to requests.
@@ -254,3 +275,36 @@
   - type: Tag
     tags:
     - Commission
+
+- type: entity
+  parent: ComputerPirateUplink
+  id: ComputerPirateUplinkExpedition
+  suffix: Expedition
+  components:
+  - type: RadarBlip
+    color: "#ffb000"
+    scale: 0.45
+    shape: Square
+    requireInSpace: false
+
+- type: entity
+  parent: ComputerPirateExchanger
+  id: ComputerPirateExchangerExpedition
+  suffix: Expedition
+  components:
+  - type: RadarBlip
+    color: "#ffb000"
+    scale: 0.45
+    shape: Square
+    requireInSpace: false
+
+- type: entity
+  parent: ComputerPirateExchangerWallmount
+  id: ComputerPirateExchangerWallmountExpedition
+  suffix: Expedition
+  components:
+  - type: RadarBlip
+    color: "#ffb000"
+    scale: 0.45
+    shape: Square
+    requireInSpace: false

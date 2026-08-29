@@ -29,3 +29,19 @@
       - EncryptionKeyUSSP
       - EncryptionKeyUSSPSec
       - EncryptionKeyUSSPCom
+
+- type: entity
+  parent: TelecomServer
+  id: TelecomServerT2
+  name: advanced telecommunication server
+  components:
+  - type: Machine
+    board: TelecomServerT2Circuitboard
+
+- type: entity
+  parent: TelecomServer
+  id: TelecomServerT3
+  name: experimental telecommunication server
+  components:
+  - type: Machine
+    board: TelecomServerT3Circuitboard

@@ -1,0 +1,417 @@
+- type: tutorialSequence
+  id: IntroductionTutorial
+  duration: 540
+  estimatedDuration:
+    minimum: 180
+    maximum: 420
+  priority: 0
+  name: introduction-tutorial-name
+  tooltip: introduction-tutorial-tooltip
+  texture: /Textures/_Sunrise/Tutorial/introduction_tutorial.png
+  grid: /Maps/_Sunrise/Tutorials/introduction_tutorial.yml
+  playerEntity: IntroductionTutorialPlayer
+  steps:
+  # Приветствие и обзор туториала
+  - IntroTutWelcome
+  #  1. Movement basics
+  - IntroTutWalk
+  #  2. Learn to swap hands
+  - IntroTutSwapHands
+  #  3. Explain the left item status panel
+  - IntroTutLeftStatusPanel
+  #  4. Go to locker room
+  - IntroTutGoLockerRoom
+  #  5. Examine clothing vending machine
+  - IntroTutExamineClothingVendor
+  #  6. Open clothing vending machine
+  - IntroTutOpenClothingVendor
+  #  7. Take clothing from vending machine
+  - IntroTutTakeClothing
+  #  8. Explain inventory
+  - IntroTutInventory
+  #  9. Take the beret in hand
+  - IntroTutHoldBeret
+  # 10. Equip new clothing
+  - IntroTutEquipClothing
+  # 11. Point at an entity
+  - IntroTutPointClothingVendor
+  # 12. Drop old clothing (skipped if nothing in hand)
+  - IntroTutDropOldClothing
+  # 13. Go to the center
+  - IntroTutGoCenter
+  # 14. Sit on a chair
+  - IntroTutSitChair
+  # 15. Stand up from the chair
+  - IntroTutStandFromChair
+  # 16. Pull a chair
+  - IntroTutPullChair
+  # 17. Release the chair
+  - IntroTutReleaseChair
+  # 18. Lie down and stand up
+  - IntroTutLieDownStandUp
+  # 19. Explain action bar
+  - IntroTutActionBar
+  # 20. Mentor help
+  - TutorialMHelp
+
+
+# ─── Step definitions ──────────────────────────────────────────────────────────
+
+- type: tutorialStep
+  id: IntroductionTutorialStepBase
+  parent: BaseTutorialStepBase
+  abstract: true
+  effects:
+  - !type:TutorialComponentEffect
+    components:
+    - type: TutorialPickupSoftLock
+      blockAll: true
+    - type: TutorialBuckleSoftLock
+
+- type: tutorialStep
+  id: IntroductionTutorialBeretStepBase
+  parent: BaseTutorialStepBase
+  abstract: true
+  effects:
+  - !type:TutorialComponentEffect
+    components:
+    - type: TutorialPickupSoftLock
+      allowedItems:
+      - ClothingHeadHatBeret
+    - type: TutorialBuckleSoftLock
+
+- type: tutorialStep
+  id: IntroductionTutorialSeatStepBase
+  parent: BaseTutorialStepBase
+  abstract: true
+  effects:
+  - !type:TutorialComponentEffect
+    components:
+    - type: TutorialPickupSoftLock
+      blockAll: true
+
+# Приветствие и обзор туториала
+- type: tutorialStep
+  id: IntroTutWelcome
+  parent: IntroductionTutorialStepBase
+  bubble:
+    text: intro-tut-welcome-bubble
+  chatMessage: intro-tut-welcome-chat
+  ttsMessage: intro-tut-welcome-tts
+  conditions:
+  - !type:StepDelayCondition
+    delay: 13
+
+#  1. Walk around to learn movement
+- type: tutorialStep
+  id: IntroTutWalk
+  parent:
+  - BaseTutorialMovementStepBase
+  - IntroductionTutorialStepBase
+  bubble:
+    text: intro-tut-walk-bubble
+
+#  2. Learn to swap hands (placed after walk so player already has the item context)
+- type: tutorialStep
+  id: IntroTutSwapHands
+  parent: IntroductionTutorialStepBase
+  bubble:
+    text: intro-tut-swap-hands-bubble
+  chatMessage: intro-tut-swap-hands-chat
+  ttsMessage: intro-tut-swap-hands-tts
+  uiHighlight:
+  - !type:UiByName
+    name: Hotbar
+  - !type:UiByName
+    name: HandContainer
+  conditions:
+  - !type:SwapHandsListenedCondition
+
+#  3. Explain the left item status panel
+- type: tutorialStep
+  id: IntroTutLeftStatusPanel
+  parent: IntroductionTutorialStepBase
+  bubble:
+    text: intro-tut-left-status-panel-bubble
+  chatMessage: intro-tut-left-status-panel-chat
+  ttsMessage: intro-tut-left-status-panel-tts
+  uiHighlight:
+  - !type:UiByName
+    name: Hotbar
+  - !type:UiByName
+    name: StatusPanelLeft
+  conditions:
+  - !type:StepDelayCondition
+    delay: 8
+
+#  4. Head to the locker room
+- type: tutorialStep
+  id: IntroTutGoLockerRoom
+  parent: IntroductionTutorialStepBase
+  target: IntroTutMarkerLockerRoom
+  bubble:
+    text: intro-tut-go-locker-room-bubble
+  chatMessage: intro-tut-go-locker-room-chat
+  ttsMessage: intro-tut-go-locker-room-tts
+  observeRange: 30
+  conditions:
+  - !type:ReachMarkerCondition
+    marker: IntroTutMarkerLockerRoom
+    distance: 2
+
+#  5. Examine the clothing vending machine
+- type: tutorialStep
+  id: IntroTutExamineClothingVendor
+  parent: IntroductionTutorialStepBase
+  target: VendingMachineClothing
+  bubble:
+    text: intro-tut-examine-clothing-vendor-bubble
+    attachToTarget: true
+  effects:
+  - !type:TutorialComponentEffect
+    components:
+    - type: TutorialOpenUiSoftLock
+      targets:
+      - VendingMachineClothing
+      popup: int-tut-softlock-open-ui
+  chatMessage: intro-tut-examine-clothing-vendor-chat
+  ttsMessage: intro-tut-examine-clothing-vendor-tts
+  observeRange: 12
+  conditions:
+  - !type:ExamineListenedCondition
+    target: VendingMachineClothing
+
+#  6. Open the clothing vending machine
+- type: tutorialStep
+  id: IntroTutOpenClothingVendor
+  parent: IntroductionTutorialStepBase
+  target: VendingMachineClothing
+  bubble:
+    text: intro-tut-open-clothing-vendor-bubble
+    attachToTarget: true
+  chatMessage: intro-tut-open-clothing-vendor-chat
+  ttsMessage: intro-tut-open-clothing-vendor-tts
+  observeRange: 12
+  conditions:
+  - !type:BuiOpenListenedCondition
+    target: VendingMachineClothing
+
+#  7. Take any clothing from the vending machine
+- type: tutorialStep
+  id: IntroTutTakeClothing
+  parent: IntroductionTutorialBeretStepBase
+  target: VendingMachineClothing
+  bubble:
+    text: intro-tut-take-clothing-bubble
+    attachToTarget: true
+  uiHighlight:
+  - !type:UiByType
+    controlType: VendingMachineMenu
+  - !type:UiByName
+    name: VendingContents
+  - !type:UiByEntityPrototype
+    prototype: ClothingHeadHatBeret
+  chatMessage: intro-tut-take-clothing-chat
+  ttsMessage: intro-tut-take-clothing-tts
+  observeRange: 12
+  conditions:
+  - !type:VendingMachineTakeListenedCondition
+    target: VendingMachineClothing
+    itemTarget: ClothingHeadHatBeret
+
+#  8. Explain inventory
+- type: tutorialStep
+  id: IntroTutInventory
+  parent: IntroductionTutorialStepBase
+  bubble:
+    text: intro-tut-inventory-bubble
+  chatMessage: intro-tut-inventory-chat
+  ttsMessage: intro-tut-inventory-tts
+  uiHighlight:
+  - !type:UiByName
+    name: Inventory
+  - !type:UiByName
+    name: InventoryButton
+  conditions:
+  - !type:UiControlVisibleCondition
+    control: InventoryHeadSlot
+    selectors:
+    - !type:UiByName
+      name: Inventory
+    - !type:UiByName
+      name: SlotButton_head
+
+#  9. Take the beret in hand
+- type: tutorialStep
+  id: IntroTutHoldBeret
+  parent: IntroductionTutorialBeretStepBase
+  target: ClothingHeadHatBeret
+  bubble:
+    text: intro-tut-hold-beret-bubble
+    attachToTarget: true
+  chatMessage: intro-tut-hold-beret-chat
+  ttsMessage: intro-tut-hold-beret-tts
+  observeRange: 12
+  uiHighlight:
+  - !type:UiByEntityPrototype
+    prototype: ClothingHeadHatBeret
+  conditions:
+  - !type:ActiveHandContainsCondition
+    item: ClothingHeadHatBeret
+
+# 10. Equip the new clothing
+- type: tutorialStep
+  id: IntroTutEquipClothing
+  parent: IntroductionTutorialStepBase
+  bubble:
+    text: intro-tut-equip-clothing-bubble
+  chatMessage: intro-tut-equip-clothing-chat
+  ttsMessage: intro-tut-equip-clothing-tts
+  uiHighlight:
+  - !type:UiByName
+    name: Inventory
+  - !type:UiByName
+    name: SlotButton_head
+  conditions:
+  - !type:EquipListenedCondition
+    target: ClothingHeadHatBeret
+    slot: HEAD
+
+# 11. Point at a nearby entity
+- type: tutorialStep
+  id: IntroTutPointClothingVendor
+  parent: IntroductionTutorialStepBase
+  target: VendingMachineClothing
+  bubble:
+    text: intro-tut-point-clothing-vendor-bubble
+    attachToTarget: true
+  chatMessage: intro-tut-point-clothing-vendor-chat
+  ttsMessage: intro-tut-point-clothing-vendor-tts
+  observeRange: 12
+  conditions:
+  - !type:PointListenedCondition
+
+# 12. Drop the old clothing item (skipped if the player has nothing in hand)
+- type: tutorialStep
+  id: IntroTutDropOldClothing
+  parent: IntroductionTutorialStepBase
+  bubble:
+    text: intro-tut-drop-old-clothing-bubble
+  chatMessage: intro-tut-drop-old-clothing-chat
+  ttsMessage: intro-tut-drop-old-clothing-tts
+  conditions: []
+  anyConditions:
+  - !type:DropListenedCondition
+  - !type:HoldInHandsCondition
+    inverted: true
+
+# 13. Go to the center of the location
+- type: tutorialStep
+  id: IntroTutGoCenter
+  parent: IntroductionTutorialStepBase
+  target: IntroTutMarkerCenter
+  bubble:
+    text: intro-tut-go-center-bubble
+  chatMessage: intro-tut-go-center-chat
+  ttsMessage: intro-tut-go-center-tts
+  observeRange: 30
+  conditions:
+  - !type:ReachMarkerCondition
+    marker: IntroTutMarkerCenter
+    distance: 2
+
+# 14. Sit on a chair
+- type: tutorialStep
+  id: IntroTutSitChair
+  parent: IntroductionTutorialSeatStepBase
+  target: Chair
+  bubble:
+    text: intro-tut-sit-chair-bubble
+    attachToTarget: true
+  chatMessage: intro-tut-sit-chair-chat
+  ttsMessage: intro-tut-sit-chair-tts
+  observeRange: 12
+  conditions:
+  - !type:SitListenedCondition
+    target: Chair
+
+# 15. Stand up from the chair
+- type: tutorialStep
+  id: IntroTutStandFromChair
+  parent: IntroductionTutorialSeatStepBase
+  target: Chair
+  bubble:
+    text: intro-tut-stand-from-chair-bubble
+    attachToTarget: true
+  chatMessage: intro-tut-stand-from-chair-chat
+  ttsMessage: intro-tut-stand-from-chair-tts
+  observeRange: 12
+  conditions:
+  - !type:BuckledCondition
+    buckled: false
+
+# 16. Pull a chair
+- type: tutorialStep
+  id: IntroTutPullChair
+  parent: IntroductionTutorialStepBase
+  target: Chair
+  bubble:
+    text: intro-tut-pull-chair-bubble
+    attachToTarget: true
+  chatMessage: intro-tut-pull-chair-chat
+  ttsMessage: intro-tut-pull-chair-tts
+  observeRange: 12
+  conditions:
+  - !type:PullingCondition
+    target: Chair
+
+# 17. Release the chair
+- type: tutorialStep
+  id: IntroTutReleaseChair
+  parent: IntroductionTutorialStepBase
+  target: Chair
+  bubble:
+    text: intro-tut-release-chair-bubble
+    attachToTarget: true
+  chatMessage: intro-tut-release-chair-chat
+  ttsMessage: intro-tut-release-chair-tts
+  observeRange: 12
+  conditions:
+  - !type:PullingCondition
+    target: Chair
+    inverted: true
+
+# 18. Lie down and stand up
+- type: tutorialStep
+  id: IntroTutLieDownStandUp
+  parent: IntroductionTutorialStepBase
+  bubble:
+    text: intro-tut-lie-down-stand-up-bubble
+  chatMessage: intro-tut-lie-down-stand-up-chat
+  ttsMessage: intro-tut-lie-down-stand-up-tts
+  conditions:
+  - !type:LieDownStandUpListenedCondition
+    count: 2
+
+# 19. Explain action bar
+- type: tutorialStep
+  id: IntroTutActionBar
+  parent: IntroductionTutorialStepBase
+  bubble:
+    text: intro-tut-action-bar-bubble
+  chatMessage: intro-tut-action-bar-chat
+  ttsMessage: intro-tut-action-bar-tts
+  uiHighlight:
+  - !type:UiByName
+    name: Actions
+  - !type:UiByName
+    name: ActionsContainer
+  conditions:
+  - !type:StepDelayCondition
+    delay: 10
+
+- type: entity
+  parent: BaseTutorialPlayer
+  id: IntroductionTutorialPlayer
+  components:
+  - type: Godmode
