@@ -4782,10 +4782,3 @@
     message: Добавлен крафт кнопки с замком
   id: 2023
   url: https://github.com/makura-games/sunrise-station/pull/4662
-- author: dng-cher
-  time: '2026-08-25T08:36:00.0000000+00:00'
-  changes:
-  - type: Add
-    message: Добавлен ввод HEX цветов в окно декалей
-  id: 2024
-  url: https://github.com/makura-games/sunrise-station/pull/4760
