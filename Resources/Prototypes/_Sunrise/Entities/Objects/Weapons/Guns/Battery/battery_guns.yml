@@ -1018,7 +1018,7 @@
 
 - type: entity
   name: xenoborg temperature gun
-  parent: [SunriseWeaponTemperatureGun, BaseXenoborgContraband]
+  parent: [WeaponTemperatureGun, BaseXenoborgContraband]
   id: XenoborgTemperatureGun
   description: An advanced gun that shoots body-temperature-changing beams. This one has a self-recharging battery for xenoborg use.
   components:
@@ -1130,20 +1130,3 @@
     tags:
     - LaserWeapon
 
-- type: entity
-  parent: WeaponTemperatureGun
-  id: SunriseWeaponTemperatureGun
-  suffix: Sunrise
-  components:
-  - type: BatteryAmmoProvider
-    proto: SunriseBoltTempgunCold
-    fireCost: 100
-  - type: BatteryWeaponFireModes
-    fireModes:
-    - proto: SunriseBoltTempgunCold
-      fireCost: 100
-    - proto: SunriseBoltTempgunHot
-      fireCost: 150
-  - type: Battery
-    maxCharge: 1500
-    startingCharge: 1500

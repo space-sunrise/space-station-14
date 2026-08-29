@@ -550,12 +550,3 @@
     Gold: 600
     Uranium: 600
 
-- type: latheRecipe
-  parent: BaseWeaponRecipeLong
-  id: SunriseWeaponTemperatureGun
-  result: SunriseWeaponTemperatureGun
-  materials:
-    Steel: 2000
-    Glass: 500
-    Plastic: 500
-    Gold: 500

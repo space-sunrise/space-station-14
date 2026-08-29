@@ -82,7 +82,7 @@
       entity_storage: !type:AllSelector
         children:
         - id: WeaponIonRifle
-        - id: SunriseWeaponTemperatureGun
+        - id: WeaponTemperatureGun
 
 - type: entity
   parent: GunSafeSuperweaponSecureGamma

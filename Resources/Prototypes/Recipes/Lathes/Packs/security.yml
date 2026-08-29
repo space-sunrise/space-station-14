@@ -142,7 +142,7 @@
   - WeaponLaserCannon
   - WeaponLaserCarbine
   - WeaponXrayCannon
-  - SunriseWeaponTemperatureGun # Sunrise-Edit
+  - WeaponTemperatureGun # Sunrise-Edit
 
 - type: latheRecipePack
   id: SecurityDisablers
