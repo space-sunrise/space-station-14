@@ -382,7 +382,7 @@
       - IndustrialMech
       - CombatMech
   - type: MeleeThrowOnHit
-    distance: 2
+    distance: 1.5
     speed: 10
   - type: MeleeWeapon
     hidden: true
@@ -628,9 +628,6 @@
     pilotWhitelist:
       components:
         - HumanoidProfile
-  - type: MeleeThrowOnHit
-    distance: 2.5
-    speed: 15
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -788,20 +785,17 @@
     pilotWhitelist:
       components:
         - HumanoidProfile
-  - type: MeleeThrowOnHit
-    distance: 4
-    speed: 18
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
     damage:
       types:
-        Blunt: 50
-        Structural: 350
+        Blunt: 45
+        Structural: 300
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 1.5
-    baseSprintSpeed: 2.8
+    baseSprintSpeed: 2
   - type: Loadout
     prototypes: [ MechArmorMediumSyndiLoadout ]
   - type: CanMoveInAir
@@ -816,7 +810,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      400: Critical
+      500: Critical
   - type: AccessReader
     access: [["NuclearOperative"]]
 
@@ -872,9 +866,6 @@
     pilotWhitelist:
       components:
         - HumanoidProfile
-  - type: MeleeThrowOnHit
-    distance: 4
-    speed: 18
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -907,7 +898,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      400: Critical
+      500: Critical
 
 - type: entity
   id: MechDollHouseBattery

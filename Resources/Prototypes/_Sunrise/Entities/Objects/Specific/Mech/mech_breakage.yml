@@ -338,6 +338,9 @@
         node: start
       - !type:DoActsBehavior
         acts: ["Destruction"]
+  - type: MeleeThrowOnHit
+    distance: 1.5
+    speed: 10
 
 - type: entity
   id: MechBreakageDurand
@@ -386,6 +389,17 @@
         node: start
       - !type:DoActsBehavior
         acts: ["Destruction"]
+  - type: TriggerOnMeleeHit
+    targetIsUser: true
+    triggerEveryHit: true
+  - type: KnockdownOnTrigger
+    targetUser: true
+    knockdownAmount: 1
+    autoStand: true
+    drop: false
+  - type: MeleeThrowOnHit
+    distance: 2
+    speed: 18
 
 - type: entity
   id: MechBreakageMarauderFamily
@@ -410,3 +424,14 @@
         node: start
       - !type:DoActsBehavior
         acts: ["Destruction"]
+  - type: TriggerOnMeleeHit
+    targetIsUser: true
+    triggerEveryHit: true
+  - type: KnockdownOnTrigger
+    targetUser: true
+    knockdownAmount: 2
+    autoStand: true
+    drop: false
+  - type: MeleeThrowOnHit
+    distance: 2.5
+    speed: 20

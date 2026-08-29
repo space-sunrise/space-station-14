@@ -708,9 +708,6 @@
     pilotWhitelist:
       components:
         - HumanoidProfile
-  - type: MeleeThrowOnHit
-    distance: 2.5
-    speed: 15
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -780,9 +777,6 @@
     pilotWhitelist:
       components:
         - HumanoidProfile
-  - type: MeleeThrowOnHit
-    distance: 4
-    speed: 18
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -859,9 +853,6 @@
     pilotWhitelist:
       components:
         - HumanoidProfile
-  - type: MeleeThrowOnHit
-    distance: 5
-    speed: 20
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -948,9 +939,6 @@
     pilotWhitelist:
       components:
         - HumanoidProfile
-  - type: MeleeThrowOnHit
-    distance: 5
-    speed: 20
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -1039,9 +1027,6 @@
     pilotWhitelist:
       components:
         - HumanoidProfile
-  - type: MeleeThrowOnHit
-    distance: 3
-    speed: 15
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -1132,9 +1117,6 @@
     pilotWhitelist:
       components:
         - HumanoidProfile
-  - type: MeleeThrowOnHit
-    distance: 5
-    speed: 20
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
