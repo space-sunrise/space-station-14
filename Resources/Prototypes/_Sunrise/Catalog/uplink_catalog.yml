@@ -1866,9 +1866,9 @@
   productEntity: CrateCybersunDarkGygaxBundle
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 35
-  cost:
     Telecrystal: 60
+  cost:
+    Telecrystal: 80
   categories:
   - UplinkMechs
   conditions:
@@ -1908,7 +1908,7 @@
   icon: { sprite: _Sunrise/Objects/Specific/Mech/mecha.rsi, state: mauler }
   productEntity: CrateCybersunMaulerBundle
   cost:
-    Telecrystal: 45
+    Telecrystal: 55
   categories:
   - UplinkMechs
   conditions:
@@ -1930,9 +1930,9 @@
   productEntity: CrateCybersunMaulerBundle
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 60
-  cost:
     Telecrystal: 100
+  cost:
+    Telecrystal: 150
   categories:
   - UplinkMechs
   conditions:
