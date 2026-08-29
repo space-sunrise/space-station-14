@@ -758,17 +758,17 @@
   - type: Sprite
     drawdepth: Mobs
     noRot: true
-    sprite: _Sunrise/Objects/Specific/Mech/durand.rsi # Sunrise-Edit - перенос спрайтов Durand в проектный каталог
+    sprite: _Sunrise/Objects/Specific/Mech/durand.rsi
     scale: 1.08, 1.08
     layers:
-    - map: [ "enum.MechVisualLayers.Base", "movement" ] # Sunrise-Edit - анимация движения Durand
+    - map: [ "enum.MechVisualLayers.Base", "movement" ] # Sunrise-Edit
       state: base
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
       params:
         pitch: 0.6
-  # Sunrise added start - анимация движения Durand
+  # Sunrise-start
   - type: SpriteMovement
     movementLayers:
       movement:
@@ -776,7 +776,12 @@
     noMovementLayers:
       movement:
         state: base
-  # Sunrise added end
+  - type: DamageVisuals
+    thresholds: [ 50, 100, 150, 250, 350 ]
+    trackAllDamage: true
+    damageOverlay:
+      sprite: _Sunrise/Objects/Specific/Mech/durand.rsi
+  # Sunrise-end
   - type: Mech
     baseState: base
     openState: base-open
@@ -803,12 +808,6 @@
   # Sunrise-End
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
-  - type: Reflect
-    reflectProb: 0.10
-    spread: 180
-    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
-    reflects:
-    - NonEnergy
   - type: Tag
     tags:
     - DoorBumpOpener

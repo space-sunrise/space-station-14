@@ -400,6 +400,12 @@
   - type: MeleeThrowOnHit
     distance: 2
     speed: 18
+  - type: Reflect
+    reflectProb: 0.20
+    spread: 180
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
+    reflects:
+    - NonEnergy
 
 - type: entity
   id: MechBreakageMarauderFamily

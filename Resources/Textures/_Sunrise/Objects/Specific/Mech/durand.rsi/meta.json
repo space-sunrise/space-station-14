@@ -1,6 +1,6 @@
 {
-  "copyright" : "Taken from https://github.com/tgstation/tgstation at at https://github.com/tgstation/tgstation/commit/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a, hamtr made by brainfood1183 (github)",
-  "license" : "CC-BY-SA-3.0",
+  "copyright" : "Sprited by .askal02 (discord) for SS14 Makura Games, Warboss states by KaiserMaus (github), rover and dollhouse taken from tg",
+  "license" : "CC-BY-SA-4.0",
   "version": 1,
   "size": {
     "x": 32,
@@ -59,6 +59,13 @@
             0.25,
             0.25,
             0.25,
+            0.25
+            ],
+            [
+            0.25,
+            0.25,
+            0.25,
+            0.25,
             0.25,
             0.25
             ],
@@ -68,20 +75,9 @@
             0.25,
             0.25,
             0.25,
-            0.25,
             0.25
             ],
             [
-            0.25,
-            0.25,
-            0.25,
-            0.25,
-            0.25,
-            0.25,
-            0.25
-            ],
-            [
-            0.25,
             0.25,
             0.25,
             0.25,
@@ -90,6 +86,26 @@
             0.25
             ]
         ]
+      },
+      {
+        "name": "DamageOverlay_50",
+        "directions": 4
+      },
+      {
+        "name": "DamageOverlay_100",
+        "directions": 4
+      },
+      {
+        "name": "DamageOverlay_150",
+        "directions": 4
+      },
+      {
+        "name": "DamageOverlay_250",
+        "directions": 4
+      },
+      {
+        "name": "DamageOverlay_350",
+        "directions": 4
       },
       {
         "name": "base-open",
@@ -108,10 +124,10 @@
         "name": "base-broken",
         "delays": [
           [
-            0.5,
-            1,
-            0.5,
-            1
+            2,
+            0.2,
+            0.1,
+            0.1
           ]
         ]
       },
