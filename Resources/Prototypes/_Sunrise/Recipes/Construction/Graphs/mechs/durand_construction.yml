@@ -324,7 +324,7 @@
       - tag: DurandArmor
         name: construction-graph-tag-durand-armor-plates
         icon:
-          sprite: "Objects/Specific/Mech/durand_construction.rsi"
+          sprite: "_Sunrise/Objects/Specific/Mech/durand_construction.rsi"
           state: durand_armor
         completed:
         - !type:VisualizerDataInt

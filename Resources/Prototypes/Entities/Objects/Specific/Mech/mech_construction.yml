@@ -172,7 +172,7 @@
   - type: Sprite
     drawdepth: Items
     noRot: false
-    sprite: Objects/Specific/Mech/durand_construction.rsi
+    sprite: _Sunrise/Objects/Specific/Mech/durand_construction.rsi
 
 - type: entity
   id: BaseDurandPartItem
@@ -211,7 +211,7 @@
         whitelist:
           tags:
           - DurandRLeg
-    sprite: Objects/Specific/Mech/durand_construction.rsi
+    sprite: _Sunrise/Objects/Specific/Mech/durand_construction.rsi
   - type: ContainerContainer
     containers:
       mech-assembly-container: !type:Container

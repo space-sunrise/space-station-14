@@ -758,16 +758,25 @@
   - type: Sprite
     drawdepth: Mobs
     noRot: true
-    sprite: Objects/Specific/Mech/durand.rsi
+    sprite: _Sunrise/Objects/Specific/Mech/durand.rsi # Sunrise-Edit - перенос спрайтов Durand в проектный каталог
     scale: 1.08, 1.08
     layers:
-    - map: [ "enum.MechVisualLayers.Base" ]
+    - map: [ "enum.MechVisualLayers.Base", "movement" ] # Sunrise-Edit - анимация движения Durand
       state: base
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
       params:
         pitch: 0.6
+  # Sunrise added start - анимация движения Durand
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: durand-moving
+    noMovementLayers:
+      movement:
+        state: base
+  # Sunrise added end
   - type: Mech
     baseState: base
     openState: base-open
