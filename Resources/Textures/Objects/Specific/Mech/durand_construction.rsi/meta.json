@@ -1,15 +1,12 @@
 {
-    "copyright" : "Taken from https://github.com/tgstation/tgstation at at https://github.com/tgstation/tgstation/commit/91af16bcbfd2dd363a89d846ae2acd6d655083c2",
-    "license" : "CC-BY-SA-3.0",
+    "copyright" : "Sprited by .askal02 (discord) for Makura Games",
+    "license" : "CC-BY-SA-4.0",
     "version": 1,
     "size": {
       "x": 32,
       "y": 32
     },
     "states": [
-      {
-        "name": "durand_chassis"
-      },
       {
         "name": "durand_harness"
       },
@@ -105,7 +102,90 @@
       },
       {
         "name": "durand18"
+      },
+      {
+        "name": "durand19"
+      },
+      {
+        "name": "durand20"
+      },
+      {
+        "name": "durand21"
+      },
+      {
+        "name": "durand22"
+      },
+      {
+        "name": "durand23"
+      },
+      {
+        "name": "durand24"
+      },
+      {
+        "name": "durand25"
+      },
+      {
+        "name": "durand26"
+      },
+      {
+        "name": "durand27"
+      },
+      {
+        "name": "durand28"
+      },
+      {
+        "name": "durand29"
+      },
+      {
+        "name": "durand30"
+      },
+      {
+        "name": "durand31"
+      },
+      {
+        "name": "durand32"
+      },
+      {
+        "name": "durand33"
+      },
+      {
+        "name": "durand34"
+      },
+      {
+        "name": "durand35"
+      },
+      {
+        "name": "durand36"
+      },
+      {
+        "name": "durand37"
+      },
+      {
+        "name": "durand38"
+      },
+      {
+        "name": "durand39"
+      },
+      {
+        "name": "durand40"
+      },
+      {
+        "name": "durand41"
+      },
+      {
+        "name": "durand42"
+      },
+      {
+        "name": "durand43"
+      },
+      {
+        "name": "durand44"
+      },
+      {
+        "name": "durand45"
+      },
+      {
+        "name": "durand46"
       }
     ]
   }
-  

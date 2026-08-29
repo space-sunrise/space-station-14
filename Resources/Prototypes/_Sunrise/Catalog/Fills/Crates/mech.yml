@@ -1,0 +1,33 @@
+- type: entity
+  parent: CrateScience
+  id: SunriseCrateDurandAssembly
+  name: Durand assembly crate
+  description: A crate containing everything needed to assemble a Durand mech, including tools and welding protection.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: DurandHarness
+        - id: DurandHead
+        - id: DurandLArm
+        - id: DurandRArm
+        - id: DurandLLeg
+        - id: DurandRLeg
+        - id: MicroManipulatorStockPart
+          amount: 5
+        - id: CableApcStack10
+        - id: CableMVStack10
+        - id: Flash
+          amount: 2
+        - id: SheetRUGlass1
+        - id: DurandCentralElectronics
+        - id: DurandPeripheralsElectronics
+        - id: DurandTargetingElectronics
+        - id: PowerCageSmall
+        - id: MechAirTank
+        - id: MechThruster
+        - id: SheetPlasteel10
+        - id: DurandArmorPlate
+        - id: ToolboxMechanicalFilledAllTools
+        - id: ClothingHeadHatWelding
