@@ -136,11 +136,11 @@ public abstract class SharedEmpSystem : EntitySystem
         if (_tagSystem.HasTag(uid, IPCTag))
         {
             var damage = new DamageSpecifier();
-            damage.DamageDict.Add("Shock", 25);
+            damage.DamageDict.Add("Shock", 60);
             damage.DamageDict.Add("Structural", 10);
             _damageable.TryChangeDamage(uid, damage, origin: user);
 
-            _stun.TryAddParalyzeDuration(uid, TimeSpan.FromSeconds(60));
+            _stun.TryAddParalyzeDuration(uid, TimeSpan.FromSeconds(5));
 
             if (_net.IsServer)
                 Spawn(EmpDisabledEffectPrototype, Transform(uid).Coordinates);
