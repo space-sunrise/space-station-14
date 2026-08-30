@@ -4761,3 +4761,17 @@
   url: https://github.com/makura-games/sunrise-station/pull/4767
   media:
   - url: https://github.com/user-attachments/assets/733242bb-ce44-4a79-a748-fd4d0379f091
+- author: Nordstream17
+  time: '2026-08-28T16:01:49.0000000+00:00'
+  changes:
+  - type: Add
+    message: Добавлен новый кроваво-красный шкаф с доступами агентов синдиката и содержимым, больше подходящим для скрытного выполнения целей ДО.
+  id: 2022
+  url: https://github.com/makura-games/sunrise-station/pull/4611
+- author: Nordstream17
+  time: '2026-08-28T16:04:52.0000000+00:00'
+  changes:
+  - type: Add
+    message: Добавлен крафт кнопки с замком
+  id: 2023
+  url: https://github.com/makura-games/sunrise-station/pull/4662
