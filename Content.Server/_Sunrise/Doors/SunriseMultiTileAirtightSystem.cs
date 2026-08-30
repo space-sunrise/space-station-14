@@ -157,14 +157,12 @@ public sealed class SunriseMultiTileAirtightSystem : EntitySystem
         var baseTile = _transform.GetGridTilePositionOrDefault((ent, xform), grid);
         var rotation = xform.LocalRotation.RoundToCardinalAngle();
 
-        foreach (var tile in from local
-                     in ent.Comp.ExtraTiles
-                 select rotation.RotateVec(new Vector2(local.X, local.Y))
-                 into rotated
-                 select new Vector2i((int)MathF.Round(rotated.X), (int)MathF.Round(rotated.Y))
-                 into offset
-                 select baseTile + offset)
+        foreach (var local in ent.Comp.ExtraTiles)
         {
+            var rotated = rotation.RotateVec(new Vector2(local.X, local.Y));
+            var offset = new Vector2i((int)MathF.Round(rotated.X), (int)MathF.Round(rotated.Y));
+            var tile = baseTile + offset;
+            
             DeleteStaleBlockersOnTile((gridUid, grid), tile, ent.Owner);
 
             var coords = GetTileCenter(gridUid, grid, tile);
