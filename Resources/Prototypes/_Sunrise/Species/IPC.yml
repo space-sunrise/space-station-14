@@ -169,7 +169,7 @@
       limit: 1
       required: false
     enum.HumanoidVisualLayers.FacialHair:
-      limit: 0
+      limit: 1
       required: false
     enum.HumanoidVisualLayers.Chest:
       limit: 1
@@ -199,7 +199,7 @@
       limit: 1
       required: false
     enum.HumanoidVisualLayers.Head:
-      limit: 3
+      limit: 1
       required: false
     enum.HumanoidVisualLayers.HeadTop:
       limit: 1
