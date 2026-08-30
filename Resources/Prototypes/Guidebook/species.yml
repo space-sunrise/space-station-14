@@ -107,4 +107,9 @@
   name: species-name-felinid
   text: "/ServerInfo/Guidebook/_Sunrise/Mobs/Felinid.xml"
 
+- type: guideEntry
+  id: IPC
+  name: species-name-IPC
+  text: "/ServerInfo/Guidebook/_Sunrise/Mobs/IPC.xml"
+
 # Sunrise-End

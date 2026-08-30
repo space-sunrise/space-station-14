@@ -122,6 +122,7 @@
   - Predator
   - Resomi
   - Milira
+  - IPC
   randomizeName: false
   components:
     - type: GhostRole

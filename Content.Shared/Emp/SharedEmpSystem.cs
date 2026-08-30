@@ -1,12 +1,15 @@
 using Content.Shared.Examine;
 using Content.Shared.Rejuvenate;
+using Content.Shared.Stunnable;
+using Content.Shared.Tag;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
 
 namespace Content.Shared.Emp;
 
@@ -17,7 +20,13 @@ public abstract class SharedEmpSystem : EntitySystem
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    // Sunrise-Edit-Start
+    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly TagSystem _tagSystem = default!;
 
+    private static readonly ProtoId<TagPrototype> IPCTag = "IPC";
+    // Sunrise-Edit-End
     private HashSet<EntityUid> _entSet = new();
     private EntityQuery<EmpResistanceComponent> _resistanceQuery;
 
@@ -122,6 +131,24 @@ public abstract class SharedEmpSystem : EntitySystem
             strMultiplier = resistance.StrengthMultiplier;
             durMultiplier = resistance.DurationMultiplier;
         }
+
+        // Sunrise-Edit-Start
+        if (_tagSystem.HasTag(uid, IPCTag))
+        {
+            var damage = new DamageSpecifier();
+            damage.DamageDict.Add("Shock", 25);
+            damage.DamageDict.Add("Structural", 10);
+            _damageable.TryChangeDamage(uid, damage, origin: user);
+
+            _stun.TryAddParalyzeDuration(uid, TimeSpan.FromSeconds(60));
+
+            if (_net.IsServer)
+                Spawn(EmpDisabledEffectPrototype, Transform(uid).Coordinates);
+
+            return true;
+        }
+        // Sunrise-Edit-End
+
         var ev = new EmpPulseEvent(energyConsumption * strMultiplier, false, false, duration * durMultiplier, user);
         RaiseLocalEvent(uid, ref ev);
 

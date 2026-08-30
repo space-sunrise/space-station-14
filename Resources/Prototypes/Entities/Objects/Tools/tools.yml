@@ -1,6 +1,6 @@
 - type: entity
   name: wirecutter
-  parent: BaseItem
+  parent: [ BaseItem, Hemostat ] # Sunrise surgery edit
   id: Wirecutter
   description: This kills the wire.
   components:
@@ -56,18 +56,15 @@
   - type: StaticPrice
     price: 30
   # Sunrise-start
-  - type: Scalpel
   - type: SurgeryTool
-    successRate: 0.35
+    speed: 1.5
     startSound:
-      path: /Audio/_Sunrise/Medical/Surgery/scalpel1.ogg
-    endSound:
-      path: /Audio/_Sunrise/Medical/Surgery/scalpel2.ogg
+      path: /Audio/_Sunrise/Medical/Surgery/hemostat1.ogg
   # Sunrise-end
 
 - type: entity
   name: screwdriver
-  parent: BaseItem
+  parent: [ BaseItem, Drill ] # Sunrise surgery edit
   id: Screwdriver
   description: Industrial grade torque in a small screwdriving package.
   components:
@@ -85,6 +82,10 @@
       path: /Audio/Items/screwdriver_drop.ogg
       params:
         volume: -2
+  - type: SurgeryTool
+    speed: 1.5
+    startSound:
+      path: /Audio/_Sunrise/Medical/Surgery/saw.ogg
   # Sunrise end
   - type: Tag
     tags:
@@ -123,7 +124,7 @@
 
 - type: entity
   name: wrench
-  parent: BaseItem
+  parent: [ BaseItem, BoneSetter ] # Sunrise surgery edit
   id: Wrench
   description: 'A common tool for assembly and disassembly. Remember: lefty latchy, righty removey.'
   components:
@@ -141,6 +142,10 @@
       path: /Audio/Items/wrench_drop.ogg
       params:
         volume: -2
+  - type: SurgeryTool
+    speed: 1.5
+    startSound:
+      path: /Audio/_Sunrise/Medical/Surgery/bone_setter.ogg
   # Sunrise end
   - type: Tag
     tags:
