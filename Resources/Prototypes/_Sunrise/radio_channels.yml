@@ -72,7 +72,7 @@
 - type: radioChannel
   id: IPC
   name: chat-radio-ipc
-  keycode: 'i' # заняли все сука
-  frequency: 1001
+  keycode: 'i'
+  frequency: 1985
   color: "#5e94d7"
   longRange: true

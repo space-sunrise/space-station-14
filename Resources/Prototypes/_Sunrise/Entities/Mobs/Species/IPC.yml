@@ -92,9 +92,6 @@
       Brute:
         sprite: Mobs/Effects/brute_damage.rsi
         color: "#000000"
-  - type: Body
-    prototype: IPC
-    requiredLegs: 1
   - type: TypingIndicator
     proto: robot
   - type: Speech
@@ -182,11 +179,6 @@
       types:
         Blunt: 1
         Slash: 5
-  - type: Vocal
-    sounds:
-      Male: MaleIPC
-      Female: FemaleIPC
-      Unsexed: MaleIPC
   - type: FlashModifier
     modifier: 2.5
   - type: MobThresholds
@@ -200,84 +192,10 @@
       Dead: BorgDead
     showOverlays: false
     allowRevives: true
-  - type: Inventory
-    speciesId: human
-    femaleDisplacements:
-      jumpsuit-body-curved-ipc:
-        sizeMaps:
-          32:
-            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
-            state: jumpsuit-female
-      head-body-curved-ipc:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Reptilian/displacement.rsi
-            state: head
-      mask-body-curved-ipc:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Reptilian/displacement.rsi
-            state: mask
-    displacements:
-      head-body-curved-ipc:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Reptilian/displacement.rsi
-            state: head
-      mask-body-curved-ipc:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Reptilian/displacement.rsi
-            state: mask
-      shoes-body-curved-ipc:
-        sizeMaps:
-          32:
-            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
-            state: shoes
-      socks-body-curved-ipc:
-        sizeMaps:
-          32:
-            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
-            state: socks
-      outerClothing-body-curved-ipc:
-        sizeMaps:
-          32:
-            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
-            state: outer
-      hardsuit-body-curved-ipc:
-        sizeMaps:
-          32:
-            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
-            state: hardsuit
-    maleDisplacements:
-      jumpsuit-body-curved-ipc:
-        sizeMaps:
-          32:
-            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
-            state: jumpsuit
-      shoes-body-curved-ipc:
-        sizeMaps:
-          32:
-            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
-            state: shoes
-      socks-body-curved-ipc:
-        sizeMaps:
-          32:
-            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
-            state: socks
-      outerClothing-body-curved-ipc:
-        sizeMaps:
-          32:
-            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
-            state: outer
-      hardsuit-body-curved-ipc:
-        sizeMaps:
-          32:
-            sprite: _Sunrise/Mobs/Species/Reptilian/displacement.rsi
-            state: hardsuit
   - type: FootprintEmitter
-    leftBareFootState: [ footprint-left-bare-cat ]
-    rightBareFootState: [ footprint-right-bare-cat ]
+    placementOffset: 0,0
+    leftBareFootState: [ footprint-tracked-heavy ]
+    rightBareFootState: [ footprint-tracked-heavy ]
 
 - type: entity
   save: false
