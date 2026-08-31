@@ -247,8 +247,8 @@
     - id: VariantCubeBoxSunrise
     - id: LeftArmCyberRipper
       prob: 0.35
-    - id: MedipenCaseChiefMedicalOfficer
     - id: FlippoLighterSunriseCmo
+    - id: MedipenCaseChiefMedicalOfficer
     #Sunrise-end
 
 # Hardsuit table, used for suit storage as well
