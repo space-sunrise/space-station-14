@@ -29,6 +29,9 @@
     - NanoTrasen
   - type: Mech
     entryDelay: 1
+    batteryWhitelist:
+      tags:
+      - MechReactor
   - type: MechVulnerableToEMP
   - type: MechAir
   - type: GravityAffected
@@ -144,7 +147,7 @@
     bounds: "-0.6,-0.6, 0.6, 0.6"
   - type: PointLight
     enabled: false
-    mask: /Textures/Effects/LightMasks/cone.png
+    mask: /Textures/_Sunrise/Effects/LightMasks/mech_headlight_cone.png
     autoRot: true
     radius: 35
     energy: 4
@@ -218,7 +221,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageMedium
+      - SunriseMechReactorWorkhorse
   - type: AccessReader
     access: [["Security"]]
   - type: RadarBlip
@@ -293,7 +296,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageMedium
+      - SunriseMechReactorWorkhorse
   - type: AccessReader
     access: [["Mining"]]
   - type: Storage
@@ -339,7 +342,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageMedium
+      - SunriseMechReactorWorkhorse
   - type: Tag
     tags:
     - DoorBumpOpener # No paint unique ripley
@@ -426,7 +429,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageSyndicate
+      - SunriseMechReactorThor
 
 # region Paddy
 - type: entity
@@ -482,7 +485,7 @@
     baseWalkSpeed: 2.5
     baseSprintSpeed: 4
   - type: PointLight
-    mask: /Textures/Effects/LightMasks/cone.png
+    mask: /Textures/_Sunrise/Effects/LightMasks/mech_headlight_cone.png
     autoRot: true
     radius: 5
     energy: 5
@@ -498,7 +501,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageMedium
+      - SunriseMechReactorWorkhorse
 
 - type: entity
   id: MechPaddyFilled
@@ -571,7 +574,7 @@
     - NonEnergy
   - type: PointLight
     enabled: false
-    mask: /Textures/Effects/LightMasks/soft_cone.png
+    mask: /Textures/_Sunrise/Effects/LightMasks/mech_headlight_cone.png
     autoRot: true
     color: "#FFFF00"
     radius: 6
@@ -596,7 +599,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageHigh
+      - SunriseMechReactorWorkhorse
 
 # region NT ERT Gygax
 # NT Gygax
@@ -672,7 +675,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageERT
+      - SunriseMechReactorLonghaul
 
 - type: entity
   id: MechNTGygaxFilled
@@ -753,7 +756,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageHigh
+      - SunriseMechReactorWorkhorse
 
 # region Durand base
 
@@ -828,7 +831,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageSyndicate
+      - SunriseMechReactorThor
 
 - type: entity
   id: MechRoverSyndieFilled
@@ -917,7 +920,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageSyndicate
+      - SunriseMechReactorThor
 
 - type: entity
   id: MechDollHouseFilled

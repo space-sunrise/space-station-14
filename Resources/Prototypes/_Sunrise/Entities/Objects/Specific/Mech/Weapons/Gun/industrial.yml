@@ -19,7 +19,7 @@
   - type: Item
     sprite: _Sunrise/Objects/Specific/Mech/mecha_inhand.rsi
     heldPrefix: lightcutter # Sunrise-TODO: Сделать свой вид
-  - type: BatteryAmmoProvider
+  - type: MechAmmoProvider
     proto: BulletPlasmaSpread
     fireCost: 40
   - type: Appearance
@@ -46,7 +46,7 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
-  - type: BatteryAmmoProvider
+  - type: MechAmmoProvider
     proto: BulletPlasma
     fireCost: 20
   - type: Appearance

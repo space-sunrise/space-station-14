@@ -1,4 +1,5 @@
 using Content.Server.Chat.Systems;
+using Content.Server._Sunrise.Mech.Systems;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
@@ -8,6 +9,7 @@ using Content.Shared.Mech.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Power.Components;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Mech.Systems;
@@ -15,6 +17,7 @@ namespace Content.Server.Mech.Systems;
 public sealed partial class MechSystem
 {
     [Dependency] private readonly ChatSystem _chatSystem = default!;
+    [Dependency] private readonly InstalledMechBatterySystem _installedMechBattery = default!;
     [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
 
     private static readonly ProtoId<DamageTypePrototype> ManglenessDamageType = "Mangleness";
@@ -24,12 +27,32 @@ public sealed partial class MechSystem
         SubscribeLocalEvent<MechComponent, MechSayEvent>(OnMechSay);
     }
 
+    private void AttachSunriseInstalledBattery(EntityUid uid, MechComponent component)
+    {
+        var batteryUid = component.BatterySlot.ContainedEntity;
+        if (batteryUid == null || !TryComp<BatteryComponent>(batteryUid.Value, out var battery))
+            return;
+
+        _installedMechBattery.AttachBattery((uid, component), (batteryUid.Value, battery));
+    }
+
     private void OnMechSay(EntityUid uid, MechComponent component, MechSayEvent args)
     {
         _chatSystem.TrySendInGameICMessage(uid,
             Loc.GetString(args.Message),
             InGameICChatType.Whisper,
             ChatTransmitRange.Normal);
+    }
+
+    /// <summary>
+    /// Проверяет whitelist батареи меха, сохраняя совместимость со старыми прототипами без него.
+    /// </summary>
+    private bool IsSunriseBatteryAllowed(MechComponent component, EntityUid battery)
+    {
+        if (component.BatteryWhitelist != null)
+            return _whitelistSystem.IsWhitelistPass(component.BatteryWhitelist, battery);
+
+        return _tag.HasTag(battery, PowerCageTag);
     }
 
     /// <summary>

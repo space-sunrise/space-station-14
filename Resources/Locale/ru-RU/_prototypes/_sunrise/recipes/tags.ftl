@@ -19,3 +19,4 @@ construction-graph-tag-white-lily-desc = { ent-FoodWhiteLily.desc }
 construction-graph-tag-welding-mask = { ent-ClothingHeadHatWelding }
 construction-graph-tag-welding-mask-desc = { ent-ClothingHeadHatWelding.desc }
 construction-graph-tag-upgrade-lecter-mk3 = комплект улучшения Лектера Мк3
+construction-graph-component-mech-reactor = реактор меха

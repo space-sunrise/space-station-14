@@ -104,7 +104,7 @@ public sealed partial class MechSystem : SharedMechSystem
         if (TryComp<WiresPanelComponent>(uid, out var panel) && !panel.Open)
             return;
 
-        if (component.BatterySlot.ContainedEntity == null && TryComp<BatteryComponent>(args.Used, out var battery) && _tag.HasTag(args.Used, PowerCageTag))
+        if (component.BatterySlot.ContainedEntity == null && TryComp<BatteryComponent>(args.Used, out var battery) && IsSunriseBatteryAllowed(component, args.Used)) // Sunrise-Edit — поддержка whitelist реакторов
         {
             InsertBattery(uid, args.Used, component, battery);
             _actionBlocker.UpdateCanMove(uid);
@@ -133,6 +133,7 @@ public sealed partial class MechSystem : SharedMechSystem
 
         Dirty(uid, component);
         _actionBlocker.UpdateCanMove(uid);
+        AttachSunriseInstalledBattery(uid, component); // Sunrise-Edit — регистрируем реактор для синхронизации заряда
     }
 
     private void OnRemoveBattery(EntityUid uid, MechComponent component, RemoveBatteryEvent args)
@@ -163,6 +164,7 @@ public sealed partial class MechSystem : SharedMechSystem
 
         _actionBlocker.UpdateCanMove(uid);
         Dirty(uid, component);
+        AttachSunriseInstalledBattery(uid, component); // Sunrise-Edit — восстанавливаем связь с предустановленным реактором
     }
 
     private void OnRemoveEquipmentMessage(EntityUid uid, MechComponent component, MechEquipmentRemoveMessage args)
@@ -381,7 +383,7 @@ public sealed partial class MechSystem : SharedMechSystem
         if (!TryComp<BatteryComponent>(battery, out var batteryComp))
             return false;
 
-        _battery.SetCharge((battery.Value, batteryComp), _battery.GetCharge((battery.Value, batteryComp)) + delta.Float());
+        _battery.ChangeCharge((battery.Value, batteryComp), delta.Float()); // Sunrise-Edit — трата энергии запускает задержку автозарядки реактора
         // TODO: Power cells are predicted now, so no need to duplicate the charge level
         var charge = _battery.GetCharge((battery.Value, batteryComp));
         if (charge != component.Energy) //if there's a discrepency, we have to resync them
