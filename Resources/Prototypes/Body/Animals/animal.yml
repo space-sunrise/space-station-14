@@ -44,6 +44,8 @@
   abstract: true
   components:
   - type: Body
+  - type: Puller
+    needsHands: false
   - type: EntityTableContainerFill
     containers:
       body_organs: !type:AllSelector
