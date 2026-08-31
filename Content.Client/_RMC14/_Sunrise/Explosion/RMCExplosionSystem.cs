@@ -15,6 +15,7 @@ public sealed class RMCExplosionSystem : SharedRMCExplosionSystem
     [Dependency] private readonly IRobustRandom _random = default!;
 
     private const string SmokeTrack = "smoke-animation";
+    private const string DustTrack = "dust-animation";
     private const string ExplosionTrack = "explosion-animation";
 
     public override void Initialize()
@@ -22,6 +23,7 @@ public sealed class RMCExplosionSystem : SharedRMCExplosionSystem
         base.Initialize();
 
         SubscribeLocalEvent<ExplosionSmokeEffectComponent, ComponentStartup>(OnSmokeStartup);
+        SubscribeLocalEvent<ExplosionDustEffectComponent, ComponentStartup>(OnDustStartup);
         SubscribeLocalEvent<ExplosionEffectComponent, ComponentStartup>(OnExplosionStartup);
     }
 
@@ -64,6 +66,34 @@ public sealed class RMCExplosionSystem : SharedRMCExplosionSystem
         };
 
         _player.Play(ent, animation, SmokeTrack);
+    }
+
+    private void OnDustStartup(Entity<ExplosionDustEffectComponent> ent, ref ComponentStartup args)
+    {
+        if (!TryComp<SpriteComponent>(ent, out var sprite))
+            return;
+
+        var targetOffset = sprite.Offset + _random.NextVector2(ent.Comp.MinDriftDistance, ent.Comp.MaxDriftDistance);
+        var animation = new Animation
+        {
+            Length = TimeSpan.FromSeconds(ent.Comp.LifeTime),
+            AnimationTracks =
+            {
+                new AnimationTrackComponentProperty
+                {
+                    Property = nameof(SpriteComponent.Offset),
+                    ComponentType = typeof(SpriteComponent),
+                    InterpolationMode = AnimationInterpolationMode.Linear,
+                    KeyFrames =
+                    {
+                        new AnimationTrackProperty.KeyFrame(sprite.Offset, 0f),
+                        new AnimationTrackProperty.KeyFrame(targetOffset, ent.Comp.LifeTime),
+                    },
+                },
+            },
+        };
+
+        _player.Play(ent, animation, DustTrack);
     }
 
     private void OnExplosionStartup(Entity<ExplosionEffectComponent> ent, ref ComponentStartup args)

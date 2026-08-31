@@ -21,3 +21,20 @@
     layers:
     - state: smoke
       shader: unshaded
+
+- type: entity
+  parent: ExplosionEffectSmokeStatic
+  id: ExplosionEffectSmokeOpaque
+  suffix: Static, Opaque
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+  - type: Sprite
+    scale: 0.6, 0.6
+    sprite: _Sunrise/Effects/explosion_smoke.rsi
+    layers:
+    - state: smoke
+  - type: Occluder
+  - type: ExplosionDustEffect
+  - type: TimedDespawn
+    lifetime: 5

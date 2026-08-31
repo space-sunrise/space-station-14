@@ -369,6 +369,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
 
         // camera shake
         CameraShake(iterationIntensity.Count * 4f, pos, queued.TotalIntensity);
+        SpawnSunriseExplosionSmoke(iterationIntensity.Count, pos); // Sunrise-Edit — временный непрозрачный дым
 
         //For whatever bloody reason, sound system requires ENTITY coordinates.
         var mapEntityCoords = _transformSystem.ToCoordinates(_map.GetMap(pos.MapId), pos);
