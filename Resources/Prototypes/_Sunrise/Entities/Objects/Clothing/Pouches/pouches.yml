@@ -103,6 +103,34 @@
 
 - type: entity
   parent: PouchAmmo
+  id: PouchAmmoMedium
+  components:
+  - type: Item
+    size: Huge
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,5,1
+    whitelist:
+      components:
+      - BallisticAmmoProvider
+
+- type: entity
+  parent: PouchAmmo
+  id: PouchAmmoLarge
+  components:
+  - type: Item
+    size: Huge
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,3,3
+    whitelist:
+      components:
+      - BallisticAmmoProvider
+
+- type: entity
+  parent: PouchAmmo
   id: PouchAmmoFilledSMG
   suffix: Filled SMG
   components:
