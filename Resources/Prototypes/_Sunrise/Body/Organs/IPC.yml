@@ -8,4 +8,4 @@
   - type: FunctionalOrgan
     comps:
     - type: FlashModifier
-      modifier: 2
+      modifier: 5
