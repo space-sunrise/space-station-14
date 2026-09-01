@@ -26,3 +26,5 @@ ent-PouchAmmoFilledPistol40 = ammo pouch
 ent-PouchAmmoFilledLightRifle = ammo pouch
     .suffix = Filled Light Rifle
     .desc = { ent-PouchAmmo.desc }
+ent-PouchBackpackPockets = backpack pockets
+    .desc = Universal pockets for any explosives, ammo boxes and magazines.

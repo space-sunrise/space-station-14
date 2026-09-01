@@ -26,3 +26,5 @@ ent-PouchAmmoFilledPistol40 = малый магазинный подсумок
 ent-PouchAmmoFilledLightRifle = малый магазинный подсумок
     .suffix = Заполненный винтовочный
     .desc = { ent-PouchAmmo.desc }
+ent-PouchBackpackPockets = карманы для снаряжения
+    .desc = Универсальные карманы для любой взрывчатки,коробок патронов и магазинов.
