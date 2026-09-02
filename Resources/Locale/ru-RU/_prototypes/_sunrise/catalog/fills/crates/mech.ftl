@@ -1,2 +1,2 @@
-ent-SunriseCrateDurandAssembly = ящик для сборки «Дюранда»
+ent-SunriseCrateDurandAssembly = ящик для сборки Дюранд
     .desc = Содержит всё необходимое для сборки меха «Дюранд», включая инструменты и сварочную маску.
