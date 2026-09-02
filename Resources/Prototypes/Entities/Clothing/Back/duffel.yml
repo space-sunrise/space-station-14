@@ -293,10 +293,10 @@
   - type: Storage
     maxItemSize: Huge
     grid:
-  # Sunrise-Start Добавление карманов для снаряжения
+  # Sunrise-Start
     - 0,0,1,3
     - 3,0,12,4
-  - type: EntityTableContainerFill
+  - type: EntityTableContainerFill # Добавляет карманы в вещмешки РХБЗЗ при спавне гост-ролей
     containers:
       storagebase:
         id: PouchBackpackPockets
