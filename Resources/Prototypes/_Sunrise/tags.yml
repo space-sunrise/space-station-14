@@ -584,6 +584,9 @@
 - type: Tag
   id: SpecialMech
 
+- type: Tag
+  id: SunriseRoverArmor
+
 # region Misc / fun
 - type: Tag
   id: BluespaceBox

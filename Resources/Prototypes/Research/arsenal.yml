@@ -270,7 +270,6 @@
   - WeaponAdvancedLaser
   - PortableRecharger
   - WeaponMechCombatImmolationGun # Sunrise-Add
-  - WeaponMechCombatIon # Sunrise-Add
   radioChannels: # Sunrise-Add
   - Security
 
