@@ -137,7 +137,6 @@ public abstract class SharedEmpSystem : EntitySystem
         {
             var damage = new DamageSpecifier();
             damage.DamageDict.Add("Shock", 60);
-            damage.DamageDict.Add("Structural", 10);
             _damageable.TryChangeDamage(uid, damage, origin: user);
 
             _stun.TryAddParalyzeDuration(uid, TimeSpan.FromSeconds(5));
