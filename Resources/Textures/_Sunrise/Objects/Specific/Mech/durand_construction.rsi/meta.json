@@ -14,6 +14,9 @@
         "name": "durand_armor"
       },
       {
+        "name": "darkdurand_armor"
+      },
+      {
         "name": "durand_harness+o"
       },
       {
@@ -186,6 +189,27 @@
       },
       {
         "name": "durand46"
+      },
+      {
+        "name": "durand47"
+      },
+      {
+        "name": "durand48"
+      },
+      {
+        "name": "durand49"
+      },
+      {
+        "name": "durand50"
+      },
+      {
+        "name": "durand51"
+      },
+      {
+        "name": "durand52"
+      },
+      {
+        "name": "durand53"
       }
     ]
   }

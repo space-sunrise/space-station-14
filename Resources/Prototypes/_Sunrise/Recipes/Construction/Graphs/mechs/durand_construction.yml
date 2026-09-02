@@ -12,7 +12,7 @@
   - node: chassis
     entity: DurandChassis
     edges:
-    - to: durand
+    - to: armorInstallation
       steps:
 
       - tool: Anchoring
@@ -321,6 +321,10 @@
           key: "enum.MechAssemblyVisuals.State"
           data: 39
 
+  - node: armorInstallation
+    edges:
+    - to: durand
+      steps:
       - tag: DurandArmor
         name: construction-graph-tag-durand-armor-plates
         icon:
@@ -380,7 +384,73 @@
           key: "enum.MechAssemblyVisuals.State"
           data: 46
 
+    - to: rover
+      steps:
+      - tag: SunriseRoverArmor
+        name: construction-graph-tag-rover-armor-plates
+        icon:
+          sprite: "_Sunrise/Objects/Specific/Mech/durand_construction.rsi"
+          state: darkdurand_armor
+        completed:
+        - !type:VisualizerDataInt
+          key: "enum.MechAssemblyVisuals.State"
+          data: 47
+
+      - tool: Anchoring
+        doAfter: 1
+        completed:
+        - !type:VisualizerDataInt
+          key: "enum.MechAssemblyVisuals.State"
+          data: 48
+
+      - tool: Anchoring
+        doAfter: 1
+        completed:
+        - !type:VisualizerDataInt
+          key: "enum.MechAssemblyVisuals.State"
+          data: 49
+
+      - tool: Anchoring
+        doAfter: 1
+        completed:
+        - !type:VisualizerDataInt
+          key: "enum.MechAssemblyVisuals.State"
+          data: 50
+
+      - tool: Anchoring
+        doAfter: 1
+        completed:
+        - !type:VisualizerDataInt
+          key: "enum.MechAssemblyVisuals.State"
+          data: 51
+
+      - tool: Anchoring
+        doAfter: 1
+        completed:
+        - !type:VisualizerDataInt
+          key: "enum.MechAssemblyVisuals.State"
+          data: 52
+
+      - tool: Cutting
+        doAfter: 1
+        completed:
+        - !type:VisualizerDataInt
+          key: "enum.MechAssemblyVisuals.State"
+          data: 53
+
+      - tool: Welding
+        doAfter: 1
+        completed:
+        - !type:VisualizerDataInt
+          key: "enum.MechAssemblyVisuals.State"
+          data: 53
+
   - node: durand
     actions:
     - !type:BuildMech
       mechPrototype: MechDurand
+
+  - node: rover
+    actions:
+    - !type:BuildMech
+      mechPrototype: MechRoverSyndie

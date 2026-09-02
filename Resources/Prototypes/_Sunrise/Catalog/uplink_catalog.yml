@@ -2711,6 +2711,27 @@
       - SurplusBundle
 
 - type: listing
+  id: UplinkRoverAssemblyRoboticist
+  name: uplink-rover-assembly-crate-name
+  description: uplink-rover-assembly-crate-desc
+  icon: { sprite: _Sunrise/Objects/Specific/Mech/durand_construction.rsi, state: darkdurand_armor }
+  productEntity: SunriseCrateRoverAssembly
+  cost:
+    Telecrystal: 8
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+  - !type:BuyerJobCondition
+    whitelist:
+    - Roboticist
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
   id: UplinkDeathRipley
   name: uplink-mech-teleporter-death-name
   description: uplink-mech-teleporter-death-desc

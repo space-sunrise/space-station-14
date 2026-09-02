@@ -757,7 +757,7 @@
 # Rover
 - type: entity
   id: MechRoverSyndie
-  parent: [ MechBreakageDurand, BaseMech, CombatMech, BaseSyndicateContraband ] # Sunrise-edit
+  parent: [ MechBreakageRover, BaseMech, CombatMech, BaseSyndicateContraband ] # Sunrise-edit
   name: Rover
   description: A modified Durand used for nefarious purposes. On the back of the armor plate there is an inscription "Cybersun Inc."
   components:
@@ -770,11 +770,23 @@
     sprite: _Sunrise/Objects/Specific/Mech/durand.rsi
     scale: 1.08, 1.08
     layers:
-    - map: [ "enum.MechVisualLayers.Base" ]
+    - map: [ "enum.MechVisualLayers.Base", "movement" ]
       state: darkdurand
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: darkdurand-moving
+    noMovementLayers:
+      movement:
+        state: darkdurand
+  - type: DamageVisuals
+    thresholds: [ 50, 100, 150, 250, 350 ]
+    trackAllDamage: true
+    damageOverlay:
+      sprite: _Sunrise/Objects/Specific/Mech/durand.rsi
   - type: Mech
     baseState: darkdurand
     openState: darkdurand-open
@@ -800,12 +812,6 @@
     prototypes: [ MechArmorMediumSyndiLoadout ]
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
-  - type: Reflect
-    reflectProb: 0.1
-    spread: 180
-    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
-    reflects:
-    - NonEnergy
   - type: MobThresholds
     currentThresholdState : Alive
     thresholds:

@@ -31,3 +31,22 @@
         - id: DurandArmorPlate
         - id: ToolboxMechanicalFilledAllTools
         - id: ClothingHeadHatWelding
+
+- type: entity
+  parent: CrateSyndicateSecure
+  id: SunriseCrateRoverAssembly
+  name: Rover assembly crate
+  description: >-
+    A crate containing essential components to assemble a Rover mech. It does not include common mech parts, which must be obtained separately. The crate is marked with a warning: "For Cybersun Industries personnel only."
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: DurandChassis
+        - id: RemoteSignallerAdvanced
+        - id: DurandCentralElectronics
+        - id: DurandPeripheralsElectronics
+        - id: DurandTargetingElectronics
+        - id: SunriseRoverArmorPlate
+        - id: ToolboxSyndicateFilledRepair
