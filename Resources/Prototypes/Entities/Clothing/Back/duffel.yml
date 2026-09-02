@@ -293,7 +293,7 @@
   - type: Storage
     maxItemSize: Huge
     grid:
-  # Sunrise-Start
+  # Sunrise-Start Добавление карманов для снаряжения
     - 0,0,1,3
     - 3,0,12,4
   - type: EntityTableContainerFill

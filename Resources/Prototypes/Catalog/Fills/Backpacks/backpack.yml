@@ -35,7 +35,7 @@
       containers:
         storagebase: !type:AllSelector
           children:
-            - id: PouchBackpackPockets # Sunrise-Edit
+            - id: PouchBackpackPockets
             - id: ClothingOuterMaidArmorRaidBiocode
             - id: ClothingHeadHelmetRaid
             - id: ClothingHandsTacticalMaidGloves

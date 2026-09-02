@@ -184,9 +184,8 @@
     sprite: _Sunrise/Clothing/Pouches/backpack_pockets.rsi
     shape:
     - 0,0,1,3
-    storedOffset: 0,0
   - type: Storage
-    maxItemSize: Small
+    maxItemSize: Normal
     grid:
     - 0,0,4,3
     whitelist:

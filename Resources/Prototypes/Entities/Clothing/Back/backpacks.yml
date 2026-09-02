@@ -223,7 +223,7 @@
     sprite: _Sunrise/Clothing/Back/Backpacks/ERT/ertleader.rsi # Sunrise-Edit
   - type: Storage
     grid:
-  # Sunrise-Start
+  # Sunrise-Start Добавление карманов для снаряжения
     - 0,0,1,3
     - 3,0,11,3
   - type: EntityTableContainerFill
@@ -311,7 +311,7 @@
     damageCoefficient: 0.1
   - type: Storage
     grid:
-  # Sunrise-Start
+  # Sunrise-Start Добавление карманов для снаряжения
     - 0,0,1,3
     - 3,0,10,3
     - 11,1,11,3
