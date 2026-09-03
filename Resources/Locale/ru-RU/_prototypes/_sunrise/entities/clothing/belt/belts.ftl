@@ -68,3 +68,10 @@ ent-ClothingBeltMilitaryBeltGrenade = гранатный пояс
     .desc = Тактический пояс гренадеров Мародёров Горлекса. Вмещает ручные гранаты и гранатные магазины; его можно носить на поясе или закрепить на скафандре.
 ent-ClothingSovietBandolier = советский патронташ
     .desc = Пахнет маслом, потом и сомнительными решениями.
+
+ent-ClothingBeltMedicalAdvanced = продвинутый пояс медика
+    .desc = Может хранить множество медицинских принадлежностей.
+ent-ClothingBeltMedicalEMTAdvanced = продвинутый пояс парамедика
+    .desc = { ent-ClothingBeltMedicalAdvanced.desc }
+ent-ClothingBeltMedicalCMOAdvanced = продвинутый пояс главного врача
+    .desc = { ent-ClothingBeltMedicalAdvanced.desc }

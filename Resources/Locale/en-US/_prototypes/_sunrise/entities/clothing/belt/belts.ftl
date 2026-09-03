@@ -62,5 +62,12 @@ ent-ClothingBeltLightSovietMarineWebbing = SSF light chest rig
     .desc = A set of light webbing worn by soviet soldiers.
 ent-ClothingBeltSalvageMercWebbing = scrapper webbing
     .desc = Ideal for storing everything from tools, ammo, and salvage.
+
+ent-ClothingBeltMedicalAdvanced = advanced medical belt
+    .desc = Can hold a lot of various medical equipment
+ent-ClothingBeltMedicalEMTAdvanced = advanced emt medical belt
+    .desc = { ent-ClothingBeltMedicalAdvanced.desc }
+ent-ClothingBeltMedicalCMOAdvanced = advanced cmo medical belt
+    .desc = { ent-ClothingBeltMedicalAdvanced.desc }
 ent-ClothingBeltMilitaryBeltGrenade = grenade belt
     .desc = A tactical belt for Gorlex Marauder grenadiers. Holds hand grenades and grenade magazines and can be worn on the belt or suit storage slot.
