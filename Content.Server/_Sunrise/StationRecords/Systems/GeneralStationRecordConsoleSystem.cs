@@ -3,6 +3,8 @@ using Content.Server.Popups;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Roles.Jobs;
 using Content.Server.StationRecords.Components;
+using Content.Shared._Sunrise.Humanoid;
+using Content.Shared._Sunrise.Records;
 using Content.Shared._Sunrise.StationRecords;
 using Content.Shared.Access.Systems;
 using Content.Shared.Emag.Systems;
@@ -139,14 +141,19 @@ public sealed partial class GeneralStationRecordConsoleSystem
         var text = Loc.GetString(
             "printed-station-records-content",
             ("name", record.Name),
+            ("fullname", GetRecordText(record.FullName)),
             ("job", GetJobName(record.JobPrototype)),
             ("department", GetDepartmentName(record.JobPrototype)),
             ("age", record.Age),
+            ("dob", GetRecordText(record.DateOfBirth)),
             ("gender", GetGenderName(record.Gender)),
             ("species", GetSpeciesName(record.Species)),
             ("dna", record.DNA ?? Loc.GetString("printed-station-records-unrecognized")),
             ("fingerprint", record.Fingerprint ?? Loc.GetString("printed-station-records-unrecognized")),
-            ("personality", GetPersonality(record.Personality))
+            ("personality", GetRecordText(record.Personality)),
+            ("employmentrecord", StructuredRecordFormatter.FormatEmployment(record.EmploymentRecord, Loc.GetString,
+                HumanoidBodyMetrics.FormatHeight(Loc, _prototype, record.Species, record.HumanoidProfile),
+                HumanoidBodyMetrics.FormatWeight(Loc, _prototype, record.Species, record.HumanoidProfile)))
         );
 
         _paper.SetContent((printed, paperComp), text);
@@ -229,12 +236,11 @@ public sealed partial class GeneralStationRecordConsoleSystem
         return Loc.GetString(speciesPrototype.Name);
     }
 
-    private string GetPersonality(string personality)
+    private string GetRecordText(string text)
     {
-        if (string.IsNullOrEmpty(personality))
-            return Loc.GetString("printed-station-records-unrecognized");
-
-        return personality;
+        return string.IsNullOrWhiteSpace(text)
+            ? Loc.GetString("printed-station-records-unrecognized")
+            : text;
     }
 
     #endregion

@@ -78,4 +78,9 @@ public sealed class SunriseCriminalRecordsConsoleBoundUserInterface : BoundUserI
     {
         SendMessage(new SunriseCriminalRecordsChangeStatusMessage(status, reason));
     }
+
+    public void PrintDossier()
+    {
+        SendMessage(new SunriseCriminalRecordsPrintDossierMessage());
+    }
 }

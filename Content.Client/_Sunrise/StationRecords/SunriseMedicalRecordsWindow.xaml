@@ -1,0 +1,69 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      xmlns:records="clr-namespace:Content.Client._Sunrise.Records"
+                      Title="{Loc 'medical-records-console-window-title'}"
+                      MinSize="800 500">
+    <BoxContainer Orientation="Horizontal" SeparationOverride="4" HorizontalExpand="True" VerticalExpand="True">
+
+        <!-- Левая панель: список и фильтр -->
+        <BoxContainer Orientation="Vertical" MinWidth="200" MaxWidth="240" HorizontalExpand="False">
+            <LineEdit Name="SearchBar"
+                      PlaceHolder="{Loc 'station-records-ui-search-placeholder'}"
+                      HorizontalExpand="True"/>
+            <ItemList Name="RecordListing"
+                      VerticalExpand="True"
+                      SelectMode="Single"/>
+        </BoxContainer>
+
+        <!-- Правая панель: детали записи -->
+        <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" Margin="4 0 0 0">
+
+            <!-- Заглушка, когда ничего не выбрано -->
+            <Label Name="NoRecordLabel"
+                   Text="{Loc 'station-records-ui-no-record-selected'}"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   HorizontalExpand="True"
+                   VerticalExpand="True"/>
+
+            <!-- Панель деталей -->
+            <BoxContainer Name="RecordPanel"
+                          Orientation="Vertical"
+                          HorizontalExpand="True"
+                          VerticalExpand="True"
+                          Visible="False">
+
+                <!-- Заголовок -->
+                <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                    <Label Name="RecordName" StyleClasses="LabelHeading" HorizontalExpand="True"/>
+                    <Button Name="PrintButton"
+                            Text="{Loc 'station-records-ui-print'}"
+                            HorizontalAlignment="Right"/>
+                </BoxContainer>
+
+                <Label Name="RecordJob" Margin="0 2 0 0"/>
+                <Label Name="RecordAge" Margin="0 2 0 0"/>
+
+                <ScrollContainer HorizontalExpand="True" VerticalExpand="True" HScrollEnabled="False" Margin="0 6 0 0">
+                    <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+                        <records:RecordCardView Name="MedicalView"/>
+                        <Label StyleClasses="LabelSubText"
+                               Text="{Loc 'medical-records-console-medical-record-label'}"
+                               Margin="0 8 0 3"/>
+                        <records:RecordTextEdit Name="MedicalRecordEdit"
+                                  MinHeight="120"
+                                  HorizontalExpand="True"/>
+                    </BoxContainer>
+                </ScrollContainer>
+
+                <BoxContainer Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 4 0 0">
+                    <Button Name="SaveButton"
+                            Text="{Loc 'station-records-ui-save'}"
+                            Disabled="True"/>
+                </BoxContainer>
+
+            </BoxContainer>
+
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>

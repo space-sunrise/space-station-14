@@ -31,9 +31,14 @@ public sealed partial class SunriseCriminalRecordsDetailsControl : Control
             OnStatusChanged?.Invoke((SecurityStatus) args.Id, StatusReasonInput.Text);
             StatusOption.SelectId(args.Id);
         };
+
+        DossierToggle.OnPressed += _ => OnToggleDossier?.Invoke();
+        PrintDossierButton.OnPressed += _ => OnPrintDossier?.Invoke();
     }
 
     public event Action<SecurityStatus, string?>? OnStatusChanged;
+    public event Action? OnToggleDossier;
+    public event Action? OnPrintDossier;
 
     public void UpdateInfo(SunriseCriminalRecordsConsoleState state)
     {
@@ -63,6 +68,11 @@ public sealed partial class SunriseCriminalRecordsDetailsControl : Control
         MetadataDivider.Visible = !isEditor;
         StatusContainer.Visible = !isEditor;
         StatusDivider.Visible = !isEditor;
+
+        var isDossier = state.CurrentUIState == SunriseCriminalRecordsUIState.Dossier;
+        DossierToggle.Text = Loc.GetString(isDossier ? "sunrise-records-show-cases" : "sunrise-records-show-dossier");
+        DossierToggle.Disabled = state.SelectedStationRecord == null;
+        PrintDossierButton.Visible = isDossier;
     }
 
     public void SetContent(Control control)

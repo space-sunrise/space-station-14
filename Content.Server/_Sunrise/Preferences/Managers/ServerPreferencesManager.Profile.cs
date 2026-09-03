@@ -34,7 +34,15 @@ public sealed partial class ServerPreferencesManager
             .WithVoice(voice)
             .WithBodyType(profile.BodyType)
             .WithSize(profile.Width, profile.Height)
-            .WithJobAlternativeTitles(jobAlternativeTitles);
+            .WithJobAlternativeTitles(jobAlternativeTitles)
+            // Sunrise added start — восстанавливаем досье персонажа
+            .WithPatronymic(profile.Patronymic)
+            .WithBirthDay(profile.BirthDay)
+            .WithBirthMonth(profile.BirthMonth)
+            .WithMedicalRecord(profile.MedicalRecord)
+            .WithSecurityRecord(profile.SecurityRecord)
+            .WithEmploymentRecord(profile.EmploymentRecord);
+            // Sunrise added end
     }
 
     private static void AddSunriseLegacyHairMarkings(List<Marking> markings, Profile profile)

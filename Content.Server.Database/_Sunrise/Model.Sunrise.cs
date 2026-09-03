@@ -35,6 +35,15 @@ public partial class Profile
     public int FacialHairColorType { get; set; }
     public string FacialHairExtendedColor { get; set; } = null!;
     public List<JobAlternativeTitle> JobAlternativeTitles { get; } = new();
+
+    // Sunrise added start — структурированное досье персонажа (см. Content.Shared._Sunrise.Records)
+    public string Patronymic { get; set; } = string.Empty;
+    public string BirthDay { get; set; } = string.Empty;
+    public string BirthMonth { get; set; } = string.Empty;
+    public string MedicalRecord { get; set; } = string.Empty;
+    public string SecurityRecord { get; set; } = string.Empty;
+    public string EmploymentRecord { get; set; } = string.Empty;
+    // Sunrise added end
 }
 
 public class JobAlternativeTitle

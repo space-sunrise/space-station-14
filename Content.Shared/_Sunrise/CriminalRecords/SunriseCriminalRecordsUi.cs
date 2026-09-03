@@ -22,7 +22,8 @@ public enum SunriseCriminalRecordsConsoleKey : byte
 public enum SunriseCriminalRecordsUIState : byte
 {
     List,
-    Editor
+    Editor,
+    Dossier
 }
 
 /// <summary>
@@ -74,6 +75,17 @@ public sealed class SunriseCriminalRecordsConsoleState : BoundUserInterfaceState
     /// <summary>The DNA of the selected person.</summary>
     public readonly string? DNA;
 
+    /// <summary>The full name recorded in the character's dossier, if any.</summary>
+    public readonly string? FullName;
+    /// <summary>The date of birth recorded in the character's dossier, if any.</summary>
+    public readonly string? DateOfBirth;
+    /// <summary>The raw structured security dossier storage of the selected person.</summary>
+    public readonly string? SecurityRecord;
+    /// <summary>The formatted height of the selected person, taken from their character editor sliders.</summary>
+    public readonly string? Height;
+    /// <summary>The formatted weight of the selected person, taken from their character editor sliders.</summary>
+    public readonly string? Weight;
+
     /// <summary>The current security status of the person.</summary>
     public readonly SecurityStatus Status;
     /// <summary>The reason for the current security status.</summary>
@@ -93,6 +105,11 @@ public sealed class SunriseCriminalRecordsConsoleState : BoundUserInterfaceState
         string? species = null,
         string? fingerprints = null,
         string? dna = null,
+        string? fullName = null,
+        string? dateOfBirth = null,
+        string? securityRecord = null,
+        string? height = null,
+        string? weight = null,
         SecurityStatus status = SecurityStatus.None,
         string? statusReason = null)
     {
@@ -110,6 +127,11 @@ public sealed class SunriseCriminalRecordsConsoleState : BoundUserInterfaceState
         Species = species;
         Fingerprints = fingerprints;
         DNA = dna;
+        FullName = fullName;
+        DateOfBirth = dateOfBirth;
+        SecurityRecord = securityRecord;
+        Height = height;
+        Weight = weight;
         Status = status;
         StatusReason = statusReason;
     }
@@ -253,6 +275,14 @@ public sealed class SunriseCriminalRecordsChangeStatusMessage : BoundUserInterfa
         Status = status;
         Reason = reason;
     }
+}
+
+/// <summary>
+///     BUI message to print the security dossier of the currently selected record.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class SunriseCriminalRecordsPrintDossierMessage : BoundUserInterfaceMessage
+{
 }
 
 /// <summary>

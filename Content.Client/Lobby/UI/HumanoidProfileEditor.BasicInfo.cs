@@ -25,6 +25,7 @@ public sealed partial class HumanoidProfileEditor
     {
         Profile = HumanoidCharacterProfile.Random();
         SetProfile(Profile, CharacterSlot);
+        _recordsTab?.RandomizeAllFields(); // Sunrise-Edit — досье случайного персонажа тоже не должно оставаться пустым
         SetDirty();
     }
 

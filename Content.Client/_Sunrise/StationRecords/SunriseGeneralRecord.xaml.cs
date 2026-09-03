@@ -1,7 +1,9 @@
 using System.Linq;
+using Content.Client._Sunrise.Records;
 using Content.Client.Lobby;
 using Content.Client.Roles;
 using Content.Shared._Sunrise.Helpers;
+using Content.Shared._Sunrise.Records;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
@@ -169,6 +171,15 @@ public sealed partial class SunriseGeneralRecord : BoxContainer
 
         if (!string.IsNullOrEmpty(record.Personality))
             Personality.TextRope = new Rope.Leaf(record.Personality);
+
+        // Sunrise added start — заполнение полей идентификации и трудового досье
+        FullNameEdit.Text = record.FullName;
+        DateOfBirthEdit.Text = record.DateOfBirth;
+        var identity = RecordIdentityBuilder.FromStationRecord(record, _prototype, _loc);
+        var employment = StructuredCharacterRecords.ReadEmployment(record.EmploymentRecord);
+        EmploymentView.SetData(RecordViewBuilder.Employment(identity, record.EmploymentRecord, _loc), showService: false);
+        EmploymentNotesEdit.TextRope = new Rope.Leaf(employment.Notes);
+        // Sunrise added end
     }
 
     /// <summary>
@@ -229,9 +240,25 @@ public sealed partial class SunriseGeneralRecord : BoxContainer
             Fingerprint = Fingerprint.Text,
             DNA = Dna.Text,
             Personality = Rope.Collapse(Personality.TextRope),
+            // Sunrise added start — поля трудовой истории и идентификации
+            FullName = FullNameEdit.Text,
+            DateOfBirth = DateOfBirthEdit.Text,
+            EmploymentRecord = BuildUpdatedEmploymentRecord(original.EmploymentRecord),
+            // Sunrise added end
         };
 
         return GeneralStationRecord.SanitizeRecord(updated, in _prototype);
+    }
+
+    /// <summary>
+    /// Консоль редактирует только поле заметок трудового досье — остальные поля
+    /// заполняются структурированной формой при создании персонажа.
+    /// </summary>
+    private string BuildUpdatedEmploymentRecord(string originalEmploymentRecord)
+    {
+        var employment = StructuredCharacterRecords.ReadEmployment(originalEmploymentRecord);
+        employment.Notes = Rope.Collapse(EmploymentNotesEdit.TextRope);
+        return StructuredCharacterRecords.WriteEmployment(employment);
     }
 
     private void MakeDropDownSelectable()
@@ -260,6 +287,11 @@ public sealed partial class SunriseGeneralRecord : BoxContainer
         Gender.Disabled = !_hasAccess;
         Species.Disabled = !_hasAccess;
         Job.Disabled = !_hasAccess;
+        // Sunrise added start — доступ к полям досье
+        FullNameEdit.Editable = _hasAccess;
+        DateOfBirthEdit.Editable = _hasAccess;
+        EmploymentNotesEdit.Input.Editable = _hasAccess;
+        // Sunrise added end
     }
 
     private void CheckChanges()
@@ -273,6 +305,7 @@ public sealed partial class SunriseGeneralRecord : BoxContainer
         }
 
         Personality.OnTextChanged += _ => MakeSaveAvailable();
+        EmploymentNotesEdit.OnTextChanged += _ => MakeSaveAvailable();
     }
 
     private void MakeSaveAvailable()

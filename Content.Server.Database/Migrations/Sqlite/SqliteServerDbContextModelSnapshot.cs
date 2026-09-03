@@ -1168,6 +1168,16 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("INTEGER")
                         .HasColumnName("age");
 
+                    b.Property<string>("BirthDay")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("birth_day");
+
+                    b.Property<string>("BirthMonth")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("birth_month");
+
                     b.Property<string>("BodyType")
                         .IsRequired()
                         .HasColumnType("TEXT")
@@ -1177,6 +1187,11 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasColumnName("char_name");
+
+                    b.Property<string>("EmploymentRecord")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("employment_record");
 
                     b.Property<string>("EyeColor")
                         .IsRequired()
@@ -1239,9 +1254,19 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("jsonb")
                         .HasColumnName("markings");
 
+                    b.Property<string>("MedicalRecord")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("medical_record");
+
                     b.Property<byte[]>("OrganMarkings")
                         .HasColumnType("jsonb")
                         .HasColumnName("organ_markings");
+
+                    b.Property<string>("Patronymic")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("patronymic");
 
                     b.Property<int>("PreferenceId")
                         .HasColumnType("INTEGER")
@@ -1250,6 +1275,11 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.Property<int>("PreferenceUnavailable")
                         .HasColumnType("INTEGER")
                         .HasColumnName("pref_unavailable");
+
+                    b.Property<string>("SecurityRecord")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("security_record");
 
                     b.Property<string>("Sex")
                         .IsRequired()
@@ -1504,31 +1534,6 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.ToTable("trait", (string)null);
                 });
 
-            modelBuilder.Entity("Content.Server.Database.UiLike", b =>
-                {
-                    b.Property<string>("ScopeId")
-                        .HasMaxLength(128)
-                        .HasColumnType("TEXT")
-                        .HasColumnName("scope_id");
-
-                    b.Property<string>("ItemId")
-                        .HasMaxLength(128)
-                        .HasColumnType("TEXT")
-                        .HasColumnName("item_id");
-
-                    b.Property<Guid>("PlayerUserId")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("player_user_id");
-
-                    b.HasKey("ScopeId", "ItemId", "PlayerUserId")
-                        .HasName("PK_ui_likes");
-
-                    b.HasIndex("PlayerUserId", "ScopeId")
-                        .HasDatabaseName("IX_ui_likes_player_user_id_scope_id");
-
-                    b.ToTable("ui_likes", (string)null);
-                });
-
             modelBuilder.Entity("Content.Server.Database.TutorialCompletion", b =>
                 {
                     b.Property<Guid>("PlayerUserId")
@@ -1561,6 +1566,31 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasDatabaseName("IX_tutorial_completion_tutorial_id");
 
                     b.ToTable("tutorial_completion", (string)null);
+                });
+
+            modelBuilder.Entity("Content.Server.Database.UiLike", b =>
+                {
+                    b.Property<string>("ScopeId")
+                        .HasMaxLength(128)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("scope_id");
+
+                    b.Property<string>("ItemId")
+                        .HasMaxLength(128)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("item_id");
+
+                    b.Property<Guid>("PlayerUserId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("player_user_id");
+
+                    b.HasKey("ScopeId", "ItemId", "PlayerUserId")
+                        .HasName("PK_ui_likes");
+
+                    b.HasIndex("PlayerUserId", "ScopeId")
+                        .HasDatabaseName("IX_ui_likes_player_user_id_scope_id");
+
+                    b.ToTable("ui_likes", (string)null);
                 });
 
             modelBuilder.Entity("Content.Server.Database.Unban", b =>

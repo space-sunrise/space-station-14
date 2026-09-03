@@ -371,6 +371,19 @@
     color: "#1f8c28"
   - type: Computer
     board: MedicalRecordsComputerCircuitboard
+  # Sunrise added start — медицинская консоль BUI
+  - type: SunriseMedicalRecordsConsole
+  - type: UserInterface
+    interfaces:
+      enum.SunriseMedicalRecordsConsoleKey.Key:
+        type: SunriseMedicalRecordsBoundUserInterface
+  - type: ActivatableUI
+    key: enum.SunriseMedicalRecordsConsoleKey.Key
+  - type: AccessReader
+    access:
+    - - Medical
+    - - ChiefMedicalOfficer
+  # Sunrise added end
 
 - type: entity
   parent: BaseComputerAiAccess

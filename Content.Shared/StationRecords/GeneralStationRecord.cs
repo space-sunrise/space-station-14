@@ -84,11 +84,34 @@ public sealed record GeneralStationRecord
     [DataField]
     public string Personality = string.Empty;
 
+    // Sunrise added start — поля досье персонажа
+    [DataField]
+    public string MedicalRecord = string.Empty;
+
+    [DataField]
+    public string SecurityRecord = string.Empty;
+
+    [DataField]
+    public string EmploymentRecord = string.Empty;
+
+    [DataField]
+    public string FullName = string.Empty;
+
+    [DataField]
+    public string DateOfBirth = string.Empty;
+    // Sunrise added end
+
     [NonSerialized] private const int MaxNameLength = 64;
     [NonSerialized] private const int MaxAge = 10000;
     [NonSerialized] private const int MaxFingerprintLength = 32;
     [NonSerialized] private const int MaxDnaLength = 16;
     [NonSerialized] private const int MaxPersonalityLength = 1024;
+    // Sunrise added start — максимальные длины полей досье
+    // Значение увеличено под структурированные досье (см. Content.Shared._Sunrise.Records) —
+    // сериализованное хранилище всех полей формы занимает больше места, чем свободный текст.
+    [NonSerialized] private const int MaxRecordLineLength = 128;
+    [NonSerialized] private const int MaxRecordTextLength = 20000;
+    // Sunrise added end
 
     [NonSerialized] private static readonly ProtoId<JobPrototype> FallbackJobPrototype = "Passenger";
     [NonSerialized] private static readonly ProtoId<SpeciesPrototype> FallbackSpeciesPrototype = "Human";
@@ -107,6 +130,13 @@ public sealed record GeneralStationRecord
             Fingerprint = original.Fingerprint.SanitizeInput(MaxFingerprintLength),
             DNA = original.DNA.SanitizeInput(MaxDnaLength),
             Personality = original.Personality.SanitizeInput(MaxPersonalityLength),
+            // Sunrise added start — санитизация полей досье
+            FullName = original.FullName.SanitizeInput(MaxRecordLineLength),
+            DateOfBirth = original.DateOfBirth.SanitizeInput(MaxRecordLineLength),
+            MedicalRecord = original.MedicalRecord.SanitizeInput(MaxRecordTextLength),
+            SecurityRecord = original.SecurityRecord.SanitizeInput(MaxRecordTextLength),
+            EmploymentRecord = original.EmploymentRecord.SanitizeInput(MaxRecordTextLength),
+            // Sunrise added end
         };
 
         return updated;

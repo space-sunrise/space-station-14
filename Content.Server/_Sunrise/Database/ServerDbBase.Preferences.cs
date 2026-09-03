@@ -15,6 +15,15 @@ public abstract partial class ServerDbBase
         profile.Width = humanoid.Width;
         profile.Height = humanoid.Height;
 
+        // Sunrise added start — сохраняем досье персонажа
+        profile.Patronymic = humanoid.Patronymic;
+        profile.BirthDay = humanoid.BirthDay;
+        profile.BirthMonth = humanoid.BirthMonth;
+        profile.MedicalRecord = humanoid.MedicalRecord;
+        profile.SecurityRecord = humanoid.SecurityRecord;
+        profile.EmploymentRecord = humanoid.EmploymentRecord;
+        // Sunrise added end
+
         profile.JobAlternativeTitles.Clear();
         profile.JobAlternativeTitles.AddRange(
             humanoid.JobAlternativeTitles.Select(job => new JobAlternativeTitle

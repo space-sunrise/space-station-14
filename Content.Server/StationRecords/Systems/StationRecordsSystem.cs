@@ -175,6 +175,15 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
             DNA = dna,
             Silicon = silicon, // Sunrise-Edit
             HumanoidProfile = profile, // Sunrise edit
+            // Sunrise added start — заполняем досье из профиля персонажа
+            MedicalRecord = profile.MedicalRecord,
+            SecurityRecord = profile.SecurityRecord,
+            EmploymentRecord = profile.EmploymentRecord,
+            FullName = HumanoidCharacterProfile.ComposeFullName(name, profile.Patronymic),
+            DateOfBirth = !string.IsNullOrEmpty(profile.BirthDay) || !string.IsNullOrEmpty(profile.BirthMonth)
+                ? $"{profile.BirthDay}.{profile.BirthMonth}.{3026 - age}"
+                : string.Empty,
+            // Sunrise added end
         };
 
         var key = AddRecordEntry(station, record);

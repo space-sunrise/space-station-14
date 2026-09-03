@@ -1,0 +1,230 @@
+<BoxContainer xmlns="https://spacestation14.io"
+             xmlns:records="clr-namespace:Content.Client._Sunrise.Records"
+             Orientation="Vertical"
+             VerticalExpand="True"
+             HorizontalExpand="True">
+
+    <ScrollContainer VerticalExpand="True" HorizontalExpand="True">
+        <BoxContainer Orientation="Vertical" Margin="8 8 8 8" HorizontalExpand="True">
+
+            <!-- Идентификационные данные -->
+            <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0 0 0 4">
+                <Label Text="{Loc 'character-records-identity-section'}"
+                       StyleClasses="LabelHeading"/>
+                <Control HorizontalExpand="True"/>
+                <Button Name="RandomizeAllButton" Text="{Loc 'records-randomize-all-button'}"/>
+                <Button Name="PreviewButton" Text="{Loc 'records-preview-show'}"/>
+            </BoxContainer>
+
+            <GridContainer Columns="2" HorizontalExpand="True" Margin="0 0 0 8">
+                <Label Text="{Loc 'records-patronymic-label'}"
+                       VerticalAlignment="Center"
+                       Margin="0 0 6 0"/>
+                <LineEdit Name="Patronymic"
+                          HorizontalExpand="True"
+                          PlaceHolder="{Loc 'records-patronymic-placeholder'}"/>
+
+                <Label Text="{Loc 'character-records-dob-label'}"
+                       VerticalAlignment="Center"
+                       Margin="0 0 6 0"/>
+                <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                    <LineEdit Name="BirthDay"
+                              MinWidth="60"
+                              PlaceHolder="{Loc 'character-records-dob-day-placeholder'}"/>
+                    <Label Text="." VerticalAlignment="Center" Margin="4 0"/>
+                    <LineEdit Name="BirthMonth"
+                              MinWidth="60"
+                              PlaceHolder="{Loc 'character-records-dob-month-placeholder'}"/>
+                    <Label Text="." VerticalAlignment="Center" Margin="4 0"/>
+                    <Label Name="BirthYear"
+                           VerticalAlignment="Center"
+                           FontColorOverride="DarkGray"/>
+                </BoxContainer>
+
+                <Label Text="{Loc 'records-height-label'}"
+                       VerticalAlignment="Center"
+                       Margin="0 0 6 0"/>
+                <Label Name="HeightValue"
+                       VerticalAlignment="Center"
+                       FontColorOverride="DarkGray"/>
+
+                <Label Text="{Loc 'records-weight'}"
+                       VerticalAlignment="Center"
+                       Margin="0 0 6 0"/>
+                <Label Name="WeightValue"
+                       VerticalAlignment="Center"
+                       FontColorOverride="DarkGray"/>
+            </GridContainer>
+
+            <PanelContainer StyleClasses="LowDivider" Margin="0 4 0 8"/>
+
+            <TabContainer Name="RecordTabs" HorizontalExpand="True" VerticalExpand="True">
+
+                <!-- Медицинское досье -->
+                <BoxContainer Name="MedicalTab" Orientation="Vertical" HorizontalExpand="True">
+                    <GridContainer Columns="2" HorizontalExpand="True" Margin="0 4 0 0">
+                        <Label Text="{Loc 'records-postmortem'}" VAlign="Center" MinWidth="200"/>
+                        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                            <LineEdit Name="MedicalPostmortem" HorizontalExpand="True"/>
+                            <Button Name="MedicalPostmortemDice" Text="{Loc 'records-randomize-field-button'}"/>
+                        </BoxContainer>
+                        <Label Text="{Loc 'records-emergency-contact'}" VAlign="Center" MinWidth="200"/>
+                        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                            <LineEdit Name="MedicalEmergencyContact" HorizontalExpand="True"/>
+                            <Button Name="MedicalEmergencyContactDice" Text="{Loc 'records-randomize-field-button'}"/>
+                        </BoxContainer>
+                    </GridContainer>
+
+                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0 8 0 3">
+                        <Label Text="{Loc 'records-physiological-notes'}" StyleClasses="LabelSubText"/>
+                        <Control HorizontalExpand="True"/>
+                        <Button Name="MedicalPhysiologicalDice" Text="{Loc 'records-randomize-field-button'}"/>
+                    </BoxContainer>
+                    <records:RecordTextEdit Name="MedicalPhysiological" MinHeight="70" MaxHeight="120" HorizontalExpand="True"/>
+                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0 8 0 3">
+                        <Label Text="{Loc 'records-psychological-notes'}" StyleClasses="LabelSubText"/>
+                        <Control HorizontalExpand="True"/>
+                        <Button Name="MedicalPsychologicalDice" Text="{Loc 'records-randomize-field-button'}"/>
+                    </BoxContainer>
+                    <records:RecordTextEdit Name="MedicalPsychological" MinHeight="70" MaxHeight="120" HorizontalExpand="True"/>
+                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0 8 0 3">
+                        <Label Text="{Loc 'records-notes'}" StyleClasses="LabelSubText"/>
+                        <Control HorizontalExpand="True"/>
+                        <Button Name="MedicalNotesDice" Text="{Loc 'records-randomize-field-button'}"/>
+                    </BoxContainer>
+                    <records:RecordTextEdit Name="MedicalNotes" MinHeight="90" MaxHeight="150" HorizontalExpand="True"/>
+                </BoxContainer>
+
+                <!-- Охранное досье -->
+                <BoxContainer Name="SecurityTab" Orientation="Vertical" HorizontalExpand="True">
+                    <Label Text="{Loc 'records-residence-registration'}" StyleClasses="LabelSubText" Margin="0 4 0 3"/>
+                    <GridContainer Columns="2" HorizontalExpand="True">
+                        <Label Text="{Loc 'records-residence-region'}" VAlign="Center" MinWidth="200"/>
+                        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                            <LineEdit Name="SecurityResidenceRegion" HorizontalExpand="True"/>
+                            <Button Name="SecurityResidenceRegionDice" Text="{Loc 'records-randomize-field-button'}"/>
+                        </BoxContainer>
+                        <Label Text="{Loc 'records-residence-planet'}" VAlign="Center" MinWidth="200"/>
+                        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                            <LineEdit Name="SecurityResidencePlanet" HorizontalExpand="True"/>
+                            <Button Name="SecurityResidencePlanetDice" Text="{Loc 'records-randomize-field-button'}"/>
+                        </BoxContainer>
+                        <Label Text="{Loc 'records-residence-street'}" VAlign="Center" MinWidth="200"/>
+                        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                            <LineEdit Name="SecurityResidenceStreet" HorizontalExpand="True"/>
+                            <Button Name="SecurityResidenceStreetDice" Text="{Loc 'records-randomize-field-button'}"/>
+                        </BoxContainer>
+                        <Label Text="{Loc 'records-residence-unit'}" VAlign="Center" MinWidth="200"/>
+                        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                            <LineEdit Name="SecurityResidenceUnit" HorizontalExpand="True"/>
+                            <Button Name="SecurityResidenceUnitDice" Text="{Loc 'records-randomize-field-button'}"/>
+                        </BoxContainer>
+                        <Label Text="{Loc 'records-residence-details'}" VAlign="Center" MinWidth="200"/>
+                        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                            <LineEdit Name="SecurityResidenceDetails" HorizontalExpand="True"/>
+                            <Button Name="SecurityResidenceDetailsDice" Text="{Loc 'records-randomize-field-button'}"/>
+                        </BoxContainer>
+                    </GridContainer>
+
+                    <PanelContainer StyleClasses="LowDivider" Margin="0 8 0 8"/>
+
+                    <GridContainer Columns="2" HorizontalExpand="True">
+                        <Label Text="{Loc 'records-identifying-features'}" VAlign="Center" MinWidth="200"/>
+                        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                            <LineEdit Name="SecurityFeatures" HorizontalExpand="True"/>
+                            <Button Name="SecurityFeaturesDice" Text="{Loc 'records-randomize-field-button'}"/>
+                        </BoxContainer>
+                        <Label Text="{Loc 'records-marital-status'}" VAlign="Center" MinWidth="200"/>
+                        <OptionButton Name="SecurityMaritalStatus" HorizontalExpand="True"/>
+                        <Label Text="{Loc 'records-close-relatives'}" VAlign="Center" MinWidth="200"/>
+                        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                            <LineEdit Name="SecurityRelatives" HorizontalExpand="True"/>
+                            <Button Name="SecurityRelativesDice" Text="{Loc 'records-randomize-field-button'}"/>
+                        </BoxContainer>
+                        <Label Text="{Loc 'records-emergency-contact'}" VAlign="Center" MinWidth="200"/>
+                        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                            <LineEdit Name="SecurityEmergencyContact" HorizontalExpand="True"/>
+                            <Button Name="SecurityEmergencyContactDice" Text="{Loc 'records-randomize-field-button'}"/>
+                        </BoxContainer>
+                    </GridContainer>
+                    <CheckBox Name="SecuritySupervision" Text="{Loc 'records-security-supervision'}" Margin="0 6 0 0"/>
+
+                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0 8 0 3">
+                        <Label Text="{Loc 'records-permits'}" StyleClasses="LabelSubText"/>
+                        <Control HorizontalExpand="True"/>
+                        <Button Name="SecurityPermitsDice" Text="{Loc 'records-randomize-field-button'}"/>
+                    </BoxContainer>
+                    <records:RecordTextEdit Name="SecurityPermits" MinHeight="70" MaxHeight="120" HorizontalExpand="True"/>
+                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0 8 0 3">
+                        <Label Text="{Loc 'records-arrest-history'}" StyleClasses="LabelSubText"/>
+                        <Control HorizontalExpand="True"/>
+                        <Button Name="SecurityArrestsDice" Text="{Loc 'records-randomize-field-button'}"/>
+                    </BoxContainer>
+                    <records:RecordTextEdit Name="SecurityArrests" MinHeight="80" MaxHeight="130" HorizontalExpand="True"/>
+                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0 8 0 3">
+                        <Label Text="{Loc 'records-imprisonment-history'}" StyleClasses="LabelSubText"/>
+                        <Control HorizontalExpand="True"/>
+                        <Button Name="SecurityImprisonmentDice" Text="{Loc 'records-randomize-field-button'}"/>
+                    </BoxContainer>
+                    <records:RecordTextEdit Name="SecurityImprisonment" MinHeight="80" MaxHeight="130" HorizontalExpand="True"/>
+                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0 8 0 3">
+                        <Label Text="{Loc 'records-notes'}" StyleClasses="LabelSubText"/>
+                        <Control HorizontalExpand="True"/>
+                        <Button Name="SecurityNotesDice" Text="{Loc 'records-randomize-field-button'}"/>
+                    </BoxContainer>
+                    <records:RecordTextEdit Name="SecurityNotes" MinHeight="90" MaxHeight="150" HorizontalExpand="True"/>
+                </BoxContainer>
+
+                <!-- Трудовое досье -->
+                <BoxContainer Name="EmploymentTab" Orientation="Vertical" HorizontalExpand="True">
+                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                        <Label Text="{Loc 'records-education'}" StyleClasses="LabelSubText" VerticalAlignment="Center"/>
+                        <Control HorizontalExpand="True"/>
+                        <Button Name="AddEducation" Text="{Loc 'records-add-education-short'}"/>
+                    </BoxContainer>
+                    <BoxContainer Name="EducationEntries" Orientation="Vertical" HorizontalExpand="True" Margin="0 4 0 4"/>
+
+                    <PanelContainer StyleClasses="LowDivider" Margin="0 4 0 8"/>
+
+                    <Label Text="{Loc 'records-academic-title-section'}" StyleClasses="LabelSubText" Margin="0 0 0 3"/>
+                    <GridContainer Columns="2" HorizontalExpand="True">
+                        <Label Text="{Loc 'records-academic-title-short'}" VAlign="Center" MinWidth="200"/>
+                        <OptionButton Name="EmploymentAcademicTitle" HorizontalExpand="True"/>
+                        <Label Name="AcademicTitleFieldLabel" Text="{Loc 'records-academic-title-field'}" VAlign="Center" MinWidth="200"/>
+                        <BoxContainer Name="AcademicTitleFieldBox" Orientation="Horizontal" HorizontalExpand="True">
+                            <LineEdit Name="EmploymentAcademicTitleField" HorizontalExpand="True"/>
+                            <Button Name="EmploymentAcademicTitleFieldDice" Text="{Loc 'records-randomize-field-button'}"/>
+                        </BoxContainer>
+                        <Label Name="AcademicTitleDateLabel" Text="{Loc 'records-academic-title-date'}" VAlign="Center" MinWidth="200"/>
+                        <BoxContainer Name="AcademicTitleDateBox" Orientation="Horizontal" HorizontalExpand="True">
+                            <LineEdit Name="EmploymentAcademicTitleDate" HorizontalExpand="True"/>
+                            <Button Name="EmploymentAcademicTitleDateDice" Text="{Loc 'records-randomize-field-button'}"/>
+                        </BoxContainer>
+                    </GridContainer>
+
+                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0 8 0 3">
+                        <Label Text="{Loc 'records-licenses'}" StyleClasses="LabelSubText"/>
+                        <Control HorizontalExpand="True"/>
+                        <Button Name="EmploymentLicensesDice" Text="{Loc 'records-randomize-field-button'}"/>
+                    </BoxContainer>
+                    <records:RecordTextEdit Name="EmploymentLicenses" MinHeight="70" MaxHeight="120" HorizontalExpand="True"/>
+                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0 8 0 3">
+                        <Label Text="{Loc 'records-employment-history'}" StyleClasses="LabelSubText"/>
+                        <Control HorizontalExpand="True"/>
+                        <Button Name="EmploymentHistoryDice" Text="{Loc 'records-randomize-field-button'}"/>
+                    </BoxContainer>
+                    <records:RecordTextEdit Name="EmploymentHistory" MinHeight="90" MaxHeight="150" HorizontalExpand="True"/>
+                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0 8 0 3">
+                        <Label Text="{Loc 'records-notes'}" StyleClasses="LabelSubText"/>
+                        <Control HorizontalExpand="True"/>
+                        <Button Name="EmploymentNotesDice" Text="{Loc 'records-randomize-field-button'}"/>
+                    </BoxContainer>
+                    <records:RecordTextEdit Name="EmploymentNotes" MinHeight="90" MaxHeight="150" HorizontalExpand="True"/>
+                </BoxContainer>
+
+            </TabContainer>
+
+        </BoxContainer>
+    </ScrollContainer>
+
+</BoxContainer>

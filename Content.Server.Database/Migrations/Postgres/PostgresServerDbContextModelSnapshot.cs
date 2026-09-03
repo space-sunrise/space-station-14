@@ -1239,6 +1239,16 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("integer")
                         .HasColumnName("age");
 
+                    b.Property<string>("BirthDay")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("birth_day");
+
+                    b.Property<string>("BirthMonth")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("birth_month");
+
                     b.Property<string>("BodyType")
                         .IsRequired()
                         .HasColumnType("text")
@@ -1248,6 +1258,11 @@ namespace Content.Server.Database.Migrations.Postgres
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("char_name");
+
+                    b.Property<string>("EmploymentRecord")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("employment_record");
 
                     b.Property<string>("EyeColor")
                         .IsRequired()
@@ -1310,9 +1325,19 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("jsonb")
                         .HasColumnName("markings");
 
+                    b.Property<string>("MedicalRecord")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("medical_record");
+
                     b.Property<JsonDocument>("OrganMarkings")
                         .HasColumnType("jsonb")
                         .HasColumnName("organ_markings");
+
+                    b.Property<string>("Patronymic")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("patronymic");
 
                     b.Property<int>("PreferenceId")
                         .HasColumnType("integer")
@@ -1321,6 +1346,11 @@ namespace Content.Server.Database.Migrations.Postgres
                     b.Property<int>("PreferenceUnavailable")
                         .HasColumnType("integer")
                         .HasColumnName("pref_unavailable");
+
+                    b.Property<string>("SecurityRecord")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("security_record");
 
                     b.Property<string>("Sex")
                         .IsRequired()
@@ -1589,31 +1619,6 @@ namespace Content.Server.Database.Migrations.Postgres
                     b.ToTable("trait", (string)null);
                 });
 
-            modelBuilder.Entity("Content.Server.Database.UiLike", b =>
-                {
-                    b.Property<string>("ScopeId")
-                        .HasMaxLength(128)
-                        .HasColumnType("character varying(128)")
-                        .HasColumnName("scope_id");
-
-                    b.Property<string>("ItemId")
-                        .HasMaxLength(128)
-                        .HasColumnType("character varying(128)")
-                        .HasColumnName("item_id");
-
-                    b.Property<Guid>("PlayerUserId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("player_user_id");
-
-                    b.HasKey("ScopeId", "ItemId", "PlayerUserId")
-                        .HasName("PK_ui_likes");
-
-                    b.HasIndex("PlayerUserId", "ScopeId")
-                        .HasDatabaseName("IX_ui_likes_player_user_id_scope_id");
-
-                    b.ToTable("ui_likes", (string)null);
-                });
-
             modelBuilder.Entity("Content.Server.Database.TutorialCompletion", b =>
                 {
                     b.Property<Guid>("PlayerUserId")
@@ -1646,6 +1651,31 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasDatabaseName("IX_tutorial_completion_tutorial_id");
 
                     b.ToTable("tutorial_completion", (string)null);
+                });
+
+            modelBuilder.Entity("Content.Server.Database.UiLike", b =>
+                {
+                    b.Property<string>("ScopeId")
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)")
+                        .HasColumnName("scope_id");
+
+                    b.Property<string>("ItemId")
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)")
+                        .HasColumnName("item_id");
+
+                    b.Property<Guid>("PlayerUserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("player_user_id");
+
+                    b.HasKey("ScopeId", "ItemId", "PlayerUserId")
+                        .HasName("PK_ui_likes");
+
+                    b.HasIndex("PlayerUserId", "ScopeId")
+                        .HasDatabaseName("IX_ui_likes_player_user_id_scope_id");
+
+                    b.ToTable("ui_likes", (string)null);
                 });
 
             modelBuilder.Entity("Content.Server.Database.Unban", b =>

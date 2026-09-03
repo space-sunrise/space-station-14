@@ -29,6 +29,9 @@ sunrise-records-sentence-life = PERMA
 sunrise-records-sentence-header = SENTENCE
 sunrise-records-person-name = Name:
 sunrise-records-person-job = Job:
+sunrise-records-show-dossier = Dossier
+sunrise-records-show-cases = Case list
+sunrise-records-print-dossier = Print
 
 sunrise-records-breakdown-base-sum = Base sum (Cat 1-5): {$sum} min.
 sunrise-records-breakdown-cap = Cap (1.5x Cat {$cat}): {$cap} min.

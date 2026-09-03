@@ -1,3 +1,4 @@
+using Content.Shared._Sunrise.CriminalRecords;
 using Content.Shared.Access.Systems;
 using Content.Shared.CriminalRecords;
 using Content.Shared.CriminalRecords.Components;
@@ -41,6 +42,10 @@ public sealed class CriminalRecordsConsoleBoundUserInterface : BoundUserInterfac
             SendMessage(new CriminalRecordChangeStatus(status, reason));
         _window.OnStatusFilterPressed += (statusFilter) =>
             SendMessage(new CriminalRecordSetStatusFilter(statusFilter));
+        // Sunrise added start — кнопка печати охранного досье
+        _window.OnPrintPressed += id =>
+            SendMessage(new SunrisePrintCriminalRecord(id));
+        // Sunrise added end
         _window.OnHistoryUpdated += UpdateHistory;
         _window.OnHistoryClosed += () => _historyWindow?.Close();
         _window.OnClose += Close;

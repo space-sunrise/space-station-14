@@ -1,7 +1,9 @@
 <controls:FancyWindow xmlns="https://spacestation14.io"
                       xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      xmlns:records="clr-namespace:Content.Client._Sunrise.Records"
                       Title="{Loc 'criminal-records-console-window-title'}"
-                      MinSize="695 440">
+                      MinSize="695 440"
+                      SetSize="900 620">
     <BoxContainer Orientation="Vertical">
         <BoxContainer Name="AllList"
                       Orientation="Vertical"
@@ -107,6 +109,27 @@
                     <Button Name="HistoryButton"
                             Text="{Loc 'criminal-records-console-crime-history'}"
                             Margin="0 5" />
+                    <!-- Sunrise added start — кнопки охранного досье и печати -->
+                    <PanelContainer StyleClasses="LowDivider" Margin="0 5 0 5"/>
+                    <BoxContainer Orientation="Horizontal" Margin="0 0 0 5">
+                        <Button Name="SecurityRecordToggle"
+                                Text="{Loc 'criminal-records-security-record-button'}"
+                                HorizontalExpand="True"
+                                Margin="0 0 5 0"/>
+                        <Button Name="PrintButton"
+                                Text="{Loc 'station-records-ui-print'}"
+                                Visible="False"/>
+                    </BoxContainer>
+                    <BoxContainer Name="SecurityRecordPanel"
+                                  Orientation="Vertical"
+                                  Visible="False"
+                                  MinHeight="260"
+                                  Margin="0 0 0 5">
+                        <ScrollContainer HScrollEnabled="False" MinHeight="260" MaxHeight="260">
+                            <records:RecordCardView Name="SecurityView"/>
+                        </ScrollContainer>
+                    </BoxContainer>
+                    <!-- Sunrise added end -->
                 </BoxContainer>
             </BoxContainer>
             <BoxContainer Orientation="Horizontal"

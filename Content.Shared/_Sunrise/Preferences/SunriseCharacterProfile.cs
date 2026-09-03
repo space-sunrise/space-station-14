@@ -40,6 +40,26 @@ public sealed partial class SunriseCharacterProfile : IEquatable<SunriseCharacte
 
     public IReadOnlyDictionary<ProtoId<JobPrototype>, LocId> JobAlternativeTitles => _jobAlternativeTitles;
 
+    // Sunrise added start — поля досье персонажа
+    [DataField]
+    public string MedicalRecord = string.Empty;
+
+    [DataField]
+    public string SecurityRecord = string.Empty;
+
+    [DataField]
+    public string EmploymentRecord = string.Empty;
+
+    [DataField]
+    public string FullName = string.Empty;
+
+    [DataField]
+    public string BirthDay = string.Empty;
+
+    [DataField]
+    public string BirthMonth = string.Empty;
+    // Sunrise added end
+
     public SunriseCharacterProfile()
     {
     }
@@ -51,6 +71,14 @@ public sealed partial class SunriseCharacterProfile : IEquatable<SunriseCharacte
         Width = other.Width;
         Height = other.Height;
         _jobAlternativeTitles = new(other._jobAlternativeTitles);
+        // Sunrise added start
+        MedicalRecord = other.MedicalRecord;
+        SecurityRecord = other.SecurityRecord;
+        EmploymentRecord = other.EmploymentRecord;
+        FullName = other.FullName;
+        BirthDay = other.BirthDay;
+        BirthMonth = other.BirthMonth;
+        // Sunrise added end
     }
 
     public static SunriseCharacterProfile DefaultForSpecies(ProtoId<SpeciesPrototype> species, Sex sex)
@@ -150,6 +178,15 @@ public sealed partial class SunriseCharacterProfile : IEquatable<SunriseCharacte
         };
     }
 
+    // Sunrise added start — With-методы для полей досье
+    public SunriseCharacterProfile WithMedicalRecord(string value) => new(this) { MedicalRecord = value };
+    public SunriseCharacterProfile WithSecurityRecord(string value) => new(this) { SecurityRecord = value };
+    public SunriseCharacterProfile WithEmploymentRecord(string value) => new(this) { EmploymentRecord = value };
+    public SunriseCharacterProfile WithFullName(string value) => new(this) { FullName = value };
+    public SunriseCharacterProfile WithBirthDay(string value) => new(this) { BirthDay = value };
+    public SunriseCharacterProfile WithBirthMonth(string value) => new(this) { BirthMonth = value };
+    // Sunrise added end
+
     public SunriseCharacterProfile Validated(
         HumanoidCharacterProfile profile,
         SpeciesPrototype species,
@@ -209,7 +246,15 @@ public sealed partial class SunriseCharacterProfile : IEquatable<SunriseCharacte
                BodyType == other.BodyType &&
                MathF.Abs(Width - other.Width) < 0.0001f &&
                MathF.Abs(Height - other.Height) < 0.0001f &&
-               _jobAlternativeTitles.SequenceEqual(other._jobAlternativeTitles);
+               _jobAlternativeTitles.SequenceEqual(other._jobAlternativeTitles) &&
+               // Sunrise added start
+               MedicalRecord == other.MedicalRecord &&
+               SecurityRecord == other.SecurityRecord &&
+               EmploymentRecord == other.EmploymentRecord &&
+               FullName == other.FullName &&
+               BirthDay == other.BirthDay &&
+               BirthMonth == other.BirthMonth;
+               // Sunrise added end
     }
 
     public override bool Equals(object? obj)
@@ -219,6 +264,20 @@ public sealed partial class SunriseCharacterProfile : IEquatable<SunriseCharacte
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(Voice, BodyType, Width, Height, _jobAlternativeTitles);
+        var h = new HashCode();
+        h.Add(Voice);
+        h.Add(BodyType);
+        h.Add(Width);
+        h.Add(Height);
+        h.Add(_jobAlternativeTitles.GetHashCode());
+        // Sunrise added start
+        h.Add(MedicalRecord);
+        h.Add(SecurityRecord);
+        h.Add(EmploymentRecord);
+        h.Add(FullName);
+        h.Add(BirthDay);
+        h.Add(BirthMonth);
+        // Sunrise added end
+        return h.ToHashCode();
     }
 }

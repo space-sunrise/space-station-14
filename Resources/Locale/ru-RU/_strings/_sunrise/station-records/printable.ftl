@@ -8,6 +8,8 @@ printed-station-records-content =
     ​[head=2]Основная информация[/head]
 
     ​[bullet] [color=#594D4A][bold]Имя:[/bold][/color] [italic]{ $name }[/italic]
+    ​[bullet] [color=#594D4A][bold]Полное имя:[/bold][/color] [italic]{ $fullname }[/italic]
+    ​[bullet] [color=#594D4A][bold]Дата рождения:[/bold][/color] [italic]{ $dob }[/italic]
     ​[bullet] [color=#594D4A][bold]Должность:[/bold][/color] [italic]{ $job }[/italic]
     ​[bullet] [color=#594D4A][bold]Отдел:[/bold][/color] [italic]{ $department }[/italic]
     ​[bullet] [color=#594D4A][bold]Возраст:[/bold][/color] [italic]{ $age }[/italic]
@@ -22,5 +24,9 @@ printed-station-records-content =
     ​[head=2]Характеристика[/head]
 
     ​[italic]{ $personality }[/italic]
+
+    ​[head=2]Трудовая история[/head]
+
+    ​[italic]{ $employmentrecord }[/italic]
 printed-station-records-document-name = Распечатка на { $name }
 printed-station-records-unrecognized = Неустановлено

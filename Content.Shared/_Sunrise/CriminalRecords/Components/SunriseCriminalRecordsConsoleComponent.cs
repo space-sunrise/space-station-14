@@ -25,4 +25,10 @@ public sealed partial class SunriseCriminalRecordsConsoleComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     public uint? SelectedCaseId;
+
+    /// <summary>
+    ///     Earliest time the dossier can be printed again.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan NextPrintTime;
 }

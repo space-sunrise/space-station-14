@@ -1,4 +1,5 @@
 using Content.Shared._Sunrise;
+using Content.Shared._Sunrise.Humanoid;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Sunrise.Interfaces.Shared;
@@ -45,6 +46,9 @@ public sealed partial class HumanoidProfileEditor
 
         HeightResetButton.OnPressed += _ => ResetHeight();
         WidthResetButton.OnPressed += _ => ResetWidth();
+
+        // Sunrise added — вкладка досье персонажа
+        InitializeRecordsTab();
     }
 
     private void UpdateSunriseControls()
@@ -52,6 +56,8 @@ public sealed partial class HumanoidProfileEditor
         RefreshBodyTypes();
         UpdateSizeControls();
         UpdateTtsVoicesControls();
+        // Sunrise added — обновляем вкладку досье
+        UpdateRecordsTab();
     }
 
     private void RefreshBodyTypes()
@@ -114,11 +120,11 @@ public sealed partial class HumanoidProfileEditor
 
         HeightDescribeLabel.Text = Loc.GetString(
             "humanoid-profile-editor-height-label",
-            ("height", GetHeightCm(species, height)));
+            ("height", HumanoidBodyMetrics.GetHeightCm(species, height)));
 
         WidthDescribeLabel.Text = Loc.GetString(
             "humanoid-profile-editor-width-label",
-            ("weight", GetWeightKg(species, width, height)));
+            ("weight", HumanoidBodyMetrics.GetWeightKg(species, width, height)));
 
         _updatingSunriseControls = false;
     }
@@ -169,20 +175,5 @@ public sealed partial class HumanoidProfileEditor
         }
 
         SetCharacterWidth(species.DefaultWidth);
-    }
-
-    private static int GetHeightCm(SpeciesPrototype species, float height)
-    {
-        var span = species.MaxHeight - species.MinHeight;
-        if (MathF.Abs(span) < 0.001f)
-            return (int)MathF.Round(species.MinHeightCm);
-
-        var ratio = Math.Clamp((height - species.MinHeight) / span, 0f, 1f);
-        return (int)MathF.Round(species.MinHeightCm + (species.MaxHeightCm - species.MinHeightCm) * ratio);
-    }
-
-    private static int GetWeightKg(SpeciesPrototype species, float width, float height)
-    {
-        return (int)MathF.Round(species.StandardWeight + species.StandardDensity * (width * height - 1f));
     }
 }

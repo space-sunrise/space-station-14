@@ -9,6 +9,9 @@
                     <BoxContainer Orientation="Horizontal">
                         <Label Text="{Loc 'sunrise-records-person-name'}" MinWidth="110" StyleClasses="LabelSecondaryColor"/>
                         <Label Name="PersonName" StyleClasses="LabelBig" />
+                        <Control HorizontalExpand="True"/>
+                        <Button Name="PrintDossierButton" Text="{Loc 'sunrise-records-print-dossier'}" Visible="False" Margin="0 0 4 0"/>
+                        <Button Name="DossierToggle" Text="{Loc 'sunrise-records-show-dossier'}"/>
                     </BoxContainer>
                     <BoxContainer Orientation="Horizontal">
                         <Label Text="{Loc 'sunrise-records-person-job'}" MinWidth="110" StyleClasses="LabelSecondaryColor"/>

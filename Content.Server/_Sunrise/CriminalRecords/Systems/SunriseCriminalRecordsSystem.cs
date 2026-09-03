@@ -1,17 +1,25 @@
 using Content.Shared._Sunrise.CriminalRecords;
+using Content.Shared._Sunrise.Humanoid;
 using Content.Shared._Sunrise.Laws;
 using Content.Shared._Sunrise.CriminalRecords.Systems;
+using Content.Shared._Sunrise.Records;
 using Content.Shared.StationRecords;
 using Content.Shared._Sunrise.CriminalRecords.Components;
 using Content.Server._Sunrise.CriminalRecords.Components;
+using Content.Server.Hands.Systems;
+using Content.Server.Popups;
+using Content.Server.Roles.Jobs;
 using Content.Server.StationRecords.Systems;
 using Content.Server.Station.Systems;
 using Content.Server._Sunrise.Laws.Systems;
 using Content.Shared.Access.Systems;
 using Content.Server.CriminalRecords.Systems;
 using Content.Shared.CriminalRecords;
+using Content.Shared.Paper;
 using Content.Shared.Security;
+using Robust.Server.Audio;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.CriminalRecords.Systems;
@@ -25,6 +33,13 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
     [Dependency] private readonly AccessReaderSystem _accessReader = default!;
     [Dependency] private readonly StationCorporateLawSystem _stationLaw = default!;
     [Dependency] private readonly CriminalRecordsSystem _criminalRecords = default!;
+    [Dependency] private readonly HandsSystem _hands = default!;
+    [Dependency] private readonly PaperSystem _paper = default!;
+    [Dependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly JobSystem _job = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
 
     private const int MaxLaws = 20;
     private const int MaxCircumstances = 10;
@@ -45,6 +60,7 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
             subs.Event<SunriseCriminalRecordsSetUIStateMessage>(OnSetUIState);
             subs.Event<SunriseCriminalRecordsChangeStatusMessage>(OnChangeStatus);
             subs.Event<SunriseCriminalRecordsReopenCaseMessage>(OnReopenCase);
+            subs.Event<SunriseCriminalRecordsPrintDossierMessage>(OnPrintDossier);
         });
 
         SubscribeLocalEvent<SunriseCriminalRecordsConsoleComponent, BoundUIOpenedEvent>(OnOpened);
@@ -281,6 +297,50 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
         return _accessReader.IsAllowed(user.Value, console);
     }
 
+    private void OnPrintDossier(EntityUid uid, SunriseCriminalRecordsConsoleComponent component, SunriseCriminalRecordsPrintDossierMessage msg)
+    {
+        if (!CheckAccess(uid, msg.Actor))
+            return;
+
+        if (component.SelectedKey == null)
+            return;
+
+        if (_timing.CurTime < component.NextPrintTime)
+        {
+            _popup.PopupEntity(Loc.GetString("forensic-scanner-printer-not-ready"), uid, msg.Actor);
+            return;
+        }
+
+        if (!_stationRecords.TryGetRecord<GeneralStationRecord>(component.SelectedKey.Value, out var record))
+            return;
+
+        var printed = Spawn("Paper", Transform(uid).Coordinates);
+        _hands.PickupOrDrop(msg.Actor, printed, checkActionBlocker: false);
+
+        if (!TryComp<PaperComponent>(printed, out var paperComp))
+            return;
+
+        _metaData.SetEntityName(printed, Loc.GetString("printed-security-records-document-name", ("name", record.Name)));
+
+        var text = Loc.GetString(
+            "printed-security-records-content",
+            ("name", record.Name),
+            ("fullname", string.IsNullOrWhiteSpace(record.FullName) ? Loc.GetString("printed-station-records-unrecognized") : record.FullName),
+            ("job", record.JobTitle),
+            ("department", _job.TryGetDepartment(record.JobPrototype, out var dept) ? Loc.GetString(dept.Name) : string.Empty),
+            ("dob", string.IsNullOrWhiteSpace(record.DateOfBirth) ? Loc.GetString("printed-station-records-unrecognized") : record.DateOfBirth),
+            ("securityrecord", StructuredRecordFormatter.FormatSecurity(record.SecurityRecord, Loc.GetString,
+                HumanoidBodyMetrics.FormatHeight(Loc, _prototype, record.Species, record.HumanoidProfile),
+                HumanoidBodyMetrics.FormatWeight(Loc, _prototype, record.Species, record.HumanoidProfile))));
+
+        _paper.SetContent((printed, paperComp), text);
+        _audio.PlayPvs(
+            new SoundPathSpecifier("/Audio/Machines/short_print_and_rip.ogg"),
+            uid,
+            AudioParams.Default.WithVariation(0.25f).WithVolume(4f).WithRolloffFactor(2.8f).WithMaxDistance(4.5f));
+
+        component.NextPrintTime = _timing.CurTime + TimeSpan.FromSeconds(5);
+    }
 
     private void UpdateUserInterface(EntityUid uid, SunriseCriminalRecordsConsoleComponent component)
     {
@@ -313,6 +373,11 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
         string? species = null;
         string? fingerprints = null;
         string? dna = null;
+        string? fullName = null;
+        string? dateOfBirth = null;
+        string? securityRecord = null;
+        string? height = null;
+        string? weight = null;
         SecurityStatus status = SecurityStatus.None;
         string? statusReason = null;
         List<CriminalCase> cases = new();
@@ -329,6 +394,11 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
                 species = general.Species;
                 fingerprints = general.Fingerprint;
                 dna = general.DNA;
+                fullName = general.FullName;
+                dateOfBirth = general.DateOfBirth;
+                securityRecord = general.SecurityRecord;
+                height = HumanoidBodyMetrics.FormatHeight(Loc, _prototype, general.Species, general.HumanoidProfile);
+                weight = HumanoidBodyMetrics.FormatWeight(Loc, _prototype, general.Species, general.HumanoidProfile);
             }
 
             if (_stationRecords.TryGetRecord<CriminalRecord>(component.SelectedKey.Value, out var criminal))
@@ -360,6 +430,11 @@ public sealed class SunriseCriminalRecordsSystem : SharedSunriseCriminalRecordsS
             species,
             fingerprints,
             dna,
+            fullName,
+            dateOfBirth,
+            securityRecord,
+            height,
+            weight,
             status,
             statusReason);
         _ui.SetUiState(uid, SunriseCriminalRecordsConsoleKey.Key, state);

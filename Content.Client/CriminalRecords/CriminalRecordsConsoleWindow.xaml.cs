@@ -1,4 +1,5 @@
 using Content.Client.UserInterface.Controls;
+using Content.Client._Sunrise.Records;
 using Content.Shared.Access.Systems;
 using Content.Shared.Administration;
 using Content.Shared.CriminalRecords;
@@ -54,6 +55,11 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
     private StationRecordFilterType _currentFilterType;
 
     private SecurityStatus _currentCrewListFilter;
+
+    // Sunrise added start — охранное досье
+    public Action<uint>? OnPrintPressed;
+    private bool _securityRecordVisible;
+    // Sunrise added end
 
     public CriminalRecordsConsoleWindow(EntityUid console, uint maxLength, IPlayerManager playerManager, IPrototypeManager prototypeManager, IRobustRandom robustRandom, AccessReaderSystem accessReader)
     {
@@ -145,6 +151,19 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
             if (_selectedRecord is { } record)
                 OnHistoryUpdated?.Invoke(record, _access, true);
         };
+
+        // Sunrise added start — переключение панели охранного досье и печать
+        SecurityRecordToggle.OnPressed += _ =>
+        {
+            _securityRecordVisible = !_securityRecordVisible;
+            SecurityRecordPanel.Visible = _securityRecordVisible;
+        };
+        PrintButton.OnPressed += _ =>
+        {
+            if (_selectedKey is { } key)
+                OnPrintPressed?.Invoke(key);
+        };
+        // Sunrise added end
     }
 
     public void StatusFilterPressed(SecurityStatus statusSelected)
@@ -196,11 +215,19 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
             PopulateRecordContainer(state.StationRecord, state.CriminalRecord);
             OnHistoryUpdated?.Invoke(state.CriminalRecord, _access, false);
             _selectedRecord = state.CriminalRecord;
+            // Sunrise added start — кнопка печати видна при выбранной записи
+            PrintButton.Visible = _access;
+            // Sunrise added end
         }
         else
         {
             _selectedRecord = null;
             OnHistoryClosed?.Invoke();
+            // Sunrise added start — сбрасываем панель аохранного досье
+            PrintButton.Visible = false;
+            SecurityRecordPanel.Visible = false;
+            _securityRecordVisible = false;
+            // Sunrise added end
         }
     }
 
@@ -261,6 +288,12 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
         {
             WantedReason.Visible = false;
         }
+
+        // Sunrise added start — отображение охранного досье
+        var loc = IoCManager.Resolve<ILocalizationManager>();
+        var identity = RecordIdentityBuilder.FromStationRecord(stationRecord, _proto, loc);
+        SecurityView.SetData(RecordViewBuilder.Security(identity, stationRecord.SecurityRecord, loc), showService: false);
+        // Sunrise added end
     }
 
     private void AddStatusSelect(SecurityStatus status)
