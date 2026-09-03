@@ -203,6 +203,47 @@
     - Off
 
 - type: entity
+  id: SunriseMechReactorRoland
+  name: roland-class reactor
+  description: A reinforced reactor designed exclusively for DURAND-class mechs. Its integrated blood-red energy barrier consumes very little power while idle. The shield is activated using a signal transmitter.
+  parent: BaseSunriseMechReactor
+  components:
+  - type: Transform
+    noRot: true
+  - type: Tag
+    tags:
+    - SunriseDurandMechReactor
+  - type: Sprite
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: paladin
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+      visible: false
+  - type: Battery
+    maxCharge: 1080
+    startingCharge: 1080
+  - type: BatterySelfRecharger
+    autoRechargeRate: 30
+    autoRechargePauseTime: 1
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 1
+    domePrototype: EnergyDomeSmallDirectedRed
+    canInteractUse: false
+    canDeviceNetworkUse: true
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 100
+  - type: DeviceLinkSink
+    ports:
+    - Toggle
+    - On
+    - Off
+
+- type: entity
   id: SunriseMechReactorBurnout
   name: burnout-class reactor
   description: An oversized disposable reactor designed for an extreme burst of power. Its core cannot recover once depleted.

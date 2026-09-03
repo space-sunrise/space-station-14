@@ -1016,7 +1016,7 @@
 # Dark Gygax
 - type: entity
   id: MechGygaxSyndie
-  parent: [ MechBreakageGygax, BaseMech, CombatMech, BaseSyndicateContraband ] # Sunrise-edit
+  parent: [ SyndieMechLight, MechBreakageGygax, BaseMech, CombatMech, BaseSyndicateContraband ] # Sunrise-Edit — общий прожектор мехов Синдиката
   name: Dark Gygax
   description: A modified Gygax used for nefarious purposes. On the back of the armor plate there is an inscription "Cybersun Inc."
   components:
@@ -1072,14 +1072,6 @@
     - FootstepSound
     - Gygax
   # Sunrise-Start
-  - type: PointLight
-    enabled: false
-    mask: /Textures/_Sunrise/Effects/LightMasks/mech_headlight_cone.png
-    autoRot: true
-    radius: 6
-    energy: 5
-    color: "#ff0000"
-    netsync: false
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -1111,7 +1103,7 @@
 # Mauler
 - type: entity
   id: MechMaulerSyndie
-  parent: [ MechBreakageMarauderFamily, BaseMech, CombatMech, BaseSyndicateContraband ] # Sunrise-edit
+  parent: [ SyndieMechLight, MechBreakageMarauderFamily, BaseMech, CombatMech, BaseSyndicateContraband ] # Sunrise-Edit — общий прожектор мехов Синдиката
   name: Mauler
   description: A modified Marauder used by the Syndicate that's not as maneuverable as the Dark Gygax, but it makes up for that in armor and sheer firepower. On the back of the armor plate there is an inscription "Cybersun Inc."
   components:
@@ -1164,16 +1156,6 @@
     soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
     reflects:
     - NonEnergy
-  # Sunrise-Start
-  - type: PointLight
-    enabled: false
-    mask: /Textures/_Sunrise/Effects/LightMasks/mech_headlight_cone.png
-    autoRot: true
-    radius: 6
-    energy: 5
-    color: "#ff0000"
-    netsync: false
-  # Sunrise-End
   - type: Tag
     tags:
     - DoorBumpOpener

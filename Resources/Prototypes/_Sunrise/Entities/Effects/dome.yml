@@ -1,4 +1,4 @@
-# Basic
+# region  Basic
 
 - type: entity
   id: EnergyDomeBase
@@ -35,7 +35,7 @@
       - HideContextMenu
       - IgnoreMelee
 
-# Nukeops
+# region  Nukeops
 
 - type: entity
   id: EnergyDomeSmallRed
@@ -83,7 +83,7 @@
     power: 10
     color: "#b00000"
 
-# NanoTrasen
+# region  NanoTrasen
 
 - type: entity
   id: EnergyDomeSmallBlue
@@ -131,7 +131,7 @@
     power: 10
     color: "#64b9de"
 
-# Misc
+# region  Misc
 
 - type: entity
   id: EnergyDomeSmallPink
@@ -240,6 +240,7 @@
     power: 10
     color: "#64b9de"
 
+# region Mech shields
 - type: entity
   id: EnergyDomeSmallDirectedBlue
   categories: [ HideSpawnMenu ]
@@ -249,12 +250,20 @@
     fixtures:
       fix1:
         shape:
-          !type:PhysShapeAabb
-          bounds: "-0.9,-0.99,0.9,-0.1"
+          !type:PolygonShape
+          vertices:
+          - "0.9,-0.1"
+          - "0.779,-0.55"
+          - "0.45,-0.879"
+          - "0,-0.9"
+          - "-0.45,-0.879"
+          - "-0.779,-0.55"
+          - "-0.9,-0.1"
         density: 0
         mask:
         - None
         layer:
+        - Impassable
         - BulletImpassable
         - Opaque
   - type: Sprite
@@ -267,3 +276,18 @@
     radius: 5
     power: 10
     color: "#64b9de"
+
+- type: entity
+  id: EnergyDomeSmallDirectedRed
+  categories: [ HideSpawnMenu ]
+  parent: EnergyDomeSmallDirectedBlue
+  components:
+  - type: Sprite
+    layers:
+    - state: small_test
+      color: "#b00000"
+  - type: PointLight
+    enabled: true
+    radius: 5
+    power: 10
+    color: "#b00000"

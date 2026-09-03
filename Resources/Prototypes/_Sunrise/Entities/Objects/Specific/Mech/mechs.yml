@@ -11,6 +11,20 @@
 
 # region Base Mechs
 - type: entity
+  id: SyndieMechLight
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    enabled: false
+    mask: /Textures/_Sunrise/Effects/LightMasks/mech_headlight_cone.png
+    autoRot: true
+    radius: 6
+    energy: 5
+    color: "#ff0000"
+    netsync: false
+
+- type: entity
   id: BaseMechPod
   save: false
   abstract: true
@@ -760,7 +774,7 @@
 # Rover
 - type: entity
   id: MechRoverSyndie
-  parent: [ MechBreakageRover, BaseMech, CombatMech, BaseSyndicateContraband ] # Sunrise-edit
+  parent: [ SyndieMechLight, MechBreakageRover, BaseMech, CombatMech, BaseSyndicateContraband ]
   name: Rover
   description: A modified Durand used for nefarious purposes. On the back of the armor plate there is an inscription "Cybersun Inc."
   components:
@@ -797,6 +811,10 @@
     mechToPilotDamageMultiplier: 0.0
     airtight: true
     maxEquipmentAmount: 5
+    batteryWhitelist:
+      tags:
+      - MechReactor
+      - SunriseDurandMechReactor
     pilotWhitelist:
       components:
         - HumanoidProfile
@@ -831,7 +849,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - SunriseMechReactorThor
+      - SunriseMechReactorRoland
 
 - type: entity
   id: MechRoverSyndieFilled

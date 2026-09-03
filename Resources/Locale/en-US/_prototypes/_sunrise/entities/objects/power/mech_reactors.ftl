@@ -7,6 +7,9 @@ ent-SunriseMechReactorWorkhorse = workhorse-class reactor
 ent-SunriseMechReactorDurandale = durandale-class reactor
     .desc = A reinforced reactor designed exclusively for DURAND-class mechs. Its integrated BR-40c "Turtle" energy barrier consumes very little power while idle. The shield is activated using a signal transmitter.
 
+ent-SunriseMechReactorRoland = roland-class reactor
+    .desc = A reinforced reactor designed exclusively for DURAND-class mechs. Its integrated blood-red energy barrier consumes very little power while idle. The shield is activated using a signal transmitter.
+
 ent-SunriseMechReactorLonghaul = longhaul-class reactor
     .desc = Deep heat sinks and an upgraded coolant loop allow this reactor to operate for extended periods.
 
