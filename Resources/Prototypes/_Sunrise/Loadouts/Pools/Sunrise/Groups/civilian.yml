@@ -6,7 +6,7 @@
   minLimit: 0
   maxLimit: 1
   loadouts:
-  - OtherTapeRecorderBox
+  - SunriseOtherTapeRecorderBox
 
 - type: loadoutGroup
   id: SunriseLawJobTools
@@ -14,7 +14,7 @@
   minLimit: 0
   maxLimit: 1
   loadouts:
-  - OtherTapeRecorderBox
+  - SunriseOtherTapeRecorderBox
 
 - type: loadoutGroup
   id: SunriseCommonBackpack

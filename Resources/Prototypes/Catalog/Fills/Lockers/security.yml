@@ -185,7 +185,6 @@
     - id: PlushieLizardJobDetective
       prob: 0.02
     - id: PortableSurveillanceCameraMonitor # Sunrise-edit
-    - id: BoxTapeRecorder # Sunrise-edit
 
 - type: entity
   id: ClosetBombFilled
