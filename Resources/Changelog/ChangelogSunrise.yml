@@ -4806,3 +4806,31 @@
     description: dotnet_AQpPAoEzmA
   - url: https://github.com/user-attachments/assets/d9df9cd7-7ee1-4e88-87ad-14092fbddb84
     description: dotnet_4o1v27WfNY
+- author: Nordstream17
+  time: '2026-09-03T08:17:17.0000000+00:00'
+  changes:
+  - type: Add
+    message: Добавлены два вида японских каменных фонарей
+  id: 2025
+  url: https://github.com/makura-games/sunrise-station/pull/4543
+  media:
+  - url: https://github.com/user-attachments/assets/fcdd1e4f-11af-40b9-a533-da908cf84395
+    description: Снимок экрана 2026-06-18 010030
+  - url: https://github.com/user-attachments/assets/2dd4bf17-4bdb-43c2-93be-c2ad0c48993c
+    description: Снимок экрана 2026-06-19 125313
+- author: Nordstream17
+  time: '2026-09-03T08:16:57.0000000+00:00'
+  changes:
+  - type: Add
+    message: Добавлены пеналы для медипенов - компактные хранилища одноразовых инъекторов.
+  - type: Add
+    message: Пеналы для медипенов добавлены в шкафы некоторых должностей, в наномеды и тикетоматы.
+  id: 2026
+  url: https://github.com/makura-games/sunrise-station/pull/4637
+  media:
+  - url: https://github.com/user-attachments/assets/a029901e-60d6-45bc-a83c-59788d7d4235
+    description: Снимок экрана 2026-07-21 173451
+  - url: https://github.com/user-attachments/assets/d8aa066d-f9b6-47c3-b3fe-a755e7f4eb80
+    description: Снимок экрана 2026-07-21 173513
+  - url: https://github.com/user-attachments/assets/54dd1f06-5f04-4afc-8eef-315f1e22bf0c
+    description: Снимок экрана 2026-07-21 173553
