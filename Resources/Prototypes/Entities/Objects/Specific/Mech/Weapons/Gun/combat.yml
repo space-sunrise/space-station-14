@@ -40,7 +40,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: MechAmmoProvider # Sunrise-Edit — прямой расход энергии реактора меха
     proto: IgnitionRedLaser # Sunrise-Edit
-    fireCost: 35
+    fireCost: 40 # Sunrise-Edit — баланс под самоохлаждаемые реакторы мехов
   - type: Appearance
   - type: AmmoCounter
 
@@ -227,7 +227,7 @@
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
   - type: MechAmmoProvider # Sunrise-Edit — прямой расход энергии реактора меха
     proto: ShellShotgunMech
-    fireCost: 75
+    fireCost: 80 # Sunrise-Edit — баланс под самоохлаждаемые реакторы мехов
   - type: Appearance
   - type: AmmoCounter
 
@@ -255,7 +255,7 @@
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
   - type: MechAmmoProvider # Sunrise-Edit — прямой расход энергии реактора меха
     proto: ShellShotgunMechIncendiary
-    fireCost: 75
+    fireCost: 80 # Sunrise-Edit — баланс под самоохлаждаемые реакторы мехов
   - type: Appearance
   - type: AmmoCounter
 
@@ -287,7 +287,7 @@
       path: /Audio/_Sunrise/Weapons/Guns/Snipers/garand/garand.ogg
   - type: MechAmmoProvider # Sunrise-Edit — прямой расход энергии реактора меха
     proto: CartridgeHeavyRifleRFMJMech #CartridgeLightRifleSP
-    fireCost: 10
+    fireCost: 20 # Sunrise-Edit — баланс под самоохлаждаемые реакторы мехов
   - type: Appearance
   - type: AmmoCounter
 
@@ -384,7 +384,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: MechAmmoProvider # Sunrise-Edit — прямой расход энергии реактора меха
     proto: CartridgeXrayBeam
-    fireCost: 50
+    fireCost: 48 # Sunrise-Edit — баланс под самоохлаждаемые реакторы мехов
   - type: Appearance
   - type: AmmoCounter
   # Sunrise-Edit start — локальная батарея не нужна при прямом расходе энергии реактора
@@ -421,7 +421,7 @@
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
   - type: MechAmmoProvider # Sunrise-Edit — прямой расход энергии реактора меха
     proto: BulletMechWeakRocket # Sunrise-Edit
-    fireCost: 100
+    fireCost: 80 # Sunrise-Edit — полный залп укладывается в запас реактора Thor
   - type: Appearance
   - type: AmmoCounter
   # Sunrise-Edit start — локальная батарея не нужна при прямом расходе энергии реактора
@@ -455,7 +455,7 @@
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
   - type: MechAmmoProvider # Sunrise-Edit — прямой расход энергии реактора меха
     proto: GrenadeBlast
-    fireCost: 300
+    fireCost: 315 # Sunrise-Edit — баланс под самоохлаждаемые реакторы мехов
   - type: Appearance
   - type: AmmoCounter
   # Sunrise-Edit start — локальная батарея не нужна при прямом расходе энергии реактора

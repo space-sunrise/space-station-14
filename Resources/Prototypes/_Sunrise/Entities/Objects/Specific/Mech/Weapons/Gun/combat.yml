@@ -18,7 +18,7 @@
       path: /Audio/_Sunrise/Weapons/Guns/HMGs/minigun_shot.ogg
   - type: MechAmmoProvider
     proto: CartridgeRifleFMJ
-    fireCost: 5
+    fireCost: 8
   - type: Appearance
   - type: AmmoCounter
   - type: StaticPrice
@@ -45,7 +45,7 @@
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
   - type: MechAmmoProvider
     proto: CartridgeHeavyRifleRSP
-    fireCost: 5
+    fireCost: 10
   - type: Appearance
   - type: AmmoCounter
   - type: StaticPrice
@@ -64,7 +64,7 @@
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/LMGs/mg42/tiny.rsi
   - type: Gun
-    minAngle: -15
+    minAngle: -10
     maxAngle: 40
     burstFireRate: 10
     shotsPerBurst: 8
@@ -78,7 +78,7 @@
         volume: -3
   - type: MechAmmoProvider
     proto: CartridgeRifleHeavyFMJ
-    fireCost: 8
+    fireCost: 10
   - type: Appearance
   - type: AmmoCounter
   - type: StaticPrice
@@ -109,7 +109,7 @@
         volume: -1
   - type: MechAmmoProvider
     proto: IgnitionRedLaser # Sunrise-TODO: Нужен товый прототип для данной пушки
-    fireCost: 15
+    fireCost: 20
   - type: Appearance
   - type: AmmoCounter
   - type: StaticPrice
@@ -213,6 +213,6 @@
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/minotaur.ogg
   - type: MechAmmoProvider
     proto: ShellShotgunMech
-    fireCost: 50
+    fireCost: 80
   - type: Appearance
   - type: AmmoCounter
