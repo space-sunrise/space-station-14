@@ -213,6 +213,8 @@ uplink-mech-teleporter-death-desc = Contains a Death Ripley MK-II and a syndicat
 
 uplink-mech-teleporter-assault-name = Assault Mech teleporter
 uplink-mech-teleporter-assault-desc = Contains a Cybersun Dark Gygax light combat mech, a syndicate repair toolbox, and a toy Gygax. The mech arrives with its current integrated equipment.
+uplink-rover-assembly-crate-name = Rover assembly crate
+uplink-rover-assembly-crate-desc = Contains a Durand chassis, Rover armor plates, control electronics, an advanced signaler, and a Syndicate repair toolbox. Other common mech parts must be obtained separately.
 
 ## Mechs equipment
 
