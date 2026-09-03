@@ -92,9 +92,6 @@ uplink-sniper-ammo-hp-desc = A box of 14 hollow point cartridges for the Hristov
 
 uplink-music-boombox-name = Syndicate Music Kit
 uplink-music-boombox-desc = Contains a Syndicate boombox and several cassette tapes for it.
-uplink-mechpaint-mauler-name = "MEOWLER" Spray Can
-uplink-mechpaint-mauler-desc = Contains paint for the Mauler. Turn that hulking mech into a cute kitty!
-
 ## Clothing
 
 uplink-syndie-nvd-name = Syndicate NVGs
@@ -216,6 +213,8 @@ uplink-mech-teleporter-death-desc = Contains a Death Ripley MK-II and a syndicat
 
 uplink-mech-teleporter-assault-name = Assault Mech teleporter
 uplink-mech-teleporter-assault-desc = Contains a Cybersun Dark Gygax light combat mech, a syndicate repair toolbox, and a toy Gygax. The mech arrives with its current integrated equipment.
+uplink-rover-assembly-crate-name = Rover assembly crate
+uplink-rover-assembly-crate-desc = Contains a Durand chassis, Rover armor plates, control electronics, an advanced signaler, and a Syndicate repair toolbox. Other common mech parts must be obtained separately.
 
 ## Mechs equipment
 

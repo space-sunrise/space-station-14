@@ -25,6 +25,9 @@ class ChangelogTarget:
 def validate_target_id(value: str | None) -> str:
     if not isinstance(value, str) or not value or "\n" in value or "\r" in value:
         raise RuntimeError("Идентификатор цели не может быть пустым или содержать перенос строки")
+    value = value.strip()
+    if not value:
+        raise RuntimeError("Идентификатор цели не может состоять только из пробелов")
     return value
 
 
