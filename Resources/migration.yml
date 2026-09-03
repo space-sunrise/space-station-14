@@ -1233,4 +1233,7 @@ MagazineBoxHeavyRifleHP: MagazineBoxHeavyRifleSP
 RifleHeavyMagazineHP: RifleHeavyMagazineSP
 MagazineDragunovHP: MagazineDragunovSP
 MagazineBoxRifleMachineHP: MagazineBoxRifleMachineSP
+# 2026-09-03
+PowerCageSyndicate: PowerCageOmega
+PowerCageERT: PowerCageOmega
 # region Sunrise-End
