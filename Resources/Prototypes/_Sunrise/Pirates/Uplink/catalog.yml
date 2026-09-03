@@ -2863,7 +2863,7 @@
   id: UplinkPirateDollHouseBundle
   name: uplink-mech-teleporter-ussp-name
   description: uplink-mech-teleporter-ussp-desc
-  icon: { sprite: /Textures/Objects/Specific/Mech/durand.rsi, state: dollhouse }
+  icon: { sprite: /Textures/_Sunrise/Objects/Specific/Mech/durand.rsi, state: dollhouse }
   productEntity: CratePirateMechDollHouseBundle
   cost:
     Doubloon: 300
