@@ -44,6 +44,7 @@ public sealed partial class ClientClothingSystem : ClothingSystem
         {"pants", "PANTS"}, // Sunrise-Edit - дополнительные слоты одежды
         {"socks", "SOCKS"}, // Sunrise-Edit - дополнительные слоты одежды
         {"bra", "BRA"}, // Sunrise-Edit - дополнительные слоты одежды
+        {"patch", "PATCH"}, // Sunrise-Edit - слой для нашивок поверх одежды
         {"id", "IDCARD"},
         {"pocket1", "POCKET1"},
         {"pocket2", "POCKET2"},

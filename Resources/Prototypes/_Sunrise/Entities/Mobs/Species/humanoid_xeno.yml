@@ -122,6 +122,7 @@
     - map: [ "shoes" ]
     - map: [ "ears" ]
     - map: [ "outerClothing" ]
+    - map: [ "patch" ]
     - map: [ "belt" ]
     - map: [ "id" ]
     - map: [ "neck" ]

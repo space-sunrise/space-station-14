@@ -23,6 +23,13 @@
       uiWindowPos: 3,0
       strippingWindowPos: 2,3
       displayName: Socks
+    - name: patch
+      slotTexture: patch
+      slotFlags: PATCH
+      stripTime: 3
+      uiWindowPos: 3,4
+      strippingWindowPos: 1,6
+      displayName: Patch
     # Sunrise-end
     - name: shoes
       slotTexture: shoes

@@ -22,6 +22,14 @@
     uiWindowPos: 0,1
     strippingWindowPos: 0,2
     displayName: Jumpsuit
+  - name: patch
+    slotTexture: patch
+    slotFlags: PATCH
+    stripTime: 3
+    uiWindowPos: 3,4
+    strippingWindowPos: 1,6
+    dependsOn: jumpsuit
+    displayName: Patch
   - name: outerClothing
     slotTexture: suit
     slotFlags: OUTERCLOTHING

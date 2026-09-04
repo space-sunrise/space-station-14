@@ -48,6 +48,7 @@
     - map: [ "belt" ]
     - map: [ "id" ]
     - map: [ "outerClothing" ]
+    - map: [ "patch" ] # Sunrise-edit
     - map: [ "back" ]
     - map: [ "neck" ]
     - map: [ "suitstorage" ]
