@@ -1,4 +1,5 @@
 using Content.Shared._Sunrise.Flashbang;
+using Content.Shared.Gravity;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Stunnable;
 using Robust.Shared.GameObjects;
@@ -24,6 +25,46 @@ public sealed class FlashbangTest
     }
 
     /// <summary>
+    /// Создаёт пустую карту с включённой гравитацией — TryKnockdown отменяется в невесомости
+    /// (см. <see cref="SharedStunSystem"/> и GravityAffectedComponent), а голая карта без гравитации
+    /// оставляет цели невесомыми по умолчанию.
+    /// </summary>
+    private static MapId CreateGravityMap(IEntityManager entMan, SharedMapSystem mapSys)
+    {
+        var mapUid = mapSys.CreateMap(out var mapId);
+        var gravity = entMan.EnsureComponent<GravityComponent>(mapUid);
+        gravity.Enabled = true;
+        entMan.Dirty(mapUid, gravity);
+        return mapId;
+    }
+
+    /// <summary>
+    /// Тестовая система для перехвата и отмены <see cref="FlashbangAttemptEvent"/>.
+    /// Подписка должна регистрироваться через EntitySystem.Initialize — динамическая
+    /// подписка в рантайме (EventBus.SubscribeLocalEvent вне системы) запрещена движком.
+    /// </summary>
+    private sealed class CancelFlashbangAttemptTestSystem : EntitySystem
+    {
+        public EntityUid? Target;
+        public bool EventRaised;
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            SubscribeLocalEvent<MobStateComponent, FlashbangAttemptEvent>(OnAttempt);
+        }
+
+        private void OnAttempt(EntityUid uid, MobStateComponent _, ref FlashbangAttemptEvent args)
+        {
+            if (uid != Target)
+                return;
+
+            args.Cancelled = true;
+            EventRaised = true;
+        }
+    }
+
+    /// <summary>
     /// Цель в эпицентре должна получить стан и нокдаун.
     /// </summary>
     [Test]
@@ -40,7 +81,7 @@ public sealed class FlashbangTest
 
         await server.WaitPost(() =>
         {
-            mapSys.CreateMap(out var mapId);
+            var mapId = CreateGravityMap(entMan, mapSys);
             source = CreateSource(entMan, new MapCoordinates(0f, 0f, mapId));
             target = entMan.SpawnEntity("MobHuman", new MapCoordinates(0f, 0f, mapId));
         });
@@ -85,7 +126,7 @@ public sealed class FlashbangTest
 
         await server.WaitPost(() =>
         {
-            mapSys.CreateMap(out var mapId);
+            var mapId = CreateGravityMap(entMan, mapSys);
             source = CreateSource(entMan, new MapCoordinates(0f, 0f, mapId));
             // Range = 10, ставим за пределами
             target = entMan.SpawnEntity("MobHuman", new MapCoordinates(x, y, mapId));
@@ -128,7 +169,7 @@ public sealed class FlashbangTest
 
         await server.WaitPost(() =>
         {
-            mapSys.CreateMap(out var mapId);
+            var mapId = CreateGravityMap(entMan, mapSys);
             source = CreateSource(entMan, new MapCoordinates(0f, 0f, mapId));
             // Реальная дистанция = 7, coeff = 0.5, effective = 12 >= range 10 → эффект не применяется
             target = entMan.SpawnEntity("MobHuman", new MapCoordinates(7f, 0f, mapId));
@@ -174,7 +215,7 @@ public sealed class FlashbangTest
 
         await server.WaitPost(() =>
         {
-            mapSys.CreateMap(out var mapId);
+            var mapId = CreateGravityMap(entMan, mapSys);
             source = CreateSource(entMan, new MapCoordinates(0f, 0f, mapId));
             // Реальная дистанция = 7, большая защита
             target = entMan.SpawnEntity("MobHuman", new MapCoordinates(7f, 0f, mapId));
@@ -224,7 +265,7 @@ public sealed class FlashbangTest
 
         await server.WaitPost(() =>
         {
-            mapSys.CreateMap(out var mapId);
+            var mapId = CreateGravityMap(entMan, mapSys);
             source = CreateSource(entMan, new MapCoordinates(0f, 0f, mapId));
             target = entMan.SpawnEntity("MobHuman", new MapCoordinates(3f, 0f, mapId));
             var vuln = entMan.AddComponent<FlashbangVulnerableComponent>(target);
@@ -266,27 +307,17 @@ public sealed class FlashbangTest
         var entMan = server.ResolveDependency<IEntityManager>();
         var mapSys = entMan.System<SharedMapSystem>();
         var flashbangSys = entMan.System<SharedFlashbangSystem>();
+        var cancelSys = entMan.System<CancelFlashbangAttemptTestSystem>();
 
         EntityUid source = default;
         EntityUid target = default;
-        bool eventRaised = false;
 
         await server.WaitPost(() =>
         {
-            mapSys.CreateMap(out var mapId);
+            var mapId = CreateGravityMap(entMan, mapSys);
             source = CreateSource(entMan, new MapCoordinates(0f, 0f, mapId));
             target = entMan.SpawnEntity("MobHuman", new MapCoordinates(0f, 0f, mapId));
-
-            // Подписываемся на событие попытки и отменяем
-            entMan.EventBus.SubscribeLocalEvent<MobStateComponent, FlashbangAttemptEvent>(
-                (EntityUid uid, MobStateComponent _, ref FlashbangAttemptEvent ev) =>
-                {
-                    if (uid != target)
-                        return;
-                    ev.Cancelled = true;
-                    eventRaised = true;
-                },
-                typeof(FlashbangTest));
+            cancelSys.Target = target;
         });
 
         await server.WaitPost(() =>
@@ -300,9 +331,56 @@ public sealed class FlashbangTest
         {
             Assert.Multiple(() =>
             {
-                Assert.That(eventRaised, Is.True, "FlashbangAttemptEvent должен быть вызван.");
+                Assert.That(cancelSys.EventRaised, Is.True, "FlashbangAttemptEvent должен быть вызван.");
                 Assert.That(entMan.HasComponent<StunnedComponent>(target), Is.False, "Отменённая попытка не должна оглушать цель.");
                 Assert.That(entMan.HasComponent<KnockedDownComponent>(target), Is.False, "Отменённая попытка не должна ронять цель.");
+            });
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    /// <summary>
+    /// Низкое давление атмосферы у источника (вакуум) должно полностью отменять эффект вспышки.
+    /// </summary>
+    [Test]
+    public async Task LowAmbientPressure_ShouldCancelEffect()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var entMan = server.ResolveDependency<IEntityManager>();
+        var mapSys = entMan.System<SharedMapSystem>();
+        var flashbangSys = entMan.System<SharedFlashbangSystem>();
+
+        EntityUid source = default;
+        EntityUid target = default;
+
+        await server.WaitPost(() =>
+        {
+            var mapId = CreateGravityMap(entMan, mapSys);
+            source = CreateSource(entMan, new MapCoordinates(0f, 0f, mapId));
+            target = entMan.SpawnEntity("MobHuman", new MapCoordinates(0f, 0f, mapId));
+
+            // На голой тестовой карте GetContainingMixture возвращает GasMixture.SpaceGas (0 кПа),
+            // поэтому любой порог выше нуля должен сработать как отмена по вакууму.
+            var comp = entMan.GetComponent<FlashbangRadiusOnTriggerComponent>(source);
+            comp.MinAmbientPressure = 5f;
+            entMan.Dirty(source, comp);
+        });
+
+        await server.WaitPost(() =>
+        {
+            flashbangSys.TryFlashbangArea(source, null);
+        });
+
+        await pair.RunTicksSync(1);
+
+        await server.WaitAssertion(() =>
+        {
+            Assert.Multiple(() =>
+            {
+                Assert.That(entMan.HasComponent<StunnedComponent>(target), Is.False, "В вакууме эффект должен быть отменён.");
+                Assert.That(entMan.HasComponent<KnockedDownComponent>(target), Is.False, "В вакууме падение не должно применяться.");
             });
         });
 

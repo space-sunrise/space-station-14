@@ -48,6 +48,11 @@ public sealed class SharedFlashbangSystem : XOnTriggerSystem<FlashbangRadiusOnTr
         if (!Resolve(source, ref comp, false))
             return;
 
+        var areaAttempt = new FlashbangAreaAttemptEvent(user);
+        RaiseLocalEvent(source, ref areaAttempt);
+        if (areaAttempt.Cancelled)
+            return;
+
         var sourceXform = Transform(source);
         var sourceMapPos = _transform.GetMapCoordinates(sourceXform);
 
@@ -75,11 +80,14 @@ public sealed class SharedFlashbangSystem : XOnTriggerSystem<FlashbangRadiusOnTr
         }
     }
 
-    /// <returns>true если цель в радиусе и защита не блокирует эффект полностью.</returns>
-    public bool CanApplyFlashbangEffect(EntityUid source, EntityUid target, float realDistance, FlashbangRadiusOnTriggerComponent comp)
+    /// <summary>
+    /// Вычисляет итоговую (виртуальную) дистанцию до цели с учётом защиты экипировки.
+    /// Защита запрашивается событием только один раз на вызов.
+    /// </summary>
+    private float GetEffectiveDistance(EntityUid target, float realDistance, FlashbangRadiusOnTriggerComponent comp, out bool bypassProtection)
     {
         TryComp<FlashbangVulnerableComponent>(target, out var vulnComp);
-        var bypassProtection = comp.IgnoreResistances || (vulnComp?.BypassProtection ?? false);
+        bypassProtection = comp.IgnoreResistances || (vulnComp?.BypassProtection ?? false);
 
         var protectionDistance = 0f;
         if (!bypassProtection)
@@ -89,7 +97,11 @@ public sealed class SharedFlashbangSystem : XOnTriggerSystem<FlashbangRadiusOnTr
             protectionDistance = protEv.ProtectionDistance;
         }
 
-        var effectiveDistance = realDistance + protectionDistance;
+        return realDistance + protectionDistance;
+    }
+
+    private static bool IsEffectStrengthEnough(float effectiveDistance, FlashbangRadiusOnTriggerComponent comp)
+    {
         if (effectiveDistance >= comp.Range)
             return false;
 
@@ -98,20 +110,15 @@ public sealed class SharedFlashbangSystem : XOnTriggerSystem<FlashbangRadiusOnTr
         return t >= comp.MinEffectStrength;
     }
 
-    private void DoApplyFlashbangEffect(EntityUid source, EntityUid target, EntityUid? user, float realDistance, FlashbangRadiusOnTriggerComponent comp)
+    /// <returns>true если цель в радиусе и защита не блокирует эффект полностью.</returns>
+    public bool CanApplyFlashbangEffect(EntityUid source, EntityUid target, float realDistance, FlashbangRadiusOnTriggerComponent comp)
     {
-        TryComp<FlashbangVulnerableComponent>(target, out var vulnComp);
-        var bypassProtection = comp.IgnoreResistances || (vulnComp?.BypassProtection ?? false);
+        var effectiveDistance = GetEffectiveDistance(target, realDistance, comp, out _);
+        return IsEffectStrengthEnough(effectiveDistance, comp);
+    }
 
-        var protectionDistance = 0f;
-        if (!bypassProtection)
-        {
-            var protEv = new GetFlashbangProtectionEvent { SourceRange = comp.Range };
-            RaiseLocalEvent(target, protEv);
-            protectionDistance = protEv.ProtectionDistance;
-        }
-
-        var effectiveDistance = realDistance + protectionDistance;
+    private void DoApplyFlashbangEffect(EntityUid source, EntityUid target, EntityUid? user, float effectiveDistance, bool bypassProtection, FlashbangRadiusOnTriggerComponent comp)
+    {
         var t = 1f - effectiveDistance / comp.Range;
 
         var attemptEv = new FlashbangAttemptEvent(source, user, target, effectiveDistance);
@@ -120,6 +127,7 @@ public sealed class SharedFlashbangSystem : XOnTriggerSystem<FlashbangRadiusOnTr
         if (attemptEv.Cancelled || attemptEv.Handled)
             return;
 
+        TryComp<FlashbangVulnerableComponent>(target, out var vulnComp);
         var effectMultiplier = vulnComp?.EffectMultiplier ?? 1f;
         _stun.TryUpdateStunDuration(target, comp.StunDuration * t * effectMultiplier);
         _stun.TryKnockdown(target, comp.KnockdownDuration * t * effectMultiplier, force: bypassProtection);
@@ -127,9 +135,11 @@ public sealed class SharedFlashbangSystem : XOnTriggerSystem<FlashbangRadiusOnTr
 
     public void TryApplyFlashbangEffect(EntityUid source, EntityUid target, EntityUid? user, float realDistance, FlashbangRadiusOnTriggerComponent comp)
     {
-        if (!CanApplyFlashbangEffect(source, target, realDistance, comp))
+        var effectiveDistance = GetEffectiveDistance(target, realDistance, comp, out var bypassProtection);
+        if (!IsEffectStrengthEnough(effectiveDistance, comp))
             return;
-        DoApplyFlashbangEffect(source, target, user, realDistance, comp);
+
+        DoApplyFlashbangEffect(source, target, user, effectiveDistance, bypassProtection, comp);
     }
 
     private void OnProtectionDirect(EntityUid uid, FlashbangProtectionComponent comp, GetFlashbangProtectionEvent args)

@@ -1,3 +1,5 @@
+using Robust.Shared.GameStates;
+
 namespace Content.Shared._Sunrise.Flashbang;
 
 /// <summary>
@@ -5,14 +7,14 @@ namespace Content.Shared._Sunrise.Flashbang;
 /// <see cref="BypassProtection"/> управляет игнорированием экипировочной защиты,
 /// <see cref="EffectMultiplier"/> — множителем длительности стана и падения.
 /// </summary>
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class FlashbangVulnerableComponent : Component
 {
     /// <summary>Множитель длительности стана и падения. 2 = вдвое дольше.</summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public float EffectMultiplier = 1f;
 
     /// <summary>Если true — защита от экипировки игнорируется и knockdown принудительный.</summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public bool BypassProtection = false;
 }

@@ -38,3 +38,17 @@ public record struct FlashbangAttemptEvent(EntityUid Source, EntityUid? User, En
     /// </summary>
     public bool Handled;
 }
+
+/// <summary>
+/// Поднимается направленно на источник один раз перед применением эффекта ко всей зоне.
+/// В отличие от <see cref="FlashbangAttemptEvent"/> не зависит от конкретной цели — подходит
+/// для условий, зависящих только от источника (например, атмосферного давления).
+/// </summary>
+[ByRefEvent]
+public record struct FlashbangAreaAttemptEvent(EntityUid? User)
+{
+    /// <summary>
+    /// Если true — эффект не применяется ни к одной цели в зоне.
+    /// </summary>
+    public bool Cancelled;
+}
