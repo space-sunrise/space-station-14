@@ -9,7 +9,7 @@ on:
 
 permissions:
   contents: read # Чтение доверенного парсера из базовой ветки.
-  statuses: write # Публикация результата на SHA ветки PR.
+  pull-requests: read # Чтение списка изменённых файлов PR.
 
 concurrency:
   group: validate-changelog-${{ github.event.pull_request.number }}
@@ -17,21 +17,10 @@ concurrency:
 
 jobs:
   validate:
+    name: Validate Changelog
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Mark validation as pending
-        env:
-          GH_TOKEN: ${{ github.token }}
-          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-          STATUS_TARGET_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        run: |
-          gh api --method POST "repos/$GITHUB_REPOSITORY/statuses/$HEAD_SHA" \
-            -f state=pending \
-            -f context=changelog/parse \
-            -f description='Проверяется описание PR' \
-            -f target_url="$STATUS_TARGET_URL"
-
       - name: Checkout trusted parser
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
@@ -51,38 +40,12 @@ jobs:
         run: python -m pip install --disable-pip-version-check PyYAML==6.0.2
 
       - name: Parse changelog
-        id: parse
-        continue-on-error: true
         env:
+          GITHUB_TOKEN: ${{ github.token }}
           CHANGELOG_FILE: ${{ vars.CHANGELOG_FILE || 'Resources/Changelog/ChangelogSunrise.yml' }}
           CHANGELOG_EXTRA_CATEGORIES: ${{ vars.CHANGELOG_EXTRA_CATEGORIES }}
         run: >-
           python Tools/_sunrise/changelog/changelog_actions.py
           --event-path "$GITHUB_EVENT_PATH"
           --validate-only
-
-      - name: Publish validation status
-        if: always()
-        env:
-          GH_TOKEN: ${{ github.token }}
-          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-          PARSE_OUTCOME: ${{ steps.parse.outcome }}
-          STATUS_TARGET_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        run: |
-          if [[ "$PARSE_OUTCOME" == success ]]; then
-            state=success
-            description='Чейнджлог успешно распознан'
-          else
-            state=failure
-            description='Ошибка разбора чейнджлога'
-          fi
-          gh api --method POST "repos/$GITHUB_REPOSITORY/statuses/$HEAD_SHA" \
-            -f state="$state" \
-            -f context=changelog/parse \
-            -f description="$description" \
-            -f target_url="$STATUS_TARGET_URL"
-
-      - name: Fail invalid changelog
-        if: always() && steps.parse.outcome != 'success'
-        run: exit 1
 # Sunrise added end
