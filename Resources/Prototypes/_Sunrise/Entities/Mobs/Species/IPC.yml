@@ -174,7 +174,7 @@
         Blunt: 1
         Slash: 5
   - type: FlashModifier
-    modifier: 2.5
+    modifier: 5
   - type: MobThresholds
     thresholds:
       0: Alive
