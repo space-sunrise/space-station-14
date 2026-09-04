@@ -331,7 +331,7 @@
 - type: reaction
   id: DarkandStormy
   reactants:
-    SolDry:
+    SolDrySunrise:
       amount: 1
     Rum:
       amount: 1
