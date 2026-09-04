@@ -43,7 +43,7 @@
     - Mining
   special:
     - !type:AddImplantSpecial
-      implants: [ MindShieldImplant ]
+      implants: [ MindShieldImplant, BluespaceImplant ]
 
 - type: startingGear
   id: BlueShieldOfficerGear

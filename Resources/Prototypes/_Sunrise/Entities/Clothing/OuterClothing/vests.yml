@@ -83,9 +83,18 @@
       sprite: _Sunrise/Clothing/OuterClothing/Vests/web_armor_blue.rsi
     - type: Clothing
       sprite: _Sunrise/Clothing/OuterClothing/Vests/web_armor_blue.rsi
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.45
+          Slash: 0.45
+          Piercing: 0.35
+          Heat: 0.55
+          Caustic: 0.7
     - type: Construction
       graph: UpgradeArmorVestBlueshield
       node: webvest
+
 
 - type: entity
   parent: [ClothingOuterVestWeb, BaseChameleon]
