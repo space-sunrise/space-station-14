@@ -15,8 +15,8 @@ namespace Content.Client.Clothing;
 
 public sealed partial class ClientClothingSystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private TagSystem _tag = default!;
 
     private readonly string _hardsuitTag = "Hardsuit";
 
@@ -84,6 +84,10 @@ public sealed partial class ClientClothingSystem
             return fallback;
         }
 
+        var bodyTypeDisplacement = inventory.Displacements.GetValueOrDefault($"{slot}-{bodyTypeVisualKey}")
+                                   ?? inventory.Displacements.GetValueOrDefault(slot)
+                                   ?? fallback;
+
         var sexDisplacements = humanoid.Sex switch
         {
             Sex.Male => inventory.MaleDisplacements,
@@ -92,16 +96,17 @@ public sealed partial class ClientClothingSystem
         };
 
         if (sexDisplacements is null || sexDisplacements.Count == 0)
-            return fallback;
+            return bodyTypeDisplacement;
 
         var displacement = sexDisplacements.GetValueOrDefault($"{slot}-{bodyTypeVisualKey}")
                            ?? sexDisplacements.GetValueOrDefault(slot)
-                           ?? fallback;
+                           ?? bodyTypeDisplacement;
 
         if (!_tag.HasTag(equipment, _hardsuitTag))
             return displacement;
 
         return sexDisplacements.GetValueOrDefault($"hardsuit-{bodyTypeVisualKey}")
+               ?? inventory.Displacements.GetValueOrDefault($"hardsuit-{bodyTypeVisualKey}")
                ?? displacement;
     }
 }

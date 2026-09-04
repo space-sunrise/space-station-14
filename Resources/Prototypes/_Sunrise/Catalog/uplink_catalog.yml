@@ -1445,7 +1445,7 @@
     state: closed
   productEntity: ToolboxSyndicateFilledCoreExtraction
   categories:
-  - UplinkObjectives
+  - UplinkObjective
   conditions:
   - !type:ObjectiveUnlockCondition
   - !type:ListingLimitedStockCondition

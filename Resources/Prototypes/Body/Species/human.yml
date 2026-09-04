@@ -2,17 +2,15 @@
   parent: Undergarments
   id: Human
   limits:
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 1
+      required: false
     enum.HumanoidVisualLayers.Hair:
       limit: 1
       required: false
     enum.HumanoidVisualLayers.FacialHair:
       limit: 1
       required: false
-    # Sunrise edit start - в верхней части головы допускается только одна маркировка
-    enum.HumanoidVisualLayers.HeadTop:
-      limit: 1
-      required: false
-    # Sunrise edit end
     enum.HumanoidVisualLayers.Chest:
       limit: 2
       required: false
@@ -53,6 +51,7 @@
 - type: entity
   parent: BaseSpeciesAppearance
   id: AppearanceHuman
+  categories: [ HideSpawnMenu ]
   name: human appearance
   components:
   - type: Inventory

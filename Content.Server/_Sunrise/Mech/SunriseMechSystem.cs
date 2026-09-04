@@ -12,9 +12,9 @@ namespace Content.Server._Sunrise.Mech;
 /// <inheritdoc/>
 public sealed partial class SunriseMechSystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedMechSystem _mech = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedMechSystem _mech = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

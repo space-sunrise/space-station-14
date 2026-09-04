@@ -1,6 +1,7 @@
 ﻿using Content.Server._Sunrise.TTS;
 using Content.Shared._Sunrise.TTS;
 using Content.Shared.Implants.Components;
+using Content.Shared.Clothing;
 using Content.Shared.VoiceMask;
 using Content.Shared.Silicons.StationAi;
 
@@ -8,10 +9,33 @@ namespace Content.Server.VoiceMask;
 
 public partial class VoiceMaskSystem
 {
-    private void InitializeTTS()
+    private void InitializeSunriseVoiceMask()
     {
         SubscribeLocalEvent<TTSComponent, TransformSpeakerVoiceEvent>(OnSpeakerVoiceTransform);
         SubscribeLocalEvent<VoiceMaskComponent, VoiceMaskChangeVoiceMessage>(OnChangeVoice);
+        SubscribeLocalEvent<VoiceMaskComponent, ClothingGotUnequippedEvent>(OnSunriseVoiceMaskUnequipped);
+    }
+
+    private void OnSunriseVoiceMaskEquipped(EntityUid wearer, VoiceMaskComponent component)
+    {
+        EnsureComp<VoiceMaskerComponent>(wearer, out var maskerComponent);
+        maskerComponent.VoiceId = component.VoiceId;
+    }
+
+    private void OnSunriseVoiceMaskUnequipped(Entity<VoiceMaskComponent> ent, ref ClothingGotUnequippedEvent args)
+    {
+        RemCompDeferred<VoiceMaskerComponent>(args.Wearer);
+    }
+
+    private VoiceMaskBuiState CreateSunriseVoiceMaskBuiState(Entity<VoiceMaskComponent> entity)
+    {
+        return new VoiceMaskBuiState(
+            GetCurrentVoiceName(entity),
+            entity.Comp.VoiceId,
+            entity.Comp.VoiceMaskSpeechVerb,
+            entity.Comp.Active,
+            entity.Comp.AccentHide,
+            entity.Comp.TitleText);
     }
 
     private void OnSpeakerVoiceTransform(EntityUid uid, TTSComponent component, TransformSpeakerVoiceEvent args)
@@ -51,16 +75,6 @@ public partial class VoiceMaskSystem
 
         _popupSystem.PopupEntity(Loc.GetString("voice-mask-voice-popup-success"), uid);
 
-        TrySetLastKnownVoice(uid, message.Voice);
-
         UpdateUI((uid, component));
-    }
-
-    private void TrySetLastKnownVoice(EntityUid maskWearer, string voiceId)
-    {
-        if (!TryComp<VoiceMaskComponent>(maskWearer, out var maskComp))
-            return;
-
-        maskComp.VoiceId = voiceId;
     }
 }
