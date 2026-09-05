@@ -132,7 +132,7 @@
 - type: entity
   id: MagazinePistolSubMachineGunPPSHExtended
   name: PPSH magazine
-  parent: BaseItem
+  parent: BaseNonCycleableAmmoItem
   components:
   - type: Tag
     tags:

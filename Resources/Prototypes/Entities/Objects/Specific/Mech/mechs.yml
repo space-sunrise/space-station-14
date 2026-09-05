@@ -708,9 +708,6 @@
     pilotWhitelist:
       components:
         - HumanoidProfile
-  - type: MeleeThrowOnHit
-    distance: 2.5
-    speed: 15
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -761,16 +758,30 @@
   - type: Sprite
     drawdepth: Mobs
     noRot: true
-    sprite: Objects/Specific/Mech/durand.rsi
+    sprite: _Sunrise/Objects/Specific/Mech/durand.rsi
     scale: 1.08, 1.08
     layers:
-    - map: [ "enum.MechVisualLayers.Base" ]
+    - map: [ "enum.MechVisualLayers.Base", "movement" ] # Sunrise-Edit
       state: base
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
       params:
         pitch: 0.6
+  # Sunrise-start
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: durand-moving
+    noMovementLayers:
+      movement:
+        state: base
+  - type: DamageVisuals
+    thresholds: [ 50, 100, 150, 250, 350 ]
+    trackAllDamage: true
+    damageOverlay:
+      sprite: _Sunrise/Objects/Specific/Mech/durand.rsi
+  # Sunrise-end
   - type: Mech
     baseState: base
     openState: base-open
@@ -780,9 +791,6 @@
     pilotWhitelist:
       components:
         - HumanoidProfile
-  - type: MeleeThrowOnHit
-    distance: 4
-    speed: 18
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -800,12 +808,6 @@
   # Sunrise-End
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
-  - type: Reflect
-    reflectProb: 0.10
-    spread: 180
-    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
-    reflects:
-    - NonEnergy
   - type: Tag
     tags:
     - DoorBumpOpener
@@ -859,9 +861,6 @@
     pilotWhitelist:
       components:
         - HumanoidProfile
-  - type: MeleeThrowOnHit
-    distance: 5
-    speed: 20
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -948,9 +947,6 @@
     pilotWhitelist:
       components:
         - HumanoidProfile
-  - type: MeleeThrowOnHit
-    distance: 5
-    speed: 20
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -1039,9 +1035,6 @@
     pilotWhitelist:
       components:
         - HumanoidProfile
-  - type: MeleeThrowOnHit
-    distance: 3
-    speed: 15
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -1132,9 +1125,6 @@
     pilotWhitelist:
       components:
         - HumanoidProfile
-  - type: MeleeThrowOnHit
-    distance: 5
-    speed: 20
   - type: MeleeWeapon
     hidden: true
     attackRate: 1

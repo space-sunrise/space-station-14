@@ -382,7 +382,7 @@
       - IndustrialMech
       - CombatMech
   - type: MeleeThrowOnHit
-    distance: 2
+    distance: 1.5
     speed: 10
   - type: MeleeWeapon
     hidden: true
@@ -628,9 +628,6 @@
     pilotWhitelist:
       components:
         - HumanoidProfile
-  - type: MeleeThrowOnHit
-    distance: 2.5
-    speed: 15
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -760,7 +757,7 @@
 # Rover
 - type: entity
   id: MechRoverSyndie
-  parent: [ MechBreakageDurand, BaseMech, CombatMech, BaseSyndicateContraband ] # Sunrise-edit
+  parent: [ MechBreakageRover, BaseMech, CombatMech, BaseSyndicateContraband ] # Sunrise-edit
   name: Rover
   description: A modified Durand used for nefarious purposes. On the back of the armor plate there is an inscription "Cybersun Inc."
   components:
@@ -770,14 +767,26 @@
   - type: Sprite
     drawdepth: Mobs
     noRot: true
-    sprite: Objects/Specific/Mech/durand.rsi
+    sprite: _Sunrise/Objects/Specific/Mech/durand.rsi
     scale: 1.08, 1.08
     layers:
-    - map: [ "enum.MechVisualLayers.Base" ]
+    - map: [ "enum.MechVisualLayers.Base", "movement" ]
       state: darkdurand
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: darkdurand-moving
+    noMovementLayers:
+      movement:
+        state: darkdurand
+  - type: DamageVisuals
+    thresholds: [ 50, 100, 150, 250, 350 ]
+    trackAllDamage: true
+    damageOverlay:
+      sprite: _Sunrise/Objects/Specific/Mech/durand.rsi
   - type: Mech
     baseState: darkdurand
     openState: darkdurand-open
@@ -788,35 +797,26 @@
     pilotWhitelist:
       components:
         - HumanoidProfile
-  - type: MeleeThrowOnHit
-    distance: 4
-    speed: 18
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
     damage:
       types:
-        Blunt: 50
-        Structural: 350
+        Blunt: 45
+        Structural: 300
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 1.5
-    baseSprintSpeed: 2.8
+    baseSprintSpeed: 2
   - type: Loadout
     prototypes: [ MechArmorMediumSyndiLoadout ]
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
-  - type: Reflect
-    reflectProb: 0.1
-    spread: 180
-    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
-    reflects:
-    - NonEnergy
   - type: MobThresholds
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      400: Critical
+      500: Critical
   - type: AccessReader
     access: [["NuclearOperative"]]
 
@@ -854,7 +854,7 @@
   - type: Sprite
     drawdepth: Mobs
     noRot: true
-    sprite: Objects/Specific/Mech/durand.rsi
+    sprite: _Sunrise/Objects/Specific/Mech/durand.rsi
     scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
@@ -872,9 +872,6 @@
     pilotWhitelist:
       components:
         - HumanoidProfile
-  - type: MeleeThrowOnHit
-    distance: 4
-    speed: 18
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -907,7 +904,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      400: Critical
+      500: Critical
 
 - type: entity
   id: MechDollHouseBattery
