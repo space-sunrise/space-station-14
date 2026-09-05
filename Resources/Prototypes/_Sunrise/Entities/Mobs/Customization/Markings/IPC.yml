@@ -168,3 +168,102 @@
   sprites:
     - sprite: _Sunrise/Mobs/Customization/IPC/ipc_torso.rsi
       state: torso_w
+
+# руки
+
+- type: marking
+  id: IPC_RArm1
+  bodyPart: RArm
+  groupWhitelist: [ IPC ]
+  sprites:
+    - sprite: _Sunrise/Mobs/Customization/IPC/ipc_arm.rsi
+      state: r_arm
+
+- type: marking
+  id: IPC_RArm2
+  bodyPart: RArm
+  groupWhitelist: [ IPC ]
+  sprites:
+    - sprite: _Sunrise/Mobs/Customization/IPC/ipc_arm.rsi
+      state: r_arm_h
+
+- type: marking
+  id: IPC_RArm4
+  bodyPart: RArm
+  groupWhitelist: [ IPC ]
+  sprites:
+    - sprite: _Sunrise/Mobs/Customization/IPC/ipc_arm.rsi
+      state: r_arm_l
+
+- type: marking
+  id: IPC_LArm1
+  bodyPart: LArm
+  groupWhitelist: [ IPC ]
+  sprites:
+    - sprite: _Sunrise/Mobs/Customization/IPC/ipc_arm.rsi
+      state: l_arm
+
+- type: marking
+  id: IPC_LArm2
+  bodyPart: LArm
+  groupWhitelist: [ IPC ]
+  sprites:
+    - sprite: _Sunrise/Mobs/Customization/IPC/ipc_arm.rsi
+      state: l_arm_l
+
+- type: marking
+  id: IPC_LArm4
+  bodyPart: LArm
+  groupWhitelist: [ IPC ]
+  sprites:
+    - sprite: _Sunrise/Mobs/Customization/IPC/ipc_arm.rsi
+      state: l_arm_w
+
+- type: marking
+  id: IPC_RHand1
+  bodyPart: RHand
+  groupWhitelist: [ IPC ]
+  sprites:
+    - sprite: _Sunrise/Mobs/Customization/IPC/ipc_arm.rsi
+      state: r_hand
+
+- type: marking
+  id: IPC_RHand2
+  bodyPart: RHand
+  groupWhitelist: [ IPC ]
+  sprites:
+    - sprite: _Sunrise/Mobs/Customization/IPC/ipc_arm.rsi
+      state: r_hand_l
+
+- type: marking
+  id: IPC_RHand4
+  bodyPart: RHand
+  groupWhitelist: [ IPC ]
+  sprites:
+    - sprite: _Sunrise/Mobs/Customization/IPC/ipc_arm.rsi
+      state: r_hand_h
+
+- type: marking
+  id: IPC_LHand1
+  bodyPart: LHand
+  groupWhitelist: [ IPC ]
+  sprites:
+    - sprite: _Sunrise/Mobs/Customization/IPC/ipc_arm.rsi
+      state: l_hand
+
+- type: marking
+  id: IPC_LHand2
+  bodyPart: LHand
+  groupWhitelist: [ IPC ]
+  sprites:
+    - sprite: _Sunrise/Mobs/Customization/IPC/ipc_arm.rsi
+      state: l_hand_l
+
+- type: marking
+  id: IPC_LHand4
+  bodyPart: LHand
+  groupWhitelist: [ IPC ]
+  sprites:
+    - sprite: _Sunrise/Mobs/Customization/IPC/ipc_arm.rsi
+      state: l_hand_h
+

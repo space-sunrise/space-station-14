@@ -109,6 +109,3 @@
     enum.HumanoidVisualLayers.HeadTop:
       limit: 1
       required: false
-    enum.HumanoidVisualLayers.Snout:
-      limit: 1
-      required: false

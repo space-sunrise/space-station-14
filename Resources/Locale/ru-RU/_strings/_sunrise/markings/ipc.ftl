@@ -20,3 +20,19 @@ marking-ipc_Head12 = голова №12
 marking-ipc_Head13 = голова №13
 marking-ipc_Head14 = голова №14
 marking-ipc_Head15 = голова №15
+
+marking-IPC_RArm1 = рука тип базовый
+marking-IPC_RArm2 = рука тип человек
+marking-IPC_RArm4 = рука тип ящер
+
+marking-IPC_LArm1 = рука тип базовый
+marking-IPC_LArm2 = рука тип человек
+marking-IPC_LArm4 = рука тип ящер
+
+marking-IPC_RHand1 = кисть типа базовый
+marking-IPC_RHand2 = кисть типа ящер
+marking-IPC_RHand4 = кисть типа человек
+
+marking-IPC_LHand1 = кисть типа базовый
+marking-IPC_LHand2 = кисть типа ящер
+marking-IPC_LHand4 = кисть типа человек
