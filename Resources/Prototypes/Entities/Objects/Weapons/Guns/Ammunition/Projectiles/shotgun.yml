@@ -229,7 +229,6 @@
       types:
         Piercing: 20 # Sunrise-edit
         Blunt: 5 # Sunrise-edit
-        Structural: 15 # Sunrise-edit
   - type: StaminaDamageOnCollide # Sunrise-add
     damage: 15 # Sunrise-add
 
@@ -240,7 +239,7 @@
   components:
   - type: ProjectileSpread
     proto: PelletGrapeshot
-    count: 8 # Sunrise-edit
+    count: 5
     spread: 40
 
 - type: entity
