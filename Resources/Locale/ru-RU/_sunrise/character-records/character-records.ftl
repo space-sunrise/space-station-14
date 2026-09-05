@@ -77,7 +77,6 @@ records-marital-single = Не состоит в браке
 records-marital-married = Состоит в браке
 records-marital-widowed = Вдовец или вдова
 records-close-relatives = Близкие родственники:
-records-permits = Разрешения:
 records-security-supervision = Находится под наблюдением службы безопасности
 records-security-supervision-short = Охранный учёт:
 records-arrest-history = История арестов
@@ -109,5 +108,50 @@ records-employment-history = История трудоустройства
 
 records-randomize-field-button = Рандом
 records-randomize-all-button = Случайное досье
+
+## Авто-заполнение образования по должности (StationRecordsSystem.RequiredEducationByJob) —
+## используется только для ролей, не покрытых основным рандом-пулом специальностей/вузов выше
+records-auto-education-specialty-clinical-psychology = Клиническая психология
+records-auto-education-specialty-beverage-service = Технология приготовления напитков
+records-auto-education-specialty-agronomy = Агрономия
+records-auto-education-specialty-theology = Теология
+records-auto-education-specialty-culinary-arts = Кулинарное искусство
+records-auto-education-specialty-circus-arts = Цирковое искусство
+records-auto-education-specialty-facility-maintenance = Техническое обслуживание помещений
+records-auto-education-specialty-corporate-law = Корпоративное право
+records-auto-education-specialty-library-science = Библиотечное дело
+records-auto-education-specialty-mime-performance = Пантомима и сценическое движение
+records-auto-education-specialty-musical-arts = Музыкальное искусство
+records-auto-education-specialty-guest-services = Сервисное обслуживание
+records-auto-education-specialty-journalism = Журналистика
+records-auto-education-specialty-personnel-management = Управление персоналом
+records-auto-education-specialty-biochemical-defense = Биологическая и химическая защита
+records-auto-education-specialty-tactical-command = Оперативное командование
+records-auto-education-specialty-special-forces-training = Специальная тактическая подготовка
+records-auto-education-specialty-law-enforcement-administration = Организация охраны правопорядка
+records-auto-education-specialty-penitentiary-affairs = Пенитенциарное дело
+records-auto-education-specialty-combat-training = Служебно-боевая подготовка
+records-auto-education-specialty-healthcare-administration = Организация здравоохранения
+records-auto-education-specialty-emergency-medicine = Экстренная медицина
+records-auto-education-specialty-mining-engineering = Горное дело
+records-auto-education-specialty-executive-personal-service = Персональный сервис руководства
+records-auto-education-specialty-corporate-communications = Корпоративные коммуникации
+records-auto-education-specialty-internal-investigations = Внутренние расследования
+records-auto-education-specialty-judicial-proceedings = Судопроизводство
+records-auto-education-specialty-corporate-law-enforcement = Корпоративная охрана правопорядка
+records-auto-education-specialty-internal-oversight = Служба внутреннего надзора
+records-auto-education-specialty-covert-operations = Агентурная и специальная подготовка
+records-auto-education-specialty-combined-arms-training = Общевойсковая подготовка
+records-auto-education-specialty-hairdressing = Парикмахерское искусство
+records-auto-education-specialty-naval-service = Военно-морская служба
+records-auto-education-specialty-vehicle-piloting = Пилотирование транспортных средств
+records-auto-education-specialty-pathological-anatomy = Патологическая анатомия
+
+records-auto-education-institution-service-academy = Академия сервиса NanoTrasen
+records-auto-education-institution-arts-conservatory = Консерватория сценических искусств
+records-auto-education-institution-theology-seminary = Межконфессиональная семинария
+records-auto-education-institution-hazmat-institute = Институт биологической и радиационной защиты
+records-auto-education-institution-ussp-academy = Военно-морская академия УССП
+records-auto-education-institution-piloting-academy = Академия пилотирования NanoTrasen
 # Sunrise added end
 

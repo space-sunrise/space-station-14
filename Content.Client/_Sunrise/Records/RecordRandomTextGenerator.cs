@@ -80,9 +80,6 @@ public static class RecordRandomTextGenerator
     public static string IdentifyingFeatures(IRobustRandom random, ILocalizationManager loc)
         => Phrase(random, loc, "records-random-identifying-features");
 
-    public static string Permits(IRobustRandom random, ILocalizationManager loc)
-        => Phrase(random, loc, "records-random-permits");
-
     private const int CleanVariantCount = 5;
 
     public static string ArrestHistory(IRobustRandom random, ILocalizationManager loc)

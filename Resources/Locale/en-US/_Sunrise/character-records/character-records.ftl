@@ -78,7 +78,6 @@ records-marital-single = Single
 records-marital-married = Married
 records-marital-widowed = Widowed
 records-close-relatives = Close relatives:
-records-permits = Permits:
 records-security-supervision = Under security supervision
 records-security-supervision-short = Security supervision:
 records-arrest-history = Arrest history
@@ -110,5 +109,50 @@ records-employment-history = Employment history
 
 records-randomize-field-button = Random
 records-randomize-all-button = Randomize record
+
+## Auto-filled education by job (StationRecordsSystem.RequiredEducationByJob) —
+## used only for roles not covered by the main specialty/institution random pool above
+records-auto-education-specialty-clinical-psychology = Clinical psychology
+records-auto-education-specialty-beverage-service = Beverage service technology
+records-auto-education-specialty-agronomy = Agronomy
+records-auto-education-specialty-theology = Theology
+records-auto-education-specialty-culinary-arts = Culinary arts
+records-auto-education-specialty-circus-arts = Circus arts
+records-auto-education-specialty-facility-maintenance = Facility maintenance
+records-auto-education-specialty-corporate-law = Corporate law
+records-auto-education-specialty-library-science = Library science
+records-auto-education-specialty-mime-performance = Mime and physical performance
+records-auto-education-specialty-musical-arts = Musical arts
+records-auto-education-specialty-guest-services = Guest services
+records-auto-education-specialty-journalism = Journalism
+records-auto-education-specialty-personnel-management = Personnel management
+records-auto-education-specialty-biochemical-defense = Biological and chemical defense
+records-auto-education-specialty-tactical-command = Tactical operations command
+records-auto-education-specialty-special-forces-training = Special forces training
+records-auto-education-specialty-law-enforcement-administration = Law enforcement administration
+records-auto-education-specialty-penitentiary-affairs = Penitentiary affairs
+records-auto-education-specialty-combat-training = Service and combat training
+records-auto-education-specialty-healthcare-administration = Healthcare administration
+records-auto-education-specialty-emergency-medicine = Emergency medicine
+records-auto-education-specialty-mining-engineering = Mining engineering
+records-auto-education-specialty-executive-personal-service = Executive personal service
+records-auto-education-specialty-corporate-communications = Corporate communications
+records-auto-education-specialty-internal-investigations = Internal investigations
+records-auto-education-specialty-judicial-proceedings = Judicial proceedings
+records-auto-education-specialty-corporate-law-enforcement = Corporate law enforcement
+records-auto-education-specialty-internal-oversight = Internal oversight service
+records-auto-education-specialty-covert-operations = Covert and special operations training
+records-auto-education-specialty-combined-arms-training = Combined arms training
+records-auto-education-specialty-hairdressing = Hairdressing arts
+records-auto-education-specialty-naval-service = Naval service
+records-auto-education-specialty-vehicle-piloting = Vehicle piloting
+records-auto-education-specialty-pathological-anatomy = Pathological anatomy
+
+records-auto-education-institution-service-academy = NanoTrasen Service Academy
+records-auto-education-institution-arts-conservatory = Conservatory of Performing Arts
+records-auto-education-institution-theology-seminary = Interfaith Seminary
+records-auto-education-institution-hazmat-institute = Institute of Biological and Radiological Defense
+records-auto-education-institution-ussp-academy = USSP Naval Academy
+records-auto-education-institution-piloting-academy = NanoTrasen Piloting Academy
 # Sunrise added end
 

@@ -150,12 +150,6 @@
                     <CheckBox Name="SecuritySupervision" Text="{Loc 'records-security-supervision'}" Margin="0 6 0 0"/>
 
                     <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0 8 0 3">
-                        <Label Text="{Loc 'records-permits'}" StyleClasses="LabelSubText"/>
-                        <Control HorizontalExpand="True"/>
-                        <Button Name="SecurityPermitsDice" Text="{Loc 'records-randomize-field-button'}"/>
-                    </BoxContainer>
-                    <records:RecordTextEdit Name="SecurityPermits" MinHeight="70" MaxHeight="120" HorizontalExpand="True"/>
-                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0 8 0 3">
                         <Label Text="{Loc 'records-arrest-history'}" StyleClasses="LabelSubText"/>
                         <Control HorizontalExpand="True"/>
                         <Button Name="SecurityArrestsDice" Text="{Loc 'records-randomize-field-button'}"/>

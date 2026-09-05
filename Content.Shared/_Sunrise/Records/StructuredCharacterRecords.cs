@@ -62,7 +62,6 @@ public sealed class SecurityRecordData
     public RecordMaritalStatus MaritalStatus { get; set; }
     public string CloseRelatives { get; set; } = string.Empty;
     public string EmergencyContact { get; set; } = string.Empty;
-    public string Permits { get; set; } = string.Empty;
     public bool UnderSecuritySupervision { get; set; }
     public string ArrestHistory { get; set; } = string.Empty;
     public string ImprisonmentHistory { get; set; } = string.Empty;
@@ -107,7 +106,10 @@ public static class StructuredCharacterRecords
     // V3 — вес больше не хранится как свободный текст, он всегда берётся из показателей
     // телосложения в редакторе персонажа (см. Content.Shared._Sunrise.Humanoid.HumanoidBodyMetrics)
     private const string MedicalV3Prefix = "SUNRISE_MEDICAL_V3:";
-    private const string SecurityPrefix = "SUNRISE_SECURITY_V1:";
+    private const string SecurityV1Prefix = "SUNRISE_SECURITY_V1:";
+    // V2 — поле "Разрешения" убрано: игроки писали в нём произвольный текст вида
+    // "могу носить контрабанду", выдавая себя за официально уполномоченных
+    private const string SecurityV2Prefix = "SUNRISE_SECURITY_V2:";
     private const string EmploymentPrefix = "SUNRISE_EMPLOYMENT_V1:";
     private const string ResidencePrefix = "SUNRISE_ADDRESS_V1:";
 
@@ -170,7 +172,24 @@ public static class StructuredCharacterRecords
 
     public static SecurityRecordData ReadSecurity(string? storage)
     {
-        if (!TryReadFields(storage, SecurityPrefix, 11, out var fields))
+        if (TryReadFields(storage, SecurityV2Prefix, 10, out var fieldsV2))
+        {
+            return new SecurityRecordData
+            {
+                Residence = ClampSerialized(fieldsV2[0], MaxLongTextLength),
+                IdentifyingFeatures = ClampShort(fieldsV2[1]),
+                MaritalStatus = ReadEnum<RecordMaritalStatus>(fieldsV2[2]),
+                CloseRelatives = ClampShort(fieldsV2[3]),
+                EmergencyContact = ClampShort(fieldsV2[4]),
+                UnderSecuritySupervision = ReadBool(fieldsV2[5]),
+                ArrestHistory = ClampLong(fieldsV2[6]),
+                ImprisonmentHistory = ClampLong(fieldsV2[7]),
+                Notes = ClampNotes(fieldsV2[8]),
+                LastUpdated = ClampShort(fieldsV2[9]),
+            };
+        }
+
+        if (!TryReadFields(storage, SecurityV1Prefix, 11, out var fields))
             return new SecurityRecordData { Notes = ClampNotes(storage) };
 
         return new SecurityRecordData
@@ -180,7 +199,7 @@ public static class StructuredCharacterRecords
             MaritalStatus = ReadEnum<RecordMaritalStatus>(fields[2]),
             CloseRelatives = ClampShort(fields[3]),
             EmergencyContact = ClampShort(fields[4]),
-            Permits = ClampLong(fields[5]),
+            // fields[5] — устаревшее поле "Разрешения", отбрасывается
             UnderSecuritySupervision = ReadBool(fields[6]),
             ArrestHistory = ClampLong(fields[7]),
             ImprisonmentHistory = ClampLong(fields[8]),
@@ -191,14 +210,13 @@ public static class StructuredCharacterRecords
 
     public static string WriteSecurity(SecurityRecordData record)
     {
-        return WriteFields(SecurityPrefix, new[]
+        return WriteFields(SecurityV2Prefix, new[]
         {
             ClampSerialized(record.Residence, MaxLongTextLength),
             ClampShort(record.IdentifyingFeatures),
             record.MaritalStatus.ToString(),
             ClampShort(record.CloseRelatives),
             ClampShort(record.EmergencyContact),
-            ClampLong(record.Permits),
             WriteBool(record.UnderSecuritySupervision),
             ClampLong(record.ArrestHistory),
             ClampLong(record.ImprisonmentHistory),

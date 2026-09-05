@@ -46,7 +46,6 @@ public static class StructuredRecordFormatter
         AppendLine(builder, "records-marital-status", loc($"records-marital-{record.MaritalStatus.ToString().ToLowerInvariant()}"), loc);
         AppendLine(builder, "records-close-relatives", record.CloseRelatives, loc);
         AppendLine(builder, "records-emergency-contact", record.EmergencyContact, loc);
-        AppendBlock(builder, "records-permits", record.Permits, loc);
         AppendLine(builder, "records-security-supervision-short", YesNo(record.UnderSecuritySupervision, loc), loc);
         AppendBlock(builder, "records-arrest-history", record.ArrestHistory, loc);
         AppendBlock(builder, "records-imprisonment-history", record.ImprisonmentHistory, loc);

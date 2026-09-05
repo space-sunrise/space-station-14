@@ -137,18 +137,6 @@ records-random-identifying-features-9 = Missing part of a finger on the left han
 records-random-identifying-features-10 = Heterochromia, noted at intake examination
 records-random-identifying-features-11 = Noticeable forearm scar from a workplace injury
 
-records-random-permits-1 = Permit to carry a service sidearm
-records-random-permits-2 = Clearance for hazardous materials handling
-records-random-permits-3 = No permits or clearances on file
-records-random-permits-4 = License to operate light transport
-records-random-permits-5 = Clearance for restricted archives
-records-random-permits-6 = Permit for experimental equipment operation
-records-random-permits-7 = Clearance for restricted-access zones
-records-random-permits-8 = Clearance to operate cargo manipulators
-records-random-permits-9 = Permit for cryogenic equipment operation
-records-random-permits-10 = Emergency airlock operator certification
-records-random-permits-11 = Clearance to pilot escape pods
-
 ## Arrest history: either a clean record OR an incident tree (outcome -> reason -> optional detail,
 ## each reason only exists under its own outcome, not in a shared pool — combinations always make sense)
 records-random-arrest-clean-1 = No detentions on file

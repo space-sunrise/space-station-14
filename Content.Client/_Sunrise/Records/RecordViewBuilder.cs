@@ -44,7 +44,6 @@ public static class RecordViewBuilder
             ]),
             new(loc.GetString("records-view-security-status"),
             [
-                Author("records-permits", record.Permits, "records-value-no-data", loc, true),
                 AuthorValue("records-security-supervision-short",
                     loc.GetString(record.UnderSecuritySupervision ? "records-value-yes" : "records-value-no"), loc,
                     record.UnderSecuritySupervision),

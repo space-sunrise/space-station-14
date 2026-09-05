@@ -67,7 +67,6 @@ public sealed partial class CharacterRecordsTab : BoxContainer
         BindLineEdit(SecurityFeatures, EmitSecurity);
         BindLineEdit(SecurityRelatives, EmitSecurity);
         BindLineEdit(SecurityEmergencyContact, EmitSecurity);
-        BindTextEdit(SecurityPermits, EmitSecurity);
         BindTextEdit(SecurityArrests, EmitSecurity);
         BindTextEdit(SecurityImprisonment, EmitSecurity);
         BindTextEdit(SecurityNotes, EmitSecurity);
@@ -86,7 +85,6 @@ public sealed partial class CharacterRecordsTab : BoxContainer
         SecurityFeaturesDice.OnPressed += _ => { SecurityFeatures.Text = RecordRandomTextGenerator.IdentifyingFeatures(_random, _loc); EmitSecurity(); };
         SecurityRelativesDice.OnPressed += _ => { SecurityRelatives.Text = RecordRandomTextGenerator.CloseRelatives(_random, _loc); EmitSecurity(); };
         SecurityEmergencyContactDice.OnPressed += _ => { var (species, gender) = RelativeSpeciesGender(); SecurityEmergencyContact.Text = RecordRandomTextGenerator.EmergencyContact(_random, _loc, species, gender); EmitSecurity(); };
-        SecurityPermitsDice.OnPressed += _ => { SetText(SecurityPermits, RecordRandomTextGenerator.Permits(_random, _loc)); EmitSecurity(); };
         SecurityArrestsDice.OnPressed += _ => { SetText(SecurityArrests, RecordRandomTextGenerator.ArrestHistory(_random, _loc)); EmitSecurity(); };
         SecurityImprisonmentDice.OnPressed += _ => { SetText(SecurityImprisonment, RecordRandomTextGenerator.ImprisonmentHistory(_random, _loc, HasArrestRecord())); EmitSecurity(); };
         SecurityNotesDice.OnPressed += _ => { SetText(SecurityNotes, RecordRandomTextGenerator.Notes(_random, _loc)); EmitSecurity(); };
@@ -211,7 +209,6 @@ public sealed partial class CharacterRecordsTab : BoxContainer
         SecurityMaritalStatus.SelectId((int) record.MaritalStatus);
         SecurityRelatives.Text = record.CloseRelatives;
         SecurityEmergencyContact.Text = record.EmergencyContact;
-        SetText(SecurityPermits, record.Permits);
         SecuritySupervision.Pressed = record.UnderSecuritySupervision;
         SetText(SecurityArrests, record.ArrestHistory);
         SetText(SecurityImprisonment, record.ImprisonmentHistory);
@@ -233,7 +230,6 @@ public sealed partial class CharacterRecordsTab : BoxContainer
         MaritalStatus = (RecordMaritalStatus) SecurityMaritalStatus.SelectedId,
         CloseRelatives = SecurityRelatives.Text,
         EmergencyContact = SecurityEmergencyContact.Text,
-        Permits = GetText(SecurityPermits),
         UnderSecuritySupervision = SecuritySupervision.Pressed,
         ArrestHistory = GetText(SecurityArrests),
         ImprisonmentHistory = GetText(SecurityImprisonment),
@@ -327,7 +323,6 @@ public sealed partial class CharacterRecordsTab : BoxContainer
         SecurityFeatures.Text = RecordRandomTextGenerator.IdentifyingFeatures(_random, _loc);
         SecurityRelatives.Text = RecordRandomTextGenerator.CloseRelatives(_random, _loc);
         SecurityEmergencyContact.Text = RecordRandomTextGenerator.EmergencyContact(_random, _loc, RelativeSpeciesGender().Species, RelativeSpeciesGender().Gender);
-        SetText(SecurityPermits, RecordRandomTextGenerator.Permits(_random, _loc));
         SetText(SecurityArrests, RecordRandomTextGenerator.ArrestHistory(_random, _loc));
         SetText(SecurityImprisonment, RecordRandomTextGenerator.ImprisonmentHistory(_random, _loc, HasArrestRecord()));
         SetText(SecurityNotes, RecordRandomTextGenerator.Notes(_random, _loc));
