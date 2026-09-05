@@ -21,8 +21,10 @@ public static class RecordIdentityBuilder
             ? loc.GetString(speciesPrototype.Name)
             : noData;
         var isManufactured = profile.Species.Id is "Ipc" or "Android";
-        var dateOfBirth = !string.IsNullOrEmpty(profile.BirthDay) || !string.IsNullOrEmpty(profile.BirthMonth)
-            ? $"{profile.BirthDay}.{profile.BirthMonth}.{3026 - profile.Age}"
+        // Sunrise-Edit: раньше было "||" — при заполнении только дня ИЛИ только месяца
+        // получалась ломаная дата вида ".12.3008" или "22..3008"
+        var dateOfBirth = !string.IsNullOrEmpty(profile.BirthDay) && !string.IsNullOrEmpty(profile.BirthMonth)
+            ? $"{profile.BirthDay}.{profile.BirthMonth}.{RecordDateConventions.CurrentYear - profile.Age}"
             : string.Empty;
 
         return new RecordIdentityData(

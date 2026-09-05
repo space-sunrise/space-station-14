@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Content.Shared._Sunrise.Records;
+using Content.Shared.Preferences;
 using NUnit.Framework;
 using Robust.Shared.Utility;
 
@@ -56,6 +58,7 @@ public sealed class StructuredCharacterRecordsTest
             AcademicTitle = RecordAcademicTitle.Professor,
             AcademicTitleField = "Navigation and traffic control",
             Licenses = "Shuttle piloting",
+            LastUpdated = "12.06.2868",
             Education = new List<EducationRecordData>
             {
                 new()
@@ -80,10 +83,48 @@ public sealed class StructuredCharacterRecordsTest
         {
             Assert.That(restored.AcademicTitle, Is.EqualTo(RecordAcademicTitle.Professor));
             Assert.That(restored.AcademicTitleField, Is.EqualTo(original.AcademicTitleField));
+            // Sunrise: раньше WriteEmployment не сохранял LastUpdated вообще
+            Assert.That(restored.LastUpdated, Is.EqualTo(original.LastUpdated));
             Assert.That(restored.Education, Has.Count.EqualTo(2));
             Assert.That(restored.Education[0].Specialty, Is.EqualTo("Space navigation"));
             Assert.That(restored.Education[0].Degree, Is.EqualTo(RecordAcademicDegree.Master));
             Assert.That(restored.Education[1].Degree, Is.EqualTo(RecordAcademicDegree.Bachelor));
+        });
+    }
+
+    [Test]
+    public void LegacyEmploymentRecordWithoutLastUpdatedStillParses()
+    {
+        // Sunrise: имитируем формат V1 (до появления поля LastUpdated) — 7 базовых полей
+        // без него, ровно так, как их писала старая версия WriteEmployment
+        string[] legacyFields =
+        {
+            "1", // одна запись об образовании
+            "NotApplicable",
+            "",
+            "",
+            "Licenses",
+            "",
+            "Notes",
+            "Chemistry",
+            "Bachelor",
+            "",
+            "",
+        };
+        var builder = new StringBuilder("SUNRISE_EMPLOYMENT_V1:");
+        builder.Append(legacyFields.Length).Append(';');
+        foreach (var field in legacyFields)
+            builder.Append(field.Length).Append(':').Append(field);
+
+        var restored = StructuredCharacterRecords.ReadEmployment(builder.ToString());
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(restored.LastUpdated, Is.EqualTo(string.Empty));
+            Assert.That(restored.Licenses, Is.EqualTo("Licenses"));
+            Assert.That(restored.Notes, Is.EqualTo("Notes"));
+            Assert.That(restored.Education, Has.Count.EqualTo(1));
+            Assert.That(restored.Education[0].Specialty, Is.EqualTo("Chemistry"));
         });
     }
 
@@ -185,5 +226,22 @@ public sealed class StructuredCharacterRecordsTest
             Assert.That(printed, Does.Contain("author markup"));
             Assert.That(FormattedMessage.TryFromMarkup(printed, out _), Is.True);
         });
+    }
+
+    [Test]
+    public void ComposeFullNamePreservesNameOrder()
+    {
+        // Sunrise: раньше двухсловное имя переставлялось в порядок "Фамилия Имя Отчество"
+        var fullName = HumanoidCharacterProfile.ComposeFullName("Исмаэль Аддисон", "Егеров");
+
+        Assert.That(fullName, Is.EqualTo("Исмаэль Аддисон Егеров"));
+    }
+
+    [Test]
+    public void ComposeFullNameWithoutPatronymicReturnsNameUnchanged()
+    {
+        var fullName = HumanoidCharacterProfile.ComposeFullName("Исмаэль Аддисон", string.Empty);
+
+        Assert.That(fullName, Is.EqualTo("Исмаэль Аддисон"));
     }
 }

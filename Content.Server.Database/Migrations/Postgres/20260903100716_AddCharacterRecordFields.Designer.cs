@@ -16,7 +16,7 @@ using NpgsqlTypes;
 namespace Content.Server.Database.Migrations.Postgres
 {
     [DbContext(typeof(PostgresServerDbContext))]
-    [Migration("20260903100727_AddCharacterRecordFields")]
+    [Migration("20260903100716_AddCharacterRecordFields")]
     partial class AddCharacterRecordFields
     {
         /// <inheritdoc />

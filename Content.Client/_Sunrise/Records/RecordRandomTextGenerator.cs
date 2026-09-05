@@ -1,5 +1,7 @@
+using System;
 using Robust.Shared.Enums;
 using Robust.Shared.Random;
+using Content.Shared._Sunrise.Records;
 using Content.Shared.Preferences;
 
 namespace Content.Client._Sunrise.Records;
@@ -160,8 +162,18 @@ public static class RecordRandomTextGenerator
     public static string ResidenceUnit(IRobustRandom random, ILocalizationManager loc)
         => loc.GetString("records-random-apartment-unit", ("value", random.Next(1, 340)));
 
-    // Год без единиц измерения не нуждается в локализации
-    public static string Year(IRobustRandom random)
-        => (2530 + random.Next(0, 40)).ToString();
+    // Sunrise: год не должен быть раньше рождения персонажа (было: фиксированный диапазон
+    // 2530-2569, из-за чего диплом мог оказаться выдан за сотни лет до рождения). Без известного
+    // возраста (например, окно предпросмотра без профиля) используем старое поведение — год из
+    // последних 40 лет до текущего.
+    public static string Year(IRobustRandom random, int? age = null)
+    {
+        if (age is not { } characterAge)
+            return (RecordDateConventions.CurrentYear - random.Next(0, 40)).ToString();
+
+        var birthYear = RecordDateConventions.CurrentYear - characterAge;
+        var earliestYear = Math.Min(birthYear + 18, RecordDateConventions.CurrentYear);
+        return random.Next(earliestYear, RecordDateConventions.CurrentYear + 1).ToString();
+    }
 }
 // Sunrise added end

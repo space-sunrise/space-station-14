@@ -94,18 +94,17 @@ public sealed partial class HumanoidCharacterProfile
 
     /// <summary>
     /// Составляет полное ФИО из уже заданного имени персонажа и необязательного отчества.
-    /// Для двухсловных имён (Имя Фамилия) результат приводится к порядку Фамилия Имя Отчество,
-    /// иначе отчество просто дописывается в конец, чтобы не ломать нестандартные имена.
+    /// Отчество дописывается в конец, порядок имени и фамилии не меняется.
     /// </summary>
+    // Sunrise-Edit: раньше двухсловное имя переставлялось в порядок "Фамилия Имя Отчество"
+    // ("Исмаэль Аддисон" + "Егеров" -> "Аддисон Исмаэль Егеров"), хотя ожидался порядок
+    // "Исмаэль Аддисон Егеров" — имя и фамилия как есть, отчество просто в конце
     public static string ComposeFullName(string name, string patronymic)
     {
         if (string.IsNullOrWhiteSpace(patronymic))
             return name;
 
-        var parts = name.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-        return parts.Length == 2
-            ? $"{parts[1]} {parts[0]} {patronymic.Trim()}"
-            : $"{name} {patronymic.Trim()}";
+        return $"{name.Trim()} {patronymic.Trim()}";
     }
     // Sunrise added end
 

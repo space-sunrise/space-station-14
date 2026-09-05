@@ -104,7 +104,7 @@ public sealed partial class CharacterRecordsTab : BoxContainer
         UpdateAcademicTitleVisibility();
 
         EmploymentAcademicTitleFieldDice.OnPressed += _ => { EmploymentAcademicTitleField.Text = RecordRandomTextGenerator.AcademicField(_random, _loc); EmitEmployment(); };
-        EmploymentAcademicTitleDateDice.OnPressed += _ => { EmploymentAcademicTitleDate.Text = RecordRandomTextGenerator.Year(_random); EmitEmployment(); };
+        EmploymentAcademicTitleDateDice.OnPressed += _ => { EmploymentAcademicTitleDate.Text = RecordRandomTextGenerator.Year(_random, _profile?.Age); EmitEmployment(); };
         EmploymentLicensesDice.OnPressed += _ => { SetText(EmploymentLicenses, RecordRandomTextGenerator.Licenses(_random, _loc)); EmitEmployment(); };
         EmploymentHistoryDice.OnPressed += _ => { SetText(EmploymentHistory, RecordRandomTextGenerator.EmploymentHistory(_random, _loc)); EmitEmployment(); };
         EmploymentNotesDice.OnPressed += _ => { SetText(EmploymentNotes, RecordRandomTextGenerator.Notes(_random, _loc)); EmitEmployment(); };
@@ -336,7 +336,7 @@ public sealed partial class CharacterRecordsTab : BoxContainer
     private void RandomizeEmploymentFields()
     {
         EmploymentAcademicTitleField.Text = RecordRandomTextGenerator.AcademicField(_random, _loc);
-        EmploymentAcademicTitleDate.Text = RecordRandomTextGenerator.Year(_random);
+        EmploymentAcademicTitleDate.Text = RecordRandomTextGenerator.Year(_random, _profile?.Age);
         SetText(EmploymentLicenses, RecordRandomTextGenerator.Licenses(_random, _loc));
         SetText(EmploymentHistory, RecordRandomTextGenerator.EmploymentHistory(_random, _loc));
         SetText(EmploymentNotes, RecordRandomTextGenerator.Notes(_random, _loc));
@@ -345,7 +345,7 @@ public sealed partial class CharacterRecordsTab : BoxContainer
         {
             entry.Specialty.Text = RecordRandomTextGenerator.Specialty(_random, _loc);
             entry.Institution.Text = RecordRandomTextGenerator.Institution(_random, _loc);
-            entry.DiplomaDate.Text = RecordRandomTextGenerator.Year(_random);
+            entry.DiplomaDate.Text = RecordRandomTextGenerator.Year(_random, _profile?.Age);
         }
 
         EmitEmployment();
@@ -410,7 +410,7 @@ public sealed partial class CharacterRecordsTab : BoxContainer
         BindLineEdit(diplomaDate, EmitEmployment);
         specialtyDice.OnPressed += _ => { specialty.Text = RecordRandomTextGenerator.Specialty(_random, _loc); EmitEmployment(); };
         institutionDice.OnPressed += _ => { institution.Text = RecordRandomTextGenerator.Institution(_random, _loc); EmitEmployment(); };
-        diplomaDateDice.OnPressed += _ => { diplomaDate.Text = RecordRandomTextGenerator.Year(_random); EmitEmployment(); };
+        diplomaDateDice.OnPressed += _ => { diplomaDate.Text = RecordRandomTextGenerator.Year(_random, _profile?.Age); EmitEmployment(); };
         degree.OnItemSelected += args =>
         {
             degree.SelectId(args.Id);

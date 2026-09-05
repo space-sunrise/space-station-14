@@ -110,7 +110,10 @@ public static class StructuredCharacterRecords
     // V2 — поле "Разрешения" убрано: игроки писали в нём произвольный текст вида
     // "могу носить контрабанду", выдавая себя за официально уполномоченных
     private const string SecurityV2Prefix = "SUNRISE_SECURITY_V2:";
-    private const string EmploymentPrefix = "SUNRISE_EMPLOYMENT_V1:";
+    private const string EmploymentV1Prefix = "SUNRISE_EMPLOYMENT_V1:";
+    // V2 — добавлено поле LastUpdated: раньше WriteEmployment его не сохранял вообще,
+    // поэтому после сохранения профиля дата всегда терялась и заменялась на "нет данных"
+    private const string EmploymentV2Prefix = "SUNRISE_EMPLOYMENT_V2:";
     private const string ResidencePrefix = "SUNRISE_ADDRESS_V1:";
 
     public static MedicalRecordData ReadMedical(string? storage)
@@ -227,10 +230,44 @@ public static class StructuredCharacterRecords
 
     public static EmploymentRecordData ReadEmployment(string? storage)
     {
-        const int baseFieldCount = 7;
         const int educationFieldCount = 4;
+        const int baseFieldCountV2 = 8;
 
-        if (!TryReadFields(storage, EmploymentPrefix, null, out var fields) ||
+        if (TryReadFields(storage, EmploymentV2Prefix, null, out var fieldsV2) &&
+            fieldsV2.Count >= baseFieldCountV2 &&
+            int.TryParse(fieldsV2[0], out var educationCountV2) &&
+            educationCountV2 is >= 0 and <= MaxEducationEntries &&
+            fieldsV2.Count == baseFieldCountV2 + educationCountV2 * educationFieldCount)
+        {
+            var recordV2 = new EmploymentRecordData
+            {
+                AcademicTitle = ReadEnum<RecordAcademicTitle>(fieldsV2[1]),
+                AcademicTitleField = ClampShort(fieldsV2[2]),
+                AcademicTitleDate = ClampShort(fieldsV2[3]),
+                Licenses = ClampLong(fieldsV2[4]),
+                EmploymentHistory = ClampLong(fieldsV2[5]),
+                Notes = ClampNotes(fieldsV2[6]),
+                LastUpdated = ClampShort(fieldsV2[7]),
+            };
+
+            for (var i = 0; i < educationCountV2; i++)
+            {
+                var offset = baseFieldCountV2 + i * educationFieldCount;
+                recordV2.Education.Add(new EducationRecordData
+                {
+                    Specialty = ClampShort(fieldsV2[offset]),
+                    Degree = ReadEnum<RecordAcademicDegree>(fieldsV2[offset + 1]),
+                    Institution = ClampShort(fieldsV2[offset + 2]),
+                    DiplomaDate = ClampShort(fieldsV2[offset + 3]),
+                });
+            }
+
+            return recordV2;
+        }
+
+        const int baseFieldCount = 7;
+
+        if (!TryReadFields(storage, EmploymentV1Prefix, null, out var fields) ||
             fields.Count < baseFieldCount ||
             !int.TryParse(fields[0], out var educationCount) ||
             educationCount is < 0 or > MaxEducationEntries ||
@@ -268,7 +305,7 @@ public static class StructuredCharacterRecords
     public static string WriteEmployment(EmploymentRecordData record)
     {
         var educationCount = Math.Min(record.Education.Count, MaxEducationEntries);
-        var fields = new List<string>(7 + educationCount * 4)
+        var fields = new List<string>(8 + educationCount * 4)
         {
             educationCount.ToString(),
             record.AcademicTitle.ToString(),
@@ -277,6 +314,7 @@ public static class StructuredCharacterRecords
             ClampLong(record.Licenses),
             ClampLong(record.EmploymentHistory),
             ClampNotes(record.Notes),
+            ClampShort(record.LastUpdated),
         };
 
         for (var i = 0; i < educationCount; i++)
@@ -288,7 +326,7 @@ public static class StructuredCharacterRecords
             fields.Add(ClampShort(education.DiplomaDate));
         }
 
-        return WriteFields(EmploymentPrefix, fields);
+        return WriteFields(EmploymentV2Prefix, fields);
     }
 
     public static ResidenceRecordData ReadResidence(string? storage)

@@ -1,4 +1,5 @@
 using Content.Client._Sunrise.Lobby.UI;
+using Content.Shared._Sunrise.Records;
 
 namespace Content.Client.Lobby.UI;
 
@@ -23,7 +24,7 @@ public sealed partial class HumanoidProfileEditor
         _recordsTab.PatronymicValue      = Profile.Patronymic;
         _recordsTab.BirthDayValue       = Profile.BirthDay;
         _recordsTab.BirthMonthValue     = Profile.BirthMonth;
-        _recordsTab.SetBirthYear(3026 - Profile.Age);
+        _recordsTab.SetBirthYear(RecordDateConventions.CurrentYear - Profile.Age);
         _recordsTab.MedicalRecordValue  = Profile.MedicalRecord;
         _recordsTab.SecurityRecordValue = Profile.SecurityRecord;
         _recordsTab.EmploymentRecordValue = Profile.EmploymentRecord;
