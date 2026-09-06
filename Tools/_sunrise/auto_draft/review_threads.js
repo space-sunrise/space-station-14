@@ -9,18 +9,12 @@ module.exports = async ({ github, context, core }) => {
     isDraft,
     hasMarker,
     latestBlockingAt,
-    latestApprovalAt,
     latestReadyAt,
     allBlockingThreadsResolved,
   }) {
     const hasBlockingReview = latestBlockingAt !== null;
-    const approvalOverrides =
-      hasBlockingReview &&
-      latestApprovalAt !== null &&
-      latestApprovalAt > latestBlockingAt;
     const shouldBeReady =
       !hasBlockingReview ||
-      approvalOverrides ||
       allBlockingThreadsResolved;
 
     if (isDraft)
@@ -211,7 +205,6 @@ module.exports = async ({ github, context, core }) => {
         return reviewThreads.length > 0 && reviewThreads.every(thread => thread.isResolved);
       });
     const latestBlockingAt = latestTimestamp(blockingReviews);
-    const latestApprovalAt = latestTimestamp(approvals);
     const latestReadyEvent = pullRequest.timelineItems.nodes[0];
     // Собственный перевод в Ready не является ручным разрешением игнорировать старые замечания.
     const readyByApp = appSlug && latestReadyEvent?.actor?.login.replace(/\[bot\]$/, "") === appSlug;
@@ -224,7 +217,6 @@ module.exports = async ({ github, context, core }) => {
       isDraft: pullRequest.isDraft,
       hasMarker,
       latestBlockingAt,
-      latestApprovalAt,
       latestReadyAt,
       allBlockingThreadsResolved,
     });

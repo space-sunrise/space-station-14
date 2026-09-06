@@ -104,24 +104,6 @@ class AutoDraftReviewThreadsWorkflowTests(unittest.TestCase):
                 "expected": "draft",
             },
             {
-                "name": "старый approve не отменяет новое требование",
-                "input": self.policy_input(
-                    latestBlockingAt=20,
-                    latestApprovalAt=10,
-                ),
-                "expected": "draft",
-            },
-            {
-                "name": "новый approve снимает автодрафт",
-                "input": self.policy_input(
-                    isDraft=True,
-                    hasMarker=True,
-                    latestBlockingAt=10,
-                    latestApprovalAt=20,
-                ),
-                "expected": "ready",
-            },
-            {
                 "name": "закрытие всех обсуждений снимает автодрафт",
                 "input": self.policy_input(
                     isDraft=True,
@@ -209,7 +191,6 @@ for (const testCase of cases) {{
             "isDraft": False,
             "hasMarker": False,
             "latestBlockingAt": None,
-            "latestApprovalAt": None,
             "latestReadyAt": None,
             "allBlockingThreadsResolved": False,
         }
@@ -223,7 +204,8 @@ const run = require('./Tools/_sunrise/auto_draft/review_threads.js');
 const marker = process.env.AUTO_DRAFT_LABEL = 'auto-draft: unresolved review';
 process.env.AUTO_DRAFT_APP_SLUG = 'auto-draft-app';
 const review = { id: 'R1', state: 'CHANGES_REQUESTED',
-  submittedAt: '2026-09-01T00:00:00Z', authorCanPushToRepository: true };
+  submittedAt: '2026-09-01T00:00:00Z', authorCanPushToRepository: true,
+  author: { login: 'alice' } };
 const thread = { isResolved: false,
   comments: { nodes: [{ pullRequestReview: { id: 'R1' } }] } };
 function pull(overrides = {}) {
@@ -286,6 +268,28 @@ function mock(pulls, fail = '') {
   let env = mock([pull()]);
   await run(env);
   assert.deepEqual(env.actions, ['add:1', 'draft']);
+
+  // Одобрение Боба не отменяет незакрытое требование Алисы, независимо от времени.
+  const bobApproval = { ...review, id: 'R2', state: 'APPROVED',
+    submittedAt: '2026-09-02T00:00:00Z', author: { login: 'bob' } };
+  const reviewed = pull({ isDraft: true, labels: [{ name: marker }],
+    latestOpinionatedReviews: [review, bobApproval] });
+  env = mock([reviewed]);
+  await run(env);
+  assert.deepEqual(env.actions, []);
+
+  env = mock([pull({ latestOpinionatedReviews: [review, bobApproval] })]);
+  await run(env);
+  assert.deepEqual(env.actions, ['add:1', 'draft']);
+
+  // GitHub возвращает последнее решение каждого автора: Алиса сама одобрила ПР.
+  reviewed.latestOpinionatedReviews = [
+    { ...review, id: 'R3', state: 'APPROVED', submittedAt: '2026-09-03T00:00:00Z' },
+    bobApproval,
+  ];
+  env = mock([reviewed]);
+  await run(env);
+  assert.deepEqual(env.actions, ['ready', 'remove:1']);
 
   // Повторное открытие обсуждения после автоматического Ready снова блокирует ПР.
   env = mock([pull({ timelineItems: { nodes: [{ createdAt: '2026-09-02T00:00:00Z',
