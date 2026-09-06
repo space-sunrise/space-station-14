@@ -22,7 +22,7 @@ on:
 
 jobs:
   publish:
-    uses: ./.github/workflows/publish.yml
+    uses: ./.github/workflows/publish-sunrise.yml
     with:
       commit_hash: ${{ inputs.commit_hash }}
       # Пустую настройку отклонит валидатор; подмена обычной сборкой недопустима.

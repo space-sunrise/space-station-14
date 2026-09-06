@@ -3,6 +3,9 @@
 import requests
 import os
 import subprocess
+# Sunrise added start - используем общую проверку адреса CDN
+from validate_publish import validate_cdn_url
+# Sunrise added end
 
 GITHUB_TOKEN = os.environ["GITHUB_TOKEN"]
 PUBLISH_TOKEN = os.environ["PUBLISH_TOKEN"]
@@ -10,12 +13,13 @@ ARTIFACT_ID = os.environ["ARTIFACT_ID"]
 GITHUB_REPOSITORY = os.environ["GITHUB_REPOSITORY"]
 VERSION = os.environ['GITHUB_SHA']
 
-#
-# CONFIGURATION PARAMETERS
-# Forks should change these to publish to their own infrastructure.
-#
-ROBUST_CDN_URL = "https://wizards.cdn.spacestation14.com/"
-FORK_ID = "wizards"
+# Sunrise edit start - используем общие настройки публикации вместо значений конкретного проекта
+# Параметры инфраструктуры передаются через переменные окружения.
+ROBUST_CDN_URL = validate_cdn_url(os.environ["ROBUST_CDN_URL"])
+FORK_ID = os.environ["PUBLISH_FORK_ID"].strip()
+if not FORK_ID:
+    raise ValueError("PUBLISH_FORK_ID is required")
+# Sunrise edit end
 
 def main():
     print("Fetching artifact URL from API...")

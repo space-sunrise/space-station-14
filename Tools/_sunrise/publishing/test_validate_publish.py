@@ -42,7 +42,7 @@ class PublishTests(unittest.TestCase):
                     main()
 
     def test_publish_uses_checked_out_sha_and_current_configuration(self):
-        tools_path = Path(__file__).resolve().parents[1]
+        tools_path = Path(__file__).resolve().parent
         spec = importlib.util.spec_from_file_location("publish_under_test", tools_path / "publish_multi_request.py")
         module = importlib.util.module_from_spec(spec)
         session = Mock()
@@ -58,7 +58,7 @@ class PublishTests(unittest.TestCase):
             git.assert_called_once_with(["git", "rev-parse", "HEAD"], encoding="UTF-8")
 
         announce_spec = importlib.util.spec_from_file_location(
-            "announce_under_test", tools_path / "_sunrise/discord_publish_announce.py"
+            "announce_under_test", tools_path.parent / "discord_publish_announce.py"
         )
         announce = importlib.util.module_from_spec(announce_spec)
         with patch.dict(os.environ, environment), patch("subprocess.check_output", return_value=selected_sha + "\n"):
