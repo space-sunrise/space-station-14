@@ -16,6 +16,7 @@ module.exports = async ({ github, readGithub = github, context, core }) => {
     allBlockingThreadsResolved,
     checksReady,
     codeRabbitReady,
+    keepReadyDuringRerun = false,
   }) {
     const hasBlockingReview = latestBlockingAt !== null;
     const shouldBeReady =
@@ -26,7 +27,9 @@ module.exports = async ({ github, readGithub = github, context, core }) => {
 
     const manualOverride = latestReadyAt !== null &&
       (!hasBlockingReview || latestReadyAt >= latestBlockingAt);
-    if (!shouldBeReady && !manualOverride)
+    const waitingForRerun = (!hasBlockingReview || allBlockingThreadsResolved) &&
+      codeRabbitReady && keepReadyDuringRerun;
+    if (!shouldBeReady && !waitingForRerun && !manualOverride)
       return "draft";
 
     return hasMarker ? "cleanup" : "keep";
@@ -279,7 +282,8 @@ module.exports = async ({ github, readGithub = github, context, core }) => {
     }
 
     if (action === "draft") {
-      await addMarker(number);
+      if (!hasMarker)
+        await addMarker(number);
       try {
         await convertToDraft(pullRequest.id);
       } catch (error) {

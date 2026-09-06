@@ -105,6 +105,21 @@ class AutoDraftReviewThreadsWorkflowTests(unittest.TestCase):
         policy = textwrap.dedent(match.group("policy"))
         cases = [
             {
+                "name": "готовый ПР не закрывается на повторном запуске успешных проверок того же коммита",
+                "input": self.policy_input(checksReady=False, keepReadyDuringRerun=True),
+                "expected": "keep",
+            },
+            {
+                "name": "черновик ждёт завершения повторного запуска даже после прежнего успеха",
+                "input": self.policy_input(isDraft=True, hasMarker=True, checksReady=False, keepReadyDuringRerun=True),
+                "expected": "keep",
+            },
+            {
+                "name": "старый успех тестов не отменяет открытые замечания",
+                "input": self.policy_input(latestBlockingAt=10, checksReady=False, keepReadyDuringRerun=True),
+                "expected": "draft",
+            },
+            {
                 "name": "новое требование включает draft",
                 "input": self.policy_input(latestBlockingAt=20),
                 "expected": "draft",

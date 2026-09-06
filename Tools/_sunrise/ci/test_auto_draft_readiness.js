@@ -1,7 +1,7 @@
 const assert = require('node:assert/strict');
 const load = require('../auto_draft/readiness.js');
 const head = '1234567890abcdef1234567890abcdef12345678';
-const pullRequest = { number: 1, headRefOid: head, baseRefName: 'master' };
+const pullRequest = { number: 1, headRefOid: head, baseRefName: 'master', createdAt: '2026-09-01T00:00:00Z' };
 const rabbit = { __typename: 'StatusContext', context: 'CodeRabbit', state: 'SUCCESS',
   description: 'Review completed', createdAt: '2026-09-01T00:00:00Z',
   creator: { __typename: 'Bot', login: 'coderabbitai' }, isRequired: false };
@@ -20,9 +20,11 @@ const limited = (sha = head) => ({ user: { type: 'Bot', login: 'coderabbitai[bot
 });
 
 async function inspect({ checks = [check, rabbit], comments = [], requirements = [requirement],
-  classic = [], responseHead = head, fail = '', pages = null, rulesCache = new Map(), workflows = [], runs = [] } = {}) {
+  classic = [], responseHead = head, fail = '', pages = null, rulesCache = new Map(), workflows = [], runs = [],
+  now = Date.parse(pullRequest.createdAt) + 60_000, reviews = [], previousAttempt = {} } = {}) {
   const github = {
-    rest: { issues: { listComments() {} }, actions: { listWorkflowRunsForRepo() {} },
+    rest: { issues: { listComments() {} }, actions: { listWorkflowRunsForRepo() {},
+      async getWorkflowRunAttempt() { return { data: previousAttempt }; } },
       repos: { async getBranch() { return { data: { protection: { enabled: true, required_status_checks: {
         checks: classic.map(check => ({ context: check.context, app_id: check.app?.databaseId })),
       } } } }; } } },
@@ -33,6 +35,7 @@ async function inspect({ checks = [check, rabbit], comments = [], requirements =
       const index = Number(variables.cursor || 0);
       const nodes = pages ? pages[index] : checks;
       return { repository: { pullRequest: { ...pullRequest, headRefOid: responseHead,
+        reviews: { nodes: reviews },
         commits: { nodes: [{ commit: { statusCheckRollup: { contexts: { nodes,
           pageInfo: { hasNextPage: pages && index + 1 < pages.length, endCursor: String(index + 1) },
         } } } }] },
@@ -49,7 +52,7 @@ async function inspect({ checks = [check, rabbit], comments = [], requirements =
       return comments;
     },
   };
-  return load({ github, owner: 'example', repo: 'repo', pullRequest, rulesCache });
+  return load({ github, owner: 'example', repo: 'repo', pullRequest, rulesCache, now });
 }
 
 (async () => {
@@ -101,7 +104,7 @@ async function inspect({ checks = [check, rabbit], comments = [], requirements =
   result = await inspect({ checks: [check, { ...rabbit, creator: { __typename: 'User', login: 'coderabbitai' } }] });
   assert.equal(result.codeRabbitReady, false);
 
-  // Послабление действует только для служебного уведомления бота о текущем коммите.
+  // Формат и наличие хеша не обязательны; автором уведомления должен быть настоящий CodeRabbit.
   result = await inspect({ checks: [check], comments: [limited()] });
   assert.equal(result.rateLimited, true);
   assert.equal(result.codeRabbitReady, true);
@@ -109,17 +112,58 @@ async function inspect({ checks = [check, rabbit], comments = [], requirements =
   assert.equal(result.rateLimited, true);
   result = await inspect({ checks: [check, { ...rabbit, description: 'Review skipped' }], comments: [limited()] });
   assert.equal(result.rateLimited, true);
-  for (const comment of [limited('abcdef1234567'),
-    { ...limited(), user: { type: 'User', login: 'contributor' } },
-    { ...limited(), body: 'Rate limit exceeded' },
-    { ...limited(), body: 'Quoted notice:\n' + limited().body },
-    { ...limited(), body: limited().body.replace(/Reviewing files[^\n]+/, '') }]) {
+  for (const body of ['Review rate limited.', 'Rate limit exceeded', 'Review limit reached',
+    "You've used all free OSS reviews for now.", 'Лимит запросов исчерпан', limited('abcdef1234567').body,
+    limited().body.replace(/Reviewing files[^\n]+/, '')]) {
+    result = await inspect({ checks: [check], comments: [{ ...limited(), body }] });
+    assert.equal(result.codeRabbitReady, true, body);
+  }
+  for (const comment of [{ ...limited(), user: { type: 'User', login: 'contributor' } },
+    { ...limited(), user: { type: 'Bot', login: 'another[bot]' } },
+    { ...limited(), body: 'Review in progress' }]) {
     result = await inspect({ checks: [check], comments: [comment] });
     assert.equal(result.codeRabbitReady, false);
   }
   process.env.AUTO_DRAFT_ALLOW_CODERABBIT_RATE_LIMIT = 'false';
   result = await inspect({ checks: [check], comments: [limited()] });
   assert.equal(result.codeRabbitReady, false);
+
+  const afterWait = Date.parse(pullRequest.createdAt) + 10 * 60_000;
+  result = await inspect({ checks: [check], now: afterWait - 1 });
+  assert.equal(result.codeRabbitAbsent, false);
+  assert.equal(result.codeRabbitReady, false);
+  result = await inspect({ checks: [check], now: afterWait });
+  assert.equal(result.codeRabbitAbsent, true);
+  assert.equal(result.codeRabbitReady, true);
+  result = await inspect({ checks: [{ ...check, conclusion: 'FAILURE' }], now: afterWait });
+  assert.equal(result.checksReady, false);
+  for (const evidence of [{ checks: [check, { ...rabbit, state: 'PENDING' }] },
+    { comments: [{ ...limited(), body: 'Review in progress' }] },
+    { reviews: [{ author: { __typename: 'Bot', login: 'coderabbitai' } }] }]) {
+    result = await inspect({ checks: [check], now: afterWait, ...evidence });
+    assert.equal(result.codeRabbitAbsent, false);
+    assert.equal(result.codeRabbitReady, false);
+  }
+
+  // Ожидание повторного запуска не закрывает уже готовый ПР; неудача или новый коммит закрывают.
+  result = await inspect({ checks: [check, { ...check, databaseId: 2, status: 'IN_PROGRESS', conclusion: null }, rabbit] });
+  assert.equal(result.checksReady, false);
+  assert.equal(result.keepReadyDuringRerun, true);
+  const pending = { ...check, status: 'IN_PROGRESS', conclusion: null,
+    checkSuite: { ...check.checkSuite, workflowRun: { databaseId: 11, workflow: { databaseId: 1 } } } };
+  const previousRun = { id: 10, head_sha: head, workflow_id: 1, status: 'completed', conclusion: 'success', pull_requests: [{ number: 1 }] };
+  result = await inspect({ checks: [pending, rabbit], runs: [previousRun] });
+  assert.equal(result.keepReadyDuringRerun, true);
+  result = await inspect({ checks: [pending, rabbit], runs: [{ ...previousRun, id: 11, run_attempt: 2, conclusion: null }], previousAttempt: previousRun });
+  assert.equal(result.keepReadyDuringRerun, true);
+  result = await inspect({ checks: [pending, rabbit], runs: [{ ...previousRun, id: 11, run_attempt: 2, conclusion: null }], previousAttempt: { ...previousRun, conclusion: 'failure' } });
+  assert.equal(result.keepReadyDuringRerun, false);
+  for (const changed of [{ head_sha: 'old' }, { workflow_id: 2 }, { pull_requests: [{ number: 2 }] }, { conclusion: 'failure' }]) {
+    result = await inspect({ checks: [pending, rabbit], runs: [{ ...previousRun, ...changed }] });
+    assert.equal(result.keepReadyDuringRerun, false);
+  }
+  result = await inspect({ checks: [check, { ...check, databaseId: 2, conclusion: 'FAILURE' }, rabbit] });
+  assert.equal(result.keepReadyDuringRerun, false);
   delete process.env.AUTO_DRAFT_ALLOW_CODERABBIT_RATE_LIMIT;
   result = await inspect({ checks: [{ ...check, conclusion: 'FAILURE' }], comments: [limited()] });
   assert.equal(result.rateLimited, true);
@@ -167,6 +211,13 @@ async function inspect({ checks = [check, rabbit], comments = [], requirements =
   const body = buildChecklist(state);
   assert.ok(body.includes('- [ ] Разобраться'));
   assert.ok(body.includes('- [x] Пройти обязательные'));
+  assert.ok(body.includes('Summary'));
+  assert.ok(body.includes('раскрой нужный шард'));
+  assert.ok(body.includes('он может ошибаться'));
+  assert.ok(!body.includes('Ручные правки сообщения'));
+  const absentBody = buildChecklist({ ...state, readiness: { ...state.readiness, codeRabbitAbsent: true } });
+  assert.ok(absentBody.includes('- [x] ~~Дождаться CodeRabbit~~'));
+  assert.ok(!absentBody.includes('искусственный интеллект'));
   assert.ok(buildChecklist({ ...state, manualDraft: true }).includes('- [ ] Подтвердить'));
   assert.ok(buildChecklist({ ...state, manualOverride: true }).includes('аварийный'));
   const hostile = buildChecklist({ ...state, feedback: [{ done: false, text: '@someone #456\n- [x] <script> [click](https://example.org)' }] });
