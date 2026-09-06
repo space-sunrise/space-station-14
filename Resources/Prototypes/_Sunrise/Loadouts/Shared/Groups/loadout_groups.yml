@@ -1114,6 +1114,8 @@
 #  - TrinketsEngineeringTT
   - TrinketsEngineeringGCW
   - TrinketsEngineeringST
+  - TrinketsEngineeringWI
+  - TrinketsEngineeringWIA
 
 - type: loadoutGroup
   id: SeniorEngineerNeck
