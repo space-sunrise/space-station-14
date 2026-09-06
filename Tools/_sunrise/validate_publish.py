@@ -23,13 +23,14 @@ def is_trusted_ref(value: str) -> bool:
     return bool(FULL_SHA_PATTERN.fullmatch(value)) or value in TRUSTED_BRANCHES
 
 
-def validate_cdn_url(value: str) -> None:
+def validate_cdn_url(value: str) -> str:
+    value = value.strip()
     try:
         parsed_url = urlparse(value)
         hostname = parsed_url.hostname
         _ = parsed_url.port  # Проверяем корректность порта.
-    except ValueError:
-        fail(INVALID_CDN_URL_MESSAGE)
+    except ValueError as error:
+        raise ValueError(INVALID_CDN_URL_MESSAGE) from error
 
     if (
         parsed_url.scheme != "https"
@@ -38,8 +39,11 @@ def validate_cdn_url(value: str) -> None:
         or parsed_url.password is not None
         or parsed_url.query
         or parsed_url.fragment
+        or any(character.isspace() for character in value)
     ):
-        fail(INVALID_CDN_URL_MESSAGE)
+        raise ValueError(INVALID_CDN_URL_MESSAGE)
+
+    return value.rstrip("/") + "/"
 
 
 def main() -> None:
@@ -47,7 +51,10 @@ def main() -> None:
     if not cdn_url:
         fail("Repository variable ROBUST_CDN_URL is not configured.")
 
-    validate_cdn_url(cdn_url)
+    try:
+        validate_cdn_url(cdn_url)
+    except ValueError as error:
+        fail(str(error))
 
     if not os.environ.get("PUBLISH_FORK_ID", "").strip():
         fail("PUBLISH_FORK_ID is not configured or contains only whitespace.")
@@ -60,8 +67,8 @@ def main() -> None:
     if not commit_hash:
         if current_ref_type != "branch" or current_ref_name not in TRUSTED_BRANCHES:
             fail("The current ref must be the master or stable branch when commit_hash is empty.")
-    elif not is_trusted_ref(commit_hash):
-        fail("commit_hash must be a full 40-character SHA or the master/stable branch.")
+    elif not FULL_SHA_PATTERN.fullmatch(commit_hash):
+        fail("commit_hash must be a full 40-character SHA.")
 
     if private_commit_hash and not is_trusted_ref(private_commit_hash):
         fail("private_commit_hash must be a full 40-character SHA or the master/stable branch.")

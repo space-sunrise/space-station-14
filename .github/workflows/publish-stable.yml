@@ -1,5 +1,6 @@
 # Sunrise added start - пресет стабильной публикации
 name: Publish Stable
+run-name: Publish Stable ${{ inputs.commit_hash || github.sha }}
 
 on:
   workflow_dispatch:
@@ -25,7 +26,8 @@ jobs:
     uses: ./.github/workflows/publish.yml
     with:
       commit_hash: ${{ inputs.commit_hash }}
-      publish_fork_id: ${{ vars.PUBLISH_STABLE_FORK_ID }}
+      # Пустую настройку отклонит валидатор; подмена обычной сборкой недопустима.
+      publish_fork_id: ${{ vars.PUBLISH_STABLE_FORK_ID || ' ' }}
       concurrency_group: 'publish-mapping'
       required_branch: 'stable'
       use_private_content: ${{ inputs.use_private_content }}

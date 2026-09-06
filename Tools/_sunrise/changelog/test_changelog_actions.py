@@ -33,6 +33,22 @@ RUNNER_PATH = REPO_ROOT / "Tools/_sunrise/changelog/run.sh"
 
 
 class ChangelogActionsTests(unittest.TestCase):
+    def test_rollback_changelog_uses_selected_sha(self):
+        selected_sha = "a" * 40
+        workflow_sha = "b" * 40
+        run = {
+            "display_title": f"Publish Stable {selected_sha.upper()}",
+            "head_commit": {"id": workflow_sha},
+        }
+        self.assertEqual(selected_sha, dispatch_changelogs.published_run_sha(run))
+        with patch.dict(os.environ, {"RELEASED_SHA": ""}), patch.object(
+            dispatch_changelogs, "github_request", return_value=run
+        ):
+            self.assertEqual(selected_sha, dispatch_changelogs.resolve_released_sha("org/repo", "token", "123"))
+
+        self.assertEqual(workflow_sha, dispatch_changelogs.published_run_sha({"head_commit": run["head_commit"]}))
+        self.assertIsNone(dispatch_changelogs.published_run_sha({"head_commit": None}))
+
     def test_changelog_file_must_stay_inside_repository(self):
         for invalid_path in (
             "../outside.yml",
@@ -2437,7 +2453,8 @@ class ChangelogActionsTests(unittest.TestCase):
                 {
                     "id": 200,
                     "created_at": "2026-08-18T22:50:00Z",
-                    "head_commit": {"id": first_sha},
+                    "display_title": f"Publish Stable {first_sha}",
+                    "head_commit": {"id": "c" * 40},
                 },
                 {
                     "id": 100,

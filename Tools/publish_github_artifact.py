@@ -3,6 +3,9 @@
 import requests
 import os
 import subprocess
+# Sunrise added start - используем общую проверку адреса CDN
+from _sunrise.validate_publish import validate_cdn_url
+# Sunrise added end
 
 GITHUB_TOKEN = os.environ["GITHUB_TOKEN"]
 PUBLISH_TOKEN = os.environ["PUBLISH_TOKEN"]
@@ -12,8 +15,10 @@ VERSION = os.environ['GITHUB_SHA']
 
 # Sunrise edit start - используем общие настройки публикации вместо значений конкретного проекта
 # Параметры инфраструктуры передаются через переменные окружения.
-ROBUST_CDN_URL = os.environ["ROBUST_CDN_URL"].rstrip("/") + "/"
-FORK_ID = os.environ["PUBLISH_FORK_ID"]
+ROBUST_CDN_URL = validate_cdn_url(os.environ["ROBUST_CDN_URL"])
+FORK_ID = os.environ["PUBLISH_FORK_ID"].strip()
+if not FORK_ID:
+    raise ValueError("PUBLISH_FORK_ID is required")
 # Sunrise edit end
 
 def main():

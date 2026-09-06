@@ -4,8 +4,8 @@ import argparse
 import requests
 import os
 import subprocess
-# Sunrise added start - разбираем и проверяем адрес CDN
-from urllib.parse import urlparse
+# Sunrise added start - используем общую проверку адреса CDN
+from _sunrise.validate_publish import validate_cdn_url
 # Sunrise added end
 from typing import Iterable
 
@@ -17,30 +17,7 @@ VERSION = subprocess.check_output(["git", "rev-parse", "HEAD"], encoding="UTF-8"
 RELEASE_DIR = "release"
 
 # Sunrise edit start - используем единый настраиваемый адрес CDN
-# Параметры инфраструктуры передаются через переменные окружения.
-INVALID_ROBUST_CDN_URL_MESSAGE = (
-    "ROBUST_CDN_URL must be an HTTPS URL with a host and "
-    "without user credentials, query, or fragment"
-)
-_robust_cdn_url = os.environ["ROBUST_CDN_URL"].strip()
-try:
-    _parsed_cdn_url = urlparse(_robust_cdn_url)
-    _hostname = _parsed_cdn_url.hostname
-    _ = _parsed_cdn_url.port  # Проверяем корректность порта.
-except ValueError as error:
-    raise ValueError(INVALID_ROBUST_CDN_URL_MESSAGE) from error
-
-if (
-    _parsed_cdn_url.scheme != "https"
-    or not _hostname
-    or _parsed_cdn_url.username is not None
-    or _parsed_cdn_url.password is not None
-    or _parsed_cdn_url.query
-    or _parsed_cdn_url.fragment
-):
-    raise ValueError(INVALID_ROBUST_CDN_URL_MESSAGE)
-
-ROBUST_CDN_URL = _robust_cdn_url.rstrip("/") + "/"
+ROBUST_CDN_URL = validate_cdn_url(os.environ["ROBUST_CDN_URL"])
 # Sunrise edit end
 
 def main():
