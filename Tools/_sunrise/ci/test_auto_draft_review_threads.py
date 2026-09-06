@@ -34,7 +34,7 @@ class AutoDraftReviewThreadsWorkflowTests(unittest.TestCase):
         self.assertNotIn("actions/github-script", self.signal_workflow)
 
         self.assertIn("workflow_run:", self.workflow)
-        self.assertIn('workflows: ["PR: Review State Changed"]', self.workflow)
+        self.assertIn('workflows: ["PR: Review State Changed", "Build & Test Debug", "YAML Linter"]', self.workflow)
         self.assertNotIn("pull_request_review_comment:", self.workflow)
         self.assertNotRegex(self.workflow, r"(?m)^  pull_request_review:\s*$")
 
@@ -50,7 +50,7 @@ class AutoDraftReviewThreadsWorkflowTests(unittest.TestCase):
         self.assertIn("permission-pull-requests: write", self.workflow)
         self.assertIn("uses: actions/checkout@v6", self.workflow)
         self.assertIn("ref: ${{ github.workflow_sha }}", self.workflow)
-        self.assertIn("sparse-checkout: Tools/_sunrise/auto_draft/review_threads.js", self.workflow)
+        self.assertIn("sparse-checkout: Tools/_sunrise/auto_draft", self.workflow)
         self.assertIn("persist-credentials: false", self.workflow)
         self.assertIn("github-token: ${{ steps.app-token.outputs.token }}", self.workflow)
         self.assertNotIn("AUTO_DRAFT_TOKEN", self.workflow)
@@ -62,6 +62,11 @@ class AutoDraftReviewThreadsWorkflowTests(unittest.TestCase):
         self.assertIn("cancel-in-progress: false", self.workflow)
         self.assertIn("queue: max", self.workflow)
         self.assertIn("AUTO_DRAFT_APP_SLUG: ${{ steps.app-token.outputs.app-slug }}", self.workflow)
+        self.assertIn("AUTO_DRAFT_READ_TOKEN: ${{ github.token }}", self.workflow)
+        self.assertIn("AUTO_DRAFT_ALLOW_CODERABBIT_RATE_LIMIT", self.workflow)
+        self.assertIn("checks: read", self.workflow)
+        self.assertIn("statuses: read", self.workflow)
+        self.assertIn("getOctokit(process.env.AUTO_DRAFT_READ_TOKEN)", self.workflow)
 
     def test_review_state_comes_from_regular_github_reviews(self):
         for expected in (
@@ -163,6 +168,27 @@ class AutoDraftReviewThreadsWorkflowTests(unittest.TestCase):
                 "input": self.policy_input(),
                 "expected": "keep",
             },
+            {
+                "name": "первое ревью ещё не закончено",
+                "input": self.policy_input(codeRabbitReady=False),
+                "expected": "draft",
+            },
+            {
+                "name": "новый коммит ещё не прошёл обязательные проверки",
+                "input": self.policy_input(checksReady=False),
+                "expected": "draft",
+            },
+            {
+                "name": "закрытие обсуждений не отменяет ожидание повторного ревью",
+                "input": self.policy_input(isDraft=True, hasMarker=True,
+                    latestBlockingAt=10, allBlockingThreadsResolved=True, codeRabbitReady=False),
+                "expected": "keep",
+            },
+            {
+                "name": "ручной Ready остаётся аварийным обходом проверок",
+                "input": self.policy_input(latestReadyAt=20, checksReady=False, codeRabbitReady=False),
+                "expected": "keep",
+            },
         ]
         harness = f"""
 {policy}
@@ -193,6 +219,8 @@ for (const testCase of cases) {{
             "latestBlockingAt": None,
             "latestReadyAt": None,
             "allBlockingThreadsResolved": False,
+            "checksReady": True,
+            "codeRabbitReady": True,
         }
         defaults.update(overrides)
         return defaults
@@ -210,15 +238,22 @@ const thread = { isResolved: false,
   comments: { nodes: [{ pullRequestReview: { id: 'R1' } }] } };
 function pull(overrides = {}) {
   return { id: 'PR1', number: 1, state: 'OPEN', isDraft: false,
+    headRefOid: '1234567890abcdef1234567890abcdef12345678', baseRefName: 'master',
     labels: [], latestOpinionatedReviews: [review], reviewThreads: [thread],
     timelineItems: { nodes: [] }, ...overrides };
 }
 function mock(pulls, fail = '') {
   const actions = [], queries = [], scanned = [];
   const github = {
-    paginate: async () => { scanned.push(true); return pulls; },
+    paginate: async method => {
+      if (typeof method === 'string') return [];
+      scanned.push(true); return pulls;
+    },
     rest: {
-      pulls: { list() {} },
+      pulls: { list() {}, async get({ pull_number }) {
+        const pr = pulls.find(pr => pr.number === pull_number);
+        return { data: { head: { sha: pr.headRefOid }, base: { ref: pr.baseRefName }, draft: pr.isDraft } };
+      } },
       repos: { listPullRequestsAssociatedWithCommit() {} },
       issues: {
         async addLabels({ issue_number }) {
@@ -249,6 +284,17 @@ function mock(pulls, fail = '') {
       if (fail === 'query') throw new Error('query failed');
       const pr = pulls.find(pr => pr.number === variables.number);
       if (!pr) return { repository: { pullRequest: null } };
+      if (query.includes('query Readiness')) {
+        return { repository: { pullRequest: { ...pr, baseRef: null,
+          commits: { nodes: [{ commit: { statusCheckRollup: { contexts: {
+            pageInfo: { hasNextPage: false, endCursor: null }, nodes: [{
+              __typename: 'StatusContext', context: 'CodeRabbit', state: 'SUCCESS',
+              description: 'Review completed', createdAt: '2026-09-03T00:00:00Z',
+              creator: { __typename: 'Bot', login: 'coderabbitai' }, isRequired: false,
+            }],
+          } } } }] },
+        } } };
+      }
       const result = { ...pr };
       for (const field of ['labels', 'latestOpinionatedReviews', 'reviewThreads']) {
         if (!variables['load' + field]) { delete result[field]; continue; }
@@ -269,6 +315,54 @@ function mock(pulls, fail = '') {
   let env = mock([pull()]);
   await run(env);
   assert.deepEqual(env.actions, ['add:1', 'draft']);
+
+  // Старое незакрытое требование того же автора сохраняется между проходами ревью.
+  const oldThread = { ...thread, comments: { nodes: [{ pullRequestReview: {
+    id: 'OLD', state: 'CHANGES_REQUESTED', author: { login: 'alice' },
+  } }] } };
+  env = mock([pull({ isDraft: true, labels: [{ name: marker }],
+    reviewThreads: [{ ...thread, isResolved: true }, oldThread] })]);
+  await run(env);
+  assert.deepEqual(env.actions, []);
+
+  env = mock([pull({ isDraft: true, labels: [{ name: marker }],
+    reviewThreads: [{ ...thread, isResolved: true }, { ...oldThread, isResolved: true }] })]);
+  await run(env);
+  assert.deepEqual(env.actions, ['ready', 'remove:1']);
+
+  // Чтение проверок использует отдельный клиент, операции над ПР — клиент приложения.
+  env = mock([pull({ latestOpinionatedReviews: [] })]);
+  const originalGraphql = env.github.graphql;
+  let readinessReads = 0;
+  env.readGithub = { ...env.github, graphql: async (query, variables) => {
+    assert.ok(query.includes('query Readiness'));
+    readinessReads++;
+    return originalGraphql(query, variables);
+  } };
+  env.github.graphql = async (query, variables) => {
+    assert.ok(!query.includes('query Readiness'));
+    return originalGraphql(query, variables);
+  };
+  await run(env);
+  assert.equal(readinessReads, 1);
+  assert.deepEqual(env.actions, []);
+
+  // Обычный комментарий прежнего прохода не становится требованием исправлений.
+  const commentThread = structuredClone(oldThread);
+  commentThread.comments.nodes[0].pullRequestReview.state = 'COMMENTED';
+  env = mock([pull({ isDraft: true, labels: [{ name: marker }],
+    reviewThreads: [{ ...thread, isResolved: true }, commentThread] })]);
+  await run(env);
+  assert.deepEqual(env.actions, ['ready', 'remove:1']);
+
+  // Ручной черновик или новый коммит, появившиеся во время запроса, не перезаписываются.
+  for (const change of ['draft', 'head']) {
+    env = mock([pull()]);
+    env.github.rest.pulls.get = async () => ({ data: { draft: change === 'draft',
+      head: { sha: change === 'head' ? 'new-head' : pull().headRefOid }, base: { ref: 'master' } } });
+    await run(env);
+    assert.deepEqual(env.actions, []);
+  }
 
   env = mock([pull({ reviewThreads: [] })]);
   await run(env);
@@ -400,9 +494,34 @@ function mock(pulls, fail = '') {
 
   env = mock([pull()]);
   env.context.eventName = 'workflow_run';
-  env.context.payload = { workflow_run: { conclusion: 'failure' } };
+  env.context.payload = { workflow_run: { name: 'PR: Review State Changed', conclusion: 'failure' } };
   await run(env);
   assert.equal(env.queries.length, 0);
+
+  env = mock([pull()]);
+  env.context.eventName = 'workflow_run';
+  env.context.payload = { workflow_run: { name: 'YAML Linter', conclusion: 'failure', pull_requests: [{ number: 1 }] } };
+  await run(env);
+  assert.deepEqual(env.actions, ['add:1', 'draft']);
+
+  for (const login of ['coderabbitai[bot]', 'contributor']) {
+    env = mock([pull()]);
+    env.context.eventName = 'issue_comment';
+    env.context.payload = { issue: { number: 1, pull_request: {} },
+      sender: { type: login === 'contributor' ? 'User' : 'Bot', login } };
+    await run(env);
+    assert.deepEqual(env.actions, login === 'contributor' ? [] : ['add:1', 'draft']);
+  }
+  env = mock([pull()]);
+  env.context.eventName = 'status';
+  env.context.payload = { sha: 'current-head' };
+  env.github.paginate = async (method, parameters) => {
+    assert.equal(method, env.github.rest.repos.listPullRequestsAssociatedWithCommit);
+    assert.equal(parameters.commit_sha, 'current-head');
+    return [{ number: 1, state: 'open' }];
+  };
+  await run(env);
+  assert.deepEqual(env.actions, ['add:1', 'draft']);
 
   env = mock([pull(), pull({ id: 'PR2', number: 2, state: 'CLOSED' }),
     pull({ id: 'PR3', number: 3 })], 'draft');
@@ -418,6 +537,13 @@ function mock(pulls, fail = '') {
 """
         result = subprocess.run(
             ["node", "-"], input=harness, cwd=REPO_ROOT,
+            text=True, capture_output=True, encoding="utf-8", check=False,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+
+    def test_current_commit_readiness(self):
+        result = subprocess.run(
+            ["node", str(Path(__file__).with_name("test_auto_draft_readiness.js"))],
             text=True, capture_output=True, encoding="utf-8", check=False,
         )
         self.assertEqual(result.returncode, 0, result.stderr)

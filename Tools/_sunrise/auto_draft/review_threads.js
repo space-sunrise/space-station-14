@@ -1,8 +1,10 @@
-module.exports = async ({ github, context, core }) => {
+module.exports = async ({ github, readGithub = github, context, core }) => {
+  const loadReadiness = require('./readiness.js');
   const owner = context.repo.owner;
   const repo = context.repo.repo;
   const markerLabel = process.env.AUTO_DRAFT_LABEL;
   const appSlug = process.env.AUTO_DRAFT_APP_SLUG;
+  const rulesCache = new Map();
 
   // AUTO_DRAFT_POLICY_START
   function decideDraftState({
@@ -11,20 +13,19 @@ module.exports = async ({ github, context, core }) => {
     latestBlockingAt,
     latestReadyAt,
     allBlockingThreadsResolved,
+    checksReady,
+    codeRabbitReady,
   }) {
     const hasBlockingReview = latestBlockingAt !== null;
     const shouldBeReady =
-      !hasBlockingReview ||
-      allBlockingThreadsResolved;
+      (!hasBlockingReview || allBlockingThreadsResolved) && checksReady && codeRabbitReady;
 
     if (isDraft)
       return hasMarker && shouldBeReady ? "ready" : "keep";
 
-    const blockingReviewIsNew =
-      hasBlockingReview &&
-      (latestReadyAt === null || latestBlockingAt > latestReadyAt);
-
-    if (!shouldBeReady && blockingReviewIsNew)
+    const manualOverride = latestReadyAt !== null &&
+      (!hasBlockingReview || latestReadyAt >= latestBlockingAt);
+    if (!shouldBeReady && !manualOverride)
       return "draft";
 
     return hasMarker ? "cleanup" : "keep";
@@ -59,6 +60,8 @@ module.exports = async ({ github, context, core }) => {
             number
             state
             isDraft
+            headRefOid
+            baseRefName
             labels(first: 100, after: $labelsCursor) @include(if: $loadlabels) {
               pageInfo { hasNextPage endCursor }
               nodes {
@@ -85,6 +88,8 @@ module.exports = async ({ github, context, core }) => {
                   nodes {
                     pullRequestReview {
                       id
+                      state
+                      author { login }
                     }
                   }
                 }
@@ -186,20 +191,25 @@ module.exports = async ({ github, context, core }) => {
     const approvals = reviews
       .filter(review => review.state === "APPROVED");
     const blockingReviewIds = new Set(blockingReviews.map(review => review.id));
+    const blockingAuthors = new Set(blockingReviews.map(review => review.author?.login).filter(Boolean));
     const threadsByReview = new Map();
+    let hasUnresolvedBlockingThreads = false;
 
     for (const thread of pullRequest.reviewThreads.nodes) {
-      const reviewId = thread.comments.nodes[0]?.pullRequestReview?.id;
-      if (!reviewId || !blockingReviewIds.has(reviewId))
+      const review = thread.comments.nodes[0]?.pullRequestReview;
+      if (!review || !(blockingReviewIds.has(review.id) ||
+          review.state === 'CHANGES_REQUESTED' && blockingAuthors.has(review.author?.login)))
         continue;
 
-      const reviewThreads = threadsByReview.get(reviewId) || [];
+      hasUnresolvedBlockingThreads ||= !thread.isResolved;
+      const reviewThreads = threadsByReview.get(review.id) || [];
       reviewThreads.push(thread);
-      threadsByReview.set(reviewId, reviewThreads);
+      threadsByReview.set(review.id, reviewThreads);
     }
 
     const allBlockingThreadsResolved =
       blockingReviews.length > 0 &&
+      !hasUnresolvedBlockingThreads &&
       blockingReviews.every(review => {
         const reviewThreads = threadsByReview.get(review.id) || [];
         return reviewThreads.length > 0 && reviewThreads.every(thread => thread.isResolved);
@@ -213,19 +223,37 @@ module.exports = async ({ github, context, core }) => {
       : null;
     const hasMarker = pullRequest.labels.nodes
       .some(label => label.name === markerLabel);
+    const manualOverride = !pullRequest.isDraft && latestReadyAt !== null &&
+      (latestBlockingAt === null || latestReadyAt >= latestBlockingAt);
+    let readiness = { checksReady: false, codeRabbitReady: false, pendingChecks: [] };
+    if ((!pullRequest.isDraft || hasMarker) && !manualOverride &&
+        (blockingReviews.length === 0 || allBlockingThreadsResolved))
+      readiness = await loadReadiness({ github: readGithub, owner, repo, pullRequest, rulesCache });
     const action = decideDraftState({
       isDraft: pullRequest.isDraft,
       hasMarker,
       latestBlockingAt,
       latestReadyAt,
       allBlockingThreadsResolved,
+      ...readiness,
     });
 
     core.info(
       `#${number}: action=${action}, draft=${pullRequest.isDraft}, ` +
       `blocking=${blockingReviews.length}, approvals=${approvals.length}, ` +
-      `threadsResolved=${allBlockingThreadsResolved}.`,
+      `threadsResolved=${allBlockingThreadsResolved}, checksReady=${readiness.checksReady}, ` +
+      `codeRabbitReady=${readiness.codeRabbitReady}, rateLimited=${readiness.rateLimited || false}, ` +
+      `pendingChecks=${readiness.pendingChecks.join(', ')}.`,
     );
+
+    if (action === 'draft' || action === 'ready') {
+      const { data: current } = await github.rest.pulls.get({ owner, repo, pull_number: number });
+      if (current.head.sha !== pullRequest.headRefOid || current.base.ref !== pullRequest.baseRefName ||
+          current.draft !== pullRequest.isDraft) {
+        core.info(`#${number}: состояние ПР изменилось во время проверки, откладываю синхронизацию.`);
+        return;
+      }
+    }
 
     if (action === "draft") {
       await addMarker(number);
@@ -261,8 +289,17 @@ module.exports = async ({ github, context, core }) => {
   }
 
   async function targetPullRequestNumbers() {
+    if (context.eventName === 'issue_comment') {
+      return context.payload.issue.pull_request && context.payload.sender.type === 'Bot' &&
+        context.payload.sender.login === 'coderabbitai[bot]' ? [context.payload.issue.number] : [];
+    }
+
+    if (context.eventName === 'status')
+      return associatedPullRequestNumbers(context.payload.sha);
+
     if (context.eventName === "workflow_run") {
-      if (context.payload.workflow_run.conclusion !== "success") {
+      if (context.payload.workflow_run.name === 'PR: Review State Changed' &&
+          context.payload.workflow_run.conclusion !== "success") {
         core.info("Сигнальный workflow завершился неуспешно, синхронизация не требуется.");
         return [];
       }
@@ -272,19 +309,7 @@ module.exports = async ({ github, context, core }) => {
         .filter(number => Number.isSafeInteger(number) && number > 0);
       if (numbers.length === 0 && context.payload.workflow_run.head_sha) {
         // Для ПР из форков GitHub может не заполнить pull_requests; находим их по коммиту запуска.
-        try {
-          const associated = await github.paginate(github.rest.repos.listPullRequestsAssociatedWithCommit, {
-            owner,
-            repo,
-            commit_sha: context.payload.workflow_run.head_sha,
-            per_page: 100,
-          });
-          numbers.push(...associated.filter(pull => pull.state === "open").map(pull => pull.number));
-        } catch (error) {
-          if (error.status !== 404)
-            throw error;
-          core.info("Коммит сигнального запуска уже недоступен; использую резервный обход.");
-        }
+        numbers.push(...await associatedPullRequestNumbers(context.payload.workflow_run.head_sha));
       }
       if (numbers.length === 0) {
         core.info("workflow_run не содержит связанного ПР; проверяю открытые ПР.");
@@ -308,6 +333,22 @@ module.exports = async ({ github, context, core }) => {
     }
 
     return openPullRequestNumbers();
+  }
+
+  async function associatedPullRequestNumbers(sha) {
+    if (!sha)
+      return [];
+    try {
+      const associated = await github.paginate(github.rest.repos.listPullRequestsAssociatedWithCommit, {
+        owner, repo, commit_sha: sha, per_page: 100,
+      });
+      return [...new Set(associated.filter(pull => pull.state === 'open').map(pull => pull.number))];
+    } catch (error) {
+      if (error.status !== 404)
+        throw error;
+      core.info('Коммит события уже недоступен; связанных ПР не найдено.');
+      return [];
+    }
   }
 
   const numbers = await targetPullRequestNumbers();

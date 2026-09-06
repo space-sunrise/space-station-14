@@ -2,10 +2,13 @@ name: "PR: Auto Draft on Review Threads"
 
 on:
   workflow_run:
-    workflows: ["PR: Review State Changed"]
+    workflows: ["PR: Review State Changed", "Build & Test Debug", "YAML Linter"]
     types: [completed]
   pull_request_target:
     types: [opened, reopened, synchronize, converted_to_draft, ready_for_review]
+  status:
+  issue_comment:
+    types: [created, edited]
   workflow_dispatch:
     inputs:
       pr-number:
@@ -16,7 +19,12 @@ on:
     # Резервная синхронизация нужна для Resolve conversation: у GitHub Actions нет такого триггера.
     - cron: "2/5 * * * *"
 
-permissions: {}
+permissions:
+  actions: read
+  contents: read
+  checks: read
+  statuses: read
+  pull-requests: read
 
 concurrency:
   # ponytail: общая очередь исключает гонки между обходом всех ПР и отдельными событиями.
@@ -26,9 +34,13 @@ concurrency:
 
 jobs:
   sync-draft-state:
+    if: >-
+      github.event_name != 'issue_comment' ||
+      (github.event.issue.pull_request && github.event.sender.type == 'Bot' && github.event.sender.login == 'coderabbitai[bot]')
     runs-on: ubuntu-latest
     env:
       AUTO_DRAFT_LABEL: "auto-draft: unresolved review"
+      AUTO_DRAFT_ALLOW_CODERABBIT_RATE_LIMIT: ${{ vars.AUTO_DRAFT_ALLOW_CODERABBIT_RATE_LIMIT != 'false' }}
     steps:
       - name: Generate GitHub App token
         id: app-token
@@ -46,14 +58,16 @@ jobs:
           ref: ${{ github.workflow_sha }}
           token: ${{ steps.app-token.outputs.token }}
           persist-credentials: false
-          sparse-checkout: Tools/_sunrise/auto_draft/review_threads.js
+          sparse-checkout: Tools/_sunrise/auto_draft
           sparse-checkout-cone-mode: false
       - name: Sync draft state
         uses: actions/github-script@v9
         env:
           AUTO_DRAFT_APP_SLUG: ${{ steps.app-token.outputs.app-slug }}
+          AUTO_DRAFT_READ_TOKEN: ${{ github.token }}
         with:
           github-token: ${{ steps.app-token.outputs.token }}
           script: |
             const run = require(`${process.env.GITHUB_WORKSPACE}/Tools/_sunrise/auto_draft/review_threads.js`);
-            await run({ github, context, core });
+            const readGithub = getOctokit(process.env.AUTO_DRAFT_READ_TOKEN);
+            await run({ github, readGithub, context, core });
