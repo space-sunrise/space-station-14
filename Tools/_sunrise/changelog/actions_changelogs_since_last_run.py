@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# Sunrise added start - публикация чейнджлога Sunrise в Discord
 #
 # Отправляет новые записи чейнджлога в вебхук Discord после последнего запуска публикации GitHub Actions.
 # Автоматически определяет последний запуск и получает чейнджлог через GitHub API.
@@ -26,6 +25,7 @@ from typing import Any, Iterable
 from changelog_path import validate_changelog_path
 from changelog_schema import changelog_entry_identity
 from changelog_targets import validate_target_id
+from dispatch_changelogs import published_run_sha
 
 DEBUG = False
 DEBUG_CHANGELOG_FILE_OLD = Path("Resources/Changelog/Old.yml")
@@ -539,16 +539,13 @@ def get_source_release_before_attempt(
         (
             run
             for run in runs
-            if isinstance(run.get("head_commit"), Mapping)
-            and isinstance(run["head_commit"].get("id"), str)
-            and run["head_commit"]["id"]
+            if published_run_sha(run)
         ),
         None,
     )
     first_release_found = False
     for run in runs:
-        head_commit = run.get("head_commit")
-        sha = head_commit.get("id") if isinstance(head_commit, Mapping) else None
+        sha = published_run_sha(run)
         if not first_release_found:
             if sha == first_sha:
                 first_release_found = True
@@ -603,8 +600,7 @@ def get_last_changelog(changelog_file: Path | None = None) -> str:
             source_run,
             first_attempt,
         )
-        head_commit = most_recent.get("head_commit") if isinstance(most_recent, Mapping) else None
-        last_sha = head_commit.get("id") if isinstance(head_commit, Mapping) else None
+        last_sha = published_run_sha(most_recent) if isinstance(most_recent, Mapping) else None
 
     if not last_sha:
         raise RuntimeError("Не найден предыдущий успешный запуск с SHA опубликованного релиза")
@@ -1088,4 +1084,3 @@ def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
 
 if __name__ == "__main__":
     main()
-# Sunrise added end

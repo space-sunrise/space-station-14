@@ -7,7 +7,7 @@ import requests
 DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL")
 DISCORD_ROLE_ID = os.environ.get("DISCORD_ROLE_ID")
 BUILD_PATH = os.environ.get("BUILD_PATH")
-VERSION = os.environ['GITHUB_SHA']
+VERSION = subprocess.check_output(["git", "rev-parse", "HEAD"], encoding="UTF-8").strip()
 
 def get_build_size(path):
     try:

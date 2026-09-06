@@ -24,15 +24,31 @@ import manual_changelog
 
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
-WORKFLOW_PATH = REPO_ROOT / ".github/workflows/changelog.yml"
-PUBLISH_WORKFLOW_PATH = REPO_ROOT / ".github/workflows/publish-stable.yml"
-DISCORD_WORKFLOW_PATH = REPO_ROOT / ".github/workflows/publish-discord-changelog.yml"
-DISPATCH_WORKFLOW_PATH = REPO_ROOT / ".github/workflows/dispatch-discord-changelogs.yml"
-VALIDATE_WORKFLOW_PATH = REPO_ROOT / ".github/workflows/validate-changelog.yml"
+WORKFLOW_PATH = REPO_ROOT / ".github/workflows/sunrise-changelog.yml"
+PUBLISH_WORKFLOW_PATH = REPO_ROOT / ".github/workflows/sunrise-publish-stable.yml"
+DISCORD_WORKFLOW_PATH = REPO_ROOT / ".github/workflows/sunrise-publish-discord-changelog.yml"
+DISPATCH_WORKFLOW_PATH = REPO_ROOT / ".github/workflows/sunrise-dispatch-discord-changelogs.yml"
+VALIDATE_WORKFLOW_PATH = REPO_ROOT / ".github/workflows/sunrise-validate-changelog.yml"
 RUNNER_PATH = REPO_ROOT / "Tools/_sunrise/changelog/run.sh"
 
 
 class ChangelogActionsTests(unittest.TestCase):
+    def test_rollback_changelog_uses_selected_sha(self):
+        selected_sha = "a" * 40
+        workflow_sha = "b" * 40
+        run = {
+            "display_title": f"Publish Stable {selected_sha.upper()}",
+            "head_commit": {"id": workflow_sha},
+        }
+        self.assertEqual(selected_sha, dispatch_changelogs.published_run_sha(run))
+        with patch.dict(os.environ, {"RELEASED_SHA": ""}), patch.object(
+            dispatch_changelogs, "github_request", return_value=run
+        ):
+            self.assertEqual(selected_sha, dispatch_changelogs.resolve_released_sha("org/repo", "token", "123"))
+
+        self.assertEqual(workflow_sha, dispatch_changelogs.published_run_sha({"head_commit": run["head_commit"]}))
+        self.assertIsNone(dispatch_changelogs.published_run_sha({"head_commit": None}))
+
     def test_changelog_file_must_stay_inside_repository(self):
         for invalid_path in (
             "../outside.yml",
@@ -1048,7 +1064,7 @@ class ChangelogActionsTests(unittest.TestCase):
         }
 
         def request_response(path, *_args, **_kwargs):
-            if path.endswith("/actions/workflows/changelog.yml/runs"):
+            if path.endswith("/actions/workflows/sunrise-changelog.yml/runs"):
                 return response
             if path.endswith("/actions/runs/125/jobs"):
                 return {
@@ -1077,7 +1093,7 @@ class ChangelogActionsTests(unittest.TestCase):
         self.assertEqual(
             [
                 call(
-                    "/repos/makura-games/sunrise-station/actions/workflows/changelog.yml/runs",
+                    "/repos/makura-games/sunrise-station/actions/workflows/sunrise-changelog.yml/runs",
                     {"status": "success", "per_page": 100},
                     token_environment="ACTIONS_TOKEN",
                 ),
@@ -2437,7 +2453,8 @@ class ChangelogActionsTests(unittest.TestCase):
                 {
                     "id": 200,
                     "created_at": "2026-08-18T22:50:00Z",
-                    "head_commit": {"id": first_sha},
+                    "display_title": f"Publish Stable {first_sha}",
+                    "head_commit": {"id": "c" * 40},
                 },
                 {
                     "id": 100,
