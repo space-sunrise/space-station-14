@@ -1,8 +1,8 @@
-name: "PR: Auto Draft on Review Threads"
+name: "PR: Автоматическое управление черновиком"
 
 on:
   workflow_run:
-    workflows: ["PR: Review State Changed", "Build & Test Debug", "YAML Linter"]
+    workflows: ["PR: Сигнал об изменении ревью", "Build & Test Debug", "YAML Linter"]
     types: [completed]
   pull_request_target:
     types: [opened, reopened, synchronize, converted_to_draft, ready_for_review]

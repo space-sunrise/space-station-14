@@ -24,7 +24,7 @@ class AutoDraftReviewThreadsWorkflowTests(unittest.TestCase):
         cls.script = SCRIPT_PATH.read_text(encoding="utf-8")
 
     def test_review_events_are_relayed_without_privileged_operations(self):
-        self.assertIn('name: "PR: Review State Changed"', self.signal_workflow)
+        self.assertIn('name: "PR: Сигнал об изменении ревью"', self.signal_workflow)
         self.assertRegex(
             self.signal_workflow,
             r"pull_request_review:\s+types: \[submitted, edited, dismissed\]",
@@ -34,7 +34,7 @@ class AutoDraftReviewThreadsWorkflowTests(unittest.TestCase):
         self.assertNotIn("actions/github-script", self.signal_workflow)
 
         self.assertIn("workflow_run:", self.workflow)
-        self.assertIn('workflows: ["PR: Review State Changed", "Build & Test Debug", "YAML Linter"]', self.workflow)
+        self.assertIn('workflows: ["PR: Сигнал об изменении ревью", "Build & Test Debug", "YAML Linter"]', self.workflow)
         self.assertNotIn("pull_request_review_comment:", self.workflow)
         self.assertNotRegex(self.workflow, r"(?m)^  pull_request_review:\s*$")
 
@@ -494,7 +494,7 @@ function mock(pulls, fail = '') {
 
   env = mock([pull()]);
   env.context.eventName = 'workflow_run';
-  env.context.payload = { workflow_run: { name: 'PR: Review State Changed', conclusion: 'failure' } };
+  env.context.payload = { workflow_run: { name: 'PR: Сигнал об изменении ревью', conclusion: 'failure' } };
   await run(env);
   assert.equal(env.queries.length, 0);
 

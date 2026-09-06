@@ -1,4 +1,4 @@
-name: "PR: Review State Changed"
+name: "PR: Сигнал об изменении ревью"
 
 on:
   pull_request_review:
