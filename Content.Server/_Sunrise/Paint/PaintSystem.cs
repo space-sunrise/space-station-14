@@ -1,4 +1,4 @@
-﻿using Content.Server.Chemistry.Containers.EntitySystems;
+using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Shared._Sunrise.Paint;
 using Content.Shared.DoAfter;
 using Content.Shared.Humanoid;
@@ -106,7 +106,7 @@ public sealed class PaintSystem : SharedPaintSystem
             return;
         }
 
-        if (entity.Comp.Blacklist != null && _whitelist.IsValid(entity.Comp.Blacklist, target) || HasComp<HumanoidAppearanceComponent>(target) || HasComp<SubFloorHideComponent>(target))
+        if (entity.Comp.Blacklist != null && _whitelist.IsValid(entity.Comp.Blacklist, target) || HasComp<HumanoidProfileComponent>(target) || HasComp<SubFloorHideComponent>(target))
         {
             _popup.PopupEntity(Loc.GetString("paint-failure", ("target", args.Target)), args.User, args.User, PopupType.Medium);
             return;
@@ -138,7 +138,7 @@ public sealed class PaintSystem : SharedPaintSystem
                                                                      _whitelist.IsValid(entity.Comp.Blacklist,
                                                                          slotEnt.Value)
                                                                      || HasComp<RandomSpriteComponent>(slotEnt.Value) ||
-                                                                     HasComp<HumanoidAppearanceComponent>(
+                                                                     HasComp<HumanoidProfileComponent>(
                                                                          slotEnt.Value))
                             return;
 
@@ -167,7 +167,7 @@ public sealed class PaintSystem : SharedPaintSystem
 
     private bool TryPaint(Entity<PaintComponent> reagent, EntityUid target)
     {
-        if (HasComp<HumanoidAppearanceComponent>(target) || HasComp<SubFloorHideComponent>(target))
+        if (HasComp<HumanoidProfileComponent>(target) || HasComp<SubFloorHideComponent>(target))
             return false;
 
         if (_solutionContainer.TryGetSolution(reagent.Owner, reagent.Comp.Solution, out _, out var solution))

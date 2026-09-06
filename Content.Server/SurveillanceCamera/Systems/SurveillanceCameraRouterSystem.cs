@@ -243,8 +243,7 @@ public sealed class SurveillanceCameraRouterSystem : EntitySystem
         var payload = new NetworkPayload()
         {
             { DeviceNetworkConstants.Command, SurveillanceCameraSystem.CameraPingMessage },
-            { SurveillanceCameraSystem.CameraSubnetData, router.SubnetName },
-            { SurveillanceCameraSystem.CameraSubnetColor, router.SubnetColor} // Sunrise-edit
+            { SurveillanceCameraSystem.CameraSubnetData, router.SubnetName }
         };
 
         _deviceNetworkSystem.QueuePacket(uid, null, payload, router.SubnetFrequency);
@@ -257,8 +256,6 @@ public sealed class SurveillanceCameraRouterSystem : EntitySystem
         {
             return;
         }
-        payload[SurveillanceCameraSystem.CameraSubnetData] = router.SubnetFrequencyId; // Sunrise-edit
-        payload[SurveillanceCameraSystem.CameraSubnetColor] = router.SubnetColor; // Sunrise-edit
 
         foreach (var address in router.MonitorRoutes)
         {

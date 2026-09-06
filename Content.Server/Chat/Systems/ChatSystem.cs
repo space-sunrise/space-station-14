@@ -10,9 +10,9 @@ using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Speech.Prototypes;
 using Content.Server.Speech.EntitySystems;
-using Content.Server.Speech.Prototypes;
 using Content.Server.Station.Systems;
 using Content.Shared._Sunrise.Antags.Abductor;
+using Content.Shared._Sunrise.Chat;
 using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration;
@@ -63,13 +63,12 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    // [Dependency] private readonly SharedAudioSystem _audio = default!; // Мы не используем этот депенси
     [Dependency] private readonly ReplacementAccentSystem _wordreplacement = default!;
     [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly AnnouncementSpeakerSystem _announcementSpeaker = default!;
 
-    public const string DefaultAnnouncementSound = "/Audio/_Sunrise/Announcements/announce_dig.ogg"; // Sunrise-edit
+    public const string DefaultSunriseAnnouncementSound = "/Audio/_Sunrise/Announcements/announce_dig.ogg"; // Sunrise-edit
 
     private bool _loocEnabled = true;
     private bool _deadLoocEnabled;
@@ -361,7 +360,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         {
             if (playDefault && announcementSound == null)
             {
-                announcementSound = new SoundPathSpecifier(DefaultAnnouncementSound);
+                announcementSound = new SoundPathSpecifier(DefaultSunriseAnnouncementSound);
             }
 
             // Send announcement to all stations through their speaker networks
@@ -400,21 +399,19 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (playTts && (playDefault || announcementSound != null))
         {
             if (playDefault && announcementSound == null)
-                announcementSound = new SoundPathSpecifier(DefaultAnnouncementSound);
-
-            var resolvedSound = announcementSound != null ? _audio.ResolveSound(announcementSound) : null;
+                announcementSound = new SoundPathSpecifier(DefaultSunriseAnnouncementSound);
 
             // If we have a source, try to use the station's speaker network
-            if (source != null)
+            if (source != null && _stationSystem.GetOwningStation(source.Value) is { } station)
             {
-                var station = _stationSystem.GetOwningStation(source.Value);
-                if (station != null)
-                {
-                    _announcementSpeaker.DispatchAnnouncementToSpeakers(station.Value, message, announcementSound, announceVoice);
-                }
+                _announcementSpeaker.DispatchAnnouncementToSpeakers(station, message, announcementSound, announceVoice);
+            }
+            else
+            {
+                // Sunrise edit: у игровых событий нет source, поэтому объявляем через динамики всех станций.
+                _announcementSpeaker.DispatchAnnouncementToAllStations(message, announcementSound, announceVoice);
             }
         }
-        // Sunrise-end
 
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Station Announcement from {sender}: {message}");
     }
@@ -459,7 +456,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (playTts)
         {
             if (playDefault && announcementSound == null)
-                announcementSound = new SoundPathSpecifier(DefaultAnnouncementSound);
+                announcementSound = new SoundPathSpecifier(DefaultSunriseAnnouncementSound);
 
             // Send announcement to this specific station's speaker network
             _announcementSpeaker.DispatchAnnouncementToSpeakers(station.Value, message, announcementSound, announceVoice);
@@ -685,6 +682,11 @@ public sealed partial class ChatSystem : SharedChatSystem
                 _chatManager.ChatMessageToOne(ChatChannel.Emotes, action, wrappedMessage, source, false, session.Channel);
             }
         } // sunrise-end
+
+        // Sunrise added start - событие для произвольных эмоций в туториалах
+        var ev = new EntityEmotedEvent(source, action);
+        RaiseLocalEvent(source, ref ev, true);
+        // Sunrise added end
 
         if (hideLog)
             return;

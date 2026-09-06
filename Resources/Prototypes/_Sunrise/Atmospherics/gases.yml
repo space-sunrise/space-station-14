@@ -62,6 +62,7 @@
   color: FFFFFF
   reagent: Hydrogen
   pricePerMole: 5
+  isFuel: true
 
 - type: gas
   id: HyperNoblium

@@ -9,6 +9,11 @@ namespace Content.Server.Speech.EntitySystems
     {
         [Dependency] private readonly IRobustRandom _random = default!;
 
+        private static readonly Regex LowerLatinErRegex = new("r+");
+        private static readonly Regex UpperLatinErRegex = new("R+");
+        private static readonly Regex LowerCyrillicErRegex = new("р+");
+        private static readonly Regex UpperCyrillicErRegex = new("Р+");
+
         public override void Initialize()
         {
             base.Initialize();
@@ -20,28 +25,24 @@ namespace Content.Server.Speech.EntitySystems
             var message = args.Message;
 
             // r => rrr
-            message = Regex.Replace(
+            message = LowerLatinErRegex.Replace(
                 message,
-                "r+",
                 _random.Pick(new List<string> { "rr", "rrr" })
             );
             // R => RRR
-            message = Regex.Replace(
+            message = UpperLatinErRegex.Replace(
                 message,
-                "R+",
                 _random.Pick(new List<string> { "RR", "RRR" })
             );
 
             // р => ррр
-            message = Regex.Replace(
+            message = LowerCyrillicErRegex.Replace(
                 message,
-                "р+",
                 _random.Pick(new List<string> { "рр", "ррр" })
             );
             // Р => РРР
-            message = Regex.Replace(
+            message = UpperCyrillicErRegex.Replace(
                 message,
-                "Р+",
                 _random.Pick(new List<string> { "РР", "РРР" })
             );
 

@@ -1,5 +1,6 @@
 using Content.Client._Sunrise.Tutorial.Components;
 using Content.Shared._Sunrise.Tutorial.Components;
+using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Content.Client._Sunrise.TimeCounterContainer;
 using Content.Client.UserInterface.Screens;
@@ -10,6 +11,7 @@ namespace Content.Client._Sunrise.Tutorial;
 
 public sealed class TimeCounterSystem : EntitySystem
 {
+    [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IUserInterfaceManager _ui = default!;
     private EntityQuery<TimeCounterUiComponent> _timeCounterUiQuery;
     private LayoutContainer _timeCounterRoot = default!;
@@ -81,6 +83,12 @@ public sealed class TimeCounterSystem : EntitySystem
 
     private void UpdateTimeCounter(Entity<TimeCounterComponent> ent)
     {
+        if (_player.LocalEntity != ent.Owner)
+        {
+            RemoveTimeCounter(ent.Owner);
+            return;
+        }
+
         if (ent.Comp.EndTime == null || ent.Comp.EndTime == TimeSpan.Zero)
         {
             RemoveTimeCounter(ent.Owner);

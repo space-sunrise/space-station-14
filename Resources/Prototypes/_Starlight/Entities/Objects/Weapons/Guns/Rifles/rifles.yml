@@ -271,7 +271,7 @@
   description: "A scoped marksman rifle for medium range engagements, built on the Lecter platform.\nChambered in .308 rifle."
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Rifles/L10.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/L10_big.rsi
     layers:
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
@@ -279,8 +279,10 @@
       map: [ "enum.GunVisualLayers.Mag" ]
   - type: Clothing
     sprite: _Starlight/Objects/Weapons/Guns/Rifles/L10.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/L10.rsi
   - type: Gun
-    fireRate: 3.8
+    fireRate: 3.5
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto

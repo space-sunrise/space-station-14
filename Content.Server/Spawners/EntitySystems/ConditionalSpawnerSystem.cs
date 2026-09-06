@@ -148,6 +148,7 @@ namespace Content.Server.Spawners.EntitySystems
                 return;
 
             var coords = Transform(ent).Coordinates;
+            var offset = ent.Comp.Offset;
 
             // Sunrise-Edit start
             var hasIgnoreMess = _tag.HasTag(ent, StorytellerIgnoreMessTag);
@@ -156,11 +157,11 @@ namespace Content.Server.Spawners.EntitySystems
             var spawns = _entityTable.GetSpawns(ent.Comp.Table);
             foreach (var proto in spawns)
             {
-                var xOffset = _robustRandom.NextFloat(-ent.Comp.Offset, ent.Comp.Offset);
-                var yOffset = _robustRandom.NextFloat(-ent.Comp.Offset, ent.Comp.Offset);
+                var xOffset = _robustRandom.NextFloat(-offset, offset);
+                var yOffset = _robustRandom.NextFloat(-offset, offset);
                 var trueCoords = coords.Offset(new Vector2(xOffset, yOffset));
 
-                var spawned = SpawnAtPosition(proto, trueCoords);
+                var spawned = SpawnAttachedTo(proto, trueCoords);
                 // Sunrise-Edit start
                 if (hasIgnoreMess)
                     _tag.AddTag(spawned, StorytellerIgnoreMessTag);

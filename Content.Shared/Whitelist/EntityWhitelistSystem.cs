@@ -83,7 +83,7 @@ public sealed class EntityWhitelistSystem : EntitySystem
         }
 
         // Sunrise-Start
-        if (list.Species != null && TryComp<HumanoidAppearanceComponent>(uid, out var appearance))
+        if (list.Species != null && TryComp<HumanoidProfileComponent>(uid, out var appearance))
         {
             if (list.Species.Contains(appearance.Species))
             {

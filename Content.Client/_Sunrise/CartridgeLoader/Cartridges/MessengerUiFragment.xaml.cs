@@ -60,7 +60,6 @@ public sealed partial class MessengerUiFragment : BoxContainer
     [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
     [Dependency] private readonly IResourceCache _resourceCache = default!;
     [Dependency] private readonly IUserInterfaceManager _userInterfaceManager = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly NetTexturesManager _netTexturesManager = default!;
@@ -1347,11 +1346,12 @@ public sealed partial class MessengerUiFragment : BoxContainer
     /// <summary>
     /// Создает кнопку чата с общими элементами
     /// </summary>
-    private Button CreateChatButton(string chatId, string chatName, bool isPinned, int unreadCount,
+    private Button CreateChatButton(string chatId, string chatName, string controlName, bool isPinned, int unreadCount,
         ProtoId<JobIconPrototype>? jobIconId, Action<string, string> onSelect, Action<string>? onTogglePin)
     {
         var button = new Button
         {
+            Name = controlName,
             HorizontalExpand = true,
             ClipText = false,
             TextAlign = Label.AlignMode.Left,
@@ -1437,6 +1437,7 @@ public sealed partial class MessengerUiFragment : BoxContainer
         return CreateChatButton(
             chatId,
             user.Name,
+            $"MessengerPersonalChat_{user.UserId}",
             isPinned,
             unreadCount,
             user.JobIconId,
@@ -1456,6 +1457,7 @@ public sealed partial class MessengerUiFragment : BoxContainer
         return CreateChatButton(
             group.GroupId,
             group.Name,
+            $"MessengerGroupChat_{group.GroupId}",
             isPinned,
             unreadCount,
             null,
