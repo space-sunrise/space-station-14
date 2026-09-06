@@ -24,11 +24,11 @@ import manual_changelog
 
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
-WORKFLOW_PATH = REPO_ROOT / ".github/workflows/changelog.yml"
-PUBLISH_WORKFLOW_PATH = REPO_ROOT / ".github/workflows/publish-stable.yml"
-DISCORD_WORKFLOW_PATH = REPO_ROOT / ".github/workflows/publish-discord-changelog.yml"
-DISPATCH_WORKFLOW_PATH = REPO_ROOT / ".github/workflows/dispatch-discord-changelogs.yml"
-VALIDATE_WORKFLOW_PATH = REPO_ROOT / ".github/workflows/validate-changelog.yml"
+WORKFLOW_PATH = REPO_ROOT / ".github/workflows/sunrise-changelog.yml"
+PUBLISH_WORKFLOW_PATH = REPO_ROOT / ".github/workflows/sunrise-publish-stable.yml"
+DISCORD_WORKFLOW_PATH = REPO_ROOT / ".github/workflows/sunrise-publish-discord-changelog.yml"
+DISPATCH_WORKFLOW_PATH = REPO_ROOT / ".github/workflows/sunrise-dispatch-discord-changelogs.yml"
+VALIDATE_WORKFLOW_PATH = REPO_ROOT / ".github/workflows/sunrise-validate-changelog.yml"
 RUNNER_PATH = REPO_ROOT / "Tools/_sunrise/changelog/run.sh"
 
 
@@ -1064,7 +1064,7 @@ class ChangelogActionsTests(unittest.TestCase):
         }
 
         def request_response(path, *_args, **_kwargs):
-            if path.endswith("/actions/workflows/changelog.yml/runs"):
+            if path.endswith("/actions/workflows/sunrise-changelog.yml/runs"):
                 return response
             if path.endswith("/actions/runs/125/jobs"):
                 return {
@@ -1093,7 +1093,7 @@ class ChangelogActionsTests(unittest.TestCase):
         self.assertEqual(
             [
                 call(
-                    "/repos/makura-games/sunrise-station/actions/workflows/changelog.yml/runs",
+                    "/repos/makura-games/sunrise-station/actions/workflows/sunrise-changelog.yml/runs",
                     {"status": "success", "per_page": 100},
                     token_environment="ACTIONS_TOKEN",
                 ),

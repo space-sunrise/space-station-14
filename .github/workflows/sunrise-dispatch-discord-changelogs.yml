@@ -1,4 +1,3 @@
-# Sunrise added start - запуск независимой публикации настроенных чейнджлогов
 name: Dispatch Discord Changelogs
 run-name: Dispatch Discord changelogs for ${{ github.event.workflow_run.head_sha || inputs.source_workflow_run_id }}
 
@@ -43,4 +42,3 @@ jobs:
           SOURCE_WORKFLOW_RUN_ID: ${{ github.event.workflow_run.id || inputs.source_workflow_run_id }}
           TARGET_WORKFLOW_REF: ${{ github.event.repository.default_branch }}
         run: python Tools/_sunrise/changelog/dispatch_changelogs.py
-# Sunrise added end

@@ -14,7 +14,7 @@ from changelog_targets import load_target, target_paths
 
 GITHUB_API_URL = os.environ.get("GITHUB_API_URL", "https://api.github.com")
 HTTP_REQUEST_TIMEOUT = 30
-PUBLISH_WORKFLOW = "publish-discord-changelog.yml"
+PUBLISH_WORKFLOW = "sunrise-publish-discord-changelog.yml"
 SHA_RE = re.compile(r"^[0-9a-f]{40,64}$")
 RUN_ID_RE = re.compile(r"^[1-9][0-9]*$")
 PUBLISH_RUN_TITLE_RE = re.compile(r"^Publish Stable (?P<sha>[0-9a-fA-F]{40})$")

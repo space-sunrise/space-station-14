@@ -1,22 +1,16 @@
-# Сценарий Sunrise; исходный publish.yml сохранён без изменений Wizden.
 name: Publish Sunrise
 
 concurrency:
-  # Sunrise edit start - выбираем группу параллельности из пресета
   group: ${{ inputs.concurrency_group || 'publish' }}
-  # Sunrise edit end
   cancel-in-progress: true
 
-# Sunrise added start - настраиваем публикацию через переменные GitHub
 env:
   PUBLISH_FORK_ID: ${{ inputs.publish_fork_id || vars.PUBLISH_FORK_ID }}
   ROBUST_CDN_URL: ${{ vars.ROBUST_CDN_URL }}
   SERVER_PLATFORMS: ${{ inputs.server_platforms || '--platform win-x64 --platform win-arm64 --platform linux-x64 --platform linux-arm64 --platform osx-x64 --platform osx-arm64' }}
-# Sunrise added end
 
 on:
   workflow_dispatch:
-    # Sunrise added start - поддерживаем выбор конкретного коммита
     inputs:
       commit_hash:
         description: 'Commit hash for this repository (leave empty for latest). USE ONLY IF YOU KNOW WHAT YOU ARE DOING'
@@ -33,8 +27,6 @@ on:
         required: false
         type: string
         default: ''
-    # Sunrise added end
-  # Sunrise added start - предоставляем общий сценарий для пресетов публикации
   workflow_call:
     inputs:
       commit_hash:
@@ -87,45 +79,33 @@ on:
         required: false
       ANNOUNCE_UPDATE_DISCORD_ROLE_ID:
         required: false
-  # Sunrise added end
-  # Sunrise edit start - сохраняем публикацию по расписанию для Sunrise
   schedule:
   - cron: '0 10 * * *'
-  # Sunrise edit end
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    # Sunrise added start - сборка и актуальные скрипты находятся в разных каталогах
     defaults:
       run:
         working-directory: source
-    # Sunrise added end
 
     steps:
-    # Sunrise edit start - используем проверку ветки Sunrise
 #    - name: Fail if not on master branch
 #      if: ${{GITHUB.REF_NAME != 'master'}}
 #      run: exit 1
-    # Sunrise edit end
 
-    # Sunrise added start - проверяем ветку, заданную пресетом
     - name: Fail if not on required branch
       if: ${{ inputs.required_branch != '' && github.ref_name != inputs.required_branch }}
       working-directory: .
       run: exit 1
-    # Sunrise added end
 
-    # Sunrise edit start - получаем скрипт проверки из текущей ревизии workflow
     - name: Checkout workflow revision
       uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       with:
         path: automation
         sparse-checkout: Tools
         persist-credentials: false
-    # Sunrise edit end
 
-    # Sunrise added start - проверяем настройки публикации до сборки
     - name: Validate publish configuration
       working-directory: automation
       env:
@@ -137,9 +117,7 @@ jobs:
         PRIVATE_REPOSITORY: ${{ secrets.MAKURA_PRIVATE_REPO }}
         PRIVATE_REPOSITORY_SSH_KEY: ${{ secrets.MAKURA_PRIVATE_REPO_SSH_KEY }}
       run: python3 Tools/_sunrise/publishing/validate_publish.py
-    # Sunrise added end
 
-    # Sunrise edit start - переключаемся на выбранный коммит после проверки
     - name: Checkout requested revision
       uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       with:
@@ -147,9 +125,7 @@ jobs:
         path: source
         submodules: 'recursive'
         persist-credentials: false
-    # Sunrise edit end
 
-    # Sunrise edit start - устанавливаем зависимости публикации через Python
     - name: Set up Python
       uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
       with:
@@ -157,9 +133,7 @@ jobs:
 
     - name: Install Dependencies
       run: pip install pyyaml requests
-    # Sunrise edit end
 
-    # Sunrise added start - подключаем приватное содержимое по настройке пресета
     - name: Checkout private content
       if: ${{ inputs.use_private_content }}
       uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -173,14 +147,11 @@ jobs:
     - name: Move private content files
       if: ${{ inputs.use_private_content }}
       run: python3 ../automation/Tools/_sunrise/move_private.py --clone-dir "PrivateContent" --target-dirs "Resources"
-    # Sunrise added end
 
-    # Sunrise edit start - используем закреплённую версию действия настройки .NET
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v4.1.0
       with:
         dotnet-version: 10.0.x
-    # Sunrise edit end
 
     - name: Get Engine Tag
       run: |
@@ -194,21 +165,16 @@ jobs:
       run: dotnet build Content.Packaging --configuration Release --no-restore /m
 
     - name: Package server
-      # Sunrise edit start - выбираем платформы из пресета
       run: dotnet run --project Content.Packaging server ${SERVER_PLATFORMS}
-      # Sunrise edit end
 
     - name: Package client
       run: dotnet run --project Content.Packaging client --no-wipe-release
 
     - name: Publish version
-      # Sunrise edit start - передаём настраиваемый идентификатор сборки
       run: python3 ../automation/Tools/_sunrise/publishing/publish_multi_request.py --fork-id "${PUBLISH_FORK_ID}"
-      # Sunrise edit end
       env:
         PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
 
-    # Sunrise added start - отправляем уведомления по настройке пресета
     - name: Publish server update info
       if: ${{ inputs.publish_announcements }}
       continue-on-error: true
@@ -217,9 +183,7 @@ jobs:
         DISCORD_WEBHOOK_URL: ${{ secrets.ANNOUNCE_UPDATE_DISCORD_WEBHOOK }}
         DISCORD_ROLE_ID: ${{ secrets.ANNOUNCE_UPDATE_DISCORD_ROLE_ID }}
         BUILD_PATH: ./release/SS14.Client.zip
-    # Sunrise added end
 
-    # Sunrise edit start - отключаем upstream-публикацию списка изменений
     # - name: Publish changelog (Discord)
     #   run: Tools/actions_changelogs_since_last_run.py
     #   env:
@@ -231,4 +195,3 @@ jobs:
     #   run: Tools/actions_changelog_rss.py
     #   env:
     #     CHANGELOG_RSS_KEY: ${{ secrets.CHANGELOG_RSS_KEY }}
-    # Sunrise edit end
