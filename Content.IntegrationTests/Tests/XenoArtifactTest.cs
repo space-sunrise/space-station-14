@@ -568,7 +568,7 @@ public sealed class XenoArtifactTest
         return false;
     }
 
-    private static bool ContainsBlacklistedSubstring(string? value, IReadOnlyCollection<string>? blacklist)
+    private static bool ContainsBlacklistedSubstring(string value, IReadOnlyCollection<string> blacklist)
     {
         if (string.IsNullOrWhiteSpace(value) || blacklist == null)
             return false;

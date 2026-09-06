@@ -16,7 +16,6 @@ namespace Content.Server._Sunrise.PersonalBiocode;
 
 public sealed class PersonalBiocodeSystem : SharedPersonalBiocodeSystem // Пока только для модсьюитов
 {
-    [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
 
@@ -24,6 +23,7 @@ public sealed class PersonalBiocodeSystem : SharedPersonalBiocodeSystem // По�
 
     public override void Initialize()
     {
+        base.Initialize();
         SubscribeLocalEvent<PersonalBiocodeComponent, GetItemActionsEvent>(OnGetActions);
         SubscribeLocalEvent<PersonalBiocodeComponent, StoreDNAActionEvent>(OnDNAStored);
         SubscribeLocalEvent<PersonalBiocodeComponent, GotEquippedEvent>(OnEquip);
@@ -49,7 +49,7 @@ public sealed class PersonalBiocodeSystem : SharedPersonalBiocodeSystem // По�
             {
                 comp.DNA = PersonDNA.DNA;
                 comp.IsAuthorized = true;
-                EntityManager.Dirty(uid, comp);
+                Dirty(uid, comp);
 
                 _popupSystem.PopupEntity(Loc.GetString("person-dna-was-stored"), args.Performer, args.Performer);
             }
@@ -85,7 +85,7 @@ public sealed class PersonalBiocodeSystem : SharedPersonalBiocodeSystem // По�
         if (!comp.BreakAble)
             return;
 
-        EntityManager.RemoveComponent<PersonalBiocodeComponent>(uid);
+        RemComp<PersonalBiocodeComponent>(uid);
 
         //_popupSystem.PopupEntity(Loc.GetString("hardsuit-identification-on-emagged"), uid);
 

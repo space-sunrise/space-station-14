@@ -11,9 +11,7 @@ namespace Content.Client._Sunrise.BloodCult.UI.ConstructSelector;
 
 public sealed class ConstructSelectorBui : BoundUserInterface
 {
-    [Dependency] private readonly IClyde _displayManager = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IInputManager _inputManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 

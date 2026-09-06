@@ -32,12 +32,10 @@ jobs:
       private_commit_hash: ${{ inputs.private_commit_hash }}
       server_platforms: '--platform win-x64 --platform linux-x64 --platform osx-x64 --platform linux-arm64'
       publish_announcements: true
-      changelog_file: ${{ vars.PUBLISH_CHANGELOG_FILE }}
     secrets:
       PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
-      PRIVATE_REPOSITORY: ${{ secrets.PRIVATE_REPOSITORY }}
-      PRIVATE_REPOSITORY_SSH_KEY: ${{ secrets.PRIVATE_REPOSITORY_SSH_KEY }}
+      MAKURA_PRIVATE_REPO: ${{ secrets.MAKURA_PRIVATE_REPO }}
+      MAKURA_PRIVATE_REPO_SSH_KEY: ${{ secrets.MAKURA_PRIVATE_REPO_SSH_KEY }}
       ANNOUNCE_UPDATE_DISCORD_WEBHOOK: ${{ secrets.ANNOUNCE_UPDATE_DISCORD_WEBHOOK }}
       ANNOUNCE_UPDATE_DISCORD_ROLE_ID: ${{ secrets.ANNOUNCE_UPDATE_DISCORD_ROLE_ID }}
-      CHANGELOG_DISCORD_WEBHOOK: ${{ secrets.CHANGELOG_DISCORD_WEBHOOK }}
 # Sunrise added end

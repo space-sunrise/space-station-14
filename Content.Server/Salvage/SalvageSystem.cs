@@ -40,7 +40,6 @@ namespace Content.Server.Salvage
         [Dependency] private readonly LabelSystem _labelSystem = default!;
         [Dependency] private readonly MapLoaderSystem _loader = default!;
         [Dependency] private readonly MetaDataSystem _metaData = default!;
-        [Dependency] private readonly RadioSystem _radioSystem = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly SharedTransformSystem _transform = default!;
         [Dependency] private readonly SharedMapSystem _mapSystem = default!;

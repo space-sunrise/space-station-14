@@ -17,7 +17,6 @@ namespace Content.Client.CartridgeLoader.Cartridges;
 public sealed partial class NewsReaderUiFragment : BoxContainer
 {
     [Dependency] private readonly NetTexturesManager _netTexturesManager = default!;
-    [Dependency] private readonly IResourceCache _resourceCache = default!;
 
     public event Action? OnNextButtonPressed;
     public event Action? OnPrevButtonPressed;

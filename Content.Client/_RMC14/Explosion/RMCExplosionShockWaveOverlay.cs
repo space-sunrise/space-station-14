@@ -19,6 +19,7 @@ public sealed class RMCExplosionShockWaveOverlay : Overlay, IEntityEventSubscrib
     public override bool RequestScreenTexture => true;
 
     private readonly ShaderInstance _shader;
+    private readonly string _shockWave = "RMCShockWave";
 
     /// <summary>
     ///     Maximum number of distortions that can be shown on screen at a time.
@@ -28,7 +29,7 @@ public sealed class RMCExplosionShockWaveOverlay : Overlay, IEntityEventSubscrib
     public RMCExplosionShockWaveOverlay()
     {
         IoCManager.InjectDependencies(this);
-        _shader = _prototypeManager.Index<ShaderPrototype>("RMCShockWave").Instance().Duplicate();
+        _shader = _prototypeManager.Index<ShaderPrototype>(_shockWave).Instance().Duplicate();
     }
 
     private readonly Vector2[] _positions = new Vector2[MaxCount];

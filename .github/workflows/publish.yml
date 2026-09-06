@@ -71,27 +71,20 @@ on:
         type: string
         default: '--platform win-x64 --platform win-arm64 --platform linux-x64 --platform linux-arm64 --platform osx-x64 --platform osx-arm64'
       publish_announcements:
-        description: 'Publish update and changelog announcements'
+        description: 'Publish server update announcements'
         required: false
         type: boolean
         default: false
-      changelog_file:
-        description: 'Path to the changelog file'
-        required: false
-        type: string
-        default: ''
     secrets:
       PUBLISH_TOKEN:
         required: true
-      PRIVATE_REPOSITORY:
+      MAKURA_PRIVATE_REPO:
         required: false
-      PRIVATE_REPOSITORY_SSH_KEY:
+      MAKURA_PRIVATE_REPO_SSH_KEY:
         required: false
       ANNOUNCE_UPDATE_DISCORD_WEBHOOK:
         required: false
       ANNOUNCE_UPDATE_DISCORD_ROLE_ID:
-        required: false
-      CHANGELOG_DISCORD_WEBHOOK:
         required: false
   # Sunrise added end
   # Sunrise edit start - сохраняем публикацию по расписанию для Sunrise
@@ -132,8 +125,8 @@ jobs:
         CURRENT_REF_NAME: ${{ github.ref_name }}
         CURRENT_REF_TYPE: ${{ github.ref_type }}
         USE_PRIVATE_CONTENT: ${{ inputs.use_private_content || github.event_name == 'schedule' }}
-        PRIVATE_REPOSITORY: ${{ secrets.PRIVATE_REPOSITORY }}
-        PRIVATE_REPOSITORY_SSH_KEY: ${{ secrets.PRIVATE_REPOSITORY_SSH_KEY }}
+        PRIVATE_REPOSITORY: ${{ secrets.MAKURA_PRIVATE_REPO }}
+        PRIVATE_REPOSITORY_SSH_KEY: ${{ secrets.MAKURA_PRIVATE_REPO_SSH_KEY }}
       run: python3 Tools/_sunrise/validate_publish.py
     # Sunrise added end
 
@@ -162,9 +155,9 @@ jobs:
       if: ${{ inputs.use_private_content || github.event_name == 'schedule' }}
       uses: actions/checkout@v4.2.2
       with:
-        repository: ${{ secrets.PRIVATE_REPOSITORY }}
+        repository: ${{ secrets.MAKURA_PRIVATE_REPO }}
         path: PrivateContent
-        ssh-key: ${{ secrets.PRIVATE_REPOSITORY_SSH_KEY }}
+        ssh-key: ${{ secrets.MAKURA_PRIVATE_REPO_SSH_KEY }}
         ref: ${{ inputs.private_commit_hash }}
 
     - name: Move private content files
@@ -215,14 +208,6 @@ jobs:
         DISCORD_ROLE_ID: ${{ secrets.ANNOUNCE_UPDATE_DISCORD_ROLE_ID }}
         BUILD_PATH: ./release/SS14.Client.zip
 
-    - name: Publish Discord changelog
-      if: ${{ inputs.publish_announcements }}
-      continue-on-error: true
-      run: Tools/_sunrise/actions_changelogs_since_last_run.py
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        DISCORD_WEBHOOK_URL: ${{ secrets.CHANGELOG_DISCORD_WEBHOOK }}
-        CHANGELOG_FILE: ${{ inputs.changelog_file || 'Resources/Changelog/ChangelogSunrise.yml' }}
     # Sunrise added end
 
     # Sunrise edit start - отключаем upstream-публикацию списка изменений

@@ -181,19 +181,19 @@
   maxStress: 70
 
 - type: storytellerMetadata
-  id: SlimesSpawn
+  id: SlimesSpawnHorde
   threatType: MinorCalm
   threatCost: 10
   maxStress: 70
 
 - type: storytellerMetadata
-  id: SnakeSpawn
+  id: SnakeSpawnHorde
   threatType: MinorCalm
   threatCost: 20
   maxStress: 70
 
 - type: storytellerMetadata
-  id: SpiderSpawn
+  id: SpiderSpawnHorde
   threatType: MinorCalm
   threatCost: 15
   maxStress: 70
@@ -407,7 +407,7 @@
   weightModifier: 3.0
 
 - type: storytellerMetadata
-  id: SpiderClownSpawn
+  id: SpiderClownSpawnHorde
   threatType: MinorAntag
   threatCost: 60
   minStationStrength: 15
