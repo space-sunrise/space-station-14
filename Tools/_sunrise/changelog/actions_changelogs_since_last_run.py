@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# Sunrise added start - публикация чейнджлога Sunrise в Discord
 #
 # Отправляет новые записи чейнджлога в вебхук Discord после последнего запуска публикации GitHub Actions.
 # Автоматически определяет последний запуск и получает чейнджлог через GitHub API.
@@ -1085,4 +1084,3 @@ def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
 
 if __name__ == "__main__":
     main()
-# Sunrise added end

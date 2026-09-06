@@ -4,25 +4,18 @@ import argparse
 import requests
 import os
 import subprocess
-# Sunrise added start - используем общую проверку адреса CDN
 from validate_publish import validate_cdn_url
-# Sunrise added end
 from typing import Iterable
 
 PUBLISH_TOKEN = os.environ["PUBLISH_TOKEN"]
-# Sunrise edit start - публикуем хеш реально собранного коммита
 VERSION = subprocess.check_output(["git", "rev-parse", "HEAD"], encoding="UTF-8").strip()
-# Sunrise edit end
 
 RELEASE_DIR = "release"
 
-# Sunrise edit start - используем единый настраиваемый адрес CDN
 ROBUST_CDN_URL = validate_cdn_url(os.environ["ROBUST_CDN_URL"])
-# Sunrise edit end
 
 def main():
     parser = argparse.ArgumentParser()
-    # Sunrise edit start - требуем непустой настраиваемый идентификатор сборки
     parser.add_argument("--fork-id", required=True)
 
     args = parser.parse_args()
@@ -30,7 +23,6 @@ def main():
         parser.error("--fork-id must not be empty or contain only whitespace")
 
     fork_id = args.fork_id.strip()
-    # Sunrise edit end
 
     session = requests.Session()
     session.headers = {

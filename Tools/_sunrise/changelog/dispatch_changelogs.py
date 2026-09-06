@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# Sunrise added start - независимый запуск всех настроенных чейнджлогов
 import json
 import os
 import re
@@ -132,4 +131,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-# Sunrise added end
