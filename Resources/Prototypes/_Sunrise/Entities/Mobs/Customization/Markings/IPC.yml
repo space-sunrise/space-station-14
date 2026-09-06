@@ -217,7 +217,7 @@
   groupWhitelist: [ IPC ]
   sprites:
     - sprite: _Sunrise/Mobs/Customization/IPC/ipc_arm.rsi
-      state: l_arm_w
+      state: l_arm_h
 
 - type: marking
   id: IPC_RHand1
