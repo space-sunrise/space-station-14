@@ -68,7 +68,7 @@
         - OrganBrain
 
 - type: entity
-  parent: BaseItem
+  parent: [ BaseItem, OrganBaseBrain ] # Sunrise-Surgery-Edit
   id: PositronicBrain
   name: positronic brain
   description: An artificial brain capable of spontaneous neural activity.

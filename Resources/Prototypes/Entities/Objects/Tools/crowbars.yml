@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: BaseItem
+  parent: [ BaseItem, Retractor ] # Sunrise add retractor edit
   id: BaseCrowbar
   name: crowbar
   description: A multipurpose tool used for many tasks, such as prying doors or bludgeoning interdimensional invaders.
@@ -41,6 +41,8 @@
     sprite: Objects/Tools/crowbar.rsi
     size: Small
   # Sunrise start
+  - type: SurgeryTool
+    speed: 1.5
   - type: EmitSoundOnPickup
     sound:
       path: /Audio/_Sunrise/Items/Handling/crowbar_pickup.ogg

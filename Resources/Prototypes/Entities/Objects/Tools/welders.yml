@@ -1,6 +1,6 @@
 - type: entity
   name: welding tool
-  parent: BaseItem
+  parent: [ BaseItem, CauteryAbductor ] # Sunrise surgery edit
   id: Welder
   description: "Melts anything as long as it's fueled, don't forget your eye protection!"
   components:
@@ -8,6 +8,12 @@
     sound:
       path: /Audio/Items/welder_drop.ogg
   # Sunrise stat
+  - type: SurgeryTool
+    speed: 1.5
+    startSound:
+      path: /Audio/_Sunrise/Medical/Surgery/cautery1.ogg
+    endSound:
+      path: /Audio/_Sunrise/Medical/Surgery/cautery2.ogg
   - type: EmitSoundOnPickup
     sound:
       path: /Audio/_Sunrise/Items/Handling/weldingtool_pickup.ogg
