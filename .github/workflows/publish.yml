@@ -1,7 +1,7 @@
 name: Publish
 
 concurrency:
-  group: publish
+  group: disabled-wizden-publish # Sunrise-Edit - отключённый сценарий не должен отменять публикацию Sunrise
   cancel-in-progress: true
 
 on:
@@ -11,6 +11,7 @@ on:
 
 jobs:
   build:
+    if: false # Sunrise-Edit - заменён сценарием sunrise-publish.yml
     runs-on: ubuntu-latest
 
     steps:
