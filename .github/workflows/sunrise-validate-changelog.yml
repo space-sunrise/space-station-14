@@ -1,4 +1,3 @@
-# Sunrise added start - проверка чейнджлога при изменении PR
 name: Validate Changelog
 run-name: "Validate changelog for PR #${{ github.event.pull_request.number }}"
 
@@ -48,4 +47,3 @@ jobs:
           python Tools/_sunrise/changelog/changelog_actions.py
           --event-path "$GITHUB_EVENT_PATH"
           --validate-only
-# Sunrise added end

@@ -4845,3 +4845,12 @@
     message: Исправлена просадка FPS при продолжительной стрельбе из лазерного оружия МЕХов.
   id: 2027
   url: https://github.com/makura-games/sunrise-station/pull/4779
+- author: Den_Gor
+  time: '2026-09-06T15:44:32.0000000+00:00'
+  changes:
+  - type: Fix
+    message: Исправлено отображение имён персонажей в панели взаимодействий — при скрытой личности теперь показывается описание вместо настоящего имени
+  - type: Fix
+    message: Исправлено выравнивание блока персонажей в панели взаимодействий
+  id: 2028
+  url: https://github.com/makura-games/sunrise-station/pull/4793
