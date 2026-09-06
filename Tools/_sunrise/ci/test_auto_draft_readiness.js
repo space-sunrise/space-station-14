@@ -20,16 +20,19 @@ const limited = (sha = head) => ({ user: { type: 'Bot', login: 'coderabbitai[bot
 });
 
 async function inspect({ checks = [check, rabbit], comments = [], requirements = [requirement],
-  classic = [], responseHead = head, fail = '', pages = null, rulesCache = new Map() } = {}) {
+  classic = [], responseHead = head, fail = '', pages = null, rulesCache = new Map(), workflows = [], runs = [] } = {}) {
   const github = {
-    rest: { issues: { listComments() {} } },
+    rest: { issues: { listComments() {} }, actions: { listWorkflowRunsForRepo() {} },
+      repos: { async getBranch() { return { data: { protection: { enabled: true, required_status_checks: {
+        checks: classic.map(check => ({ context: check.context, app_id: check.app?.databaseId })),
+      } } } }; } } },
+    async request() { return { data: { full_name: 'example/repo', default_branch: 'master' } }; },
     async graphql(query, variables) {
       assert.ok(query.includes('isRequired(pullRequestNumber: $number)'));
       if (fail === 'checks') throw new Error('checks denied');
       const index = Number(variables.cursor || 0);
       const nodes = pages ? pages[index] : checks;
       return { repository: { pullRequest: { ...pullRequest, headRefOid: responseHead,
-        baseRef: { branchProtectionRule: { requiredStatusChecks: classic } },
         commits: { nodes: [{ commit: { statusCheckRollup: { contexts: { nodes,
           pageInfo: { hasNextPage: pages && index + 1 < pages.length, endCursor: String(index + 1) },
         } } } }] },
@@ -38,8 +41,10 @@ async function inspect({ checks = [check, rabbit], comments = [], requirements =
     async paginate(method) {
       if (typeof method === 'string') {
         if (fail === 'rules') throw new Error('rules denied');
-        return [{ type: 'required_status_checks', parameters: { required_status_checks: requirements } }];
+        return [{ type: 'required_status_checks', parameters: { required_status_checks: requirements } },
+          { type: 'workflows', parameters: { workflows } }];
       }
+      if (method === github.rest.actions.listWorkflowRunsForRepo) return runs;
       assert.equal(method, github.rest.issues.listComments);
       return comments;
     },
@@ -130,5 +135,66 @@ async function inspect({ checks = [check, rabbit], comments = [], requirements =
   await assert.rejects(inspect({ responseHead: 'new-head' }), /ПР изменился/);
   await assert.rejects(inspect({ fail: 'checks' }), /checks denied/);
   await assert.rejects(inspect({ fail: 'rules' }), /rules denied/);
+  // Обязательный сценарий сверяется по источнику и текущему коммиту, а не по названию.
+  const workflow = { path: '.github/workflows/required.yml', repository_id: 7 };
+  const run = { id: 1, head_sha: head, repository: { id: 7 }, path: workflow.path + '@master', event: 'pull_request',
+    status: 'completed', conclusion: 'success', pull_requests: [{ number: 1 }] };
+  result = await inspect({ workflows: [workflow] });
+  assert.equal(result.checksReady, false);
+  result = await inspect({ workflows: [workflow], runs: [run] });
+  assert.equal(result.checksReady, true);
+  for (const changed of [{ head_sha: 'old' }, { repository: { id: 8 } },
+    { path: '.github/workflows/spoof.yml@master' }, { status: 'in_progress' }, { event: 'push' },
+    { conclusion: 'skipped' }, { conclusion: 'failure' }, { pull_requests: [{ number: 2 }] }]) {
+    result = await inspect({ workflows: [workflow], runs: [{ ...run, ...changed }] });
+    assert.equal(result.checksReady, false, JSON.stringify(changed));
+  }
+  result = await inspect({ workflows: [workflow], runs: [run, { ...run, id: 2, conclusion: 'failure' }] });
+  assert.equal(result.checksReady, false);
+  const referenced = { ...run, repository: { id: 8 }, path: '.github/workflows/caller.yml',
+    referenced_workflows: [{ path: `example/repo/${workflow.path}@refs/heads/master`, sha: 'pinned', ref: 'refs/heads/master' }] };
+  result = await inspect({ workflows: [{ ...workflow, sha: 'pinned', ref: 'refs/heads/master' }], runs: [referenced] });
+  assert.equal(result.checksReady, false);
+  result = await inspect({ workflows: [{ ...workflow, sha: 'pinned' }],
+    runs: [{ ...run, repository: { id: 8 }, path: `example/repo/${workflow.path}@pinned` }] });
+  assert.equal(result.checksReady, true);
+  result = await inspect({ workflows: [{ ...workflow, sha: 'different' }], runs: [referenced] });
+  assert.equal(result.checksReady, false);
+
+  const { buildChecklist, syncChecklist } = require('../auto_draft/checklist.js');
+  const state = { owner: 'example', repo: 'repo', number: 1, appSlug: 'autodraft',
+    feedback: [{ text: 'Замечания reviewer', done: false }], readiness: await inspect() };
+  const body = buildChecklist(state);
+  assert.ok(body.includes('- [ ] Разобраться'));
+  assert.ok(body.includes('- [x] Пройти обязательные'));
+  assert.ok(buildChecklist({ ...state, manualDraft: true }).includes('- [ ] Подтвердить'));
+  assert.ok(buildChecklist({ ...state, manualOverride: true }).includes('аварийный'));
+  const hostile = buildChecklist({ ...state, feedback: [{ done: false, text: '@someone #456\n- [x] <script> [click](https://example.org)' }] });
+  assert.ok(!hostile.includes('@someone'));
+  assert.ok(!hostile.includes('#456'));
+  assert.ok(!hostile.includes('<script>'));
+  assert.ok(!hostile.includes('\n- [x] <'));
+  let comments = [];
+  const calls = [];
+  const github = { async paginate() { return comments; }, rest: { issues: {
+    listComments() {}, async createComment(params) { calls.push(['create', params]); },
+    async updateComment(params) { calls.push(['update', params]); },
+    async deleteComment(params) { calls.push(['delete', params]); },
+  } } };
+  await syncChecklist({ github, ...state });
+  assert.equal(calls.pop()[0], 'create');
+  const owned = { id: 7, user: { type: 'Bot', login: 'autodraft[bot]' }, body };
+  comments = [owned];
+  await syncChecklist({ github, ...state });
+  assert.equal(calls.length, 0);
+  comments = [{ ...owned, body: 'Всё готово, маркер тоже удалён' }];
+  await syncChecklist({ github, ...state });
+  assert.deepEqual(calls.pop(), ['update', { owner: 'example', repo: 'repo', comment_id: 7, body }]);
+  comments = [{ ...owned, user: { type: 'User', login: 'contributor' } }];
+  await syncChecklist({ github, ...state });
+  assert.equal(calls.pop()[0], 'create');
+  comments = [owned, { ...owned, id: 8 }];
+  await syncChecklist({ github, ...state });
+  assert.equal(calls.pop()[0], 'delete');
   console.log('Readiness scenarios passed');
 })().catch(error => { console.error(error); process.exitCode = 1; });

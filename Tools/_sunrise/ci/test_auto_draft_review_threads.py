@@ -9,7 +9,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[3]
 WORKFLOW_PATH = REPO_ROOT / ".github" / "workflows" / "sunrise-auto-draft-review-threads.yml"
 SIGNAL_WORKFLOW_PATH = (
-    REPO_ROOT / ".github" / "workflows" / "auto-draft-review-state-changed.yml"
+    REPO_ROOT / ".github" / "workflows" / "sunrise-auto-draft-review-state-changed.yml"
 )
 CODERABBIT_PATH = REPO_ROOT / ".coderabbit.yaml"
 SCRIPT_PATH = REPO_ROOT / "Tools" / "_sunrise" / "auto_draft" / "review_threads.js"
@@ -24,7 +24,7 @@ class AutoDraftReviewThreadsWorkflowTests(unittest.TestCase):
         cls.script = SCRIPT_PATH.read_text(encoding="utf-8")
 
     def test_review_events_are_relayed_without_privileged_operations(self):
-        self.assertIn('name: "PR: Review Event Relay"', self.signal_workflow)
+        self.assertIn('name: "PR: Automatic Draft Management - Review Events"', self.signal_workflow)
         self.assertRegex(
             self.signal_workflow,
             r"pull_request_review:\s+types: \[submitted, edited, dismissed\]",
@@ -34,7 +34,7 @@ class AutoDraftReviewThreadsWorkflowTests(unittest.TestCase):
         self.assertNotIn("actions/github-script", self.signal_workflow)
 
         self.assertIn("workflow_run:", self.workflow)
-        self.assertIn('workflows: ["PR: Review Event Relay", "Build & Test Debug", "YAML Linter"]', self.workflow)
+        self.assertIn('workflows: ["PR: Automatic Draft Management - Review Events", "Build & Test Debug", "YAML Linter"]', self.workflow)
         self.assertNotIn("pull_request_review_comment:", self.workflow)
         self.assertNotRegex(self.workflow, r"(?m)^  pull_request_review:\s*$")
 
@@ -58,7 +58,8 @@ class AutoDraftReviewThreadsWorkflowTests(unittest.TestCase):
         self.assertNotIn("continue-on-error", self.workflow)
         self.assertIn("const failures = [];", self.script)
         self.assertIn("for (const number of numbers)", self.script)
-        self.assertRegex(self.workflow, r"(?m)^  group: \$\{\{ github.workflow \}\}$")
+        self.assertRegex(self.workflow, r"(?m)^      group: \$\{\{ github.workflow \}\}$")
+        self.assertNotRegex(self.workflow, r"(?m)^concurrency:")
         self.assertIn("cancel-in-progress: false", self.workflow)
         self.assertIn("queue: max", self.workflow)
         self.assertIn("AUTO_DRAFT_APP_SLUG: ${{ steps.app-token.outputs.app-slug }}", self.workflow)
@@ -247,15 +248,20 @@ function mock(pulls, fail = '') {
   const github = {
     paginate: async method => {
       if (typeof method === 'string') return [];
+      if (method === github.rest.issues.listComments) return [];
       scanned.push(true); return pulls;
     },
     rest: {
       pulls: { list() {}, async get({ pull_number }) {
         const pr = pulls.find(pr => pr.number === pull_number);
-        return { data: { head: { sha: pr.headRefOid }, base: { ref: pr.baseRefName }, draft: pr.isDraft } };
+        return { data: { head: { sha: pr.headRefOid }, base: { ref: pr.baseRefName }, draft: pr.isDraft, state: 'open' } };
       } },
-      repos: { listPullRequestsAssociatedWithCommit() {} },
+      repos: { listPullRequestsAssociatedWithCommit() {}, async getBranch() { return { data: {} }; } },
       issues: {
+        listComments() {},
+        async createComment() {},
+        async updateComment() {},
+        async deleteComment() {},
         async addLabels({ issue_number }) {
           actions.push('add:' + issue_number);
           if (fail === 'add') throw new Error('add failed');
@@ -348,6 +354,25 @@ function mock(pulls, fail = '') {
   assert.deepEqual(env.actions, []);
 
   // Обычный комментарий прежнего прохода не становится требованием исправлений.
+  env = mock([pull()]);
+  env.readGithub = { ...env.github, graphql: async () => { throw new Error('read unavailable'); } };
+  await assert.rejects(run(env), /read unavailable/);
+  assert.deepEqual(env.actions, []);
+
+  // Исправления списка человеком запускают синхронизацию, собственные изменения бота — нет.
+  for (const action of ['edited', 'deleted', 'created']) {
+    for (const sender of ['maintainer', 'auto-draft-app[bot]']) {
+      env = mock([pull()]);
+      env.context.eventName = 'issue_comment';
+      env.context.payload = { action, issue: { number: 1, pull_request: {} },
+        comment: { user: { type: 'Bot', login: 'auto-draft-app[bot]' } },
+        sender: { login: sender, type: sender === 'maintainer' ? 'User' : 'Bot' } };
+      await run(env);
+      assert.deepEqual(env.actions, action !== 'created' && sender === 'maintainer' ? ['add:1', 'draft'] : []);
+    }
+  }
+
+  // Обычный комментарий прежнего прохода не становится требованием исправлений.
   const commentThread = structuredClone(oldThread);
   commentThread.comments.nodes[0].pullRequestReview.state = 'COMMENTED';
   env = mock([pull({ isDraft: true, labels: [{ name: marker }],
@@ -410,7 +435,7 @@ function mock(pulls, fail = '') {
     reviewThreads: [...Array.from({ length: 100 }, () => ({ ...thread, isResolved: true })), thread] })]);
   await run(env);
   assert.deepEqual(env.actions, []);
-  assert.equal(env.queries.length, 2);
+  assert.equal(env.queries.length, 3);
   assert.equal(env.queries[1].reviewThreadsCursor, '100');
   assert.equal(env.queries[1].loadlabels, false);
   assert.equal(env.queries[1].loadlatestOpinionatedReviews, false);
@@ -466,7 +491,10 @@ function mock(pulls, fail = '') {
   env = mock([pull()]);
   env.context.eventName = 'workflow_run';
   env.context.payload = { workflow_run: { conclusion: 'success', pull_requests: [], head_sha: 'abc123' } };
+  const paginateWorkflow = env.github.paginate;
   env.github.paginate = async (method, parameters) => {
+    if (method !== env.github.rest.repos.listPullRequestsAssociatedWithCommit)
+      return paginateWorkflow(method, parameters);
     assert.equal(method, env.github.rest.repos.listPullRequestsAssociatedWithCommit);
     assert.equal(parameters.commit_sha, 'abc123');
     return [{ number: 1, state: 'open' }, { number: 2, state: 'closed' }];
@@ -494,7 +522,7 @@ function mock(pulls, fail = '') {
 
   env = mock([pull()]);
   env.context.eventName = 'workflow_run';
-  env.context.payload = { workflow_run: { name: 'PR: Review Event Relay', conclusion: 'failure' } };
+  env.context.payload = { workflow_run: { name: 'PR: Automatic Draft Management - Review Events', conclusion: 'failure' } };
   await run(env);
   assert.equal(env.queries.length, 0);
 
@@ -515,7 +543,10 @@ function mock(pulls, fail = '') {
   env = mock([pull()]);
   env.context.eventName = 'status';
   env.context.payload = { sha: 'current-head' };
+  const paginateStatus = env.github.paginate;
   env.github.paginate = async (method, parameters) => {
+    if (method !== env.github.rest.repos.listPullRequestsAssociatedWithCommit)
+      return paginateStatus(method, parameters);
     assert.equal(method, env.github.rest.repos.listPullRequestsAssociatedWithCommit);
     assert.equal(parameters.commit_sha, 'current-head');
     return [{ number: 1, state: 'open' }];
@@ -533,6 +564,14 @@ function mock(pulls, fail = '') {
   env.context.payload.inputs['pr-number'] = '9007199254740993';
   await assert.rejects(run(env), /Некорректный номер/);
   assert.equal(env.queries.length, 0);
+  // Обезличенные снимки открытых ПР: требование с открытым обсуждением,
+  // все обсуждения закрыты при формальном Request changes и ручной черновик.
+  const snapshots = require('./Tools/_sunrise/ci/auto_draft_review_snapshots.json');
+  for (const [name, snapshot] of Object.entries(snapshots)) {
+    env = mock([pull({ ...snapshot })]);
+    await run(env);
+    assert.deepEqual(env.actions, name === 'a' ? ['add:1', 'draft'] : []);
+  }
 })().catch(error => { console.error(error); process.exitCode = 1; });
 """
         result = subprocess.run(

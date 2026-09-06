@@ -1,5 +1,6 @@
 module.exports = async ({ github, readGithub = github, context, core }) => {
   const loadReadiness = require('./readiness.js');
+  const { syncChecklist } = require('./checklist.js');
   const owner = context.repo.owner;
   const repo = context.repo.repo;
   const markerLabel = process.env.AUTO_DRAFT_LABEL;
@@ -193,6 +194,7 @@ module.exports = async ({ github, readGithub = github, context, core }) => {
     const blockingReviewIds = new Set(blockingReviews.map(review => review.id));
     const blockingAuthors = new Set(blockingReviews.map(review => review.author?.login).filter(Boolean));
     const threadsByReview = new Map();
+    const unresolvedByAuthor = new Set();
     let hasUnresolvedBlockingThreads = false;
 
     for (const thread of pullRequest.reviewThreads.nodes) {
@@ -202,6 +204,8 @@ module.exports = async ({ github, readGithub = github, context, core }) => {
         continue;
 
       hasUnresolvedBlockingThreads ||= !thread.isResolved;
+      if (!thread.isResolved && review.author?.login)
+        unresolvedByAuthor.add(review.author.login);
       const reviewThreads = threadsByReview.get(review.id) || [];
       reviewThreads.push(thread);
       threadsByReview.set(review.id, reviewThreads);
@@ -225,10 +229,15 @@ module.exports = async ({ github, readGithub = github, context, core }) => {
       .some(label => label.name === markerLabel);
     const manualOverride = !pullRequest.isDraft && latestReadyAt !== null &&
       (latestBlockingAt === null || latestReadyAt >= latestBlockingAt);
-    let readiness = { checksReady: false, codeRabbitReady: false, pendingChecks: [] };
-    if ((!pullRequest.isDraft || hasMarker) && !manualOverride &&
-        (blockingReviews.length === 0 || allBlockingThreadsResolved))
+    let readiness = { checksReady: false, codeRabbitReady: false, pendingChecks: [], checkItems: [] };
+    let readinessError;
+    try {
       readiness = await loadReadiness({ github: readGithub, owner, repo, pullRequest, rulesCache });
+    } catch (error) {
+      readinessError = error;
+      readiness.error = true;
+      core.warning(`#${number}: не удалось получить готовность проверок: ${error.message}`);
+    }
     const action = decideDraftState({
       isDraft: pullRequest.isDraft,
       hasMarker,
@@ -246,10 +255,24 @@ module.exports = async ({ github, readGithub = github, context, core }) => {
       `pendingChecks=${readiness.pendingChecks.join(', ')}.`,
     );
 
+    const feedback = blockingReviews.map(review => {
+      const threads = threadsByReview.get(review.id) || [];
+      return {
+        text: `Замечания ${review.author?.login || 'ревьювера'}${threads.length === 0 ? ': требуется новое решение ревьювера, обсуждений у этого требования нет' : ''}`,
+        done: threads.length > 0 && threads.every(thread => thread.isResolved) &&
+          !unresolvedByAuthor.has(review.author?.login),
+      };
+    });
+    await syncChecklist({ github, owner, repo, number, appSlug, feedback, readiness,
+      manualDraft: pullRequest.isDraft && !hasMarker, manualOverride });
+    // Сбой GitHub не доказывает неготовность ПР: обновляем пояснение, но не меняем черновик.
+    if (readinessError)
+      throw readinessError;
+
     if (action === 'draft' || action === 'ready') {
       const { data: current } = await github.rest.pulls.get({ owner, repo, pull_number: number });
       if (current.head.sha !== pullRequest.headRefOid || current.base.ref !== pullRequest.baseRefName ||
-          current.draft !== pullRequest.isDraft) {
+          current.draft !== pullRequest.isDraft || current.state !== 'open') {
         core.info(`#${number}: состояние ПР изменилось во время проверки, откладываю синхронизацию.`);
         return;
       }
@@ -290,15 +313,20 @@ module.exports = async ({ github, readGithub = github, context, core }) => {
 
   async function targetPullRequestNumbers() {
     if (context.eventName === 'issue_comment') {
-      return context.payload.issue.pull_request && context.payload.sender.type === 'Bot' &&
-        context.payload.sender.login === 'coderabbitai[bot]' ? [context.payload.issue.number] : [];
+      const { issue, sender, comment, action } = context.payload;
+      if (!issue.pull_request)
+        return [];
+      const rabbit = sender.type === 'Bot' && sender.login === 'coderabbitai[bot]';
+      const checklistEdited = ['edited', 'deleted'].includes(action) && comment?.user?.type === 'Bot' &&
+        comment.user.login === `${appSlug}[bot]` && sender.login !== comment.user.login;
+      return rabbit || checklistEdited ? [issue.number] : [];
     }
 
     if (context.eventName === 'status')
       return associatedPullRequestNumbers(context.payload.sha);
 
     if (context.eventName === "workflow_run") {
-      if (context.payload.workflow_run.name === 'PR: Review Event Relay' &&
+      if (context.payload.workflow_run.name === 'PR: Automatic Draft Management - Review Events' &&
           context.payload.workflow_run.conclusion !== "success") {
         core.info("Сигнальный workflow завершился неуспешно, синхронизация не требуется.");
         return [];

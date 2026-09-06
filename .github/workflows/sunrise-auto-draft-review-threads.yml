@@ -2,13 +2,13 @@ name: "PR: Automatic Draft Management"
 
 on:
   workflow_run:
-    workflows: ["PR: Review Event Relay", "Build & Test Debug", "YAML Linter"]
+    workflows: ["PR: Automatic Draft Management - Review Events", "Build & Test Debug", "YAML Linter"]
     types: [completed]
   pull_request_target:
     types: [opened, reopened, synchronize, converted_to_draft, ready_for_review]
   status:
   issue_comment:
-    types: [created, edited]
+    types: [created, edited, deleted]
   workflow_dispatch:
     inputs:
       pr-number:
@@ -26,17 +26,19 @@ permissions:
   statuses: read
   pull-requests: read
 
-concurrency:
-  # ponytail: общая очередь исключает гонки между обходом всех ПР и отдельными событиями.
-  group: ${{ github.workflow }}
-  cancel-in-progress: false
-  queue: max
-
 jobs:
   sync-draft-state:
     if: >-
       github.event_name != 'issue_comment' ||
-      (github.event.issue.pull_request && github.event.sender.type == 'Bot' && github.event.sender.login == 'coderabbitai[bot]')
+      (github.event.issue.pull_request &&
+      ((github.event.sender.type == 'Bot' && github.event.sender.login == 'coderabbitai[bot]') ||
+      (github.event.action != 'created' && github.event.comment.user.type == 'Bot' &&
+      github.event.sender.login != github.event.comment.user.login)))
+    concurrency:
+      # ponytail: общая очередь исключает гонки; пропущенные задания в неё не попадают.
+      group: ${{ github.workflow }}
+      cancel-in-progress: false
+      queue: max
     runs-on: ubuntu-latest
     env:
       AUTO_DRAFT_LABEL: "auto-draft: unresolved review"
