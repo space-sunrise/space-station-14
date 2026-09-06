@@ -7,7 +7,7 @@ from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
-WORKFLOW_PATH = REPO_ROOT / ".github" / "workflows" / "auto-draft-review-threads.yml"
+WORKFLOW_PATH = REPO_ROOT / ".github" / "workflows" / "sunrise-auto-draft-review-threads.yml"
 SIGNAL_WORKFLOW_PATH = (
     REPO_ROOT / ".github" / "workflows" / "auto-draft-review-state-changed.yml"
 )

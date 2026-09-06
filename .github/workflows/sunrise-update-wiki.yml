@@ -5,7 +5,7 @@ on:
   push:
     branches: [ master, jsondump ]
     paths:
-      - '.github/workflows/update-wiki.yml'
+      - '.github/workflows/sunrise-update-wiki.yml'
       - 'Content.Shared/Chemistry/**.cs'
       - 'Content.Server/Chemistry/**.cs'
       - 'Content.Server/GuideGenerator/**.cs'
