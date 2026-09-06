@@ -219,6 +219,7 @@ function mock(pulls, fail = '') {
     paginate: async () => { scanned.push(true); return pulls; },
     rest: {
       pulls: { list() {} },
+      repos: { listPullRequestsAssociatedWithCommit() {} },
       issues: {
         async addLabels({ issue_number }) {
           actions.push('add:' + issue_number);
@@ -268,6 +269,14 @@ function mock(pulls, fail = '') {
   let env = mock([pull()]);
   await run(env);
   assert.deepEqual(env.actions, ['add:1', 'draft']);
+
+  env = mock([pull({ reviewThreads: [] })]);
+  await run(env);
+  assert.deepEqual(env.actions, ['add:1', 'draft']);
+
+  env = mock([pull({ isDraft: true, labels: [{ name: marker }], reviewThreads: [] })]);
+  await run(env);
+  assert.deepEqual(env.actions, []);
 
   // Одобрение Боба не отменяет незакрытое требование Алисы, независимо от времени.
   const bobApproval = { ...review, id: 'R2', state: 'APPROVED',
@@ -359,6 +368,35 @@ function mock(pulls, fail = '') {
   await run(env);
   assert.equal(env.scanned.length, 1);
   assert.deepEqual(env.actions, ['add:1', 'draft']);
+
+  env = mock([pull()]);
+  env.context.eventName = 'workflow_run';
+  env.context.payload = { workflow_run: { conclusion: 'success', pull_requests: [], head_sha: 'abc123' } };
+  env.github.paginate = async (method, parameters) => {
+    assert.equal(method, env.github.rest.repos.listPullRequestsAssociatedWithCommit);
+    assert.equal(parameters.commit_sha, 'abc123');
+    return [{ number: 1, state: 'open' }, { number: 2, state: 'closed' }];
+  };
+  await run(env);
+  assert.deepEqual(env.actions, ['add:1', 'draft']);
+  assert.equal(env.scanned.length, 0);
+
+  for (const missing of [false, true]) {
+    env = mock([pull()]);
+    env.context.eventName = 'workflow_run';
+    env.context.payload = { workflow_run: { conclusion: 'success', pull_requests: [], head_sha: 'abc123' } };
+    const scan = env.github.paginate;
+    env.github.paginate = async (method, parameters) => {
+      if (method === env.github.rest.repos.listPullRequestsAssociatedWithCommit) {
+        if (missing) throw Object.assign(new Error('not found'), { status: 404 });
+        return [];
+      }
+      return scan(method, parameters);
+    };
+    await run(env);
+    assert.equal(env.scanned.length, 1);
+    assert.deepEqual(env.actions, ['add:1', 'draft']);
+  }
 
   env = mock([pull()]);
   env.context.eventName = 'workflow_run';

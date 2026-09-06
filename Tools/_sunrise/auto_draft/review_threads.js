@@ -270,6 +270,22 @@ module.exports = async ({ github, context, core }) => {
       const numbers = (context.payload.workflow_run.pull_requests || [])
         .map(pullRequest => pullRequest.number)
         .filter(number => Number.isSafeInteger(number) && number > 0);
+      if (numbers.length === 0 && context.payload.workflow_run.head_sha) {
+        // Для ПР из форков GitHub может не заполнить pull_requests; находим их по коммиту запуска.
+        try {
+          const associated = await github.paginate(github.rest.repos.listPullRequestsAssociatedWithCommit, {
+            owner,
+            repo,
+            commit_sha: context.payload.workflow_run.head_sha,
+            per_page: 100,
+          });
+          numbers.push(...associated.filter(pull => pull.state === "open").map(pull => pull.number));
+        } catch (error) {
+          if (error.status !== 404)
+            throw error;
+          core.info("Коммит сигнального запуска уже недоступен; использую резервный обход.");
+        }
+      }
       if (numbers.length === 0) {
         core.info("workflow_run не содержит связанного ПР; проверяю открытые ПР.");
         return openPullRequestNumbers();
