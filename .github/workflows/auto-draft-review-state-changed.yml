@@ -1,4 +1,4 @@
-name: "PR: Сигнал об изменении ревью"
+name: "PR: Review Event Relay"
 
 on:
   pull_request_review:

@@ -298,7 +298,7 @@ module.exports = async ({ github, readGithub = github, context, core }) => {
       return associatedPullRequestNumbers(context.payload.sha);
 
     if (context.eventName === "workflow_run") {
-      if (context.payload.workflow_run.name === 'PR: Сигнал об изменении ревью' &&
+      if (context.payload.workflow_run.name === 'PR: Review Event Relay' &&
           context.payload.workflow_run.conclusion !== "success") {
         core.info("Сигнальный workflow завершился неуспешно, синхронизация не требуется.");
         return [];
