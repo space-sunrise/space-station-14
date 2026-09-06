@@ -3,12 +3,12 @@ names-ipc-dataset-2 = Буп
 names-ipc-dataset-3 = Юки-102
 names-ipc-dataset-4 = Антон-104
 names-ipc-dataset-5 = Егор-NT
-names-ipc-dataset-6 = ZXC-Patriot-NT
-names-ipc-dataset-7 = NE-bot
-names-ipc-dataset-8 = Zevok
+names-ipc-dataset-6 = ZXC-Патриот-НТ
+names-ipc-dataset-7 = НЕ-бот
+names-ipc-dataset-8 = Затрон
 names-ipc-dataset-9 А ТИП-АА
 names-ipc-dataset-10 = Бипски
-names-ipc-dataset-11 = RE
+names-ipc-dataset-11 = Релик
 names-ipc-dataset-12 = НЕ-робот
 names-ipc-dataset-13 = 11001110
 names-ipc-dataset-14 = Бупкин
