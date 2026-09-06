@@ -28,7 +28,6 @@ uplink-pirate-ammo-magnum-ap-name = Спидлоадеры (.45 магнум Б�
 uplink-pirate-ammo-hristov-name = Коробки патронов (15мм)
 uplink-pirate-ammo-hristov-ap-name = Коробки патронов (15мм ББ)
 uplink-pirate-ammo-hristov-frag-name = Коробки патронов (15мм осколочные)
-uplink-pirate-ammo-hristov-blast-name = Коробки патронов (15мм разрывные)
 uplink-pirate-ammo-improvised-rifle-name = Коробки патронов (7,62 импровизированные)
 uplink-pirate-ammo-improvised-shotgun-name = Коробки патронов (12 калибр импровизированные)
 uplink-pirate-ammo-improvised-pistol-name = Коробки патронов (.35 авто импровизированные)

@@ -1470,7 +1470,7 @@
 
 #region Tier 4 - Boss
 - type: entity
-  name: Doll House
+  name: Kolobok
   description: The Heavy Mech USSP, a communist variant of the Durand, features stronger armor and a powerful machine gun.
   parent: [MobHostileBossBase, MobSovietVeteranChatterBase, MobPirateSparkEffectBase]
   id: MobSovietT3Mech
@@ -1511,22 +1511,18 @@
     scale: 1.08, 1.08
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
-      state: dollhouse
-    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded"]
-      state: dollhouse-unshaded
-      shader: unshaded
+      state: kolobok
   - type: RotationVisuals
     defaultRotation: 0
     horizontalRotation: 0
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: dollhouse
-        BaseUnshaded: dollhouse-unshaded
+        Base: kolobok
       Critical:
-        Base: dollhouse-broken
+        Base: kolobok-broken
       Dead:
-        Base: dollhouse-broken
+        Base: kolobok-broken
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
@@ -2222,7 +2218,7 @@
     - sprite: _Sunrise/Structures/Decoration/banner.rsi
       state: banner_ussp
     - sprite: _Sunrise/Objects/Specific/Mech/durand.rsi
-      state: dollhouse
+      state: kolobok
   - type: EntityTableSpawner
     offset: 1
     table: !type:NestedSelector

@@ -124,7 +124,7 @@
         - id: ToolboxSyndicateFilledRepair
 
 - type: entity
-  id: CratePirateMechDollHouseBundle
+  id: CratePirateMechKolobokBundle
   suffix: Filled
   parent: CrateLivestock
   name: Blackmarket USSP mech bundle
@@ -134,7 +134,7 @@
     containers:
       entity_storage: !type:AllSelector
         children:
-        - id: MechDollHouseFilled
+        - id: MechKolobokFilled
         - id: ToolboxSyndicateFilledRepair
 
 - type: entity

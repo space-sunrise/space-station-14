@@ -53,7 +53,7 @@ ent-MobSovietT2Raider = советский десантник
     .desc = Закалённый ветеран десанта, вооружённый скорострельным ПП.
 ent-MobSovietT2Mech = Молот
     .desc = Легкий мех СССП с мощным автодробовиком.
-ent-MobSovietT3Mech = Кукольный дом
+ent-MobSovietT3Mech = Колобок
     .desc = Тяжелый мех СССП с усиленной броней и плотным огнем.
 
 ent-MobSovietCaptain = советский лейтенант

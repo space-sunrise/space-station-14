@@ -841,11 +841,11 @@
       - WeaponMechCombatUltraRifle
 
 
-# Doll House
+# Kolobok
 - type: entity
-  id: MechDollHouse
-  parent: [ MechBreakageDurand, BaseMech, CombatMech, BaseMajorContraband ] # Sunrise-edit
-  name: Doll House
+  id: MechKolobok
+  parent: [ MechBreakageKolobok, BaseMech, CombatMech, BaseMajorContraband ] # Sunrise-edit
+  name: Kolobok
   description: The Heavy Mech USSP, a communist variant of the Durand, features stronger armor and a powerful machine gun.
   components:
   - type: FootprintEmitter # Sunrise-Add
@@ -857,15 +857,29 @@
     sprite: _Sunrise/Objects/Specific/Mech/durand.rsi
     scale: 1.08, 1.08
     layers:
-    - map: [ "enum.MechVisualLayers.Base" ]
-      state: dollhouse
+    - map: [ "enum.MechVisualLayers.Base", "movement" ]
+      state: kolobok
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+      params:
+        pitch: 0.5
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: kolobok-moving
+    noMovementLayers:
+      movement:
+        state: kolobok
+  - type: DamageVisuals
+    thresholds: [ 50, 100, 150, 250, 350, 450 ]
+    trackAllDamage: true
+    damageOverlay:
+      sprite: _Sunrise/Objects/Specific/Mech/durand.rsi
   - type: Mech
-    baseState: dollhouse
-    openState: dollhouse-open
-    brokenState: dollhouse-broken
+    baseState: kolobok
+    openState: kolobok-open
+    brokenState: kolobok-broken
     mechToPilotDamageMultiplier: 0.0
     airtight: true
     maxEquipmentAmount: 2
@@ -877,38 +891,32 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 40
-        Structural: 220
+        Blunt: 45
+        Structural: 300
     bluntStaminaDamageFactor: 1.5
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1.5
-    baseSprintSpeed: 2
+    baseWalkSpeed: 1
+    baseSprintSpeed: 1.25
   - type: Loadout
     prototypes: [ MechArmorHeavySyndiLoadout ]
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
-  - type: Reflect
-    reflectProb: 0.15
-    spread: 180
-    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
-    reflects:
-    - NonEnergy
   - type: Tag
     tags:
     - DoorBumpOpener
     - FootstepSound
-    - DollHouse
+    - Kolobok
   - type: AccessReader
-    access: [["NuclearOperative"]]
+    access: [[]]
   - type: MobThresholds
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      500: Critical
+      600: Critical
 
 - type: entity
-  id: MechDollHouseBattery
-  parent: MechDollHouse
+  id: MechKolobokBattery
+  parent: MechKolobok
   suffix: Battery
   components:
   - type: ContainerFill
@@ -917,8 +925,8 @@
       - PowerCageSyndicate
 
 - type: entity
-  id: MechDollHouseFilled
-  parent: MechDollHouseBattery
+  id: MechKolobokFilled
+  parent: MechKolobokBattery
   suffix: Battery, Filled
   components:
   - type: Mech

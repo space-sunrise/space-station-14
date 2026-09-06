@@ -250,6 +250,66 @@
     - DurandArmorPlate
 
 - type: entity
+  id: MechKolobokHarnessSpawnerLow
+  name: mech kolobok harness spawner
+  parent: MechPartSpawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - KolobokHarness
+
+- type: entity
+  id: MechKolobokLArmSpawnerLow
+  name: mech kolobok left arm spawner
+  parent: MechPartSpawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - KolobokLArm
+
+- type: entity
+  id: MechKolobokRArmSpawnerLow
+  name: mech kolobok right arm spawner
+  parent: MechPartSpawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - KolobokRArm
+
+- type: entity
+  id: MechKolobokLLegSpawnerLow
+  name: mech kolobok left leg spawner
+  parent: MechPartSpawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - KolobokLLeg
+
+- type: entity
+  id: MechKolobokRLegSpawnerLow
+  name: mech kolobok right leg spawner
+  parent: MechPartSpawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - KolobokRLeg
+
+- type: entity
+  id: MechKolobokArmorPlateSpawnerLow
+  name: mech kolobok armor plate spawner
+  parent: MechPartSpawnerLow
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - KolobokArmorPlate
+
+- type: entity
   id: SunriseMechRoverArmorPlateSpawnerLow
   name: mech rover armor plate spawner
   parent: MechPartSpawnerLow
@@ -420,6 +480,52 @@
     - NonEnergy
   - type: ExplosionResistance
     damageCoefficient: 0.6
+
+- type: entity
+  id: MechBreakageKolobok
+  parent: MechBreakageDurand
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 800
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ScrapSteel:
+            min: 2
+            max: 4
+          MechKolobokHarnessSpawnerLow:
+            min: 1
+            max: 1
+          MechKolobokLArmSpawnerLow:
+            min: 1
+            max: 1
+          MechKolobokRArmSpawnerLow:
+            min: 1
+            max: 1
+          MechKolobokLLegSpawnerLow:
+            min: 1
+            max: 1
+          MechKolobokRLegSpawnerLow:
+            min: 1
+            max: 1
+          MechKolobokArmorPlateSpawnerLow:
+            min: 1
+            max: 1
+          MechDurandBoardSpawnerLow:
+            min: 1
+            max: 1
+      - !type:ChangeConstructionNodeBehavior
+        node: start
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
 
 - type: entity
   id: MechBreakageRover

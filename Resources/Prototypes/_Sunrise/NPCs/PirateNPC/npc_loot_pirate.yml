@@ -1572,10 +1572,6 @@
       amount: 3
       prob: 0.1
       orGroup: AntiMaterielRare
-    - id: CartridgeAntiMaterielBlast
-      amount: 3
-      prob: 0.1
-      orGroup: AntiMaterielRare
     - id: CartridgeAntiMaterielEmp
       amount: 3
       prob: 0.1
@@ -2382,20 +2378,18 @@
       prob: 0.4
     - id: LootSpawnerScienceMajor
       prob: 0.2
-    # durand
-    - id: DurandArmorPlate
+    # kolobok
+    - id: KolobokArmorPlate
       prob: 0.1
-    - id: DurandLArm
+    - id: KolobokLArm
       prob: 0.35
-    - id: DurandRArm
+    - id: KolobokRArm
       prob: 0.35
-    - id: DurandLLeg
+    - id: KolobokLLeg
       prob: 0.35
-    - id: DurandRLeg
+    - id: KolobokRLeg
       prob: 0.35
-    - id: DurandHarness
-      prob: 0.35
-    - id: DurandHead
+    - id: KolobokHarness
       prob: 0.35
     - id: CratePirateSurplusBundle
       prob: 0.3

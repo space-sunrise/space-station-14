@@ -12619,7 +12619,7 @@ entities:
       canCollide: False
     - type: InsideEntityStorage
       storage: 2075
-- proto: MagazineBauer127Blast
+- proto: MagazineBauer127
   entities:
   - uid: 2076
     components:
@@ -12679,7 +12679,7 @@ entities:
       canCollide: False
     - type: InsideEntityStorage
       storage: 2069
-- proto: MagazineBoxBelt127Blast
+- proto: MagazineBoxBelt127Artillery
   entities:
   - uid: 2071
     components:

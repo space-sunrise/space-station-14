@@ -54,7 +54,7 @@ ent-MobSovietT2Raider = soviet raider
     .desc = A hardened marine veteran carrying a high-rate submachine gun.
 ent-MobSovietT2Mech = Molot
     .desc = A light USSP mech variant with a powerful auto-shotgun.
-ent-MobSovietT3Mech = Doll House
+ent-MobSovietT3Mech = Kolobok
     .desc = A heavy USSP mech variant with strong armor and suppressive firepower.
 
 ent-MobSovietCaptain = soviet captain

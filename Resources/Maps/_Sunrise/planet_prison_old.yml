@@ -40538,40 +40538,6 @@ entities:
         discountDownTo: {}
         disableRefund: False
         costModifiersBySourceId: {}
-      - id: UplinkBoxAntiMaterielBlast
-        productEntity: MagazineBoxAntiMaterielBlast
-        name: null
-        discountCategory: null
-        description: uplink-sniper-ammo-blast-desc
-        categories:
-        - UplinkAmmo
-        originalCost:
-          Telecrystal: 4
-        conditions:
-        - !type:StoreWhitelistCondition
-          blacklist:
-            requireAll: False
-            statusEffects: null
-            species: null
-            requireAllTags: False
-            tags:
-            - AssaultOpsUplink
-            sizes: null
-            components: null
-          whitelist: null
-        icon: null
-        priority: 0
-        productAction: null
-        applyToMob: False
-        productUpgradeId: null
-        productActionEntity: null
-        productEvent: null
-        raiseProductEventOnUser: False
-        purchaseAmount: 0
-        restockTime: 0
-        discountDownTo: {}
-        disableRefund: False
-        costModifiersBySourceId: {}
       - id: ERTUplinkWeaponShotgun12
         productEntity: ClothingBackpackDuffelWeaponShotgun12Filled
         name: ntuplink-gun-bundlelaw12-name
@@ -45840,44 +45806,6 @@ entities:
         purchaseAmount: 0
         restockTime: 0
         discountDownTo: {}
-        disableRefund: False
-        costModifiersBySourceId: {}
-      - id: UplinkMagazineBauer127Blast
-        productEntity: MagazineBauer127Blast
-        name: null
-        discountCategory: usualDiscounts
-        description: uplink-magazine-127blast-desc
-        categories:
-        - UplinkAmmo
-        originalCost:
-          Telecrystal: 3
-        conditions:
-        - !type:StoreWhitelistCondition
-          blacklist: null
-          whitelist:
-            requireAll: False
-            statusEffects: null
-            species: null
-            requireAllTags: False
-            tags:
-            - NukeOpsUplink
-            - LoneOpsUplink
-            sizes: null
-            components: null
-        icon:
-          sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/sr127_mag.rsi
-          state: blast
-        priority: 0
-        productAction: null
-        applyToMob: False
-        productUpgradeId: null
-        productActionEntity: null
-        productEvent: null
-        raiseProductEventOnUser: False
-        purchaseAmount: 0
-        restockTime: 0
-        discountDownTo:
-          Telecrystal: 2
         disableRefund: False
         costModifiersBySourceId: {}
       - id: UplinkSyndicateBombEMP
@@ -52651,8 +52579,8 @@ entities:
         discountDownTo: {}
         disableRefund: False
         costModifiersBySourceId: {}
-      - id: UplinkPirateDollHouseBundle
-        productEntity: CratePirateMechDollHouseBundle
+      - id: UplinkPirateKolobokBundle
+        productEntity: CratePirateMechKolobokBundle
         name: uplink-mech-teleporter-ussp-name
         discountCategory: null
         description: uplink-mech-teleporter-ussp-desc
@@ -52675,8 +52603,8 @@ entities:
             - SurplusBundle
           whitelist: null
         icon:
-          sprite: /Textures/Objects/Specific/Mech/durand.rsi
-          state: dollhouse
+          sprite: /Textures/_Sunrise/Objects/Specific/Mech/durand.rsi
+          state: kolobok
         priority: 0
         productAction: null
         applyToMob: False
@@ -57488,31 +57416,6 @@ entities:
         conditions:
         - !type:ListingLimitedStockCondition
           stock: 3
-        icon: null
-        priority: 0
-        productAction: null
-        applyToMob: False
-        productUpgradeId: null
-        productActionEntity: null
-        productEvent: null
-        raiseProductEventOnUser: False
-        purchaseAmount: 0
-        restockTime: 0
-        discountDownTo: {}
-        disableRefund: False
-        costModifiersBySourceId: {}
-      - id: UplinkPirateHristovAmmoBlast
-        productEntity: MagazineBoxAntiMaterielBlast
-        name: null
-        discountCategory: null
-        description: uplink-sniper-ammo-blast-desc
-        categories:
-        - UplinkPirateAmmo
-        originalCost:
-          Doubloon: 12
-        conditions:
-        - !type:ListingLimitedStockCondition
-          stock: 2
         icon: null
         priority: 0
         productAction: null

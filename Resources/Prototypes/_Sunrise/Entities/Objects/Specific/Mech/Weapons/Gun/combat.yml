@@ -166,22 +166,38 @@
     sprite: _Sunrise/Objects/Specific/Mech/mecha_kord_inhands.rsi
     size: Ginormous
   - type: Gun
-    minAngle: 2
-    maxAngle: 50
-    angleIncrease: 5
-    angleDecay: 35
-    fireRate: 3.7
-    selectedMode: FullAuto
+    selectedMode: Burst
     availableModes:
-    - FullAuto
+    - Burst
+    burstFireRate: 6
+    shotsPerBurst: 4
+    burstCooldown: 1.75
+    minAngle: 6
+    maxAngle: 45
+    angleIncrease: 3
+    angleDecay: 30
+    projectileSpeed: 25
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
       params:
         volume: 15
         pitch: 1.9
-  - type: BatteryAmmoProvider
-    proto: CartridgeRifleHeavy127mm
-    fireCost: 25
+  - type: MagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        startingItem: MagazineBoxBeltLight127
+        name: Magazine
+        priority: 2
+        whitelist:
+          tags:
+          - LightAmmoBelt127
+        insertSound:
+          path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+          params:
+            pitch: 1.2
+            variation: 0.08
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
   - type: Appearance
   - type: AmmoCounter
   - type: StaticPrice

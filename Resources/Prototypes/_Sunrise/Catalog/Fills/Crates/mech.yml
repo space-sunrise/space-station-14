@@ -33,6 +33,42 @@
         - id: ClothingHeadHatWelding
 
 - type: entity
+  parent: CrateNPCMouse
+  id: SunriseCrateKolobokAssemblyDebug
+  name: Kolobok assembly debug crate
+  description: A debug crate containing everything needed to assemble a Kolobok mech, including tools and welding protection.
+  suffix: Debug
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: KolobokHarness
+        - id: KolobokLArm
+        - id: KolobokRArm
+        - id: KolobokLLeg
+        - id: KolobokRLeg
+        - id: MicroManipulatorStockPart
+          amount: 5
+        - id: CableApcStack
+        - id: Flash
+          amount: 6
+        - id: DurandCentralElectronics
+        - id: DurandPeripheralsElectronics
+        - id: DurandTargetingElectronics
+        - id: SheetRPGlass1
+          amount: 4
+        - id: PowerCageSmall
+        - id: MechAirTank
+        - id: MechThruster
+        - id: PartRodMetal10
+        - id: SheetPlasteel10
+          amount: 2
+        - id: KolobokArmorPlate
+        - id: ToolboxMechanicalFilledAllTools
+        - id: ClothingHeadHatWelding
+
+- type: entity
   parent: CrateSyndicateSecure
   id: SunriseCrateRoverAssembly
   name: Rover assembly crate
