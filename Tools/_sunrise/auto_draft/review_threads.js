@@ -2,6 +2,7 @@ module.exports = async ({ github, context, core }) => {
   const owner = context.repo.owner;
   const repo = context.repo.repo;
   const markerLabel = process.env.AUTO_DRAFT_LABEL;
+  const appSlug = process.env.AUTO_DRAFT_APP_SLUG;
 
   // AUTO_DRAFT_POLICY_START
   function decideDraftState({
@@ -44,20 +45,34 @@ module.exports = async ({ github, context, core }) => {
   }
 
   async function loadPullRequest(number) {
-    const result = await github.graphql(
-      `query($owner: String!, $repo: String!, $number: Int!) {
+    const connections = ["labels", "latestOpinionatedReviews", "reviewThreads"];
+    let pullRequest;
+    do {
+      const variables = { owner, repo, number };
+      for (const name of connections) {
+        const page = pullRequest?.[name]?.pageInfo;
+        variables[`${name}Cursor`] = page?.endCursor ?? null;
+        variables[`load${name}`] = !page || page.hasNextPage;
+      }
+
+      const result = await github.graphql(
+        `query($owner: String!, $repo: String!, $number: Int!,
+             $labelsCursor: String, $latestOpinionatedReviewsCursor: String, $reviewThreadsCursor: String,
+             $loadlabels: Boolean!, $loadlatestOpinionatedReviews: Boolean!, $loadreviewThreads: Boolean!) {
         repository(owner: $owner, name: $repo) {
           pullRequest(number: $number) {
             id
             number
             state
             isDraft
-            labels(first: 100) {
+            labels(first: 100, after: $labelsCursor) @include(if: $loadlabels) {
+              pageInfo { hasNextPage endCursor }
               nodes {
                 name
               }
             }
-            latestOpinionatedReviews(first: 100) {
+            latestOpinionatedReviews(first: 100, after: $latestOpinionatedReviewsCursor) @include(if: $loadlatestOpinionatedReviews) {
+              pageInfo { hasNextPage endCursor }
               nodes {
                 id
                 state
@@ -68,7 +83,8 @@ module.exports = async ({ github, context, core }) => {
                 }
               }
             }
-            reviewThreads(first: 100) {
+            reviewThreads(first: 100, after: $reviewThreadsCursor) @include(if: $loadreviewThreads) {
+              pageInfo { hasNextPage endCursor }
               nodes {
                 isResolved
                 comments(first: 1) {
@@ -84,16 +100,33 @@ module.exports = async ({ github, context, core }) => {
               nodes {
                 ... on ReadyForReviewEvent {
                   createdAt
+                  actor { login }
                 }
               }
             }
           }
         }
-      }`,
-      { owner, repo, number },
-    );
+        }`,
+        variables,
+      );
 
-    return result.repository.pullRequest;
+      const next = result.repository.pullRequest;
+      if (!next)
+        return null;
+
+      if (!pullRequest) {
+        pullRequest = next;
+      } else {
+        for (const name of connections) {
+          if (!next[name])
+            continue;
+          pullRequest[name].nodes.push(...next[name].nodes);
+          pullRequest[name].pageInfo = next[name].pageInfo;
+        }
+      }
+    } while (connections.some(name => pullRequest[name].pageInfo.hasNextPage));
+
+    return pullRequest;
   }
 
   async function addMarker(number) {
@@ -180,7 +213,9 @@ module.exports = async ({ github, context, core }) => {
     const latestBlockingAt = latestTimestamp(blockingReviews);
     const latestApprovalAt = latestTimestamp(approvals);
     const latestReadyEvent = pullRequest.timelineItems.nodes[0];
-    const latestReadyAt = latestReadyEvent
+    // Собственный перевод в Ready не является ручным разрешением игнорировать старые замечания.
+    const readyByApp = appSlug && latestReadyEvent?.actor?.login.replace(/\[bot\]$/, "") === appSlug;
+    const latestReadyAt = latestReadyEvent && !readyByApp
       ? Date.parse(latestReadyEvent.createdAt)
       : null;
     const hasMarker = pullRequest.labels.nodes
@@ -213,13 +248,9 @@ module.exports = async ({ github, context, core }) => {
     }
 
     if (action === "ready") {
+      // Сохраняем метку до успешной смены статуса: повторный запуск сможет завершить очистку.
+      await markReadyForReview(pullRequest.id);
       await removeMarker(number);
-      try {
-        await markReadyForReview(pullRequest.id);
-      } catch (error) {
-        await addMarker(number);
-        throw error;
-      }
       return;
     }
 
@@ -244,11 +275,13 @@ module.exports = async ({ github, context, core }) => {
         return [];
       }
 
-      const numbers = context.payload.workflow_run.pull_requests
+      const numbers = (context.payload.workflow_run.pull_requests || [])
         .map(pullRequest => pullRequest.number)
-        .filter(Number.isInteger);
-      if (numbers.length === 0)
-        core.warning("workflow_run не содержит связанного ПР; резервное расписание выполнит синхронизацию позже.");
+        .filter(number => Number.isSafeInteger(number) && number > 0);
+      if (numbers.length === 0) {
+        core.info("workflow_run не содержит связанного ПР; проверяю открытые ПР.");
+        return openPullRequestNumbers();
+      }
       return [...new Set(numbers)];
     }
 
@@ -261,7 +294,7 @@ module.exports = async ({ github, context, core }) => {
         return openPullRequestNumbers();
 
       const number = Number(requestedNumber);
-      if (!Number.isInteger(number) || number <= 0)
+      if (!Number.isSafeInteger(number) || number <= 0)
         throw new Error(`Некорректный номер ПР: ${requestedNumber}`);
       return [number];
     }
@@ -269,7 +302,6 @@ module.exports = async ({ github, context, core }) => {
     return openPullRequestNumbers();
   }
 
-  // ponytail: первые 100 ревью и обсуждений покрывают обычный ПР; пагинацию добавим при реальной необходимости.
   const numbers = await targetPullRequestNumbers();
   const failures = [];
   for (const number of numbers) {
