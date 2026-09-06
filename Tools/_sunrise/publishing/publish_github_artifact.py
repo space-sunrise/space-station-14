@@ -20,7 +20,7 @@ if not FORK_ID:
 def main():
     print("Fetching artifact URL from API...")
     artifact_url = get_artifact_url()
-    print(f"Artifact URL is {artifact_url}, publishing to Robust.Cdn")
+    print(f"Publishing artifact {ARTIFACT_ID} to Robust.Cdn")
 
     data = {
         "version": VERSION,

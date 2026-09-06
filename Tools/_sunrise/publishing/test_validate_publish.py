@@ -1,9 +1,11 @@
 import importlib.util
+import io
 import os
 import sys
 import unittest
 from pathlib import Path
-from unittest.mock import Mock, patch
+from contextlib import redirect_stdout
+from unittest.mock import Mock, mock_open, patch
 
 from validate_publish import main, validate_cdn_url
 
@@ -67,15 +69,41 @@ class PublishTests(unittest.TestCase):
 
         with patch.object(sys, "argv", ["publish", "--fork-id", " test "]), patch.object(
             module.requests, "Session", return_value=session
-        ), patch.object(module, "get_files_to_publish", return_value=[]), patch.object(
+        ), patch.object(module, "get_files_to_publish", return_value=["release/client.zip"]), patch.object(
             module, "get_engine_version", return_value="1.0"
-        ):
+        ), patch("builtins.open", mock_open(read_data=b"archive")):
             module.main()
 
-        self.assertEqual(session.post.call_count, 2)
+        self.assertEqual(session.post.call_count, 3)
         self.assertEqual(session.post.call_args_list[0].args[0], "https://cdn.example/base/fork/test/publish/start")
         self.assertEqual(session.post.call_args_list[0].kwargs["json"]["version"], selected_sha)
-        self.assertEqual(session.post.call_args_list[1].kwargs["json"]["version"], selected_sha)
+        self.assertEqual(session.post.call_args_list[1].kwargs["headers"]["Robust-Cdn-Publish-Version"], selected_sha)
+        self.assertEqual(session.post.call_args_list[2].kwargs["json"]["version"], selected_sha)
+        self.assertEqual([call.kwargs["timeout"] for call in session.post.call_args_list], [(15, 60), (15, 600), (15, 60)])
+
+    def test_artifact_download_url_is_sent_but_not_logged(self):
+        path = Path(__file__).resolve().parent / "publish_github_artifact.py"
+        spec = importlib.util.spec_from_file_location("artifact_under_test", path)
+        module = importlib.util.module_from_spec(spec)
+        environment = {
+            "GITHUB_TOKEN": "github-token", "PUBLISH_TOKEN": "publish-token",
+            "ARTIFACT_ID": "123", "GITHUB_REPOSITORY": "org/repo", "GITHUB_SHA": "a" * 40,
+            "ROBUST_CDN_URL": "https://cdn.example", "PUBLISH_FORK_ID": "test",
+        }
+        with patch.dict(os.environ, environment):
+            spec.loader.exec_module(module)
+
+        artifact_url = "https://downloads.example/archive.zip?signature=private-signature"
+        output = io.StringIO()
+        with patch.object(module, "get_artifact_url", return_value=artifact_url), patch.object(
+            module, "get_engine_version", return_value="1.0"
+        ), patch.object(module.requests, "post") as post, redirect_stdout(output):
+            module.main()
+
+        self.assertIn("Publishing artifact 123", output.getvalue())
+        self.assertNotIn(artifact_url, output.getvalue())
+        self.assertNotIn("private-signature", output.getvalue())
+        self.assertEqual(post.call_args.kwargs["json"]["archive"], artifact_url)
 
 
 if __name__ == "__main__":

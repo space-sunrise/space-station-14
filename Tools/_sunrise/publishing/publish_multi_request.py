@@ -11,6 +11,8 @@ PUBLISH_TOKEN = os.environ["PUBLISH_TOKEN"]
 VERSION = subprocess.check_output(["git", "rev-parse", "HEAD"], encoding="UTF-8").strip()
 
 RELEASE_DIR = "release"
+HTTP_TIMEOUT = (15, 60)
+UPLOAD_TIMEOUT = (15, 600)
 
 ROBUST_CDN_URL = validate_cdn_url(os.environ["ROBUST_CDN_URL"])
 
@@ -38,7 +40,7 @@ def main():
     headers = {
         "Content-Type": "application/json"
     }
-    resp = session.post(f"{ROBUST_CDN_URL}fork/{fork_id}/publish/start", json=data, headers=headers)
+    resp = session.post(f"{ROBUST_CDN_URL}fork/{fork_id}/publish/start", json=data, headers=headers, timeout=HTTP_TIMEOUT)
     resp.raise_for_status()
     print("Publish successfully started, adding files...")
 
@@ -50,7 +52,7 @@ def main():
                 "Robust-Cdn-Publish-File": os.path.basename(file),
                 "Robust-Cdn-Publish-Version": VERSION
             }
-            resp = session.post(f"{ROBUST_CDN_URL}fork/{fork_id}/publish/file", data=f, headers=headers)
+            resp = session.post(f"{ROBUST_CDN_URL}fork/{fork_id}/publish/file", data=f, headers=headers, timeout=UPLOAD_TIMEOUT)
 
         resp.raise_for_status()
 
@@ -62,7 +64,7 @@ def main():
     headers = {
         "Content-Type": "application/json"
     }
-    resp = session.post(f"{ROBUST_CDN_URL}fork/{fork_id}/publish/finish", json=data, headers=headers)
+    resp = session.post(f"{ROBUST_CDN_URL}fork/{fork_id}/publish/finish", json=data, headers=headers, timeout=HTTP_TIMEOUT)
     resp.raise_for_status()
 
     print("SUCCESS!")
