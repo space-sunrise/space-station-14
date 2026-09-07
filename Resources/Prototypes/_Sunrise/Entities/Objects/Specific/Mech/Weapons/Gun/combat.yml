@@ -171,10 +171,10 @@
     - Burst
     burstFireRate: 6
     shotsPerBurst: 4
-    burstCooldown: 1.75
-    minAngle: 6
-    maxAngle: 45
-    angleIncrease: 3
+    burstCooldown: 1.5
+    minAngle: 2
+    maxAngle: 35
+    angleIncrease: 2
     angleDecay: 30
     projectileSpeed: 25
     soundGunshot:

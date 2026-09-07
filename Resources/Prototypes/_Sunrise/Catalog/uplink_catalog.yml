@@ -2075,11 +2075,27 @@
   id: UplinkWeaponMechCombatKord
   name: uplink-mech-equipment-kord-name
   description: uplink-mech-equipment-kord-desc
-  productEntity: WeaponMechCombatKord
+  productEntity: SunriseCrateSyndicateKordBundle
   cost:
     Telecrystal: 20
   categories:
   - UplinkMechs
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: UplinkMechKordAmmo
+  productEntity: MagazineBoxBeltLight127
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkAmmo
   conditions:
   - !type:StoreWhitelistCondition
     whitelist:
