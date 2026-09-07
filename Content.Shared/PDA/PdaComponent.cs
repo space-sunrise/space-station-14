@@ -40,6 +40,7 @@ namespace Content.Shared.PDA
         [ViewVariables(VVAccess.ReadWrite)] public EntityUid? PdaOwner;
         [ViewVariables] public string? StationName;
         [ViewVariables] public string? StationAlertLevel;
+        [ViewVariables] public List<PdaAlertLevelInfo> StationAlertLevels = []; // Sunrise-Edit
         [ViewVariables] public Color StationAlertColor = Color.White;
         [ViewVariables] public TimeSpan? ShuttleTime; // Sunrise-edit
         [ViewVariables] public EvacShuttleStatus ShuttleStatus; // Sunrise-edit

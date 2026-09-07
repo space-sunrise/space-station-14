@@ -47,11 +47,13 @@ namespace Content.Server.Communications
         {
             // All events that refresh the BUI
             SubscribeLocalEvent<AlertLevelChangedEvent>(OnAlertLevelChanged);
+            SubscribeLocalEvent<AdditionalAlertLevelChangedEvent>(OnAdditionalAlertLevelChanged); // Sunrise-Edit
             SubscribeLocalEvent<RoundEndSystemChangedEvent>(_ => OnGenericBroadcastEvent());
             SubscribeLocalEvent<AlertLevelDelayFinishedEvent>(_ => OnGenericBroadcastEvent());
 
             // Messages from the BUI
             SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleSelectAlertLevelMessage>(OnSelectAlertLevelMessage);
+            SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleSetAdditionalAlertLevelMessage>(OnSetAdditionalAlertLevelMessage); // Sunrise-Edit
             SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleAnnounceMessage>(OnAnnounceMessage);
             SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleBroadcastMessage>(OnBroadcastMessage);
             SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleCallEmergencyShuttleMessage>(OnCallShuttleMessage);
@@ -141,6 +143,18 @@ namespace Content.Server.Communications
             }
         }
 
+        // Sunrise added start - дополнительные коды обновляют те же консоли
+        private void OnAdditionalAlertLevelChanged(AdditionalAlertLevelChangedEvent args)
+        {
+            var query = EntityQueryEnumerator<CommunicationsConsoleComponent>();
+            while (query.MoveNext(out var uid, out var comp))
+            {
+                if (args.Station == _stationSystem.GetOwningStation(uid))
+                    UpdateCommsConsoleInterface(uid, comp);
+            }
+        }
+        // Sunrise added end
+
         /// <summary>
         /// Updates the UI for all comms consoles.
         /// </summary>
@@ -162,6 +176,7 @@ namespace Content.Server.Communications
             List<string>? levels = null;
             string currentLevel = default!;
             float currentDelay = 0;
+            var additionalLevels = new List<CommunicationsConsoleAdditionalAlertLevelState>(); // Sunrise-Edit
 
             if (stationUid != null)
             {
@@ -173,12 +188,26 @@ namespace Content.Server.Communications
                         levels = new();
                         foreach (var (id, detail) in alertComp.AlertLevels.Levels)
                         {
-                            if (detail.Selectable)
+                            if (detail.Selectable && !detail.IsAdditional) // Sunrise-Edit
                             {
                                 levels.Add(id);
                             }
                         }
                     }
+
+                    // Sunrise added start - обычная консоль показывает только доступные экипажу дополнительные коды
+                    foreach (var (id, detail) in alertComp.AlertLevels.Levels)
+                    {
+                        if (!detail.IsAdditional || !detail.Selectable)
+                            continue;
+
+                        var enabled = alertComp.ActiveAdditionalLevels.Contains(id);
+                        additionalLevels.Add(new CommunicationsConsoleAdditionalAlertLevelState(
+                            id,
+                            enabled,
+                            _alertLevelSystem.CanSetAdditionalLevel((stationUid.Value, alertComp), id, !enabled)));
+                    }
+                    // Sunrise added end
 
                     currentLevel = alertComp.CurrentLevel;
                     currentDelay = _alertLevelSystem.GetAlertLevelDelay(stationUid.Value, alertComp);
@@ -197,7 +226,8 @@ namespace Content.Server.Communications
                 canRelay,
                 comp.IsRelaying,
                 MathF.Max(0f, comp.RelayCooldownRemaining),
-                MathF.Max(0f, comp.RelayTimeRemaining)
+                MathF.Max(0f, comp.RelayTimeRemaining),
+                additionalAlertLevels: additionalLevels // Sunrise-Edit
                 // Sunrise-End
             ));
         }
@@ -258,6 +288,37 @@ namespace Content.Server.Communications
                 _alertLevelSystem.SetLevel(stationUid.Value, message.Level, true, true);
             }
         }
+
+        // Sunrise added start - явное включение или выключение дополнительного кода
+        private void OnSetAdditionalAlertLevelMessage(
+            EntityUid uid,
+            CommunicationsConsoleComponent comp,
+            CommunicationsConsoleSetAdditionalAlertLevelMessage message)
+        {
+            if (message.Actor is not { Valid: true } mob)
+                return;
+
+            if (!CanUse(mob, uid))
+            {
+                _popupSystem.PopupCursor(Loc.GetString("comms-console-permission-denied"), message.Actor, PopupType.Medium);
+                return;
+            }
+
+            var stationUid = _stationSystem.GetOwningStation(uid);
+            if (stationUid == null)
+                return;
+
+            if (!_alertLevelSystem.TrySetAdditionalLevel(
+                stationUid.Value,
+                message.Level,
+                message.Enabled,
+                playSound: true,
+                announce: true))
+            {
+                UpdateCommsConsoleInterface(uid, comp);
+            }
+        }
+        // Sunrise added end
 
         private void OnAnnounceMessage(EntityUid uid, CommunicationsConsoleComponent comp,
             CommunicationsConsoleAnnounceMessage message)

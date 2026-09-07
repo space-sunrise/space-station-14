@@ -57,6 +57,19 @@
                           Access="Public"
                           ToolTip="{Loc 'comms-console-menu-alert-level-button-tooltip'}"
                           StyleClasses="OpenRight"/>
+
+            <!-- Sunrise added start - дополнительные коды -->
+            <BoxContainer Name="AdditionalAlertLevelsSection" Orientation="Vertical" Margin="0 4 0 0">
+                <controls:StripeBack>
+                    <Label HorizontalExpand="True"
+                           Text="{Loc 'comms-console-menu-additional-alert-level-header'}"
+                           VAlign="Center"
+                           StyleClasses="LabelHeading"
+                           Align="Center"/>
+                </controls:StripeBack>
+                <GridContainer Name="AdditionalAlertLevelsContainer" Columns="2"/>
+            </BoxContainer>
+            <!-- Sunrise added end -->
         </BoxContainer>
 
         <BoxContainer Orientation="Vertical"

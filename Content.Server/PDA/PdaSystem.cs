@@ -47,6 +47,7 @@ namespace Content.Server.PDA
         [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
         [Dependency] private readonly EmergencyShuttleSystem _emergencyShuttleSystem = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
+        [Dependency] private readonly AlertLevelSystem _alertLevel = default!; // Sunrise-Edit
 
         public override void Initialize()
         {
@@ -68,6 +69,7 @@ namespace Content.Server.PDA
             SubscribeLocalEvent<StationRenamedEvent>(OnStationRenamed);
             SubscribeLocalEvent<EntityRenamedEvent>(OnEntityRenamed, after: new[] { typeof(IdCardSystem) });
             SubscribeLocalEvent<AlertLevelChangedEvent>(OnAlertLevelChanged);
+            SubscribeLocalEvent<AdditionalAlertLevelChangedEvent>(OnAdditionalAlertLevelChanged); // Sunrise-Edit
             SubscribeLocalEvent<PdaComponent, InventoryRelayedEvent<ChameleonControllerOutfitSelectedEvent>>(OnRelayedEventToIdCard);
             SubscribeLocalEvent<PdaComponent, InventoryRelayedEvent<VoiceMaskNameUpdatedEvent>>(OnRelayedEventToIdCard);
         }
@@ -155,6 +157,12 @@ namespace Content.Server.PDA
             UpdateAllPdaUisOnStation();
         }
 
+        // Sunrise-Edit
+        private void OnAdditionalAlertLevelChanged(AdditionalAlertLevelChangedEvent args)
+        {
+            UpdateAllPdaUisOnStation();
+        }
+
         private void UpdateAllPdaUisOnStation()
         {
             var query = AllEntityQuery<PdaComponent>();
@@ -225,6 +233,7 @@ namespace Content.Server.PDA
                     IdOwner = id?.FullName,
                     JobTitle = id?.LocalizedJobTitle,
                     StationAlertLevel = pda.StationAlertLevel,
+                    StationAlertLevels = pda.StationAlertLevels, // Sunrise-Edit
                     StationAlertColor = pda.StationAlertColor,
                     EvacShuttleStatus = pda.ShuttleStatus, // Sunrise-edit
                     EvacShuttleTime = pda.ShuttleTime // Sunrise-edit
@@ -353,6 +362,17 @@ namespace Content.Server.PDA
                 alertComp.AlertLevels == null)
                 return;
             pda.StationAlertLevel = alertComp.CurrentLevel;
+            // Sunrise edit start - КПК получает отдельный цвет каждого активного кода
+            var activeLevels = _alertLevel.GetActiveLevels((station!.Value, alertComp));
+            var stationAlertLevels = new List<PdaAlertLevelInfo>(activeLevels.Count);
+            foreach (var activeLevel in activeLevels)
+            {
+                if (alertComp.AlertLevels.Levels.TryGetValue(activeLevel, out var detail))
+                    stationAlertLevels.Add(new PdaAlertLevelInfo(activeLevel, detail.Color));
+            }
+
+            pda.StationAlertLevels = stationAlertLevels;
+            // Sunrise edit end
             if (alertComp.AlertLevels.Levels.TryGetValue(alertComp.CurrentLevel, out var details))
                 pda.StationAlertColor = details.Color;
         }

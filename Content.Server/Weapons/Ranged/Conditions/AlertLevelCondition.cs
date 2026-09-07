@@ -25,8 +25,14 @@ public sealed partial class AlertLevelCondition : FireModeCondition
         if (entityManager.TryGetComponent<StationMemberComponent>(transformComp.ParentUid, out var stationMember) &&
             entityManager.TryGetComponent<AlertLevelComponent>(stationMember.Station, out var alertLevelComp))
         {
-            var currentAlertLevel = alertSystem.GetLevel(stationMember.Station, alertLevelComp);
-            return AlertLevels.Contains(currentAlertLevel);
+            // Sunrise-Edit - условия учитывают как основной, так и дополнительные коды
+            foreach (var alertLevel in AlertLevels)
+            {
+                if (alertSystem.IsLevelActive((stationMember.Station, alertLevelComp), alertLevel))
+                    return true;
+            }
+
+            return false;
         }
 
         return false;

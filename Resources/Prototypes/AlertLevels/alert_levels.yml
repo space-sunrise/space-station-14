@@ -23,6 +23,7 @@
         announcement: access-system-accesses-delay-blue
       # Sunrise edit end
     violet:
+      isAdditional: true # Sunrise-Edit
       announcement: alert-level-violet-announcement
       sound: /Audio/Misc/notice1.ogg
       color: Violet
@@ -30,6 +31,7 @@
       forceEnableEmergencyLights: true
       shuttleTime: 600
     yellow:
+      isAdditional: true # Sunrise-Edit
       announcement: alert-level-yellow-announcement
       sound: /Audio/Misc/notice1.ogg
       color: Yellow
@@ -67,6 +69,7 @@
         announcement: access-system-accesses-delay-gamma
       # Sunrise edit end
     delta:
+      isAdditional: true # Sunrise-Edit
       announcement: alert-level-delta-announcement
       selectable: false
       sound:
@@ -83,6 +86,7 @@
         delay: 0
       # Sunrise edit end
     epsilon:
+      isAdditional: true # Sunrise-Edit
       announcement: alert-level-epsilon-announcement
       selectable: false
       sound:

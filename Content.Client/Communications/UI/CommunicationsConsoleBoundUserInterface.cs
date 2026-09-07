@@ -26,9 +26,17 @@ namespace Content.Client.Communications.UI
             _menu.OnAnnounce += AnnounceButtonPressed;
             _menu.OnBroadcast += BroadcastButtonPressed;
             _menu.OnAlertLevel += AlertLevelSelected;
+            _menu.OnAdditionalAlertLevel += AdditionalAlertLevelSelected; // Sunrise-Edit
             _menu.OnEmergencyLevel += EmergencyShuttleButtonPressed;
             _menu.OnToggleRelay += ToggleRelayPressed; // Sunrise-Edit
         }
+
+        // Sunrise added start - дополнительные коды переключаются независимо
+        private void AdditionalAlertLevelSelected(string level, bool enabled)
+        {
+            SendMessage(new CommunicationsConsoleSetAdditionalAlertLevelMessage(level, enabled));
+        }
+        // Sunrise added end
 
         public void AlertLevelSelected(string level)
         {
@@ -95,6 +103,7 @@ namespace Content.Client.Communications.UI
 
                 _menu.UpdateCountdown();
                 _menu.UpdateAlertLevels(commsState.AlertLevels, _menu.CurrentLevel);
+                _menu.UpdateAdditionalAlertLevels(commsState.AdditionalAlertLevels); // Sunrise-Edit
                 _menu.AlertLevelButton.Disabled = !_menu.AlertLevelSelectable;
                 _menu.EmergencyShuttleButton.Disabled = !_menu.CanCall;
                 _menu.AnnounceButton.Disabled = !_menu.CanAnnounce;

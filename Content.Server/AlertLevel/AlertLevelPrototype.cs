@@ -31,6 +31,11 @@ public sealed partial class AlertLevelPrototype : IPrototype
 public sealed partial class AlertLevelDetail
 {
     /// <summary>
+    /// Определяет код как дополнительный протокол, который может действовать одновременно с основным кодом.
+    /// </summary>
+    [DataField] public bool IsAdditional { get; private set; } // Sunrise-Edit
+
+    /// <summary>
     /// What is announced upon this alert level change. Can be a localized string.
     /// </summary>
     [DataField("announcement")] public string Announcement { get; private set; } = string.Empty;

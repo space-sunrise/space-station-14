@@ -147,9 +147,21 @@ namespace Content.Server.RoundEnd
                 var stationUid = _stationSystem.GetOwningStation(requester.Value);
                 if (TryComp<AlertLevelComponent>(stationUid, out var alertLevel))
                 {
-                    duration = _protoManager
+                    var alertLevels = _protoManager
                         .Index<AlertLevelPrototype>(AlertLevelSystem.DefaultAlertLevelSet)
-                        .Levels[alertLevel.CurrentLevel].ShuttleTime;
+                        .Levels;
+                    duration = alertLevels[alertLevel.CurrentLevel].ShuttleTime;
+
+                    // Sunrise edit start - дополнительные коды сохраняют свои ограничения эвакуации
+                    foreach (var additionalLevel in alertLevel.ActiveAdditionalLevels)
+                    {
+                        if (alertLevels.TryGetValue(additionalLevel, out var detail)
+                            && detail.ShuttleTime > duration)
+                        {
+                            duration = detail.ShuttleTime;
+                        }
+                    }
+                    // Sunrise edit end
                 }
             }
 

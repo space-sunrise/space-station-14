@@ -18,6 +18,7 @@ namespace Content.Shared.Communications
         public List<string>? AlertLevels;
         public string CurrentAlert;
         public float CurrentAlertDelay;
+        public readonly List<CommunicationsConsoleAdditionalAlertLevelState> AdditionalAlertLevels; // Sunrise-Edit
         // Sunrise-Start
         public readonly bool CanRelay;
         public readonly bool IsRelaying;
@@ -25,7 +26,7 @@ namespace Content.Shared.Communications
         public readonly float RelayTimeRemaining;
         // Sunrise-End
 
-        public CommunicationsConsoleInterfaceState(bool canAnnounce, bool canCall, List<string>? alertLevels, string currentAlert, float currentAlertDelay, TimeSpan? expectedCountdownEnd = null, bool canRelay = false, bool isRelaying = false, float relayCooldownRemaining = 0f, float relayTimeRemaining = 0f) // Sunrise-Edit
+        public CommunicationsConsoleInterfaceState(bool canAnnounce, bool canCall, List<string>? alertLevels, string currentAlert, float currentAlertDelay, TimeSpan? expectedCountdownEnd = null, bool canRelay = false, bool isRelaying = false, float relayCooldownRemaining = 0f, float relayTimeRemaining = 0f, List<CommunicationsConsoleAdditionalAlertLevelState>? additionalAlertLevels = null) // Sunrise-Edit
         {
             CanAnnounce = canAnnounce;
             CanCall = canCall;
@@ -34,6 +35,7 @@ namespace Content.Shared.Communications
             AlertLevels = alertLevels;
             CurrentAlert = currentAlert;
             CurrentAlertDelay = currentAlertDelay;
+            AdditionalAlertLevels = additionalAlertLevels ?? []; // Sunrise-Edit
             // Sunrise-Start
             CanRelay = canRelay;
             IsRelaying = isRelaying;
@@ -42,6 +44,36 @@ namespace Content.Shared.Communications
             // Sunrise-End
         }
     }
+
+    // Sunrise added start - сетевой контракт дополнительных кодов
+    [Serializable, NetSerializable]
+    public sealed class CommunicationsConsoleAdditionalAlertLevelState
+    {
+        public readonly string Level;
+        public readonly bool Enabled;
+        public readonly bool Selectable;
+
+        public CommunicationsConsoleAdditionalAlertLevelState(string level, bool enabled, bool selectable)
+        {
+            Level = level;
+            Enabled = enabled;
+            Selectable = selectable;
+        }
+    }
+
+    [Serializable, NetSerializable]
+    public sealed class CommunicationsConsoleSetAdditionalAlertLevelMessage : BoundUserInterfaceMessage
+    {
+        public readonly string Level;
+        public readonly bool Enabled;
+
+        public CommunicationsConsoleSetAdditionalAlertLevelMessage(string level, bool enabled)
+        {
+            Level = level;
+            Enabled = enabled;
+        }
+    }
+    // Sunrise added end
 
     [Serializable, NetSerializable]
     public sealed class CommunicationsConsoleSelectAlertLevelMessage : BoundUserInterfaceMessage
