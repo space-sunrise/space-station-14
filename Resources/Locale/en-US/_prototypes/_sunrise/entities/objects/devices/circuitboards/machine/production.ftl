@@ -1,6 +1,9 @@
 ent-SunriseAdvancedSalvageMagnetMachineCircuitboard = advanced salvage magnet machine board
     .desc = A machine printed circuit board for an advanced salvage magnet.
 
+ent-SunriseMaterialSiloMachineCircuitboard = grid material silo machine board
+    .desc = { ent-MaterialSiloMachineCircuitboard.desc }
+
 ent-CopyMachineMachineCircuitboard = copy machine board
     .desc = A machine printed circuit board for an document printer
 ent-PacificatorCircuitboard = pacifism generator machine board

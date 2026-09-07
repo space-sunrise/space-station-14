@@ -1,4 +1,17 @@
 - type: entity
+  id: SunriseMaterialSiloMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: grid material silo machine board
+  components:
+  - type: Sprite
+    state: supply
+  - type: MachineBoard
+    prototype: SunriseMachineMaterialSilo
+    stackRequirements:
+      Manipulator: 4
+      Cable: 1
+
+- type: entity
   parent: BaseMachineCircuitboard
   id: SunriseAdvancedSalvageMagnetMachineCircuitboard
   name: advanced salvage magnet machine board

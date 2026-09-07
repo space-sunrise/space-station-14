@@ -7,3 +7,13 @@
   cost: 12000
   category: cargoproduct-category-name-cargo
   group: market
+
+- type: cargoProduct
+  id: SunriseMaterialSilo
+  icon:
+    sprite: Structures/Machines/silo.rsi
+    state: silo
+  product: SunriseCrateMaterialSilo
+  cost: 37500
+  category: cargoproduct-category-name-materials
+  group: market

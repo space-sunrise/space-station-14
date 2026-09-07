@@ -677,6 +677,8 @@
       staticPacks:
       - OreSmelting
       - RGlassSmelting
+    - type: SunriseMaterialSiloClient # Sunrise-Add
+    - type: SunriseOreProcessorAutoFeed # Sunrise-Add
 
 - type: entity
   parent: OreProcessor

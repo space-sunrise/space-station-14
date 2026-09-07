@@ -1,0 +1,17 @@
+- type: entity
+  parent: CrateGenericSteel
+  id: SunriseCrateMaterialSilo
+  name: grid material silo crate
+  description: A package including all the materials to create a material silo that works across the entire station grid.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: SunriseMaterialSiloMachineCircuitboard
+        - id: SheetSteel1
+          amount: 5
+        - id: MicroManipulatorStockPart
+          amount: 4
+        - id: CableApcStack1
+          amount: 2

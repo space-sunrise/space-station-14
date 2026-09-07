@@ -11,6 +11,7 @@ using Content.Server.Power.EntitySystems;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Stack;
 using Content.Shared._Sunrise.Economy;
+using Content.Shared._Sunrise.Lathe;
 using Content.Shared.Atmos;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
@@ -239,7 +240,12 @@ namespace Content.Server.Lathe
                 {
                     var result = Spawn(resultProto, Transform(uid).Coordinates);
                     EnsureComp<DontSellComponent>(result); // Sunrise-Edit
-                    _stack.TryMergeToContacts(result);
+                    // Sunrise-Start - хук для авто-скидывания продукции в сило (см. SunriseOreProcessorAutoFeedSystem)
+                    var producedEv = new SunriseLatheProductPrintedEvent(result);
+                    RaiseLocalEvent(uid, ref producedEv, broadcast: true);
+                    // Sunrise-End
+                    if (Exists(result))
+                        _stack.TryMergeToContacts(result);
                     // Sunrise-Start
                     if (currentRecipe.PrintTicket)
                     {

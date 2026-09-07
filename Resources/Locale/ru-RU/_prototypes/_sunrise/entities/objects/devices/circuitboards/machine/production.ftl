@@ -1,5 +1,7 @@
 ent-SunriseAdvancedSalvageMagnetMachineCircuitboard = продвинутый магнит обломков (машинная плата)
     .desc = Машинная печатная плата для продвинутого магнита обломков.
+ent-SunriseMaterialSiloMachineCircuitboard = станционное хранилище материалов (машинная плата)
+    .desc = { ent-MaterialSiloMachineCircuitboard.desc }
 ent-CopyMachineMachineCircuitboard = плата принтера документов
     .desc = Машинная печатная плата для принтера документов. Позволяет печатать документы нанотрейзен, пока хватает бумаги и чернил.
 ent-PacificatorCircuitboard = плата генератора пацифизма
