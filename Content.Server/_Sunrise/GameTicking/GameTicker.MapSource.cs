@@ -11,6 +11,14 @@ namespace Content.Server.GameTicking;
 
 public sealed partial class GameTicker
 {
+    /*
+     * Часть системы отвечающая за переопределение стандартного метода загрузки карты или грида.
+     * Это нужно, чтобы управлять - будет ли работать переопределение игровых карт в UserData.
+     * По умолчанию стандартный код переопределяет все карты из билда картами находящимися в UserData.
+     * Это плохо для игровых серверов, на которых кто-то может случайно переопределить игровую карту и сломать игру из-за неочевидной механики.
+     * Поэтому тут мы используем сивар, чтобы определить - стоит делать определение(стандартный код) или нет(копия стандартного кода без переопределения).
+     */
+
     private bool TryLoadSunriseGameMapGrid(
         MapId mapId,
         ResPath path,
@@ -90,14 +98,14 @@ public sealed partial class GameTicker
         if (!_resourceManager.TryContentFileRead(path, out var stream))
         {
             _sawmill.Error(
-                $"Packaged game map {path} was not found while sunrise.game_map_use_user_data is disabled.");
+                $"Packaged game map {path} was not found while {SunriseCCVars.GameMapUseUserData.Name} is disabled.");
             return false;
         }
 
         using (stream)
         {
             _sawmill.Info(
-                $"Loading game map {path} from packaged content because sunrise.game_map_use_user_data is disabled.");
+                $"Loading game map {path} from packaged content because {SunriseCCVars.GameMapUseUserData.Name} is disabled.");
             return _loader.TryLoadGeneric(stream, path.ToString(), out result, options);
         }
     }
