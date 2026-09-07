@@ -5,7 +5,6 @@ using Content.Shared._Sunrise.SunriseCCVars;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Maths;
 using Robust.Shared.Utility;
 
 namespace Content.Server.GameTicking;
