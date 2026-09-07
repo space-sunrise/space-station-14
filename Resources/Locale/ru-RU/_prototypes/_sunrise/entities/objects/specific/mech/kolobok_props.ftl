@@ -1,7 +1,7 @@
-ent-SunriseKolobokPropClosed = закрытый остов «Колобка»
+ent-SunriseKolobokPropClosed = Колобок
     .desc = Неработоспособный корпус меха «Колобок» с наглухо закрытой кабиной.
 
-ent-SunriseKolobokPropOpen = открытый остов «Колобка»
+ent-SunriseKolobokPropOpen = Колобок
     .desc = Неработоспособный корпус меха «Колобок» с открытой кабиной.
 
 ent-SunriseKolobokPropClosedDamagedSpawner = случайно повреждённый закрытый остов «Колобка»
