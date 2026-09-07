@@ -244,7 +244,10 @@ namespace Content.Server.Lathe
                     var producedEv = new SunriseLatheProductPrintedEvent(result);
                     RaiseLocalEvent(uid, ref producedEv, broadcast: true);
                     // Sunrise-End
-                    if (Exists(result))
+                    // Sunrise-Edit: QueueDel (используется при авто-скидывании в сило) не выставляет
+                    // Deleted/Terminating сразу, поэтому явно проверяем очередь удаления, иначе стак
+                    // успевает влиться в соседние стаки уже после того, как материал учтён в сило (дубликация).
+                    if (Exists(result) && !EntityManager.IsQueuedForDeletion(result))
                         _stack.TryMergeToContacts(result);
                     // Sunrise-Start
                     if (currentRecipe.PrintTicket)
