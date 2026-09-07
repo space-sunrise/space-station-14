@@ -2077,7 +2077,7 @@
   description: uplink-mech-equipment-kord-desc
   productEntity: SunriseCrateSyndicateKordBundle
   cost:
-    Telecrystal: 20
+    Telecrystal: 12
   categories:
   - UplinkMechs
   conditions:
