@@ -188,7 +188,7 @@
     autoRechargePauseTime: 1
   - type: EnergyDomeGenerator
     damageEnergyDraw: 1
-    domePrototype: EnergyDomeSmallDirectedBlue
+    domePrototype: EnergyDomeSmallFullDirectedBlue
     canInteractUse: false
     canDeviceNetworkUse: true
   - type: DeviceNetwork
@@ -229,7 +229,7 @@
     autoRechargePauseTime: 1
   - type: EnergyDomeGenerator
     damageEnergyDraw: 1
-    domePrototype: EnergyDomeSmallDirectedRed
+    domePrototype: EnergyDomeSmallFullDirectedRed
     canInteractUse: false
     canDeviceNetworkUse: true
   - type: DeviceNetwork

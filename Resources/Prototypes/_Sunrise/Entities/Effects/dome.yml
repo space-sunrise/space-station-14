@@ -230,7 +230,7 @@
         - BulletImpassable
         - Opaque
   - type: Sprite
-    sprite: _Sunrise/Effects/EnergyDome/energydome_directed.rsi
+    sprite: _Sunrise/Effects/EnergyDome/energydome_directed_front.rsi
     layers:
     - state: small
       color: "#64b9de"
@@ -242,7 +242,7 @@
 
 # region Mech shields
 - type: entity
-  id: EnergyDomeSmallDirectedBlue
+  id: EnergyDomeSmallFullDirectedBlue
   categories: [ HideSpawnMenu ]
   parent: EnergyDomeBase
   components:
@@ -269,7 +269,7 @@
   - type: Sprite
     sprite: _Sunrise/Effects/EnergyDome/energydome_directed_small.rsi
     layers:
-    - state: small_test
+    - state: fulldirect
       color: "#64b9de"
   - type: PointLight
     enabled: true
@@ -278,13 +278,13 @@
     color: "#64b9de"
 
 - type: entity
-  id: EnergyDomeSmallDirectedRed
+  id: EnergyDomeSmallFullDirectedRed
   categories: [ HideSpawnMenu ]
-  parent: EnergyDomeSmallDirectedBlue
+  parent: EnergyDomeSmallFullDirectedBlue
   components:
   - type: Sprite
     layers:
-    - state: small_test
+    - state: fulldirect
       color: "#b00000"
   - type: PointLight
     enabled: true
