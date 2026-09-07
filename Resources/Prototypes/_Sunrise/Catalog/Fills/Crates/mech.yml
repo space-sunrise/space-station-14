@@ -1,8 +1,13 @@
+# Debug suffix instead of category
+# so that there is a chance that the item will drop from the artifact as one of the rare rewards
+# the debug boxes of furs themselves are not something OP
+
 - type: entity
   parent: CrateScience
   id: SunriseCrateDurandAssembly
   name: Durand assembly crate
   description: A crate containing everything needed to assemble a Durand mech, including tools and welding protection.
+  suffix: Debug
   components:
   - type: EntityTableContainerFill
     containers:
@@ -35,7 +40,7 @@
 - type: entity
   parent: CrateNPCMouse
   id: SunriseCrateKolobokAssemblyDebug
-  name: Kolobok assembly debug crate
+  name: Kolobok assembly crate
   description: A debug crate containing everything needed to assemble a Kolobok mech, including tools and welding protection.
   suffix: Debug
   components:
@@ -74,6 +79,7 @@
   name: Rover assembly crate
   description: >-
     A crate containing essential components to assemble a Rover mech. It does not include common mech parts, which must be obtained separately. The crate is marked with a warning: "For Cybersun Industries personnel only."
+  suffix: Debug
   components:
   - type: EntityTableContainerFill
     containers:
