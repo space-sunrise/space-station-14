@@ -40,7 +40,6 @@ public partial class ChatBox : UIWidget
     {
         RobustXamlLoader.Load(this);
         _sawmill = _log.GetSawmill("chat");
-        _entManager = IoCManager.Resolve<IEntityManager>();
         _configurationManager = IoCManager.Resolve<IConfigurationManager>();
 
         ChatInput.Input.OnTextEntered += OnTextEntered;

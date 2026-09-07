@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Nutrition.Components;
 using Content.Shared._Sunrise.FleshCult;
 using Content.Shared.CombatMode.Pacification;
@@ -44,7 +44,7 @@ public sealed partial class FleshCultSystem
             return;
         if (HasComp<FleshCultistComponent>(args.Target))
             return;
-        if (!HasComp<HumanoidAppearanceComponent>(args.Target))
+        if (!HasComp<HumanoidProfileComponent>(args.Target))
             return;
         if (TryComp(args.Target, out MobStateComponent? mobState))
         {
@@ -81,7 +81,7 @@ public sealed partial class FleshCultSystem
         _popup.PopupEntity(Loc.GetString("flesh-pudge-throw-hugger-eat-face-others",
             ("entity", args.Target)), args.Target, Filter.PvsExcept(uid), true, PopupType.Large);
 
-        EntityManager.EnsureComponent<PacifiedComponent>(uid);
+        EnsureComp<PacifiedComponent>(uid);
         _stunSystem.TryAddParalyzeDuration(args.Target, TimeSpan.FromSeconds(component.ParalyzeTime));
         _damageableSystem.TryChangeDamage(args.Target, component.Damage, origin: args.Thrown);
     }
@@ -91,8 +91,8 @@ public sealed partial class FleshCultSystem
         if (args.Slot != "mask")
             return;
         component.EquipedOn = args.Equipee;
-        EntityManager.EnsureComponent<TemporaryBlindnessComponent>(args.Equipee);
-        EntityManager.EnsureComponent<PacifiedComponent>(uid);
+        EnsureComp<TemporaryBlindnessComponent>(args.Equipee);
+        EnsureComp<PacifiedComponent>(uid);
     }
 
     private void OnGotEquippedHand(EntityUid uid, FleshHuggerComponent component, GotEquippedHandEvent args)
@@ -111,9 +111,9 @@ public sealed partial class FleshCultSystem
         if (args.Slot != "mask")
             return;
         if (HasComp<PacifiedComponent>(uid))
-            EntityManager.RemoveComponent<PacifiedComponent>(uid);
+            RemComp<PacifiedComponent>(uid);
         if (HasComp<TemporaryBlindnessComponent>(component.EquipedOn))
-            EntityManager.RemoveComponent<TemporaryBlindnessComponent>(args.Equipee);
+            RemComp<TemporaryBlindnessComponent>(args.Equipee);
         _stunSystem.TryAddParalyzeDuration(uid, TimeSpan.FromSeconds(3));
         component.EquipedOn = new EntityUid();
     }
@@ -125,7 +125,7 @@ public sealed partial class FleshCultSystem
 
         foreach (var entity in args.HitEntities)
         {
-            if (!HasComp<HumanoidAppearanceComponent>(entity))
+            if (!HasComp<HumanoidProfileComponent>(entity))
                 return;
 
             if (TryComp(entity, out MobStateComponent? mobState))
@@ -167,7 +167,7 @@ public sealed partial class FleshCultSystem
 
             _popup.PopupEntity(Loc.GetString("flesh-pudge-throw-hugger-eat-face-others",
                 ("entity", entity)), entity, Filter.PvsExcept(entity), true, PopupType.Large);
-            EntityManager.EnsureComponent<PacifiedComponent>(uid);
+            EnsureComp<PacifiedComponent>(uid);
             _stunSystem.TryAddParalyzeDuration(entity, TimeSpan.FromSeconds(component.ParalyzeTime));
             _damageableSystem.TryChangeDamage(entity, component.Damage, origin: entity);
             break;

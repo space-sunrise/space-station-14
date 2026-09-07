@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Linq;
 using Content.Server.Administration.Systems;
-using Content.Shared.Body.Part;
-using Content.Shared.Body.Systems;
+using Content.Shared.Body;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Climbing.Systems;
-using Content.Shared.Damage;
-using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.GameTicking;
 using Content.Shared.Hands.EntitySystems;
@@ -38,14 +35,11 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly RotateToFaceSystem _rotateToFace = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedBodySystem _body = default!;
     [Dependency] private readonly IReflectionManager _reflectionManager = default!;
     [Dependency] private readonly ISerializationManager _serialization = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly SharedContainerSystem _containers = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedItemSystem _item = default!;
@@ -68,7 +62,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             EntProtoId surgery,
             EntProtoId stepId,
             out Entity<SurgeryComponent> surgeryEnt,
-            out Entity<BodyPartComponent> partEnt,
+            out EntityUid partEnt,
             out EntityUid step
         )
     {
@@ -78,12 +72,16 @@ public abstract partial class SharedSurgerySystem : EntitySystem
 
         if (!HasComp<SurgeryTargetComponent>(body)
              || !IsLyingDown(body)
-             || !_entitySystem.TryEntity(targetPart, out partEnt)
+             || !Exists(targetPart)
              || !_entitySystem.TryGetSingleton(surgery, out var surgeryEntId)
              || !_entitySystem.TryEntity(surgeryEntId, out surgeryEnt)
              || !_entitySystem.TryGetSingleton(stepId, out step)
-             || !surgeryEnt.Comp.Steps.Contains(stepId))
+             || !surgeryEnt.Comp.Steps.Contains(stepId)
+             || !TryComp<OrganComponent>(targetPart, out var organ)
+             || !IsSurgeryTarget(organ))
             return false;
+
+        partEnt = targetPart;
 
         var progress = EnsureComp<SurgeryProgressComponent>(targetPart);
 

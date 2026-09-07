@@ -229,24 +229,16 @@
   - type: SolutionContainerManager
     solutions:
       beaker:
-        maxVol: 30
+        maxVol: 20
         reagents:
-        - ReagentId: Stimulants
+        - ReagentId: DarkRedRum
           Quantity: 20
-        - ReagentId: Rororium
-          Quantity: 6
-        - ReagentId: Ichor
-          Quantity: 4
   - type: SolutionRegeneration
     solution: beaker
     generated:
       reagents:
-      - ReagentId: Stimulants
-        Quantity: 0.3
-      - ReagentId: Rororium
-        Quantity: 0.15
-      - ReagentId: Ichor
-        Quantity: 0.1
+      - ReagentId: DarkRedRum
+        Quantity: 20
   - type: Tag
     tags:
     - FitsHardsuit
