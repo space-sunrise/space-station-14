@@ -48,6 +48,9 @@ class AutoDraftReviewThreadsWorkflowTests(unittest.TestCase):
         self.assertIn("permission-contents: write", self.workflow)
         self.assertIn("permission-issues: write", self.workflow)
         self.assertIn("permission-pull-requests: write", self.workflow)
+        self.assertIn("permission-actions: read", self.workflow)
+        self.assertIn("permission-checks: write", self.workflow)
+        self.assertIn("permission-statuses: read", self.workflow)
         self.assertIn("uses: actions/checkout@v6", self.workflow)
         self.assertIn("ref: ${{ github.workflow_sha }}", self.workflow)
         self.assertIn("sparse-checkout: Tools/_sunrise/auto_draft", self.workflow)
@@ -63,11 +66,12 @@ class AutoDraftReviewThreadsWorkflowTests(unittest.TestCase):
         self.assertIn("cancel-in-progress: false", self.workflow)
         self.assertIn("queue: max", self.workflow)
         self.assertIn("AUTO_DRAFT_APP_SLUG: ${{ steps.app-token.outputs.app-slug }}", self.workflow)
-        self.assertIn("AUTO_DRAFT_READ_TOKEN: ${{ github.token }}", self.workflow)
+        self.assertNotIn("AUTO_DRAFT_READ_TOKEN", self.workflow)
         self.assertIn("AUTO_DRAFT_ALLOW_CODERABBIT_RATE_LIMIT", self.workflow)
-        self.assertIn("checks: read", self.workflow)
+        self.assertIn("checks: write", self.workflow)
         self.assertIn("statuses: read", self.workflow)
-        self.assertIn("getOctokit(process.env.AUTO_DRAFT_READ_TOKEN)", self.workflow)
+        self.assertIn("permissions: {}", self.workflow)
+        self.assertIn("await run({ github, context, core })", self.workflow)
 
     def test_review_state_comes_from_regular_github_reviews(self):
         for expected in (
@@ -245,7 +249,7 @@ for (const testCase of cases) {{
         harness = r"""
 const assert = require('node:assert/strict');
 const run = require('./Tools/_sunrise/auto_draft/review_threads.js');
-const marker = process.env.AUTO_DRAFT_LABEL = 'auto-draft: unresolved review';
+const marker = require('./Tools/_sunrise/auto_draft/config.json').label.name;
 process.env.AUTO_DRAFT_APP_SLUG = 'auto-draft-app';
 const review = { id: 'R1', state: 'CHANGES_REQUESTED',
   submittedAt: '2026-09-01T00:00:00Z', authorCanPushToRepository: true,
@@ -263,30 +267,36 @@ function mock(pulls, fail = '') {
   const github = {
     paginate: async method => {
       if (typeof method === 'string') return [];
-      if (method === github.rest.issues.listComments) return [];
+      if (method === github.rest.issues.listComments || method === github.rest.checks.listForRef) return [];
       scanned.push(true); return pulls;
     },
     rest: {
+      checks: { listForRef() {}, async create() {}, async update() {} },
       pulls: { list() {}, async get({ pull_number }) {
         const pr = pulls.find(pr => pr.number === pull_number);
         return { data: { head: { sha: pr.headRefOid }, base: { ref: pr.baseRefName }, draft: pr.isDraft, state: 'open' } };
       } },
       repos: { listPullRequestsAssociatedWithCommit() {}, async getBranch() { return { data: {} }; } },
       issues: {
+        async getLabel() { return { data: require('./Tools/_sunrise/auto_draft/config.json').label }; },
+        async createLabel() {},
+        async updateLabel() {},
         listComments() {},
         async createComment() {},
         async updateComment() {},
         async deleteComment() {},
-        async addLabels({ issue_number }) {
+        async addLabels({ issue_number, labels }) {
           actions.push('add:' + issue_number);
           if (fail === 'add') throw new Error('add failed');
-          pulls.find(pr => pr.number === issue_number).labels.push({ name: marker });
+          pulls.find(pr => pr.number === issue_number).labels.push(...labels.map(name => ({ name })));
         },
-        async removeLabel({ issue_number }) {
+        async removeLabel({ issue_number, name }) {
+          const pr = pulls.find(pr => pr.number === issue_number);
+          if (!pr.labels.some(label => label.name === name))
+            throw Object.assign(new Error('not found'), { status: 404 });
           actions.push('remove:' + issue_number);
           if (fail === 'remove') throw new Error('remove failed');
-          const pr = pulls.find(pr => pr.number === issue_number);
-          pr.labels = pr.labels.filter(label => label.name !== marker);
+          pr.labels = pr.labels.filter(label => label.name !== name);
         },
       },
     },
@@ -351,7 +361,7 @@ function mock(pulls, fail = '') {
   await run(env);
   assert.deepEqual(env.actions, ['ready', 'remove:1']);
 
-  // Чтение проверок использует отдельный клиент, операции над ПР — клиент приложения.
+  // Подмена клиента проверок для диагностики не меняет клиент операций над ПР.
   env = mock([pull({ latestOpinionatedReviews: [] })]);
   const originalGraphql = env.github.graphql;
   let readinessReads = 0;
@@ -587,6 +597,33 @@ function mock(pulls, fail = '') {
     await run(env);
     assert.deepEqual(env.actions, name === 'a' ? ['add:1', 'draft'] : []);
   }
+  // Цвет и имя метки обновляются отдельно от её назначения ПР.
+  env = mock([pull()]);
+  const config = structuredClone(require('./Tools/_sunrise/auto_draft/config.json'));
+  config.label.previousNames = ['старое имя'];
+  const labelWrites = [];
+  env.config = config;
+  env.github.rest.issues.getLabel = async ({ name }) => {
+    if (name === config.label.name) throw Object.assign(new Error('missing'), { status: 404 });
+    return { data: { name, color: '000000', description: '' } };
+  };
+  env.github.rest.issues.updateLabel = async params => labelWrites.push(params);
+  await run(env);
+  assert.equal(labelWrites.length, 1);
+  assert.equal(labelWrites[0].name, 'старое имя');
+  assert.equal(labelWrites[0].new_name, config.label.name);
+  assert.equal(labelWrites[0].color, config.label.color);
+  env = mock([pull()]);
+  env.config = { label: { ...config.label, color: 'bad-color' } };
+  await assert.rejects(run(env), /config.json/);
+  assert.deepEqual(env.actions, []);
+  // Полный обход не ограничивается первыми ста ПР.
+  env = mock(Array.from({ length: 105 }, (_, index) => pull({ id: 'PR' + (index + 1), number: index + 1,
+    latestOpinionatedReviews: [], reviewThreads: [] })));
+  env.context.payload.inputs = {};
+  await run(env);
+  assert.equal(env.queries.filter(query => query.loadlabels).length, 105);
+  assert.deepEqual(env.actions, []);
 })().catch(error => { console.error(error); process.exitCode = 1; });
 """
         result = subprocess.run(

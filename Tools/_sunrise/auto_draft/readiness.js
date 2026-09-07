@@ -1,5 +1,5 @@
-// Проверки читаются штатным токеном Actions; приложению не нужны дополнительные права.
-module.exports = async ({ github, owner, repo, pullRequest, rulesCache, now = Date.now() }) => {
+module.exports = async ({ github, commentsGithub = github, owner, repo, pullRequest, rulesCache,
+  reportAppSlug = 'github-actions', now = Date.now() }) => {
   const checks = [];
   let cursor = null;
   let createdAt;
@@ -20,7 +20,7 @@ module.exports = async ({ github, owner, repo, pullRequest, rulesCache, now = Da
                   nodes {
                     __typename
                     ... on CheckRun {
-                      databaseId name status conclusion title
+                      databaseId name status conclusion title externalId
                       isRequired(pullRequestNumber: $number)
                       checkSuite { app { databaseId slug } workflowRun { databaseId workflow { databaseId } } }
                     }
@@ -74,7 +74,7 @@ module.exports = async ({ github, owner, repo, pullRequest, rulesCache, now = Da
   const reviewed = rabbitChecks.some(check => succeeded(check) &&
     /^Review completed\b/i.test(check.description || check.title || ''));
 
-  const comments = await github.paginate(github.rest.issues.listComments, {
+  const comments = await commentsGithub.paginate(commentsGithub.rest.issues.listComments, {
     owner, repo, issue_number: pullRequest.number, per_page: 100,
   });
   const rabbitComments = comments.filter(comment => comment.user?.type === 'Bot' && comment.user.login === 'coderabbitai[bot]');
@@ -123,9 +123,9 @@ module.exports = async ({ github, owner, repo, pullRequest, rulesCache, now = Da
     (requirement.integration_id == null || requirement.integration_id === -1 ||
       check.__typename === 'StatusContext' || check.checkSuite.app?.databaseId === requirement.integration_id)));
   const checkItems = [
-    ...missingChecks.map(check => ({ name: check.context, done: false })),
+    ...missingChecks.map(check => ({ name: check.context, done: false, result: 'EXPECTED' })),
     ...requiredChecks.map(check => ({ name: check.name || check.context,
-      done: isRabbit(check) ? codeRabbitReady : succeeded(check) })),
+      done: isRabbit(check) ? codeRabbitReady : succeeded(check), result: check.conclusion || check.status || check.state })),
   ];
   let runs;
   const loadRuns = async () => runs ||= await github.paginate(github.rest.actions.listWorkflowRunsForRepo, {
@@ -191,10 +191,16 @@ module.exports = async ({ github, owner, repo, pullRequest, rulesCache, now = Da
       }).sort((a, b) => b.id - a.id);
       const latestRun = matching[0];
       checkItems.push({ name: `Сценарий ${workflow.path}`,
-        done: latestRun?.status === 'completed' && latestRun.conclusion === 'success' });
+        done: latestRun?.status === 'completed' && latestRun.conclusion === 'success',
+        result: (latestRun?.conclusion || latestRun?.status || 'EXPECTED').toUpperCase() });
     }
   }
   return {
+    comments,
+    reportCheck: checks.filter(check => check.checkSuite?.app?.slug === reportAppSlug &&
+      (check.externalId === `auto-draft:${pullRequest.number}` || check.externalId?.startsWith(`auto-draft:${pullRequest.number}:`)))
+      .sort((a, b) => b.databaseId - a.databaseId).map(check => ({ id: check.databaseId, name: check.name,
+        external_id: check.externalId, conclusion: check.conclusion?.toLowerCase() }))[0] || null,
     checksReady: checkItems.every(item => item.done),
     codeRabbitReady,
     codeRabbitAbsent,

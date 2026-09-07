@@ -212,6 +212,9 @@ async function inspect({ checks = [check, rabbit], comments = [], requirements =
   assert.ok(body.includes('- [ ] Разобраться'));
   assert.ok(body.includes('- [x] Пройти обязательные'));
   assert.ok(body.includes('Summary'));
+  assert.ok(body.includes('Пролистай страницу ПР вниз'));
+  assert.ok(body.includes('<details>\n<summary>Как найти список ошибок тестов</summary>'));
+  assert.ok(!body.includes('<details open'));
   assert.ok(body.includes('раскрой нужный шард'));
   assert.ok(body.includes('он может ошибаться'));
   assert.ok(!body.includes('Ручные правки сообщения'));
@@ -247,5 +250,38 @@ async function inspect({ checks = [check, rabbit], comments = [], requirements =
   comments = [owned, { ...owned, id: 8 }];
   await syncChecklist({ github, ...state });
   assert.equal(calls.pop()[0], 'delete');
+
+  const { buildReport, publishReport } = require('../auto_draft/report.js');
+  const green = buildReport({ number: 1, readiness: await inspect(), action: 'ready' });
+  assert.equal(green.title, 'Автодрафт: всё готово');
+  assert.equal(green.conclusion, 'success');
+  const blocked = buildReport({ number: 1, feedback: state.feedback, readiness: await inspect(), action: 'draft' });
+  assert.equal(blocked.title, 'Автодрафт: нужны исправления');
+  assert.equal(blocked.conclusion, 'neutral');
+  const failed = buildReport({ number: 1, readiness: await inspect({ checks: [{ ...check, conclusion: 'FAILURE' }, rabbit] }), action: 'draft' });
+  assert.equal(failed.title, 'Автодрафт: ошибки проверок');
+  assert.ok(failed.summary.includes('Tests: ошибка'));
+  assert.equal(buildReport({ number: 1, error: new Error('API denied') }).conclusion, 'failure');
+  assert.equal(buildReport({ number: 1, manualDraft: true }).title, 'Автодрафт: ручной черновик');
+  assert.equal(buildReport({ number: 1, manualOverride: true }).title, 'Автодрафт: ручной режим');
+  let statusCheck;
+  let writes = 0;
+  const checkGithub = { async paginate() { return statusCheck ? [statusCheck] : []; }, rest: { checks: {
+    listForRef() {},
+    async create(params) { writes++; statusCheck = { ...params, id: 9, app: { slug: 'github-actions' } }; },
+    async update(params) { writes++; statusCheck = { ...statusCheck, ...params }; },
+  } } };
+  const reportParams = { github: checkGithub, core: { info() {} }, owner: 'example', repo: 'repo', number: 1, head, report: green };
+  await publishReport(reportParams);
+  assert.equal(writes, 1);
+  await publishReport(reportParams);
+  assert.equal(writes, 1, 'Неизменившийся результат не требует записи');
+  await publishReport({ ...reportParams, report: blocked });
+  assert.equal(writes, 2);
+  assert.equal(statusCheck.id, 9, 'Причина меняется в той же проверке');
+  assert.equal(statusCheck.name, blocked.title);
+  await publishReport({ ...reportParams, existing: statusCheck, report: blocked,
+    github: { ...checkGithub, paginate() { throw new Error('Не нужен повторный запрос'); } } });
+  assert.equal(writes, 2);
   console.log('Readiness scenarios passed');
 })().catch(error => { console.error(error); process.exitCode = 1; });

@@ -1,11 +1,40 @@
-module.exports = async ({ github, readGithub = github, context, core }) => {
+module.exports = async ({ github, readGithub = github, context, core, config = require('./config.json') }) => {
   const loadReadiness = require('./readiness.js');
-  const { syncChecklist } = require('./checklist.js');
+  const { syncChecklist, plain } = require('./checklist.js');
+  const { buildReport, publishReport } = require('./report.js');
   const owner = context.repo.owner;
   const repo = context.repo.repo;
-  const markerLabel = process.env.AUTO_DRAFT_LABEL;
+  const label = config.label;
+  const validName = name => typeof name === 'string' && name.trim().length > 0 && name.length <= 50 && !/[\r\n]/.test(name);
+  if (!label || !validName(label.name) || !/^[a-f0-9]{6}$/i.test(label.color) ||
+      typeof label.description !== 'string' || label.description.length > 100 ||
+      !Array.isArray(label.previousNames) || !label.previousNames.every(validName))
+    throw new Error('Некорректная метка в auto_draft/config.json: проверь name, шестизначный color, description и previousNames.');
+  const markerLabel = label.name;
+  const markerNames = [...new Set([markerLabel, ...label.previousNames])];
   const appSlug = process.env.AUTO_DRAFT_APP_SLUG;
+  const reportAppSlug = readGithub === github ? appSlug : 'github-actions';
   const rulesCache = new Map();
+  let currentPullRequest;
+  let currentReportCheck;
+
+  async function ensureLabel() {
+    let existing;
+    for (const name of markerNames) {
+      try {
+        existing = (await github.rest.issues.getLabel({ owner, repo, name })).data;
+        break;
+      } catch (error) {
+        if (error.status !== 404) throw error;
+      }
+    }
+    if (!existing) {
+      await github.rest.issues.createLabel({ owner, repo, name: markerLabel, color: label.color, description: label.description });
+    } else if (existing.name !== markerLabel || existing.color.toLowerCase() !== label.color.toLowerCase() || existing.description !== label.description) {
+      await github.rest.issues.updateLabel({ owner, repo, name: existing.name, new_name: markerLabel,
+        color: label.color, description: label.description });
+    }
+  }
 
   // AUTO_DRAFT_POLICY_START
   function decideDraftState({
@@ -141,17 +170,13 @@ module.exports = async ({ github, readGithub = github, context, core }) => {
     });
   }
 
-  async function removeMarker(number) {
-    try {
-      await github.rest.issues.removeLabel({
-        owner,
-        repo,
-        issue_number: number,
-        name: markerLabel,
-      });
-    } catch (error) {
-      if (error.status !== 404)
-        throw error;
+  async function removeMarker(number, names = markerNames) {
+    for (const name of names) {
+      try {
+        await github.rest.issues.removeLabel({ owner, repo, issue_number: number, name });
+      } catch (error) {
+        if (error.status !== 404) throw error;
+      }
     }
   }
 
@@ -182,10 +207,12 @@ module.exports = async ({ github, readGithub = github, context, core }) => {
   }
 
   async function syncPullRequest(number) {
+    core.info('Этап 1/4: читаю состояние ПР, решения ревьюверов и обсуждения.');
     const pullRequest = await loadPullRequest(number);
+    currentPullRequest = pullRequest;
     if (!pullRequest || pullRequest.state !== "OPEN") {
       core.info(`#${number}: ПР закрыт или не найден, пропускаю.`);
-      return;
+      return buildReport({ number, skipped: 'ПР закрыт или не найден: синхронизация не нужна.' });
     }
 
     const reviews = pullRequest.latestOpinionatedReviews.nodes
@@ -229,13 +256,15 @@ module.exports = async ({ github, readGithub = github, context, core }) => {
       ? Date.parse(latestReadyEvent.createdAt)
       : null;
     const hasMarker = pullRequest.labels.nodes
-      .some(label => label.name === markerLabel);
+      .some(label => markerNames.includes(label.name));
     const manualOverride = !pullRequest.isDraft && latestReadyAt !== null &&
       (latestBlockingAt === null || latestReadyAt >= latestBlockingAt);
     let readiness = { checksReady: false, codeRabbitReady: false, pendingChecks: [], checkItems: [] };
     let readinessError;
+    core.info('Этап 2/4: проверяю обязательные тесты и ответ CodeRabbit.');
     try {
-      readiness = await loadReadiness({ github: readGithub, owner, repo, pullRequest, rulesCache });
+      readiness = await loadReadiness({ github: readGithub, commentsGithub: github, owner, repo, pullRequest, rulesCache, reportAppSlug });
+      currentReportCheck = readiness.reportCheck;
     } catch (error) {
       readinessError = error;
       readiness.error = true;
@@ -255,7 +284,7 @@ module.exports = async ({ github, readGithub = github, context, core }) => {
       `blocking=${blockingReviews.length}, approvals=${approvals.length}, ` +
       `threadsResolved=${allBlockingThreadsResolved}, checksReady=${readiness.checksReady}, ` +
       `codeRabbitReady=${readiness.codeRabbitReady}, rateLimited=${readiness.rateLimited || false}, ` +
-      `pendingChecks=${readiness.pendingChecks.join(', ')}.`,
+      `pendingChecks=${readiness.pendingChecks.map(plain).join(', ')}.`,
     );
 
     const feedback = blockingReviews.map(review => {
@@ -266,8 +295,11 @@ module.exports = async ({ github, readGithub = github, context, core }) => {
           !unresolvedByAuthor.has(review.author?.login),
       };
     });
+    const reportState = { number, feedback, readiness, action,
+      manualDraft: pullRequest.isDraft && !hasMarker, manualOverride };
+    core.info('Этап 3/4: обновляю список задач в комментарии ПР.');
     await syncChecklist({ github, owner, repo, number, appSlug, feedback, readiness,
-      manualDraft: pullRequest.isDraft && !hasMarker, manualOverride });
+      manualDraft: pullRequest.isDraft && !hasMarker, manualOverride, comments: readiness.comments });
     // Сбой GitHub не доказывает неготовность ПР: обновляем пояснение, но не меняем черновик.
     if (readinessError)
       throw readinessError;
@@ -277,10 +309,18 @@ module.exports = async ({ github, readGithub = github, context, core }) => {
       if (current.head.sha !== pullRequest.headRefOid || current.base.ref !== pullRequest.baseRefName ||
           current.draft !== pullRequest.isDraft || current.state !== 'open') {
         core.info(`#${number}: состояние ПР изменилось во время проверки, откладываю синхронизацию.`);
-        return;
+        return buildReport({ ...reportState, skipped: 'ПР изменился во время чтения. Устаревшее решение не применяется; следующий запуск перечитает данные.' });
       }
     }
 
+    core.info(`Этап 4/4: ${buildReport(reportState).title}.`);
+    const oldMarkers = pullRequest.labels.nodes.map(label => label.name)
+      .filter(name => name !== markerLabel && markerNames.includes(name));
+    if (action === 'keep' && pullRequest.isDraft && oldMarkers.length > 0) {
+      if (!pullRequest.labels.nodes.some(label => label.name === markerLabel))
+        await addMarker(number);
+      await removeMarker(number, oldMarkers);
+    }
     if (action === "draft") {
       if (!hasMarker)
         await addMarker(number);
@@ -291,18 +331,19 @@ module.exports = async ({ github, readGithub = github, context, core }) => {
           await removeMarker(number);
         throw error;
       }
-      return;
+      return buildReport(reportState);
     }
 
     if (action === "ready") {
       // Сохраняем метку до успешной смены статуса: повторный запуск сможет завершить очистку.
       await markReadyForReview(pullRequest.id);
       await removeMarker(number);
-      return;
+      return buildReport(reportState);
     }
 
     if (action === "cleanup")
       await removeMarker(number);
+    return buildReport(reportState);
   }
 
   async function openPullRequestNumbers() {
@@ -384,17 +425,43 @@ module.exports = async ({ github, readGithub = github, context, core }) => {
   }
 
   const numbers = await targetPullRequestNumbers();
+  core.info(`Автодрафт запущен: событие ${context.eventName}; ПР для проверки: ${numbers.length}.`);
+  if (numbers.length === 0) {
+    core.info('Ничего не изменено: событие не требует пересчёта открытых ПР.');
+    return;
+  }
+  await ensureLabel();
   const failures = [];
   for (const number of numbers) {
+    currentPullRequest = null;
+    currentReportCheck = undefined;
+    core.startGroup?.(`ПР ${number}: проверка готовности`);
     try {
-      await syncPullRequest(number);
+      const report = await syncPullRequest(number);
+      await publishReport({ github: readGithub, core, owner, repo, number,
+        head: currentPullRequest?.state === 'OPEN' ? currentPullRequest.headRefOid : null, report, runId: context.runId, existing: currentReportCheck, checkAppSlug: reportAppSlug });
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
       failures.push(`#${number}: ${message}`);
       core.error(`#${number}: ${message}`);
+      const rateLimited = error.status === 429 || error.response?.headers?.['x-ratelimit-remaining'] === '0' ||
+        error.status === 403 && /rate.?limit|secondary.*limit/i.test(message);
+      try {
+        await publishReport({ github: readGithub, core, owner, repo, number, head: rateLimited ? null : currentPullRequest?.headRefOid,
+          report: buildReport({ number, error }), runId: context.runId, existing: currentReportCheck, checkAppSlug: reportAppSlug });
+      } catch (reportError) {
+        core.error(`Не удалось опубликовать результат ПР ${number}: ${reportError.message}`);
+      }
+      if (rateLimited) {
+        core.warning('GitHub ограничил запросы. Обход остановлен без повторных запросов; оставшиеся ПР не получили подтверждение готовности. Повтори запуск после восстановления лимита.');
+        break;
+      }
+    } finally {
+      core.endGroup?.();
     }
   }
 
   if (failures.length > 0)
     throw new Error(`Не удалось синхронизировать ${failures.length} ПР:\n${failures.join("\n")}`);
+  core.info(`✅ Синхронизация завершена успешно: обработано ${numbers.length} ПР. Причины решений записаны выше и в сводке запуска.`);
 };

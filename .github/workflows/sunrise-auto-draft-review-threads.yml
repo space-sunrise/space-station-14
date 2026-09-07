@@ -19,12 +19,7 @@ on:
     # Резервная синхронизация нужна для Resolve conversation: у GitHub Actions нет такого триггера.
     - cron: "2/5 * * * *"
 
-permissions:
-  actions: read
-  contents: read
-  checks: read
-  statuses: read
-  pull-requests: read
+permissions: {}
 
 jobs:
   sync-draft-state:
@@ -41,7 +36,6 @@ jobs:
       queue: max
     runs-on: ubuntu-latest
     env:
-      AUTO_DRAFT_LABEL: "auto-draft: unresolved review"
       AUTO_DRAFT_ALLOW_CODERABBIT_RATE_LIMIT: ${{ vars.AUTO_DRAFT_ALLOW_CODERABBIT_RATE_LIMIT != 'false' }}
     steps:
       - name: Generate GitHub App token
@@ -53,6 +47,9 @@ jobs:
           permission-contents: write
           permission-issues: write
           permission-pull-requests: write
+          permission-actions: read
+          permission-checks: write
+          permission-statuses: read
       - name: Checkout trusted automation script
         uses: actions/checkout@v6
         with:
@@ -66,10 +63,14 @@ jobs:
         uses: actions/github-script@v9
         env:
           AUTO_DRAFT_APP_SLUG: ${{ steps.app-token.outputs.app-slug }}
-          AUTO_DRAFT_READ_TOKEN: ${{ github.token }}
         with:
           github-token: ${{ steps.app-token.outputs.token }}
           script: |
-            const run = require(`${process.env.GITHUB_WORKSPACE}/Tools/_sunrise/auto_draft/review_threads.js`);
-            const readGithub = getOctokit(process.env.AUTO_DRAFT_READ_TOKEN);
-            await run({ github, readGithub, context, core });
+            try {
+              const run = require(`${process.env.GITHUB_WORKSPACE}/Tools/_sunrise/auto_draft/review_threads.js`);
+              await run({ github, context, core });
+            } catch (error) {
+              core.error(`Автодрафт не завершился: ${error.message}`);
+              await core.summary.addHeading('❌ Автодрафт не завершился').addCodeBlock(error.message).write();
+              throw error;
+            }
