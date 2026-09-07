@@ -263,13 +263,12 @@
         mask:
         - None
         layer:
-        - Impassable
         - BulletImpassable
         - Opaque
   - type: Sprite
     sprite: _Sunrise/Effects/EnergyDome/energydome_directed_durand.rsi
     layers:
-    - state: fulldirect
+    - state: durand
       color: "#64b9de"
   - type: PointLight
     enabled: true
@@ -284,7 +283,7 @@
   components:
   - type: Sprite
     layers:
-    - state: fulldirect
+    - state: durand
       color: "#b00000"
   - type: PointLight
     enabled: true
