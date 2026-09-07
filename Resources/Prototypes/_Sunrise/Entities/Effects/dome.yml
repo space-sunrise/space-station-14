@@ -267,7 +267,7 @@
         - BulletImpassable
         - Opaque
   - type: Sprite
-    sprite: _Sunrise/Effects/EnergyDome/energydome_directed_small.rsi
+    sprite: _Sunrise/Effects/EnergyDome/energydome_directed_durand.rsi
     layers:
     - state: fulldirect
       color: "#64b9de"
