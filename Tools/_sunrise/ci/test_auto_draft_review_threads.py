@@ -624,6 +624,18 @@ function mock(pulls, fail = '') {
   await run(env);
   assert.equal(env.queries.filter(query => query.loadlabels).length, 105);
   assert.deepEqual(env.actions, []);
+
+  // После ограничения GitHub не продолжаем посылать запросы для остальных ПР.
+  env = mock([pull(), pull({ id: 'PR2', number: 2 })]);
+  env.context.payload.inputs = {};
+  let limitedQueries = 0;
+  env.github.graphql = async () => {
+    limitedQueries++;
+    throw Object.assign(new Error('API rate limit exceeded'), { status: 429 });
+  };
+  await assert.rejects(run(env), /Не удалось синхронизировать 1 ПР/);
+  assert.equal(limitedQueries, 1);
+  assert.deepEqual(env.actions, []);
 })().catch(error => { console.error(error); process.exitCode = 1; });
 """
         result = subprocess.run(
