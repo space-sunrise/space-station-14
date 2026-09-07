@@ -899,6 +899,12 @@
     baseSprintSpeed: 1.25
   - type: Loadout
     prototypes: [ MechArmorHeavySyndiLoadout ]
+  - type: Reflect
+    reflectProb: 0.10
+    spread: 180
+    soundOnReflect: /Audio/_Starlight/Armor/Ricochet/ricochet1_1.ogg
+    reflects:
+    - NonEnergy
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Tag

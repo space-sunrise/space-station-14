@@ -5,4 +5,7 @@ ent-SunriseScrapDurandCircuitBoardSpawner = спавнер плат Дюранд
     .desc = Создаёт случайный обломок платы Дюранда.
     .suffix = Экспедиция
 
+ent-SunriseScrapKolobokArmorPlate = повреждённые бронеплиты «Колобка»
+    .desc = Повреждённые бронеплиты от меха «Колобок». Они уже не годятся для сборки, но сохраняют ценные металлы.
+
 ent-SunriseDurandCircuitBoardRepairResultSpawner = результат ремонта Дюранда

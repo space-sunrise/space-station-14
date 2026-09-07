@@ -64,6 +64,33 @@
     deleteSpawnerAfterSpawn: true
 
 - type: entity
+  parent: BaseScrap
+  id: SunriseScrapKolobokArmorPlate
+  name: damaged Kolobok armor plates
+  description: Damaged armor plates from a Kolobok mech. They are no longer fit for assembly, but retain valuable metals.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Materials/Scrap/Mech/durand.rsi
+    layers:
+    - state: armor-1
+      map: [ "base" ]
+  - type: Item
+    sprite: _Sunrise/Objects/Materials/Scrap/Mech/durand.rsi
+    size: Large
+  - type: RandomSprite
+    available:
+    - base:
+        armor-1: ""
+        armor-2: ""
+        armor-3: ""
+        armor-4: ""
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 3500
+      Plasteel: 2000
+      Silver: 900
+
+- type: entity
   id: SunriseDurandCircuitBoardRepairResultSpawner
   name: durand repair result
   categories: [ HideSpawnMenu ]

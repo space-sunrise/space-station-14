@@ -41,6 +41,18 @@
     {
       "name": "circuit-inhand-right",
       "directions": 4
+    },
+    {
+      "name": "armor-1"
+    },
+    {
+      "name": "armor-2"
+    },
+    {
+      "name": "armor-3"
+    },
+    {
+      "name": "armor-4"
     }
   ]
 }

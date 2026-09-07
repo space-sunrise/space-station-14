@@ -1376,6 +1376,44 @@
   - type: Destructible
     thresholds:
     - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ScrapSteel:
+            min: 2
+            max: 4
+          MechGygaxHarnessSpawnerLow:
+            min: 1
+            max: 1
+          MechGygaxHeadSpawnerLow:
+            min: 1
+            max: 1
+          MechGygaxLArmSpawnerLow:
+            min: 1
+            max: 1
+          MechGygaxRArmSpawnerLow:
+            min: 1
+            max: 1
+          MechGygaxLLegSpawnerLow:
+            min: 1
+            max: 1
+          MechGygaxRLegSpawnerLow:
+            min: 1
+            max: 1
+          MechGygaxArmorPlateSpawnerLow:
+            min: 1
+            max: 1
+          MechGygaxBoardSpawnerLow:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
         !type:DamageTypeTrigger
         damageType: Heat
         damage: 1500
@@ -1510,8 +1548,15 @@
     sprite: _Sunrise/Objects/Specific/Mech/durand.rsi
     scale: 1.08, 1.08
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
       state: kolobok
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: kolobok-moving
+    noMovementLayers:
+      movement:
+        state: kolobok
   - type: RotationVisuals
     defaultRotation: 0
     horizontalRotation: 0
@@ -1531,8 +1576,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      400: Critical
-      401: Dead
+      800: Critical
+      801: Dead
   - type: TriggerOnMobstateChange
     mobState:
     - Dead
@@ -1549,6 +1594,41 @@
     proto: MobSovietT2Rifle
   - type: Destructible
     thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 800
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ScrapSteel:
+            min: 2
+            max: 4
+          MechKolobokHarnessSpawnerLow:
+            min: 1
+            max: 1
+          MechKolobokLArmSpawnerLow:
+            min: 1
+            max: 1
+          MechKolobokRArmSpawnerLow:
+            min: 1
+            max: 1
+          MechKolobokLLegSpawnerLow:
+            min: 1
+            max: 1
+          MechKolobokRLegSpawnerLow:
+            min: 1
+            max: 1
+          MechKolobokArmorPlateSpawner:
+            min: 1
+            max: 1
+          MechDurandBoardSpawnerLow:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
     - trigger:
         !type:DamageTypeTrigger
         damageType: Heat
@@ -1592,8 +1672,8 @@
   - type: Stamina
     baseCritThreshold: 9999
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1.5
-    baseSprintSpeed: 2.25
+    baseWalkSpeed: 1
+    baseSprintSpeed: 1
   - type: ExplosionResistance
     damageCoefficient: 0.7
   - type: Repairable
