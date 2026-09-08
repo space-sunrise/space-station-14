@@ -1,7 +1,5 @@
 ent-CrateArmoryShotgunTrenchgun4034Sawn = Trenchgun4034 crate
     .desc = Contains three Trenchgun4034 with three Bandolier. Requires Armory access to open.
-ent-CrateArmoryCombatShotgun = Combat Shotgun crate
-    .desc = Contains two Combat Shotgun with two Bandolier and four buckshot box. Requires Armory access to open.
 ent-CrateArmoryShotgunAmmo = Shotgun Ammo crate
     .desc = Contains four Box Shotgun ammo. Requires Armory access to open.
 ent-CrateArmoryMP5 = MP5 crate

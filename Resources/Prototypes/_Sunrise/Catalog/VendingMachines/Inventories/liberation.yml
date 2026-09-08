@@ -37,7 +37,6 @@
     WeaponRifleSKM24: 3
     WeaponRifleLecterMk2: 3
     WeaponRifleFoam: 3
-    WeaponRifleARG: 3
     WeaponRifleM52: 3
     WeaponRifleM90GrenadeLauncher: 3
     WeaponRifleLecter: 3
@@ -63,7 +62,6 @@
     WeaponShotgunTrenchgun4034Sawn: 3
     WeaponShotgunRiot: 3
     WeaponShotgunRiotSawn: 3
-    WeaponShotgunCombat: 3
     WeaponShotgunCycler: 3
     WeaponShotgunGA12: 3
     WeaponShotgunMinotaur: 3
@@ -71,14 +69,13 @@
 
     WeaponSubMachineGunAtreides: 3
     WeaponSubMachineGunC20r: 3
-    WeaponSubMachineGunC40r: 3
+    WeaponSubMachineGunVector: 3
     WeaponSubMachineGunDrozd: 3
     WeaponSubMachineGunDrozdMk2: 3
     WeaponSubMachineGunP90: 3
     WeaponSubMachineGunForged: 6
     WeaponSubMachineGunMP5: 3
     WeaponSubMachineGunNewVector: 3
-    WeaponRifleLecterMk3: 3
     WeaponAJ100: 3
     WeaponSIAR52: 3
     WeaponSubMachineGunSP91RC: 3

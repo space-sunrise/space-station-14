@@ -66,10 +66,6 @@ ent-GunSafeShotgunRiot = safe
     .suffix = Shotgun Riot
     .desc = { ent-GunSafeBaseSecure.desc }
 
-ent-GunSafeShotgunCombat = safe
-    .suffix = Shotgun Combat
-    .desc = { ent-GunSafeBaseSecure.desc }
-
 ent-GunSafeDoubleBarreled = safe
     .desc = According to the paperwork — state-of-the-art tactical shotguns. In reality — antique double-barrels.
     .suffix = Shotgun Double-Barreled

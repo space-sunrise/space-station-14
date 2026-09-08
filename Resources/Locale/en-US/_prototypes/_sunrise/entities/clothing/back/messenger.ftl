@@ -14,6 +14,3 @@ ent-ClothingBackpackMessengerArcadia = arcadia messenger bag
     .desc = { ent-ClothingBackpackMessengerPassenger.desc }
 ent-ClothingBackpackMessengerPirate = pirate messenger bag
     .desc = A robust messenger bag for war crimes. Yarr.
-
-ent-ClothingBackpackMessengerMercenaryBundleARG = ARG bundle
-    .desc = Contains the standard assault rifle.

@@ -1170,9 +1170,9 @@ ClothingBackpackDuffelWeaponRifleBR64Filled: ClothingBackpackDuffelWeaponRifleSK
 WeaponShotgunMakeshift: WeaponShotgunImprovised
 MagazineVP78: MagazinePistol40FMJ
 MagazineNewVector: MagazinePistolHighCapacitySP
-WeaponShotgunSPAS12: WeaponShotgunCombat
-WeaponShotgunSPAS12Rubber: WeaponShotgunCombat
-GunSafeShotgunSPAS12: GunSafeShotgunCombat
+WeaponShotgunSPAS12: WeaponShotgunEnforcer
+WeaponShotgunSPAS12Rubber: WeaponShotgunEnforcer
+GunSafeShotgunSPAS12: GunSafeShotgunEnforcer
 # 2026-08-02
 WeaponDominator: WeaponMiniEnergyGun
 WeaponEnergyGunPistolSecurity: WeaponEnergyGunPistol
@@ -1181,8 +1181,8 @@ WeaponEnergyGun: null
 WeaponEnergyGunPulseRevolver: null
 WeaponPDW9: WeaponEnergyGunPistol
 WeaponPistolStechkin: SunriseWeaponPistolAPS
-WeaponAMS-42: WeaponRifleLecterMk3
-ClothingBackpackDuffelWeaponAMS42Filled: ClothingBackpackDuffelWeaponLecterMk3Filled
+WeaponAMS-42: WeaponRifleLecterMk2
+ClothingBackpackDuffelWeaponAMS42Filled: ClothingBackpackDuffelWeaponRifleLecterFilled
 WeaponSubMachineGunMP7: WeaponSubMachineGunMP5
 ClothingBackpackDuffelWeaponSubMachineGunMP7Filled: ClothingBackpackDuffelWeaponSubMachineGunMP5Filled
 GunSafeEnergyGunPistolSecurity: null
@@ -1233,4 +1233,14 @@ MagazineBoxHeavyRifleHP: MagazineBoxHeavyRifleSP
 RifleHeavyMagazineHP: RifleHeavyMagazineSP
 MagazineDragunovHP: MagazineDragunovSP
 MagazineBoxRifleMachineHP: MagazineBoxRifleMachineSP
+# 2026-09-08
+WeaponRifleLecterMk3: WeaponRifleLecterMk2
+WeaponRifleLecterMk3Empty: WeaponRifleLecterMk2Empty
+ClothingBackpackDuffelWeaponLecterMk3Filled: ClothingBackpackDuffelWeaponRifleLecterFilled
+LecterMk3Upgrade: null
+WeaponShotgunCombat: WeaponShotgunEnforcer
+GunSafeShotgunCombat: GunSafeShotgunEnforcer
+CrateArmoryCombatShotgun: CrateArmoryShotgun
+WeaponRifleARG: null
+ClothingBackpackMessengerMercenaryBundleARG: null
 # region Sunrise-End

@@ -271,7 +271,6 @@
   recipeUnlocks:
   - VestSecUpgradeBulletHeavy
   - VestSecUpgradeWeb
-  - LecterMk3Upgrade
   technologyPrerequisites:
   - CombatEquipment
   radioChannels:
