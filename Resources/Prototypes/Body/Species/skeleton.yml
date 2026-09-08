@@ -185,6 +185,8 @@
   - type: ToggleableNightVision
     effect: EffectNightVisionPirate
   - type: FootprintEmitter
+  - type: Scent
+    personalScentProfile: SunriseSkeleton
   # Sunrise-End
 
 - type: entity

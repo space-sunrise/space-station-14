@@ -55,6 +55,12 @@
           base:
             Primed: { state: activated }
             Unprimed: { state: icon }
+    # Sunrise edit start
+    - type: ScentEmitter
+      spot: AnySlot
+      scent: SunriseGunpowder
+      duration: 400
+    # Sunrise edit end
 
 - type: entity
   id: HotPotatoEffect
@@ -111,6 +117,12 @@
     - Recyclable
     - Trash
     - BananaPeel
+  # Sunrise edit start
+  - type: ScentEmitter
+    spot: AnySlot
+    scent: SunriseGunpowder
+    duration: 400
+  # Sunrise edit end
 
 - type: entity
   parent: BaseItem
@@ -145,3 +157,9 @@
   - type: Construction
     graph: SnapPopExplosiveGraph
     node: snapPopExplosive
+  # Sunrise edit start
+  - type: ScentEmitter
+    spot: AnySlot
+    scent: SunriseGunpowder
+    duration: 400
+  # Sunrise edit end

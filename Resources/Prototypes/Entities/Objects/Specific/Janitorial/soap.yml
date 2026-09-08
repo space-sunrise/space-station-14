@@ -69,6 +69,7 @@
   - type: CleansForensics
   - type: Residue
     residueAdjective: residue-slippery
+  - type: ScentCleaning # Sunrise-edit
 
 - type: entity
   parent: BaseSoap

@@ -5,6 +5,10 @@
   components:
   - type: ZombieImmune # yeah no
   - type: FlashImmunity # no brain to brainwash, eyes are robotic
+  # Sunrise-Start
+  - type: Scent
+    personalScentProfile: SunriseTerminator
+  # Sunrise-End
 
 - type: entity
   parent: [MobHuman, MobTerminatorBase]
