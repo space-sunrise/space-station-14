@@ -282,6 +282,61 @@
       path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
 
 - type: entity
+  name: proto-kinetic robot heavy accelerator
+  id: WeaponProtoKineticHeavyBorg
+  parent: BaseItem
+  description: What happens when you bolt a portable "Matter Dematerializer" onto a cyborg chassis. 
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Basic/kinetic_heavy_big.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Basic/kinetic_heavy.rsi
+    size: Ginormous
+  - type: Gun
+    projectileSpeed: 15
+    fireRate: 1.4
+    selectedMode: Burst
+    angleDecay: 45
+    minAngle: 1
+    maxAngle: 2
+    burstFireRate: 4
+    shotsPerBurst: 4
+    burstCooldown: 1.5
+    availableModes:
+    - SemiAuto
+    - Burst
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+      params:
+        variation: 0.12
+    bigTrigger: true
+  - type: AmmoCounter
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.AmmoVisuals.HasAmmo:
+        empty-icon:
+          True: { visible: False }
+          False: { visible: True }
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 2
+    rechargeSound:
+      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      params:
+        pitch: 1.2
+        variation: 0.08
+  - type: HeldSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
+  - type: BasicEntityAmmoProvider
+    proto: BulletKineticShuttle
+    capacity: 9
+    count: 9
+
+- type: entity
   parent: HypoBorgStandard
   id: HypoBorgMedicalSyndicate
   name: gorlax robot hypospray

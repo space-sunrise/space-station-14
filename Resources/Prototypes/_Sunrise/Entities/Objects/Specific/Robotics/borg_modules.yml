@@ -202,10 +202,10 @@
     - state: icon-mining
   - type: ItemBorgModule
     hands:
-    - item: WeaponProtoKineticAcceleratorBorg
+    - item: WeaponProtoKineticHeavyBorg
     - item: WeaponCrusherDagger
   - type: BorgModuleIcon
-    icon: { sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi, state: icon }
+    icon: { sprite: _Sunrise/Objects/Weapons/Guns/Basic/kinetic_heavy_big.rsi, state: icon }
 
 - type: entity
   id: BorgModuleJetpack
