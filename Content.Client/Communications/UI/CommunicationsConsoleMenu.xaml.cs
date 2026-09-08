@@ -36,6 +36,7 @@ namespace Content.Client.Communications.UI
         public event Action? OnEmergencyLevel;
         public event Action<string>? OnAlertLevel;
         public event Action<string, bool>? OnAdditionalAlertLevel; // Sunrise-Edit
+        public event Action<NetEntity>? OnAlertStation; // Sunrise-Edit
         public event Action<string>? OnAnnounce;
         public event Action<string>? OnBroadcast;
         public event Action? OnToggleRelay; // Sunrise-Edit
@@ -82,6 +83,17 @@ namespace Content.Client.Communications.UI
                     OnAlertLevel?.Invoke(cast);
                 }
             };
+
+            // Sunrise added start - выбор станции для удалённого управления кодами
+            AlertStationButton.OnItemSelected += args =>
+            {
+                if (AlertStationButton.GetItemMetadata(args.Id) is not NetEntity station)
+                    return;
+
+                AlertStationButton.Select(args.Id);
+                OnAlertStation?.Invoke(station);
+            };
+            // Sunrise added end
 
 
             AlertLevelButton.Disabled = !AlertLevelSelectable;
@@ -165,6 +177,35 @@ namespace Content.Client.Communications.UI
             }
 
             AdditionalAlertLevelsSection.Visible = alerts.Count > 0;
+        }
+
+        public void UpdateAlertStations(
+            List<CommunicationsConsoleAlertStationState> stations,
+            NetEntity? selectedStation,
+            bool hasAccess)
+        {
+            AlertStationButton.Clear();
+            foreach (var station in stations)
+            {
+                AlertStationButton.AddItem(station.Name);
+                AlertStationButton.SetItemMetadata(AlertStationButton.ItemCount - 1, station.Station);
+
+                if (station.Station == selectedStation)
+                    AlertStationButton.Select(AlertStationButton.ItemCount - 1);
+            }
+
+            AlertStationSelectorContainer.Visible = stations.Count > 0;
+            AlertStationButton.Disabled = !hasAccess || stations.Count < 2;
+        }
+
+        public void DisableAlertLevelControls()
+        {
+            AlertLevelButton.Disabled = true;
+            foreach (var child in AdditionalAlertLevelsContainer.Children)
+            {
+                if (child is CheckBox checkBox)
+                    checkBox.Disabled = true;
+            }
         }
         // Sunrise added end
 

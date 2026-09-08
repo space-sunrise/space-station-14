@@ -22,6 +22,7 @@ using Content.Shared.Popups;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
+using Content.Shared.Station.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 
@@ -54,6 +55,7 @@ namespace Content.Server.Communications
             // Messages from the BUI
             SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleSelectAlertLevelMessage>(OnSelectAlertLevelMessage);
             SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleSetAdditionalAlertLevelMessage>(OnSetAdditionalAlertLevelMessage); // Sunrise-Edit
+            SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleSelectAlertStationMessage>(OnSelectAlertStationMessage); // Sunrise-Edit
             SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleAnnounceMessage>(OnAnnounceMessage);
             SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleBroadcastMessage>(OnBroadcastMessage);
             SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleCallEmergencyShuttleMessage>(OnCallShuttleMessage);
@@ -137,7 +139,7 @@ namespace Content.Server.Communications
             var query = EntityQueryEnumerator<CommunicationsConsoleComponent>();
             while (query.MoveNext(out var uid, out var comp))
             {
-                var entStation = _stationSystem.GetOwningStation(uid);
+                var entStation = ResolveAlertStation(uid, comp); // Sunrise-Edit
                 if (args.Station == entStation)
                     UpdateCommsConsoleInterface(uid, comp);
             }
@@ -149,7 +151,7 @@ namespace Content.Server.Communications
             var query = EntityQueryEnumerator<CommunicationsConsoleComponent>();
             while (query.MoveNext(out var uid, out var comp))
             {
-                if (args.Station == _stationSystem.GetOwningStation(uid))
+                if (args.Station == ResolveAlertStation(uid, comp))
                     UpdateCommsConsoleInterface(uid, comp);
             }
         }
@@ -172,11 +174,14 @@ namespace Content.Server.Communications
         /// </summary>
         public void UpdateCommsConsoleInterface(EntityUid uid, CommunicationsConsoleComponent comp)
         {
-            var stationUid = _stationSystem.GetOwningStation(uid);
+            var stationUid = ResolveAlertStation(uid, comp); // Sunrise-Edit
             List<string>? levels = null;
             string currentLevel = default!;
             float currentDelay = 0;
             var additionalLevels = new List<CommunicationsConsoleAdditionalAlertLevelState>(); // Sunrise-Edit
+            var alertStations = comp.CanSelectAlertStation
+                ? GetAlertStationStates()
+                : []; // Sunrise-Edit
 
             if (stationUid != null)
             {
@@ -234,10 +239,98 @@ namespace Content.Server.Communications
                 comp.IsRelaying,
                 MathF.Max(0f, comp.RelayCooldownRemaining),
                 MathF.Max(0f, comp.RelayTimeRemaining),
-                additionalAlertLevels: additionalLevels // Sunrise-Edit
+                additionalAlertLevels: additionalLevels,
+                alertStations: alertStations,
+                selectedAlertStation: comp.CanSelectAlertStation && stationUid != null
+                    ? GetNetEntity(stationUid.Value)
+                    : null // Sunrise-Edit
                 // Sunrise-End
             ));
         }
+
+        // Sunrise added start - привилегированная консоль может управлять кодами станции на другой карте
+        private EntityUid? ResolveAlertStation(EntityUid console, CommunicationsConsoleComponent component)
+        {
+            var owningStation = _stationSystem.GetOwningStation(console);
+            if (!component.CanSelectAlertStation)
+                return owningStation != null && IsValidAlertStation(owningStation.Value)
+                    ? owningStation
+                    : null;
+
+            if (component.SelectedAlertStation is { } selected && IsValidAlertStation(selected))
+                return selected;
+
+            if (owningStation != null && IsValidAlertStation(owningStation.Value))
+            {
+                component.SelectedAlertStation = owningStation;
+                return owningStation;
+            }
+
+            foreach (var station in _stationSystem.GetStations())
+            {
+                if (!IsValidAlertStation(station))
+                    continue;
+
+                component.SelectedAlertStation = station;
+                return station;
+            }
+
+            component.SelectedAlertStation = null;
+            return null;
+        }
+
+        private List<CommunicationsConsoleAlertStationState> GetAlertStationStates()
+        {
+            var result = new List<CommunicationsConsoleAlertStationState>();
+            foreach (var station in _stationSystem.GetStations())
+            {
+                if (!IsValidAlertStation(station))
+                    continue;
+
+                result.Add(new CommunicationsConsoleAlertStationState(
+                    GetNetEntity(station),
+                    MetaData(station).EntityName));
+            }
+
+            result.Sort((left, right) => string.Compare(left.Name, right.Name, StringComparison.CurrentCulture));
+            return result;
+        }
+
+        private bool IsValidAlertStation(EntityUid station)
+        {
+            return HasComp<StationDataComponent>(station)
+                && TryComp<AlertLevelComponent>(station, out var alert)
+                && alert.AlertLevels != null;
+        }
+
+        /// <summary>
+        /// Attempts to select a station for alert-level changes made from the specified console.
+        /// </summary>
+        public bool TrySelectAlertStation(
+            Entity<CommunicationsConsoleComponent> console,
+            EntityUid station,
+            EntityUid user)
+        {
+            if (!CanSelectAlertStation(console, station, user))
+                return false;
+
+            console.Comp.SelectedAlertStation = station;
+            return true;
+        }
+
+        /// <summary>
+        /// Checks whether the specified console and user may select the station as an alert-level target.
+        /// </summary>
+        public bool CanSelectAlertStation(
+            Entity<CommunicationsConsoleComponent> console,
+            EntityUid station,
+            EntityUid user)
+        {
+            return console.Comp.CanSelectAlertStation
+                && CanUse(user, console)
+                && IsValidAlertStation(station);
+        }
+        // Sunrise added end
 
         private static bool CanAnnounce(CommunicationsConsoleComponent comp)
         {
@@ -300,7 +393,7 @@ namespace Content.Server.Communications
                 return;
             }
 
-            var stationUid = _stationSystem.GetOwningStation(uid);
+            var stationUid = ResolveAlertStation(uid, comp); // Sunrise-Edit
             if (stationUid == null
                 || !TryComp<AlertLevelComponent>(stationUid.Value, out var alert)
                 || alert.AlertLevels == null
@@ -341,7 +434,7 @@ namespace Content.Server.Communications
                 return;
             }
 
-            var stationUid = _stationSystem.GetOwningStation(uid);
+            var stationUid = ResolveAlertStation(uid, comp); // Sunrise-Edit
             if (stationUid == null)
                 return;
 
@@ -388,6 +481,20 @@ namespace Content.Server.Communications
         {
             alert.CurrentDelay = _cfg.GetCVar(CCVars.GameAlertLevelChangeDelay);
             alert.ActiveDelay = true;
+        }
+
+        private void OnSelectAlertStationMessage(
+            EntityUid uid,
+            CommunicationsConsoleComponent component,
+            CommunicationsConsoleSelectAlertStationMessage message)
+        {
+            if (message.Actor is not { Valid: true } user
+                || !TryGetEntity(message.Station, out var stationUid)
+                || stationUid is not { } station
+                || !TrySelectAlertStation((uid, component), station, user))
+                return;
+
+            UpdateCommsConsoleInterface(uid, component);
         }
         // Sunrise added end
 

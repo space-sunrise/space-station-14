@@ -34,6 +34,7 @@ namespace Content.Client.Communications.UI
             _menu.OnBroadcast += BroadcastButtonPressed;
             _menu.OnAlertLevel += AlertLevelSelected;
             _menu.OnAdditionalAlertLevel += AdditionalAlertLevelSelected; // Sunrise-Edit
+            _menu.OnAlertStation += AlertStationSelected; // Sunrise-Edit
             _menu.OnEmergencyLevel += EmergencyShuttleButtonPressed;
             _menu.OnToggleRelay += ToggleRelayPressed; // Sunrise-Edit
         }
@@ -45,6 +46,16 @@ namespace Content.Client.Communications.UI
                 return;
 
             SendMessage(new CommunicationsConsoleSetAdditionalAlertLevelMessage(level, enabled));
+        }
+
+        private void AlertStationSelected(NetEntity station)
+        {
+            if (!HasAccess() || _menu == null)
+                return;
+
+            // Ждём подтверждённое состояние выбранной станции, чтобы команда не ушла на предыдущую.
+            _menu.DisableAlertLevelControls();
+            SendMessage(new CommunicationsConsoleSelectAlertStationMessage(station));
         }
         // Sunrise added end
 
@@ -116,6 +127,10 @@ namespace Content.Client.Communications.UI
                 _menu.CountdownEnd = commsState.ExpectedCountdownEnd;
 
                 _menu.UpdateCountdown();
+                _menu.UpdateAlertStations(
+                    commsState.AlertStations,
+                    commsState.SelectedAlertStation,
+                    hasAccess); // Sunrise-Edit
                 _menu.UpdateAlertLevels(commsState.AlertLevels, _menu.CurrentLevel);
                 _menu.UpdateAdditionalAlertLevels(commsState.AdditionalAlertLevels, hasAccess); // Sunrise-Edit
                 _menu.AlertLevelButton.Disabled = !_menu.AlertLevelSelectable;

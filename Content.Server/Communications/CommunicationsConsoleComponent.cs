@@ -92,6 +92,18 @@ namespace Content.Server.Communications
         /// </summary>
         [DataField]
         public bool ForceAlertLevelChanges;
+
+        /// <summary>
+        /// Whether this console may choose which station receives alert-level changes.
+        /// </summary>
+        [DataField]
+        public bool CanSelectAlertStation;
+
+        /// <summary>
+        /// Station currently selected for alert-level changes.
+        /// </summary>
+        [ViewVariables(VVAccess.ReadOnly)]
+        public EntityUid? SelectedAlertStation;
         // Sunrise added end
 
         // Sunrise-Start

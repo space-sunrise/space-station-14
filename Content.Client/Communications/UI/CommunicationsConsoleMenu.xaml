@@ -45,6 +45,19 @@
         <BoxContainer Orientation="Vertical"
                       Margin="0 2">
 
+            <!-- Sunrise added start - выбор станции для удалённого управления кодами -->
+            <BoxContainer Name="AlertStationSelectorContainer"
+                          Orientation="Horizontal"
+                          Margin="0 0 0 4"
+                          Visible="False">
+                <Label Text="{Loc 'comms-console-menu-alert-station'}"
+                       VAlign="Center"
+                       Margin="0 0 6 0"/>
+                <OptionButton Name="AlertStationButton"
+                              HorizontalExpand="True"/>
+            </BoxContainer>
+            <!-- Sunrise added end -->
+
             <controls:StripeBack>
                 <BoxContainer Orientation="Horizontal">
                     <Label HorizontalExpand="True" Text="{Loc 'comms-console-menu-alert-level-header'}"

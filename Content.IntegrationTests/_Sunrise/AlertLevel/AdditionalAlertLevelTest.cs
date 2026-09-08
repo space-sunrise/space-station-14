@@ -6,6 +6,7 @@ using Content.Server.Communications;
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
+using Content.Shared.Station.Components;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
@@ -264,6 +265,69 @@ public sealed class AdditionalAlertLevelTest
                     centCommConsole,
                     "epsilon",
                     levels["epsilon"]), Is.False);
+            });
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task CentCommConsoleCanSelectRemoteAlertStation()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var entityManager = server.EntMan;
+        var prototypeManager = server.ResolveDependency<IPrototypeManager>();
+        var communicationsSystem = server.System<CommunicationsConsoleSystem>();
+
+        EntityUid console = default;
+        CommunicationsConsoleComponent consoleComponent = null!;
+        EntityUid user = default;
+        EntityUid validStation = default;
+        EntityUid invalidStation = default;
+        var validStationSelected = false;
+        var invalidStationRejected = false;
+        var disabledSelectionRejected = false;
+
+        await server.WaitPost(() =>
+        {
+            console = entityManager.SpawnEntity(null, MapCoordinates.Nullspace);
+            consoleComponent = entityManager.AddComponent<CommunicationsConsoleComponent>(console);
+            consoleComponent.CanSelectAlertStation = true;
+            user = entityManager.SpawnEntity(null, MapCoordinates.Nullspace);
+
+            validStation = entityManager.SpawnEntity(null, MapCoordinates.Nullspace);
+            entityManager.AddComponent<StationDataComponent>(validStation);
+            var validAlert = entityManager.AddComponent<AlertLevelComponent>(validStation);
+            validAlert.AlertLevels = prototypeManager.Index<AlertLevelPrototype>(AlertLevelSystem.DefaultAlertLevelSet);
+
+            invalidStation = entityManager.SpawnEntity(null, MapCoordinates.Nullspace);
+            entityManager.AddComponent<StationDataComponent>(invalidStation);
+
+            validStationSelected = communicationsSystem.TrySelectAlertStation(
+                (console, consoleComponent),
+                validStation,
+                user);
+            invalidStationRejected = !communicationsSystem.TrySelectAlertStation(
+                (console, consoleComponent),
+                invalidStation,
+                user);
+
+            consoleComponent.CanSelectAlertStation = false;
+            disabledSelectionRejected = !communicationsSystem.TrySelectAlertStation(
+                (console, consoleComponent),
+                validStation,
+                user);
+        });
+
+        await server.WaitAssertion(() =>
+        {
+            Assert.Multiple(() =>
+            {
+                Assert.That(validStationSelected, Is.True);
+                Assert.That(invalidStationRejected, Is.True);
+                Assert.That(disabledSelectionRejected, Is.True);
+                Assert.That(consoleComponent.SelectedAlertStation, Is.EqualTo(validStation));
             });
         });
 

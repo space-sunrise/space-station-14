@@ -512,6 +512,7 @@
     announceVoice: NecoArcTwo
     allowedAlertLevels: [green, blue, violet, yellow, red, gamma, delta] # Sunrise-Edit
     forceAlertLevelChanges: true # Sunrise-Edit
+    canSelectAlertStation: true # Sunrise-Edit
 
 - type: entity
   parent: BaseComputerShuttle

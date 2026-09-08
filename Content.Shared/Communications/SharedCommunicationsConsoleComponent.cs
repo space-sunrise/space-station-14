@@ -19,6 +19,8 @@ namespace Content.Shared.Communications
         public string CurrentAlert;
         public float CurrentAlertDelay;
         public readonly List<CommunicationsConsoleAdditionalAlertLevelState> AdditionalAlertLevels; // Sunrise-Edit
+        public readonly List<CommunicationsConsoleAlertStationState> AlertStations; // Sunrise-Edit
+        public readonly NetEntity? SelectedAlertStation; // Sunrise-Edit
         // Sunrise-Start
         public readonly bool CanRelay;
         public readonly bool IsRelaying;
@@ -26,7 +28,20 @@ namespace Content.Shared.Communications
         public readonly float RelayTimeRemaining;
         // Sunrise-End
 
-        public CommunicationsConsoleInterfaceState(bool canAnnounce, bool canCall, List<string>? alertLevels, string currentAlert, float currentAlertDelay, TimeSpan? expectedCountdownEnd = null, bool canRelay = false, bool isRelaying = false, float relayCooldownRemaining = 0f, float relayTimeRemaining = 0f, List<CommunicationsConsoleAdditionalAlertLevelState>? additionalAlertLevels = null) // Sunrise-Edit
+        public CommunicationsConsoleInterfaceState(
+            bool canAnnounce,
+            bool canCall,
+            List<string>? alertLevels,
+            string currentAlert,
+            float currentAlertDelay,
+            TimeSpan? expectedCountdownEnd = null,
+            bool canRelay = false,
+            bool isRelaying = false,
+            float relayCooldownRemaining = 0f,
+            float relayTimeRemaining = 0f,
+            List<CommunicationsConsoleAdditionalAlertLevelState>? additionalAlertLevels = null,
+            List<CommunicationsConsoleAlertStationState>? alertStations = null,
+            NetEntity? selectedAlertStation = null) // Sunrise-Edit
         {
             CanAnnounce = canAnnounce;
             CanCall = canCall;
@@ -36,6 +51,8 @@ namespace Content.Shared.Communications
             CurrentAlert = currentAlert;
             CurrentAlertDelay = currentAlertDelay;
             AdditionalAlertLevels = additionalAlertLevels ?? []; // Sunrise-Edit
+            AlertStations = alertStations ?? []; // Sunrise-Edit
+            SelectedAlertStation = selectedAlertStation; // Sunrise-Edit
             // Sunrise-Start
             CanRelay = canRelay;
             IsRelaying = isRelaying;
@@ -71,6 +88,30 @@ namespace Content.Shared.Communications
         {
             Level = level;
             Enabled = enabled;
+        }
+    }
+
+    [Serializable, NetSerializable]
+    public sealed class CommunicationsConsoleAlertStationState
+    {
+        public readonly NetEntity Station;
+        public readonly string Name;
+
+        public CommunicationsConsoleAlertStationState(NetEntity station, string name)
+        {
+            Station = station;
+            Name = name;
+        }
+    }
+
+    [Serializable, NetSerializable]
+    public sealed class CommunicationsConsoleSelectAlertStationMessage : BoundUserInterfaceMessage
+    {
+        public readonly NetEntity Station;
+
+        public CommunicationsConsoleSelectAlertStationMessage(NetEntity station)
+        {
+            Station = station;
         }
     }
     // Sunrise added end
