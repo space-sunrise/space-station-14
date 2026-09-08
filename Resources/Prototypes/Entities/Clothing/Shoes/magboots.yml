@@ -133,6 +133,9 @@
         blacklist:
           tags:
           - BigSmallArms
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:ContainerSlot
   - type: ContainerFill
     containers:
       item:
@@ -149,6 +152,12 @@
     sprite: Clothing/Shoes/Boots/magboots-ert.rsi
   - type: Clothing
     sprite: Clothing/Shoes/Boots/magboots-ert.rsi
+  # Sunrise-Start
+  - type: ContainerFill
+    containers:
+      item:
+      - TacticalAxe
+  # Sunrise-End
 
 - type: entity
   parent: BaseAction
