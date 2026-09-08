@@ -49,6 +49,12 @@
   id: StatusEffectForcedSleeping
   name: forced sleep
   components:
+  # Sunrise-Start
+  - type: StatusEffect 
+    blacklist:
+      tags:
+      - SleepImmune
+  # Sunrise-End
   - type: ForcedSleepingStatusEffect
   - type: StunnedStatusEffect
   - type: KnockdownStatusEffect

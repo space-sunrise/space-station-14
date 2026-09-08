@@ -18,6 +18,9 @@
   id: NoPaint
 
 - type: Tag
+  id: SleepImmune
+
+- type: Tag
   id: BigSmallArms
 
 - type: Tag

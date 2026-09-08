@@ -150,6 +150,7 @@
     - DoorBumpOpener
     - StunImmune
     - CarpRiftHealTarget #  Sunrise-edit
+    - SleepImmune # Sunrise-edit - легко усыплялся снотворным, что делало бой читерским
   - type: Puller
     needsHands: false
   - type: RandomMetadata
