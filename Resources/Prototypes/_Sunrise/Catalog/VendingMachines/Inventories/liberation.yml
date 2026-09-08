@@ -380,6 +380,18 @@
     # Test Tools
     AdminPDA: 3
     AccessConfiguratorUniversal: 3
+    # Uplinks
+    BaseUplinkRadioDebug: 3
+    BaseUplinkRadioDebug999: 3
+    BaseUplinkRadio60TC: 3
+    UplinkRadioAssaultOperatives40TC: 3
+    UplinkNTERTAmber: 3
+    UplinkNTERTRed: 3
+    UplinkNTERTGamma: 3
+    UplinkNTERTEpsilon: 3
+    UplinkNTERTBlueShield: 3
+    UplinkNTERTDebug: 3
+    PirateUplinkDebug: 3
     # Mechs
     MechHauler: 2
     MechBigYarrkeBattery: 2
