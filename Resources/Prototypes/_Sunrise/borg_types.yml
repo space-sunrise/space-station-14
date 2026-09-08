@@ -204,7 +204,7 @@
     laws: SecurityLawsetAiAssigned
   - type: Access
     tags:
-    - Borg # Sunrise-Edit - без этого тега турели считают сб-борга враждебной целью
+    - Borg # Без него ИИ турели стреляют по СБ боргам
     - EmergencyShuttleRepealAll
     - Command
     - Lawyer
