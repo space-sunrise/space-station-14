@@ -1183,12 +1183,12 @@ WeaponPDW9: WeaponEnergyGunPistol
 WeaponPistolStechkin: SunriseWeaponPistolAPS
 WeaponAMS-42: WeaponRifleLecterMk2
 ClothingBackpackDuffelWeaponAMS42Filled: ClothingBackpackDuffelWeaponRifleLecterFilled
-WeaponSubMachineGunMP7: WeaponSubMachineGunMP5
-ClothingBackpackDuffelWeaponSubMachineGunMP7Filled: ClothingBackpackDuffelWeaponSubMachineGunMP5Filled
+WeaponSubMachineGunMP7: WeaponSubMachineGunNewVector
+ClothingBackpackDuffelWeaponSubMachineGunMP7Filled: null
 GunSafeEnergyGunPistolSecurity: null
 GunSafeEnergyGun: null
 GunSafeEnergyGunSMG: null
-GunSafeSubMachineGunMP7: GunSafeSubMachineGunMP5
+GunSafeSubMachineGunMP7: GunSafeSubMachineGunVector
 # 2026-08-03
 WeaponRifleFamas: WeaponRifleLecter
 WeaponRifleG36: WeaponRifleLeikha
@@ -1243,4 +1243,10 @@ GunSafeShotgunCombat: GunSafeShotgunEnforcer
 CrateArmoryCombatShotgun: CrateArmoryShotgun
 WeaponRifleARG: null
 ClothingBackpackMessengerMercenaryBundleARG: null
+WeaponSubMachineGunMP5: WeaponSubMachineGunNewVector
+GunSafeSubMachineGunMP5: GunSafeSubMachineGunVector
+CrateArmoryMP5: null
+ClothingBackpackDuffelWeaponSubMachineGunMP5Filled: null
+MagazineMP5: MagazinePistolHighCapacitySP
+MagazineMP5Extended: MagazinePistolHighCapacitySP
 # region Sunrise-End

@@ -295,9 +295,6 @@
   id: MagazineMachineGunMG42
 
 - type: Tag
-  id: MagazineMP5
-
-- type: Tag
   id: MagazineMP7
 
 - type: Tag

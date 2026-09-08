@@ -241,21 +241,6 @@
           amount: 6
 
 - type: entity
-  parent: GunSafeBaseSecure
-  id: GunSafeSubMachineGunMP5
-  name: safe
-  suffix: MP5
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:AllSelector
-        children:
-        - id: WeaponSubMachineGunMP5
-          amount: 2
-        - id: MagazinePistolSubMachineGunSP
-          amount: 4
-
-- type: entity
   parent: GunSafeBaseSecureSunrise
   id: GunSafeSubMachineGunDrozdMk2
   name: safe
@@ -721,7 +706,6 @@
       weight: 55
       children:
       - id: GunSafeSubMachineGunDrozd
-      - id: GunSafeSubMachineGunMP5
       - id: GunSafeSubMachineGunDrozdTrash
     - !type:GroupSelector
       weight: 45

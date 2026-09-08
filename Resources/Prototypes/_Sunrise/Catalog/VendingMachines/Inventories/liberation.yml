@@ -74,7 +74,6 @@
     WeaponSubMachineGunDrozdMk2: 3
     WeaponSubMachineGunP90: 3
     WeaponSubMachineGunForged: 6
-    WeaponSubMachineGunMP5: 3
     WeaponSubMachineGunNewVector: 3
     WeaponAJ100: 3
     WeaponSIAR52: 3
@@ -318,7 +317,6 @@
     MagazinePistolSubMachineGunPPSH: 3
     MagazineP90: 5
     MagazineMP7: 5
-    MagazineMP5: 5
     MagazineBoxPistolRubber: 3
     MagazineBoxPistolSP: 3
     MagazineBoxPistolHP: 3

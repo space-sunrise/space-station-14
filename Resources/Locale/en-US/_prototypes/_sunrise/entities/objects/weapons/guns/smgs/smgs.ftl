@@ -1,7 +1,5 @@
 ent-WeaponSubMachineGunP90 = P-90
     .desc = { ent-BaseWeaponSubMachineGun.desc }
-ent-WeaponSubMachineGunMP5 = MP5
-    .desc = { ent-BaseWeaponSubMachineGun.desc }
 ent-WeaponSubMachineGunNewVector = New Vector
     .desc = A modern 30-round Vector by Waffle Corp chambered in .35 Auto. Its delayed-blowback system redirects the bolt assembly downward, helping control its high rate of fire.
 ent-WeaponSubMachineGunPPSH = PPSH 59 SMG

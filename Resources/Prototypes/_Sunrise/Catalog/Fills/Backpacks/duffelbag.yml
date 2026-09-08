@@ -101,22 +101,6 @@
 
 #ERT_Uplink
 - type: entity
-  id: ClothingBackpackDuffelWeaponSubMachineGunMP5Filled
-  parent: ClothingBackpackDuffelMilitary
-  name: Bundle MP5
-  description: MP5 with 4 raspy magazines.
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: WeaponSubMachineGunMP5
-        - id: MagazineMP5
-          amount: 1
-        - id: MagazineMP5Extended
-          amount: 4
-
-- type: entity
   id: ClothingBackpackDuffelWeaponSubMachineGunWt550
   parent: ClothingBackpackDuffelMilitary
   name: Bundle WT550
