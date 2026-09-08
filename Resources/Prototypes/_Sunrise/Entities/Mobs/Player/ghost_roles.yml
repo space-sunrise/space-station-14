@@ -375,10 +375,11 @@
     - JugDexPlusSaline
     - JugTrico
     - BeakerSmallArith
-    - DefibrillatorCompact
     - MedkitCombatFilled
     - ChemistryBottleOmnizine
     - CrowbarRed
+    - PowerCellHigh
+    - MedipenCaseERTMedic
 
 - type: startingGear
   id: ERTMedicalGearGamma
@@ -409,6 +410,7 @@
     - MedkitCombatFilled
     - ChemistryBottleOmnizine
     - CrowbarRed
+    - MedipenCaseERTMedic
 
 # Janitor
 
