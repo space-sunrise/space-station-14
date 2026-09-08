@@ -31,9 +31,23 @@ public sealed partial class AlertLevelPrototype : IPrototype
 public sealed partial class AlertLevelDetail
 {
     /// <summary>
-    /// Определяет код как дополнительный протокол, который может действовать одновременно с основным кодом.
+    /// Whether this level is an additional protocol that can be active alongside the primary alert level.
     /// </summary>
     [DataField] public bool IsAdditional { get; private set; } // Sunrise-Edit
+
+    // Sunrise added start - правила дополнительных кодов и выбор визуального приоритета
+    /// <summary>
+    /// Whether an active additional alert level can be disabled.
+    /// </summary>
+    [DataField]
+    public bool CanBeDisabled { get; private set; } = true;
+
+    /// <summary>
+    /// Determines which active alert level controls single-state visuals such as emergency lights.
+    /// </summary>
+    [DataField]
+    public int VisualPriority { get; private set; }
+    // Sunrise added end
 
     /// <summary>
     /// What is announced upon this alert level change. Can be a localized string.

@@ -16,7 +16,6 @@ using Content.Shared.GameTicking;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.Station.Components;
@@ -38,7 +37,6 @@ namespace Content.Server.RoundEnd
         [Dependency] private readonly DeviceNetworkSystem _deviceNetworkSystem = default!;
         [Dependency] private readonly GameTicker _gameTicker = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
-        [Dependency] private readonly IPrototypeManager _protoManager = default!;
         [Dependency] private readonly EmergencyShuttleSystem _shuttle = default!;
         [Dependency] private readonly StationSystem _stationSystem = default!;
         private bool _autoCalledBefore = false;
@@ -145,17 +143,16 @@ namespace Content.Server.RoundEnd
             if (requester != null)
             {
                 var stationUid = _stationSystem.GetOwningStation(requester.Value);
-                if (TryComp<AlertLevelComponent>(stationUid, out var alertLevel))
+                if (TryComp<AlertLevelComponent>(stationUid, out var alertLevel)
+                    && alertLevel.AlertLevels is { } alertLevels)
                 {
-                    var alertLevels = _protoManager
-                        .Index<AlertLevelPrototype>(AlertLevelSystem.DefaultAlertLevelSet)
-                        .Levels;
-                    duration = alertLevels[alertLevel.CurrentLevel].ShuttleTime;
+                    // Sunrise edit start - используем фактический набор кодов станции
+                    if (alertLevels.Levels.TryGetValue(alertLevel.CurrentLevel, out var currentDetail))
+                        duration = currentDetail.ShuttleTime;
 
-                    // Sunrise edit start - дополнительные коды сохраняют свои ограничения эвакуации
                     foreach (var additionalLevel in alertLevel.ActiveAdditionalLevels)
                     {
-                        if (alertLevels.TryGetValue(additionalLevel, out var detail)
+                        if (alertLevels.Levels.TryGetValue(additionalLevel, out var detail)
                             && detail.ShuttleTime > duration)
                         {
                             duration = detail.ShuttleTime;

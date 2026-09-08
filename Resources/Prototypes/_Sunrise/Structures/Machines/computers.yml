@@ -505,11 +505,13 @@
   name: centcom communications computer
   components:
   - type: AccessReader
-    access: [[ "Command" ]]
+    access: [[ "CentralCommand" ]] # Sunrise-Edit - доступ только ЦК и спецоперациям
   - type: CommunicationsConsole
     title: comms-console-announcement-title-centcom
     global: true
     announceVoice: NecoArcTwo
+    allowedAlertLevels: [green, blue, violet, yellow, red, gamma, epsilon] # Sunrise-Edit
+    forceAlertLevelChanges: true # Sunrise-Edit
 
 - type: entity
   parent: BaseComputerShuttle

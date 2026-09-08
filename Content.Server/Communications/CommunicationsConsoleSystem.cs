@@ -183,29 +183,36 @@ namespace Content.Server.Communications
                 if (TryComp(stationUid.Value, out AlertLevelComponent? alertComp) &&
                     alertComp.AlertLevels != null)
                 {
-                    if (alertComp.IsSelectable)
+                    if (alertComp.IsSelectable || comp.ForceAlertLevelChanges) // Sunrise-Edit
                     {
                         levels = new();
                         foreach (var (id, detail) in alertComp.AlertLevels.Levels)
                         {
-                            if (detail.Selectable && !detail.IsAdditional) // Sunrise-Edit
+                            if (!detail.IsAdditional && IsAlertLevelAllowed(comp, id, detail)) // Sunrise-Edit
                             {
                                 levels.Add(id);
                             }
                         }
+
+                        if (levels.Count == 0)
+                            levels = null;
                     }
 
-                    // Sunrise added start - обычная консоль показывает только доступные экипажу дополнительные коды
+                    // Sunrise added start - консоль показывает только разрешённые для неё дополнительные коды
                     foreach (var (id, detail) in alertComp.AlertLevels.Levels)
                     {
-                        if (!detail.IsAdditional || !detail.Selectable)
+                        if (!detail.IsAdditional || !IsAlertLevelAllowed(comp, id, detail))
                             continue;
 
                         var enabled = alertComp.ActiveAdditionalLevels.Contains(id);
                         additionalLevels.Add(new CommunicationsConsoleAdditionalAlertLevelState(
                             id,
                             enabled,
-                            _alertLevelSystem.CanSetAdditionalLevel((stationUid.Value, alertComp), id, !enabled)));
+                            alertComp.CurrentDelay <= 0 && _alertLevelSystem.CanSetAdditionalLevel(
+                                (stationUid.Value, alertComp),
+                                id,
+                                !enabled,
+                                comp.ForceAlertLevelChanges)));
                     }
                     // Sunrise added end
 
@@ -246,6 +253,17 @@ namespace Content.Server.Communications
             return true;
         }
 
+        /// <summary>
+        /// Checks whether this console is configured to control the specified alert level.
+        /// </summary>
+        public static bool IsAlertLevelAllowed(
+            CommunicationsConsoleComponent console,
+            string level,
+            AlertLevelDetail detail)
+        {
+            return console.AllowedAlertLevels?.Contains(level) ?? detail.Selectable;
+        }
+
         private bool CanCallOrRecall(CommunicationsConsoleComponent comp)
         {
             // Defer to what the round end system thinks we should be able to do.
@@ -283,10 +301,29 @@ namespace Content.Server.Communications
             }
 
             var stationUid = _stationSystem.GetOwningStation(uid);
-            if (stationUid != null)
+            if (stationUid == null
+                || !TryComp<AlertLevelComponent>(stationUid.Value, out var alert)
+                || alert.AlertLevels == null
+                || !alert.AlertLevels.Levels.TryGetValue(message.Level, out var detail)
+                || detail.IsAdditional
+                || !IsAlertLevelAllowed(comp, message.Level, detail)
+                || alert.CurrentLevel == message.Level
+                || alert.CurrentDelay > 0)
             {
-                _alertLevelSystem.SetLevel(stationUid.Value, message.Level, true, true);
+                return;
             }
+
+            // Привилегированная консоль обходит запрет выбора кода, но не общий cooldown ручных изменений.
+            if (comp.ForceAlertLevelChanges)
+                StartAlertLevelCooldown(alert);
+
+            _alertLevelSystem.SetLevel(
+                stationUid.Value,
+                message.Level,
+                true,
+                true,
+                comp.ForceAlertLevelChanges,
+                component: alert);
         }
 
         // Sunrise added start - явное включение или выключение дополнительного кода
@@ -308,15 +345,49 @@ namespace Content.Server.Communications
             if (stationUid == null)
                 return;
 
+            if (!TryComp<AlertLevelComponent>(stationUid.Value, out var alert)
+                || alert.AlertLevels == null
+                || !alert.AlertLevels.Levels.TryGetValue(message.Level, out var detail)
+                || !detail.IsAdditional
+                || !IsAlertLevelAllowed(comp, message.Level, detail))
+            {
+                return;
+            }
+
+            var canChange = comp.ForceAlertLevelChanges
+                ? alert.CurrentDelay <= 0 && _alertLevelSystem.CanSetAdditionalLevel(
+                    (stationUid.Value, alert),
+                    message.Level,
+                    message.Enabled,
+                    force: true)
+                : true;
+
+            if (!canChange)
+            {
+                UpdateCommsConsoleInterface(uid, comp);
+                return;
+            }
+
+            if (comp.ForceAlertLevelChanges)
+                StartAlertLevelCooldown(alert);
+
             if (!_alertLevelSystem.TrySetAdditionalLevel(
                 stationUid.Value,
                 message.Level,
                 message.Enabled,
                 playSound: true,
-                announce: true))
+                announce: true,
+                force: comp.ForceAlertLevelChanges,
+                component: alert))
             {
                 UpdateCommsConsoleInterface(uid, comp);
             }
+        }
+
+        private void StartAlertLevelCooldown(AlertLevelComponent alert)
+        {
+            alert.CurrentDelay = _cfg.GetCVar(CCVars.GameAlertLevelChangeDelay);
+            alert.ActiveDelay = true;
         }
         // Sunrise added end
 

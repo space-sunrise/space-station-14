@@ -1,6 +1,8 @@
 #nullable enable
 
+using System.Collections.Generic;
 using Content.Server.AlertLevel;
+using Content.Server.Communications;
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
@@ -15,7 +17,7 @@ namespace Content.IntegrationTests._Sunrise.AlertLevel;
 public sealed class AdditionalAlertLevelTest
 {
     [Test]
-    public async Task AdditionalLevelsDoNotReplacePrimaryLevel()
+    public async Task AdditionalLevelsRespectSharedCooldownAndIrreversibleLevels()
     {
         await using var pair = await PoolManager.GetServerClient();
         var server = pair.Server;
@@ -25,12 +27,12 @@ public sealed class AdditionalAlertLevelTest
 
         EntityUid station = default;
         AlertLevelComponent alertLevel = null!;
+        var blockedByPrimaryCooldown = false;
         var yellowEnabled = false;
-        var primaryStayedGreen = false;
-        var additionalIgnoredPrimaryCooldown = false;
-        var violetEnabled = false;
+        var forcedVioletEnabled = false;
+        var yellowDisableBlockedByCooldown = false;
         var yellowDisabled = false;
-        var disablingDidNotStartCooldown = false;
+        var epsilonDisableBlocked = false;
 
         await server.WaitPost(() =>
         {
@@ -40,19 +42,43 @@ public sealed class AdditionalAlertLevelTest
             alertLevel.CurrentLevel = "green";
             alertLevel.CurrentDelay = 30;
 
-            alertLevelSystem.SetLevel(station, "yellow", false, false, component: alertLevel);
-            yellowEnabled = alertLevel.ActiveAdditionalLevels.Contains("yellow");
-            primaryStayedGreen = alertLevel.CurrentLevel == "green";
-            additionalIgnoredPrimaryCooldown = alertLevel.CurrentDelay == 30;
-            violetEnabled = alertLevelSystem.TrySetAdditionalLevel(
+            blockedByPrimaryCooldown = !alertLevelSystem.TrySetAdditionalLevel(
+                station,
+                "yellow",
+                true,
+                playSound: false,
+                announce: false,
+                component: alertLevel);
+
+            alertLevel.CurrentDelay = 0;
+            alertLevel.ActiveDelay = false;
+            yellowEnabled = alertLevelSystem.TrySetAdditionalLevel(
+                station,
+                "yellow",
+                true,
+                playSound: false,
+                announce: false,
+                component: alertLevel);
+
+            forcedVioletEnabled = alertLevelSystem.TrySetAdditionalLevel(
                 station,
                 "violet",
                 true,
                 playSound: false,
                 announce: false,
+                force: true,
                 component: alertLevel);
+
+            yellowDisableBlockedByCooldown = !alertLevelSystem.TrySetAdditionalLevel(
+                station,
+                "yellow",
+                false,
+                playSound: false,
+                announce: false,
+                component: alertLevel);
+
             alertLevel.CurrentDelay = 0;
-            alertLevelSystem.SetLevel(station, "red", false, false, true, component: alertLevel);
+            alertLevel.ActiveDelay = false;
             yellowDisabled = alertLevelSystem.TrySetAdditionalLevel(
                 station,
                 "yellow",
@@ -60,26 +86,79 @@ public sealed class AdditionalAlertLevelTest
                 playSound: false,
                 announce: false,
                 component: alertLevel);
-            disablingDidNotStartCooldown = alertLevel.CurrentDelay == 0;
+
+            alertLevel.ActiveAdditionalLevels.Add("epsilon");
+            epsilonDisableBlocked = !alertLevelSystem.CanSetAdditionalLevel(
+                (station, alertLevel),
+                "epsilon",
+                false,
+                force: true);
         });
 
         await server.WaitAssertion(() =>
         {
             Assert.Multiple(() =>
             {
+                Assert.That(blockedByPrimaryCooldown, Is.True);
                 Assert.That(yellowEnabled, Is.True);
-                Assert.That(primaryStayedGreen, Is.True);
-                Assert.That(additionalIgnoredPrimaryCooldown, Is.True);
-                Assert.That(violetEnabled, Is.True);
+                Assert.That(forcedVioletEnabled, Is.True);
+                Assert.That(yellowDisableBlockedByCooldown, Is.True);
                 Assert.That(yellowDisabled, Is.True);
-                Assert.That(disablingDidNotStartCooldown, Is.True);
-                Assert.That(alertLevel!.CurrentLevel, Is.EqualTo("red"));
-                Assert.That(alertLevel.ActiveAdditionalLevels, Is.EquivalentTo(new[] { "violet" }));
-                var stationAlertLevel = new Entity<AlertLevelComponent?>(station, alertLevel);
-                Assert.That(alertLevelSystem.IsLevelActive(stationAlertLevel, "red"), Is.True);
-                Assert.That(alertLevelSystem.IsLevelActive(stationAlertLevel, "violet"), Is.True);
-                Assert.That(alertLevelSystem.IsLevelActive(stationAlertLevel, "yellow"), Is.False);
+                Assert.That(epsilonDisableBlocked, Is.True);
+                Assert.That(alertLevel.CurrentLevel, Is.EqualTo("green"));
+                Assert.That(alertLevel.ActiveDelay, Is.True);
+                Assert.That(alertLevel.CurrentDelay, Is.GreaterThan(0));
+                Assert.That(alertLevel.ActiveAdditionalLevels, Is.EquivalentTo(new[] { "violet", "epsilon" }));
             });
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task VisualPrioritySelectsHighestActiveLevel()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var entityManager = server.EntMan;
+        var prototypeManager = server.ResolveDependency<IPrototypeManager>();
+        var alertLevelSystem = server.System<AlertLevelSystem>();
+
+        EntityUid station = default;
+        AlertLevelComponent alertLevel = null!;
+        var effectiveLevels = new List<string>();
+
+        await server.WaitPost(() =>
+        {
+            station = entityManager.SpawnEntity(null, MapCoordinates.Nullspace);
+            alertLevel = entityManager.AddComponent<AlertLevelComponent>(station);
+            alertLevel.AlertLevels = prototypeManager.Index<AlertLevelPrototype>(AlertLevelSystem.DefaultAlertLevelSet);
+            alertLevel.CurrentLevel = "green";
+
+            alertLevel.ActiveAdditionalLevels.Add("yellow");
+            effectiveLevels.Add(alertLevelSystem.TryGetVisualAlertLevel((station, alertLevel), out var level, out _)
+                ? level
+                : string.Empty);
+
+            alertLevel.CurrentLevel = "red";
+            effectiveLevels.Add(alertLevelSystem.TryGetVisualAlertLevel((station, alertLevel), out level, out _)
+                ? level
+                : string.Empty);
+
+            alertLevel.ActiveAdditionalLevels.Add("delta");
+            effectiveLevels.Add(alertLevelSystem.TryGetVisualAlertLevel((station, alertLevel), out level, out _)
+                ? level
+                : string.Empty);
+
+            alertLevel.ActiveAdditionalLevels.Add("epsilon");
+            effectiveLevels.Add(alertLevelSystem.TryGetVisualAlertLevel((station, alertLevel), out level, out _)
+                ? level
+                : string.Empty);
+        });
+
+        await server.WaitAssertion(() =>
+        {
+            Assert.That(effectiveLevels, Is.EqualTo(new[] { "yellow", "red", "delta", "epsilon" }));
         });
 
         await pair.CleanReturnAsync();
@@ -91,43 +170,107 @@ public sealed class AdditionalAlertLevelTest
         await using var pair = await PoolManager.GetServerClient();
         var server = pair.Server;
         var entityManager = server.EntMan;
-        var prototypeManager = server.ResolveDependency<IPrototypeManager>();
-        var alertLevelSystem = server.System<AlertLevelSystem>();
         var accessReaderSystem = server.System<AccessReaderSystem>();
 
-        AlertLevelComponent alertLevel = null!;
         AccessReaderComponent accessReader = null!;
-        var additionalLevelEnabled = false;
+        var securityAllowed = false;
+        var atmosphericsAllowed = false;
+        var engineeringAllowed = false;
 
         await server.WaitPost(() =>
         {
-            var station = entityManager.SpawnEntity(null, MapCoordinates.Nullspace);
-            alertLevel = entityManager.AddComponent<AlertLevelComponent>(station);
-            alertLevel.AlertLevels = prototypeManager.Index<AlertLevelPrototype>(AlertLevelSystem.DefaultAlertLevelSet);
-            alertLevel.CurrentLevel = "red";
-
             var reader = entityManager.SpawnEntity("DoorElectronicsLawyer", MapCoordinates.Nullspace);
             accessReader = entityManager.GetComponent<AccessReaderComponent>(reader);
-            accessReaderSystem.UpdateAccess((reader, accessReader), alertLevel.CurrentLevel);
 
-            additionalLevelEnabled = alertLevelSystem.TrySetAdditionalLevel(
-                station,
-                "yellow",
-                true,
-                playSound: false,
-                announce: false,
-                force: true,
-                component: alertLevel);
+            accessReaderSystem.UpdateAccess(
+                (reader, accessReader),
+                new[] { "red", "yellow" },
+                new HashSet<ProtoId<AccessGroupPrototype>>
+                {
+                    new("YellowAlertAccesses"),
+                });
+
+            securityAllowed = accessReaderSystem.IsAccessAllowedByExtendedAccess(
+                new HashSet<ProtoId<AccessLevelPrototype>> { new("Security") },
+                accessReader);
+            atmosphericsAllowed = accessReaderSystem.IsAccessAllowedByExtendedAccess(
+                new HashSet<ProtoId<AccessLevelPrototype>> { new("Atmospherics") },
+                accessReader);
+            engineeringAllowed = accessReaderSystem.IsAccessAllowedByExtendedAccess(
+                new HashSet<ProtoId<AccessLevelPrototype>> { new("Engineering") },
+                accessReader);
         });
 
         await server.WaitAssertion(() =>
         {
             Assert.Multiple(() =>
             {
-                Assert.That(additionalLevelEnabled, Is.True);
-                Assert.That(alertLevel.CurrentLevel, Is.EqualTo("red"));
-                Assert.That(accessReader.Group,
-                    Is.EqualTo(new ProtoId<AccessGroupPrototype>("RedAlertAccesses")));
+                Assert.That(accessReader.Group, Is.EqualTo(new ProtoId<AccessGroupPrototype>("RedAlertAccesses")));
+                Assert.That(accessReader.AdditionalGroups,
+                    Does.Contain(new ProtoId<AccessGroupPrototype>("YellowAlertAccesses")));
+                Assert.That(securityAllowed, Is.True);
+                Assert.That(atmosphericsAllowed, Is.True);
+                Assert.That(engineeringAllowed, Is.True);
+            });
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task ConsoleAlertLevelAllowlistIsEnforced()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var prototypeManager = server.ResolveDependency<IPrototypeManager>();
+
+        await server.WaitAssertion(() =>
+        {
+            var levels = prototypeManager.Index<AlertLevelPrototype>(AlertLevelSystem.DefaultAlertLevelSet).Levels;
+            var engineeringConsole = new CommunicationsConsoleComponent
+            {
+                AllowedAlertLevels = ["yellow"],
+            };
+            var disabledConsole = new CommunicationsConsoleComponent
+            {
+                AllowedAlertLevels = [],
+            };
+            var centCommConsole = new CommunicationsConsoleComponent
+            {
+                AllowedAlertLevels = ["green", "blue", "violet", "yellow", "red", "gamma", "epsilon"],
+                ForceAlertLevelChanges = true,
+            };
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(CommunicationsConsoleSystem.IsAlertLevelAllowed(
+                    engineeringConsole,
+                    "yellow",
+                    levels["yellow"]), Is.True);
+                Assert.That(CommunicationsConsoleSystem.IsAlertLevelAllowed(
+                    engineeringConsole,
+                    "violet",
+                    levels["violet"]), Is.False);
+                Assert.That(CommunicationsConsoleSystem.IsAlertLevelAllowed(
+                    engineeringConsole,
+                    "green",
+                    levels["green"]), Is.False);
+                Assert.That(CommunicationsConsoleSystem.IsAlertLevelAllowed(
+                    disabledConsole,
+                    "red",
+                    levels["red"]), Is.False);
+                Assert.That(CommunicationsConsoleSystem.IsAlertLevelAllowed(
+                    centCommConsole,
+                    "gamma",
+                    levels["gamma"]), Is.True);
+                Assert.That(CommunicationsConsoleSystem.IsAlertLevelAllowed(
+                    centCommConsole,
+                    "epsilon",
+                    levels["epsilon"]), Is.True);
+                Assert.That(CommunicationsConsoleSystem.IsAlertLevelAllowed(
+                    centCommConsole,
+                    "delta",
+                    levels["delta"]), Is.False);
             });
         });
 

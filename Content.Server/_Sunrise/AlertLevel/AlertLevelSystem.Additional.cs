@@ -1,4 +1,5 @@
 using Content.Server._Sunrise.StationEvents.Events;
+using Content.Shared.CCVar;
 
 #pragma warning disable IDE0130 // Пространство имён соответствует расширяемой upstream-системе.
 namespace Content.Server.AlertLevel;
@@ -6,7 +7,7 @@ namespace Content.Server.AlertLevel;
 public sealed partial class AlertLevelSystem
 {
     /// <summary>
-    /// Проверяет, можно ли изменить дополнительный код станции.
+    /// Checks whether an additional station alert level can be enabled or disabled.
     /// </summary>
     public bool CanSetAdditionalLevel(
         Entity<AlertLevelComponent?> station,
@@ -18,6 +19,7 @@ public sealed partial class AlertLevelSystem
             || station.Comp.AlertLevels == null
             || !station.Comp.AlertLevels.Levels.TryGetValue(level, out var detail)
             || !detail.IsAdditional
+            || (!enabled && !detail.CanBeDisabled)
             || station.Comp.ActiveAdditionalLevels.Contains(level) == enabled)
         {
             return false;
@@ -30,6 +32,9 @@ public sealed partial class AlertLevelSystem
             return false;
 
         if (!currentDetail.Selectable || currentDetail.DisableSelection)
+            return false;
+
+        if (station.Comp.CurrentDelay > 0)
             return false;
 
         foreach (var additionalLevel in station.Comp.ActiveAdditionalLevels)
@@ -50,7 +55,7 @@ public sealed partial class AlertLevelSystem
     }
 
     /// <summary>
-    /// Пытается явно включить или выключить дополнительный код станции.
+    /// Attempts to explicitly enable or disable an additional station alert level.
     /// </summary>
     public bool TrySetAdditionalLevel(
         EntityUid station,
@@ -66,12 +71,19 @@ public sealed partial class AlertLevelSystem
             return false;
 
         Resolve(stationEntity, ref stationEntity.Comp);
+
+        if (!force)
+        {
+            stationEntity.Comp!.CurrentDelay = _cfg.GetCVar(CCVars.GameAlertLevelChangeDelay);
+            stationEntity.Comp.ActiveDelay = true;
+        }
+
         DoSetAdditionalLevel((station, stationEntity.Comp!), level, enabled, playSound, announce);
         return true;
     }
 
     /// <summary>
-    /// Возвращает, действует ли указанный основной или дополнительный код.
+    /// Returns whether the specified primary or additional alert level is active.
     /// </summary>
     public bool IsLevelActive(Entity<AlertLevelComponent?> station, string level)
     {
@@ -82,7 +94,7 @@ public sealed partial class AlertLevelSystem
     }
 
     /// <summary>
-    /// Возвращает основной код и все активные дополнительные коды в порядке прототипа.
+    /// Returns the primary level followed by all active additional levels in prototype order.
     /// </summary>
     public List<string> GetActiveLevels(Entity<AlertLevelComponent?> station)
     {
@@ -98,6 +110,41 @@ public sealed partial class AlertLevelSystem
         }
 
         return result;
+    }
+
+    /// <summary>
+    /// Gets the active alert level with the highest visual priority.
+    /// </summary>
+    public bool TryGetVisualAlertLevel(
+        Entity<AlertLevelComponent?> station,
+        out string level,
+        out AlertLevelDetail detail)
+    {
+        level = string.Empty;
+        detail = default!;
+
+        if (!Resolve(station, ref station.Comp)
+            || station.Comp.AlertLevels == null
+            || !station.Comp.AlertLevels.Levels.TryGetValue(station.Comp.CurrentLevel, out var currentDetail))
+        {
+            return false;
+        }
+
+        detail = currentDetail;
+        level = station.Comp.CurrentLevel;
+        foreach (var additionalLevel in station.Comp.ActiveAdditionalLevels)
+        {
+            if (!station.Comp.AlertLevels.Levels.TryGetValue(additionalLevel, out var additionalDetail)
+                || additionalDetail.VisualPriority <= detail.VisualPriority)
+            {
+                continue;
+            }
+
+            level = additionalLevel;
+            detail = additionalDetail;
+        }
+
+        return true;
     }
 
     private void DoSetAdditionalLevel(
@@ -179,7 +226,7 @@ public sealed partial class AlertLevelSystem
 }
 
 /// <summary>
-/// Вызывается после включения или выключения дополнительного кода станции.
+/// Raised after an additional station alert level is enabled or disabled.
 /// </summary>
 public sealed class AdditionalAlertLevelChangedEvent : EntityEventArgs
 {

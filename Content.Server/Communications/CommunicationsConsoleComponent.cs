@@ -80,6 +80,20 @@ namespace Content.Server.Communications
         [DataField]
         public bool AnnounceSentBy = false;
 
+        // Sunrise added start - ограничения управления кодами для разных типов консолей
+        /// <summary>
+        /// Alert levels this console may set. A null value allows every crew-selectable level.
+        /// </summary>
+        [DataField]
+        public HashSet<string>? AllowedAlertLevels;
+
+        /// <summary>
+        /// Whether this console may set allowed non-selectable levels and bypass alert selection locks.
+        /// </summary>
+        [DataField]
+        public bool ForceAlertLevelChanges;
+        // Sunrise added end
+
         // Sunrise-Start
         [DataField]
         public ProtoId<TTSVoicePrototype>? AnnounceVoice = "Hanson";

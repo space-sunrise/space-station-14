@@ -4,7 +4,7 @@ namespace Content.Server.AlertLevel;
 public sealed partial class AlertLevelComponent
 {
     /// <summary>
-    /// Дополнительные коды, действующие одновременно с основным кодом станции.
+    /// Additional alert levels currently active alongside the station's primary alert level.
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
     public readonly HashSet<string> ActiveAdditionalLevels = [];

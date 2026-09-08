@@ -110,6 +110,7 @@ public sealed class AccessReaderSystem : EntitySystem
             component.AccessLists,
             component.AccessListsOriginal,
             component.Group, //Sunrise added
+            component.AdditionalGroups, // Sunrise-Edit
             _recordsSystem.Convert(component.AccessKeys),
             component.AccessLog,
             component.AccessLogLimit); // Sunrise-edit
@@ -135,6 +136,7 @@ public sealed class AccessReaderSystem : EntitySystem
         component.DenyTags = new(state.DenyTags);
         component.AccessLog = new(state.AccessLog);
         component.Group = state.Group != null ? new (state.Group) : null; // Sunrise added - автодоступы по коду
+        component.AdditionalGroups = new(state.AdditionalGroups); // Sunrise-Edit
         component.AccessLogLimit = state.AccessLogLimit;
 
         // Sunrise added start - уведомляем client-side UI/overlays после изменения replicated access settings
@@ -340,20 +342,36 @@ public sealed class AccessReaderSystem : EntitySystem
 
     // Sunrise-start
     /// <summary>
-    /// Сравнивает список аварийных доступов с доступами на карте.
+    /// Checks whether any alert-level access group grants access to the supplied tags.
     /// </summary>
     public bool IsAccessAllowedByExtendedAccess(ICollection<ProtoId<AccessLevelPrototype>> access, AccessReaderComponent reader)
     {
-        if (!_prototype.TryIndex(reader.Group, out var accessTags))
+        if (reader.Group is { } group && IsAccessGroupAllowed(access, group))
+            return true;
+
+        foreach (var additionalGroup in reader.AdditionalGroups)
+        {
+            if (IsAccessGroupAllowed(access, additionalGroup))
+                return true;
+        }
+
+        return false;
+    }
+
+    private bool IsAccessGroupAllowed(
+        ICollection<ProtoId<AccessLevelPrototype>> access,
+        ProtoId<AccessGroupPrototype> group)
+    {
+        if (!_prototype.TryIndex(group, out var accessGroup))
             return false;
 
-        if (accessTags.Tags.Count == 0)
-            return false;
+        foreach (var tag in accessGroup.Tags)
+        {
+            if (access.Contains(tag))
+                return true;
+        }
 
-        if (!accessTags.Tags.Any(access.Contains))
-            return false;
-
-        return true;
+        return false;
     }
     // Sunrise-end
 
@@ -983,12 +1001,55 @@ public sealed class AccessReaderSystem : EntitySystem
 
     public void UpdateAccess(Entity<AccessReaderComponent> ent, string currentLevel)
     {
+        ent.Comp.AdditionalGroups.Clear();
         if (ent.Comp.AlertAccesses.TryGetValue(currentLevel, out var value))
             ent.Comp.Group = value;
         else
             ent.Comp.Group = null;
 
         Dirty(ent);
+    }
+
+    /// <summary>
+    /// Updates the temporary access groups for all simultaneously active alert levels.
+    /// </summary>
+    public void UpdateAccess(
+        Entity<AccessReaderComponent> ent,
+        IReadOnlyList<string> activeLevels,
+        IReadOnlyCollection<ProtoId<AccessGroupPrototype>>? globalGroups = null)
+    {
+        ent.Comp.Group = null;
+        ent.Comp.AdditionalGroups.Clear();
+
+        foreach (var level in activeLevels)
+        {
+            if (!ent.Comp.AlertAccesses.TryGetValue(level, out var group))
+                continue;
+
+            AddExtendedAccessGroup(ent.Comp, group);
+        }
+
+        if (globalGroups != null)
+        {
+            foreach (var group in globalGroups)
+            {
+                AddExtendedAccessGroup(ent.Comp, group);
+            }
+        }
+
+        Dirty(ent);
+    }
+
+    private static void AddExtendedAccessGroup(AccessReaderComponent reader, ProtoId<AccessGroupPrototype> group)
+    {
+        if (reader.Group == null)
+        {
+            reader.Group = group;
+            return;
+        }
+
+        if (reader.Group != group)
+            reader.AdditionalGroups.Add(group);
     }
 
     private List<string> GetLocalizedAccessNames(List<HashSet<ProtoId<AccessLevelPrototype>>> accessLists)

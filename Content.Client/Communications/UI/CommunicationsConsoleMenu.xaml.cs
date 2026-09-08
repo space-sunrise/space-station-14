@@ -135,7 +135,9 @@ namespace Content.Client.Communications.UI
         }
 
         // Sunrise added start - независимые переключатели дополнительных кодов
-        public void UpdateAdditionalAlertLevels(List<CommunicationsConsoleAdditionalAlertLevelState> alerts)
+        public void UpdateAdditionalAlertLevels(
+            List<CommunicationsConsoleAdditionalAlertLevelState> alerts,
+            bool hasAccess)
         {
             AdditionalAlertLevelsContainer.RemoveAllChildren();
             foreach (var alert in alerts)
@@ -149,7 +151,7 @@ namespace Content.Client.Communications.UI
                     Text = name,
                     ToggleMode = true,
                     Pressed = alert.Enabled,
-                    Disabled = !alert.Selectable,
+                    Disabled = !hasAccess || !alert.Selectable,
                     HorizontalExpand = true,
                     Margin = new Thickness(2),
                 };

@@ -1,6 +1,8 @@
-﻿using Content.Shared.CCVar;
+﻿using Content.Shared.Access.Systems;
+using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Communications;
+using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
@@ -11,11 +13,16 @@ namespace Content.Client.Communications.UI
     {
         [Dependency] private readonly IConfigurationManager _cfg = default!;
 
+        [Dependency] private readonly IPlayerManager _player = default!; // Sunrise-Edit
+
+        private readonly AccessReaderSystem _accessReader; // Sunrise-Edit
+
         [ViewVariables]
         private CommunicationsConsoleMenu? _menu;
 
         public CommunicationsConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
         {
+            _accessReader = EntMan.System<AccessReaderSystem>(); // Sunrise-Edit
         }
 
         protected override void Open()
@@ -34,13 +41,16 @@ namespace Content.Client.Communications.UI
         // Sunrise added start - дополнительные коды переключаются независимо
         private void AdditionalAlertLevelSelected(string level, bool enabled)
         {
+            if (!HasAccess())
+                return;
+
             SendMessage(new CommunicationsConsoleSetAdditionalAlertLevelMessage(level, enabled));
         }
         // Sunrise added end
 
         public void AlertLevelSelected(string level)
         {
-            if (_menu!.AlertLevelSelectable)
+            if (_menu!.AlertLevelSelectable && HasAccess()) // Sunrise-Edit
             {
                 _menu.CurrentLevel = level;
                 SendMessage(new CommunicationsConsoleSelectAlertLevelMessage(level));
@@ -93,17 +103,21 @@ namespace Content.Client.Communications.UI
 
             if (_menu != null)
             {
+                var hasAccess = HasAccess(); // Sunrise-Edit
                 _menu.CanAnnounce = commsState.CanAnnounce;
                 _menu.CanBroadcast = commsState.CanBroadcast;
                 _menu.CanCall = commsState.CanCall;
                 _menu.CountdownStarted = commsState.CountdownStarted;
-                _menu.AlertLevelSelectable = commsState.AlertLevels != null && !float.IsNaN(commsState.CurrentAlertDelay) && commsState.CurrentAlertDelay <= 0;
+                _menu.AlertLevelSelectable = hasAccess
+                    && commsState.AlertLevels != null
+                    && !float.IsNaN(commsState.CurrentAlertDelay)
+                    && commsState.CurrentAlertDelay <= 0; // Sunrise-Edit
                 _menu.CurrentLevel = commsState.CurrentAlert;
                 _menu.CountdownEnd = commsState.ExpectedCountdownEnd;
 
                 _menu.UpdateCountdown();
                 _menu.UpdateAlertLevels(commsState.AlertLevels, _menu.CurrentLevel);
-                _menu.UpdateAdditionalAlertLevels(commsState.AdditionalAlertLevels); // Sunrise-Edit
+                _menu.UpdateAdditionalAlertLevels(commsState.AdditionalAlertLevels, hasAccess); // Sunrise-Edit
                 _menu.AlertLevelButton.Disabled = !_menu.AlertLevelSelectable;
                 _menu.EmergencyShuttleButton.Disabled = !_menu.CanCall;
                 _menu.AnnounceButton.Disabled = !_menu.CanAnnounce;
@@ -118,5 +132,12 @@ namespace Content.Client.Communications.UI
                 // Sunrise-End
             }
         }
+
+        // Sunrise added start - сразу блокируем управление кодами без требуемого доступа
+        private bool HasAccess()
+        {
+            return _player.LocalEntity is { } player && _accessReader.IsAllowed(player, Owner);
+        }
+        // Sunrise added end
     }
 }

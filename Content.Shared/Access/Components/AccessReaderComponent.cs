@@ -21,10 +21,16 @@ public sealed partial class AccessReaderComponent : Component
     #region ExtendedAccess
 
     /// <summary>
-    /// Именно от Group происходит проверка аварийных доступов
+    /// The primary access group temporarily granted by the current alert level.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     public ProtoId<AccessGroupPrototype>? Group;
+
+    /// <summary>
+    /// Additional access groups granted by simultaneously active alert levels.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public HashSet<ProtoId<AccessGroupPrototype>> AdditionalGroups = [];
 
     [DataField, ViewVariables]
     public Dictionary<string, ProtoId<AccessGroupPrototype>> AlertAccesses = new();
@@ -135,6 +141,7 @@ public sealed class AccessReaderComponentState : ComponentState
     public List<HashSet<ProtoId<AccessLevelPrototype>>> AccessLists;
     public List<HashSet<ProtoId<AccessLevelPrototype>>>? AccessListsOriginal;
     public ProtoId<AccessGroupPrototype>? Group; // Sunrise-alertAccesses, нужно для связывания клиента с сервером
+    public HashSet<ProtoId<AccessGroupPrototype>> AdditionalGroups; // Sunrise-Edit
     public List<(NetEntity, uint)> AccessKeys;
     public Queue<AccessRecord> AccessLog;
     public int AccessLogLimit;
@@ -145,6 +152,7 @@ public sealed class AccessReaderComponentState : ComponentState
         List<HashSet<ProtoId<AccessLevelPrototype>>> accessLists,
         List<HashSet<ProtoId<AccessLevelPrototype>>>? accessListsOriginal,
         ProtoId<AccessGroupPrototype>? group, //Sunrise added
+        HashSet<ProtoId<AccessGroupPrototype>> additionalGroups, // Sunrise-Edit
         List<(NetEntity, uint)> accessKeys,
         Queue<AccessRecord> accessLog,
         int accessLogLimit)
@@ -157,6 +165,7 @@ public sealed class AccessReaderComponentState : ComponentState
         AccessLog = accessLog;
         AccessLogLimit = accessLogLimit;
         Group = group; // Sunrise added for alertAccesses
+        AdditionalGroups = additionalGroups; // Sunrise-Edit
     }
 }
 

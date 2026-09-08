@@ -77,7 +77,18 @@ namespace Content.Server.AlertLevel.Commands
             if (detail.IsAdditional)
             {
                 var enabled = args.Length == 1 || option;
-                _alertLevelSystem.TrySetAdditionalLevel(stationUid.Value, level, enabled, true, true, true, alertLevelComp);
+                if (!_alertLevelSystem.TrySetAdditionalLevel(
+                        stationUid.Value,
+                        level,
+                        enabled,
+                        true,
+                        true,
+                        true,
+                        alertLevelComp))
+                {
+                    shell.WriteError(LocalizationManager.GetString("cmd-setalertlevel-change-failed"));
+                }
+
                 return;
             }
 
