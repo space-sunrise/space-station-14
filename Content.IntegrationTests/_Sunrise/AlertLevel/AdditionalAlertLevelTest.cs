@@ -255,7 +255,7 @@ public sealed class AdditionalAlertLevelTest
                     centCommConsole,
                     "gamma",
                     levels["gamma"]), Is.True);
-                Assert.That(levels["gamma"].IsAdditional, Is.True);
+                Assert.That(levels["gamma"].IsAdditional, Is.False);
                 Assert.That(CommunicationsConsoleSystem.IsAlertLevelAllowed(
                     centCommConsole,
                     "delta",

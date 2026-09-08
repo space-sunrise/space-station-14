@@ -60,7 +60,6 @@
         announcement: access-system-accesses-delay-red
       # Sunrise edit end
     gamma:
-      isAdditional: true # Sunrise-Edit
       visualPriority: 40 # Sunrise-Edit
       announcement: alert-level-gamma-announcement
       selectable: false
