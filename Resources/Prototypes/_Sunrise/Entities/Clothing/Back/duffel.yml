@@ -12,7 +12,7 @@
       maxItemSize: Huge
     - type: ClothingSpeedModifier
       walkModifier: 1
-      sprintModifier: 0.95
+      sprintModifier: 0.95 # Сумку можно положить только из наборов с оружием,так что она должна быть лучше обычной сумки
 
 - type: entity
   parent: ClothingBackpackDuffel

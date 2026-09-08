@@ -159,6 +159,7 @@
         key: Muted
         component: Muted
         time: 60
+        type: Add
 
 - type: reagent
   id: NocturineAbductor

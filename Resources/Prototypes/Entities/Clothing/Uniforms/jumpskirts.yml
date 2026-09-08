@@ -209,7 +209,7 @@
     sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/hos_alt.rsi # Sunrise-Edit
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/hos_alt.rsi # Sunrise-Edit
-  # Sunrise-start позволяет переключаться между длинным и коротким вариантом юбки
+  # Sunrise-start Позволяет переключаться между длинным и коротким вариантом юбки
   - type: Foldable
     canFoldInsideContainer: true
     unfoldVerbText: unfold-verb-clothing-skirt

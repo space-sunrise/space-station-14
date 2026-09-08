@@ -130,11 +130,11 @@
         - id: RegenerativeMesh
         - id: SyringeEphedrine
         - id: SyringeSaline
-      # Sunrise-start
+      # Sunrise-Start
       # - id: BruteAutoInjector
       # - id: BurnAutoInjector
         - id: MedipenCaseFilled
-      # Sunrise-end
+      # Sunrise-End
 
 - type: entity
   id: StimkitFilled
