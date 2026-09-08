@@ -19,7 +19,6 @@ public sealed partial class AlertLevelSystem
             || station.Comp.AlertLevels == null
             || !station.Comp.AlertLevels.Levels.TryGetValue(level, out var detail)
             || !detail.IsAdditional
-            || (!enabled && !detail.CanBeDisabled)
             || station.Comp.ActiveAdditionalLevels.Contains(level) == enabled)
         {
             return false;

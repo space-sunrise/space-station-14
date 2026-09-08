@@ -510,7 +510,7 @@
     title: comms-console-announcement-title-centcom
     global: true
     announceVoice: NecoArcTwo
-    allowedAlertLevels: [green, blue, violet, yellow, red, gamma, epsilon] # Sunrise-Edit
+    allowedAlertLevels: [green, blue, violet, yellow, red, gamma, delta] # Sunrise-Edit
     forceAlertLevelChanges: true # Sunrise-Edit
 
 - type: entity

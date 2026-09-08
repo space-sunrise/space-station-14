@@ -886,7 +886,7 @@
     color: "#1d8bad"
     canShuttle: false
     global: true
-    allowedAlertLevels: [green, blue, violet, yellow, red, gamma, epsilon] # Sunrise-Edit
+    allowedAlertLevels: [green, blue, violet, yellow, red, gamma, delta] # Sunrise-Edit
     forceAlertLevelChanges: true # Sunrise-Edit
   - type: Computer
     board: CentcommCommsComputerCircuitboard

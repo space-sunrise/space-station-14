@@ -548,30 +548,10 @@ public sealed class NukeSystem : EntitySystem
         if (component.Status != NukeStatus.ARMED)
             return;
 
-        var stationUid = _station.GetStationInMap(Transform(uid).MapID); // Sunrise-Edit - совпадает с поиском станции при взводе
-        if (stationUid != null
-            && !HasOtherArmedNuke(uid, stationUid.Value, component.AlertLevelOnActivate))
+        var stationUid = _station.GetOwningStation(uid);
+        if (stationUid != null)
         {
-            // Sunrise edit start - дополнительный Delta снимается без замены основного кода
-            if (TryComp<AlertLevelComponent>(stationUid.Value, out var alert)
-                && alert.AlertLevels != null
-                && alert.AlertLevels.Levels.TryGetValue(component.AlertLevelOnActivate, out var activeDetail)
-                && activeDetail.IsAdditional)
-            {
-                _alertLevel.TrySetAdditionalLevel(
-                    stationUid.Value,
-                    component.AlertLevelOnActivate,
-                    false,
-                    true,
-                    true,
-                    true,
-                    alert);
-            }
-            else
-            {
-                _alertLevel.SetLevel(stationUid.Value, component.AlertLevelOnDeactivate, true, true, true);
-            }
-            // Sunrise edit end
+            _alertLevel.SetLevel(stationUid.Value, component.AlertLevelOnDeactivate, true, true, true);
         }
 
         // warn a crew
@@ -603,27 +583,6 @@ public sealed class NukeSystem : EntitySystem
         UpdateUserInterface(uid, component);
         UpdateAppearance(uid, component);
     }
-
-    // Sunrise added start - код Delta остаётся активным, пока на станции взведена хотя бы одна бомба
-    private bool HasOtherArmedNuke(EntityUid excluded, EntityUid station, string alertLevel)
-    {
-        var query = EntityQueryEnumerator<NukeComponent>();
-        while (query.MoveNext(out var uid, out var nuke))
-        {
-            if (uid == excluded
-                || nuke.Status != NukeStatus.ARMED
-                || nuke.AlertLevelOnActivate != alertLevel)
-            {
-                continue;
-            }
-
-            if (_station.GetStationInMap(Transform(uid).MapID) == station)
-                return true;
-        }
-
-        return false;
-    }
-    // Sunrise added end
 
     /// <summary>
     ///     Toggle bomb arm button

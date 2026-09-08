@@ -60,6 +60,7 @@
         announcement: access-system-accesses-delay-red
       # Sunrise edit end
     gamma:
+      isAdditional: true # Sunrise-Edit
       visualPriority: 40 # Sunrise-Edit
       announcement: alert-level-gamma-announcement
       selectable: false
@@ -95,7 +96,6 @@
       # Sunrise edit end
     epsilon:
       isAdditional: true # Sunrise-Edit
-      canBeDisabled: false # Sunrise-Edit - протокол необратим после раскрытия цели
       visualPriority: 60 # Sunrise-Edit
       announcement: alert-level-epsilon-announcement
       selectable: false

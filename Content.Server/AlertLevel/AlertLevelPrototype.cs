@@ -35,13 +35,7 @@ public sealed partial class AlertLevelDetail
     /// </summary>
     [DataField] public bool IsAdditional { get; private set; } // Sunrise-Edit
 
-    // Sunrise added start - правила дополнительных кодов и выбор визуального приоритета
-    /// <summary>
-    /// Whether an active additional alert level can be disabled.
-    /// </summary>
-    [DataField]
-    public bool CanBeDisabled { get; private set; } = true;
-
+    // Sunrise added start - выбор визуального приоритета активных кодов
     /// <summary>
     /// Determines which active alert level controls single-state visuals such as emergency lights.
     /// </summary>

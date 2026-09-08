@@ -17,7 +17,7 @@ namespace Content.IntegrationTests._Sunrise.AlertLevel;
 public sealed class AdditionalAlertLevelTest
 {
     [Test]
-    public async Task AdditionalLevelsRespectSharedCooldownAndIrreversibleLevels()
+    public async Task AdditionalLevelsRespectSharedCooldown()
     {
         await using var pair = await PoolManager.GetServerClient();
         var server = pair.Server;
@@ -32,7 +32,6 @@ public sealed class AdditionalAlertLevelTest
         var forcedVioletEnabled = false;
         var yellowDisableBlockedByCooldown = false;
         var yellowDisabled = false;
-        var epsilonDisableBlocked = false;
 
         await server.WaitPost(() =>
         {
@@ -86,13 +85,6 @@ public sealed class AdditionalAlertLevelTest
                 playSound: false,
                 announce: false,
                 component: alertLevel);
-
-            alertLevel.ActiveAdditionalLevels.Add("epsilon");
-            epsilonDisableBlocked = !alertLevelSystem.CanSetAdditionalLevel(
-                (station, alertLevel),
-                "epsilon",
-                false,
-                force: true);
         });
 
         await server.WaitAssertion(() =>
@@ -104,11 +96,10 @@ public sealed class AdditionalAlertLevelTest
                 Assert.That(forcedVioletEnabled, Is.True);
                 Assert.That(yellowDisableBlockedByCooldown, Is.True);
                 Assert.That(yellowDisabled, Is.True);
-                Assert.That(epsilonDisableBlocked, Is.True);
                 Assert.That(alertLevel.CurrentLevel, Is.EqualTo("green"));
                 Assert.That(alertLevel.ActiveDelay, Is.True);
                 Assert.That(alertLevel.CurrentDelay, Is.GreaterThan(0));
-                Assert.That(alertLevel.ActiveAdditionalLevels, Is.EquivalentTo(new[] { "violet", "epsilon" }));
+                Assert.That(alertLevel.ActiveAdditionalLevels, Is.EquivalentTo(new[] { "violet" }));
             });
         });
 
@@ -237,7 +228,7 @@ public sealed class AdditionalAlertLevelTest
             };
             var centCommConsole = new CommunicationsConsoleComponent
             {
-                AllowedAlertLevels = ["green", "blue", "violet", "yellow", "red", "gamma", "epsilon"],
+                AllowedAlertLevels = ["green", "blue", "violet", "yellow", "red", "gamma", "delta"],
                 ForceAlertLevelChanges = true,
             };
 
@@ -263,14 +254,16 @@ public sealed class AdditionalAlertLevelTest
                     centCommConsole,
                     "gamma",
                     levels["gamma"]), Is.True);
-                Assert.That(CommunicationsConsoleSystem.IsAlertLevelAllowed(
-                    centCommConsole,
-                    "epsilon",
-                    levels["epsilon"]), Is.True);
+                Assert.That(levels["gamma"].IsAdditional, Is.True);
                 Assert.That(CommunicationsConsoleSystem.IsAlertLevelAllowed(
                     centCommConsole,
                     "delta",
-                    levels["delta"]), Is.False);
+                    levels["delta"]), Is.True);
+                Assert.That(levels["delta"].IsAdditional, Is.True);
+                Assert.That(CommunicationsConsoleSystem.IsAlertLevelAllowed(
+                    centCommConsole,
+                    "epsilon",
+                    levels["epsilon"]), Is.False);
             });
         });
 
