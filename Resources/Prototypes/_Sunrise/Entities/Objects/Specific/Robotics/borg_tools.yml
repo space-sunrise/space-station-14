@@ -43,6 +43,29 @@
         locked: true
 
 - type: entity
+  parent: EnergyShieldCyber
+  id: EnergyShieldCyberBorg
+  name: robot bulwark
+  description: A cyborg-integrated hard-light shield that can also project a solid but fragile holographic barrier.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HolosignProjector
+    signProto: HolosignSecurity
+    chargeUse: 90
+    countPerTileLimit: 2
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot {}
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellRobotTool
+        locked: true
+
+- type: entity
   name: robot laser gun
   parent: BaseWeaponBatterySmall
   id: WeaponLaserBorg

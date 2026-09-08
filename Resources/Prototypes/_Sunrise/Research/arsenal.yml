@@ -303,7 +303,7 @@
     state: security
   discipline: Arsenal
   tier: 2
-  cost: 10000
+  cost: 4000 # было переоценено
   recipeUnlocks:
   - BorgModuleAdvancedCombat
   radioChannels:

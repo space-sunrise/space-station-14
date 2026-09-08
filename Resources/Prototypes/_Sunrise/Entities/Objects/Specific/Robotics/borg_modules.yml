@@ -158,7 +158,7 @@
     - item: Truncheon
     - item: WeaponRifleLecterB
     - item: WeaponHeavyLaserBorg
-    - item: HoloprojectorSecurityBorg
+    - item: EnergyShieldCyberBorg
 
 - type: entity
   id: BorgModuleCombat
