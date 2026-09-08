@@ -103,9 +103,6 @@
         enum.PaperLabelVisuals.Layer:
           True: { visible: true }
           False: { visible: false }
-      enum.StorageVisuals.Open:
-        enum.PaperLabelVisuals.Layer:
-          True: { visible: false }
       enum.PaperLabelVisuals.LabelType:
         enum.PaperLabelVisuals.Layer:
           Paper: { state: paper }

@@ -121,6 +121,22 @@
   - type: RadarBlip
     scale: 0
     requireInSpace: true
+  - type: ItemSlots
+    slots:
+      item:
+        name: clothing-boots-sidearm
+        priority: 4
+        whitelist:
+          tags:
+          - Knife
+          - Sidearm
+        blacklist:
+          tags:
+          - BigSmallArms
+  - type: ContainerFill
+    containers:
+      item:
+      - CombatKnife
   # Sunrise-end
 
 - type: entity
