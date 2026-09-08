@@ -1114,4 +1114,44 @@
     frequenciesExcluded:
     - 1213 # syndicate frequency
 
+- type: entity
+  parent: BaseItem
+  id: WeaponSprayNozzleBorg
+  name: robot spray nozzle
+  description: An internal spray jet installed directly into a custodial cyborg, firing pressurized bursts of space cleaner just like a spray nozzle.
+  
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Basic/spraynozzle.rsi
+    state: icon
+  - type: Item
+    sprite: Objects/Weapons/Guns/Basic/spraynozzle.rsi
+    size: Normal
+  - type: Gun
+    cameraRecoilScalar: 0
+    fireRate: 4
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/water_spray.ogg
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 250
+        reagents:
+        - ReagentId: SpaceCleaner
+          Quantity: 250
+  - type: SolutionRegeneration
+    solution: tank
+    generated:
+      reagents:
+      - ReagentId: SpaceCleaner
+        Quantity: 2.5
+  - type: SolutionAmmoProvider
+    solutionId: tank
+    fireCost: 5
+    proto: BulletWaterShot
+  - type: Appearance
+
 # region end

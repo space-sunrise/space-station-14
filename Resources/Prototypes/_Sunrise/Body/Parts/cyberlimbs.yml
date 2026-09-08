@@ -297,7 +297,7 @@
     - type: LimbItemStorage
       items:
         - AdvMopCyber
-        - BorgMegaSprayBottle
+        - WeaponSprayNozzleBorg
         - HoloprojectorBorg
         - LightReplacer
     - type: WithAttachedBodyParts
@@ -335,7 +335,7 @@
     - type: LimbItemStorage
       items:
         - AdvMopCyber
-        - BorgMegaSprayBottle
+        - WeaponSprayNozzleBorg
         - HoloprojectorBorg
         - LightReplacer
     - type: WithAttachedBodyParts

@@ -863,7 +863,7 @@
     hands:
     #- item: AdvMopItem # Sunrise-Edit
     - item: WireBrushElectrical
-    - item: BorgMegaSprayBottle
+    - item: WeaponSprayNozzleBorg # Sunrise-Edit - стрельба очередями space cleaner как у WeaponSprayNozzle
     - item: HoloprojectorBorg
     - item: BorgDropper
     - item: Beaker
