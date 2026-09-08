@@ -11,14 +11,18 @@ public sealed partial class EmoteAnimationComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     public string AnimationId = "none";
 
+    public TimeSpan StartedAt;
+
     [Serializable, NetSerializable]
     public sealed partial class EmoteAnimationComponentState : ComponentState
     {
         public string AnimationId { get; init; }
+        public TimeSpan StartedAt { get; init; }
 
-        public EmoteAnimationComponentState(string animationId)
+        public EmoteAnimationComponentState(string animationId, TimeSpan startedAt)
         {
             AnimationId = animationId;
+            StartedAt = startedAt;
         }
     }
 }

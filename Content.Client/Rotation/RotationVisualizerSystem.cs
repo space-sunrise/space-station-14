@@ -1,15 +1,13 @@
+using Content.Client._Sunrise.Animations;
 using Content.Shared.Rotation;
-using Robust.Client.Animations;
 using Robust.Client.GameObjects;
-using Robust.Shared.Animations;
 
 namespace Content.Client.Rotation;
 
 public sealed class RotationVisualizerSystem : SharedRotationVisualsSystem
 {
-
     [Dependency] private readonly AppearanceSystem _appearance = default!;
-    [Dependency] private readonly AnimationPlayerSystem _animation = default!;
+    [Dependency] private readonly SpritePoseSystem _pose = default!; // Sunrise-Edit
 
     public override void Initialize()
     {
@@ -42,38 +40,8 @@ public sealed class RotationVisualizerSystem : SharedRotationVisualsSystem
     /// </summary>
     public void AnimateSpriteRotation(EntityUid uid, SpriteComponent spriteComp, Angle rotation, float animationTime)
     {
-        if (spriteComp.Rotation.Equals(rotation))
-        {
-            return;
-        }
-
-        var animationComp = EnsureComp<AnimationPlayerComponent>(uid);
-        const string animationKey = "rotate";
-        // Stop the current rotate animation and then start a new one
-        if (_animation.HasRunningAnimation(animationComp, animationKey))
-        {
-            _animation.Stop((uid, animationComp), animationKey);
-        }
-
-        var animation = new Animation
-        {
-            Length = TimeSpan.FromSeconds(animationTime),
-            AnimationTracks =
-            {
-                new AnimationTrackComponentProperty
-                {
-                    ComponentType = typeof(SpriteComponent),
-                    Property = nameof(SpriteComponent.Rotation),
-                    InterpolationMode = AnimationInterpolationMode.Linear,
-                    KeyFrames =
-                    {
-                        new AnimationTrackProperty.KeyFrame(spriteComp.Rotation, 0),
-                        new AnimationTrackProperty.KeyFrame(rotation, animationTime)
-                    }
-                }
-            }
-        };
-
-        _animation.Play((uid, animationComp), animation, animationKey);
+        // Sunrise edit start - перенос в новую систему
+        _pose.SetBasePose((uid, spriteComp), rotation, animationTime);
+        // Sunrise edit end
     }
 }
