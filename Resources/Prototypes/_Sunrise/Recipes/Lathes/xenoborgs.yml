@@ -58,7 +58,7 @@
 - type: latheRecipe
   parent: BaseXenoborgRecipeHigh
   id: PositronicBrain
-  result: PositronicBrain
+  result: Boris
   materials:
     Steel: 3000
     Glass: 1500
