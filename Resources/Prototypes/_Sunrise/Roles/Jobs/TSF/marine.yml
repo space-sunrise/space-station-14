@@ -77,9 +77,9 @@
     - MagazineRifleAP
     - MagazineRifleAP
     - MagazineRifleAP
-    - MagazineBoxPistol40FMJ
-    - MagazinePistol40FMJ
-    - MagazinePistol40FMJ
+    - MagazineBoxMagnumSP
+    - MagazineMagnum
+    - MagazineMagnum
 
 - type: startingGear
   id: TSFEliteMarineGear

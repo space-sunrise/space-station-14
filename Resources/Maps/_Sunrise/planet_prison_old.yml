@@ -44178,7 +44178,6 @@ entities:
           Telecrystal: 1
         disableRefund: False
         costModifiersBySourceId: {}
-        costModifiersBySourceId: {}
       - id: UplinkSunriseClothingUniformColorRainbow
         productEntity: ClothingUniformColorRainbow
         name: uplink-sunrise-clothing-uniform-color-jumpsuit-rainbow-name
