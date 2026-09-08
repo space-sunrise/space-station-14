@@ -135,7 +135,7 @@
           - BigSmallArms
   - type: ContainerContainer
     containers:
-      storagebase: !type:ContainerSlot
+      item: !type:ContainerSlot
   - type: ContainerFill
     containers:
       item:
