@@ -816,10 +816,10 @@
 # Модули Синдиката, открываемые через EMAG
 
 - type: entity
-  id: SunriseBorgModuleL6C
+  id: SunriseBorgModuleL6M
   parent: [ BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ]
-  name: L6C cyborg module
-  description: A universally compatible weapons module containing an L6 SAW and one spare magazine box.
+  name: L6M COW module
+  description: COW stands for "Cyborg-Operated Weapon". A universally compatible module containing an L6M COW and one spare magazine box.
   components:
   - type: Sprite
     layers:
@@ -827,7 +827,7 @@
     - state: icon-syndicate
   - type: ItemBorgModule
     hands:
-    - item: WeaponLightMachineGunL6
+    - item: SunriseWeaponLightMachineGunL6M
     - item: MagazineRifleBoxSP
       hand:
         emptyRepresentative: MagazineRifleBoxSP

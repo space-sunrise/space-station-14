@@ -54,8 +54,8 @@
     Plasma: 75
 
 - type: latheRecipe
-  id: SunriseBorgModuleL6C
-  result: SunriseBorgModuleL6C
+  id: SunriseBorgModuleL6M
+  result: SunriseBorgModuleL6M
   categories:
   - Modules
   materials:
