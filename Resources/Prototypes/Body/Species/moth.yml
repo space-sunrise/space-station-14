@@ -210,6 +210,8 @@
   # Sunrise-start
   - type: FootprintEmitter
   - type: Interactions
+  - type: Scent
+    personalScentProfile: SunriseMoth
   # Sunrise-end
 
 - type: entity
