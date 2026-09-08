@@ -101,7 +101,7 @@ public sealed class ScentCleaningSystem : EntitySystem
         if (!_actionBlocker.CanInteract(user, target))
             return false;
 
-        if (!_interaction.InRangeUnobstructed(user, (target, null),
+        if (!_interaction.InRangeAndAccessible(user, (target, null),
                 range: _cache.Config.ScentCleaningRange))
             return false;
 
