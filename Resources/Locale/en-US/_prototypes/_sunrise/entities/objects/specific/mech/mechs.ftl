@@ -14,6 +14,14 @@ ent-MechKolobokBattery = { ent-MechKolobok }
 ent-MechKolobokFilled = { ent-MechKolobokBattery }
     .desc = { ent-MechKolobokBattery.desc }
     .suffix = Battery, Filled
+ent-SunriseMechBlyashanka = Blyashanka
+    .desc = A medium four-legged anti-infantry walker of the SSSP. Its armor plating provides basic protection while maintaining high mobility. However, damage to the leg assemblies significantly reduces its speed and maneuverability.
+ent-SunriseMechBlyashankaBattery = { ent-SunriseMechBlyashanka }
+    .desc = { ent-SunriseMechBlyashanka.desc }
+    .suffix = Battery
+ent-SunriseMechBlyashankaFilled = { ent-SunriseMechBlyashankaBattery }
+    .desc = { ent-SunriseMechBlyashankaBattery.desc }
+    .suffix = Battery, Filled
 
 ent-MechHauler = APLU "Hauler"
     .suffix = Filled

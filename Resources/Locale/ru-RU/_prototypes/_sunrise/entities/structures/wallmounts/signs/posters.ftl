@@ -73,14 +73,6 @@ ent-PosterJapanese1 = Закат над Тории
     .desc = Плакат в японском стиле.
 ent-PosterJapanese2 = Свиток Весенней сакуры
     .desc = { ent-PosterJapanese1.desc }
-
-ent-PosterContrabandSovietMechKolobokFortified = укреплённый «Колобок»
-    .desc =
-        МЕДЛЕННЫЙ — НЕ ЗНАЧИТ СЛАБЫЙ.
-        СТАЛЬНАЯ БРОНЯ. ТЯЖЁЛЫЙ ШАГ. НЕОТВРАТИМЫЙ НАТИСК.
-
-        Советский мех «Колобок».
-        Опора пехоты. Щит наступления.
 ent-PosterJapanese3 = ХуньйСунЧай
     .desc = { ent-PosterJapanese1.desc }
 ent-PosterJapanese4 = Рыбы разума и чувств

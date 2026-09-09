@@ -847,6 +847,7 @@
   parent: [ MechBreakageKolobok, BaseMech, CombatMech, BaseMajorContraband ] # Sunrise-edit
   name: Kolobok
   description: The Heavy Mech USSP, a communist variant of the Durand, features stronger armor and a powerful machine gun.
+  suffix: Soviet Heavy Mech
   components:
   - type: FootprintEmitter # Sunrise-Add
     leftBareFootState: [ footprint-mech-heavy ]
@@ -938,3 +939,100 @@
   - type: Mech
     startingEquipment:
       - WeaponMechCombatMaxim
+
+# Blyashanka
+- type: entity
+  id: SunriseMechBlyashanka
+  parent: [ MechBreakageGygax, BaseMech, CombatMech, BaseMajorContraband ]
+  name: Blyashanka
+  suffix: Soviet Medium Mech
+  description: A medium four-legged USSP walker protected by Syndicate armor plating.
+  components:
+  - type: FootprintEmitter
+    leftBareFootState: [ footprint-mech-fourfoot ]
+    rightBareFootState: [ footprint-mech-fourfoot ]
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: _Sunrise/Objects/Specific/Mech/blyashanka.rsi
+    scale: 1.05, 1.05
+    layers:
+    - map: [ "enum.MechVisualLayers.Base", "movement" ]
+      state: base
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+      params:
+        pitch: 0.7
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: base-moving
+    noMovementLayers:
+      movement:
+        state: base
+  - type: DamageVisuals
+    thresholds: [ 50, 100, 150, 250, 350, 450 ]
+    trackAllDamage: true
+    damageOverlay:
+      sprite: _Sunrise/Objects/Specific/Mech/blyashanka.rsi
+  - type: Mech
+    baseState: base
+    openState: base-open
+    brokenState: base-broken
+    mechToPilotDamageMultiplier: 0.0
+    airtight: true
+    maxEquipmentAmount: 2
+    pilotWhitelist:
+      components:
+      - HumanoidProfile
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 20
+        Structural: 100
+    bluntStaminaDamageFactor: 0.5
+  - type: MeleeThrowOnHit
+    speed: 5
+    distance: 1
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 4
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      250: 0.9
+      375: 0.7
+      450: 0.5
+  - type: Loadout
+    prototypes: [ MechArmorMediumSyndiLoadout ]
+  - type: CanMoveInAir
+  - type: MovementAlwaysTouching
+  - type: AccessReader
+    access: [[]]
+  - type: MobThresholds
+    currentThresholdState: Alive
+    thresholds:
+      0: Alive
+      500: Critical
+
+- type: entity
+  id: SunriseMechBlyashankaBattery
+  parent: SunriseMechBlyashanka
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCageSyndicate
+
+- type: entity
+  id: SunriseMechBlyashankaFilled
+  parent: SunriseMechBlyashankaBattery
+  suffix: Battery, Filled
+  components:
+  - type: Mech
+    startingEquipment:
+      - SunriseWeaponMechCombatRpd
+      - SunriseWeaponMechCombatRpd

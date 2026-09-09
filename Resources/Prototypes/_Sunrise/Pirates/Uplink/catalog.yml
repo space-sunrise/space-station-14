@@ -2575,10 +2575,13 @@
   id: UplinkPirateMurmilloHardsuitCrate
   productEntity: CratePirateMurmilloHardsuit
   cost:
-    Doubloon: 60
+    Doubloon: 150
   categories:
   - UplinkPirateArmor
   restockTime: 3600
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
 
 - type: listing
   id: UplinkPirateSwashbucklerHardsuitCrate

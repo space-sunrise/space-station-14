@@ -14,6 +14,15 @@ ent-MechKolobokBattery = { ent-MechKolobok }
 ent-MechKolobokFilled = { ent-MechKolobokBattery }
     .desc = { ent-MechKolobokBattery.desc }
     .suffix = Батарея, Заполненный
+ent-SunriseMechBlyashanka = Бляшанка
+    .desc = Средний четырёхногий противопехотный шагоход СССП. Бронепластины обеспечивают базовую защиту, не сковывая подвижность машины. Однако повреждение ходовой части заметно снижает её скорость и манёвренность.
+ent-SunriseMechBlyashankaBattery = { ent-SunriseMechBlyashanka }
+    .desc = { ent-SunriseMechBlyashanka.desc }
+    .suffix = Батарея
+ent-SunriseMechBlyashankaFilled = { ent-SunriseMechBlyashankaBattery }
+    .desc = { ent-SunriseMechBlyashankaBattery.desc }
+    .suffix = Батарея, Заполненный
+
 ent-MechMolot = Молот М-1
     .desc = Тяжёлый мех, созданный СССП с целью работы в агресивнных, не принятых для жизни условиях. Имеет на борту 4 крепления для вооружения, поддержание кислорода в кабине.
 ent-MechMolotBattery = { ent-MechMolot }
