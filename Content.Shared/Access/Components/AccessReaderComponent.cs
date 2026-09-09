@@ -26,12 +26,6 @@ public sealed partial class AccessReaderComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     public ProtoId<AccessGroupPrototype>? Group;
 
-    /// <summary>
-    /// Additional access groups granted by simultaneously active alert levels.
-    /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
-    public HashSet<ProtoId<AccessGroupPrototype>> AdditionalGroups = [];
-
     [DataField, ViewVariables]
     public Dictionary<string, ProtoId<AccessGroupPrototype>> AlertAccesses = new();
 
@@ -134,14 +128,13 @@ public readonly partial record struct AccessRecord(
 }
 
 [Serializable, NetSerializable]
-public sealed class AccessReaderComponentState : ComponentState
+public sealed partial class AccessReaderComponentState : ComponentState // Sunrise-Edit
 {
     public bool Enabled;
     public HashSet<ProtoId<AccessLevelPrototype>> DenyTags;
     public List<HashSet<ProtoId<AccessLevelPrototype>>> AccessLists;
     public List<HashSet<ProtoId<AccessLevelPrototype>>>? AccessListsOriginal;
     public ProtoId<AccessGroupPrototype>? Group; // Sunrise-alertAccesses, нужно для связывания клиента с сервером
-    public HashSet<ProtoId<AccessGroupPrototype>> AdditionalGroups; // Sunrise-Edit
     public List<(NetEntity, uint)> AccessKeys;
     public Queue<AccessRecord> AccessLog;
     public int AccessLogLimit;

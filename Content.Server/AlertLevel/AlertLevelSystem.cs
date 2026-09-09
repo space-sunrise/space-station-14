@@ -129,7 +129,7 @@ public sealed partial class AlertLevelSystem : EntitySystem // Sunrise-Edit
     /// Set the alert level based on the station's entity ID.
     /// </summary>
     /// <param name="station">Station entity UID.</param>
-    /// <param name="level">Level to change the station's alert level to.</param>
+    /// <param name="level">Level to change. Additional levels are always enabled without replacing the primary level; use <see cref="TrySetAdditionalLevel"/> to disable them.</param>
     /// <param name="playSound">Play the alert level's sound.</param>
     /// <param name="announce">Say the alert level's announcement.</param>
     /// <param name="force">Force the alert change. This applies if the alert level is not selectable or not.</param>
@@ -158,7 +158,7 @@ public sealed partial class AlertLevelSystem : EntitySystem // Sunrise-Edit
         {
             if (!detail.Selectable
                 || component.CurrentDelay > 0
-                || !component.IsSelectable) // Sunrise-Edit
+                || !IsSelectable((station, component))) // Sunrise-Edit
             {
                 return;
             }

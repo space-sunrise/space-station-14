@@ -57,7 +57,7 @@
     sound: /Audio/Announcements/announce.ogg # Starlight used /Audio/_Starlight/Announcements/announce2.ogg.
     color: "#b48b57"
     canShuttle: false
-    allowedAlertLevels: [] # Sunrise-Edit - грузовая консоль не управляет кодами
+    allowedAlertLevels: []
   - type: Computer
     # Starlight department comms boards are not ported.
     board: CommsComputerCircuitboard
@@ -91,7 +91,7 @@
     sound: /Audio/Announcements/announce.ogg
     color: "#f37746"
     canShuttle: false
-    allowedAlertLevels: [yellow] # Sunrise-Edit
+    allowedAlertLevels: [yellow]
   - type: Computer
     board: CommsComputerCircuitboard
   - type: PointLight
@@ -124,7 +124,7 @@
     sound: /Audio/Announcements/announce.ogg
     color: "#ff178b"
     canShuttle: false
-    allowedAlertLevels: [] # Sunrise-Edit - юридическая консоль не управляет кодами
+    allowedAlertLevels: []
   - type: Computer
     board: CommsComputerCircuitboard
   - type: PointLight
@@ -157,7 +157,7 @@
     sound: /Audio/Announcements/announce.ogg
     color: "#52b4e9"
     canShuttle: false
-    allowedAlertLevels: [violet] # Sunrise-Edit
+    allowedAlertLevels: [violet]
   - type: Computer
     board: CommsComputerCircuitboard
   - type: PointLight
@@ -190,7 +190,7 @@
     sound: /Audio/Announcements/announce.ogg
     color: "#c68cfa"
     canShuttle: false
-    allowedAlertLevels: [] # Sunrise-Edit - научная консоль не управляет кодами
+    allowedAlertLevels: []
   - type: Computer
     board: CommsComputerCircuitboard
   - type: PointLight
@@ -255,7 +255,7 @@
     sound: /Audio/Announcements/announce.ogg
     color: "#539c00"
     canShuttle: false
-    allowedAlertLevels: [] # Sunrise-Edit - сервисная консоль не управляет кодами
+    allowedAlertLevels: []
   - type: Computer
     board: CommsComputerCircuitboard
   - type: PointLight

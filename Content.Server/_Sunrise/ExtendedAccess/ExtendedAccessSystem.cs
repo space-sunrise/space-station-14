@@ -65,19 +65,22 @@ public sealed class ExtendedAccessSystem : EntitySystem
             return;
         }
 
-        ScheduleAccessUpdate((ev.Station, alert), options);
+        ScheduleAccessUpdate((ev.Station, alert), options, ev.Enabled);
     }
 
-    private void ScheduleAccessUpdate(Entity<AlertLevelComponent> station, ExtendedAccessOptions options)
+    private void ScheduleAccessUpdate(
+        Entity<AlertLevelComponent> station,
+        ExtendedAccessOptions options,
+        bool announceAccessGrant = true)
     {
         // Отменяем отложенное изменение только на этой станции: применяется последнее состояние всех кодов.
         CancelUpdate(station);
         var token = new CancellationTokenSource();
         _tokens[station] = token;
 
-        Timer.Spawn(options.Delay, () => AfterDelay(station, token), token.Token);
+        Timer.Spawn(options.Delay, () => AfterDelay(station, token, announceAccessGrant), token.Token);
 
-        if (options.Announcement != null)
+        if (announceAccessGrant && options.Announcement != null)
         {
             // В строке локализации оповещения обязательно должно быть указан параметр для времени
             var message = Loc.GetString(options.Announcement, ("time", options.Delay.TotalSeconds));
@@ -92,7 +95,10 @@ public sealed class ExtendedAccessSystem : EntitySystem
     /// <summary>
     /// Applies the combined temporary access groups from the primary and additional alert levels.
     /// </summary>
-    private void AfterDelay(Entity<AlertLevelComponent> station, CancellationTokenSource token)
+    private void AfterDelay(
+        Entity<AlertLevelComponent> station,
+        CancellationTokenSource token,
+        bool announceAccessGrant)
     {
         if (TerminatingOrDeleted(station)
             || !_tokens.TryGetValue(station, out var currentToken)
@@ -104,10 +110,13 @@ public sealed class ExtendedAccessSystem : EntitySystem
         _tokens.Remove(station);
         token.Dispose();
 
-        _chat.DispatchStationAnnouncement(station,
-            Loc.GetString("access-system-accesses-established"),
-            colorOverride: Color.Yellow,
-            sender: Loc.GetString("access-system-sender"));
+        if (announceAccessGrant)
+        {
+            _chat.DispatchStationAnnouncement(station,
+                Loc.GetString("access-system-accesses-established"),
+                colorOverride: Color.Yellow,
+                sender: Loc.GetString("access-system-sender"));
+        }
 
         var activeLevels = _alertLevel.GetActiveLevels(station.AsNullable());
         var globalGroups = new HashSet<ProtoId<AccessGroupPrototype>>();
@@ -129,7 +138,11 @@ public sealed class ExtendedAccessSystem : EntitySystem
             if (reader.AlertAccesses.Count == 0)
                 continue;
 
-            _accessReader.UpdateAccess((uid, reader), activeLevels, globalGroups);
+            _accessReader.UpdateAccess(
+                (uid, reader),
+                station.Comp.CurrentLevel,
+                activeLevels,
+                globalGroups);
         }
     }
 

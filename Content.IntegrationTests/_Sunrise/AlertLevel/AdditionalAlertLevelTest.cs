@@ -176,6 +176,7 @@ public sealed class AdditionalAlertLevelTest
 
             accessReaderSystem.UpdateAccess(
                 (reader, accessReader),
+                "red",
                 new[] { "red", "yellow" },
                 new HashSet<ProtoId<AccessGroupPrototype>>
                 {
@@ -203,6 +204,70 @@ public sealed class AdditionalAlertLevelTest
                 Assert.That(securityAllowed, Is.True);
                 Assert.That(atmosphericsAllowed, Is.True);
                 Assert.That(engineeringAllowed, Is.True);
+            });
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task DenyTagsOverrideAlertLevelAccessGroups()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var entityManager = server.EntMan;
+        var accessReaderSystem = server.System<AccessReaderSystem>();
+        AccessReaderComponent accessReader = null!;
+        var allowed = true;
+
+        await server.WaitPost(() =>
+        {
+            var reader = entityManager.SpawnEntity("DoorElectronicsLawyer", MapCoordinates.Nullspace);
+            accessReader = entityManager.GetComponent<AccessReaderComponent>(reader);
+            accessReaderSystem.UpdateAccess((reader, accessReader), "red");
+            accessReaderSystem.SetDenyTags(
+                (reader, accessReader),
+                [new ProtoId<AccessLevelPrototype>("Security")]);
+
+            allowed = accessReaderSystem.IsAccessAllowedByExtendedAccess(
+                new HashSet<ProtoId<AccessLevelPrototype>> { new("Security") },
+                accessReader);
+        });
+
+        await server.WaitAssertion(() => Assert.That(allowed, Is.False));
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task AdditionalAccessGroupDoesNotReplacePrimaryGroup()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var entityManager = server.EntMan;
+        var accessReaderSystem = server.System<AccessReaderSystem>();
+        AccessReaderComponent accessReader = null!;
+
+        await server.WaitPost(() =>
+        {
+            var reader = entityManager.SpawnEntity("DoorElectronicsLawyer", MapCoordinates.Nullspace);
+            accessReader = entityManager.GetComponent<AccessReaderComponent>(reader);
+            accessReaderSystem.UpdateAccess(
+                (reader, accessReader),
+                "red",
+                new[] { "red", "yellow" },
+                new HashSet<ProtoId<AccessGroupPrototype>>
+                {
+                    new("YellowAlertAccesses"),
+                });
+        });
+
+        await server.WaitAssertion(() =>
+        {
+            Assert.Multiple(() =>
+            {
+                Assert.That(accessReader.Group, Is.EqualTo(new ProtoId<AccessGroupPrototype>("RedAlertAccesses")));
+                Assert.That(accessReader.AdditionalGroups,
+                    Does.Contain(new ProtoId<AccessGroupPrototype>("YellowAlertAccesses")));
             });
         });
 
@@ -286,6 +351,7 @@ public sealed class AdditionalAlertLevelTest
         EntityUid validStation = default;
         EntityUid invalidStation = default;
         var validStationSelected = false;
+        var remoteAlertLevelSet = false;
         var invalidStationRejected = false;
         var disabledSelectionRejected = false;
 
@@ -294,12 +360,15 @@ public sealed class AdditionalAlertLevelTest
             console = entityManager.SpawnEntity(null, MapCoordinates.Nullspace);
             consoleComponent = entityManager.AddComponent<CommunicationsConsoleComponent>(console);
             consoleComponent.CanSelectAlertStation = true;
+            consoleComponent.ForceAlertLevelChanges = true;
+            consoleComponent.AllowedAlertLevels = ["gamma"];
             user = entityManager.SpawnEntity(null, MapCoordinates.Nullspace);
 
             validStation = entityManager.SpawnEntity(null, MapCoordinates.Nullspace);
             entityManager.AddComponent<StationDataComponent>(validStation);
             var validAlert = entityManager.AddComponent<AlertLevelComponent>(validStation);
             validAlert.AlertLevels = prototypeManager.Index<AlertLevelPrototype>(AlertLevelSystem.DefaultAlertLevelSet);
+            validAlert.CurrentLevel = "green";
 
             invalidStation = entityManager.SpawnEntity(null, MapCoordinates.Nullspace);
             entityManager.AddComponent<StationDataComponent>(invalidStation);
@@ -307,6 +376,10 @@ public sealed class AdditionalAlertLevelTest
             validStationSelected = communicationsSystem.TrySelectAlertStation(
                 (console, consoleComponent),
                 validStation,
+                user);
+            remoteAlertLevelSet = communicationsSystem.TrySetPrimaryAlertLevel(
+                (console, consoleComponent),
+                "gamma",
                 user);
             invalidStationRejected = !communicationsSystem.TrySelectAlertStation(
                 (console, consoleComponent),
@@ -325,6 +398,9 @@ public sealed class AdditionalAlertLevelTest
             Assert.Multiple(() =>
             {
                 Assert.That(validStationSelected, Is.True);
+                Assert.That(remoteAlertLevelSet, Is.True);
+                Assert.That(entityManager.GetComponent<AlertLevelComponent>(validStation).CurrentLevel,
+                    Is.EqualTo("gamma"));
                 Assert.That(invalidStationRejected, Is.True);
                 Assert.That(disabledSelectionRejected, Is.True);
                 Assert.That(consoleComponent.SelectedAlertStation, Is.EqualTo(validStation));

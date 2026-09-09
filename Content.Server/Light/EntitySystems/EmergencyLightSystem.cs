@@ -15,10 +15,9 @@ using Color = Robust.Shared.Maths.Color;
 
 namespace Content.Server.Light.EntitySystems;
 
-public sealed class EmergencyLightSystem : SharedEmergencyLightSystem
+public sealed partial class EmergencyLightSystem : SharedEmergencyLightSystem // Sunrise-Edit
 {
     [Dependency] private readonly AmbientSoundSystem _ambient = default!;
-    [Dependency] private readonly AlertLevelSystem _alertLevel = default!; // Sunrise-Edit
     [Dependency] private readonly BatterySystem _battery = default!;
     [Dependency] private readonly PointLightSystem _pointLight = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
@@ -92,41 +91,6 @@ public sealed class EmergencyLightSystem : SharedEmergencyLightSystem
     {
         UpdateStationLights(ev.Station);
     }
-
-    // Sunrise added start - дополнительные коды участвуют в выборе состояния аварийного освещения
-    private void OnAdditionalAlertLevelChanged(AdditionalAlertLevelChangedEvent ev)
-    {
-        UpdateStationLights(ev.Station);
-    }
-
-    private void UpdateStationLights(EntityUid station)
-    {
-        if (!_alertLevel.TryGetVisualAlertLevel((station, null), out _, out var details))
-            return;
-
-        var query = EntityQueryEnumerator<EmergencyLightComponent, PointLightComponent, AppearanceComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var light, out var pointLight, out var appearance, out var xform))
-        {
-            if (CompOrNull<StationMemberComponent>(xform.GridUid)?.Station != station)
-                continue;
-
-            _pointLight.SetColor(uid, details.EmergencyLightColor, pointLight);
-            _appearance.SetData(uid, EmergencyLightVisuals.Color, details.EmergencyLightColor, appearance);
-
-            if (details.ForceEnableEmergencyLights && !light.ForciblyEnabled)
-            {
-                light.ForciblyEnabled = true;
-                TurnOn((uid, light));
-            }
-            else if (!details.ForceEnableEmergencyLights && light.ForciblyEnabled)
-            {
-                // Previously forcibly enabled, and we went down an alert level.
-                light.ForciblyEnabled = false;
-                UpdateState((uid, light));
-            }
-        }
-    }
-    // Sunrise added end
 
     public void SetState(EntityUid uid, EmergencyLightComponent component, EmergencyLightState state)
     {

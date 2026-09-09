@@ -1,28 +1,21 @@
-﻿using Content.Shared.Access.Systems;
-using Content.Shared.CCVar;
+﻿using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Communications;
-using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 
 namespace Content.Client.Communications.UI
 {
-    public sealed class CommunicationsConsoleBoundUserInterface : BoundUserInterface
+    public sealed partial class CommunicationsConsoleBoundUserInterface : BoundUserInterface // Sunrise-Edit
     {
         [Dependency] private readonly IConfigurationManager _cfg = default!;
-
-        [Dependency] private readonly IPlayerManager _player = default!; // Sunrise-Edit
-
-        private readonly AccessReaderSystem _accessReader; // Sunrise-Edit
 
         [ViewVariables]
         private CommunicationsConsoleMenu? _menu;
 
         public CommunicationsConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
         {
-            _accessReader = EntMan.System<AccessReaderSystem>(); // Sunrise-Edit
         }
 
         protected override void Open()
@@ -38,26 +31,6 @@ namespace Content.Client.Communications.UI
             _menu.OnEmergencyLevel += EmergencyShuttleButtonPressed;
             _menu.OnToggleRelay += ToggleRelayPressed; // Sunrise-Edit
         }
-
-        // Sunrise added start - дополнительные коды переключаются независимо
-        private void AdditionalAlertLevelSelected(string level, bool enabled)
-        {
-            if (!HasAccess())
-                return;
-
-            SendMessage(new CommunicationsConsoleSetAdditionalAlertLevelMessage(level, enabled));
-        }
-
-        private void AlertStationSelected(NetEntity station)
-        {
-            if (!HasAccess() || _menu == null)
-                return;
-
-            // Ждём подтверждённое состояние выбранной станции, чтобы команда не ушла на предыдущую.
-            _menu.DisableAlertLevelControls();
-            SendMessage(new CommunicationsConsoleSelectAlertStationMessage(station));
-        }
-        // Sunrise added end
 
         public void AlertLevelSelected(string level)
         {
@@ -148,11 +121,5 @@ namespace Content.Client.Communications.UI
             }
         }
 
-        // Sunrise added start - сразу блокируем управление кодами без требуемого доступа
-        private bool HasAccess()
-        {
-            return _player.LocalEntity is { } player && _accessReader.IsAllowed(player, Owner);
-        }
-        // Sunrise added end
     }
 }

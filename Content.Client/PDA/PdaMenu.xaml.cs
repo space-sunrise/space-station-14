@@ -216,34 +216,14 @@ namespace Content.Client.PDA
                 ("time", remaining.ToString("hh\\:mm\\:ss"))));
             // Sunrise-end
 
-            var alertLevel = state.PdaOwnerInfo.StationAlertLevel;
             var alertColor = state.PdaOwnerInfo.StationAlertColor;
-            // Sunrise edit start - КПК показывает основной и дополнительные коды одновременно
-            IReadOnlyList<PdaAlertLevelInfo> activeAlertLevels = state.PdaOwnerInfo.StationAlertLevels is { } stationAlertLevels
-                ? stationAlertLevels
-                : Array.Empty<PdaAlertLevelInfo>();
-            if (activeAlertLevels.Count == 0 && alertLevel != null)
-                activeAlertLevels = new[] { new PdaAlertLevelInfo(alertLevel, alertColor) };
-
-            var localizedAlertLevels = new List<string>(activeAlertLevels.Count);
-            var instructions = new List<string>(activeAlertLevels.Count);
-            foreach (var activeAlertLevel in activeAlertLevels)
-            {
-                var activeAlertLevelKey = $"alert-level-{activeAlertLevel.Level}";
-                var localizedAlertLevel = FormattedMessage.EscapeText(Loc.GetString(activeAlertLevelKey));
-                localizedAlertLevels.Add($"[color={activeAlertLevel.Color.ToHex()}]{localizedAlertLevel}[/color]");
-                instructions.Add(Loc.GetString($"{activeAlertLevelKey}-instructions"));
-            }
-
-            _alertLevel = string.Join(", ", localizedAlertLevels);
-            // Sunrise edit end
+            UpdateAlertLevelState(state.PdaOwnerInfo); // Sunrise-Edit
 
             StationAlertLevelLabel.SetMarkup(Loc.GetString(
                 "comp-pda-ui-station-alert-level",
                 ("color", alertColor),
                 ("level", _alertLevel)
             ));
-            _instructions = string.Join("\n", instructions); // Sunrise-Edit
             StationAlertLevelInstructions.SetMarkup(Loc.GetString(
                 "comp-pda-ui-station-alert-level-instructions",
                 ("instructions", _instructions))

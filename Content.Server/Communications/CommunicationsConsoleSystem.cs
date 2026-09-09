@@ -22,13 +22,12 @@ using Content.Shared.Popups;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
-using Content.Shared.Station.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 
 namespace Content.Server.Communications
 {
-    public sealed class CommunicationsConsoleSystem : EntitySystem
+    public sealed partial class CommunicationsConsoleSystem : EntitySystem // Sunrise-Edit
     {
         [Dependency] private readonly AccessReaderSystem _accessReaderSystem = default!;
         [Dependency] private readonly AlertLevelSystem _alertLevelSystem = default!;
@@ -48,14 +47,12 @@ namespace Content.Server.Communications
         {
             // All events that refresh the BUI
             SubscribeLocalEvent<AlertLevelChangedEvent>(OnAlertLevelChanged);
-            SubscribeLocalEvent<AdditionalAlertLevelChangedEvent>(OnAdditionalAlertLevelChanged); // Sunrise-Edit
+            InitializeAlertLevelControls(); // Sunrise-Edit
             SubscribeLocalEvent<RoundEndSystemChangedEvent>(_ => OnGenericBroadcastEvent());
             SubscribeLocalEvent<AlertLevelDelayFinishedEvent>(_ => OnGenericBroadcastEvent());
 
             // Messages from the BUI
             SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleSelectAlertLevelMessage>(OnSelectAlertLevelMessage);
-            SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleSetAdditionalAlertLevelMessage>(OnSetAdditionalAlertLevelMessage); // Sunrise-Edit
-            SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleSelectAlertStationMessage>(OnSelectAlertStationMessage); // Sunrise-Edit
             SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleAnnounceMessage>(OnAnnounceMessage);
             SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleBroadcastMessage>(OnBroadcastMessage);
             SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleCallEmergencyShuttleMessage>(OnCallShuttleMessage);
@@ -115,6 +112,7 @@ namespace Content.Server.Communications
         public void OnCommunicationsConsoleMapInit(EntityUid uid, CommunicationsConsoleComponent comp, MapInitEvent args)
         {
             comp.AnnouncementCooldownRemaining = comp.InitialDelay;
+            EnsureAlertStation((uid, comp)); // Sunrise-Edit
             UpdateCommsConsoleInterface(uid, comp);
         }
 
@@ -139,23 +137,11 @@ namespace Content.Server.Communications
             var query = EntityQueryEnumerator<CommunicationsConsoleComponent>();
             while (query.MoveNext(out var uid, out var comp))
             {
-                var entStation = ResolveAlertStation(uid, comp); // Sunrise-Edit
+                var entStation = ResolveAlertStation((uid, comp)); // Sunrise-Edit
                 if (args.Station == entStation)
                     UpdateCommsConsoleInterface(uid, comp);
             }
         }
-
-        // Sunrise added start - дополнительные коды обновляют те же консоли
-        private void OnAdditionalAlertLevelChanged(AdditionalAlertLevelChangedEvent args)
-        {
-            var query = EntityQueryEnumerator<CommunicationsConsoleComponent>();
-            while (query.MoveNext(out var uid, out var comp))
-            {
-                if (args.Station == ResolveAlertStation(uid, comp))
-                    UpdateCommsConsoleInterface(uid, comp);
-            }
-        }
-        // Sunrise added end
 
         /// <summary>
         /// Updates the UI for all comms consoles.
@@ -174,7 +160,7 @@ namespace Content.Server.Communications
         /// </summary>
         public void UpdateCommsConsoleInterface(EntityUid uid, CommunicationsConsoleComponent comp)
         {
-            var stationUid = ResolveAlertStation(uid, comp); // Sunrise-Edit
+            var stationUid = ResolveAlertStation((uid, comp)); // Sunrise-Edit
             List<string>? levels = null;
             string currentLevel = default!;
             float currentDelay = 0;
@@ -188,7 +174,7 @@ namespace Content.Server.Communications
                 if (TryComp(stationUid.Value, out AlertLevelComponent? alertComp) &&
                     alertComp.AlertLevels != null)
                 {
-                    if (alertComp.IsSelectable || comp.ForceAlertLevelChanges) // Sunrise-Edit
+                    if (_alertLevelSystem.IsSelectable((stationUid.Value, alertComp)) || comp.ForceAlertLevelChanges) // Sunrise-Edit
                     {
                         levels = new();
                         foreach (var (id, detail) in alertComp.AlertLevels.Levels)
@@ -203,23 +189,9 @@ namespace Content.Server.Communications
                             levels = null;
                     }
 
-                    // Sunrise added start - консоль показывает только разрешённые для неё дополнительные коды
-                    foreach (var (id, detail) in alertComp.AlertLevels.Levels)
-                    {
-                        if (!detail.IsAdditional || !IsAlertLevelAllowed(comp, id, detail))
-                            continue;
-
-                        var enabled = alertComp.ActiveAdditionalLevels.Contains(id);
-                        additionalLevels.Add(new CommunicationsConsoleAdditionalAlertLevelState(
-                            id,
-                            enabled,
-                            alertComp.CurrentDelay <= 0 && _alertLevelSystem.CanSetAdditionalLevel(
-                                (stationUid.Value, alertComp),
-                                id,
-                                !enabled,
-                                comp.ForceAlertLevelChanges)));
-                    }
-                    // Sunrise added end
+                    additionalLevels = GetAdditionalAlertLevelStates(
+                        (stationUid.Value, alertComp),
+                        comp); // Sunrise-Edit
 
                     currentLevel = alertComp.CurrentLevel;
                     currentDelay = _alertLevelSystem.GetAlertLevelDelay(stationUid.Value, alertComp);
@@ -248,90 +220,6 @@ namespace Content.Server.Communications
             ));
         }
 
-        // Sunrise added start - привилегированная консоль может управлять кодами станции на другой карте
-        private EntityUid? ResolveAlertStation(EntityUid console, CommunicationsConsoleComponent component)
-        {
-            var owningStation = _stationSystem.GetOwningStation(console);
-            if (!component.CanSelectAlertStation)
-                return owningStation != null && IsValidAlertStation(owningStation.Value)
-                    ? owningStation
-                    : null;
-
-            if (component.SelectedAlertStation is { } selected && IsValidAlertStation(selected))
-                return selected;
-
-            if (owningStation != null && IsValidAlertStation(owningStation.Value))
-            {
-                component.SelectedAlertStation = owningStation;
-                return owningStation;
-            }
-
-            foreach (var station in _stationSystem.GetStations())
-            {
-                if (!IsValidAlertStation(station))
-                    continue;
-
-                component.SelectedAlertStation = station;
-                return station;
-            }
-
-            component.SelectedAlertStation = null;
-            return null;
-        }
-
-        private List<CommunicationsConsoleAlertStationState> GetAlertStationStates()
-        {
-            var result = new List<CommunicationsConsoleAlertStationState>();
-            foreach (var station in _stationSystem.GetStations())
-            {
-                if (!IsValidAlertStation(station))
-                    continue;
-
-                result.Add(new CommunicationsConsoleAlertStationState(
-                    GetNetEntity(station),
-                    MetaData(station).EntityName));
-            }
-
-            result.Sort((left, right) => string.Compare(left.Name, right.Name, StringComparison.CurrentCulture));
-            return result;
-        }
-
-        private bool IsValidAlertStation(EntityUid station)
-        {
-            return HasComp<StationDataComponent>(station)
-                && TryComp<AlertLevelComponent>(station, out var alert)
-                && alert.AlertLevels != null;
-        }
-
-        /// <summary>
-        /// Attempts to select a station for alert-level changes made from the specified console.
-        /// </summary>
-        public bool TrySelectAlertStation(
-            Entity<CommunicationsConsoleComponent> console,
-            EntityUid station,
-            EntityUid user)
-        {
-            if (!CanSelectAlertStation(console, station, user))
-                return false;
-
-            console.Comp.SelectedAlertStation = station;
-            return true;
-        }
-
-        /// <summary>
-        /// Checks whether the specified console and user may select the station as an alert-level target.
-        /// </summary>
-        public bool CanSelectAlertStation(
-            Entity<CommunicationsConsoleComponent> console,
-            EntityUid station,
-            EntityUid user)
-        {
-            return console.Comp.CanSelectAlertStation
-                && CanUse(user, console)
-                && IsValidAlertStation(station);
-        }
-        // Sunrise added end
-
         private static bool CanAnnounce(CommunicationsConsoleComponent comp)
         {
             return comp.AnnouncementCooldownRemaining <= 0f;
@@ -344,17 +232,6 @@ namespace Content.Server.Communications
                 return _accessReaderSystem.IsAllowed(user, console, accessReaderComponent);
             }
             return true;
-        }
-
-        /// <summary>
-        /// Checks whether this console is configured to control the specified alert level.
-        /// </summary>
-        public static bool IsAlertLevelAllowed(
-            CommunicationsConsoleComponent console,
-            string level,
-            AlertLevelDetail detail)
-        {
-            return console.AllowedAlertLevels?.Contains(level) ?? detail.Selectable;
         }
 
         private bool CanCallOrRecall(CommunicationsConsoleComponent comp)
@@ -384,119 +261,11 @@ namespace Content.Server.Communications
 
         private void OnSelectAlertLevelMessage(EntityUid uid, CommunicationsConsoleComponent comp, CommunicationsConsoleSelectAlertLevelMessage message)
         {
-            if (message.Actor is not { Valid: true } mob)
+            if (message.Actor is not { Valid: true } user)
                 return;
 
-            if (!CanUse(mob, uid))
-            {
-                _popupSystem.PopupCursor(Loc.GetString("comms-console-permission-denied"), message.Actor, PopupType.Medium);
-                return;
-            }
-
-            var stationUid = ResolveAlertStation(uid, comp); // Sunrise-Edit
-            if (stationUid == null
-                || !TryComp<AlertLevelComponent>(stationUid.Value, out var alert)
-                || alert.AlertLevels == null
-                || !alert.AlertLevels.Levels.TryGetValue(message.Level, out var detail)
-                || detail.IsAdditional
-                || !IsAlertLevelAllowed(comp, message.Level, detail)
-                || alert.CurrentLevel == message.Level
-                || alert.CurrentDelay > 0)
-            {
-                return;
-            }
-
-            // Привилегированная консоль обходит запрет выбора кода, но не общий cooldown ручных изменений.
-            if (comp.ForceAlertLevelChanges)
-                StartAlertLevelCooldown(alert);
-
-            _alertLevelSystem.SetLevel(
-                stationUid.Value,
-                message.Level,
-                true,
-                true,
-                comp.ForceAlertLevelChanges,
-                component: alert);
+            TrySetPrimaryAlertLevel((uid, comp), message.Level, user); // Sunrise-Edit
         }
-
-        // Sunrise added start - явное включение или выключение дополнительного кода
-        private void OnSetAdditionalAlertLevelMessage(
-            EntityUid uid,
-            CommunicationsConsoleComponent comp,
-            CommunicationsConsoleSetAdditionalAlertLevelMessage message)
-        {
-            if (message.Actor is not { Valid: true } mob)
-                return;
-
-            if (!CanUse(mob, uid))
-            {
-                _popupSystem.PopupCursor(Loc.GetString("comms-console-permission-denied"), message.Actor, PopupType.Medium);
-                return;
-            }
-
-            var stationUid = ResolveAlertStation(uid, comp); // Sunrise-Edit
-            if (stationUid == null)
-                return;
-
-            if (!TryComp<AlertLevelComponent>(stationUid.Value, out var alert)
-                || alert.AlertLevels == null
-                || !alert.AlertLevels.Levels.TryGetValue(message.Level, out var detail)
-                || !detail.IsAdditional
-                || !IsAlertLevelAllowed(comp, message.Level, detail))
-            {
-                return;
-            }
-
-            var canChange = comp.ForceAlertLevelChanges
-                ? alert.CurrentDelay <= 0 && _alertLevelSystem.CanSetAdditionalLevel(
-                    (stationUid.Value, alert),
-                    message.Level,
-                    message.Enabled,
-                    force: true)
-                : true;
-
-            if (!canChange)
-            {
-                UpdateCommsConsoleInterface(uid, comp);
-                return;
-            }
-
-            if (comp.ForceAlertLevelChanges)
-                StartAlertLevelCooldown(alert);
-
-            if (!_alertLevelSystem.TrySetAdditionalLevel(
-                stationUid.Value,
-                message.Level,
-                message.Enabled,
-                playSound: true,
-                announce: true,
-                force: comp.ForceAlertLevelChanges,
-                component: alert))
-            {
-                UpdateCommsConsoleInterface(uid, comp);
-            }
-        }
-
-        private void StartAlertLevelCooldown(AlertLevelComponent alert)
-        {
-            alert.CurrentDelay = _cfg.GetCVar(CCVars.GameAlertLevelChangeDelay);
-            alert.ActiveDelay = true;
-        }
-
-        private void OnSelectAlertStationMessage(
-            EntityUid uid,
-            CommunicationsConsoleComponent component,
-            CommunicationsConsoleSelectAlertStationMessage message)
-        {
-            if (message.Actor is not { Valid: true } user
-                || !TryGetEntity(message.Station, out var stationUid)
-                || stationUid is not { } station
-                || !TrySelectAlertStation((uid, component), station, user))
-                return;
-
-            UpdateCommsConsoleInterface(uid, component);
-        }
-        // Sunrise added end
 
         private void OnAnnounceMessage(EntityUid uid, CommunicationsConsoleComponent comp,
             CommunicationsConsoleAnnounceMessage message)

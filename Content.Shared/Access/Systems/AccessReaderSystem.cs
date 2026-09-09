@@ -23,7 +23,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Access.Systems;
 
-public sealed class AccessReaderSystem : EntitySystem
+public sealed partial class AccessReaderSystem : EntitySystem // Sunrise-Edit
 {
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
@@ -346,32 +346,7 @@ public sealed class AccessReaderSystem : EntitySystem
     /// </summary>
     public bool IsAccessAllowedByExtendedAccess(ICollection<ProtoId<AccessLevelPrototype>> access, AccessReaderComponent reader)
     {
-        if (reader.Group is { } group && IsAccessGroupAllowed(access, group))
-            return true;
-
-        foreach (var additionalGroup in reader.AdditionalGroups)
-        {
-            if (IsAccessGroupAllowed(access, additionalGroup))
-                return true;
-        }
-
-        return false;
-    }
-
-    private bool IsAccessGroupAllowed(
-        ICollection<ProtoId<AccessLevelPrototype>> access,
-        ProtoId<AccessGroupPrototype> group)
-    {
-        if (!_prototype.TryIndex(group, out var accessGroup))
-            return false;
-
-        foreach (var tag in accessGroup.Tags)
-        {
-            if (access.Contains(tag))
-                return true;
-        }
-
-        return false;
+        return IsAccessAllowedByAlertLevel(access, reader); // Sunrise-Edit
     }
     // Sunrise-end
 
@@ -1008,48 +983,6 @@ public sealed class AccessReaderSystem : EntitySystem
             ent.Comp.Group = null;
 
         Dirty(ent);
-    }
-
-    /// <summary>
-    /// Updates the temporary access groups for all simultaneously active alert levels.
-    /// </summary>
-    public void UpdateAccess(
-        Entity<AccessReaderComponent> ent,
-        IReadOnlyList<string> activeLevels,
-        IReadOnlyCollection<ProtoId<AccessGroupPrototype>>? globalGroups = null)
-    {
-        ent.Comp.Group = null;
-        ent.Comp.AdditionalGroups.Clear();
-
-        foreach (var level in activeLevels)
-        {
-            if (!ent.Comp.AlertAccesses.TryGetValue(level, out var group))
-                continue;
-
-            AddExtendedAccessGroup(ent.Comp, group);
-        }
-
-        if (globalGroups != null)
-        {
-            foreach (var group in globalGroups)
-            {
-                AddExtendedAccessGroup(ent.Comp, group);
-            }
-        }
-
-        Dirty(ent);
-    }
-
-    private static void AddExtendedAccessGroup(AccessReaderComponent reader, ProtoId<AccessGroupPrototype> group)
-    {
-        if (reader.Group == null)
-        {
-            reader.Group = group;
-            return;
-        }
-
-        if (reader.Group != group)
-            reader.AdditionalGroups.Add(group);
     }
 
     private List<string> GetLocalizedAccessNames(List<HashSet<ProtoId<AccessLevelPrototype>>> accessLists)

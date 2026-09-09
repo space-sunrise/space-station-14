@@ -8,7 +8,7 @@ namespace Content.Shared.Communications
     }
 
     [Serializable, NetSerializable]
-    public sealed class CommunicationsConsoleInterfaceState : BoundUserInterfaceState
+    public sealed partial class CommunicationsConsoleInterfaceState : BoundUserInterfaceState // Sunrise-Edit
     {
         public readonly bool CanAnnounce;
         public readonly bool CanBroadcast = true;
@@ -18,9 +18,6 @@ namespace Content.Shared.Communications
         public List<string>? AlertLevels;
         public string CurrentAlert;
         public float CurrentAlertDelay;
-        public readonly List<CommunicationsConsoleAdditionalAlertLevelState> AdditionalAlertLevels; // Sunrise-Edit
-        public readonly List<CommunicationsConsoleAlertStationState> AlertStations; // Sunrise-Edit
-        public readonly NetEntity? SelectedAlertStation; // Sunrise-Edit
         // Sunrise-Start
         public readonly bool CanRelay;
         public readonly bool IsRelaying;
@@ -61,60 +58,6 @@ namespace Content.Shared.Communications
             // Sunrise-End
         }
     }
-
-    // Sunrise added start - сетевой контракт дополнительных кодов
-    [Serializable, NetSerializable]
-    public sealed class CommunicationsConsoleAdditionalAlertLevelState
-    {
-        public readonly string Level;
-        public readonly bool Enabled;
-        public readonly bool Selectable;
-
-        public CommunicationsConsoleAdditionalAlertLevelState(string level, bool enabled, bool selectable)
-        {
-            Level = level;
-            Enabled = enabled;
-            Selectable = selectable;
-        }
-    }
-
-    [Serializable, NetSerializable]
-    public sealed class CommunicationsConsoleSetAdditionalAlertLevelMessage : BoundUserInterfaceMessage
-    {
-        public readonly string Level;
-        public readonly bool Enabled;
-
-        public CommunicationsConsoleSetAdditionalAlertLevelMessage(string level, bool enabled)
-        {
-            Level = level;
-            Enabled = enabled;
-        }
-    }
-
-    [Serializable, NetSerializable]
-    public sealed class CommunicationsConsoleAlertStationState
-    {
-        public readonly NetEntity Station;
-        public readonly string Name;
-
-        public CommunicationsConsoleAlertStationState(NetEntity station, string name)
-        {
-            Station = station;
-            Name = name;
-        }
-    }
-
-    [Serializable, NetSerializable]
-    public sealed class CommunicationsConsoleSelectAlertStationMessage : BoundUserInterfaceMessage
-    {
-        public readonly NetEntity Station;
-
-        public CommunicationsConsoleSelectAlertStationMessage(NetEntity station)
-        {
-            Station = station;
-        }
-    }
-    // Sunrise added end
 
     [Serializable, NetSerializable]
     public sealed class CommunicationsConsoleSelectAlertLevelMessage : BoundUserInterfaceMessage

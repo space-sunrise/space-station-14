@@ -46,17 +46,6 @@ public sealed partial class AlertLevelComponent : Component
                 return false;
             }
 
-            // Sunrise edit start - принудительный дополнительный код может заблокировать ручной выбор
-            foreach (var additionalLevel in ActiveAdditionalLevels)
-            {
-                if (AlertLevels.Levels.TryGetValue(additionalLevel, out var additionalDetail)
-                    && additionalDetail.DisableSelection)
-                {
-                    return false;
-                }
-            }
-            // Sunrise edit end
-
             return level.Selectable && !level.DisableSelection && !IsLevelLocked;
         }
     }

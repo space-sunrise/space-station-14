@@ -32,7 +32,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.PDA
 {
-    public sealed class PdaSystem : SharedPdaSystem
+    public sealed partial class PdaSystem : SharedPdaSystem // Sunrise-Edit
     {
         [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!;
         [Dependency] private readonly InstrumentSystem _instrument = default!;
@@ -47,7 +47,6 @@ namespace Content.Server.PDA
         [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
         [Dependency] private readonly EmergencyShuttleSystem _emergencyShuttleSystem = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
-        [Dependency] private readonly AlertLevelSystem _alertLevel = default!; // Sunrise-Edit
 
         public override void Initialize()
         {
@@ -153,12 +152,6 @@ namespace Content.Server.PDA
         }
 
         private void OnAlertLevelChanged(AlertLevelChangedEvent args)
-        {
-            UpdateAllPdaUisOnStation();
-        }
-
-        // Sunrise-Edit
-        private void OnAdditionalAlertLevelChanged(AdditionalAlertLevelChangedEvent args)
         {
             UpdateAllPdaUisOnStation();
         }
@@ -362,17 +355,7 @@ namespace Content.Server.PDA
                 alertComp.AlertLevels == null)
                 return;
             pda.StationAlertLevel = alertComp.CurrentLevel;
-            // Sunrise edit start - КПК получает отдельный цвет каждого активного кода
-            var activeLevels = _alertLevel.GetActiveLevels((station!.Value, alertComp));
-            var stationAlertLevels = new List<PdaAlertLevelInfo>(activeLevels.Count);
-            foreach (var activeLevel in activeLevels)
-            {
-                if (alertComp.AlertLevels.Levels.TryGetValue(activeLevel, out var detail))
-                    stationAlertLevels.Add(new PdaAlertLevelInfo(activeLevel, detail.Color));
-            }
-
-            pda.StationAlertLevels = stationAlertLevels;
-            // Sunrise edit end
+            UpdateAdditionalAlertLevels((uid, pda), (station!.Value, alertComp)); // Sunrise-Edit
             if (alertComp.AlertLevels.Levels.TryGetValue(alertComp.CurrentLevel, out var details))
                 pda.StationAlertColor = details.Color;
         }

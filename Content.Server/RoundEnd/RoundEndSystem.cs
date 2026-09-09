@@ -143,23 +143,8 @@ namespace Content.Server.RoundEnd
             if (requester != null)
             {
                 var stationUid = _stationSystem.GetOwningStation(requester.Value);
-                if (TryComp<AlertLevelComponent>(stationUid, out var alertLevel)
-                    && alertLevel.AlertLevels is { } alertLevels)
-                {
-                    // Sunrise edit start - используем фактический набор кодов станции
-                    if (alertLevels.Levels.TryGetValue(alertLevel.CurrentLevel, out var currentDetail))
-                        duration = currentDetail.ShuttleTime;
-
-                    foreach (var additionalLevel in alertLevel.ActiveAdditionalLevels)
-                    {
-                        if (alertLevels.Levels.TryGetValue(additionalLevel, out var detail)
-                            && detail.ShuttleTime > duration)
-                        {
-                            duration = detail.ShuttleTime;
-                        }
-                    }
-                    // Sunrise edit end
-                }
+                if (TryComp<AlertLevelComponent>(stationUid, out var alertLevel))
+                    duration = GetAlertLevelShuttleTime((stationUid!.Value, alertLevel), duration); // Sunrise-Edit
             }
 
             RequestRoundEnd(duration, requester, machine, checkCooldown, text, name, cantRecall);

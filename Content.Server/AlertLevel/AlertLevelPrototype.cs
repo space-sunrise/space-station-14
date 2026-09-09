@@ -31,19 +31,6 @@ public sealed partial class AlertLevelPrototype : IPrototype
 public sealed partial class AlertLevelDetail
 {
     /// <summary>
-    /// Whether this level is an additional protocol that can be active alongside the primary alert level.
-    /// </summary>
-    [DataField] public bool IsAdditional { get; private set; } // Sunrise-Edit
-
-    // Sunrise added start - выбор визуального приоритета активных кодов
-    /// <summary>
-    /// Determines which active alert level controls single-state visuals such as emergency lights.
-    /// </summary>
-    [DataField]
-    public int VisualPriority { get; private set; }
-    // Sunrise added end
-
-    /// <summary>
     /// What is announced upon this alert level change. Can be a localized string.
     /// </summary>
     [DataField("announcement")] public string Announcement { get; private set; } = string.Empty;

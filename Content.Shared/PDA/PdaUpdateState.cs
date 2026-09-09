@@ -48,26 +48,14 @@ namespace Content.Shared.PDA
         public string? IdOwner;
         public string? JobTitle;
         public string? StationAlertLevel;
+        /// <summary>
+        /// Primary and additional station alert levels sent to the PDA interface.
+        /// </summary>
         public List<PdaAlertLevelInfo>? StationAlertLevels; // Sunrise-Edit
         public Color StationAlertColor;
         public TimeSpan? EvacShuttleTime; // Sunrise-edit
         public EvacShuttleStatus EvacShuttleStatus; // Sunrise-edit
     }
-
-    // Sunrise added start - цвет каждого активного кода для интерфейса КПК
-    [Serializable, NetSerializable]
-    public sealed class PdaAlertLevelInfo
-    {
-        public readonly string Level;
-        public readonly Color Color;
-
-        public PdaAlertLevelInfo(string level, Color color)
-        {
-            Level = level;
-            Color = color;
-        }
-    }
-    // Sunrise added end
 
     // Sunrise-start
     public enum EvacShuttleStatus

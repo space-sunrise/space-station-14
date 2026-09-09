@@ -5,9 +5,8 @@ using Content.Shared.Power;
 
 namespace Content.Server.AlertLevel;
 
-public sealed class AlertLevelDisplaySystem : EntitySystem
+public sealed partial class AlertLevelDisplaySystem : EntitySystem // Sunrise-Edit
 {
-    [Dependency] private readonly AlertLevelSystem _alertLevel = default!; // Sunrise-Edit
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
 
@@ -24,35 +23,14 @@ public sealed class AlertLevelDisplaySystem : EntitySystem
         UpdateDisplays(args.Station); // Sunrise-Edit
     }
 
-    // Sunrise added start - дисплеи показывают активный код с наивысшим визуальным приоритетом
-    private void OnAdditionalAlertChanged(AdditionalAlertLevelChangedEvent args)
-    {
-        UpdateDisplays(args.Station);
-    }
-
-    private void UpdateDisplays(EntityUid station)
-    {
-        if (!_alertLevel.TryGetVisualAlertLevel((station, null), out var level, out _))
-            return;
-
-        var query = EntityQueryEnumerator<AlertLevelDisplayComponent, AppearanceComponent>();
-        while (query.MoveNext(out var uid, out _, out var appearance))
-        {
-            if (_stationSystem.GetOwningStation(uid) != station)
-                continue;
-
-            _appearance.SetData(uid, AlertLevelDisplay.CurrentLevel, level, appearance);
-        }
-    }
-    // Sunrise added end
-
     private void OnDisplayInit(EntityUid uid, AlertLevelDisplayComponent alertLevelDisplay, ComponentInit args)
     {
         if (TryComp(uid, out AppearanceComponent? appearance))
         {
             var stationUid = _stationSystem.GetOwningStation(uid);
-            if (stationUid != null
-                && _alertLevel.TryGetVisualAlertLevel((stationUid.Value, null), out var level, out _))
+            if (stationUid is { } station
+                && TryComp<AlertLevelComponent>(station, out var alert)
+                && _alertLevel.TryGetVisualAlertLevel((station, alert), out var level, out _))
             {
                 _appearance.SetData(uid, AlertLevelDisplay.CurrentLevel, level, appearance);
             }
