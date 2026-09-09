@@ -6,31 +6,31 @@ namespace Content.Shared.Stunnable;
 public sealed partial class CrawlerComponent
 {
     /// <summary>
-    /// Максимальная дистанция одного рывка при ползании.
+    /// maximum distance covered by a single crawl pull
     /// </summary>
     [DataField, AutoNetworkedField, Access(typeof(Content.Shared._Sunrise.Movement.Standing.ProneCrawlMovementController))]
     public float PullDistance = 0.7f;
 
     /// <summary>
-    /// Сколько длится один рывок.
+    /// duration of a single pull
     /// </summary>
     [DataField, AutoNetworkedField, Access(typeof(Content.Shared._Sunrise.Movement.Standing.ProneCrawlMovementController))]
     public TimeSpan PullDuration = TimeSpan.FromSeconds(0.25f);
 
     /// <summary>
-    /// Пауза между рывками.
+    /// pause between pulls
     /// </summary>
     [DataField, AutoNetworkedField, Access(typeof(Content.Shared._Sunrise.Movement.Standing.ProneCrawlMovementController))]
     public TimeSpan PullPause = TimeSpan.FromSeconds(0.3f);
 
     /// <summary>
-    /// Смещение спрайта во время анимации рывка.
+    /// sprite offset amplitude during a pull
     /// </summary>
     [DataField, AutoNetworkedField]
     public float PullOffset = 0.08f;
 
     /// <summary>
-    /// Масштаб спрайта во время анимации рывка.
+    /// sprite scale factors at the peak of a pull
     /// </summary>
     [DataField, AutoNetworkedField]
     public Vector2 PullScale = new(1.05f, 0.95f);

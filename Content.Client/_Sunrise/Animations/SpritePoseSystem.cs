@@ -5,6 +5,10 @@ using Robust.Client.GameObjects;
 
 namespace Content.Client._Sunrise.Animations;
 
+/// <summary>
+/// transitions between base and override poses without absorbing rotation from other animation keys
+/// PVS reset invalidates the applied pose so the current target can be restored on re-entry
+/// </summary>
 public sealed class SpritePoseSystem : EntitySystem
 {
     [Dependency] private readonly SpriteAnimationSystem _animation = default!;
@@ -50,6 +54,10 @@ public sealed class SpritePoseSystem : EntitySystem
         ent.Comp.HasPose = false;
     }
 
+    /// <summary>
+    /// stores the base pose and applies it unless an override is active
+    /// duration is in seconds; non-positive values apply the target immediately
+    /// </summary>
     public void SetBasePose(Entity<SpriteComponent> ent, Angle rotation, float duration)
     {
         var pose = EnsureComp<SpritePoseComponent>(ent);
@@ -59,6 +67,10 @@ public sealed class SpritePoseSystem : EntitySystem
             Animate(ent, rotation, duration, pose);
     }
 
+    /// <summary>
+    /// applies an override pose while keeping the base pose for later restoration
+    /// duration is in seconds; an unchanged target preserves the current transition
+    /// </summary>
     public void SetOverride(Entity<SpriteComponent> ent, Angle rotation, float duration)
     {
         var pose = EnsureComp<SpritePoseComponent>(ent);
@@ -66,6 +78,10 @@ public sealed class SpritePoseSystem : EntitySystem
         Animate(ent, rotation, duration, pose);
     }
 
+    /// <summary>
+    /// removes an active override and returns to the stored base pose over duration seconds
+    /// does nothing without an override; non-positive durations restore the base immediately
+    /// </summary>
     public void ClearOverride(Entity<SpriteComponent> ent, float duration)
     {
         if (!TryComp<SpritePoseComponent>(ent, out var pose) || !pose.OverrideRotation.HasValue)

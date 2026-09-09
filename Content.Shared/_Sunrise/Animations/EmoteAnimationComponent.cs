@@ -11,6 +11,9 @@ public sealed partial class EmoteAnimationComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     public string AnimationId = "none";
 
+    /// <summary>
+    /// server CurTime at animation start, used by clients to restore its phase in synchronized game time
+    /// </summary>
     public TimeSpan StartedAt;
 
     [Serializable, NetSerializable]

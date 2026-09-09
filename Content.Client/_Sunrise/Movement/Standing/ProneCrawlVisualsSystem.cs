@@ -50,6 +50,7 @@ public sealed class ProneCrawlVisualsSystem : EntitySystem
             {
                 state.PullEnd = TimeSpan.Zero;
                 _animation.Stop(uid, PullKey);
+                _pose.ClearOverride((uid, sprite), 0f);
                 continue;
             }
 
@@ -83,6 +84,7 @@ public sealed class ProneCrawlVisualsSystem : EntitySystem
                 {
                     var seconds = (float) crawler.PullDuration.TotalSeconds;
                     var elapsed = MathF.Max(0f, seconds - (float) (movement.PullEnd - _timing.CurTime).TotalSeconds);
+                    // первые 35% - подтягивание к PullOffset и PullScale, остальные 65% - возврат
                     _animation.PlayOffset(uid, PullKey, false,
                         (Vector2.Zero, 0f),
                         (-movement.Direction * crawler.PullOffset, seconds * 0.35f),

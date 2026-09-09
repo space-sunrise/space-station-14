@@ -8,31 +8,31 @@ namespace Content.Shared._Sunrise.Movement.Standing;
 public sealed partial class ActiveProneCrawlMovementComponent : Component
 {
     /// <summary>
-    /// Когда закончится текущий рывок.
+    /// game time when the current pull ends
     /// </summary>
     [AutoNetworkedField, AutoPausedField]
     public TimeSpan PullEnd;
 
     /// <summary>
-    /// Когда можно начинать следующий рывок.
+    /// earliest game time at which the next pull can start
     /// </summary>
     [AutoNetworkedField, AutoPausedField]
     public TimeSpan NextPull;
 
     /// <summary>
-    /// Направление текущего рывка.
+    /// direction of the current pull
     /// </summary>
     [AutoNetworkedField]
     public Vector2 Direction;
 
     /// <summary>
-    /// Скорость текущего рывка.
+    /// velocity of the current pull
     /// </summary>
     [AutoNetworkedField]
     public Vector2 Velocity;
 
     /// <summary>
-    /// Идёт ли рывок прямо сейчас.
+    /// whether a pull is currently in progress
     /// </summary>
     [AutoNetworkedField]
     public bool Pulling;

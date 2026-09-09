@@ -71,6 +71,11 @@ public sealed class SpriteAnimationSystem : EntitySystem
         }
     }
 
+    private void OnSpriteShutdown(Entity<SpriteComponent> ent, ref ComponentShutdown args)
+    {
+        _states.Remove(ent.Owner);
+    }
+
     /// <summary>
     /// Возвращает базовый offset без анимаций. Внешняя запись в спрайт принимается за новую базу.
     /// </summary>
@@ -166,12 +171,6 @@ public sealed class SpriteAnimationSystem : EntitySystem
     }
 
     /// <summary>
-    /// Запускает добавочную rotation-анимацию с Release в конце.
-    /// </summary>
-    public void PlayRotation(EntityUid uid, string key, params (Angle Value, float Time)[] frames)
-        => PlayRotation(uid, key, SpriteAnimationEndMode.Release, frames);
-
-    /// <summary>
     /// Проверяет регистрацию цикла, даже если сущность сейчас на паузе или вне PVS.
     /// </summary>
     public bool IsLooping(EntityUid uid, string key)
@@ -207,83 +206,10 @@ public sealed class SpriteAnimationSystem : EntitySystem
     }
 
     /// <summary>
-    /// Переводит один linear/cubic трек SpriteComponent.Offset в добавочный offset этой системы.
+    /// Запускает добавочную rotation-анимацию с Release в конце.
     /// </summary>
-    /// <remarks>
-    /// origin вычитается из значений кадров, а не из текущего offset спрайта.
-    /// Первый кадр берётся из прошлого вклада этого key, либо из нуля.
-    /// Нужно минимум два Vector2 keyframe без easing и с неотрицательным временем.
-    /// Length может быть длиннее кадров, но не короче их общей длины.
-    /// При обычном завершении, включая Hold, кидается SpriteAnimationCompletedEvent. Stop и PVS-reset событие не кидают.
-    /// Пустая анимация и сущность без SpriteComponent просто игнорируются.
-    /// </remarks>
-    /// <exception cref="NotSupportedException">Анимация не подходит под поддерживаемый формат трека.</exception>
-    public void PlayOffset(EntityUid uid, Animation animation, string key, Vector2 origin,
-        SpriteAnimationEndMode endMode = SpriteAnimationEndMode.Release)
-    {
-        if (animation.AnimationTracks.Count == 0 || !HasComp<SpriteComponent>(uid))
-            return;
-
-        var frames = ReadFrames(animation, nameof(SpriteComponent.Offset), origin, out var cubic);
-        var from = _states.TryGetValue(uid, out var state) && state.Offsets.TryGetValue(key, out var previous)
-            ? previous.Value : Vector2.Zero;
-        frames[0] = (from, 0f);
-        PlayOffset(uid, key, cubic, endMode, frames);
-        _states[uid].Notifications[key] = _states[uid].Offsets[key];
-    }
-
-    /// <summary>
-    /// Переводит linear-трек SpriteComponent.Scale в множители масштаба с Release в конце.
-    /// </summary>
-    /// <remarks>
-    /// Значения считаются множителями относительно базы, а не абсолютным scale спрайта.
-    /// Правила кадров, Length и completion-события такие же, как у offset-адаптера, только без origin.
-    /// Пустая анимация и сущность без SpriteComponent игнорируются.
-    /// </remarks>
-    /// <exception cref="NotSupportedException">Анимация не подходит под поддерживаемый формат трека.</exception>
-    public void PlayScale(EntityUid uid, Animation animation, string key)
-    {
-        if (animation.AnimationTracks.Count == 0 || !HasComp<SpriteComponent>(uid))
-            return;
-
-        var frames = ReadFrames(animation, nameof(SpriteComponent.Scale), Vector2.Zero, out var cubic);
-        if (cubic)
-            throw new NotSupportedException("scale animations must use linear interpolation");
-        PlayScale(uid, key, frames);
-        _states[uid].Notifications[key] = _states[uid].Scales[key];
-    }
-
-    private static (Vector2 Value, float Time)[] ReadFrames(Animation animation, string property, Vector2 origin, out bool cubic)
-    {
-        if (animation.AnimationTracks.Count != 1 ||
-            animation.AnimationTracks[0] is not AnimationTrackComponentProperty track ||
-            track.ComponentType != typeof(SpriteComponent) || track.Property != property ||
-            track.KeyFrames.Count < 2 ||
-            track.InterpolationMode is not (AnimationInterpolationMode.Linear or AnimationInterpolationMode.Cubic))
-            throw new NotSupportedException("expected a single sprite track with at least two keyframes");
-
-        cubic = track.InterpolationMode == AnimationInterpolationMode.Cubic;
-        var frames = new (Vector2 Value, float Time)[track.KeyFrames.Count];
-        var duration = 0f;
-        for (var i = 0; i < frames.Length; i++)
-        {
-            var frame = track.KeyFrames[i];
-            if (frame.Value is not Vector2 value || frame.Easing != null || frame.KeyTime < 0f)
-                throw new NotSupportedException("expected vector keyframes without easing and with non-negative times");
-            frames[i] = (value - origin, i == 0 ? 0f : frame.KeyTime);
-            duration += frames[i].Time;
-        }
-
-        var remaining = (float) animation.Length.TotalSeconds - duration;
-        if (remaining < -0.001f)
-            throw new NotSupportedException("animation length is shorter than its keyframes");
-        if (remaining > 0.001f)
-        {
-            Array.Resize(ref frames, frames.Length + 1);
-            frames[^1] = (frames[^2].Value, remaining);
-        }
-        return frames;
-    }
+    public void PlayRotation(EntityUid uid, string key, params (Angle Value, float Time)[] frames)
+        => PlayRotation(uid, key, SpriteAnimationEndMode.Release, frames);
 
     /// <summary>
     /// Заменяет rotation-вклад этого key линейной интерполяцией переданных углов.
@@ -322,22 +248,29 @@ public sealed class SpriteAnimationSystem : EntitySystem
     }
 
     /// <summary>
-    /// Перематывает все треки этого key на указанное время от начала. Отрицательное время считается нулём.
+    /// Переводит один linear/cubic трек SpriteComponent.Offset в добавочный offset этой системы.
     /// </summary>
     /// <remarks>
-    /// Можно мотать назад. Отсутствующие треки игнорируются, спрайт обновится при следующей сборке кадра.
+    /// origin вычитается из значений кадров, а не из текущего offset спрайта.
+    /// Первый кадр берётся из прошлого вклада этого key, либо из нуля.
+    /// Нужно минимум два Vector2 keyframe без easing и с неотрицательным временем.
+    /// Length может быть длиннее кадров, но не короче их общей длины.
+    /// При обычном завершении, включая Hold, кидается SpriteAnimationCompletedEvent. Stop и PVS-reset событие не кидают.
+    /// Пустая анимация и сущность без SpriteComponent просто игнорируются.
     /// </remarks>
-    public void Seek(EntityUid uid, string key, float elapsed)
+    /// <exception cref="NotSupportedException">Анимация не подходит под поддерживаемый формат трека.</exception>
+    public void PlayOffset(EntityUid uid, Animation animation, string key, Vector2 origin,
+        SpriteAnimationEndMode endMode = SpriteAnimationEndMode.Release)
     {
-        if (!_states.TryGetValue(uid, out var state))
+        if (animation.AnimationTracks.Count == 0 || !HasComp<SpriteComponent>(uid))
             return;
 
-        if (state.Offsets.TryGetValue(key, out var offset))
-            offset.Seek(elapsed);
-        if (state.Scales.TryGetValue(key, out var scale))
-            scale.Seek(elapsed);
-        if (state.Rotations.TryGetValue(key, out var rotation))
-            rotation.Seek(elapsed);
+        var frames = ReadFrames(animation, nameof(SpriteComponent.Offset), origin, out var cubic);
+        var from = _states.TryGetValue(uid, out var state) && state.Offsets.TryGetValue(key, out var previous)
+            ? previous.Value : Vector2.Zero;
+        frames[0] = (from, 0f);
+        PlayOffset(uid, key, cubic, endMode, frames);
+        _states[uid].Notifications[key] = _states[uid].Offsets[key];
     }
 
     /// <summary>
@@ -378,6 +311,27 @@ public sealed class SpriteAnimationSystem : EntitySystem
     }
 
     /// <summary>
+    /// Переводит linear-трек SpriteComponent.Scale в множители масштаба с Release в конце.
+    /// </summary>
+    /// <remarks>
+    /// Значения считаются множителями относительно базы, а не абсолютным scale спрайта.
+    /// Правила кадров, Length и completion-события такие же, как у offset-адаптера, только без origin.
+    /// Пустая анимация и сущность без SpriteComponent игнорируются.
+    /// </remarks>
+    /// <exception cref="NotSupportedException">Анимация не подходит под поддерживаемый формат трека.</exception>
+    public void PlayScale(EntityUid uid, Animation animation, string key)
+    {
+        if (animation.AnimationTracks.Count == 0 || !HasComp<SpriteComponent>(uid))
+            return;
+
+        var frames = ReadFrames(animation, nameof(SpriteComponent.Scale), Vector2.Zero, out var cubic);
+        if (cubic)
+            throw new NotSupportedException("scale animations must use linear interpolation");
+        PlayScale(uid, key, frames);
+        _states[uid].Notifications[key] = _states[uid].Scales[key];
+    }
+
+    /// <summary>
     /// Запускает анимацию множителя scale с Release в конце.
     /// </summary>
     public void PlayScale(EntityUid uid, string key, params (Vector2 Value, float Time)[] frames)
@@ -412,6 +366,25 @@ public sealed class SpriteAnimationSystem : EntitySystem
 
         state.Notifications.Remove(key);
         state.Scales[key] = new SpriteAnimationTrack(frames, false, endMode);
+    }
+
+    /// <summary>
+    /// Перематывает все треки этого key на указанное время от начала. Отрицательное время считается нулём.
+    /// </summary>
+    /// <remarks>
+    /// Можно мотать назад. Отсутствующие треки игнорируются, спрайт обновится при следующей сборке кадра.
+    /// </remarks>
+    public void Seek(EntityUid uid, string key, float elapsed)
+    {
+        if (!_states.TryGetValue(uid, out var state))
+            return;
+
+        if (state.Offsets.TryGetValue(key, out var offset))
+            offset.Seek(elapsed);
+        if (state.Scales.TryGetValue(key, out var scale))
+            scale.Seek(elapsed);
+        if (state.Rotations.TryGetValue(key, out var rotation))
+            rotation.Seek(elapsed);
     }
 
     /// <summary>
@@ -521,6 +494,38 @@ public sealed class SpriteAnimationSystem : EntitySystem
         }
     }
 
+    private static (Vector2 Value, float Time)[] ReadFrames(Animation animation, string property, Vector2 origin, out bool cubic)
+    {
+        if (animation.AnimationTracks.Count != 1 ||
+            animation.AnimationTracks[0] is not AnimationTrackComponentProperty track ||
+            track.ComponentType != typeof(SpriteComponent) || track.Property != property ||
+            track.KeyFrames.Count < 2 ||
+            track.InterpolationMode is not (AnimationInterpolationMode.Linear or AnimationInterpolationMode.Cubic))
+            throw new NotSupportedException("expected a single sprite track with at least two keyframes");
+
+        cubic = track.InterpolationMode == AnimationInterpolationMode.Cubic;
+        var frames = new (Vector2 Value, float Time)[track.KeyFrames.Count];
+        var duration = 0f;
+        for (var i = 0; i < frames.Length; i++)
+        {
+            var frame = track.KeyFrames[i];
+            if (frame.Value is not Vector2 value || frame.Easing != null || frame.KeyTime < 0f)
+                throw new NotSupportedException("expected vector keyframes without easing and with non-negative times");
+            frames[i] = (value - origin, i == 0 ? 0f : frame.KeyTime);
+            duration += frames[i].Time;
+        }
+
+        var remaining = (float) animation.Length.TotalSeconds - duration;
+        if (remaining < -0.001f)
+            throw new NotSupportedException("animation length is shorter than its keyframes");
+        if (remaining > 0.001f)
+        {
+            Array.Resize(ref frames, frames.Length + 1);
+            frames[^1] = (frames[^2].Value, remaining);
+        }
+        return frames;
+    }
+
     private void UpdateOffset(Entity<SpriteComponent> ent, SpriteAnimationState state, float frameTime)
     {
         if (!state.HasOffset)
@@ -589,11 +594,6 @@ public sealed class SpriteAnimationSystem : EntitySystem
             state.HasScale = false;
     }
 
-    private void OnSpriteShutdown(Entity<SpriteComponent> ent, ref ComponentShutdown args)
-    {
-        _states.Remove(ent.Owner);
-    }
-
     private void UpdateRotation(Entity<SpriteComponent> ent, SpriteAnimationState state, float frameTime)
     {
         if (!state.HasRotation)
@@ -621,5 +621,4 @@ public sealed class SpriteAnimationSystem : EntitySystem
         _sprite.SetRotation(ent.AsNullable(), state.LastRotation);
         state.HasRotation = state.Rotations.Count != 0;
     }
-
 }

@@ -1,9 +1,16 @@
 namespace Content.Client._Sunrise.Animations;
 
+/// <summary>
+/// controls whether a finished track keeps contributing to the sprite
+/// </summary>
 public enum SpriteAnimationEndMode : byte
 {
-    // после конца анимации всё возвращается на круги своя
+    /// <summary>
+    /// removes the finished track's contribution, preserving the base and other effects
+    /// </summary>
     Release,
-    // последний вклад анимации сохранится, сброс происходит только при Stop или выхода с pvs
+    /// <summary>
+    /// keeps the final contribution until replaced, stopped or reset on leaving PVS
+    /// </summary>
     Hold,
 }
