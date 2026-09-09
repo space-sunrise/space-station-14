@@ -1041,7 +1041,7 @@
   description: uplink-sniper-ammo-frag-desc
   productEntity: CratePirateMagazineBoxAntiMaterielFrag
   cost:
-    Doubloon: 10
+    Doubloon: 30
   categories:
   - UplinkPirateAmmo
   conditions:
