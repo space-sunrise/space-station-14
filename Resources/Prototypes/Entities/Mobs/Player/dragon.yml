@@ -144,6 +144,7 @@
       - Door
       tags:
       - Wall
+  - type: AntiRottingContainer # Sunrise-edit 
   - type: Tag
     tags:
     - CannotSuicide
