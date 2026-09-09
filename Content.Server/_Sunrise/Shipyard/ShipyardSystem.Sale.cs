@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 using Content.Shared._Sunrise.Shipyard.Components;
 using Content.Shared._Sunrise.Shipyard.Events;
 using Content.Shared._Sunrise.Shipyard.Prototypes;
@@ -20,70 +22,141 @@ public sealed partial class ShipyardSystem
 
     private void OnSell(Entity<ShipyardConsoleComponent> ent, ref ShipyardConsoleSellMessage args)
     {
-        if (!_access.IsAllowed(args.Actor, ent))
-        {
-            Deny(ent, args.Actor, "shipyard-console-access-denied");
+        if (!args.Actor.IsValid())
             return;
+
+        TrySell(ent.AsNullable(), args.Actor);
+    }
+
+    /// <summary>
+    /// Attempts to queue the shuttle linked to a shipyard console for sale.
+    /// </summary>
+    public bool TrySell(Entity<ShipyardConsoleComponent?> ent, EntityUid user)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return false;
+
+        Entity<ShipyardConsoleComponent> resolved = (ent.Owner, ent.Comp);
+        if (!CanSell(ent, user, out var reason))
+        {
+            DenySell(resolved, user, reason);
+
+            return false;
+        }
+
+        DoSell(resolved, user);
+        return true;
+    }
+
+    /// <summary>
+    /// Checks whether the user can queue the shuttle linked to a shipyard console for sale.
+    /// </summary>
+    public bool CanSell(
+        Entity<ShipyardConsoleComponent?> ent,
+        EntityUid user,
+        [NotNullWhen(false)] out string? reason)
+    {
+        reason = null;
+
+        if (!Resolve(ent, ref ent.Comp, false))
+        {
+            reason = "shipyard-console-unavailable";
+            return false;
+        }
+
+        if (!Exists(user) || !_interaction.InRangeAndAccessible((user, null), (ent.Owner, null)))
+        {
+            reason = "interaction-system-user-interaction-cannot-reach";
+            return false;
+        }
+
+        if (!_access.IsAllowed(user, ent))
+        {
+            reason = "shipyard-console-access-denied";
+            return false;
         }
 
         if (IsConsoleBroken(ent))
         {
-            Deny(ent, args.Actor, "shipyard-console-broken");
-            return;
+            reason = "shipyard-console-broken";
+            return false;
         }
 
         if (HasPendingAction(ent.Owner))
         {
-            Deny(ent, args.Actor, "shipyard-console-action-pending");
-            return;
+            reason = "shipyard-console-action-pending";
+            return false;
         }
 
         if (ent.Comp.CurrentShuttle is not { } shuttleUid || !Exists(shuttleUid))
         {
-            ClearShuttle(ent);
-            Deny(ent, args.Actor, "shipyard-console-no-shuttle");
-            return;
+            reason = "shipyard-console-no-shuttle";
+            return false;
         }
 
         var stationUid = _station.GetOwningStation(ent);
         if (stationUid is not { } station ||
             !TryComp<StationBankAccountComponent>(station, out var bank))
         {
-            Deny(ent, args.Actor, "shipyard-console-station-not-found");
-            return;
+            reason = "shipyard-console-station-not-found";
+            return false;
         }
 
         if (!IsShuttleNearStation(shuttleUid, station, ent.Comp.MaxSellDistance))
         {
-            Deny(ent, args.Actor, "shipyard-console-shuttle-too-far", ("distance", ent.Comp.MaxSellDistance));
-            return;
+            reason = "shipyard-console-shuttle-too-far";
+            return false;
         }
 
         var occupantCount = GetShuttleOccupantCount(shuttleUid);
         if (occupantCount > 0)
         {
-            Deny(ent, args.Actor, "shipyard-console-shuttle-occupied", ("count", occupantCount));
-            return;
+            reason = "shipyard-console-shuttle-occupied";
+            return false;
         }
 
         if (!_cargo.TryGetAccount((station, bank), ent.Comp.Account, out _))
         {
-            Deny(ent, args.Actor, "shipyard-console-account-not-found");
-            return;
+            reason = "shipyard-console-account-not-found";
+            return false;
         }
 
+        return true;
+    }
+
+    private void DoSell(Entity<ShipyardConsoleComponent> ent, EntityUid user)
+    {
         var soldName = GetCurrentShuttleName(ent.Comp);
         _pendingActions.Add(new PendingShipyardAction(
             ent.Owner,
-            args.Actor,
+            user,
             _timing.CurTime + ent.Comp.SaleDelay,
             soldName));
         _audio.PlayPvs(ent.Comp.ConfirmSound, ent);
         _popup.PopupEntity(Loc.GetString("shipyard-console-sale-queued",
-            ("delay", ent.Comp.SaleDelay.TotalSeconds), ("ship", soldName)), ent, args.Actor);
+            ("delay", ent.Comp.SaleDelay.TotalSeconds), ("ship", soldName)), ent, user);
         Announce(ent, "shipyard-console-sale-queued-announcement",
             ("ship", soldName), ("delay", ent.Comp.SaleDelay.TotalSeconds));
         UpdateUi(ent);
+    }
+
+    private void DenySell(Entity<ShipyardConsoleComponent> ent, EntityUid user, string reason)
+    {
+        if (reason == "shipyard-console-shuttle-too-far")
+        {
+            Deny(ent, user, reason, ("distance", ent.Comp.MaxSellDistance));
+            return;
+        }
+
+        if (reason == "shipyard-console-shuttle-occupied" &&
+            ent.Comp.CurrentShuttle is { } shuttleUid &&
+            Exists(shuttleUid))
+        {
+            Deny(ent, user, reason, ("count", GetShuttleOccupantCount(shuttleUid)));
+            return;
+        }
+
+        Deny(ent, user, reason);
     }
 
     private void CompleteSale(Entity<ShipyardConsoleComponent> ent, PendingShipyardAction action)
@@ -254,7 +327,7 @@ public sealed partial class ShipyardSystem
             if (parent == shuttleUid)
                 return true;
 
-            if (!TryComp<TransformComponent>(parent, out var parentXform))
+            if (!TryComp(parent, out TransformComponent? parentXform))
                 return false;
 
             if (parentXform.GridUid == shuttleUid)

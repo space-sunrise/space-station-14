@@ -319,7 +319,7 @@ public sealed partial class ShipyardSystem
 
         var fallbackGrid = _station.GetLargestGrid((stationUid, stationData));
         if (fallbackGrid is not { } grid ||
-            !TryComp<TransformComponent>(grid, out var gridTransform) ||
+            !TryComp(grid, out TransformComponent? gridTransform) ||
             gridTransform.MapUid is not { } mapUid ||
             !mapUid.IsValid())
         {

@@ -41,6 +41,7 @@ public sealed partial class ShipyardSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedCargoSystem _cargo = default!;
     [Dependency] private readonly DockingSystem _docking = default!;
+    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly PricingSystem _pricing = default!;

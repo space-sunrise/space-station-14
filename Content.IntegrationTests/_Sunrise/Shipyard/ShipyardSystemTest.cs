@@ -1,3 +1,5 @@
+using System.Numerics;
+
 using Content.Server._Sunrise.Shipyard;
 using Content.Server.Cargo.Systems;
 using Content.Server.Station.Systems;
@@ -7,6 +9,7 @@ using Content.Shared._Sunrise.Shipyard.Prototypes;
 using Content.Shared._Sunrise.Shipyard;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Cargo.Prototypes;
+using Content.Shared.Interaction;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
@@ -171,6 +174,95 @@ public sealed class ShipyardSystemTest
             {
                 Assert.That(balance, Is.EqualTo(int.MaxValue));
                 Assert.That(entities.EntityExists(cash), Is.True);
+            });
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task SellMessageOutOfRangeDoesNotQueueSale()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var testMap = await pair.CreateTestMap();
+
+        var entities = server.ResolveDependency<IEntityManager>();
+        var cargo = entities.System<CargoSystem>();
+        var interaction = entities.System<SharedInteractionSystem>();
+        var shipyard = entities.System<ShipyardSystem>();
+        var stationSystem = entities.System<StationSystem>();
+        var transform = entities.System<SharedTransformSystem>();
+
+        EntityUid station = default;
+        EntityUid console = default;
+        EntityUid actor = default;
+        EntityUid shuttle = default;
+        var accountInitialized = false;
+
+        await server.WaitPost(() =>
+        {
+            station = entities.SpawnEntity("ShipyardTestStation", MapCoordinates.Nullspace);
+            stationSystem.AddGridToStation(station, testMap.Grid);
+
+            console = entities.SpawnEntity("ShipyardTestConsole", testMap.GridCoords);
+            actor = entities.SpawnEntity("MobHuman", testMap.GridCoords);
+            shuttle = entities.SpawnEntity(null, testMap.GridCoords);
+
+            var bank = entities.GetComponent<StationBankAccountComponent>(station);
+            accountInitialized = cargo.TrySetBankAccount((station, bank), CargoAccount, InitialBalance);
+
+            var consoleComponent = entities.GetComponent<ShipyardConsoleComponent>(console);
+            consoleComponent.CurrentShuttle = shuttle;
+            consoleComponent.CurrentShuttlePrice = VesselPrice;
+            consoleComponent.SaleDelay = TimeSpan.Zero;
+        });
+
+        await server.WaitAssertion(() =>
+        {
+            Assert.That(accountInitialized, Is.True);
+            Assert.That(interaction.InRangeAndAccessible((actor, null), (console, null)), Is.True);
+            Assert.That(shipyard.CanSell((console, null), actor, out var reason), Is.True);
+            Assert.That(reason, Is.Null);
+        });
+
+        await server.WaitPost(() =>
+        {
+            var consolePosition = transform.GetWorldPosition(console);
+            transform.SetWorldPosition(actor,
+                consolePosition + new Vector2(SharedInteractionSystem.InteractionRange + 10f, 0f));
+        });
+
+        await server.WaitAssertion(() =>
+        {
+            Assert.That(interaction.InRangeAndAccessible((actor, null), (console, null)), Is.False);
+            Assert.That(shipyard.CanSell((console, null), actor, out var reason), Is.False);
+            Assert.That(reason, Is.EqualTo("interaction-system-user-interaction-cannot-reach"));
+        });
+
+        await server.WaitPost(() =>
+        {
+            var sale = new ShipyardConsoleSellMessage
+            {
+                Actor = actor,
+                UiKey = ShipyardConsoleUiKey.Key,
+            };
+            entities.EventBus.RaiseLocalEvent(console, sale);
+        });
+
+        await server.WaitRunTicks(1);
+
+        await server.WaitAssertion(() =>
+        {
+            var bank = entities.GetComponent<StationBankAccountComponent>(station);
+            var consoleComponent = entities.GetComponent<ShipyardConsoleComponent>(console);
+
+            Assert.That(cargo.TryGetAccount((station, bank), CargoAccount, out var balance), Is.True);
+            Assert.Multiple(() =>
+            {
+                Assert.That(balance, Is.EqualTo(InitialBalance));
+                Assert.That(entities.EntityExists(shuttle), Is.True);
+                Assert.That(consoleComponent.CurrentShuttle, Is.EqualTo(shuttle));
             });
         });
 
