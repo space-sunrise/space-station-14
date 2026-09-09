@@ -5,6 +5,17 @@
   components:
     - type: Sprite
       sprite: _Sunrise/Mobs/Aliens/Carps/holo.rsi
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.30
+          density: 10
+          mask:
+          - FlyingMobMask
+          layer:
+          - FlyingMobLayer
     - type: GhostRole
       allowMovement: true
       allowSpeech: true
