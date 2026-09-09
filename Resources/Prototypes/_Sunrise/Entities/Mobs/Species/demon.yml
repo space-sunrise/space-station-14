@@ -96,8 +96,8 @@
   - type: FireProtection
     reduction: 0.5  #50% resistance to being on fire
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3.5
-    baseSprintSpeed : 5.5
+    baseWalkSpeed : 2.5
+    baseSprintSpeed : 5.175
   - type: Inventory
     femaleDisplacements:
       jumpsuit:
