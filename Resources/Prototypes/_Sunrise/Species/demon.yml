@@ -12,7 +12,7 @@
   naming: firstlast
   buttScan:
     sprite: /Textures/_Sunrise/CopyMachine/butts_scans.rsi
-    state: human # SUNRISE-TODO: Спрайт жопы аркан
+    state: human # SUNRISE-TODO: Спрайт жопы импида
 
 - type: bodyType
   id: DemonNormal
