@@ -65,6 +65,11 @@
       Unsexed: FemaleHuman
   - type: Damageable
     damageContainer: Biological
+    damageModifierSet: Demon
+  - type: MeleeDamageMultiplier
+    multiplier: 0.7
+  - type: HealingMultiplier
+    multiplier: 0.6
   - type: MeleeWeapon
     hidden: true
     soundHit:
@@ -78,17 +83,21 @@
     currentTemperature: 310.15
     specificHeat: 46
   - type: TemperatureDamage
-    heatDamageThreshold: 400
-    coldDamageThreshold: 193  #starting temperature damage treshold
+    heatDamageThreshold: 600  #heat super-tolerant
+    coldDamageThreshold: 280  #cold weakness, starting temperature damage treshold
     coldDamage:
       types:
-        Cold : 0.1 #per second, scales with temperature & other constants
+        Cold : 0.5 #per second, scales with temperature & other constants
     heatDamage:
       types:
-        Heat : 0.3 #per second, scales with temperature & other constants
+        Heat : 0.1 #per second, scales with temperature & other constants
+  - type: Flammable
+    minIgnitionTemperature: 500  #fire resistant, harder to ignite from ambient heat
+  - type: FireProtection
+    reduction: 0.5  #50% resistance to being on fire
   - type: MovementSpeedModifier
-    baseWalkSpeed : 2.5
-    baseSprintSpeed : 4.5
+    baseWalkSpeed : 3.5
+    baseSprintSpeed : 5.5
   - type: Inventory
     femaleDisplacements:
       jumpsuit:
@@ -98,6 +107,109 @@
             state: jumpsuit-female
   - type: Perishable
   - type: FootprintEmitter
+  # Огненный плевок демона (аналог Fire spew у импидов): экшен на хотбар, прицеливание и ЛКМ, как обычное оружие
+  - type: ActionGun
+    action: ActionDemonSpew
+    gunProto: DemonSpewGun
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: DemonSpewGun
+  name: demon's maw
+  description: For spewing a burning mixture.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      chamber:
+        maxVol: 5
+        reagents:
+        - ReagentId: Thermite
+          Quantity: 1
+        - ReagentId: Phlogiston
+          Quantity: 1
+        - ReagentId: Napalm
+          Quantity: 3
+  - type: SolutionRegeneration
+    solution: chamber
+    generated:
+      reagents:
+      - ReagentId: Thermite
+        Quantity: 1
+      - ReagentId: Phlogiston
+        Quantity: 1
+      - ReagentId: Napalm
+        Quantity: 3
+    duration: 60
+  - type: SolutionAmmoProvider
+    solutionId: chamber
+    fireCost: 5
+    proto: ProjectileDemonSpew
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Animals/snake_hiss.ogg
+    soundEmpty: null
+    projectileSpeed: 5
+
+- type: entity
+  id: ProjectileDemonSpew
+  name: burning bile
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Clickable
+  - type: Physics
+    bodyType: Dynamic
+  - type: TileFrictionModifier
+    modifier: 0
+  - type: TimedDespawn
+    lifetime: 10
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 0
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: fireball
+      shader: unshaded
+  - type: PointLight
+    color: "#FF8C00"
+    radius: 3.5
+    energy: 3
+  - type: Ammo
+    muzzleFlash: null
+  - type: SolutionContainerManager
+    solutions:
+      vapor:
+        maxVol: 50
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.10,-0.30,0.10,0.15"
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+  - type: Vapor
+    active: true
+    transferAmountPercentage: 1
+
+- type: entity
+  parent: BaseAction
+  id: ActionDemonSpew
+  name: "[color=orange]Spew Combustible Mixture[/color]"
+  description: Spew a burning mixture at your enemies.
+  components:
+  - type: Action
+    icon: { sprite: Objects/Weapons/Guns/Projectiles/magic.rsi, state: fireball }
+    itemIconStyle: BigAction
+    priority: 2
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ActionGunShootEvent
 
 - type: entity
   save: false

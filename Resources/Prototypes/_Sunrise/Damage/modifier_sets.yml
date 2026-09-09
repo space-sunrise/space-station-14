@@ -275,3 +275,9 @@
     Piercing: 1.10
     Heat: 1.15
     Cold: 0.7
+  
+- type: damageModifierSet
+  id: Demon
+  coefficients:
+    Heat: 0.7
+    Cold: 1.5
