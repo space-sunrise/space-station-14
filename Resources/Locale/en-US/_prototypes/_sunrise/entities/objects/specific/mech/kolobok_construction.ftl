@@ -1,0 +1,14 @@
+ent-KolobokHarness = Kolobok harness
+    .desc = The core of the Kolobok.
+ent-KolobokLArm = Kolobok left arm
+    .desc = The left arm of the Kolobok. It belongs on the chassis of the mech.
+ent-KolobokRArm = Kolobok right arm
+    .desc = The right arm of the Kolobok. It belongs on the chassis of the mech.
+ent-KolobokLLeg = Kolobok left leg
+    .desc = The left leg of the Kolobok. It belongs on the chassis of the mech.
+ent-KolobokRLeg = Kolobok right leg
+    .desc = The right leg of the Kolobok. It belongs on the chassis of the mech.
+ent-KolobokChassis = Kolobok chassis
+    .desc = An in-progress construction of the Kolobok mech.
+ent-KolobokArmorPlate = Kolobok armor plates
+    .desc = Heavy armor plates for the Kolobok exosuit.

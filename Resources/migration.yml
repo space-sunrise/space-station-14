@@ -1233,4 +1233,14 @@ MagazineBoxHeavyRifleHP: MagazineBoxHeavyRifleSP
 RifleHeavyMagazineHP: RifleHeavyMagazineSP
 MagazineDragunovHP: MagazineDragunovSP
 MagazineBoxRifleMachineHP: MagazineBoxRifleMachineSP
+# 2026-09-06
+MechDollHouse: MechKolobok
+MechDollHouseBattery: MechKolobokBattery
+MechDollHouseFilled: MechKolobokFilled
+CratePirateMechDollHouseBundle: CratePirateMechKolobokBundle
+MagazineBoxBelt127Blast: MagazineBoxBelt127Artillery
+MagazineBauer127Blast: MagazineBauer127
+MagazineBoxAntiMaterielBlast: MagazineBoxAntiMateriel
+CartridgeAntiMaterielBlast: CartridgeAntiMateriel
+CratePirateMagazineBoxAntiMaterielBlast: CratePirateMagazineBoxAntiMateriel
 # region Sunrise-End
