@@ -22,7 +22,7 @@ ent-MagazineBoxAntiMaterielEmp = коробка патронов (15мм эми)
     .desc = { ent-BaseSunriseMagazineBoxAntiMateriel.desc }
 
 ent-BaseMagazineBoxBeltLight127 = патронная лента 12,7мм
-    .desc = Большая патронная лента для навесного пулемёта «Корд».
+    .desc = Большая патронная лента для навесного пулемёта Корд.
 ent-MagazineBoxBeltLight127Empty = { ent-BaseMagazineBoxBeltLight127 }
     .desc = { ent-BaseMagazineBoxBeltLight127.desc }
 ent-MagazineBoxBeltLight127 = { ent-BaseMagazineBoxBeltLight127 }

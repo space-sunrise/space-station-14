@@ -43,6 +43,7 @@
   - type: Construction
     graph: SunriseDurandCircuitBoardRepair
     node: broken
+    deconstructionTarget: broken
 
 - type: entity
   parent: MarkerBase
