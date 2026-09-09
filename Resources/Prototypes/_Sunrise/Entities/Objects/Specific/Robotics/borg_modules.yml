@@ -159,6 +159,7 @@
     - item: WeaponRifleLecterB
     - item: WeaponHeavyLaserBorg
     - item: HoloprojectorSecurityBorg
+    - item: SunriseEnergyDomeDirectionalTurtleBorg
 
 - type: entity
   id: BorgModuleCombat

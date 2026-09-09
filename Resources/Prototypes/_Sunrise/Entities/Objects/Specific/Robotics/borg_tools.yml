@@ -43,6 +43,42 @@
         locked: true
 
 - type: entity
+  parent: BaseItem
+  id: SunriseEnergyDomeDirectionalTurtleBorg
+  name: cyborg barrier generator
+  description: Projects a blue directional energy barrier that blocks incoming fire and movement.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/EnergyDome/reinhardt.rsi
+    state: icon
+  - type: InteractionOutline
+  - type: Item
+    size: Large
+  - type: HeldSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellRobotTool
+        locked: true
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 1
+    domePrototype: SunriseEnergyDomeSecurityBorg
+  - type: PowerCellDraw
+    drawRate: 5
+    useCharge: 0
+  - type: UseDelay
+    delay: 10
+
+- type: entity
   name: robot laser gun
   parent: BaseWeaponBatterySmall
   id: WeaponLaserBorg
